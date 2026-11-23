@@ -106,7 +106,9 @@ RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a min
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
-RES_WORN = 300                         # heavy damage in the minute before: this much or more a player (the upper third of what a main team in their base had taken, 304, on 2026-11-23; Claude's draft from the data)
+RES_WORN = 150                         # heavy damage in the minute before: this much or more a player (R-612, his number: "Let's loosen the damage to 150 damage per player in the minute before"; 300, the upper third in the data, was Claude's draft)
+RES_MORALE_BEHIND = 30                 # morale significantly lower than the enemy's (R-606, R-613: "If you have significantly lower morale than enemy, staying is probably more dangerous"): the eight's morale summed is this much or more under theirs, two deaths' worth of death penalty (Claude's draft; between 6 and 52 it reads the same danger spots on 2026-11-23)
+RES_LATE_S = 720                       # the res of 12:00 and every res after it (R-603: "12 minutes is the breakpoint", the Amulet of Protection)
 RES_TAKEN_S = 60                       # ... and all damage on them over this long (his "it took a lot of monk energy (i.e. they took a lot of dmg)": energy is not in the replay, damage taken is)
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
@@ -1413,7 +1415,8 @@ def _res_stand(M, tm, ids, u):
     for a while, and is deep in pit"). Their health; how far each stands from the enemy's res shrine, straight and walked, and how many are past it (nearer the
     enemy's Guild Lord, by the walk, than the shrine is); the damage enemy NPCs did them in the RES_NPC_S before and how many of them it fell on; all the damage
     they took in the RES_TAKEN_S before (energy is not in the replay); how many of them are of the main team (a res onto a split is another thing: his word on
-    Book v cope and hook v Men); and the pit NPCs alive. A record: no play or test reads it."""
+    Book v cope and hook v Men); and the pit NPCs alive. `danger` is read by the base res plays: a base res is a call only in the danger spot, and context
+    outside it (R-609, R-612, `_res_context`); the rest is a record."""
     st, foe = M.st, 3 - tm
     u = max(min(int(u), M.T), 0); u -= u % SPLIT_STEP
     in_ = [a for a in ids if M.AL[a][u] and M.P[a][u]]
@@ -1440,10 +1443,47 @@ def _res_stand(M, tm, ids, u):
     out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
     # The danger spot (R-610, his three factors: "Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before. I think
     # this is the danger spot"): half or more of the players in their base past the shrine, two or more enemy NPCs hitting them, and RES_WORN or more damage a
-    # player in the minute before; for the main team, three or more of it (a res onto a split is another thing, R-595). One reading, here: the reports ask for it.
+    # player in the minute before (150, his number: R-612); for the main team, three or more of it (a res onto a split is another thing, R-595). One reading,
+    # here: the base res plays and the reports ask for it.
     out["marks"] = [bool(in_) and out.get("past_shrine") is not None and out["past_shrine"] * 2 >= len(in_), out["npcs_hitting"] >= 2, out["taken"] is not None and out["taken"] >= RES_WORN]
     out["danger"] = len(in_) >= 3 and out["of_main"] * 2 > len(in_) and all(out["marks"])
     return out
+
+
+def _danger_words(e):
+    """The danger spot said on a base res row (R-610, R-612): his three factors as the team stands RES_READ_S before the res. Nothing outside it."""
+    if not e["danger"]: return ""
+    return f"; the danger spot: {e['past_shrine']} of {e['n']} past their res shrine, {e['npcs_hitting']} NPCs hitting them, {e['taken']} damage a player in the minute before"
+
+
+def _res_context(e):
+    """A base res is a decision only in the danger spot (R-609, R-612: "I would want to see the base res call just for every danger zone base res"; the rest
+    "We can have ... as context"). Outside it the play is told as context with no call (R-488), saying which part of the danger spot is not there."""
+    if e["danger"]: return {}
+    if not (e["n"] >= 3 and e["of_main"] * 2 > e["n"]): why = "fewer than three of the main team in their base"        # a res onto a split is another thing (R-595)
+    else: why = ", ".join(w for w, on in zip(("fewer than half of them past their res shrine", "fewer than two NPCs hitting them", f"under {RES_WORN} damage a player in the minute before"), e["marks"]) if not on)
+    return {"clear": False, "unclear": f"a base res outside the danger spot: {why}"}
+
+
+def res_factors(M, p):
+    """His three factors of the call in the danger spot (R-613: "morale difference; whether the stand is capped; and 12 minute breakpoint"), from the position the
+    play is told at: the eight's morale summed, ours less theirs, and whether it is RES_MORALE_BEHIND or more under theirs; whether we hold the stand; whether
+    the res is that of 12:00 or a later one. `against`: how many of the three stand against the stay. Taken on his word, ahead of the data (he says so): a
+    record beside the call, no verdict, and the report says what the data shows of each."""
+    st, mo = p["at_told"]["state"], p["at_told"]["after"][str(FLAG_AFTER_S[0])]["morale"]
+    B = next(b for b in range(RES_EVERY, M.T + RES_EVERY + 1, RES_EVERY) if b > p["t0"])        # the res the play is told for (it is told RES_READ_S before it, or LEAVE_RES_S or less before it)
+    f = {"morale": mo[0][0] - mo[1][0], "stand": st["stand"] == "own", "res": B}
+    f["morale_behind"] = f["morale"] <= -RES_MORALE_BEHIND; f["late"] = B >= RES_LATE_S
+    f["against"] = int(f["morale_behind"]) + int(not f["stand"]) + int(f["late"])
+    return f
+
+
+def _factor_words(f):
+    mor = "morale level with theirs" if f["morale"] == 0 else f"morale {abs(f['morale'])} {'over' if f['morale'] > 0 else 'under'} theirs"
+    words = (mor, "the stand held" if f["stand"] else "the stand not held", "the res of 12:00 or later" if f["late"] else "before 12:00")
+    on = (f["morale_behind"], not f["stand"], f["late"])
+    a, b = [w for w, x in zip(words, on) if x], [w for w, x in zip(words, on) if not x]
+    return ("; against the stay: " + ", ".join(a) + ("; for it: " + ", ".join(b) if b else "")) if a else "; nothing of his three against the stay (" + ", ".join(b) + ")"
 
 
 def res_spots(M):
@@ -1490,17 +1530,19 @@ def res_plays(M, K):
         hp_ = [h["hp"] for h in (M.m.snap(a, u_ * 10) for a in in_) if h and h.get("hp") is not None]
         stand_ = {"health": round(statistics.mean(hp_)) if hp_ else None, "low": sum(1 for h in hp_ if h < RES_LOW_HP), "inside": sum(1 for a in in_ if M._deep(a, u_) in ("pit", "base")),
                   "pit_npcs": sum(1 for z, v in st.geo.npcs.items() if v["team"] == 3 - tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > B)}
-        out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else ""),
+        early = _res_stand(M, tm, r["ids"], B - RES_READ_S)
+        out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else "") + _danger_words(early),
                          "Be out, or set for the fight, when they res", {"none of the players in their base dies in the 30 s after the res": K.died(tm, B, B + 30, set(r["ids"])) == 0},      # the test covers the players of the play: a team mate who dies elsewhere, defending a split at home, did not die of the base res (his mark on hold v Men 4:00, Classic: "ranger dies on split, not because of base res")
                          beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={**stand_, "attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"]),
-                                                                    "at_res": _res_stand(M, tm, r["ids"], B), "early": _res_stand(M, tm, r["ids"], B - RES_READ_S), "in_s": None if r.get("went_in") is None else int(B - r["went_in"]),
-                                                                    "deaths_60": K.died(tm, B, B + 60, set(r["ids"]))}))      # at_res, early: how they stand as the res lands and RES_READ_S before it, when staying or leaving is still theirs to choose (R-595)
+                                                                    "at_res": _res_stand(M, tm, r["ids"], B), "early": early, "in_s": None if r.get("went_in") is None else int(B - r["went_in"]),
+                                                                    "deaths_60": K.died(tm, B, B + 60, set(r["ids"]))}, **_res_context(early)))      # at_res, early: how they stand as the res lands and RES_READ_S before it, when staying or leaving is still theirs to choose (R-595)
     for r in M.timing():
         if r["kind"] != "left before res": continue
         B, tm = r["t"] + r["s"], r["tm"]
-        out.append(_play(M, "base res", "own", tm, r["t"], B + 30, r["who"], f"{r['team']} leaves {r['foe']}'s base {r['s']} s before the base res ({r['coming_back']} coming back)",
+        early = _res_stand(M, tm, [a for a in st.players[tm] if M.m.roles[a] in set(r["who"])], B - RES_READ_S)
+        out.append(_play(M, "base res", "own", tm, r["t"], B + 30, r["who"], f"{r['team']} leaves {r['foe']}'s base {r['s']} s before the base res ({r['coming_back']} coming back)" + _danger_words(early),
                          "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res", res={"coming_back": r["coming_back"], "left_s": r["s"], "attackers": len(r["who"]),
-                                                                                                           "early": _res_stand(M, tm, [a for a in st.players[tm] if M.m.roles[a] in set(r["who"])], B - RES_READ_S), "deaths_60": K.died(tm, B, B + 60)}))      # the same reading on the same clock as a team that stays (they leave LEAVE_RES_S or less before the res, so they are still in the base then)
+                                                                                                           "early": early, "deaths_60": K.died(tm, B, B + 60)}, **_res_context(early)))      # the same reading on the same clock as a team that stays (they leave LEAVE_RES_S or less before the res, so they are still in the base then)
     return out
 
 
@@ -1582,6 +1624,8 @@ def plays(M, recs=None):
             u = min(int(p["t0"]), M.T); b_ = u - FLAG_BEFORE_S
             p["at_told"] = {"state": M._state(p["tm"], u), "after": M.consequence(p["tm"], u, FLAG_AFTER_S),
                             "before": None if b_ < 0 else {"state": M._state(p["tm"], b_), "after": M.consequence(p["tm"], b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}
+            if p["play"] == "base res" and p.get("clear") is not False:        # the danger spot: his three factors beside the call (R-613)
+                p["res"]["factors"] = f_ = res_factors(M, p); p["scenario"] += _factor_words(f_)
             if p["play"] == "opening":
                 p["open"]["later"] = {h: {k: v[k] for k in OPEN_LATER_KEYS} for h, v in M.consequence(p["tm"], 0, OPEN_LATER_S).items()}
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))

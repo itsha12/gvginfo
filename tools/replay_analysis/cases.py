@@ -2225,13 +2225,22 @@ def res_cases(D, M, B):
                  marks=e["marks"], nmarks=sum(e["marks"]), danger=bool(e["danger"]), two_60=(r.get("deaths_60") or 0) >= 2, kills=c["hard"]["90"]["deaths"][1], npcs=c["hard"]["90"]["npcs"][1],
                  own_morale=mo[0][0], their_morale=mo[1][0], dm=mo[0][0] - mo[1][0], stand=st["stand"] == "own", their_alive=e["alive"][1], monks=e.get("monks") or 0, late=p["t0"] + RES_READ >= 720,
                  gap=m["gap"][p["team"]], fold=m["fold"], won=float(m["winner"] == p["team"]), chance=100 * c["p0"], more=None, held=False)
+        if c["danger"] != (p.get("clear") is not False): raise ValueError(f"base res play {p['id']}: the danger spot and the call disagree: run moments.py all again on this engine (R-460)")
+        if c["danger"]:                                                        # his three factors (R-613), read in the engine (`jobs.res_factors`)
+            if "factors" not in r: raise ValueError(f"base res play {p['id']} in the danger spot carries no factors: run moments.py all again on this engine (R-460)")
+            f_ = r["factors"]; c.update(factors=f_, behind=bool(f_["morale_behind"]), stand=bool(f_["stand"]), late=bool(f_["late"]), against=f_["against"], dm=f_["morale"])
+        # the price of a death at this position, as the price of a position reads it (prices that never saw this match): one more death on our side is 15 of
+        # death penalty on one player, a kill the same on theirs, a pit NPC one more of theirs lost
+        x0 = position(st, p["at_told"]["after"]["90"], c["gap"], False); beta = B[m["fold"]]
+        bump = lambda i, d_: 100 * (chance(beta, [v + (d_ if j == i else 0) for j, v in enumerate(x0)]) - c["p0"])
+        c.update(price={"one death": bump(2, -15), "two deaths": bump(2, -30), "a kill": bump(2, 15), "a pit NPC": bump(4, 1)})
         c["x"] = [c["chance"], c["gap"], c["their_morale"], c["own_morale"], e["health"] if e["health"] is not None else 90.0, c["their_alive"], float(n), float(bool(c["outnumbered"])), float(c["stand"]), float(c["late"]), float(c["monks"]), float(e["pit_npcs"])]
         out.append(c)
     return out, skipped
 
 
 RES_READ = 20                                    # a base res play is told this long before the res (`jobs.RES_READ_S`): the danger spot is read then
-GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (300 damage or more a player in the minute before)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
+GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (150 damage or more a player in the minute before, R-612)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
 HIS_RES = (("3b7bfeac", 1440, "yM v hook 24:00", True), ("512d445f", 720, "Crew v One 12:00", True), ("33dab8e5", 360, "Men v BcS 6:00", True), ("19f38ea6", 600, "Book v hook 10:00", True),
            ("39e9d728", 480, "DUM v ohno 8:00", True), ("c19f13e3", 600, "Men v NwAy 10:00", True), ("328de049", 960, "Book v cope 16:00", False), ("5527465c", 360, "hook v Men 6:00", None))      # his words of 2026-11-22 on the stays where two or more died: the six that are the greedy stay, one that is a res onto a split, and hook v Men, left as it is read (R-595, R-607)
 DANGER_VARS = ("own chance of winning at that second", "strength gap", "their morale", "our morale", "health of our players in their base", "their players alive", "their dead to come back", "outnumbered in their base once they res",
@@ -2263,6 +2272,128 @@ def spot_cases(D, M):
     return out
 
 
+FACTORS = (("morale", "morale 30 or more under theirs (the eight summed)", "morale not behind", lambda c: c["behind"]),
+           ("stand", "the stand not held", "the stand held", lambda c: not c["stand"]),
+           ("clock", "the res of 12:00 or later", "before 12:00", lambda c: c["late"]))
+
+
+def his_factors(S, g, pr, mn, rng):
+    """E. The call in the danger spot on his three factors (R-613: "morale difference; whether the stand is capped; and 12 minute breakpoint", taken on his word
+    ahead of the data): each factor against the stay beside the stays without it, then by how many of the three stand against the stay."""
+    g["factors"] = o = {"each": {}, "against": {}, "checks": {}}
+    pr(f"\nE. The call in the danger spot on his three factors (R-613), taken on his word ahead of the data: morale difference, whether the stand is held, and the 12:00 breakpoint ({len(S)} stays).")
+    pr("   One dies = one of its players in their base, in the 30 s after the res; win pts = the change in its chance of winning 90 s and three minutes on from the reading (90% range over whole matches).")
+    pr(f"     {'':52} {'stays':>5}  {'one dies':>16}  {'two or more within 60 s':>23}  {'kills':>5}  {'NPCs':>5}  {'win pts 90 s':>12}  {'win pts 180 s':>22}  {'started at':>10}")
+    def row(label, V, into):
+        if not V: return
+        if len(V) < 8: pr(f"     {label:52} {len(V):5}  too few to read: " + ", ".join(f"{c['deaths_60']} die" for c in V)); into[label] = {"stays": len(V), "deaths_60": [c["deaths_60"] for c in V]}; return
+        lo, hi = rng(V, lambda c: c["died"]); wl, wh = rng(V, lambda c: c["v"]["180"]); w = float(np.mean([c["v"]["180"] for c in V])); dies = 100 * mn(V, "died")
+        into[label] = {"stays": len(V), "one dies": dies, "range": [100 * lo, 100 * hi], "two or more within 60 s": 100 * mn(V, "two_60"), "kills": mn(V, "kills"), "NPCs": mn(V, "npcs"), "win points 90": float(np.mean([c["v"]["90"] for c in V])), "win points": w, "win range": [wl, wh], "started at": mn(V, "chance")}
+        pr(f"     {label:52} {len(V):5}  {f'{dies:3.0f}% ({100 * lo:.0f} to {100 * hi:.0f})':>16}  {100 * mn(V, 'two_60'):22.0f}%  {mn(V, 'kills'):5.2f}  {mn(V, 'npcs'):5.2f}  {np.mean([c['v']['90'] for c in V]):+12.1f}  {f'{w:+.1f} ({wl:+.1f} to {wh:+.1f})':>22}  {mn(V, 'chance'):9.0f}%")
+    row("every stay in the danger spot", S, o["each"])
+    for _, on, off, f in FACTORS:
+        row(on, [c for c in S if f(c)], o["each"]); row("  " + off, [c for c in S if not f(c)], o["each"])
+    pr("   By how many of the three stand against the stay:")
+    for n_ in (0, 1, 2, 3): row(("none of the three", "one", "two", "all three")[n_], [c for c in S if c["against"] == n_], o["against"])
+    row("two or three", [c for c in S if c["against"] >= 2], o["against"])
+    rd = lambda *a, **k: _reading(pr, o, S, *a, **k)
+    pr("   The readings (his factors as he gave them; each a difference between two groups of the stays):")
+    for i, (key, on, off, f) in enumerate(FACTORS):
+        rd(f"E{2 * i + 1} with {on} a player dies of the res more often", f, lambda c: True, +1, lambda c: c["died"], on.split(" (")[0], off)
+        rd(f"E{2 * i + 2} ... and the stay is worse off three minutes on", f, lambda c: True, -1, lambda c: c["v"]["180"], on.split(" (")[0], off, unit=" points")
+    rd("E7 with one or more of the three against it a player dies of the res more often than with none", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["died"], "one or more against", "none")
+    rd("E8 ... and two or more die within 60 s more often", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["two_60"], "one or more against", "none")
+    rd("E9 ... and the stay is worse off three minutes on", lambda c: c["against"] >= 1, lambda c: True, -1, lambda c: c["v"]["180"], "one or more against", "none", unit=" points")
+    rd("E10 with two or more of the three against it the stay is worse off three minutes on than with one or none", lambda c: c["against"] >= 2, lambda c: True, -1, lambda c: c["v"]["180"], "two or more against", "one or none", unit=" points")
+
+
+def death_cost(S, g, pr, mn, rng):
+    """F. What a death costs a team in the danger spot, in its chance of winning: as it fell (the stays by how many of the players in their base died within
+    60 s of the res), and as the price of a position reads one more death at the position the team stood in. With what a kill and a pit NPC are worth at the
+    same position, so that the stay can be weighed."""
+    g["death_cost"] = o = {"as_it_fell": {}, "price": {}}
+    pr(f"\nF. What a death costs in the danger spot ({len(S)} stays), in the chance of winning.")
+    pr("   1. As it fell: the stays by how many of the players in their base died within 60 s of the res. The change in the chance of winning is from the reading (20 s before the res) to 90 s and three minutes on;")
+    pr("      won = the share of those matches the team went on to win.")
+    pr(f"     {'':24} {'stays':>5}  {'started at':>10}  {'win pts 90 s':>12}  {'win pts 180 s':>22}  {'won':>5}  {'kills':>5}  {'NPCs':>5}")
+    groups = (("nobody dies", lambda c: (c["deaths_60"] or 0) == 0), ("one dies", lambda c: c["deaths_60"] == 1), ("two or more die", lambda c: (c["deaths_60"] or 0) >= 2))
+    for label, f in groups:
+        V = [c for c in S if f(c)]
+        if not V: continue
+        wl, wh = rng(V, lambda c: c["v"]["180"]); w = float(np.mean([c["v"]["180"] for c in V]))
+        o["as_it_fell"][label] = {"stays": len(V), "matches": len({c["rid"] for c in V}), "started at": mn(V, "chance"), "win points 90": float(np.mean([c["v"]["90"] for c in V])), "win points": w, "win range": [wl, wh], "won": 100 * mn(V, "won"), "kills": mn(V, "kills"), "NPCs": mn(V, "npcs")}
+        pr(f"     {label:24} {len(V):5}  {mn(V, 'chance'):9.0f}%  {np.mean([c['v']['90'] for c in V]):+12.1f}  {f'{w:+.1f} ({wl:+.1f} to {wh:+.1f})':>22}  {100 * mn(V, 'won'):4.0f}%  {mn(V, 'kills'):5.2f}  {mn(V, 'npcs'):5.2f}" + ("   (under the floor)" if len(V) < MIN_PLAYS else ""))
+    for name, f, h in (("one death against none", groups[1][1], "180"), ("two or more against none", groups[2][1], "180"), ("one or more against none", lambda c: (c["deaths_60"] or 0) >= 1, "180"), ("one or more against none, 90 s on", lambda c: (c["deaths_60"] or 0) >= 1, "90")):
+        for c in S: c["_y"] = c["v"][h]
+        d, lo, hi, na, nb = _num_range(S, f, groups[0][1])
+        if d is None: continue
+        o["as_it_fell"][name] = {"difference": float(d), "range": [float(lo), float(hi)], "n": [na, nb]}
+        pr(f"     {name}: {d:+.1f} points ({lo:+.1f} to {hi:+.1f}), {na} stays against {nb}" + ("   (under the floor of 30: a size to look at, no more)" if na < MIN_PLAYS else ""))
+    # set level on where the team started: a team far ahead has little left to gain, and the stays that take deaths start lower. Each stay with a death against
+    # the stays without one, of other matches, that started within 10 points of it (20 where fewer than five do)
+    none = [c for c in S if groups[0][1](c)]
+    def level(c, h):
+        for w in (10, 20, 100):
+            V = [x["v"][h] for x in none if x["rid"] != c["rid"] and abs(x["chance"] - c["chance"]) <= w]
+            if len(V) >= 5: return c["v"][h] - float(np.mean(V))
+    pr("      Set level on where the team started (each stay with a death against the stays without one that started within 10 points of it, three minutes on):")
+    for name, f in (("one death", groups[1][1]), ("two or more", groups[2][1]), ("one or more", lambda c: (c["deaths_60"] or 0) >= 1)):
+        V = [dict(c, _l=level(c, "180")) for c in S if f(c)]; V = [c for c in V if c["_l"] is not None]
+        if not V: continue
+        lo, hi = _one_range(V, "_l")
+        o["as_it_fell"][name + ", level"] = {"difference": float(np.mean([c["_l"] for c in V])), "range": [float(lo), float(hi)], "n": len(V), "started at": mn(V, "chance")}
+        pr(f"     {name:12} {np.mean([c['_l'] for c in V]):+.1f} points ({lo:+.1f} to {hi:+.1f}), {len(V)} stays that started at {mn(V, 'chance'):.0f}%" + ("   (under the floor of 30: a size to look at, no more)" if len(V) < MIN_PLAYS else ""))
+    pr("      These stays differ in more than the deaths (a team that loses two has usually lost the fight in their base as well), so the difference is what went with the deaths, not the deaths alone.")
+    pr("   2. As the price of a position reads it: one more death on the team at the position it stood in 20 s before the res, everything else left as it was (the price is fitted on every position of every")
+    pr("      match and never saw the stay's own match; a death is 15% of death penalty on one player, and the price takes in what usually goes with a death, the player gone until he is brought back):")
+    for k in ("one death", "two deaths", "a kill", "a pit NPC"):
+        v = [c["price"][k] for c in S]; lo, hi = (float(x) for x in np.percentile(v, [10, 90]))
+        o["price"][k] = {"mean": float(np.mean(v)), "from": lo, "to": hi}
+        pr(f"     {k:12} {np.mean(v):+5.1f} points (eight in ten of the stays between {lo:+.1f} and {hi:+.1f})")
+    bands = (("its chance of winning under 50%", lambda c: c["chance"] < 50), ("50 to 75%", lambda c: 50 <= c["chance"] < 75), ("75 to 90%", lambda c: 75 <= c["chance"] < 90), ("90% or more", lambda c: c["chance"] >= 90))
+    pr("      By where the team stood (a death costs most where the match is still open):")
+    o["price"]["by_chance"] = {}
+    for label, f in bands:
+        V = [c for c in S if f(c)]
+        if not V: continue
+        o["price"]["by_chance"][label] = {"stays": len(V), **{k: float(np.mean([c["price"][k] for c in V])) for k in ("one death", "two deaths", "a kill", "a pit NPC")}}
+        pr(f"     {label:32} {len(V):4} stays: one death {np.mean([c['price']['one death'] for c in V]):+5.1f}, two {np.mean([c['price']['two deaths'] for c in V]):+5.1f}, a kill {np.mean([c['price']['a kill'] for c in V]):+5.1f}, a pit NPC {np.mean([c['price']['a pit NPC'] for c in V]):+5.1f}")
+    # the stay weighed at those prices: the kills it took in the 90 s against the players it lost (NPCs are counted beside it: the count takes in footmen, which are not priced)
+    took = [c["kills"] * c["price"]["a kill"] for c in S]; lost = [c["hard"]["90"]["deaths"][0] * c["price"]["one death"] for c in S]
+    o["weighed"] = {"kills": mn(S, "kills"), "kills worth": float(np.mean(took)), "own deaths": float(np.mean([c["hard"]["90"]["deaths"][0] for c in S])), "deaths cost": float(np.mean(lost)),
+                    "npcs": mn(S, "npcs"), "own npcs": float(np.mean([c["hard"]["90"]["npcs"][0] for c in S]))}
+    pr(f"   3. The stay weighed at those prices, over the 90 s from the reading and the whole map: the team takes {mn(S, 'kills'):.2f} kills ({np.mean(took):+.1f} points) and loses {o['weighed']['own deaths']:.2f} players ({np.mean(lost):+.1f} points);"
+       f" it takes {mn(S, 'npcs'):.2f} NPCs and loses {o['weighed']['own npcs']:.2f} (footmen among them, which are not priced). A sum of prices, not a comparison with falling out, which almost nobody does.")
+
+
+def danger_calls(X, M, g, pr):
+    """Every base res in the danger zone with its call and his three factors (R-612: "I would want to see the base res call just for every danger zone base
+    res"): kept whole in the report's file; printed, those with two or more of the three against the stay and those where two or more died."""
+    rows = []
+    for c in sorted(X, key=lambda c: (M[c["rid"]]["date"], c["rid"], c["t"])):
+        m, f = M[c["rid"]], c["factors"]
+        rows.append({"rid": c["rid"], "date": m["date"], "teams": m["teams"], "map": m["map"], "length_s": m["length_s"], "team": c["team"], "res": f["res"], "call": RES_CALLS[0] if c["stayed"] else RES_CALLS[1], "n": c["n"], "past_shrine": c["past"], "npcs_hitting": c["early"]["npcs_hitting"], "taken": c["taken"],
+                     "morale": f["morale"], "stand": f["stand"], "late": f["late"], "against": f["against"], "deaths_30": c["deaths"], "deaths_60": c["deaths_60"], "kills_90": c["kills"], "npcs_90": c["npcs"], "started_at": c["chance"], "win_points_180": c["v"]["180"]})
+    g["calls"] = rows
+    def line(r):
+        ag = [w for w, on in zip((f"morale {-r['morale']} under theirs", "the stand not held", "12:00 or later"), (r["morale"] <= -30, not r["stand"], r["late"])) if on]
+        return (f"     {r['date']} {' v '.join(r['teams'])}, {r['map']}, {cl(r['length_s'] or 0)} long: {r['team']} at the res of {cl(r['res'])}, {'stayed' if r['call'] == RES_CALLS[0] else 'LEFT before it'}; {r['past_shrine']} of {r['n']} past the shrine, {r['npcs_hitting']} NPCs on them, {r['taken']} damage each;"
+                f" against the stay: {', '.join(ag) or 'nothing'}; {r['deaths_60']} die within 60 s, {r['kills_90']} kills; started at {r['started_at']:.0f}%, then {r['win_points_180']:+.1f}   https://gvg.report/report/{r['rid']}#map")
+    pr(f"\nI. Every base res in the danger zone with its call and his three factors: {len(rows)}, kept whole in the report's file (`danger.calls`). Those with two or more of the three against the stay:")
+    for r in rows:
+        if r["against"] >= 2: pr(line(r))
+    pr("   Those with morale 30 or more under theirs:")
+    for r in rows:
+        if r["morale"] <= -30 and r["against"] < 2: pr(line(r))
+    pr("   Those where two or more of the players in their base died within 60 s of the res:")
+    for r in rows:
+        if (r["deaths_60"] or 0) >= 2: pr(line(r))
+    left = [r for r in rows if r["call"] != RES_CALLS[0]]
+    if left:
+        pr("   Those that left before the res:")
+        for r in left: pr(line(r))
+
+
 def danger_report(D, M, C, res, pr):
     """The base res as a decision (R-592, R-609, R-610): only in the danger spot, his three factors read 20 s before the res for the main team. Where it is and
     how often; what the stay cost and brought; why some stays take deaths and some do not, by what the team can know before the res; and when the stay is the
@@ -2278,7 +2409,7 @@ def danger_report(D, M, C, res, pr):
         return _one_range(V, "_b")
     pr(f"\nD. The danger spot (R-609, R-610): the main team in their base (three or more of it) 20 s before the res with all three of his factors on: " + "; ".join(GREEDY))
     pr(f"   Of {len(G)} times a main team is in their base at the res ({len(C) - len(G)} set aside: a res onto a split, or fewer than three): {len(X)} in the danger spot, in {len({c['rid'] for c in X})} of {len(M)} matches;")
-    pr(f"   {len(S)} stayed through the res and {len(X) - len(S)} left before it. Only these are a decision (R-609); the rest are told as before and not assessed.")
+    pr(f"   {len(S)} stayed through the res and {len(X) - len(S)} left before it. Only these are a decision and carry a call (R-609, R-612); every other base res is told as context, with no call.")
     pr("   By how many of the three a main team that stays carries (context):")
     for n_ in (0, 1, 2, 3):
         V = [c for c in G if c["stayed"] and c["nmarks"] == n_]
@@ -2302,8 +2433,10 @@ def danger_report(D, M, C, res, pr):
     ok = [x for x in g["his_games"] if x.get("found", True) and x["his"] is not None]
     g["agrees"] = sum(1 for x in ok if x["danger"] == x["his"]); g["of"] = len(ok)
     pr(f"   The danger spot takes in {sum(1 for x in ok if x['his'] and x['danger'])} of his {sum(1 for x in ok if x['his'])} greedy stays and none of the stays he set aside.")
-    # ---- E. why some die and some do not
-    pr(f"\nE. Why some stays in the danger spot take deaths and some do not ({len(S)} stays), by what the team can know before the res. One dies = one of its players in their base, in the 30 s after the res;")
+    his_factors(S, g, pr, mn, rng)
+    death_cost(S, g, pr, mn, rng)
+    # ---- G. why some die and some do not
+    pr(f"\nG. Why some stays in the danger spot take deaths and some do not ({len(S)} stays), by what the team can know before the res. One dies = one of its players in their base, in the 30 s after the res;")
     pr("   win pts = the change in its chance of winning three minutes on, with the 90% range over whole matches. The three factors are on in every row, so they tell nothing apart here.")
     head = f"     {'':62} {'stays':>5}  {'one dies':>16}  {'two or more within 60 s':>23}  {'kills':>5}  {'NPCs':>5}  {'win pts':>22}  {'started at':>10}"
     pr(head)
@@ -2334,11 +2467,11 @@ def danger_report(D, M, C, res, pr):
     rd("D7 a team that does not hold the stand is worse off three minutes on", lambda c: not c["stand"], lambda c: True, -1, lambda c: c["v"]["180"], "no stand", "holds the stand", unit=" points")
     rd("D8 from the res of 12:00 on a stay is worse off three minutes on than before it (the Amulet of Protection, R-603)", lambda c: c["late"], lambda c: True, -1, lambda c: c["v"]["180"], "12:00 or later", "earlier", unit=" points")
     # ---- F. when the stay is the right call: like spots among the stays, and the test on unseen matches
-    pr(f"\nF. When the stay is the right call: each stay in the danger spot read from the nearest stays of other groups of matches, set level with it. Matched on: " + ", ".join(DANGER_VARS))
+    pr(f"\nH. When the stay is the right call: each stay in the danger spot read from the nearest stays of other groups of matches, set level with it. Matched on: " + ", ".join(DANGER_VARS))
     pr("   The reading is what staying was worth at like spots, in the chance of winning three minutes on, against holding what the team had: \"the stay pays\" where its 90% range lies above nothing, \"the stay")
     pr("   costs\" where it lies below, else no clear reading. Falling out cannot be set beside it: in the danger spot almost nobody does.")
     g["reading"] = o = {}
-    if len(S) < 2 * MIN_PLAYS: pr(f"   Too few stays ({len(S)}) for like spots."); return
+    if len(S) < 2 * MIN_PLAYS: pr(f"   Too few stays ({len(S)}) for like spots."); danger_calls(X, M, g, pr); return
     for c in S: c["call"] = "stayed"
     s_ = Scenario(S); s_.names = list(DANGER_VARS); K_ = MIN_PLAYS; o["K"] = K_
     pred = []
@@ -2373,6 +2506,7 @@ def danger_report(D, M, C, res, pr):
     P = [c for c in spot_cases(D, M) if c["danger"]]
     o["at_40_s"] = {"stayed": sum(1 for c in P if c["call"] == "stayed"), "fell out": sum(1 for c in P if c["call"] == "fell out")}
     pr(f"\n   Falling out of the danger spot (read 40 s before the res, R-601, R-605): {o['at_40_s']['stayed']} stayed through the res and {o['at_40_s']['fell out']} fell out before it: too few to say what falling out is worth there.")
+    danger_calls(X, M, g, pr)
 
 
 def base_res(path, out_json=None):
