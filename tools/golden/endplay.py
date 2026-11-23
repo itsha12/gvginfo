@@ -6,25 +6,31 @@ match, not the clock: a replay may run past 28:00, and a play for 28:00 may end 
 
 What this reads, from where the players stand and never from hits on a Lord: at the end of play (the Lord's death,
 or 6 s before the match is over, the base res of 28:00 being recorded a few seconds early) every player's last place
-alive: SENT, on the enemy's ground (base, pit or footmen; not out in the field); KEPT, on his own; or neither (out in
-the field, or dead since before LOOK_FROM). A player dead at the end counts where he died. Each player's "since" is
+alive: SENT, on the enemy's ground within LORD_BASE_R of their Guild Lord (R-446: in the base, not only beside him; a
+player who stops at their footmen or their door has not been sent: Crew v cope 24:29, three of Crew's four never came
+within 4,000 of cope's Lord, his "NO corresponding push"); KEPT, on his own ground; or neither (out in the field, at
+their footmen or door, or dead since before LOOK_FROM). A player dead at the end counts where he died. Each player's "since" is
 when his last unbroken stay there began (other places for JOIN_S or less do not break it; a death does). A team's send
 is the middle of its sent players' "since", and the play is SET at the later team's send.
 
-What it cannot tell yet (open for him): a play for 28:00 from a push before it by a team already in a situation
-(R-641). Both end in the same shape, and a Lord kill does not tell them apart (R-642).
+A play for 28:00 against a push before it (R-641, R-646). His three signs of a push before it, which he reads together:
+it is early (CUT, 25:00, his "maybe"), one team is already in the enemy's base, and the other makes no push of its
+own in return. As read here: a match run to its end always ends in a play for 28:00; a match ended by a Lord kill
+holds one only when the team that killed him sent its players at CUT or later. The summary sets the other two signs beside the clock.
 
     python3 tools/golden/endplay.py <report id> ...        one match or more, as sentences
     python3 tools/golden/endplay.py all <out.json>         every counted match that ends at FROM or later, and the summary
 """
-import collections, json, multiprocessing, os, statistics, sys
+import collections, json, math, multiprocessing, os, statistics, sys
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
 import common
 
 LOOK_FROM = 20 * 60          # how far back a player's last stay is followed (Claude's draft)
-FROM = 24 * 60 + 30          # matches ending before this are not summarised: his estimate of the earliest such play (R-642), not a line he has set
+CUT = 25 * 60                # an arrangement set before this is a push before the play for 28:00 (R-646, his "Maybe we should even make the cut off at 25": Claude's draft as a line, his to confirm)
+FROM = CUT                   # matches over before this are not summarised
+ALREADY_S = 120              # "already in the enemy's base": a team's first sent player there this long before the arrangement is set (Claude's draft)
 END_BACK = 6                 # read this long before the match is over: the base res of 28:00 is recorded a few seconds early
 cl = lambda t: f"{int(t) // 60}:{int(t) % 60:02d}"
 
@@ -48,7 +54,8 @@ def where(M, a, t, tm):
     if not M.AL[a][t]: return "dead"
     k, s = M.place_at(a, t)
     if s is None or k in ("stand", "greater stand", "field"): return "field"
-    return "kept" if s == M.st.side.get(tm) else "sent"
+    if s == M.st.side.get(tm): return "kept"
+    return "sent" if math.dist(M.P[a][t], M.hall.lord[s]) <= common.LORD_BASE_R else "field"
 
 
 def end_play(M):
@@ -82,13 +89,21 @@ def end_play(M):
     ss = [v["send"] for v in sends.values() if v["send"] is not None]
     out["set"] = max(ss) if ss else None
     out["shape"] = "both send" if len(ss) == 2 else "one sends" if ss else "neither sends"
+    firsts = [v["first"] for v in sends.values() if v["first"] is not None]
+    out["already"] = bool(ss) and min(firsts) <= out["set"] - ALREADY_S          # a team stood in the enemy's base well before the arrangement was set
+    # A match ended by a Lord kill is read on the send of the team that killed him, not on the later team's: one player of the other team reaching
+    # their pit late does not make a push in return (Crew v cope: cope in Crew's base since before 20:00, Crew's Mes/A alone in cope's pit for 9 s at 25:07).
+    killer = next((tg for tg in out["teams"] if tg != out["lord_killed"]), None) if out["lord_killed"] else None
+    out["killer_send"] = sends[killer]["send"] if killer else None
+    out["in_return"] = sends[out["lord_killed"]]["sent"] if killer else None       # how many of the other team were sent in return
+    out["kind"] = None if not ss else "play for 28:00" if not killer or (out["killer_send"] is not None and out["killer_send"] >= CUT) else "push before it"
     return out
 
 
 def say(rid, o):
     print(f"{' v '.join(o['teams'])}, {o['date']}: https://gvg.report/report/{rid}#map")
     if o.get("short"): print(f"  over at {cl(o['end'])}: too early to read"); return
-    print(f"  read at {cl(o['end'])}" + (f", {o['lord_killed']}'s Guild Lord killed" if o["lord_killed"] else ", the match run to its end") + f"; {o['shape']}" + (f", set at {cl(o['set'])}" if o["set"] is not None else ""))
+    print(f"  read at {cl(o['end'])}" + (f", {o['lord_killed']}'s Guild Lord killed" if o["lord_killed"] else ", the match run to its end") + f"; {o['shape']}" + (f", set at {cl(o['set'])}: a {o['kind']}" if o["set"] is not None else ""))
     for tg, rec in o["players"].items():
         for place, word in (("sent", "sends"), ("kept", "keeps"), ("field", "in the field"), ("dead", "dead throughout")):
             xs = sorted((r for r in rec if r["place"] == place), key=lambda r: r["since"] or 0)
@@ -110,7 +125,11 @@ def summary(R):
         print("  sent, the larger group against the smaller: " + ", ".join(f"{a} v {b} ({n})" for (a, b), n in collections.Counter(tuple(sorted((s["sent"] for s in v["sends"].values()), reverse=True)) for v in grp).most_common(8)))
         if sets:
             print(f"  set at: a tenth by {q(sets, .1)}, a quarter by {q(sets, .25)}, half by {q(sets, .5)}, three quarters by {q(sets, .75)}, nine tenths by {q(sets, .9)}")
-            print(f"  set before {cl(FROM)}: {sum(1 for x in sets if x < FROM)}; from then to 26:00: {sum(1 for x in sets if FROM <= x < 1560)}; at 26:00 or later: {sum(1 for x in sets if x >= 1560)}")
+            print(f"  set before {cl(CUT)}: {sum(1 for x in sets if x < CUT)}; from then to 26:00: {sum(1 for x in sets if CUT <= x < 1560)}; at 26:00 or later: {sum(1 for x in sets if x >= 1560)}")
+        for kind in ("play for 28:00", "push before it"):
+            g = [v for v in grp if v.get("kind") == kind]
+            if g: print(f"  {kind}: {len(g)}; both send {sum(1 for v in g if v['shape'] == 'both send')}, one sends {sum(1 for v in g if v['shape'] == 'one sends')}; a team already in the enemy's base {ALREADY_S} s or more before it is set: {sum(1 for v in g if v['already'])}"
+                        + (f"; sent in return by the team whose Lord died: nobody {sum(1 for v in g if v['in_return'] == 0)}, one player {sum(1 for v in g if v['in_return'] == 1)}, two or more {sum(1 for v in g if (v['in_return'] or 0) >= 2)}" if g[0]["lord_killed"] else ""))
 
 
 if __name__ == "__main__":
