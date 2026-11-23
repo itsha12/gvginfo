@@ -538,8 +538,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   A push before it is told with the situation it grew out of, never as a row of its own (R-644). The draft reading is
   a tool on the branch, `tools/golden/endplay.py <report id>` or `all <out.json>` (report
   `data/model/end_play_draft.json`): each player's last place alive at the end of play, sent or kept, and since when;
-  nothing in the engine reads it. It reads the same shape in a play for 28:00 and in a push before it; what tells
-  them apart is his to say, and until he has, move nothing into `moments.py` or `jobs.py`.
+  nothing in the engine reads it. Sent is within `LORD_BASE_R` of their Lord (R-446): a player who stops at their
+  footmen is not sent. What tells a push before it is his three signs together (R-646): early (25:00 is his "maybe",
+  `CUT` in the tool, his to confirm), one team already in the enemy's base, no push in return; the tool reads a match
+  ended by a Lord kill on the killing team's send. The signs disagree in about a third of the pushes before it: bring
+  him those as rows on the page and move nothing into `moments.py` or `jobs.py` until he has marked them.
 - What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot

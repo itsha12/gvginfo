@@ -8,10 +8,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, late afternoon: his Lord push marks filed; R-640 to R-645; a draft reading of the play for 28:00)
+## State (2026-11-23, late afternoon: his Lord push marks filed; R-640 to R-646; a draft reading of the play for 28:00)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-645. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-646. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   A team held in its base: no family, execution (R-621). Splits read in both halves, no advice at the matches in
   hand; no more matches until the engine is ready (R-570).
@@ -19,7 +19,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (R-643, R-645). His description (R-640 to R-642, R-644): the play for 28:00 is one play of both teams (whom each
   sends and keeps); a push before it out of a situation is told with that situation; "28" is the end of the match.
   A draft reading, a tool on the branch (`tools/golden/endplay.py`): each player's last place at the end, sent or
-  kept, and since when. 88 of 564 matches end at 24:30 or later; run out (42), half are set by 26:27.
+  kept; his three signs of a push before it and 25:00 as a draft cut (R-646). 42 matches run out, 44 end by a kill.
 - What it says. The danger zone at 250: 157 base res in 135 matches, 156 stay; one dies in 13%, two or more in 8%
   (4 to 8% and 2 to 5% outside it). The hand-off: a flag put down is returned 13% of the time out of range, 24%
   with one enemy in range, 41% with two or more; a returned hand-off costs a third of a flag a minute on and is
@@ -33,9 +33,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. The play for 28:00: his answer on what tells it from a push before it (Open 1), then the draft moved into the
-   engine at the root (a record in `moments.py`, the Lord play in `jobs.py` read from it in place of the hits on a
-   Lord), tested on set p4; then six to eight rows on the page for the shapes not yet seen (R-633).
+1. The play for 28:00: at his go, eight rows of the draft on the page (R-633; one row both teams: where his signs
+   disagree, either side of the cut, shapes not yet seen), his marks, then the draft moved into the engine at the
+   root (a record in `moments.py`, the Lord play in `jobs.py` read from it, not from hits), tested on set p4.
 2. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558); and with them what a team
    held in its base does in the first seconds of a hold (R-621).
@@ -51,10 +51,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Put to him 2026-11-23, not yet answered: what tells a play for 28:00 from a push before it (the draft reads the
-   same shape in both: Crew v cope, both teams divide at 24:22 to 24:36 and the Lord dies at 25:24; Book v hook,
-   Book sends three at 23:36 with hook in its base since 21:46). Not yet answered from before: what the trim keeps
-   of the Lord record (he asked for the aggressiveness counts only; recommended also the hits and the health, R-635).
+1. Put to him 2026-11-23, not yet answered: 25:00 as the line (his "maybe", R-646), and the go for the eight rows
+   (in 9 of 25 pushes before it the other team did send two or more in return; in 16 kill games the killing team's
+   send lies between 24:30 and 25:30). Not yet answered from before: what the trim keeps of the Lord record (he
+   asked for the aggressiveness counts only; recommended also the hits and the health where it changes, R-635).
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

@@ -408,7 +408,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   push on the Lord before it, by a team already in a situation, which the other team often answers by waiting to
   kill the pushers and not by a push of its own (R-641); it is told with the situation it grew out of (the push
   into the base, the stay after a wipe, the split), with the Lord figures beside it, never as a row of its own
-  (R-644).
+  (R-644). Its three signs, read together (R-646): it is early (25:00 is his "maybe" for the cut, not a line he
+  has set), one team is already in the enemy's base, and the other team makes no push of its own in return.
 - "28" is the end of the match, not the clock at 28:00 (R-642): a replay may run to 28:14, and a play for 28:00
   may end in a Lord kill before it, so neither the length of the match nor how it ended tells the play. It is set
   when the match allows, often before the 26:00 base res; about 24:30 is his estimate of the earliest, not a line.
