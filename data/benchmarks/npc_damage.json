@@ -1,0 +1,762 @@
+{
+ "about": "NPC damage by kind of bar (R-433; npcpower.py): damage a second added by one player of a class to a group that is on a kind of NPC (he is with it whether he hits or not), and the damage it takes to kill one. A class under the floor on a kind takes the pooled rate.",
+ "matches": 564,
+ "floor": 30,
+ "to_kill": {
+  "guild_lord": {
+   "damage": 2315,
+   "n": 485
+  },
+  "archer": {
+   "damage": 471,
+   "n": 2513
+  },
+  "bodyguard": {
+   "damage": 525,
+   "n": 611
+  },
+  "knight": {
+   "damage": 561,
+   "n": 1378
+  },
+  "footman": {
+   "damage": 469,
+   "n": 1616
+  }
+ },
+ "pooled": {
+  "footman": 6.9,
+  "archer": 9.7,
+  "knight": 9.4,
+  "bodyguard": 15.3,
+  "guild_lord": 15.8
+ },
+ "classes": {
+  "Backline (heals and prots)": {
+   "players": 3287,
+   "footman": {
+    "dps": 1.0,
+    "dps_hitting": 12.0,
+    "hitting": 0.08,
+    "seconds": 53737,
+    "stretches": 3838,
+    "matches": 389
+   },
+   "archer": {
+    "dps": 2.3,
+    "dps_hitting": 18.5,
+    "hitting": 0.13,
+    "seconds": 40945,
+    "stretches": 3752,
+    "matches": 491
+   },
+   "knight": {
+    "dps": 2.3,
+    "dps_hitting": 20.4,
+    "hitting": 0.11,
+    "seconds": 32376,
+    "stretches": 2168,
+    "matches": 421
+   },
+   "bodyguard": {
+    "dps": 6.0,
+    "dps_hitting": 20.2,
+    "hitting": 0.3,
+    "seconds": 5421,
+    "stretches": 536,
+    "matches": 254
+   },
+   "guild_lord": {
+    "dps": 6.9,
+    "dps_hitting": 14.9,
+    "hitting": 0.46,
+    "seconds": 30581,
+    "stretches": 1288,
+    "matches": 465
+   }
+  },
+  "Mesmer": {
+   "players": 1420,
+   "footman": {
+    "dps": 3.7,
+    "dps_hitting": 23.9,
+    "hitting": 0.15,
+    "seconds": 26374,
+    "stretches": 1885,
+    "matches": 370
+   },
+   "archer": {
+    "dps": 4.3,
+    "dps_hitting": 21.0,
+    "hitting": 0.21,
+    "seconds": 20675,
+    "stretches": 1959,
+    "matches": 457
+   },
+   "knight": {
+    "dps": 4.8,
+    "dps_hitting": 25.3,
+    "hitting": 0.19,
+    "seconds": 22174,
+    "stretches": 1404,
+    "matches": 424
+   },
+   "bodyguard": {
+    "dps": 6.2,
+    "dps_hitting": 19.6,
+    "hitting": 0.32,
+    "seconds": 3622,
+    "stretches": 400,
+    "matches": 246
+   },
+   "guild_lord": {
+    "dps": 7.3,
+    "dps_hitting": 16.3,
+    "hitting": 0.44,
+    "seconds": 19094,
+    "stretches": 763,
+    "matches": 428
+   }
+  },
+  "Dervish": {
+   "players": 752,
+   "footman": {
+    "dps": 16.3,
+    "dps_hitting": 26.0,
+    "hitting": 0.63,
+    "seconds": 19551,
+    "stretches": 1324,
+    "matches": 291
+   },
+   "archer": {
+    "dps": 13.2,
+    "dps_hitting": 23.3,
+    "hitting": 0.57,
+    "seconds": 16599,
+    "stretches": 1332,
+    "matches": 327
+   },
+   "knight": {
+    "dps": 19.9,
+    "dps_hitting": 27.5,
+    "hitting": 0.72,
+    "seconds": 18376,
+    "stretches": 1131,
+    "matches": 328
+   },
+   "bodyguard": {
+    "dps": 20.1,
+    "dps_hitting": 30.0,
+    "hitting": 0.67,
+    "seconds": 3851,
+    "stretches": 388,
+    "matches": 227
+   },
+   "guild_lord": {
+    "dps": 22.1,
+    "dps_hitting": 28.7,
+    "hitting": 0.77,
+    "seconds": 15142,
+    "stretches": 676,
+    "matches": 301
+   }
+  },
+  "Hammer warrior": {
+   "players": 592,
+   "footman": {
+    "dps": 7.0,
+    "dps_hitting": 17.2,
+    "hitting": 0.41,
+    "seconds": 14305,
+    "stretches": 1017,
+    "matches": 245
+   },
+   "archer": {
+    "dps": 11.2,
+    "dps_hitting": 25.5,
+    "hitting": 0.44,
+    "seconds": 12474,
+    "stretches": 1115,
+    "matches": 300
+   },
+   "knight": {
+    "dps": 8.5,
+    "dps_hitting": 17.8,
+    "hitting": 0.48,
+    "seconds": 13290,
+    "stretches": 860,
+    "matches": 268
+   },
+   "bodyguard": {
+    "dps": 22.2,
+    "dps_hitting": 37.6,
+    "hitting": 0.59,
+    "seconds": 2958,
+    "stretches": 330,
+    "matches": 206
+   },
+   "guild_lord": {
+    "dps": 26.9,
+    "dps_hitting": 37.5,
+    "hitting": 0.72,
+    "seconds": 11034,
+    "stretches": 471,
+    "matches": 279
+   }
+  },
+  "Air elementalist": {
+   "players": 458,
+   "footman": {
+    "dps": 15.1,
+    "dps_hitting": 31.1,
+    "hitting": 0.48,
+    "seconds": 7603,
+    "stretches": 639,
+    "matches": 157
+   },
+   "archer": {
+    "dps": 20.0,
+    "dps_hitting": 36.4,
+    "hitting": 0.55,
+    "seconds": 12364,
+    "stretches": 1374,
+    "matches": 211
+   },
+   "knight": {
+    "dps": 16.5,
+    "dps_hitting": 32.7,
+    "hitting": 0.51,
+    "seconds": 7806,
+    "stretches": 700,
+    "matches": 171
+   },
+   "bodyguard": {
+    "dps": 20.8,
+    "dps_hitting": 36.0,
+    "hitting": 0.58,
+    "seconds": 2899,
+    "stretches": 351,
+    "matches": 114
+   },
+   "guild_lord": {
+    "dps": 22.6,
+    "dps_hitting": 36.3,
+    "hitting": 0.62,
+    "seconds": 8291,
+    "stretches": 502,
+    "matches": 133
+   }
+  },
+  "Ritualist": {
+   "players": 429,
+   "footman": {
+    "dps": 11.2,
+    "dps_hitting": 18.6,
+    "hitting": 0.6,
+    "seconds": 12596,
+    "stretches": 775,
+    "matches": 202
+   },
+   "archer": {
+    "dps": 12.7,
+    "dps_hitting": 18.2,
+    "hitting": 0.7,
+    "seconds": 16891,
+    "stretches": 1257,
+    "matches": 253
+   },
+   "knight": {
+    "dps": 10.7,
+    "dps_hitting": 17.6,
+    "hitting": 0.61,
+    "seconds": 13211,
+    "stretches": 768,
+    "matches": 208
+   },
+   "bodyguard": {
+    "dps": 13.9,
+    "dps_hitting": 17.6,
+    "hitting": 0.79,
+    "seconds": 3940,
+    "stretches": 345,
+    "matches": 122
+   },
+   "guild_lord": {
+    "dps": 11.8,
+    "dps_hitting": 19.4,
+    "hitting": 0.61,
+    "seconds": 8435,
+    "stretches": 371,
+    "matches": 150
+   }
+  },
+  "Smiting monk": {
+   "players": 404,
+   "footman": {
+    "dps": 10.6,
+    "dps_hitting": 37.3,
+    "hitting": 0.28,
+    "seconds": 5699,
+    "stretches": 511,
+    "matches": 97
+   },
+   "archer": {
+    "dps": 17.0,
+    "dps_hitting": 38.9,
+    "hitting": 0.44,
+    "seconds": 6190,
+    "stretches": 790,
+    "matches": 145
+   },
+   "knight": {
+    "dps": 14.5,
+    "dps_hitting": 38.7,
+    "hitting": 0.37,
+    "seconds": 5744,
+    "stretches": 534,
+    "matches": 129
+   },
+   "bodyguard": {
+    "dps": 16.8,
+    "dps_hitting": 38.9,
+    "hitting": 0.43,
+    "seconds": 957,
+    "stretches": 117,
+    "matches": 67
+   },
+   "guild_lord": {
+    "dps": 15.5,
+    "dps_hitting": 28.8,
+    "hitting": 0.54,
+    "seconds": 4250,
+    "stretches": 203,
+    "matches": 101
+   }
+  },
+  "Necromancer": {
+   "players": 292,
+   "footman": {
+    "dps": 7.5,
+    "dps_hitting": 19.9,
+    "hitting": 0.38,
+    "seconds": 3199,
+    "stretches": 195,
+    "matches": 80
+   },
+   "archer": {
+    "dps": 7.4,
+    "dps_hitting": 18.1,
+    "hitting": 0.41,
+    "seconds": 6072,
+    "stretches": 540,
+    "matches": 103
+   },
+   "knight": {
+    "dps": 7.2,
+    "dps_hitting": 18.1,
+    "hitting": 0.4,
+    "seconds": 5279,
+    "stretches": 312,
+    "matches": 96
+   },
+   "bodyguard": {
+    "dps": 10.1,
+    "dps_hitting": 23.3,
+    "hitting": 0.43,
+    "seconds": 762,
+    "stretches": 94,
+    "matches": 54
+   },
+   "guild_lord": {
+    "dps": 16.3,
+    "dps_hitting": 27.3,
+    "hitting": 0.6,
+    "seconds": 4937,
+    "stretches": 181,
+    "matches": 76
+   }
+  },
+  "Ranger": {
+   "players": 284,
+   "footman": {
+    "dps": 4.4,
+    "dps_hitting": 14.2,
+    "hitting": 0.31,
+    "seconds": 6535,
+    "stretches": 501,
+    "matches": 147
+   },
+   "archer": {
+    "dps": 11.3,
+    "dps_hitting": 21.8,
+    "hitting": 0.52,
+    "seconds": 7643,
+    "stretches": 745,
+    "matches": 170
+   },
+   "knight": {
+    "dps": 5.6,
+    "dps_hitting": 16.0,
+    "hitting": 0.35,
+    "seconds": 6385,
+    "stretches": 434,
+    "matches": 151
+   },
+   "bodyguard": {
+    "dps": 16.3,
+    "dps_hitting": 29.4,
+    "hitting": 0.55,
+    "seconds": 1672,
+    "stretches": 213,
+    "matches": 111
+   },
+   "guild_lord": {
+    "dps": 17.5,
+    "dps_hitting": 25.7,
+    "hitting": 0.68,
+    "seconds": 5422,
+    "stretches": 270,
+    "matches": 129
+   }
+  },
+  "Axe warrior": {
+   "players": 260,
+   "footman": {
+    "dps": 8.7,
+    "dps_hitting": 16.4,
+    "hitting": 0.53,
+    "seconds": 4904,
+    "stretches": 365,
+    "matches": 90
+   },
+   "archer": {
+    "dps": 11.2,
+    "dps_hitting": 25.0,
+    "hitting": 0.45,
+    "seconds": 3988,
+    "stretches": 389,
+    "matches": 122
+   },
+   "knight": {
+    "dps": 11.2,
+    "dps_hitting": 19.2,
+    "hitting": 0.59,
+    "seconds": 5226,
+    "stretches": 401,
+    "matches": 118
+   },
+   "bodyguard": {
+    "dps": 21.4,
+    "dps_hitting": 33.7,
+    "hitting": 0.64,
+    "seconds": 923,
+    "stretches": 112,
+    "matches": 77
+   },
+   "guild_lord": {
+    "dps": 26.3,
+    "dps_hitting": 36.3,
+    "hitting": 0.72,
+    "seconds": 3848,
+    "stretches": 161,
+    "matches": 95
+   }
+  },
+  "Paragon": {
+   "players": 258,
+   "footman": {
+    "dps": 9.7,
+    "dps_hitting": 17.9,
+    "hitting": 0.54,
+    "seconds": 3912,
+    "stretches": 327,
+    "matches": 62
+   },
+   "archer": {
+    "dps": 14.3,
+    "dps_hitting": 26.3,
+    "hitting": 0.54,
+    "seconds": 4920,
+    "stretches": 525,
+    "matches": 107
+   },
+   "knight": {
+    "dps": 12.0,
+    "dps_hitting": 19.9,
+    "hitting": 0.6,
+    "seconds": 6256,
+    "stretches": 475,
+    "matches": 107
+   },
+   "bodyguard": {
+    "dps": 22.0,
+    "dps_hitting": 32.6,
+    "hitting": 0.67,
+    "seconds": 1278,
+    "stretches": 164,
+    "matches": 81
+   },
+   "guild_lord": {
+    "dps": 22.7,
+    "dps_hitting": 29.9,
+    "hitting": 0.76,
+    "seconds": 5219,
+    "stretches": 235,
+    "matches": 88
+   }
+  },
+  "Fire elementalist": {
+   "players": 225,
+   "footman": {
+    "dps": 14.2,
+    "dps_hitting": 27.0,
+    "hitting": 0.53,
+    "seconds": 4878,
+    "stretches": 376,
+    "matches": 124
+   },
+   "archer": {
+    "dps": 17.4,
+    "dps_hitting": 31.7,
+    "hitting": 0.55,
+    "seconds": 7004,
+    "stretches": 723,
+    "matches": 154
+   },
+   "knight": {
+    "dps": 17.6,
+    "dps_hitting": 31.3,
+    "hitting": 0.56,
+    "seconds": 5120,
+    "stretches": 439,
+    "matches": 131
+   },
+   "bodyguard": {
+    "dps": 20.7,
+    "dps_hitting": 34.7,
+    "hitting": 0.6,
+    "seconds": 1819,
+    "stretches": 221,
+    "matches": 98
+   },
+   "guild_lord": {
+    "dps": 25.4,
+    "dps_hitting": 37.3,
+    "hitting": 0.68,
+    "seconds": 5291,
+    "stretches": 341,
+    "matches": 100
+   }
+  },
+  "Sword warrior": {
+   "players": 145,
+   "footman": {
+    "dps": 15.1,
+    "dps_hitting": 24.0,
+    "hitting": 0.63,
+    "seconds": 2968,
+    "stretches": 200,
+    "matches": 74
+   },
+   "archer": {
+    "dps": 17.1,
+    "dps_hitting": 35.0,
+    "hitting": 0.49,
+    "seconds": 1965,
+    "stretches": 189,
+    "matches": 80
+   },
+   "knight": {
+    "dps": 13.9,
+    "dps_hitting": 22.2,
+    "hitting": 0.63,
+    "seconds": 2656,
+    "stretches": 183,
+    "matches": 78
+   },
+   "bodyguard": {
+    "dps": 23.3,
+    "dps_hitting": 39.7,
+    "hitting": 0.59,
+    "seconds": 701,
+    "stretches": 66,
+    "matches": 50
+   },
+   "guild_lord": {
+    "dps": 26.9,
+    "dps_hitting": 45.3,
+    "hitting": 0.59,
+    "seconds": 2553,
+    "stretches": 103,
+    "matches": 65
+   }
+  },
+  "Assassin": {
+   "players": 107,
+   "footman": {
+    "dps": 10.1,
+    "dps_hitting": 26.3,
+    "hitting": 0.39,
+    "seconds": 1743,
+    "stretches": 154,
+    "matches": 45
+   },
+   "archer": {
+    "dps": 14.6,
+    "dps_hitting": 36.1,
+    "hitting": 0.4,
+    "seconds": 1753,
+    "stretches": 169,
+    "matches": 55
+   },
+   "knight": {
+    "dps": 13.5,
+    "dps_hitting": 30.3,
+    "hitting": 0.44,
+    "seconds": 1760,
+    "stretches": 121,
+    "matches": 46
+   },
+   "bodyguard": {
+    "dps": 29.6,
+    "dps_hitting": 39.5,
+    "hitting": 0.75,
+    "seconds": 286,
+    "stretches": 38,
+    "matches": 28
+   },
+   "guild_lord": {
+    "dps": 30.8,
+    "dps_hitting": 47.4,
+    "hitting": 0.65,
+    "seconds": 1004,
+    "stretches": 50,
+    "matches": 37
+   }
+  },
+  "Water elementalist": {
+   "players": 74,
+   "footman": {
+    "dps": 13.9,
+    "dps_hitting": 27.6,
+    "hitting": 0.5,
+    "seconds": 1104,
+    "stretches": 100,
+    "matches": 35
+   },
+   "archer": {
+    "dps": 16.9,
+    "dps_hitting": 38.0,
+    "hitting": 0.44,
+    "seconds": 1435,
+    "stretches": 146,
+    "matches": 42
+   },
+   "knight": {
+    "dps": 14.1,
+    "dps_hitting": 30.7,
+    "hitting": 0.46,
+    "seconds": 945,
+    "stretches": 78,
+    "matches": 37
+   },
+   "bodyguard": {
+    "dps": 15.3,
+    "pooled": true,
+    "stretches": 20
+   },
+   "guild_lord": {
+    "dps": 19.6,
+    "dps_hitting": 31.8,
+    "hitting": 0.62,
+    "seconds": 1097,
+    "stretches": 63,
+    "matches": 27
+   }
+  },
+  "Warrior": {
+   "players": 19,
+   "footman": {
+    "dps": 6.9,
+    "pooled": true,
+    "stretches": 7
+   },
+   "archer": {
+    "dps": 9.7,
+    "pooled": true,
+    "stretches": 17
+   },
+   "knight": {
+    "dps": 9.4,
+    "pooled": true,
+    "stretches": 25
+   },
+   "bodyguard": {
+    "dps": 15.3,
+    "pooled": true,
+    "stretches": 6
+   },
+   "guild_lord": {
+    "dps": 15.8,
+    "pooled": true,
+    "stretches": 10
+   }
+  },
+  "Elementalist": {
+   "players": 9,
+   "footman": {
+    "dps": 6.9,
+    "pooled": true,
+    "stretches": 6
+   },
+   "archer": {
+    "dps": 9.7,
+    "pooled": true,
+    "stretches": 10
+   },
+   "knight": {
+    "dps": 9.4,
+    "pooled": true,
+    "stretches": 1
+   },
+   "bodyguard": {
+    "dps": 15.3,
+    "pooled": true,
+    "stretches": 1
+   },
+   "guild_lord": {
+    "dps": 15.8,
+    "pooled": true,
+    "stretches": 1
+   }
+  },
+  "Earth elementalist": {
+   "players": 7,
+   "footman": {
+    "dps": 6.9,
+    "pooled": true,
+    "stretches": 3
+   },
+   "archer": {
+    "dps": 9.7,
+    "pooled": true,
+    "stretches": 12
+   },
+   "knight": {
+    "dps": 9.4,
+    "pooled": true,
+    "stretches": 4
+   },
+   "bodyguard": {
+    "dps": 15.3,
+    "pooled": true,
+    "stretches": 1
+   },
+   "guild_lord": {
+    "dps": 15.8,
+    "pooled": true,
+    "stretches": 1
+   }
+  }
+ }
+}

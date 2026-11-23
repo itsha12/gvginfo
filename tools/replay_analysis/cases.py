@@ -3095,6 +3095,299 @@ def handoff(path, out_json=None):
     return res
 
 
+# ---- execution, both teams by the same measures (2.12, R-299, R-572), and what a team held in its base does (R-621)
+EXEC_KINDS = (("numbers, up", lambda p: p["play"] == "numbers" and p.get("numbers_side") == "up"), ("numbers, down", lambda p: p["play"] == "numbers" and p.get("numbers_side") == "down"),
+              ("split, the split's side", lambda p: p["play"] == "split" and p["side"] != "defender"), ("split, the defence", lambda p: p["play"] == "split" and p["side"] == "defender"),
+              ("held in its base", lambda p: p["play"] == "pinned"), ("base res", lambda p: p["play"] == "base res"),
+              ("push on a flagger", lambda p: p["play"] == "push flagger"), ("flagger pushed", lambda p: p["play"] == "flagger pushed"))      # a boost play keeps no 60 s record and a split play its position on its first told stretch only: both left as they are
+EXEC_QS = (10, 25, 50, 75, 90)
+HOLD_OWN = ("dmg", "dmg_v_usual", "focus", "healer_share", "spikes", "interrupts", "knockdowns", "kite", "hex_removed", "npc_heal", "blind_secs", "strips")
+HOLD_THEIR = ("dmg", "dmg_v_usual", "focus", "healer_share", "npc_dmg", "spikes", "interrupts", "knockdowns", "hex_secs")
+HOLD_RES = ((0, 30, "the base res within 30 s"), (30, 60, "30 to 60 s off"), (60, 999, "more than 60 s off"))
+HOLD_NPC = ((0, 0, "no pit NPC lost yet"), (1, 2, "one or two lost"), (3, 9, "three or more lost"))
+
+
+def _exec_told(p, M, B):
+    """`_told` for any play that carries its position: under `at_told`, or on the play itself (flag, boost and numbers plays)."""
+    if "at_told" in p: return _told(p, M, B)
+    if "state" not in p or "after" not in p: return None
+    q = dict(p); q["at_told"] = {"state": p["state"], "after": p["after"], "before": p.get("before")}
+    return _told(q, M, B)
+
+
+def exec_cases(D, M, B):
+    """One case a play with an execution record whose players met somebody: the record, the position it started from and what followed on the fixed record."""
+    out, skipped = [], collections.Counter()
+    for p in D["plays"]:
+        kind = next((k for k, f in EXEC_KINDS if f(p)), None)
+        if kind is None: continue
+        if "execution" not in D["flag_cost"][p["rid"]]: raise ValueError(f"the plays file carries no execution record for {p['rid']}: run moments.py all again on this engine (R-460)")
+        x = D["flag_cost"][p["rid"]]["execution"].get(p["id"])
+        if x is None: skipped["too short for a reading (under 6 s)"] += 1; continue
+        if not x["n"][1] or x["their"] is None: skipped["its players met nobody in the window"] += 1; continue
+        c = _exec_told(p, M, B)
+        if c is None: skipped["no position on the play, no winner recorded, or the flag lead not read"] += 1; continue
+        c.update(kind=kind, x=x, met=bool(p.get("met")), play=p)
+        out.append(c)
+    return out, skipped
+
+
+def exec_bench(C):
+    """The spread of every measure by kind of play and side: what a play's execution is placed against (the same kind of play; the role's usual is inside `dmg_v_usual`)."""
+    import execution as EX
+    out = {}
+    for kind, _ in EXEC_KINDS:
+        X = [c for c in C if c["kind"] == kind]
+        if len(X) < MIN_PLAYS: continue
+        o = out[kind] = {"plays": len(X), "own": {}, "their": {}}
+        for side in ("own", "their"):
+            for k in EX.KEYS:
+                v = [c["x"][side][k] for c in X if c["x"][side].get(k) is not None]
+                if v: o[side][k] = [round(float(q), 2) for q in np.percentile(v, EXEC_QS)] + [round(float(np.mean([y > 0 for y in v])), 2)]
+    return out
+
+
+def exec_place(bench, kind, side, key, v):
+    """Where a value stands among plays of the same kind: "low", "usual" or "high" (the outer quarters), or None where the measure is not spread enough to say."""
+    q = ((bench.get(kind) or {}).get(side) or {}).get(key)
+    if q is None or v is None or q[1] == q[3]: return None
+    return "low" if v < q[1] else "high" if v > q[3] else "usual"
+
+
+def _exec_split(X, side, key):
+    """The plays in the upper and the lower third of a measure (those where it is blank left out); None where it does not vary enough to divide."""
+    V = [(c["x"][side][key], c) for c in X if c["x"][side].get(key) is not None]
+    if len(V) < 3 * MIN_PLAYS: return None
+    vals = sorted(v for v, _ in V); lo, hi = vals[len(vals) // 3], vals[(2 * len(vals)) // 3]
+    if lo == hi:                                    # mostly nothing: any against none
+        if vals[0] == vals[-1]: return None
+        a, b = [c for v, c in V if v > lo], [c for v, c in V if v <= lo]
+        if lo != vals[0]: a, b = [c for v, c in V if v >= lo], [c for v, c in V if v < lo]
+        how = "any against none" if lo == 0 else "above against at or below the usual"
+    else: a, b, how = [c for v, c in V if v >= hi], [c for v, c in V if v <= lo], "upper third against lower third"
+    if len(a) < MIN_PLAYS or len(b) < MIN_PLAYS: return None
+    return a, b, how
+
+
+def _exec_read(a, b, y):
+    ia = {id(c) for c in a}
+    C = a + b
+    for c in C: c["_y"] = y(c)
+    d, lo, hi, na, nb = _num_range(C, lambda c: id(c) in ia, lambda c: True)
+    return d, lo, hi
+
+
+def _exec_table(pr, res, X, side, keys, outcomes, sign_of):
+    """Each measure against what followed: the upper third of plays against the lower, with the same comparison on the 60 s before (SPEC 5, rule 4) and the direction
+    a player would expect (rule 4c). Returns how many readings were made and how many are clear."""
+    import execution as EX
+    made = clear = 0
+    for k in keys:
+        sp = _exec_split(X, side, k)
+        if sp is None: continue
+        a, b, how = sp
+        row = res.setdefault(k, {"how": how, "n": [len(a), len(b)]})
+        cells, flags = [], []
+        pa, pb = [c for c in a if c["pre"] is not None], [c for c in b if c["pre"] is not None]
+        pre = _exec_read(pa, pb, lambda c: c["pre"]) if len(pa) >= MIN_PLAYS and len(pb) >= MIN_PLAYS else (None, None, None)
+        p0 = 100 * (float(np.mean([c["p0"] for c in a])) - float(np.mean([c["p0"] for c in b])))
+        for name, y, unit in outcomes:
+            d, lo, hi = _exec_read(a, b, y)
+            made += 1
+            word = "" if d is None or lo is None or lo <= 0 <= hi else ("+" if d > 0 else "-")
+            if word: clear += 1
+            row[name] = {"difference": None if d is None else float(d), "range": [None if lo is None else float(lo), None if hi is None else float(hi)], "clear": word}
+            cells.append(f"{d:+7.2f} ({lo:+.2f} to {hi:+.2f}){'*' if word else ' '}" if d is not None and lo is not None else f"{'':>26}")
+        main = row[outcomes[0][0]]
+        s = sign_of(k)
+        if main["clear"] and s and (main["clear"] == "+") != (s > 0): flags.append("reads backwards: likely a reaction")
+        if pre[0] is not None and main["difference"] is not None and main["clear"] and not (pre[1] <= 0 <= pre[2]) and abs(pre[0]) >= abs(main["difference"]) / 2: flags.append("marks the situation")
+        row["before"] = None if pre[0] is None else {"difference": float(pre[0]), "range": [float(pre[1]), float(pre[2])]}
+        row["started apart"] = p0; row["flags"] = flags
+        pr(f"     {k:22} {len(a):4} v {len(b):4}  " + "  ".join(cells) + f"  {('' if pre[0] is None else format(pre[0], '+.1f')):>7}  {p0:+6.0f}   " + "; ".join(flags))
+    return made, clear
+
+
+def exec_report(path, out_json=None):
+    """Execution, stage 1 (2.12, R-299, R-572, R-621): the record, what each kind of play's execution is placed against, whether each measure goes with what followed,
+    for the team making the play and for the enemy it meets, and what a team held in its base does. A report: nothing in it is advice or a fix."""
+    import execution as EX
+    D, M = load(path); B, P = prices(D, M)
+    C, skipped = exec_cases(D, M, B)
+    lines, res = [], {"cases": len(C), "skipped": dict(skipped), "bench": {}, "readings": {}, "hold": {}}
+    pr = lambda x="": (lines.append(x), print(x))
+    pr(f"Execution of a play in its first {EX.EXEC_S} s, both teams by the same measures, on {len(M)} matches: {len(C)} plays whose players met somebody"
+       + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
+    bench = res["bench"] = exec_bench(C)
+    pr("\nA. The record: the middle of each measure by kind of play, the team making the play / the enemy it meets (blank: under the floor of plays)")
+    kinds = [k for k, _ in EXEC_KINDS if k in bench]
+    pr(f"   {'':22} " + " ".join(f"{k[:19]:>19}" for k in kinds))
+    pr(f"   {'plays':22} " + " ".join(f"{bench[k]['plays']:>19}" for k in kinds))
+    for k in EX.KEYS:
+        cell = lambda kd: (lambda o, t: f"{'' if o is None else format(o[2], '.2f'):>9} /{'' if t is None else format(t[2], '.2f'):>8}")(bench[kd]["own"].get(k), bench[kd]["their"].get(k))
+        pr(f"   {k:22} " + " ".join(cell(kd) for kd in kinds))
+    pr("   What each is: " + "; ".join(f"{k} = {EX.WORDS[k]}" for k in EX.KEYS))
+    outcomes = (("win points 90", lambda c: c["v"]["90"], ""), ("net kills 90", lambda c: c["hard"]["90"]["deaths"][1] - c["hard"]["90"]["deaths"][0], ""))
+    head = f"     {'':22} {'plays':>11}  {'win points 90 s on':>27}  {'net kills 90 s on':>27}  {'60 s before':>7}  {'apart':>6}"
+    pr("\nB. Does it go with what followed? The plays in the upper third of a measure against those in the lower third (or any against none where most plays have none).")
+    pr("   * = the 90% range over whole matches leaves out no difference. 60 s before = the same comparison on what the minute before had done: a measure that tells the past as")
+    pr("   well as what followed marks the situation and is never a fix. apart = how far apart the two groups' chances of winning already were. reads backwards = against the")
+    pr("   direction a player expects: likely a reaction to how the fight was going. The enemy's execution is read from our side: more of theirs should cost us.")
+    made = clear = 0
+    for kind in kinds:
+        X = [c for c in C if c["kind"] == kind]
+        o = res["readings"][kind] = {"own": {}, "their": {}}
+        pr(f"\n   {kind} ({len(X)} plays): the team making the play"); pr(head)
+        a, b = _exec_table(pr, o["own"], X, "own", EX.KEYS, outcomes, lambda k: EX.SIGN[k]); made += a; clear += b
+        pr(f"   {kind}: the enemy it meets (scored the same way; never a fix, R-299)"); pr(head)
+        a, b = _exec_table(pr, o["their"], X, "their", EX.KEYS, outcomes, lambda k: -EX.SIGN[k]); made += a; clear += b
+    res["count"] = {"readings": made, "clear": clear, "by chance": round(made * 0.1)}
+    pr(f"\n   {made} readings were made and {clear} are clear; about {round(made * 0.1)} would be by chance alone at a 90% range. One clear line is a place to look, not a finding.")
+    # ---- D: a team held in its base (R-621)
+    H = [c for c in C if c["kind"] == "held in its base"]
+    for c in H:
+        st, b = c["state"], c["play"]["beside"]
+        down = st["alive"][1] - st["alive"][0]
+        lost = st["npcs_lost"][0][0]
+        c["lost_npc"], c["died"] = b["pit_npcs_lost"] > 0, b["deaths"][0] > 0
+        c["stratum"] = (HELD_NUMBERS[0] if down <= 0 else HELD_NUMBERS[1] if down == 1 else HELD_NUMBERS[2],
+                        next((w for lo, hi, w in HOLD_RES if st["res_in"] is not None and lo <= st["res_in"] < hi), "no base res read"),
+                        next((w for lo, hi, w in HOLD_NPC if lo <= lost <= hi), HOLD_NPC[-1][2]))
+    pr(f"\nD. A team held in its base (R-621): what it does in the first {EX.EXEC_S} s of the hold against what it then loses, only between holds that start alike")
+    pr(f"   {len(H)} holds in {len({c['rid'] for c in H})} matches. Alike = the same players down, the same stretch of the base res clock and the same pit NPCs already lost;")
+    pr("   inside each such group a hold is above or below the group's middle on a measure, and the two halves are compared over all groups together.")
+    by = collections.defaultdict(list)
+    for c in H: by[c["stratum"]].append(c)
+    res["hold"]["groups"] = {" | ".join(k): len(v) for k, v in sorted(by.items(), key=lambda kv: -len(kv[1]))}
+    pr("   Groups: " + "; ".join(f"{' / '.join(k)} {len(v)}" for k, v in sorted(by.items(), key=lambda kv: -len(kv[1]))[:8]) + (" ..." if len(by) > 8 else ""))
+    houts = (("a pit NPC lost while held", lambda c: 100.0 * c["lost_npc"], "%"), ("a player dies while held", lambda c: 100.0 * c["died"], "%"), ("win points 90", lambda c: c["v"]["90"], ""))
+    hhead = f"     {'':22} {'holds':>11}  {'a pit NPC lost, % points':>27}  {'a player dies, % points':>27}  {'win points 90 s on':>27}  {'60 s before':>7}"
+    for side, keys, title in (("own", HOLD_OWN, "the team held in"), ("their", HOLD_THEIR, "the team holding it in (scored the same way; never a fix)")):
+        pr(f"\n   {title}: above the middle of its group against below it"); pr(hhead)
+        o = res["hold"][side] = {}
+        for k in keys:
+            a, b = [], []
+            for g in by.values():
+                V = [(c["x"][side][k], c) for c in g if c["x"][side].get(k) is not None]
+                if len(V) < 6: continue
+                mid = float(np.median([v for v, _ in V]))
+                a += [c for v, c in V if v > mid]; b += [c for v, c in V if v < mid] if any(v < mid for v, _ in V) else []
+            if len(a) < MIN_PLAYS or len(b) < MIN_PLAYS: pr(f"     {k:22} too few holds that differ on it ({len(a)} v {len(b)})"); o[k] = {"n": [len(a), len(b)], "reads": "too few"}; continue
+            cells, row = [], {"n": [len(a), len(b)]}
+            for name, y, unit in houts:
+                d, lo, hi = _exec_read(a, b, y)
+                word = "" if lo is None or lo <= 0 <= hi else ("+" if d > 0 else "-")
+                row[name] = {"difference": float(d), "range": [float(lo), float(hi)], "clear": word}
+                cells.append(f"{d:+7.1f} ({lo:+.1f} to {hi:+.1f}){'*' if word else ' '}")
+            pa, pb = [c for c in a if c["pre"] is not None], [c for c in b if c["pre"] is not None]
+            pre = _exec_read(pa, pb, lambda c: c["pre"]) if len(pa) >= MIN_PLAYS and len(pb) >= MIN_PLAYS else (None, None, None)
+            row["before"] = None if pre[0] is None else float(pre[0]); o[k] = row
+            pr(f"     {k:22} {len(a):4} v {len(b):4}  " + "  ".join(f"{x:>27}" for x in cells) + f"  {('' if pre[0] is None else format(pre[0], '+.1f')):>7}")
+    pr("   Not read here: where in the base the held team stands (the pit or its door), whom it kills first, a res tried or the base res waited for (R-621: none is a")
+    pr("   decision); energy is not in the replays. A held team that hits back harder is as likely a team less badly held: read every line with the 60 s before.")
+    if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
+    return res
+
+
+# ---- the decision to split at all (R-558, R-572), stage 1
+SEND_CALLS = ("no split", "one player", "two players", "three players", "four or more")
+SEND_BANDS = (("behind (under 40%)", lambda c: c["p0"] < 0.40), ("about level (40 to 60%)", lambda c: 0.40 <= c["p0"] <= 0.60), ("ahead (over 60%)", lambda c: c["p0"] > 0.60))
+SEND_BY = (("its chance of winning", SEND_BANDS),
+           ("flags", (("half a flag or more behind", lambda c: c["lead"] <= -0.35), ("about level", lambda c: -0.35 < c["lead"] < 0.35), ("half a flag or more ahead", lambda c: c["lead"] >= 0.35))),
+           ("players alive", (("a player or more down", lambda c: c["down"] >= 1), ("level", lambda c: c["down"] == 0), ("a player or more up", lambda c: c["down"] <= -1))),
+           ("morale (the eight summed)", (("30 or more under theirs", lambda c: c["morale"] <= -30), ("within 30", lambda c: -30 < c["morale"] < 30), ("30 or more over", lambda c: c["morale"] >= 30))),
+           ("the clock", (("1:00 to 4:00", lambda c: c["t"] < 240), ("4:00 to 12:00", lambda c: 240 <= c["t"] < 720), ("12:00 to 20:00", lambda c: 720 <= c["t"] < 1200), ("20:00 on", lambda c: c["t"] >= 1200))),
+           ("their pit NPCs", (("none lost", lambda c: c["their_pit_lost"] == 0), ("one or more lost", lambda c: c["their_pit_lost"] >= 1))),
+           ("own pit NPCs", (("none lost", lambda c: c["own_pit_lost"] == 0), ("one or more lost", lambda c: c["own_pit_lost"] >= 1))),
+           ("an enemy split out", (("yes", lambda c: c["their_split"]), ("no", lambda c: not c["their_split"]))))
+
+
+def send_cases(D, M, B):
+    """One case a team with no split of its own out, every 30 s (the `split_ticks` kept beside the plays): the position, the split it sends in the 30 s that
+    follow, if any, and what followed on the fixed record. A team held in its base is set aside (R-621: its split out of the base is told as its own play)."""
+    out, skipped = [], collections.Counter()
+    for rid in D["matches"]:
+        if "split_ticks" not in D["flag_cost"][rid]: raise ValueError(f"the plays file carries no split ticks for {rid}: run moments.py all again on this engine (R-460)")
+        for p in D["flag_cost"][rid]["split_ticks"]:
+            if p["held_in"]: skipped["the team is held in its base"] += 1; continue
+            c = _told(p, M, B)
+            if c is None: skipped["no winner recorded, or the flag lead not read"] += 1; continue
+            st, sd = c["state"], p["sends"]
+            mo = p["at_told"]["after"]["90"]["morale"]
+            c.update(call=SEND_CALLS[0] if sd is None else SEND_CALLS[min(sd["size"], 4)], sends=sd, lead=st["flag_lead"], down=st["alive"][1] - st["alive"][0],
+                     morale=mo[0][0] - mo[1][0], their_pit_lost=st["npcs_lost"][1][0], own_pit_lost=st["npcs_lost"][0][0], their_split=bool(p["their_split_out"]),
+                     holding=bool(p["holding_them_in"]))
+            out.append(c)
+    return out, skipped
+
+
+def send_report(path, out_json=None):
+    """The decision to split at all (R-558, R-572), stage 1: when teams send a split, and what followed, as it fell. A report: it advises nothing."""
+    D, M = load(path); B, P = prices(D, M)
+    C, skipped = send_cases(D, M, B)
+    lines, res = [], {"cases": len(C), "skipped": dict(skipped), "counts": {}, "when": {}, "as_it_fell": {}, "level": {}}
+    pr = lambda x="": (lines.append(x), print(x))
+    S = [c for c in C if c["sends"]]
+    pr(f"The decision to split at all, stage 1, on {len(M)} matches: {len(C)} times a team with six or more alive and no split of its own out is asked, every 30 s from 1:00,")
+    pr(f"in {len({c['rid'] for c in C})} matches; it sends a split in the 30 s that follow {len(S)} times ({len(S) / max(len(C), 1):.1%})" + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
+    pr("\nA. What it sends")
+    for k in SEND_CALLS:
+        X = [c for c in C if c["call"] == k]; res["counts"][k] = {"cases": len(X), "matches": len({c["rid"] for c in X})}
+        pr(f"   {k:16} {len(X):6} in {len({c['rid'] for c in X}):3} matches" + ("" if k == SEND_CALLS[0] or not X else f"; with a backline monk on it {sum(1 for c in X if c['sends']['monks']) / len(X):.0%}"))
+    pr("\nB. When teams send one: the share of the times asked that a split leaves in the next 30 s, by where the team stands (who chooses it, never advice)")
+    for name, bands in SEND_BY:
+        o = res["when"][name] = {}
+        cells = []
+        for label, f in bands:
+            X = [c for c in C if f(c)]
+            for c in X: c["_y"] = 100.0 * bool(c["sends"])
+            if not X: continue
+            rate = float(np.mean([c["_y"] for c in X])); big = float(np.mean([100.0 * bool(c["sends"] and c["sends"]["size"] >= 3) for c in X]))
+            o[label] = {"cases": len(X), "sends": rate, "three or more": big}
+            cells.append(f"{label} {rate:.1f}% ({len(X)}; three or more {big:.1f}%)")
+        pr(f"   {name:26} " + "; ".join(cells))
+        first, lastb = bands[0], bands[-1]
+        for c in C: c["_y"] = 100.0 * bool(c["sends"])
+        d, lo, hi, na, nb = _num_range(C, first[1], lastb[1])
+        if d is not None and lo is not None:
+            o["first against last"] = {"difference": float(d), "range": [float(lo), float(hi)]}
+            pr(f"   {'':26} {first[0]} against {lastb[0]}: {d:+.1f} points ({lo:+.1f} to {hi:+.1f})" + ("" if lo <= 0 <= hi else "   clear"))
+    extra = (("flags 180", lambda V: float(np.mean([c["hard"]["180"]["lead_change"] for c in V if c["hard"]["180"]["lead_change"] is not None] or [0])), lambda v: f"{v:+9.2f}"),)
+    head = _fell_head((("flags 180", 9),))
+    pr("\nC. As it fell, 90 s on (flags and win points also 180 s on), by the chance of winning the team stood at: a description set against no like spot")
+    pr("   started at = its chance of winning when asked; 60 s before = what the minute before had done to it; they lose one, we lose one = a death anywhere on the map;")
+    pr("   net NPCs = theirs lost less ours. A team that sends a split is not the same team as one that does not: read each row with its 60 s before.")
+    for label, f in SEND_BANDS:
+        X = [c for c in C if f(c)]
+        if not X: continue
+        pr(f"\n   {label} ({len(X)})"); pr(head); o = res["as_it_fell"][label] = {}
+        for k in SEND_CALLS: _fell(pr, o, k, [c for c in X if c["call"] == k], extra)
+    pr("\nD. A split against none where the team stood alike: the same band of its chance of winning, the difference in win points with its 90% range over whole matches,")
+    pr("   and the same difference on the 60 s before (a difference there as large as what followed marks the situation: the split is sent by teams already on that way)")
+    for label, f in SEND_BANDS:
+        X = [c for c in C if f(c)]
+        o = res["level"][label] = {}
+        for nm, g in (("any split", lambda c: bool(c["sends"])), ("one or two players", lambda c: bool(c["sends"]) and c["sends"]["size"] <= 2), ("three or more", lambda c: bool(c["sends"]) and c["sends"]["size"] >= 3)):
+            row = {}
+            for H in ("90", "180"):
+                for c in X: c["_y"] = c["v"][H]
+                d, lo, hi, na, nb = _num_range(X, g, lambda c: not c["sends"])
+                row[H] = None if d is None or lo is None else {"difference": float(d), "range": [float(lo), float(hi)], "n": [na, nb]}
+            Xp = [c for c in X if c["pre"] is not None]
+            for c in Xp: c["_y"] = c["pre"]
+            d, lo, hi, na, nb = _num_range(Xp, g, lambda c: not c["sends"])
+            row["before"] = None if d is None or lo is None else {"difference": float(d), "range": [float(lo), float(hi)]}
+            o[nm] = row
+            if row["180"] is None or row["180"]["n"][0] < MIN_PLAYS: pr(f"   {label:26} {nm:20} too few ({0 if row['180'] is None else row['180']['n'][0]})"); continue
+            fm = lambda r: "" if r is None else f"{r['difference']:+5.1f} ({r['range'][0]:+.1f} to {r['range'][1]:+.1f})"
+            marks = row["before"] is not None and not (row["before"]["range"][0] <= 0 <= row["before"]["range"][1]) and abs(row["before"]["difference"]) >= abs(row["180"]["difference"]) / 2
+            pr(f"   {label:26} {nm:20} {row['180']['n'][0]:4} v {row['180']['n'][1]:5}   90 s {fm(row['90']):>24}   180 s {fm(row['180']):>24}   60 s before {fm(row['before']):>24}" + ("   marks the situation" if marks else ""))
+    pr("\n   Not read yet (stages 2 to 4, R-558): like spots and the test on unseen matches; what the split's players can do (their NPC damage by kind of bar, R-433, is on every")
+    pr("   split's record now); the build and the match-up, which is the other half of his question (a team that cannot win the main fight). Nothing here is advice.")
+    if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -3105,6 +3398,8 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "main-fight": main_fight(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "splits": splits(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "pushes": pushes(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "split-at-all": send_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "execution": exec_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "res": base_res(a[1], a[a.index("--json") + 1] if "--json" in a else None)

@@ -206,6 +206,8 @@ def warm(jobs=None, kinds=("wp",)):
     print(f"prepared data: {len(ids)} matches in {time.time() - t:.0f} s")
     if "wp" in kinds:       # the data picks Denning's cap_test caps before the held-out models are fitted with them
         import model as M
+        t = time.time(); sp = M.steady_pairs(ids); _KEYS.pop("fit_wp", None)       # 2.13: the pairs that pass on both halves of the matches, before anything is fitted with them
+        if sp is not None: print(f"pairs that passed twice in {time.time() - t:.0f} s: {len(sp['pairs'])} of {sp['screened']} screened on each half:", [" & ".join(p) for p in sp["pairs"]])
         t = time.time(); ch = M.cap_test(ids); _KEYS.pop("fit_wp", None)
         if ch: print(f"cap and pair tests in {time.time() - t:.0f} s:", {k: v["verdict"] for k, v in ch.items()})
     t = time.time()

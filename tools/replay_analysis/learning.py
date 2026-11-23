@@ -136,6 +136,10 @@ def s_head(c):
         for term, ch in json.load(open(M.CAPS))["choices"].items():
             L.append(f"- Cap test on {term} (held-out log loss, {ch['matches']} matches): "
                      + ", ".join(f"{k if k == 'none' else k + ' points'} {v}" for k, v in ch["log_loss"].items()) + f"; chosen: {ch['verdict']}.")
+        sp = json.load(open(M.CAPS)).get("steady_pairs")
+        if sp is not None:
+            L.append(f"- Pairs (a pair enters the model only if it is among the {sp['screened']} strongest on each half of the matches, {sp['matches'][0]} and {sp['matches'][1]}): "
+                     + (", ".join(" with ".join(p) for p in sp["pairs"]) if sp["pairs"] else "none passed on both halves") + ".")
         pr = json.load(open(M.CAPS)).get("pairs") or {}
         if pr: L.append(f"- Pair test ({'; '.join(pr['pairs'])}; held-out log loss, {pr['matches']} matches): allowed "
                         f"{pr['log_loss']['allowed']}, blocked {pr['log_loss']['blocked']}; chosen: {pr['verdict']}.")

@@ -3155,8 +3155,9 @@ class Moments:
     def _props(self, ids):
         """A group of players as properties, not class names (REDESIGN "Shape": the same call by a Mesmer and a
         Ranger is compared on what the two can do): how many, backline monks, heals and prots on their bars (skills),
-        self-defence (skills), snares and speed (power, movepower.py) and escapes. NPC damage is not here yet: it
-        has to be measured per bar, not read from a skill list."""
+        self-defence (skills), snares and speed (power, movepower.py) and escapes; and `npc`, the damage a second the
+        group puts on each kind of NPC, by rough class of bar (R-433, npcpower.py: measured, not read from a skill
+        list). No play and no like-spot matching reads `npc` yet."""
         from buildfeat import FEATURES, PLAYER_FLAGS, _skills
         from movepower import player_power
         S, m = _skills(), self.m
@@ -3169,6 +3170,8 @@ class Moments:
             p = player_power(m, a)
             out["snare"] += p["snare"]; out["speed"] += p["speed"]; out["escapes"] += p["escapes"]
         out["snare"], out["speed"] = round(out["snare"], 1), round(out["speed"], 1)
+        import npcpower
+        out["npc"] = {k: v[0] for k, v in npcpower.group(m, ids).items()}
         return out
 
     def _came_by(self, b, tm, t_from, t_to):
@@ -3362,7 +3365,9 @@ def match_records(rid):
     M = Moments(st, Scoreboard(st))
     recs = M.records()
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M), "flag_hands": jobs.flag_hands(M),
+    P = jobs.plays(M, recs)
+    import execution                                     # how each play was carried out in its first seconds, both teams by the same measures (2.12; kept beside the plays, no play reads it)
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P), "split_ticks": jobs.split_ticks(M, P), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M), "flag_hands": jobs.flag_hands(M),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 

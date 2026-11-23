@@ -1488,6 +1488,41 @@ def _factor_words(f):
     return ("; against the stay: " + ", ".join(a) + ("; for it: " + ", ".join(b) if b else "")) if a else "; nothing of his two factors against the stay (" + ", ".join(b) + ")"
 
 
+SPLIT_TICK_S = 30                      # the decision to split at all is asked every 30 s from 1:00 with six or more of the team alive: his definition of the old kind (SPEC 6, split_or_stay; R-279)
+SPLIT_TICK_FROM = 60
+SPLIT_TICK_ALIVE = 6
+
+
+def split_ticks(M, plays):
+    """The decision to split at all (R-558, R-572), the record for its first stage. Every SPLIT_TICK_S from SPLIT_TICK_FROM, for each team with SPLIT_TICK_ALIVE
+    or more alive and no split of its own out: the position it stands at, the minute before and the fixed 60, 90 and 180 s record (as on a play), whether it is
+    held in its base and whether an enemy split is out, and the split it sends in the SPLIT_TICK_S that follow, if any (its size, its monks, when it left and
+    what its players can do). A split is the split record of the plays (`split` on a split play: left, told, end), so that this reads the splits as the page
+    tells them. A record kept beside the plays: it tells no play and changes none."""
+    if M.hall is None: return []
+    st, T, out, rid = M.st, M.T, [], M.m.o["meta"]["id"]
+    S = {}
+    for p in plays:
+        if p["play"] == "split" and p.get("split"): S[p["split"]["id"]] = p["split"]
+    P = pinned(M)
+    last = min(T, M.over) - SPLIT_TICK_S
+    for tm in st.teams:
+        mine = sorted((s for s in S.values() if s["tm"] == tm), key=lambda s: s["left"])
+        theirs = [s for s in S.values() if s["tm"] != tm]
+        for t in range(SPLIT_TICK_FROM, int(last) + 1, SPLIT_TICK_S):
+            if sum(1 for a in st.players[tm] if M.AL[a][t]) < SPLIT_TICK_ALIVE: continue
+            if any(s["left"] <= t <= s["end"] for s in mine): continue                     # a split of ours is out: the question is another one (the main fight while a split is out, R-570)
+            nxt = next((s for s in mine if t < s["left"] <= t + SPLIT_TICK_S), None)
+            b_ = t - FLAG_BEFORE_S
+            out.append({"play": "split tick", "id": f"{rid[:8]}-tick-{tm}-{t}", "rid": rid, "tm": tm, "team": M.m.tag[tm], "t0": t,
+                        "at_told": {"state": M._state(tm, t), "after": M.consequence(tm, t, FLAG_AFTER_S),
+                                    "before": None if b_ < 0 else {"state": M._state(tm, b_), "after": M.consequence(tm, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}},
+                        "held_in": any(k == tm and a <= t <= b for k, a, b in P), "holding_them_in": any(k != tm and a <= t <= b for k, a, b in P),
+                        "their_split_out": any(s["left"] <= t <= s["end"] for s in theirs),
+                        "sends": None if nxt is None else {"id": nxt["id"], "left": nxt["left"], "told": nxt["told"], "size": nxt["size"], "monks": nxt["monks"], "props": (nxt.get("props") or [None])[0]}})
+    return out
+
+
 def res_spots(M):
     """The gamble of the base res (R-601, his words: falling out removes the damage, the NPCs and the range of the players who base, "But this is a gamble, and
     we want to see which is better. There is a risk of taking deaths, but also in those crucial seconds before a base res you have a very significant chance of

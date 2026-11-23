@@ -18,6 +18,11 @@ Corrections: data/model_corrections.json, a list of {"term", "kind", "reason", .
   {"term": "spike_killable_diff", "kind": "cap_test", "options": [10, 15, 20], "reason": "..."}  the data picks the cap
       (or none): each option is tested on held-out matches before the held-out models are fitted (cap_test(), run by
       cache.py warm); the choice and its log losses are written to data/model/cap_choices.json and act as a "cap".
+Pairs must pass twice (REDESIGN 2.13; steady_pairs(), run by cache.py warm before the cap tests): the training matches
+are halved (by each match's fixed group), the strongest SCREEN_TOP pairs are screened on each half, and only a pair in
+both lists may enter the model, in every fit of the run. A pair picked on one half alone is as likely noise, and such
+pairs swapping from run to run moved the held-out score with no change in the game (batch 17). The choice is written
+to data/model/cap_choices.json (`steady_pairs`); until it exists each fit picks its own eight, as before, and says so.
 Calibration by minute (calibrate(), also run by cache.py warm): the held-out models' predictions on every training
 match against how often those teams won; per minute band, pooled cells joined by straight lines, blended by minute
 (data/model/calibration.json), applied by WPModel.explain to its win chance (the contributions stay as learned).
@@ -43,6 +48,7 @@ STATIC = {"strength_gap", "lord_dps_own", "lord_dps_enemy", "healing_monks_own",
           "flux_minion_apocalypse", "flux_meek_shall_inherit", "flux_jack_of_all_trades", "flux_chain_combo"}       # fixed for a whole match
 NAMES = [n for n, _, _ in VARIABLES]
 STAGES = {"build_variables": 60, "interactions": 40}   # matches needed before these are switched on
+SCREEN_TOP = 8               # pairs screened on each half of the matches (2.13): as many as a fit was allowed to pick for itself
 TRAIN_STEP = 15
 EVEN_GAP = 200               # "even on strength": under this many rating points apart (about 1.3 to 1 odds)
 SETTINGS = dict(max_bins=16, outer_bags=4, min_samples_leaf=20, max_rounds=300, random_state=7)
@@ -171,12 +177,74 @@ def test_candidates(ids, base=None):
     return out
 
 
+_SAID = set()
+def _say_once(msg):
+    if msg not in _SAID: _SAID.add(msg); print(msg, file=sys.stderr)
+
+
+def steady_choice():
+    """The pairs that passed on both halves of the matches ([[a, b], ...]), or None where no choice has been made yet."""
+    try: ch = json.load(open(CAPS)).get("steady_pairs")
+    except (OSError, ValueError): return None
+    return None if ch is None else [tuple(p) for p in ch["pairs"]]
+
+
+def _screen(X, y, use, barred, mains_out=(), top=None):
+    """The strongest pairs on these rows beyond team strength and each variable's own curve (the curves are fitted first and the pairs screened on what they
+    leave, as a fit does for itself), those barred left out: [(a, b), ...] strongest first."""
+    from interpret.glassbox import ExplainableBoostingClassifier as EBM
+    from interpret.utils import measure_interactions
+    kw = dict(SETTINGS, interactions=0)
+    if mains_out: kw["exclude"] = list(mains_out)
+    init = strength_score(X)
+    mains = EBM(feature_names=use, **kw).fit(X[use], y, init_score=init)
+    out = []
+    for (i, j), _ in measure_interactions(X[use], y, init_score=init + mains.decision_function(X[use]), max_interaction_bins=8):
+        p = tuple(sorted((use[i], use[j])))
+        if p not in barred: out.append(p)
+        if len(out) == (top or SCREEN_TOP): break
+    return out
+
+
+def _steady(X, y, g, corr, half_of):
+    """2.13 on one frame: the pairs in the top SCREEN_TOP of both halves of its matches. `half_of`: match id -> 0 or 1."""
+    drop = {c["term"] for c in corr if c["kind"] == "drop"}
+    use = [n for n in terms_for(g.nunique(), list(X.columns)) if n not in drop]
+    barred = {tuple(sorted(t)) for t in _excluded(corr, use) if len(t) == 2}
+    h = g.map(half_of).values
+    tops = [_screen(X[h == k], y[h == k], use, barred, _excluded(corr, use, pairs=False)) for k in (0, 1)]
+    both = [p for p in tops[0] if p in tops[1]]
+    return {"pairs": [list(p) for p in both], "halves": [[list(p) for p in t] for t in tops], "matches": [int(g[h == k].nunique()) for k in (0, 1)], "screened": SCREEN_TOP}
+
+
+def steady_pairs(ids):
+    """Choose the pairs every fit of this run may use (2.13) and write them to data/model/cap_choices.json. Returns the choice, or None below the
+    number of matches at which pairs are switched on."""
+    import cache
+    df, X, y, g = _frame(ids)
+    if g.nunique() < STAGES["interactions"]: return None
+    corr = [c for c in corrections(raw=True) if c["kind"] not in ("cap_test", "pair_test")]
+    ch = _steady(X, y, g, corr, lambda r: cache.fold_of(r) % 2)
+    try: cur = json.load(open(CAPS))
+    except (OSError, ValueError): cur = {"about": "", "choices": {}, "pairs": {}}
+    cur["steady_pairs"] = ch
+    json.dump(cur, open(CAPS, "w"), indent=1)
+    return ch
+
+
 def _ebm(corr, names, n_matches):
     from interpret.glassbox import ExplainableBoostingClassifier as EBM
     drop = {c["term"] for c in corr if c["kind"] == "drop"}
     use = [n for n in terms_for(n_matches, names) if n not in drop]
     kw = dict(SETTINGS, interactions=8 if n_matches >= STAGES["interactions"] else 0)
-    kw["exclude"] = _excluded(corr, use, bool(kw["interactions"]))
+    steady = steady_choice() if kw["interactions"] else None
+    if steady is not None:      # 2.13: only the pairs that passed on both halves of the matches, the same in every fit of the run
+        barred = {tuple(sorted(t)) for t in _excluded(corr, use) if len(t) == 2}
+        kw["interactions"] = [tuple(use.index(x) for x in p) for p in steady if all(x in use for x in p) and tuple(sorted(p)) not in barred]
+        kw["exclude"] = _excluded(corr, use, pairs=False)
+    else:
+        if kw["interactions"]: _say_once("model: no pairs chosen on two halves yet (steady_pairs, run by cache.py warm): each fit picks its own eight")
+        kw["exclude"] = _excluded(corr, use, bool(kw["interactions"]))
     if not kw["exclude"]: kw.pop("exclude")
     forced = [tuple(c["term"].split(" & ")) for c in corr if c["kind"] == "interaction"]
     return EBM(feature_names=use, **kw), use, forced
@@ -314,9 +382,12 @@ def cap_test(ids):
         pick = int(best) if best != "none" and ll[best] < ll["none"] - 0.0005 else None
         choices[term] = {"max_points": pick, "log_loss": {k: round(v, 4) for k, v in ll.items()}, "matches": int(g.nunique()),
                          "verdict": f"cap at {pick} points" if pick else "no cap (no option beat it on unseen matches)"}
-    json.dump({"about": "Choices made by the data for Denning's cap_test and pair_test corrections (model.py cap_test): "
+    try: steady = json.load(open(CAPS)).get("steady_pairs")
+    except (OSError, ValueError): steady = None
+    json.dump(dict({"about": "Choices made by the data for Denning's cap_test and pair_test corrections (model.py cap_test): "
                "held-out log loss with no cap and with each option, and with the tested pairs allowed or blocked; a change is "
-               "kept only if it beats the alternative by 0.0005.", "choices": choices, "pairs": pairs},
+               "kept only if it beats the alternative by 0.0005. steady_pairs: the pairs that passed on both halves of the matches (2.13).", "choices": choices, "pairs": pairs},
+                   **({"steady_pairs": steady} if steady is not None else {})),
               open(CAPS, "w"), indent=1)
     return dict(choices, **({"pairs (morale x map)": pairs} if pairs else {}))
 
