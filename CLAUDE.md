@@ -535,6 +535,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   kill the pushers, is another kind. "28" is the end of the match, not the clock: never pick or tell the play by the
   match's length or by a Lord kill. Rebuild the reading at the root from where the players stand, never from hits on a
   Lord, against set p4 (hold v BcS 26:59 a play for 28:00; Book v hook, Crew v cope 24:44 and Team v hook 24:02 not).
+  A push before it is told with the situation it grew out of, never as a row of its own (R-644). The draft reading is
+  a tool on the branch, `tools/golden/endplay.py <report id>` or `all <out.json>` (report
+  `data/model/end_play_draft.json`): each player's last place alive at the end of play, sent or kept, and since when;
+  nothing in the engine reads it. It reads the same shape in a play for 28:00 and in a push before it; what tells
+  them apart is his to say, and until he has, move nothing into `moments.py` or `jobs.py`.
 - What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot
