@@ -18,9 +18,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - This chat (no engine change, no play moved). The Lord push page has four rows, all marked and filed as set p4
   (R-643, R-645). His description (R-640 to R-642, R-644): the play for 28:00 is one play of both teams (whom each
   sends and keeps); a push before it out of a situation is told with that situation; "28" is the end of the match.
-  A draft reading as a tool on the branch, `tools/golden/endplay.py` (report `data/model/end_play_draft.json`):
-  each player's last place alive at the end, sent or kept, and since when. Of 564 matches 88 end at 24:30 or later
-  (42 run out, 46 by a Lord kill); run out, both teams send in 39 and half are set by 26:27 (1 before 24:30).
+  A draft reading, a tool on the branch (`tools/golden/endplay.py`): each player's last place at the end, sent or
+  kept, and since when. 88 of 564 matches end at 24:30 or later; run out (42), half are set by 26:27.
 - What it says. The danger zone at 250: 157 base res in 135 matches, 156 stay; one dies in 13%, two or more in 8%
   (4 to 8% and 2 to 5% outside it). The hand-off: a flag put down is returned 13% of the time out of range, 24%
   with one enemy in range, 41% with two or more; a returned hand-off costs a third of a flag a minute on and is
