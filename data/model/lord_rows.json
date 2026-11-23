@@ -1,5 +1,5 @@
 {
- "about": "The rows of Model > Game review > Lord push (R-633): Lord pushes picked from late games for his grade and mark, written by tools/golden/review.py lord on the engine branch. Lord damage (R-632): gvg.report's own figure is the one of record; what is stored of it is each Lord's total for the match (`damage.match_gvg`, their Lord then the pushing team's own), set beside the engine's sum of the recorded hits for the push (`damage.push`) and for the match (`damage.match_hits`). His marks are in lord_row_marks.json, never here. On 2026-11-23 the rows of BcS v hold 25:25 and Apes v Crew 23:26 were taken off at his word, unmarked (R-643); and the two rows of hdm v Men, which he cannot review (R-645); four rows remain, all marked.",
+ "about": "The rows of Model > Game review > Lord push (R-633): Lord pushes picked from late games for his grade and mark, written by tools/golden/review.py lord on the engine branch. Lord damage (R-632): gvg.report's own figure is the one of record; what is stored of it is each Lord's total for the match (`damage.match_gvg`, their Lord then the pushing team's own), set beside the engine's sum of the recorded hits for the push (`damage.push`) and for the match (`damage.match_hits`). His marks are in lord_row_marks.json, never here. On 2026-11-23 the rows of BcS v hold 25:25 and Apes v Crew 23:26 were taken off at his word, unmarked (R-643); and the two rows of hdm v Men, which he cannot review (R-645); four rows remain, all marked. Rows with `kind` \"end\" are the draft reading of the play for 28:00 (tools/golden/endplay.py rows, R-640 to R-646): one row a match for both teams, whom each sends and keeps and since when; their Lord damage is the engine's sum of the recorded hits from the first send, beside gvg.report's match total.",
  "generated": "2026-11-23",
  "engine": "50d656d",
  "rows": [
@@ -469,6 +469,624 @@
     }
    ],
    "text": "hook pushes Team's Guild Lord with 8 in the base (3 monks, 1 by the end) against 4 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): AoB Derv, Hammer, Ritualist, Ranger, Mesmer, Prot, 7 Monk, 8 Monk. Defending (Team): AoB Derv, Hammer, Stand Mes, Mes/A, Ritualist, Prot, 7 Monk, 8 Monk. | Team defends with 8, 3 by the end (3 monks). Deaths during it: hook 8, Team 0. | The match is decided by Lord damage at 28:00; Team wins. | Lord damage in this push by gvg.report's own record: 3,384 on Team's Lord (155 more is life steal, which gvg.report does not count), 1 of its 95 hits with Entourage up; 0 on hook's Lord meanwhile. | Team cast 7 enchantments or weapon spells on its own Lord during it: 350 off its aggressiveness. | Aggressiveness by gvg.report's count, hook against Team: -300 against 52 going in, 3,084 against -298 coming out; 184 against 3,675 when the match ends. | Team's Lord by gvg.report's estimate: 1,697 of 1,697 health going in, 1,005 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 3,564 on Team's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 3,525 on Team's Lord, 4,191 on hook's (the engine's summed hits: 3,589 and 4,340)."
+  },
+  {
+   "id": "e:1729daac-end",
+   "kind": "end",
+   "play": null,
+   "rid": "1729daac-175f-50db-a0ee-ea543f3a22e0",
+   "teams": [
+    "Dz",
+    "Crew"
+   ],
+   "map": "Isle of Solitude",
+   "date": "2026-10-22",
+   "length_s": 1526,
+   "t0": 1312,
+   "t1": 1513,
+   "reads": "A push before the play for 28:00, as the draft reads it: Crew has 2 in Dz's base, sent at 21:52, and keeps 6; Dz sends 7 in return at 21:59 and keeps 1.",
+   "lines": [
+    "Dz sent to the enemy's base: Mesmer (from 21:55), Paragon 1 (from 21:57), Prot (from 21:57), Paragon 2 (from 21:59), 7 Monk (from 22:02), Warrior (from 23:54), Monk 5 (WoC) (from 24:25).",
+    "Dz kept at home: 8 Monk (before 20:00, died 25:06).",
+    "Crew sent to the enemy's base: Monk 1 (from 21:49), Ritualist (from 21:56).",
+    "Crew kept at home: Necromancer (from 20:07), Prot (from 21:41), Mesmer (from 21:42), 8 Monk (from 21:42), Warrior (from 21:43), 7 Monk (from 21:46).",
+    "What each team had when the first group went (21:52): pit NPCs alive, Dz 3 and Crew 6; morale summed over the eight, Dz -114 and Crew +52; players alive, Dz 8 and Crew 8; Lord damage so far by the engine's sum of the recorded hits, 0 by Dz and 8,211 by Crew; the next base res at 22:00.",
+    "Dz's Guild Lord is killed at 25:13; Crew wins. Deaths from 21:52: Dz 3, Crew 0.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 21:52, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Dz, 7.",
+    "Picked for: your three signs do not agree."
+   ],
+   "damage": {
+    "push": [
+     5203,
+     628
+    ],
+    "match_gvg": [
+     12587,
+     628
+    ],
+    "match_hits": [
+     13414,
+     628
+    ],
+    "lords": [
+     "Dz",
+     "Crew"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 21:52, by the engine's sum of the recorded hits: 5,203 on Dz's Lord, 628 on Crew's. Whole match, gvg.report's own total: 12,587 on Dz's Lord, 628 on Crew's (the engine's summed hits: 13,414 and 628).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1513,
+    "lord_killed": "Dz",
+    "set": 1319,
+    "shape": "both send",
+    "kind": "push before it",
+    "sends": {
+     "Dz": {
+      "sent": 7,
+      "kept": 1,
+      "send": 1319,
+      "first": 1315
+     },
+     "Crew": {
+      "sent": 2,
+      "kept": 6,
+      "send": 1312.5,
+      "first": 1309
+     }
+    },
+    "killer_send": 1312.5,
+    "in_return": 7,
+    "already": false
+   },
+   "picked_for": "your three signs do not agree",
+   "text": "A push before the play for 28:00, as the draft reads it: Crew has 2 in Dz's base, sent at 21:52, and keeps 6; Dz sends 7 in return at 21:59 and keeps 1. | Dz sent to the enemy's base: Mesmer (from 21:55), Paragon 1 (from 21:57), Prot (from 21:57), Paragon 2 (from 21:59), 7 Monk (from 22:02), Warrior (from 23:54), Monk 5 (WoC) (from 24:25). | Dz kept at home: 8 Monk (before 20:00, died 25:06). | Crew sent to the enemy's base: Monk 1 (from 21:49), Ritualist (from 21:56). | Crew kept at home: Necromancer (from 20:07), Prot (from 21:41), Mesmer (from 21:42), 8 Monk (from 21:42), Warrior (from 21:43), 7 Monk (from 21:46). | What each team had when the first group went (21:52): pit NPCs alive, Dz 3 and Crew 6; morale summed over the eight, Dz -114 and Crew +52; players alive, Dz 8 and Crew 8; Lord damage so far by the engine's sum of the recorded hits, 0 by Dz and 8,211 by Crew; the next base res at 22:00. | Dz's Guild Lord is killed at 25:13; Crew wins. Deaths from 21:52: Dz 3, Crew 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 21:52, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Dz, 7. | Picked for: your three signs do not agree. | Lord damage. From 21:52, by the engine's sum of the recorded hits: 5,203 on Dz's Lord, 628 on Crew's. Whole match, gvg.report's own total: 12,587 on Dz's Lord, 628 on Crew's (the engine's summed hits: 13,414 and 628)."
+  },
+  {
+   "id": "e:a0fae334-end",
+   "kind": "end",
+   "play": null,
+   "rid": "a0fae334-fc73-546f-aefc-9b8b16607862",
+   "teams": [
+    "cope",
+    "Men"
+   ],
+   "map": "Druid's Isle",
+   "date": "2026-09-29",
+   "length_s": 1673,
+   "t0": 1477,
+   "t1": 1659,
+   "reads": "A push before the play for 28:00, as the draft reads it: Men has 4 in cope's base, sent at 24:37, and keeps 2; cope sends 4 in return at 26:38 and keeps 3.",
+   "lines": [
+    "cope sent to the enemy's base: Paragon 1 (from 26:34, died 27:06), 8 Monk (from 26:34, died 26:59), Paragon 2 (from 26:43, died 27:04), Warrior (from 26:54, died 27:15).",
+    "cope kept at home: 7 Monk (from 21:52, died 27:26), Mesmer (from 24:25, died 27:09), Prot (from 25:23, died 27:33).",
+    "cope in the field or at the enemy's footmen: Monk 5 (WoC) (from 26:24, died 26:27).",
+    "Men sent to the enemy's base: Warrior (from 24:26), Paragon 2 (from 24:34), 7 Monk (from 24:40), Paragon 1 (from 25:37).",
+    "Men kept at home: 8 Monk (from 25:47), Mesmer (from 26:25).",
+    "Men in the field or at the enemy's footmen: Prot (from 27:25), Monk 4 (WoC) (from 27:34).",
+    "What each team had when the first group went (24:37): pit NPCs alive, cope 1 and Men 5; morale summed over the eight, cope -163 and Men +70; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 0 by Men; the next base res at 26:00.",
+    "What each team had when it was set (26:38): pit NPCs alive, cope 0 and Men 5; morale summed over the eight, cope -193 and Men +80; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 2,663 by Men; the next base res at 28:00.",
+    "cope's Guild Lord is killed at 27:39; Men wins. Deaths from 24:37: cope 9, Men 0.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:37, before 25:00; a team already in the enemy's base two minutes or more before it was set, yes; sent in return by cope, 4.",
+    "Picked for: your three signs do not agree."
+   ],
+   "damage": {
+    "push": [
+     5599,
+     0
+    ],
+    "match_gvg": [
+     5599,
+     0
+    ],
+    "match_hits": [
+     5599,
+     0
+    ],
+    "lords": [
+     "cope",
+     "Men"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 24:37, by the engine's sum of the recorded hits: 5,599 on cope's Lord, 0 on Men's. Whole match, gvg.report's own total: 5,599 on cope's Lord, 0 on Men's (the engine's summed hits: 5,599 and 0).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1659,
+    "lord_killed": "cope",
+    "set": 1598.5,
+    "shape": "both send",
+    "kind": "push before it",
+    "sends": {
+     "cope": {
+      "sent": 4,
+      "kept": 3,
+      "send": 1598.5,
+      "first": 1594
+     },
+     "Men": {
+      "sent": 4,
+      "kept": 2,
+      "send": 1477.0,
+      "first": 1466
+     }
+    },
+    "killer_send": 1477.0,
+    "in_return": 4,
+    "already": true
+   },
+   "picked_for": "your three signs do not agree",
+   "text": "A push before the play for 28:00, as the draft reads it: Men has 4 in cope's base, sent at 24:37, and keeps 2; cope sends 4 in return at 26:38 and keeps 3. | cope sent to the enemy's base: Paragon 1 (from 26:34, died 27:06), 8 Monk (from 26:34, died 26:59), Paragon 2 (from 26:43, died 27:04), Warrior (from 26:54, died 27:15). | cope kept at home: 7 Monk (from 21:52, died 27:26), Mesmer (from 24:25, died 27:09), Prot (from 25:23, died 27:33). | cope in the field or at the enemy's footmen: Monk 5 (WoC) (from 26:24, died 26:27). | Men sent to the enemy's base: Warrior (from 24:26), Paragon 2 (from 24:34), 7 Monk (from 24:40), Paragon 1 (from 25:37). | Men kept at home: 8 Monk (from 25:47), Mesmer (from 26:25). | Men in the field or at the enemy's footmen: Prot (from 27:25), Monk 4 (WoC) (from 27:34). | What each team had when the first group went (24:37): pit NPCs alive, cope 1 and Men 5; morale summed over the eight, cope -163 and Men +70; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 0 by Men; the next base res at 26:00. | What each team had when it was set (26:38): pit NPCs alive, cope 0 and Men 5; morale summed over the eight, cope -193 and Men +80; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 2,663 by Men; the next base res at 28:00. | cope's Guild Lord is killed at 27:39; Men wins. Deaths from 24:37: cope 9, Men 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:37, before 25:00; a team already in the enemy's base two minutes or more before it was set, yes; sent in return by cope, 4. | Picked for: your three signs do not agree. | Lord damage. From 24:37, by the engine's sum of the recorded hits: 5,599 on cope's Lord, 0 on Men's. Whole match, gvg.report's own total: 5,599 on cope's Lord, 0 on Men's (the engine's summed hits: 5,599 and 0)."
+  },
+  {
+   "id": "e:9d84b1e6-end",
+   "kind": "end",
+   "play": null,
+   "rid": "9d84b1e6-6aef-5d0c-a417-fb87875add27",
+   "teams": [
+    "BcS",
+    "hook"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-10-08",
+   "length_s": 1666,
+   "t0": 1471,
+   "t1": 1652,
+   "reads": "A push before the play for 28:00, as the draft reads it: BcS has 6 in hook's base, sent at 24:31, and keeps 2; hook sends 3 in return at 26:12 and keeps 5.",
+   "lines": [
+    "BcS sent to the enemy's base: Monk 3 (WoC) (from 24:27), Warrior 1 (from 24:30), Mesmer (from 24:31), 7 Monk (from 24:31), Monk 4 (WoC) (from 24:58), Warrior 2 (from 24:59).",
+    "BcS kept at home: 8 Monk (from 21:47), Prot (from 26:25).",
+    "hook sent to the enemy's base: Ranger (from 26:06, died 27:06), AoB Derv (from 26:12, died 27:16), Ritualist (from 26:13, died 27:25).",
+    "hook kept at home: Prot (from 23:45, died 27:03), Hammer (from 23:46, died 26:53), 7 Monk (from 25:27, died 26:36), Mesmer (from 25:59, died 26:36), 8 Monk (from 25:59, died 27:23).",
+    "What each team had when the first group went (24:31): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -268; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 50 by BcS and 0 by hook; the next base res at 26:00.",
+    "What each team had when it was set (26:12): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -313; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 361 by BcS and 0 by hook; the next base res at 28:00.",
+    "hook's Guild Lord is killed at 27:32; BcS wins. Deaths from 24:31: BcS 0, hook 13.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:31, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by hook, 3.",
+    "Picked for: your three signs do not agree."
+   ],
+   "damage": {
+    "push": [
+     165,
+     4714
+    ],
+    "match_gvg": [
+     115,
+     4728
+    ],
+    "match_hits": [
+     165,
+     4764
+    ],
+    "lords": [
+     "BcS",
+     "hook"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 24:31, by the engine's sum of the recorded hits: 165 on BcS's Lord, 4,714 on hook's. Whole match, gvg.report's own total: 115 on BcS's Lord, 4,728 on hook's (the engine's summed hits: 165 and 4,764).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1652,
+    "lord_killed": "hook",
+    "set": 1572,
+    "shape": "both send",
+    "kind": "push before it",
+    "sends": {
+     "BcS": {
+      "sent": 6,
+      "kept": 2,
+      "send": 1471.0,
+      "first": 1467
+     },
+     "hook": {
+      "sent": 3,
+      "kept": 5,
+      "send": 1572,
+      "first": 1566
+     }
+    },
+    "killer_send": 1471.0,
+    "in_return": 3,
+    "already": false
+   },
+   "picked_for": "your three signs do not agree",
+   "text": "A push before the play for 28:00, as the draft reads it: BcS has 6 in hook's base, sent at 24:31, and keeps 2; hook sends 3 in return at 26:12 and keeps 5. | BcS sent to the enemy's base: Monk 3 (WoC) (from 24:27), Warrior 1 (from 24:30), Mesmer (from 24:31), 7 Monk (from 24:31), Monk 4 (WoC) (from 24:58), Warrior 2 (from 24:59). | BcS kept at home: 8 Monk (from 21:47), Prot (from 26:25). | hook sent to the enemy's base: Ranger (from 26:06, died 27:06), AoB Derv (from 26:12, died 27:16), Ritualist (from 26:13, died 27:25). | hook kept at home: Prot (from 23:45, died 27:03), Hammer (from 23:46, died 26:53), 7 Monk (from 25:27, died 26:36), Mesmer (from 25:59, died 26:36), 8 Monk (from 25:59, died 27:23). | What each team had when the first group went (24:31): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -268; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 50 by BcS and 0 by hook; the next base res at 26:00. | What each team had when it was set (26:12): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -313; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 361 by BcS and 0 by hook; the next base res at 28:00. | hook's Guild Lord is killed at 27:32; BcS wins. Deaths from 24:31: BcS 0, hook 13. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:31, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by hook, 3. | Picked for: your three signs do not agree. | Lord damage. From 24:31, by the engine's sum of the recorded hits: 165 on BcS's Lord, 4,714 on hook's. Whole match, gvg.report's own total: 115 on BcS's Lord, 4,728 on hook's (the engine's summed hits: 165 and 4,764)."
+  },
+  {
+   "id": "e:617aa3df-end",
+   "kind": "end",
+   "play": null,
+   "rid": "617aa3df-f264-553b-afe2-b9f5cb7068c2",
+   "teams": [
+    "Apes",
+    "BcS"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-06",
+   "length_s": 1627,
+   "t0": 1499,
+   "t1": 1613,
+   "reads": "A push before the play for 28:00, as the draft reads it: BcS has 6 in Apes's base, sent at 24:59, and keeps 2; Apes sends 4 in return at 25:56 and keeps 4.",
+   "lines": [
+    "Apes sent to the enemy's base: Ritualist (from 25:54), Hammer (from 25:56), Necromancer (from 25:56), Warrior (from 26:37).",
+    "Apes kept at home: Prot (from 24:04, died 26:38), 8 Monk (from 24:04, died 26:22), Mesmer (from 24:06, died 25:10), 7 Monk (from 25:59, died 26:24).",
+    "BcS sent to the enemy's base: Monk 5 (WoC) (from 24:47), Ritualist (from 24:52), Warrior (from 24:55), Mesmer (from 25:03), 7 Monk (from 25:05), Monk 4 (WoC) (from 25:10).",
+    "BcS kept at home: 8 Monk (from 25:24), Prot (from 25:49).",
+    "What each team had when the first group went (24:59): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 7 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 159 by BcS; the next base res at 26:00.",
+    "What each team had when it was set (25:56): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 6 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 452 by BcS; the next base res at 26:00.",
+    "Apes's Guild Lord is killed at 26:53; BcS wins. Deaths from 24:59: Apes 5, BcS 0.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:59, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Apes, 4.",
+    "Picked for: just before 25:00."
+   ],
+   "damage": {
+    "push": [
+     2162,
+     2177
+    ],
+    "match_gvg": [
+     2321,
+     6037
+    ],
+    "match_hits": [
+     2321,
+     5960
+    ],
+    "lords": [
+     "Apes",
+     "BcS"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 24:59, by the engine's sum of the recorded hits: 2,162 on Apes's Lord, 2,177 on BcS's. Whole match, gvg.report's own total: 2,321 on Apes's Lord, 6,037 on BcS's (the engine's summed hits: 2,321 and 5,960).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1613,
+    "lord_killed": "Apes",
+    "set": 1556.0,
+    "shape": "both send",
+    "kind": "push before it",
+    "sends": {
+     "Apes": {
+      "sent": 4,
+      "kept": 4,
+      "send": 1556.0,
+      "first": 1554
+     },
+     "BcS": {
+      "sent": 6,
+      "kept": 2,
+      "send": 1499.0,
+      "first": 1487
+     }
+    },
+    "killer_send": 1499.0,
+    "in_return": 4,
+    "already": false
+   },
+   "picked_for": "just before 25:00",
+   "text": "A push before the play for 28:00, as the draft reads it: BcS has 6 in Apes's base, sent at 24:59, and keeps 2; Apes sends 4 in return at 25:56 and keeps 4. | Apes sent to the enemy's base: Ritualist (from 25:54), Hammer (from 25:56), Necromancer (from 25:56), Warrior (from 26:37). | Apes kept at home: Prot (from 24:04, died 26:38), 8 Monk (from 24:04, died 26:22), Mesmer (from 24:06, died 25:10), 7 Monk (from 25:59, died 26:24). | BcS sent to the enemy's base: Monk 5 (WoC) (from 24:47), Ritualist (from 24:52), Warrior (from 24:55), Mesmer (from 25:03), 7 Monk (from 25:05), Monk 4 (WoC) (from 25:10). | BcS kept at home: 8 Monk (from 25:24), Prot (from 25:49). | What each team had when the first group went (24:59): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 7 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 159 by BcS; the next base res at 26:00. | What each team had when it was set (25:56): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 6 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 452 by BcS; the next base res at 26:00. | Apes's Guild Lord is killed at 26:53; BcS wins. Deaths from 24:59: Apes 5, BcS 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:59, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Apes, 4. | Picked for: just before 25:00. | Lord damage. From 24:59, by the engine's sum of the recorded hits: 2,162 on Apes's Lord, 2,177 on BcS's. Whole match, gvg.report's own total: 2,321 on Apes's Lord, 6,037 on BcS's (the engine's summed hits: 2,321 and 5,960)."
+  },
+  {
+   "id": "e:9eb315c2-end",
+   "kind": "end",
+   "play": null,
+   "rid": "9eb315c2-bb0f-54aa-ae59-20db911cdbed",
+   "teams": [
+    "ohno",
+    "Book"
+   ],
+   "map": "Corrupted Isle",
+   "date": "2026-09-13",
+   "length_s": 1561,
+   "t0": 1504,
+   "t1": 1547,
+   "reads": "A play for 28:00, as the draft reads it: ohno sends 5 and keeps 3; Book sends nobody and keeps 4; set at 25:04.",
+   "lines": [
+    "ohno sent to the enemy's base: Hammer A (from 24:56), Monk 4 (WoC) (from 25:04), Mesmer (from 25:04), Hammer B (from 25:05), 7 Monk (from 25:11).",
+    "ohno kept at home: 8 Monk (from 21:45), Air Ele (from 21:48), Prot (from 24:42).",
+    "Book kept at home: Mesmer (from 24:03), Prot (from 24:07, died 25:11), 7 Monk (from 24:10, died 25:22), Dervish (from 25:26).",
+    "Book in the field or at the enemy's footmen: 8 Monk (from 25:30), Ritualist (from 25:34, died 25:39), Air Ele (from 25:38), Fire Ele (from 25:41).",
+    "What each team had when the first group went (25:04): pit NPCs alive, ohno 2 and Book 5; morale summed over the eight, ohno +75 and Book -104; players alive, ohno 8 and Book 8; Lord damage so far by the engine's sum of the recorded hits, 0 by ohno and 0 by Book; the next base res at 26:00.",
+    "Book's Guild Lord is killed at 25:47; ohno wins. Deaths from 25:04: ohno 0, Book 3.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 25:04, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Book, nobody.",
+    "Picked for: just after 25:00."
+   ],
+   "damage": {
+    "push": [
+     23,
+     1818
+    ],
+    "match_gvg": [
+     23,
+     1818
+    ],
+    "match_hits": [
+     23,
+     1818
+    ],
+    "lords": [
+     "ohno",
+     "Book"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 25:04, by the engine's sum of the recorded hits: 23 on ohno's Lord, 1,818 on Book's. Whole match, gvg.report's own total: 23 on ohno's Lord, 1,818 on Book's (the engine's summed hits: 23 and 1,818).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1547,
+    "lord_killed": "Book",
+    "set": 1504,
+    "shape": "one sends",
+    "kind": "play for 28:00",
+    "sends": {
+     "ohno": {
+      "sent": 5,
+      "kept": 3,
+      "send": 1504,
+      "first": 1496
+     },
+     "Book": {
+      "sent": 0,
+      "kept": 4,
+      "send": null,
+      "first": null
+     }
+    },
+    "killer_send": 1504,
+    "in_return": 0,
+    "already": false
+   },
+   "picked_for": "just after 25:00",
+   "text": "A play for 28:00, as the draft reads it: ohno sends 5 and keeps 3; Book sends nobody and keeps 4; set at 25:04. | ohno sent to the enemy's base: Hammer A (from 24:56), Monk 4 (WoC) (from 25:04), Mesmer (from 25:04), Hammer B (from 25:05), 7 Monk (from 25:11). | ohno kept at home: 8 Monk (from 21:45), Air Ele (from 21:48), Prot (from 24:42). | Book kept at home: Mesmer (from 24:03), Prot (from 24:07, died 25:11), 7 Monk (from 24:10, died 25:22), Dervish (from 25:26). | Book in the field or at the enemy's footmen: 8 Monk (from 25:30), Ritualist (from 25:34, died 25:39), Air Ele (from 25:38), Fire Ele (from 25:41). | What each team had when the first group went (25:04): pit NPCs alive, ohno 2 and Book 5; morale summed over the eight, ohno +75 and Book -104; players alive, ohno 8 and Book 8; Lord damage so far by the engine's sum of the recorded hits, 0 by ohno and 0 by Book; the next base res at 26:00. | Book's Guild Lord is killed at 25:47; ohno wins. Deaths from 25:04: ohno 0, Book 3. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 25:04, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Book, nobody. | Picked for: just after 25:00. | Lord damage. From 25:04, by the engine's sum of the recorded hits: 23 on ohno's Lord, 1,818 on Book's. Whole match, gvg.report's own total: 23 on ohno's Lord, 1,818 on Book's (the engine's summed hits: 23 and 1,818)."
+  },
+  {
+   "id": "e:efb56ec6-end",
+   "kind": "end",
+   "play": null,
+   "rid": "efb56ec6-4ef7-57bd-a53b-cc0ba78e84a6",
+   "teams": [
+    "hold",
+    "Dz"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-10",
+   "length_s": 1694,
+   "t0": 1575,
+   "t1": 1674,
+   "reads": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 5; Dz sends 4 and keeps 4; set at 26:15.",
+   "lines": [
+    "hold kept at home: Prot (from 21:15), Stand Mes (from 21:28), 7 Monk (from 25:26), 8 Monk (from 25:29), AoB Derv (from 25:59).",
+    "hold in the field or at the enemy's footmen: Ritualist (from 26:16, died 27:26), Hammer (from 27:19, died 27:38), Mes/A (from 27:36, died 27:46).",
+    "Dz sent to the enemy's base: AoB Derv (from 24:36), Hammer (from 26:15), Stand Mes (from 26:16, died 27:52), 7 Monk (from 26:17, died 27:38).",
+    "Dz kept at home: 8 Monk (from 25:30), Dervish (from 26:08), Mes/A (from 26:20), Prot (from 26:46).",
+    "What each team had when the first group went (26:15): pit NPCs alive, hold 0 and Dz 5; morale summed over the eight, hold -108 and Dz +80; players alive, hold 8 and Dz 8; Lord damage so far by the engine's sum of the recorded hits, 0 by hold and 1,634 by Dz; the next base res at 28:00.",
+    "The match runs to its end and is decided by Lord damage; Dz wins. Deaths from 26:15: hold 3, Dz 2.",
+    "Picked for: a shape not yet seen: one team sends nobody."
+   ],
+   "damage": {
+    "push": [
+     3250,
+     0
+    ],
+    "match_gvg": [
+     4364,
+     0
+    ],
+    "match_hits": [
+     4884,
+     0
+    ],
+    "lords": [
+     "hold",
+     "Dz"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 26:15, by the engine's sum of the recorded hits: 3,250 on hold's Lord, 0 on Dz's. Whole match, gvg.report's own total: 4,364 on hold's Lord, 0 on Dz's (the engine's summed hits: 4,884 and 0).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1674,
+    "lord_killed": null,
+    "set": 1575.5,
+    "shape": "one sends",
+    "kind": "play for 28:00",
+    "sends": {
+     "hold": {
+      "sent": 0,
+      "kept": 5,
+      "send": null,
+      "first": null
+     },
+     "Dz": {
+      "sent": 4,
+      "kept": 4,
+      "send": 1575.5,
+      "first": 1476
+     }
+    },
+    "killer_send": null,
+    "in_return": null,
+    "already": false
+   },
+   "picked_for": "a shape not yet seen: one team sends nobody",
+   "text": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 5; Dz sends 4 and keeps 4; set at 26:15. | hold kept at home: Prot (from 21:15), Stand Mes (from 21:28), 7 Monk (from 25:26), 8 Monk (from 25:29), AoB Derv (from 25:59). | hold in the field or at the enemy's footmen: Ritualist (from 26:16, died 27:26), Hammer (from 27:19, died 27:38), Mes/A (from 27:36, died 27:46). | Dz sent to the enemy's base: AoB Derv (from 24:36), Hammer (from 26:15), Stand Mes (from 26:16, died 27:52), 7 Monk (from 26:17, died 27:38). | Dz kept at home: 8 Monk (from 25:30), Dervish (from 26:08), Mes/A (from 26:20), Prot (from 26:46). | What each team had when the first group went (26:15): pit NPCs alive, hold 0 and Dz 5; morale summed over the eight, hold -108 and Dz +80; players alive, hold 8 and Dz 8; Lord damage so far by the engine's sum of the recorded hits, 0 by hold and 1,634 by Dz; the next base res at 28:00. | The match runs to its end and is decided by Lord damage; Dz wins. Deaths from 26:15: hold 3, Dz 2. | Picked for: a shape not yet seen: one team sends nobody. | Lord damage. From 26:15, by the engine's sum of the recorded hits: 3,250 on hold's Lord, 0 on Dz's. Whole match, gvg.report's own total: 4,364 on hold's Lord, 0 on Dz's (the engine's summed hits: 4,884 and 0)."
+  },
+  {
+   "id": "e:5f9df5bb-end",
+   "kind": "end",
+   "play": null,
+   "rid": "5f9df5bb-014e-5494-a552-e66a2dc9794d",
+   "teams": [
+    "hold",
+    "OG"
+   ],
+   "map": "Corrupted Isle",
+   "date": "2026-09-27",
+   "length_s": 1693,
+   "t0": 1595,
+   "t1": 1674,
+   "reads": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 8; OG sends 8 and keeps nobody; set at 26:35.",
+   "lines": [
+    "hold kept at home: 8 Monk (before 20:00), Prot (from 21:03), Warrior (from 25:14), 7 Monk (from 25:18), Monk 4 (WoC) (from 25:20), Mesmer (from 25:20), Paragon 1 (from 25:59), Paragon 2 (from 25:59).",
+    "OG sent to the enemy's base: Ritualist (from 25:44), Hammer (from 25:52), Ranger (from 25:54), Mesmer (from 26:16), 7 Monk (from 26:55), 8 Monk (from 26:59), AoB Derv (from 27:05), Prot (from 27:19).",
+    "What each team had when the first group went (26:35): pit NPCs alive, hold 0 and OG 2; morale summed over the eight, hold +20 and OG -37; players alive, hold 8 and OG 8; Lord damage so far by the engine's sum of the recorded hits, 1,253 by hold and 9,632 by OG; the next base res at 28:00.",
+    "The match runs to its end and is decided by Lord damage; OG wins. Deaths from 26:35: hold 0, OG 0.",
+    "Picked for: a shape not yet seen: eight against none."
+   ],
+   "damage": {
+    "push": [
+     3092,
+     0
+    ],
+    "match_gvg": [
+     12724,
+     1253
+    ],
+    "match_hits": [
+     12724,
+     1253
+    ],
+    "lords": [
+     "hold",
+     "OG"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 26:35, by the engine's sum of the recorded hits: 3,092 on hold's Lord, 0 on OG's. Whole match, gvg.report's own total: 12,724 on hold's Lord, 1,253 on OG's (the engine's summed hits: 12,724 and 1,253).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1674,
+    "lord_killed": null,
+    "set": 1595.5,
+    "shape": "one sends",
+    "kind": "play for 28:00",
+    "sends": {
+     "hold": {
+      "sent": 0,
+      "kept": 8,
+      "send": null,
+      "first": null
+     },
+     "OG": {
+      "sent": 8,
+      "kept": 0,
+      "send": 1595.5,
+      "first": 1544
+     }
+    },
+    "killer_send": null,
+    "in_return": null,
+    "already": false
+   },
+   "picked_for": "a shape not yet seen: eight against none",
+   "text": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 8; OG sends 8 and keeps nobody; set at 26:35. | hold kept at home: 8 Monk (before 20:00), Prot (from 21:03), Warrior (from 25:14), 7 Monk (from 25:18), Monk 4 (WoC) (from 25:20), Mesmer (from 25:20), Paragon 1 (from 25:59), Paragon 2 (from 25:59). | OG sent to the enemy's base: Ritualist (from 25:44), Hammer (from 25:52), Ranger (from 25:54), Mesmer (from 26:16), 7 Monk (from 26:55), 8 Monk (from 26:59), AoB Derv (from 27:05), Prot (from 27:19). | What each team had when the first group went (26:35): pit NPCs alive, hold 0 and OG 2; morale summed over the eight, hold +20 and OG -37; players alive, hold 8 and OG 8; Lord damage so far by the engine's sum of the recorded hits, 1,253 by hold and 9,632 by OG; the next base res at 28:00. | The match runs to its end and is decided by Lord damage; OG wins. Deaths from 26:35: hold 0, OG 0. | Picked for: a shape not yet seen: eight against none. | Lord damage. From 26:35, by the engine's sum of the recorded hits: 3,092 on hold's Lord, 0 on OG's. Whole match, gvg.report's own total: 12,724 on hold's Lord, 1,253 on OG's (the engine's summed hits: 12,724 and 1,253)."
+  },
+  {
+   "id": "e:84586253-end",
+   "kind": "end",
+   "play": null,
+   "rid": "84586253-61c8-5848-ad75-1bfda24302ba",
+   "teams": [
+    "OG",
+    "cope"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-17",
+   "length_s": 1660,
+   "t0": 1570,
+   "t1": 1646,
+   "reads": "A play for 28:00, as the draft reads it: OG sends 4 and keeps 4; cope sends 5 and keeps 3; set at 26:34.",
+   "lines": [
+    "OG sent to the enemy's base: AoB Derv (from 26:30), Hammer (from 26:34, died 27:23), 8 Monk (from 26:35, died 27:12), Mesmer (from 26:36).",
+    "OG kept at home: 7 Monk (from 25:12, died 26:29), Ritualist (from 25:59, died 26:30), Ranger (from 26:08), Prot (from 26:31, died 27:24).",
+    "cope sent to the enemy's base: AoB Derv (from 26:02), Stand Mes (from 26:04), 7 Monk (from 26:10), Hammer (from 26:18), Prot (from 26:34).",
+    "cope kept at home: Ritualist (from 25:54), 8 Monk (from 25:59), Mes/A (from 26:05).",
+    "What each team had when the first group went (26:10): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -75 and cope +57; players alive, OG 8 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00.",
+    "What each team had when it was set (26:34): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -105 and cope +60; players alive, OG 6 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00.",
+    "OG's Guild Lord is killed at 27:26; cope wins. Deaths from 26:10: OG 5, cope 0.",
+    "Your three signs of a push before it (R-646): the team that kills the Lord sent at 26:10, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by OG, 4.",
+    "Picked for: a shape not yet seen: a play for 28:00 that ends in a Lord kill."
+   ],
+   "damage": {
+    "push": [
+     2152,
+     121
+    ],
+    "match_gvg": [
+     1907,
+     96
+    ],
+    "match_hits": [
+     2152,
+     121
+    ],
+    "lords": [
+     "OG",
+     "cope"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. From 26:10, by the engine's sum of the recorded hits: 2,152 on OG's Lord, 121 on cope's. Whole match, gvg.report's own total: 1,907 on OG's Lord, 96 on cope's (the engine's summed hits: 2,152 and 121).",
+   "gvg_lines": [],
+   "calls": [],
+   "draft": {
+    "end": 1646,
+    "lord_killed": "OG",
+    "set": 1594.5,
+    "shape": "both send",
+    "kind": "play for 28:00",
+    "sends": {
+     "OG": {
+      "sent": 4,
+      "kept": 4,
+      "send": 1594.5,
+      "first": 1590
+     },
+     "cope": {
+      "sent": 5,
+      "kept": 3,
+      "send": 1570,
+      "first": 1562
+     }
+    },
+    "killer_send": 1570,
+    "in_return": 4,
+    "already": false
+   },
+   "picked_for": "a shape not yet seen: a play for 28:00 that ends in a Lord kill",
+   "text": "A play for 28:00, as the draft reads it: OG sends 4 and keeps 4; cope sends 5 and keeps 3; set at 26:34. | OG sent to the enemy's base: AoB Derv (from 26:30), Hammer (from 26:34, died 27:23), 8 Monk (from 26:35, died 27:12), Mesmer (from 26:36). | OG kept at home: 7 Monk (from 25:12, died 26:29), Ritualist (from 25:59, died 26:30), Ranger (from 26:08), Prot (from 26:31, died 27:24). | cope sent to the enemy's base: AoB Derv (from 26:02), Stand Mes (from 26:04), 7 Monk (from 26:10), Hammer (from 26:18), Prot (from 26:34). | cope kept at home: Ritualist (from 25:54), 8 Monk (from 25:59), Mes/A (from 26:05). | What each team had when the first group went (26:10): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -75 and cope +57; players alive, OG 8 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00. | What each team had when it was set (26:34): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -105 and cope +60; players alive, OG 6 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00. | OG's Guild Lord is killed at 27:26; cope wins. Deaths from 26:10: OG 5, cope 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 26:10, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by OG, 4. | Picked for: a shape not yet seen: a play for 28:00 that ends in a Lord kill. | Lord damage. From 26:10, by the engine's sum of the recorded hits: 2,152 on OG's Lord, 121 on cope's. Whole match, gvg.report's own total: 1,907 on OG's Lord, 96 on cope's (the engine's summed hits: 2,152 and 121)."
   }
  ]
 }
