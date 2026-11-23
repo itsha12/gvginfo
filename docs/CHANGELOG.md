@@ -7,6 +7,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - His word, R-636: keep it all at the rebuild with R-481 and R-632 (about 5 to 6 KB gzipped a match, its own file, summaries only fetched again); crits and cast timing stay out.
 - gvg.report links strips to enchantments only in reports it read from early November (none on 2 November or before, in six games checked); our replays link them (his two hdm v Men strips found). Open for him; then his word, R-637: our replays are the source, built at the rebuild.
 - Later, R-638: degen and regen kept with R-636 (the replays record degen as no damage; in hdm v Men about 14,600 of burning has no caster in our replay, and the engine's bleeding is not netted off regen).
+- Then R-639: interrupt attempts, hit or missed, and likely fake casts kept too (found in a field-by-field check of the summary; nothing else needed).
 
 ## 2026-11-23, later (a new chat): R-632 and R-633; the Lord push page; gvg.report's Lord damage record probed
 - His word. R-632: Lord damage is read from gvg.report everywhere; aggressiveness decides 28:00, raw damage matters only for the kill; stored figures for now, the refetch at the rebuild. R-633: the Lord push rows go on a page, the eight only; the three reading questions are dropped.

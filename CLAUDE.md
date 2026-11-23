@@ -529,7 +529,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   <main>/data/model/lord_gvg.json`, which reads the matches itself; his marks `data/model/lord_row_marks.json`, to be
   filed as set p4 of the key). Never put Lord push rows to him in the chat for marking, and never write the rows
   again over rows he has marked without saying so.
-- What each prot did, and degen (R-636 to R-638). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
+- What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot
   skills (the Lord too); what each player received from each ally by skill; the enchantments on each Lord; and for every
@@ -543,6 +543,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   source skill, and in deaths and spike saves the regen and degen on the target, Deep Wound and the pressure split; the
   engine's degen (`pressure.py`) then reads gvg.report's figures, since the replays record degen as no damage and most
   burning in them has no caster.
+  Interrupt attempts too (R-639): every targeted interrupt attempt, hit or missed, with its target, and likely fake
+  casts by player; until then only landed interrupts are kept, and forensics and `pressure.py` read the attempts once kept.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
