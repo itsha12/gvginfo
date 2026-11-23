@@ -2,6 +2,11 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, later (a new chat, docs only): R-636; gvg.report's prot, knockdown and death-recap data probed
+- No build (his word: things are being built). Probed from the site in the chat, hdm v Men (0f1fd794) and BcS v Apes (04befe7e). The summary holds per skill blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target (the Lord too); what each player received from whom; who stripped each enchantment; and in every death and spike save the healing, prevention, prots up, knockdowns and interrupts on the target. The trim and `extract.mjs` keep none of it.
+- His word, R-636: keep it all at the rebuild with R-481 and R-632 (about 5 to 6 KB gzipped a match, its own file, summaries only fetched again); crits and cast timing stay out.
+- gvg.report links strips to enchantments only in reports it read from early November (none on 2 November or before, in six games checked); our replays link them (his two hdm v Men strips found). Open for him.
+
 ## 2026-11-23, later (a new chat): R-632 and R-633; the Lord push page; gvg.report's Lord damage record probed
 - His word. R-632: Lord damage is read from gvg.report everywhere; aggressiveness decides 28:00, raw damage matters only for the kill; stored figures for now, the refetch at the rebuild. R-633: the Lord push rows go on a page, the eight only; the three reading questions are dropped.
 - One probe run (Book v hook, 19f38ea6). gvg.report's Lord damage record holds its aggressiveness score for each team, every hit on a Lord by the second with Entourage and the Amulet's limit, the pit NPCs' deaths and each Lord's health once a second; the trim keeps only the two totals. It leaves life steal out, which is the whole of the difference from the engine's summed hits there (90 and 185).
