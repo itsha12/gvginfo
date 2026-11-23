@@ -565,6 +565,48 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   burning in them has no caster.
   Interrupt attempts too (R-639): every targeted interrupt attempt, hit or missed, with its target, and likely fake
   casts by player; until then only landed interrupts are kept, and forensics and `pressure.py` read the attempts once kept.
+- The measurements of R-572, on the branch (built 2026-11-23; each is a record or a report and moves no play: after any
+  change to them compare the plays with the run before, the key `npc` left out wherever it stands).
+  Execution, both teams by the same measures (2.12, R-299): `execution.py`. For the first `EXEC_S` (20 s, Claude's
+  draft) of every play, the players the play names (`who`), else the team's main team, and the enemy players in the same
+  fight as one of them (`Moments.linked`): `MEASURES`, each with the direction a player expects and its words (damage a
+  living player, damage against the roles' usual, the share on their backline monks, the share on the one player hit
+  most, spikes, interrupts, knockdowns, disables, cast prevention, degen, kiting, baits, useful and wasted strips, time
+  their attackers spent Blind, hexes kept up and removed, damage on their NPCs, healing of our own). Kept beside the
+  plays as `flag_cost[rid].execution`, one entry a play id with `own` and `their`; `python3 execution.py <report id>
+  [m:ss]` prints a match. It reads `pressure.py` and the event layer, so the first run over every match builds those
+  (about 3 s a match). `cases.py execution <plays file>` (report `data/model/execution_cases.json`): A, the record and
+  what each kind of play is placed against (`bench`, `exec_place`: low, usual or high among plays of the same kind);
+  B, each measure against what followed (the upper third of plays against the lower), with the same comparison on the
+  60 s before and how far apart the two groups already stood; D, a team held in its base (R-621: the first 20 s of a
+  hold against what the team then loses, only between holds alike in players down, the base res clock and pit NPCs
+  already lost). The enemy's execution is scored and never offered as a fix (R-299); a measure that tells the minute
+  before marks the situation, one against the expected direction is likely a reaction (SPEC 5, rules 4 and 4c); a
+  clear line is a place to look, never a finding or advice. Not carried yet: casts into a ready interrupt, attacks
+  while Blind and damage off shield sets (the event layer keeps them for the old fights only); a boost play (no 60 s
+  record) and the later stretches of a split (no position) are not in the report.
+  NPC damage by kind of bar (R-433): `npcpower.py`. `bar_class` is the rough class (a warrior by weapon, an
+  elementalist by attunement, a monk by whether he heals, else the profession); `python3 npcpower.py bench` writes
+  `data/benchmarks/npc_damage.json` over every match that counts (run it again at a checkpoint when matches are added;
+  about 15 s): the damage a second one player of a class adds to a group that is on a kind of NPC (he is in the group
+  for the whole stretch whether he hits or not: a monk on a split adds almost nothing), and the damage it takes to kill
+  one. `Moments._props` carries it as `npc` on every group; no play and no like-spot matching reads it yet.
+  The pair rule (2.13): `model.steady_pairs`, run by `cache.py warm` before the cap tests: the `SCREEN_TOP` strongest
+  pairs are screened on each half of the matches (halved by `cache.fold_of`), on what team strength and each
+  variable's own curve leave, and only a pair in both lists enters the win model, the same pairs in every fit of the
+  run (`steady_pairs` in `cap_choices.json`; his `interaction` and `no_interaction` corrections still act). Until the
+  choice exists a fit picks its own eight and says so. It was tried on made-up data only: read its first real choice
+  and the held-out score at the rebuild.
+  The decision to split at all (R-558), stage 1: `jobs.split_ticks` (kept beside the plays as
+  `flag_cost[rid].split_ticks`: every 30 s from 1:00, a team with six or more alive and no split of its own out, his
+  definition of the old kind, SPEC 6; the position, the fixed record, and the split it sends in the next 30 s, read
+  from the split records of the plays) and `cases.py split-at-all <plays file>` (report
+  `data/model/split_at_all_cases.json`): what is sent, when teams send one, as it fell by the chance of winning stood
+  at, and a split against none from the same standing with the 60 s before. Stages 2 to 4 wait for matches (R-570).
+  What is at stake (R-509): `tools/golden/stake.py <plays file> --key <main key>` tests length, damage traded, players
+  met and what followed against his grades, each game from the others. On thirteen games nothing tells his Weak and No
+  decision rows apart (only 10 of them are still read by the engine): nothing is added to the confidence band, and
+  none is to be guessed. Run it again when more games are graded.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

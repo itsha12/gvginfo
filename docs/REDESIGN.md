@@ -194,6 +194,11 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
       advice (mostly "no runner yet") holds on unseen matches at 180 s and in how matches end: a lead to follow.
    d. The other kinds as he says each is ready: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
       damage by class of bar (R-433).
+      Built 2026-11-23 (R-572), each a record or a report that moves no play: execution for both teams by the same
+      measures (`execution.py`, `cases.py execution`, with a team held in its base, R-621); NPC damage by kind of
+      bar (`npcpower.py`); the pair rule (`model.steady_pairs`: a pair passes on two halves of the matches); stage 1
+      of the decision to split at all (`jobs.split_ticks`, `cases.py split-at-all`); what is at stake tested against
+      his grades and not kept (`tools/golden/stake.py`).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
    test, the list below, the merge, then one rebuild.
 8. Training chunks and Discovery resume; then step 3 (the decision card, the blind test, the sealed judgement lines as
