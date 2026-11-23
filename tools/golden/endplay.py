@@ -20,6 +20,10 @@ holds one only when the team that killed him sent its players at CUT or later. T
 
     python3 tools/golden/endplay.py <report id> ...        one match or more, as sentences
     python3 tools/golden/endplay.py all <out.json>         every counted match that ends at FROM or later, and the summary
+    python3 tools/golden/endplay.py rows <main>/data/model/lord_rows.json <report id>=<why picked> ...
+                                                           rows of the draft for him to mark on Model > Game review > Lord push
+                                                           (R-633), one row a match for both teams; rows are added, and a row
+                                                           already in the file is never written again (his marks keep their text)
 """
 import collections, json, math, multiprocessing, os, statistics, sys
 
@@ -110,6 +114,55 @@ def say(rid, o):
             if xs: print(f"    {tg} {word} {len(xs)}: " + ", ".join(f"{r['role']} ({'before ' if r.get('before') else ''}{cl(r['since']) if r['since'] is not None else ''}{', died ' + cl(r['died']) if r['died'] else ''})" for r in xs))
 
 
+def row(rid, why):
+    """One row of the page for a match: the draft's reading of its end as sentences, with what each team had when the arrangement was set."""
+    M = load(rid); o = end_play(M); st, m = M.st, M.m
+    if o.get("short") or o["set"] is None: sys.exit(f"endplay rows: {rid[:8]} has no arrangement to tell")
+    n = lambda v: f"{round(v):,}"
+    tms = list(st.teams); A, B = (m.tag[t] for t in tms); S = o["sends"]
+    t0 = int(min(v["send"] for v in S.values() if v["send"] is not None)); t1, tset = int(o["end"]), int(o["set"])
+    won = m.tag.get((m.o["meta"].get("result") or {}).get("winning_team_id"))
+    def grp(tg, place):
+        xs = sorted((r for r in o["players"][tg] if r["place"] == place), key=lambda r: r["since"] or 0)
+        return ", ".join(f"{r['role']} ({'before ' if r.get('before') else 'from '}{cl(r['since'])}{', died ' + cl(r['died']) if r['died'] else ''})" for r in xs)
+    side = lambda tg: f"{tg} sends {S[tg]['sent'] or 'nobody'} and keeps {S[tg]['kept'] or 'nobody'}"
+    if o["kind"] == "play for 28:00":
+        reads = f"A play for 28:00, as the draft reads it: {side(A)}; {side(B)}; set at {cl(tset)}."
+    else:
+        K = next(t for t in o["teams"] if t != o["lord_killed"]); L = o["lord_killed"]
+        reads = (f"A push before the play for 28:00, as the draft reads it: {K} has {S[K]['sent']} in {L}'s base, sent at {cl(o['killer_send'])}, and keeps {S[K]['kept'] or 'nobody'}; "
+                 f"{L} sends {S[L]['sent'] or 'nobody'} in return" + (f" at {cl(S[L]['send'])}" if S[L]["send"] is not None else "") + f" and keeps {S[L]['kept'] or 'nobody'}.")
+    lines = []
+    for tg in (A, B):
+        for place, word in (("sent", "sent to the enemy's base"), ("kept", "kept at home"), ("field", "in the field or at the enemy's footmen")):
+            g = grp(tg, place)
+            if g: lines.append(f"{tg} {word}: {g}.")
+    pit = lambda tm, t: sum(1 for z, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > t)
+    mor = lambda tm, t: sum(st.morale(a, t) for a in st.players[tm])
+    alive = lambda tm, t: sum(1 for a in st.players[tm] if M.AL[a][t])
+    hits = lambda tm, a, b: sum(v for u, _, v in M.lord_hits.get(tm, ()) if a <= u <= b)          # the engine's sum of the recorded hits on tm's Lord
+    for t, word in ((t0, "the first group went"), (tset, "it was set")):
+        if word == "it was set" and tset - t0 < 20: continue
+        lines.append(f"What each team had when {word} ({cl(t)}): pit NPCs alive, {A} {pit(tms[0], t)} and {B} {pit(tms[1], t)}; morale summed over the eight, {A} {mor(tms[0], t):+d} and {B} {mor(tms[1], t):+d}; "
+                     f"players alive, {A} {alive(tms[0], t)} and {B} {alive(tms[1], t)}; Lord damage so far by the engine's sum of the recorded hits, {n(hits(tms[1], 0, t))} by {A} and {n(hits(tms[0], 0, t))} by {B}; the next base res at {cl(st.next_res(t))}.")
+    dead = lambda tm: sum(1 for a in st.players[tm] for td in st.death_times.get(a, []) if t0 <= td <= t1)
+    lines.append((f"{o['lord_killed']}'s Guild Lord is killed at {cl(t1)}" if o["lord_killed"] else "The match runs to its end and is decided by Lord damage") + f"; {won} wins. Deaths from {cl(t0)}: {A} {dead(tms[0])}, {B} {dead(tms[1])}.")
+    if o["lord_killed"]:
+        lines.append(f"Your three signs of a push before it (R-646): the team that kills the Lord sent at {cl(o['killer_send'])}, {'before' if o['killer_send'] < CUT else 'after'} {cl(CUT)}; "
+                     f"a team already in the enemy's base two minutes or more before it was set, {'yes' if o['already'] else 'no'}; sent in return by {o['lord_killed']}, {o['in_return'] or 'nobody'}.")
+    lines.append(f"Picked for: {why}.")
+    gvg = {l["team"]: l.get("taken") for l in m.o.get("lords", [])}
+    unseen = set(m.o.get("integrity", {}).get("lord_damage_unobserved", []))
+    dmg = {"push": [round(hits(tms[0], t0, t1 + 6)), round(hits(tms[1], t0, t1 + 6))], "match_gvg": [gvg.get(tms[0]), gvg.get(tms[1])], "match_hits": [round(hits(tms[0], 0, M.T)), round(hits(tms[1], 0, M.T))],
+           "lords": [A, B], "unobserved": [3 - tms[0] in unseen, 3 - tms[1] in unseen]}
+    if None in dmg["match_gvg"]: sys.exit(f"endplay rows: {rid[:8]} has no gvg.report Lord total (R-460)")
+    said = (f"Lord damage. From {cl(t0)}, by the engine's sum of the recorded hits: {n(dmg['push'][0])} on {A}'s Lord, {n(dmg['push'][1])} on {B}'s. Whole match, gvg.report's own total: {n(dmg['match_gvg'][0])} on {A}'s Lord, "
+            f"{n(dmg['match_gvg'][1])} on {B}'s (the engine's summed hits: {n(dmg['match_hits'][0])} and {n(dmg['match_hits'][1])}).")
+    return {"id": f"e:{rid[:8]}-end", "kind": "end", "play": None, "rid": rid, "teams": [A, B], "map": o["map"], "date": o["date"], "length_s": int(M.T), "t0": t0, "t1": t1, "reads": reads, "lines": lines,
+            "damage": dmg, "damage_said": said, "gvg_lines": [], "calls": [], "draft": {k: o[k] for k in ("end", "lord_killed", "set", "shape", "kind", "sends", "killer_send", "in_return", "already")}, "picked_for": why,
+            "text": " | ".join([reads] + lines + [said])}
+
+
 def _one(rid):
     M = load(rid)
     return rid, (end_play(M) if M.hall is not None else None)
@@ -140,6 +193,18 @@ if __name__ == "__main__":
         json.dump({"about": "The play for 28:00, a draft reading (tools/golden/endplay.py; R-640 to R-642): for every counted match ending at 24:30 or later, each player's last place alive at the end of play (sent, kept, field) and since when, each team's send and the second the play is set. A draft: nothing in the engine reads it.",
                    "matches": {k: v for k, v in R.items() if v and not v.get("short") and v["end"] >= FROM}}, open(a[1], "w"), ensure_ascii=False, separators=(",", ":"))
         summary(R)
+    elif a and a[0] == "rows":
+        D = json.load(open(a[1], encoding="utf-8")); have = {r["id"] for r in D["rows"]}; new = []
+        for arg in a[2:]:
+            pre, _, why = arg.partition("=")
+            r = row(next((x for x in common.replay_ids() if x.startswith(pre)), pre), why or "the draft reading")
+            if r["id"] in have: print(f"already on the page, left as it is: {r['id']}"); continue
+            new.append(r); print(f"\n{' v '.join(r['teams'])}, {r['date']}, {cl(r['t0'])} to {cl(r['t1'])}\n  " + "\n  ".join([r["reads"]] + r["lines"] + [r["damage_said"]]))
+        D["rows"] += new
+        note = " Rows with `kind` \"end\" are the draft reading of the play for 28:00 (tools/golden/endplay.py rows, R-640 to R-646): one row a match for both teams, whom each sends and keeps and since when; their Lord damage is the engine's sum of the recorded hits from the first send, beside gvg.report's match total."
+        if note not in D["about"]: D["about"] += note
+        json.dump(D, open(a[1], "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        print(f"\n{len(new)} rows added; {len(D['rows'])} on the page")
     else:
         for pre in a:
             rid = next((r for r in common.replay_ids() if r.startswith(pre)), pre)
