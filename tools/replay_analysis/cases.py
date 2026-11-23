@@ -2934,7 +2934,9 @@ def hand_cases(D, M, B):
         for x in v["flag_hands"]["put_downs"]:
             c = _told(dict(x, rid=rid), M, B)
             if c is None: skipped["a put-down: no winner recorded, or the flag lead not read"] += 1; continue
-            c.update({k: x[k] for k in ("tm", "life", "first_flag", "by", "by_line", "carried_s", "dead", "place", "at_stand", "own_half", "before_stand", "enemy_near", "nearest", "mates_near", "then", "lay_s", "taker", "taker_line", "handed")})
+            if "returned_soon" not in x: raise ValueError(f"match {rid}: a put-down carries no reading of when it was returned: run moments.py all again on this engine (R-460)")
+            c.update({k: x[k] for k in ("tm", "life", "first_flag", "by", "by_line", "carried_s", "dead", "place", "at_stand", "own_half", "before_stand", "enemy_near", "nearest", "mates_near", "then", "lay_s", "taker", "taker_line", "handed",
+                                        "handoff", "first_enemy_s", "return_by_s", "returned_soon", "returned_soon_sure")})
             c.update(returned=x["then"] == "returned", in_range=x["enemy_near"] > 0, lead=c["state"]["flag_lead"])
             puts.append(c)
     return lives, puts, holds, skipped
@@ -2968,22 +2970,45 @@ def handoff(path, out_json=None):
     rd(live, "X1 a flag put down with an enemy player in range is returned more often than one put down out of range", lambda c: c["in_range"], lambda c: True, +1, lambda c: c["returned"], "in range", "out of range")
     rd(live, "X2 ... and more often with two or more in range than with one", lambda c: c["enemy_near"] >= 2, lambda c: c["enemy_near"] == 1, +1, lambda c: c["returned"], "two or more", "one")
     rd([c for c in live if c["in_range"]], "X3 in range, a flag put down by a frontliner is returned more often than one put down by a midline player", lambda c: c["by_line"] == "frontline", lambda c: c["by_line"] == "midline", +1, lambda c: c["returned"], "a frontliner", "a midline player")
-    # ---- B. the price of a return
-    pr("\nB. What a return costs (his assumption, R-620: \"you essentially lose nearly a whole flag's worth of advantage\"). The flags put down by a living player, from the second of the put-down:")
-    pr("   flags = the change in the flag tally of R-408 over 90 s (the stand counts as one flag); win pts = the change in the chance of winning. As it fell: a flag is returned where the enemy stands on it.")
-    pr(_fell_head())
-    for th in ("a team mate took it up", "its carrier took it up again", "returned"): _fell(pr, res["price"], th, [c for c in live if c["then"] == th])
-    for H in ("90", "180"):
-        for c in live: c["_y"] = c["hard"][H]["lead_change"] if c["hard"][H]["lead_change"] is not None else 0.0
-        d_, lo, hi, na, nb = _num_range(live, lambda c: c["returned"], lambda c: c["then"] == "a team mate took it up")
+    # ---- B. the hand-off returned, against the flag that lay and was returned later (R-626)
+    hand = [c for c in live if c["handoff"]]
+    for c in hand: c["fate"] = "returned within 15 s" if c["returned_soon"] else "returned later" if c["returned"] else "a team mate took it up" if c["then"] == "a team mate took it up" else "its carrier took it up again" if c["then"] == "its carrier took it up again" else "left lying"
+    soon = [c for c in live if c["returned_soon"]]
+    pr(f"\nB. A hand-off returned, against a flag that lay and was returned later (R-626: \"contested v uncontested\"). A hand-off = a living player puts the flag down with a team mate within an aggro bubble of it")
+    pr(f"   ({len(hand)} of the {len(live)} put-downs; Claude's draft of the word). Returned within 15 s = returned, with an enemy player standing on the flag within 15 s of the put-down: the second of a return is an")
+    pr(f"   estimate until the rebuild (R-481); of {len(soon)} such returns {sum(1 for c in soon if c['returned_soon_sure'])} are certain on the latest second it can have gone back too. On RJT v RACK the estimate has all four known returns right.")
+    pr("   1. Every returned flag, by how long it lay before an enemy player first stood on it (flags = the change in the tally of R-408 from the put-down; the boost and the player sent back are in the tally):")
+    pr(f"     {'':44} {'returns':>7}  {'started at':>10}  {'flags 60 s':>10}  {'flags 90 s':>10}  {'flags 180 s':>11}  {'win pts 180 s':>13}")
+    lay = lambda c: c["first_enemy_s"] if c["first_enemy_s"] is not None else 1e9
+    fl_ = lambda V, H: float(np.mean([c["hard"][H]["lead_change"] for c in V if c["hard"][H]["lead_change"] is not None] or [0.0]))
+    res["price"]["by_lay"] = {}
+    for lab, f in (("a hand-off, returned within 15 s", lambda c: c["handoff"] and c["returned_soon"]), ("no team mate by it, returned within 15 s", lambda c: not c["handoff"] and c["returned_soon"]),
+                   ("it lay 15 s to 2 minutes first", lambda c: not c["returned_soon"] and lay(c) < 120), ("it lay 2 minutes or longer first", lambda c: not c["returned_soon"] and lay(c) >= 120)):
+        V = [c for c in live if c["returned"] and f(c)]
+        if not V: continue
+        res["price"]["by_lay"][lab] = {"returns": len(V), "started at": 100 * mean(V, lambda c: c["p0"]), "flags 60": fl_(V, "60"), "flags 90": fl_(V, "90"), "flags 180": fl_(V, "180"), "win points 180": mean(V, lambda c: c["v"]["180"])}
+        pr(f"     {lab:44} {len(V):7}  {100 * mean(V, lambda c: c['p0']):9.0f}%  {fl_(V, '60'):+10.2f}  {fl_(V, '90'):+10.2f}  {fl_(V, '180'):+11.2f}  {mean(V, lambda c: c['v']['180']):+13.1f}")
+    pr("   2. What a returned hand-off costs in flags: the hand-offs returned within 15 s against the hand-offs a team mate took up, all of them and then only those with an enemy player in range,")
+    pr("      where the two stand in the same danger (90% range over whole matches):")
+    for lab, V in (("every hand-off", hand), ("hand-offs with an enemy player in range", [c for c in hand if c["in_range"]])):
+        o = res["price"][lab] = {"hand-offs": len(V), "returned within 15 s": sum(1 for c in V if c["fate"] == "returned within 15 s"), "a team mate took it up": sum(1 for c in V if c["fate"] == "a team mate took it up")}
+        for H in HORIZONS:
+            for c in V: c["_y"] = c["hard"][H]["lead_change"] if c["hard"][H]["lead_change"] is not None else 0.0
+            d_, lo, hi, na, nb = _num_range(V, lambda c: c["fate"] == "returned within 15 s", lambda c: c["fate"] == "a team mate took it up")
+            if d_ is None: continue
+            o[f"flags {H}"] = {"difference": float(d_), "range": [float(lo), float(hi)], "n": [na, nb]}
+            pr(f"     {lab}, {H} s on: {d_:+.2f} of a flag ({lo:+.2f} to {hi:+.2f}), {na} returned against {nb} taken up" + ("   (under the floor)" if min(na, nb) < MIN_PLAYS else ""))
+        for c in V: c["_y"] = c["v"]["180"]
+        d_, lo, hi, na, nb = _num_range(V, lambda c: c["fate"] == "returned within 15 s", lambda c: c["fate"] == "a team mate took it up")
         if d_ is not None:
-            res["price"][f"flags {H}"] = {"difference": float(d_), "range": [float(lo), float(hi)], "n": [na, nb]}
-            pr(f"     returned against taken up by a team mate, in flags {H} s on: {d_:+.2f} ({lo:+.2f} to {hi:+.2f}), {na} against {nb}")
-    for c in live: c["_y"] = c["v"]["180"]
-    d_, lo, hi, na, nb = _num_range(live, lambda c: c["returned"], lambda c: c["then"] == "a team mate took it up")
-    if d_ is not None:
-        res["price"]["win points 180"] = {"difference": float(d_), "range": [float(lo), float(hi)], "n": [na, nb]}
-        pr(f"     ... and in the chance of winning three minutes on: {d_:+.1f} points ({lo:+.1f} to {hi:+.1f}). The two groups do not start level (see \"started at\"): a size to look at, not what a return alone costs.")
+            o["win points 180"] = {"difference": float(d_), "range": [float(lo), float(hi)]}
+            pr(f"     ... and in the chance of winning three minutes on: {d_:+.1f} points ({lo:+.1f} to {hi:+.1f}); started at {100 * mean([c for c in V if c['fate'] == 'returned within 15 s'], lambda c: c['p0']):.0f}% against {100 * mean([c for c in V if c['fate'] == 'a team mate took it up'], lambda c: c['p0']):.0f}%")
+    pr("   3. His truth (T13, R-629: \"A hand-off with at least one enemy player in aggro bubble gets returned more often in the next 15s than a hand-off that is at least 1.5-2 aggro bubbles away from enemy\"):")
+    far = lambda k: (lambda c: c["nearest"] is None or c["nearest"] >= k * 1000)
+    rd(hand, "X4 a hand-off with an enemy player within an aggro bubble is returned within 15 s more often than one 1.5 bubbles or more from the enemy", lambda c: c["in_range"], far(1.5), +1, lambda c: c["returned_soon"], "in the bubble", "1.5 bubbles or more")
+    rd(hand, "X5 ... and than one 2 bubbles or more from the enemy", lambda c: c["in_range"], far(2.0), +1, lambda c: c["returned_soon"], "in the bubble", "2 bubbles or more")
+    res["record"]["hand-offs by what became of them"] = dict(collections.Counter(c["fate"] for c in hand))
+    pr("     the hand-offs, by what became of them: " + ", ".join(f"{k} {v}" for k, v in collections.Counter(c["fate"] for c in hand).most_common()))
     # ---- C. his first point
     later = [c for c in lives if not c["first_flag"]]
     Fr = [c for c in later if c["runner_line"] == "frontline"]

@@ -15,7 +15,7 @@ Rules (his, 2026-11-18):
   - The truths are tests only. Nothing here feeds the engine's values, its similar cases or its advice.
   - Only near-certain truths go on the list. Contested wisdom (heal an archer over a knight) is a question for the
     data, never a truth. A truth is his, or Claude's once he has approved it; Claude's proposals not yet approved are
-    reported apart and never fail the run. T12 is his given of 2026-11-19 (R-542). Ids are never used again: T5, T6, T11 and P6 were taken off on 2026-11-18,
+    reported apart and never fail the run. T12 is his given of 2026-11-19 (R-542). T13 is his wording of 2026-11-23 (R-629), read on the hand-off record and not on a play. Ids are never used again: T5, T6, T11 and P6 were taken off on 2026-11-18,
     and P1 to P5 are approved under the ids they were proposed with.
 
 Each truth compares two groups of plays on one measure, says which should be higher, and is given a 90% range by
@@ -142,6 +142,18 @@ def _split_damage(D):
             yield ("two or more damage players" if p["split_damage"] >= 2 else "one damage player"), p["rid"], len(p["beside"].get("npcs_taken", [])), ms(p)
 
 
+def _handoff_range(D):
+    """T13, his words (R-629): a hand-off (a living player puts the flag down with a team mate within an aggro bubble of it, `jobs.flag_hands`) by how near the
+    nearest living enemy player stands: within an aggro bubble, or 1.5 bubbles or more away (the nearer end of his "1.5-2"). Returned in the next 15 s is
+    read as `returned_soon`: the second of a return is an estimate until the rebuild (R-481)."""
+    for rid, v in D["flag_cost"].items():
+        for p in ((v or {}).get("flag_hands") or {}).get("put_downs", ()):
+            if not p["handoff"]: continue
+            n = p["nearest"]
+            g = "an enemy player within an aggro bubble" if n is not None and n <= 1000 else "1.5 aggro bubbles or more from the enemy" if n is None or n >= 1500 else None
+            if g: yield g, rid, int(p["returned_soon"]), 1
+
+
 # id, whose, approved, the truth in his words, the measure, the group expected higher, the other group, rows
 TRUTHS = [
     ("T1", "Denning", True, "An undefended split takes more NPCs than a defended one.", "NPCs taken a minute", "undefended", "defended", _splits_defended),
@@ -153,6 +165,7 @@ TRUTHS = [
     ("T8", "Claude, approved", True, "A team that wipes loses NPCs.", "share that lose an NPC within 3 minutes", "six or more of its players die within 90 s", "two or fewer die", _wipe),
     ("T9", "Claude, approved", True, "A flag whose carrier dies under a push gets in less often than one whose carrier lives.", "share of pushed flags that are capped", "the carrier lives", "the carrier dies", _carrier_died),
     ("T10", "Claude, approved", True, "A split that is collapsed on loses a player more often than one that is mirrored.", "share of split phases that lose a split player", "collapsed on", "mirrored", _collapse_or_mirror),
+    ("T13", "Denning", True, "A hand-off with at least one enemy player in aggro bubble gets returned more often in the next 15s than a hand-off that is at least 1.5-2 aggro bubbles away from enemy.", "share of hand-offs returned within 15 s", "an enemy player within an aggro bubble", "1.5 aggro bubbles or more from the enemy", _handoff_range),
     ("P1", "Claude, approved", True, "A split with more players than defenders kills a defender more often than one with fewer.", "share of split phases that kill a defender", "more split players than defenders", "more defenders than split players", _split_up_down),
     ("P2", "Claude, approved", True, "An undefended split of two or more damage players takes NPCs faster than a solo one.", "NPCs taken a minute", "two or more damage players", "one damage player", _split_damage),
     ("P3", "Claude, approved", True, "Up by two or more at the main fight kills faster than up by one.", "kills a minute while the numbers last", "up by two or more", "up by one", _numbers_margin),

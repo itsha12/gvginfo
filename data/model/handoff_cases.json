@@ -49,6 +49,34 @@
    ],
    "reads": "not clear"
   },
+  "X4 a hand-off with an enemy player within an aggro bubble is returned within 15 s more often than one 1.5 bubbles or more from the enemy": {
+   "first": 0.27895266868076535,
+   "second": 0.014466546112115732,
+   "difference": 0.2644861225686496,
+   "range": [
+    0.24003440170583962,
+    0.2917751931635305
+   ],
+   "n": [
+    993,
+    1659
+   ],
+   "reads": "HOLDS"
+  },
+  "X5 ... and than one 2 bubbles or more from the enemy": {
+   "first": 0.27895266868076535,
+   "second": 0.010526315789473684,
+   "difference": 0.2684263528912917,
+   "range": [
+    0.23999982428808933,
+    0.2953422552261747
+   ],
+   "n": [
+    993,
+    1330
+   ],
+   "reads": "HOLDS"
+  },
   "C1 with the stand ours, a flag run to the stand on the frontliner is returned more often than one handed on before it": {
    "first": 0.055288461538461536,
    "second": 0.06486486486486487,
@@ -191,77 +219,139 @@
   "returned, two or more in range": {
    "put-downs": 672,
    "returned": 40.773809523809526
+  },
+  "hand-offs by what became of them": {
+   "returned within 15 s": 333,
+   "a team mate took it up": 2125,
+   "returned later": 191,
+   "left lying": 196,
+   "its carrier took it up again": 220
   }
  },
  "price": {
-  "a team mate took it up": {
-   "cases": 2659,
-   "matches": 471,
-   "started at": 48.531236146796694,
-   "the 60 s before": -0.3235929120362603,
-   "they lose one": 26.21286197818729,
-   "we lose one": 28.43174125611132,
-   "net NPCs": -0.11320045129748026,
-   "flags": 0.07608383685800604,
-   "win points 90": -0.19572665801513542,
-   "win points 180": -0.5314319487445222
+  "by_lay": {
+   "a hand-off, returned within 15 s": {
+    "returns": 333,
+    "started at": 29.93734746474102,
+    "flags 60": -0.12414414414414415,
+    "flags 90": -0.025512048192771086,
+    "flags 180": 0.026993865030674837,
+    "win points 180": -4.570410957513945
+   },
+   "no team mate by it, returned within 15 s": {
+    "returns": 101,
+    "started at": 31.716928288574593,
+    "flags 60": -0.12257425742574259,
+    "flags 90": -0.09267326732673267,
+    "flags 180": -0.15833333333333335,
+    "win points 180": -3.7001770497630835
+   },
+   "it lay 15 s to 2 minutes first": {
+    "returns": 167,
+    "started at": 40.65378747152214,
+    "flags 60": -0.3789820359281437,
+    "flags 90": -0.4130538922155689,
+    "flags 180": -0.31041916167664674,
+    "win points 180": -4.893097165758307
+   },
+   "it lay 2 minutes or longer first": {
+    "returns": 199,
+    "started at": 47.25144021160418,
+    "flags 60": 0.055427135678391956,
+    "flags 90": 0.09608040201005023,
+    "flags 180": 0.048534031413612566,
+    "win points 180": 0.19420734959151878
+   }
   },
-  "its carrier took it up again": {
-   "cases": 480,
-   "matches": 281,
-   "started at": 51.88040672623534,
-   "the 60 s before": 0.48326286277643604,
-   "they lose one": 32.5,
-   "we lose one": 31.458333333333332,
-   "net NPCs": -0.05,
-   "flags": -0.22306722689075628,
-   "win points 90": -0.6862523960033422,
-   "win points 180": -0.843354214487986
+  "every hand-off": {
+   "hand-offs": 3065,
+   "returned within 15 s": 333,
+   "a team mate took it up": 2125,
+   "flags 60": {
+    "difference": -0.2712641441441441,
+    "range": [
+     -0.33557517308338064,
+     -0.21334158557485827
+    ],
+    "n": [
+     333,
+     2125
+    ]
+   },
+   "flags 90": {
+    "difference": -0.1661507295530825,
+    "range": [
+     -0.23168739046550751,
+     -0.11259658960434982
+    ],
+    "n": [
+     333,
+     2125
+    ]
+   },
+   "flags 180": {
+    "difference": -0.06383710298533825,
+    "range": [
+     -0.15171422861407513,
+     0.029920233042410475
+    ],
+    "n": [
+     333,
+     2125
+    ]
+   },
+   "win points 180": {
+    "difference": -3.9047829320124094,
+    "range": [
+     -5.391149875673216,
+     -2.692390807146115
+    ]
+   }
   },
-  "returned": {
-   "cases": 800,
-   "matches": 354,
-   "started at": 36.70595696594778,
-   "the 60 s before": -1.9027176594030184,
-   "they lose one": 24.5,
-   "we lose one": 43.875,
-   "net NPCs": -0.32,
-   "flags": -0.08471839799749686,
-   "win points 90": -2.8258926161767834,
-   "win points 180": -3.3427058687389253
-  },
-  "flags 90": {
-   "difference": -0.16038158612260248,
-   "range": [
-    -0.21510281300614426,
-    -0.10572228888308724
-   ],
-   "n": [
-    800,
-    2659
-   ]
-  },
-  "flags 180": {
-   "difference": -0.08877925441895448,
-   "range": [
-    -0.1542007029938758,
-    -0.02311693360378343
-   ],
-   "n": [
-    800,
-    2659
-   ]
-  },
-  "win points 180": {
-   "difference": -2.8112739199944032,
-   "range": [
-    -3.7760740793559155,
-    -1.990052805519003
-   ],
-   "n": [
-    800,
-    2659
-   ]
+  "hand-offs with an enemy player in range": {
+   "hand-offs": 993,
+   "returned within 15 s": 277,
+   "a team mate took it up": 537,
+   "flags 60": {
+    "difference": -0.31884032833834175,
+    "range": [
+     -0.3942305464475884,
+     -0.2523345615166117
+    ],
+    "n": [
+     277,
+     537
+    ]
+   },
+   "flags 90": {
+    "difference": -0.1915160438053365,
+    "range": [
+     -0.28007353221648706,
+     -0.10363859845075932
+    ],
+    "n": [
+     277,
+     537
+    ]
+   },
+   "flags 180": {
+    "difference": -0.055051126394127,
+    "range": [
+     -0.1668612856915435,
+     0.05542214733987609
+    ],
+    "n": [
+     277,
+     537
+    ]
+   },
+   "win points 180": {
+    "difference": -4.219679858994193,
+    "range": [
+     -6.051483936106787,
+     -2.436878479855459
+    ]
+   }
   }
  },
  "frontliner": {
@@ -308,8 +398,8 @@
     "they lose one": 25.454545454545453,
     "we lose one": 40.909090909090914,
     "net NPCs": 0.05454545454545454,
-    "flags": -0.7702777777777778,
-    "win points 90": -2.4523618528728575,
+    "flags": -0.7702777777777777,
+    "win points 90": -2.452361852872857,
     "win points 180": -4.120920931459143,
     "capped": 5.454545454545454,
     "returned": 53.63636363636364,
@@ -361,9 +451,9 @@
     "they lose one": 9.859154929577464,
     "we lose one": 66.66666666666666,
     "net NPCs": -0.9859154929577465,
-    "flags": -0.07064039408866994,
+    "flags": -0.07064039408866996,
     "win points 90": -4.909795648900294,
-    "win points 180": -6.944527627572802,
+    "win points 180": -6.9445276275728025,
     "capped": 0.4694835680751174,
     "returned": 63.84976525821596,
     "capped in": 39.0,
@@ -414,9 +504,9 @@
     "matches": 263,
     "capped": 88.70431893687709,
     "returned": 9.634551495016613,
-    "flags 5:00": 0.08420863309352519,
+    "flags 5:00": 0.08420863309352516,
     "net kills 5:00": -0.4418604651162791,
-    "win points 180": -0.5389342482647704
+    "win points 180": -0.5389342482647707
    },
    "handed to a midline player or a monk": {
     "openings": 170,
@@ -425,7 +515,7 @@
     "returned": 8.823529411764707,
     "flags 5:00": -0.00031446540880502894,
     "net kills 5:00": 0.6411764705882353,
-    "win points 180": 0.3245192396399585
+    "win points 180": 0.3245192396399584
    }
   },
   "hand-offs": {

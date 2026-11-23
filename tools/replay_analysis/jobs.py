@@ -35,7 +35,7 @@ import collections, json, os, statistics, sys
 from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
-from common import line as _line
+from common import line as _line, RETURN_R
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
 _BENCH = None
@@ -107,6 +107,8 @@ OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
 RES_WORN = 250                         # heavy damage in the minute before: this much or more a player (R-615, his number: "Let's go with 250", when shown that at 150, R-612, the danger zone was in a third of matches and no deadlier than a base res outside it; 300, the upper third in the data, was Claude's draft)
+RETURN_SOON_S = 15                     # a hand-off is returned when the enemy has the flag back within this long of the put-down (R-629, his words for the known truth: "gets returned more often in the next 15s")
+RETURN_FAR = 1.5                       # ... and far from the enemy is this many aggro bubbles or more from the nearest enemy player (R-629: "at least 1.5-2 aggro bubbles away from enemy"; the nearer end of his range, the report gives 2 beside it)
 RES_MORALE_BEHIND = 30                 # morale significantly lower than the enemy's (R-606, R-613: "If you have significantly lower morale than enemy, staying is probably more dangerous"): the eight's morale summed is this much or more under theirs, two deaths' worth of death penalty (Claude's draft, confirmed by him, R-616: "Yes, the draft of 30 or more under is fine")
 RES_LATE_S = 720                       # the res of 12:00 and every res after it (R-603: "12 minutes is the breakpoint", the Amulet of Protection)
 RES_TAKEN_S = 60                       # ... and all damage on them over this long (his "it took a lot of monk energy (i.e. they took a lot of dmg)": energy is not in the replay, damage taken is)
@@ -1528,10 +1530,15 @@ def flag_hands(M):
       put_downs  one a carry that ended on the ground and not in a cap: who put it down and of which line, whether he was dead, where, the living enemy
                  players within an aggro bubble of it then (R-623: "about an aggro bubble is the correct distance", FIGHT_CLOSE) and the nearest, and what
                  became of the flag: a team mate took it up (and whether that is a hand-off, `Moments.handed_on`, R-580), its carrier took it up again, it
-                 was returned, or it was left lying to the end.
+                 was returned, or it was left lying to the end. `handoff`: put down by a living player with a team mate within an aggro bubble of it (a hand-off
+                 tried, whatever came of it; Claude's draft of the word, read before the result). `first_enemy_s`: seconds until a living enemy player first
+                 stands on the flag (RETURN_R), the soonest it can have been returned; `return_by_s`: the latest (the last enemy on it before the next pickup
+                 at the spawn). `returned_soon`: returned, with an enemy on it within RETURN_SOON_S of the put-down (R-626, R-629: a contested return, a
+                 hand-off returned, against a flag that lay and was returned later); `returned_soon_sure` where the latest second is inside it too.
     A flag put down goes back only when an enemy player picks it up, never by itself (R-622): a life that ends "returned" was returned by a player, and who
     and when are read as `flag_lives` reads them (the last enemy to stand on it before the next pickup at the spawn; the second is inferred until the rebuild
-    keeps gvg.report's flag objects, R-481)."""
+    keeps gvg.report's flag objects, R-481). On RJT v RACK the four returns of gvg.report's list come 3, 2, 1 and 9 s after the put-down; the first enemy on the
+    flag reads 3, 0, 0 and 0 s, the last enemy on it 19, 19, 4 and 78 s: the first is the estimate, and all four are returned soon by it, as they were."""
     if M.hall is None: return {"lives": [], "put_downs": []}
     st, m, T = M.st, M.m, M.T
     rid8, stand = m.o["meta"]["id"][:8], M.hall.stand
@@ -1571,15 +1578,24 @@ def flag_hands(M):
                    "carried_s": int(t1 - max(c[1], 0)), "dead": dead, "place": M.place_words(*M.place_at(a, u)), "at_stand": M.place_at(a, u)[0] == "stand", "stand_d": int(d(pos, stand)),
                    "own_half": None if w_own is None or w_their is None else bool(w_own < w_their), "before_stand": arrive is None or u < arrive["t"],
                    "enemy_near": sum(1 for x in near if x <= FIGHT_CLOSE), "nearest": int(near[0]) if near else None, "mates_near": mates,
-                   "then": None, "lay_s": None, "taker": None, "taker_line": None, "handed": False, "returned_by_inferred": None}
+                   "then": None, "lay_s": None, "taker": None, "taker_line": None, "handed": False, "returned_by_inferred": None,
+                   "handoff": (not dead) and mates >= 1, "first_enemy_s": None, "return_by_s": None, "returned_soon": False, "returned_soon_sure": False}
+            until = T                                                      # how long it lay: to the next take-up, to the next pickup at the spawn where it was returned, else to the end
             if i + 1 < len(cs):
                 c2 = cs[i + 1]
                 rec.update(then="its carrier took it up again" if c2[0] == a else "a team mate took it up", lay_s=round(c2[1] - t1, 1), taker=m.roles[c2[0]], taker_line=_line(m, c2[0]),
                            handed=c2[0] != a and bool(M.handed_on(c, c2)))
+                until = sec(c2[1])
             elif L["how"] == "returned":
                 ret = L.get("returned")                                    # who returned it is `flag_lives`' inference; the second is not kept: on RJT v RACK the inferred returns are 3 to 69 s late (R-481)
-                rec.update(then="returned", returned_by_inferred=None if not ret else m.roles[ret[1]])
+                rec.update(then="returned", returned_by_inferred=None if not ret else m.roles[ret[1]], return_by_s=round((ret[0] if ret else L["end"]) - t1, 1))
+                until = sec(L["end"])
             else: rec["then"] = "left lying"
+            on = next((x for x in range(u, until + 1) if any(M.AL[b][x] and M.P[b][x] and d(M.P[b][x], pos) < RETURN_R for b in st.players[foe])), None)
+            if on is not None: rec["first_enemy_s"] = round(max(on - t1, 0), 1)
+            if rec["then"] == "returned":
+                rec["returned_soon"] = rec["first_enemy_s"] is not None and rec["first_enemy_s"] <= RETURN_SOON_S
+                rec["returned_soon_sure"] = rec["returned_soon"] and rec["return_by_s"] <= RETURN_SOON_S
             rec["at_told"] = told(tm, u)
             puts.append(rec); n_put += 1
         run = next((c for c in played if c[0] in L.get("serious", ())), played[0])      # who ran it: the first who carried it for more than a moment
