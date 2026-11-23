@@ -1,0 +1,567 @@
+{
+ "about": "The rows of Model > Game review > Lord push (R-633): Lord pushes picked from late games for his grade and mark, written by tools/golden/review.py lord on the engine branch. Lord damage (R-632): gvg.report's own figure is the one of record; what is stored of it is each Lord's total for the match (`damage.match_gvg`, their Lord then the pushing team's own), set beside the engine's sum of the recorded hits for the push (`damage.push`) and for the match (`damage.match_hits`). His marks are in lord_row_marks.json, never here.",
+ "generated": "2026-11-23",
+ "engine": "ca7d1c0",
+ "rows": [
+  {
+   "id": "s:19f38ea6-lord-2-1497",
+   "play": "19f38ea6-lord-2-1497-70",
+   "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
+   "teams": [
+    "Book",
+    "hook"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-10-28",
+   "length_s": 1537,
+   "t0": 1497,
+   "t1": 1523,
+   "reads": "hook pushes Book's Guild Lord with 6 in the base (2 monks) against 0 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (hook): Ranger, AoB Derv, Hammer, Mesmer, Prot, 7 Monk. Defending (Book): Dervish 1, 7 Monk, 8 Monk.",
+    "Book defends with 3, 0 by the end (2 monks). Deaths during it: hook 0, Book 5. Book's Guild Lord is killed in it.",
+    "The match is decided by a Lord kill; hook wins."
+   ],
+   "damage": {
+    "push": [
+     1871,
+     0
+    ],
+    "match_gvg": [
+     1811,
+     1233
+    ],
+    "match_hits": [
+     1901,
+     1418
+    ],
+    "lords": [
+     "Book",
+     "hook"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 1,871 on Book's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 1,811 on Book's Lord, 1,233 on hook's (the engine's summed hits: 1,901 and 1,418).",
+   "calls": [
+    {
+     "team": "hook",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "Book",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "hook pushes Book's Guild Lord with 6 in the base (2 monks) against 0 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): Ranger, AoB Derv, Hammer, Mesmer, Prot, 7 Monk. Defending (Book): Dervish 1, 7 Monk, 8 Monk. | Book defends with 3, 0 by the end (2 monks). Deaths during it: hook 0, Book 5. Book's Guild Lord is killed in it. | The match is decided by a Lord kill; hook wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 1,871 on Book's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 1,811 on Book's Lord, 1,233 on hook's (the engine's summed hits: 1,901 and 1,418)."
+  },
+  {
+   "id": "s:0f1fd794-lord-2-1583",
+   "play": "0f1fd794-lord-2-1583-111",
+   "rid": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "teams": [
+    "hdm",
+    "Men"
+   ],
+   "map": "Nomad's Isle",
+   "date": "2026-11-02",
+   "length_s": 1694,
+   "t0": 1583,
+   "t1": 1679,
+   "reads": "Men pushes hdm's Guild Lord with 5 in the base (2 monks) against 5 pit NPCs: as many attackers as pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (Men): Hammer A, Hammer B, Ranger, Prot, 7 Monk. Defending (hdm): Stand Mes, Paragon, Prot, 8 Monk.",
+    "hdm defends with 4 (2 monks). Deaths during it: Men 1, hdm 4.",
+    "The match is decided by Lord damage at 28:00; Men wins."
+   ],
+   "damage": {
+    "push": [
+     10035,
+     374
+    ],
+    "match_gvg": [
+     9385,
+     374
+    ],
+    "match_hits": [
+     10035,
+     374
+    ],
+    "lords": [
+     "hdm",
+     "Men"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 10,035 on hdm's Lord, 374 on Men's meanwhile. Whole match, gvg.report's own total: 9,385 on hdm's Lord, 374 on Men's (the engine's summed hits: 10,035 and 374).",
+   "calls": [
+    {
+     "team": "Men",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "hdm",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "Men pushes hdm's Guild Lord with 5 in the base (2 monks) against 5 pit NPCs: as many attackers as pit NPCs; playing for Lord damage | Pushing (Men): Hammer A, Hammer B, Ranger, Prot, 7 Monk. Defending (hdm): Stand Mes, Paragon, Prot, 8 Monk. | hdm defends with 4 (2 monks). Deaths during it: Men 1, hdm 4. | The match is decided by Lord damage at 28:00; Men wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 10,035 on hdm's Lord, 374 on Men's meanwhile. Whole match, gvg.report's own total: 9,385 on hdm's Lord, 374 on Men's (the engine's summed hits: 10,035 and 374)."
+  },
+  {
+   "id": "s:0f1fd794-lord-1-1602",
+   "play": "0f1fd794-lord-1-1602-112",
+   "rid": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "teams": [
+    "hdm",
+    "Men"
+   ],
+   "map": "Nomad's Isle",
+   "date": "2026-11-02",
+   "length_s": 1694,
+   "t0": 1602,
+   "t1": 1648,
+   "reads": "hdm pushes Men's Guild Lord with 3 in the base (1 monk, 2 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (hdm): Hammer B, 7 Monk, Mes/A. Defending (Men): Mesmer, 8 Monk, Monk 4 (WoC).",
+    "Men defends with 3 (1 monk). Deaths during it: hdm 2, Men 1.",
+    "The match is decided by Lord damage at 28:00; Men wins."
+   ],
+   "damage": {
+    "push": [
+     344,
+     4464
+    ],
+    "match_gvg": [
+     374,
+     9385
+    ],
+    "match_hits": [
+     374,
+     10035
+    ],
+    "lords": [
+     "Men",
+     "hdm"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 344 on Men's Lord, 4,464 on hdm's meanwhile. Whole match, gvg.report's own total: 374 on Men's Lord, 9,385 on hdm's (the engine's summed hits: 374 and 10,035).",
+   "calls": [
+    {
+     "team": "hdm",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "Men",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "hdm pushes Men's Guild Lord with 3 in the base (1 monk, 2 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage | Pushing (hdm): Hammer B, 7 Monk, Mes/A. Defending (Men): Mesmer, 8 Monk, Monk 4 (WoC). | Men defends with 3 (1 monk). Deaths during it: hdm 2, Men 1. | The match is decided by Lord damage at 28:00; Men wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 344 on Men's Lord, 4,464 on hdm's meanwhile. Whole match, gvg.report's own total: 374 on Men's Lord, 9,385 on hdm's (the engine's summed hits: 374 and 10,035)."
+  },
+  {
+   "id": "s:cd870ad3-lord-2-1484",
+   "play": "cd870ad3-lord-2-1484-97",
+   "rid": "cd870ad3-52e8-5de9-a73a-897015fab0dc",
+   "teams": [
+    "Crew",
+    "cope"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-14",
+   "length_s": 1538,
+   "t0": 1484,
+   "t1": 1523,
+   "reads": "cope pushes Crew's Guild Lord with 4 in the base (1 monk, 5 by the end) against 1 pit NPC: more attackers than pit NPCs; playing for killing the defenders",
+   "lines": [
+    "Pushing (cope): AoB Derv, Stand Mes, Hammer, 7 Monk. Defending (Crew): Prot, Stand Mes.",
+    "Crew defends with 2 (1 monk). Deaths during it: cope 0, Crew 8. Crew's Guild Lord is killed in it.",
+    "The match is decided by a Lord kill; cope wins."
+   ],
+   "damage": {
+    "push": [
+     937,
+     0
+    ],
+    "match_gvg": [
+     2140,
+     0
+    ],
+    "match_hits": [
+     2236,
+     0
+    ],
+    "lords": [
+     "Crew",
+     "cope"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 937 on Crew's Lord, 0 on cope's meanwhile. Whole match, gvg.report's own total: 2,140 on Crew's Lord, 0 on cope's (the engine's summed hits: 2,236 and 0).",
+   "calls": [
+    {
+     "team": "cope",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "Crew",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "cope pushes Crew's Guild Lord with 4 in the base (1 monk, 5 by the end) against 1 pit NPC: more attackers than pit NPCs; playing for killing the defenders | Pushing (cope): AoB Derv, Stand Mes, Hammer, 7 Monk. Defending (Crew): Prot, Stand Mes. | Crew defends with 2 (1 monk). Deaths during it: cope 0, Crew 8. Crew's Guild Lord is killed in it. | The match is decided by a Lord kill; cope wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 937 on Crew's Lord, 0 on cope's meanwhile. Whole match, gvg.report's own total: 2,140 on Crew's Lord, 0 on cope's (the engine's summed hits: 2,236 and 0)."
+  },
+  {
+   "id": "s:480337e8-lord-2-1619",
+   "play": "480337e8-lord-2-1619-151",
+   "rid": "480337e8-5e25-5320-a7ff-45522d1bb4b2",
+   "teams": [
+    "hold",
+    "BcS"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-10-20",
+   "length_s": 1693,
+   "t0": 1619,
+   "t1": 1656,
+   "reads": "BcS pushes hold's Guild Lord with 2 in the base (0 monks, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (BcS): Ranger, Ritualist. Defending (hold): Air Ele.",
+    "hold defends with 1, 2 by the end (0 monks). Deaths during it: BcS 2, hold 0.",
+    "The match is decided by Lord damage at 28:00; hold wins."
+   ],
+   "damage": {
+    "push": [
+     5,
+     2478
+    ],
+    "match_gvg": [
+     0,
+     4324
+    ],
+    "match_hits": [
+     10,
+     4569
+    ],
+    "lords": [
+     "hold",
+     "BcS"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 5 on hold's Lord, 2,478 on BcS's meanwhile. Whole match, gvg.report's own total: 0 on hold's Lord, 4,324 on BcS's (the engine's summed hits: 10 and 4,569).",
+   "calls": [
+    {
+     "team": "BcS",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "hold",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "BcS pushes hold's Guild Lord with 2 in the base (0 monks, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage | Pushing (BcS): Ranger, Ritualist. Defending (hold): Air Ele. | hold defends with 1, 2 by the end (0 monks). Deaths during it: BcS 2, hold 0. | The match is decided by Lord damage at 28:00; hold wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 5 on hold's Lord, 2,478 on BcS's meanwhile. Whole match, gvg.report's own total: 0 on hold's Lord, 4,324 on BcS's (the engine's summed hits: 10 and 4,569)."
+  },
+  {
+   "id": "s:78f14e00-lord-2-1525",
+   "play": "78f14e00-lord-2-1525-137",
+   "rid": "78f14e00-1504-5e40-a270-c73133f78cd3",
+   "teams": [
+    "BcS",
+    "hold"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-11",
+   "length_s": 1693,
+   "t0": 1525,
+   "t1": 1535,
+   "reads": "hold pushes BcS's Guild Lord with 7 in the base (3 monks) against 5 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (hold): Hammer, AoB Derv, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk. Defending (BcS): Ritualist, AoB Derv, Mesmer, Prot, 7 Monk, 8 Monk.",
+    "BcS defends with 6 (3 monks). Deaths during it: hold 0, BcS 0.",
+    "The match is decided by Lord damage at 28:00; hold wins."
+   ],
+   "damage": {
+    "push": [
+     26,
+     0
+    ],
+    "match_gvg": [
+     2871,
+     90
+    ],
+    "match_hits": [
+     3101,
+     90
+    ],
+    "lords": [
+     "BcS",
+     "hold"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 26 on BcS's Lord, 0 on hold's meanwhile. Whole match, gvg.report's own total: 2,871 on BcS's Lord, 90 on hold's (the engine's summed hits: 3,101 and 90).",
+   "calls": [
+    {
+     "team": "hold",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "BcS",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "hold pushes BcS's Guild Lord with 7 in the base (3 monks) against 5 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hold): Hammer, AoB Derv, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk. Defending (BcS): Ritualist, AoB Derv, Mesmer, Prot, 7 Monk, 8 Monk. | BcS defends with 6 (3 monks). Deaths during it: hold 0, BcS 0. | The match is decided by Lord damage at 28:00; hold wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 26 on BcS's Lord, 0 on hold's meanwhile. Whole match, gvg.report's own total: 2,871 on BcS's Lord, 90 on hold's (the engine's summed hits: 3,101 and 90)."
+  },
+  {
+   "id": "s:6db63508-lord-2-1406",
+   "play": "6db63508-lord-2-1406-107",
+   "rid": "6db63508-5a38-569a-a345-8d0491207f43",
+   "teams": [
+    "Apes",
+    "Crew"
+   ],
+   "map": "Isle of Solitude",
+   "date": "2026-10-08",
+   "length_s": 1693,
+   "t0": 1406,
+   "t1": 1422,
+   "reads": "Crew pushes Apes's Guild Lord with 1 in the base (0 monks, 0 by the end) against 2 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (Crew): Monk 1. Defending (Apes): Ritualist.",
+    "Apes defends with 1 (0 monks). Deaths during it: Crew 0, Apes 0.",
+    "The match is decided by Lord damage at 28:00; Crew wins."
+   ],
+   "damage": {
+    "push": [
+     726,
+     0
+    ],
+    "match_gvg": [
+     4880,
+     30
+    ],
+    "match_hits": [
+     5045,
+     40
+    ],
+    "lords": [
+     "Apes",
+     "Crew"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 726 on Apes's Lord, 0 on Crew's meanwhile. Whole match, gvg.report's own total: 4,880 on Apes's Lord, 30 on Crew's (the engine's summed hits: 5,045 and 40).",
+   "calls": [
+    {
+     "team": "Crew",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "Apes",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "Crew pushes Apes's Guild Lord with 1 in the base (0 monks, 0 by the end) against 2 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage | Pushing (Crew): Monk 1. Defending (Apes): Ritualist. | Apes defends with 1 (0 monks). Deaths during it: Crew 0, Apes 0. | The match is decided by Lord damage at 28:00; Crew wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 726 on Apes's Lord, 0 on Crew's meanwhile. Whole match, gvg.report's own total: 4,880 on Apes's Lord, 30 on Crew's (the engine's summed hits: 5,045 and 40)."
+  },
+  {
+   "id": "s:90810e04-lord-2-1442",
+   "play": "90810e04-lord-2-1442-135",
+   "rid": "90810e04-6855-5045-a7f4-d32f47815ade",
+   "teams": [
+    "Team",
+    "hook"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-14",
+   "length_s": 1693,
+   "t0": 1442,
+   "t1": 1535,
+   "reads": "hook pushes Team's Guild Lord with 8 in the base (3 monks, 1 by the end) against 4 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+   "lines": [
+    "Pushing (hook): AoB Derv, Hammer, Ritualist, Ranger, Mesmer, Prot, 7 Monk, 8 Monk. Defending (Team): AoB Derv, Hammer, Stand Mes, Mes/A, Ritualist, Prot, 7 Monk, 8 Monk.",
+    "Team defends with 8, 3 by the end (3 monks). Deaths during it: hook 8, Team 0.",
+    "The match is decided by Lord damage at 28:00; Team wins."
+   ],
+   "damage": {
+    "push": [
+     3564,
+     0
+    ],
+    "match_gvg": [
+     3525,
+     4191
+    ],
+    "match_hits": [
+     3589,
+     4340
+    ],
+    "lords": [
+     "Team",
+     "hook"
+    ],
+    "unobserved": [
+     false,
+     false
+    ]
+   },
+   "damage_said": "Lord damage. In this push, by the engine's sum of the recorded hits: 3,564 on Team's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 3,525 on Team's Lord, 4,191 on hook's (the engine's summed hits: 3,589 and 4,340).",
+   "calls": [
+    {
+     "team": "hook",
+     "side": "attacker",
+     "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+     "met": false,
+     "tests": [
+      [
+       false,
+       "the match is won"
+      ]
+     ]
+    },
+    {
+     "team": "Team",
+     "side": "defender",
+     "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+     "met": true,
+     "tests": [
+      [
+       true,
+       "the match is won"
+      ]
+     ]
+    }
+   ],
+   "text": "hook pushes Team's Guild Lord with 8 in the base (3 monks, 1 by the end) against 4 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): AoB Derv, Hammer, Ritualist, Ranger, Mesmer, Prot, 7 Monk, 8 Monk. Defending (Team): AoB Derv, Hammer, Stand Mes, Mes/A, Ritualist, Prot, 7 Monk, 8 Monk. | Team defends with 8, 3 by the end (3 monks). Deaths during it: hook 8, Team 0. | The match is decided by Lord damage at 28:00; Team wins. | Lord damage. In this push, by the engine's sum of the recorded hits: 3,564 on Team's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 3,525 on Team's Lord, 4,191 on hook's (the engine's summed hits: 3,589 and 4,340)."
+  }
+ ]
+}

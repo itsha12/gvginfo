@@ -16,6 +16,11 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // answer. He says whether what happened is told correctly, whether the reading makes sense to him, and what he would
 // have done there. The cards come from data/model/flag_cards.json (tools/replay_analysis/cases.py cards --site, on
 // the engine branch); his marks are saved to data/model/flag_card_marks.json, each with the text he saw.
+//
+// A third view, Lord push (2026-11-23, R-633): Lord pushes picked from late games, one row each, for his grade and mark
+// (the same boxes as a situation of a game). Lord damage is gvg.report's to say (R-632): each row sets gvg.report's own
+// total for the match beside the engine's sum of the recorded hits. The rows come from data/model/lord_rows.json
+// (tools/golden/review.py lord, on the engine branch); his marks are saved to data/model/lord_row_marks.json.
 
 const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_marks.json", DRAFT = "gvginfo.review.draft2";
 const GRADE = [["classic", "Classic"], ["visible", "Visible"], ["weak", "Weak"], ["none", "No decision"]];
@@ -51,7 +56,7 @@ const ADVICE = {
     about: "own (what he would have done; team up: stay = stay and kill, base = push into their base for NPCs, flagger = push their flagger, backup = run a flag for a backup, reset = fall back and reset; team down: fight = stay and fight, footmen = fall to footmen, pit = retreat to the pit, trade = trade with a split; nodiff = it makes no difference here, unknown = he does not know)" } };
 const setKind = (k) => { if (ckind === k) return; ckind = k; CARDS = ADVICE[k].cards; CARD_MARKS = ADVICE[k].marks; CDRAFT = ADVICE[k].draft; cards = null; cmarks = null; ccur = null; cdraft = {}; };
 let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
-try { view = localStorage.getItem("gvginfo.review.view") === "flags" ? "flags" : "games"; } catch { /* the games view */ }
+try { const v0 = localStorage.getItem("gvginfo.review.view"); view = ["flags", "lord"].includes(v0) ? v0 : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
 try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
@@ -74,6 +79,24 @@ const whyNot = (s, m) => band(s) === "none" && !isDecision(m) ? "" : !m?.grade ?
 // the engine reads as no decision is done as it stands: leaving it alone agrees with it.
 const sitDone = (s, m) => band(s) === "none" ? true : !!m?.grade && (!isDecision(m) || !!m.mark);
 const todo = (g, M) => g.situations.flatMap((s) => [...(band(s) === "none" && !M[s.id]?.grade ? [] : [{ id: s.id, done: sitDone(s, M[s.id]) }]), ...(callsAsked(M[s.id]) && band(s) !== "none" ? s.calls.map((c) => ({ id: c.id, call: true, done: !!M[c.id]?.mark && M[c.id].mark !== SKIP })) : [])]);
+
+// The style of the rows a situation is graded on: the games view and the Lord push view
+const RV_STYLE = `<style>.rv-rows{table-layout:fixed;width:100%}.doc table.rv-rows td,.rv-rows td{vertical-align:top;white-space:normal!important;overflow-wrap:anywhere;padding:.35rem .5rem;font-size:.9rem}
+  .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:6.2rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-rows td.rv-mark:not([colspan]){width:25rem}
+  .rv-sit td{border-top:2px solid var(--line);background:var(--accent-soft)}.rv-call td:nth-child(3){padding-left:1.4rem}.rv-done td:first-child{box-shadow:inset 3px 0 0 var(--ink)}
+  .rv-none td{background:transparent;padding-top:.15rem!important;padding-bottom:.15rem!important}.rv-none summary{cursor:pointer}
+  .rv-grades,.rv-reads{display:flex;flex-wrap:wrap;gap:.3rem;margin:.15rem 0}.rv-grades input,.rv-reads input{position:absolute;opacity:0;width:0;height:0}
+  .rv-g{--c:#666;display:inline-block;border:2px solid var(--c);color:var(--c);background:#fff;font-weight:600;font-size:.82rem;padding:.2rem .55rem;cursor:pointer;white-space:nowrap}.rv-g.on{background:var(--c);color:#fff}
+  .rv-g-classic{--c:#1c7c3c}.rv-g-visible{--c:#c26a00}.rv-g-weak{--c:#b3261e}.rv-g-none{--c:#1f5fbf}.rv-g-repeat{--c:#777;font-weight:500;font-size:.76rem;margin-left:.6rem;border-width:1px}.rv-g-blank{--c:#bbb}
+  .rv-g:focus-within,.rv-r:focus-within{outline:2px solid var(--ink);outline-offset:1px}
+  .rv-r{display:inline-block;border:1px solid var(--ink);background:#fff;color:var(--ink);font-size:.82rem;padding:.2rem .6rem;cursor:pointer}.rv-r.on{background:var(--ink);color:#fff}
+  .rv-q{margin-top:.35rem}.rv-offs{margin:.25rem 0;font-size:.84rem}.rv-offs label{margin-right:.55rem;white-space:nowrap}
+  .rv-mark input[type=text]{display:block;width:100%;height:1.9rem;margin-top:.3rem;font-size:.84rem}
+  .rv-conf{display:inline-block;font-size:.74rem;font-weight:600;letter-spacing:.03em;border:1px solid var(--ink);padding:.05rem .4rem;margin-bottom:.2rem}.rv-c-high{background:var(--ink);color:#fff}.rv-c-low{border-style:dashed}.rv-c-none{border-style:dotted;color:var(--muted);border-color:var(--muted)}
+  .rv-dot{display:inline-block;width:.7rem;height:.7rem;padding:0;margin-right:.4rem;vertical-align:baseline;background:var(--c,#bbb)}.rv-sum{width:auto}.rv-sum td,.rv-sum th{padding:.2rem .7rem;font-size:.86rem;text-align:center}.rv-sum td:first-child{text-align:left}
+  .rv-missed td{vertical-align:middle;padding:.3rem .4rem}.rv-missed th:nth-child(4){width:55%}
+  .rv-showtodo tr.rv-todo td{background:#fdecea}.rv-showtodo tr.rv-todo td:first-child{box-shadow:inset 5px 0 0 #b3261e}.rv-showtodo tr.rv-todo td.rv-mark{outline:2px solid #b3261e;outline-offset:-2px}
+  .rv-skip td:nth-child(3){opacity:.5}.rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
 
 function gradeBoxes(id, m, only) {
   const G = only ? GRADE.filter(([v]) => only.includes(v)) : GRADE;
@@ -190,22 +213,7 @@ async function renderGames(out, keep = false) {
   ${old.length ? `<details class="rv-terms"${isNew ? "" : " open"}><summary>Earlier games (history, read only): ${old.length}</summary><div class="row rv-games">${old.map(button).join("")}</div></details>` : ""}
   <p class="muted small">Rows written ${esc(rows.generated)} from engine ${esc(rows.engine)}.</p>
   <section class="rv">${isNew ? gameHtml(g) : historyHtml(g)}</section>
-  <style>.rv-rows{table-layout:fixed;width:100%}.doc table.rv-rows td,.rv-rows td{vertical-align:top;white-space:normal!important;overflow-wrap:anywhere;padding:.35rem .5rem;font-size:.9rem}
-  .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:6.2rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-rows td.rv-mark:not([colspan]){width:25rem}
-  .rv-sit td{border-top:2px solid var(--line);background:var(--accent-soft)}.rv-call td:nth-child(3){padding-left:1.4rem}.rv-done td:first-child{box-shadow:inset 3px 0 0 var(--ink)}
-  .rv-none td{background:transparent;padding-top:.15rem!important;padding-bottom:.15rem!important}.rv-none summary{cursor:pointer}
-  .rv-grades,.rv-reads{display:flex;flex-wrap:wrap;gap:.3rem;margin:.15rem 0}.rv-grades input,.rv-reads input{position:absolute;opacity:0;width:0;height:0}
-  .rv-g{--c:#666;display:inline-block;border:2px solid var(--c);color:var(--c);background:#fff;font-weight:600;font-size:.82rem;padding:.2rem .55rem;cursor:pointer;white-space:nowrap}.rv-g.on{background:var(--c);color:#fff}
-  .rv-g-classic{--c:#1c7c3c}.rv-g-visible{--c:#c26a00}.rv-g-weak{--c:#b3261e}.rv-g-none{--c:#1f5fbf}.rv-g-repeat{--c:#777;font-weight:500;font-size:.76rem;margin-left:.6rem;border-width:1px}.rv-g-blank{--c:#bbb}
-  .rv-g:focus-within,.rv-r:focus-within{outline:2px solid var(--ink);outline-offset:1px}
-  .rv-r{display:inline-block;border:1px solid var(--ink);background:#fff;color:var(--ink);font-size:.82rem;padding:.2rem .6rem;cursor:pointer}.rv-r.on{background:var(--ink);color:#fff}
-  .rv-q{margin-top:.35rem}.rv-offs{margin:.25rem 0;font-size:.84rem}.rv-offs label{margin-right:.55rem;white-space:nowrap}
-  .rv-mark input[type=text]{display:block;width:100%;height:1.9rem;margin-top:.3rem;font-size:.84rem}
-  .rv-conf{display:inline-block;font-size:.74rem;font-weight:600;letter-spacing:.03em;border:1px solid var(--ink);padding:.05rem .4rem;margin-bottom:.2rem}.rv-c-high{background:var(--ink);color:#fff}.rv-c-low{border-style:dashed}.rv-c-none{border-style:dotted;color:var(--muted);border-color:var(--muted)}
-  .rv-dot{display:inline-block;width:.7rem;height:.7rem;padding:0;margin-right:.4rem;vertical-align:baseline;background:var(--c,#bbb)}.rv-sum{width:auto}.rv-sum td,.rv-sum th{padding:.2rem .7rem;font-size:.86rem;text-align:center}.rv-sum td:first-child{text-align:left}
-  .rv-missed td{vertical-align:middle;padding:.3rem .4rem}.rv-missed th:nth-child(4){width:55%}
-  .rv-showtodo tr.rv-todo td{background:#fdecea}.rv-showtodo tr.rv-todo td:first-child{box-shadow:inset 5px 0 0 #b3261e}.rv-showtodo tr.rv-todo td.rv-mark{outline:2px solid #b3261e;outline-offset:-2px}
-  .rv-skip td:nth-child(3){opacity:.5}.rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
+  ${RV_STYLE}`;
 
   const redraw = async (focus) => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); if (focus) out.querySelector(`.rv-mark[data-id="${CSS.escape(focus)}"] [data-why]`)?.focus({ preventScroll: true }); };
   out.querySelectorAll("[data-game]").forEach((b) => b.onclick = () => { cur = b.dataset.game; redraw(); });
@@ -362,11 +370,93 @@ async function renderFlags(out, keep = false) {
   });
 }
 
-// The page: the two views and the switch between them.
+// ---- Lord push: picked Lord pushes, one row each, graded and marked as a situation of a game is (R-633)
+const LROWS = "data/model/lord_rows.json", LMARKS = "data/model/lord_row_marks.json", LDRAFT = "gvginfo.review.lord1";
+const LOFFS = [["numbers", "Numbers"], ["who", "Who"], ["when", "When"], ["aim", "What they are playing for"], ["kind", "Kind of play"]];
+let lrows = null, lmarks = null, ldraft = {};
+const lNow = () => ({ ...(lmarks.marks || {}), ...(ldraft.marks || {}) });
+const lDone = (m) => !!m?.grade && (!isDecision(m) || !!m.mark);
+const num = (v) => Number(v).toLocaleString("en-CA");
+const lOffBoxes = (m) => `<div class="rv-offs"><span class="muted small">What is off:</span> ${LOFFS.map(([v, t]) => `<label><input type="checkbox" data-off value="${v}"${(m?.off || []).includes(v) ? " checked" : ""}> ${t}</label>`).join("")}</div>`;
+
+function lordRow(r, i, m) {
+  const d = r.damage, dec = isDecision(m), over = d.push[0] > d.match_gvg[0] || d.push[1] > d.match_gvg[1];
+  const cell = (k) => d.unobserved?.[k] ? `<span class="muted" style="grid-column:span 3">not observed in the replay</span>` : `<span>${num(d.push[k])}</span><span><b>${num(d.match_gvg[k])}</b></span><span>${num(d.match_hits[k])}</span>`;
+  return `<tr class="rv-sit ${lDone(m) ? "rv-done" : "rv-todo"}"><td class="rv-n">${i + 1}</td><td class="rv-t">${clock(r.t0)}–${clock(r.t1)}</td>
+    <td><div class="small"><b>${esc(r.teams.join(" v "))}</b>, ${esc(r.date)}, ${esc(r.map)}, ${clock(r.length_s)} long. <a href="https://gvg.report/report/${esc(r.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a> and go to <b>${clock(r.t0)}</b>.</div>
+      <div style="margin-top:.3rem"><b>${esc(r.reads)}</b></div>
+      ${r.lines.map((x) => `<div>${esc(x)}</div>`).join("")}
+      <div class="rv-ld"><span class="h">Lord damage</span><span class="h">In this push<br><small>engine's sum of the recorded hits</small></span><span class="h">Whole match<br><small>gvg.report's own total</small></span><span class="h">Whole match<br><small>engine's summed hits</small></span>
+        <span>On ${esc(d.lords[0])}'s Lord</span>${cell(0)}<span>On ${esc(d.lords[1])}'s Lord</span>${cell(1)}</div>
+      ${over ? `<div class="small rv-not">The push's summed hits come to more than gvg.report counts for the whole match: the engine is counting hits that gvg.report leaves out of Lord damage.</div>` : ""}
+      ${r.calls.map((c) => `<div class="muted small"><b>${esc(c.team)}</b> (${esc(c.side)}): ${esc(c.job)}. ${c.met ? "Met" : "Not met"} (${c.tests.map(([ok, t]) => `${esc(t)}: ${ok ? "yes" : "no"}`).join("; ")}).</div>`).join("")}</td>
+    <td class="rv-mark" data-id="${esc(r.id)}">${gradeBoxes(r.id, m)}
+      ${dec ? `<div class="muted small rv-q">Did the engine read it correctly?</div>${readBoxes(r.id, m)}${["partly", "incorrect"].includes(m?.mark) ? lOffBoxes(m) : ""}` : ""}
+      ${reasonBoxes(m)}
+      ${words(m, dec ? "your words: what you see here" : m?.grade === "none" ? "your words: why this is not a Lord push" : "your words")}</td></tr>`;
+}
+
+async function renderLord(out, keep = false) {
+  if (!keep || !lrows) {
+    lrows = await readJson(LROWS, null);
+    lmarks = (await readJson(LMARKS, null)) || { about: "", marks: {} };
+    try { ldraft = JSON.parse(localStorage.getItem(LDRAFT) || "{}"); } catch { ldraft = {}; }
+  }
+  if (!lrows || !(lrows.rows || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No Lord push has been set out yet.</div>`; return; }
+  const R = lrows.rows, M = lNow(), done = R.filter((r) => lDone(M[r.id])).length, n = Object.keys(ldraft.marks || {}).length + (ldraft.notes !== undefined ? 1 : 0);
+  const notes = ldraft.notes ?? lmarks.notes ?? "";
+  const keepL = () => { try { localStorage.setItem(LDRAFT, JSON.stringify(ldraft)); } catch { /* the marks stay on the page until saved */ } };
+  out.innerHTML = `<h1>Game review</h1>
+  <p>Lord pushes picked from late games, one row each. Watch each one and grade it as you would a situation of a game: is it a Lord push at all and how clear a one, then whether the engine read it as you do. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
+  <details class="rv-terms"><summary>How to read and mark a row</summary><ul class="small">
+    <li><b>A Lord push</b>, as the engine reads it: from 23:30, a stretch in which a team damages the enemy's Guild Lord. The row says who is in their base with how many monks, how many of the Lord's pit NPCs (Bodyguard, knights, archers) are alive, who defends, the deaths during it, and how the match was decided.</li>
+    <li><b>Lord damage is gvg.report's to say.</b> The bold column is gvg.report's own Lord damage total for the whole match on each Lord. That is the only figure of gvg.report's kept in the stored replays so far, so the push's own figure is still the engine's sum of the hits gvg.report recorded during it. Where the two whole-match columns differ, the engine is counting hits gvg.report leaves out: on the one match checked so far (Book v hook) the whole difference is life steal, which gvg.report does not count as Lord damage. From the next rebuild the engine reads gvg.report's own record second by second.</li>
+    <li><b>Grade the moment as you see it in the game</b>, not the engine's wording of it. <span class="rv-g rv-g-classic on">Classic</span> a textbook Lord push: the engine must read it exactly as you do. <span class="rv-g rv-g-visible on">Visible</span> a real one, but messier. <span class="rv-g rv-g-weak on">Weak</span> technically there, but not something a team would act on. <span class="rv-g rv-g-none on">No decision</span> no Lord push is happening here. <span class="rv-g rv-g-repeat on">Repeat</span> the same push is already told in another row.</li>
+    <li>For a Classic, Visible or Weak push, say whether the engine read it: <b>Correct</b>, <b>Partly</b> (tick what is off: the numbers, who, when, what they are playing for) or <b>Incorrect</b> (something else is happening; tick Kind of play). Then say what you see in your own words.</li>
+    <li>For a <b>Weak</b> or <b>No decision</b> grade, tick why, as on the games.</li>
+    <li>Marks are kept in this browser as you go and reach the engine when you press Save.</li>
+  </ul></details>
+  <p class="muted small">Rows written ${esc(lrows.generated)} from engine ${esc(lrows.engine)}.</p>
+  <section class="rv"><p style="margin:.2rem 0">${R.length} Lord pushes; <b>${done} marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
+    <div class="row rv-bar"><button class="btn small primary" data-lsave>Save your marks</button></div>
+    <div class="tablewrap"><table class="data rv-rows rv-lord${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The push as the engine reads it</th><th>Your grade and mark</th></tr></thead><tbody>${R.map((r, i) => lordRow(r, i, M[r.id])).join("")}</tbody></table></div>
+    <h4 style="margin:.9rem 0 .3rem">Anything else about these Lord pushes</h4>
+    <textarea data-lnotes placeholder="Anything that holds for all of them, or a Lord push you would rather have been shown." style="min-height:70px">${esc(notes)}</textarea>
+    <div class="row rv-bar"><button class="btn small primary" data-lsave>Save your marks</button></div></section>
+  ${RV_STYLE}<style>.rv-lord td>div{margin-top:.25rem}.rv-lord td>div.rv-ld{display:grid;grid-template-columns:auto repeat(3,minmax(4.5rem,auto));justify-content:start;gap:.15rem 1.2rem;margin:.5rem 0;padding:.3rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.84rem}.rv-ld span{text-align:right}.rv-ld span:nth-child(4n+1){text-align:left}.rv-ld .h{font-weight:600;align-self:end}.rv-ld small{font-weight:400;color:var(--muted)}</style>`;
+
+  const redraw = async (focus) => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); if (focus) out.querySelector(`.rv-mark[data-id="${CSS.escape(focus)}"] [data-why]`)?.focus({ preventScroll: true }); };
+  const text = Object.fromEntries(R.map((r) => [r.id, r.text]));
+  const put = (id, patch) => { ldraft.marks ||= {}; ldraft.marks[id] = { ...(lmarks.marks?.[id] || {}), ...(ldraft.marks[id] || {}), ...patch, text: text[id] }; keepL(); };
+  out.querySelectorAll(".rv-lord .rv-mark").forEach((td) => {
+    const id = td.dataset.id, why = td.querySelector("[data-why]");
+    td.querySelectorAll("[data-grade]").forEach((r) => r.onchange = () => {
+      const dec = ["classic", "visible", "weak"].includes(r.value);
+      put(id, { grade: r.value, why: why.value.trim(), ...(dec ? {} : { mark: "", off: [] }), ...(["visible", "weak", "none"].includes(r.value) ? {} : { reason: [] }) }); redraw(id);
+    });
+    td.querySelectorAll("[data-read]").forEach((r) => r.onchange = () => { put(id, { mark: r.value, why: why.value.trim(), ...(r.value === "correct" ? { off: [] } : {}) }); redraw(id); });
+    td.querySelectorAll("[data-off]").forEach((c) => c.onchange = () => put(id, { off: [...td.querySelectorAll("[data-off]:checked")].map((x) => x.value) }));
+    td.querySelectorAll("[data-reason]").forEach((c) => c.onchange = () => put(id, { reason: [...td.querySelectorAll("[data-reason]:checked")].map((x) => x.value) }));
+    why.onchange = () => { if (lNow()[id]?.grade || lNow()[id]?.mark) put(id, { why: why.value.trim() }); };
+  });
+  out.querySelector("[data-lnotes]").onchange = (e) => { ldraft.notes = e.target.value.trim(); keepL(); };
+  out.querySelectorAll("[data-lsave]").forEach((b) => b.onclick = async () => {
+    const before = JSON.stringify(lmarks);
+    lmarks.about = "Denning's marks on the rows of Model > Game review > Lord push (R-633). For each row: his grade (classic, visible, weak, none = no Lord push here, repeat), whether the engine read it correct, partly or incorrect, what he ticked as off (numbers, who, when, aim = what they are playing for, kind = kind of play), why a Weak or No decision grade (brief, small, nofight, unclear), his words, and the text of the row as he saw it. Only what he marked. Saved by the page; Claude files them in the review key (set p4).";
+    lmarks.at = new Date().toISOString().slice(0, 10); lmarks.engine = lrows.engine;
+    lmarks.marks = Object.fromEntries(Object.entries({ ...(lmarks.marks || {}), ...(ldraft.marks || {}) }).filter(([, v]) => v.grade || v.mark));
+    if (ldraft.notes !== undefined) { if (ldraft.notes) lmarks.notes = ldraft.notes; else delete lmarks.notes; }
+    try { await writeJson(LMARKS, lmarks, `Lord push: ${Object.keys(lmarks.marks).length} rows marked`); }
+    catch (err) { lmarks = JSON.parse(before); toast(err.message); return; }
+    ldraft = {}; keepL(); toast("Saved"); await redraw();
+  });
+}
+
+// The page: the three views and the switch between them.
 export async function renderReview(out, keep = false) {
-  if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else await renderGames(out, keep);
+  if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else if (view === "lord") await renderLord(out, keep); else await renderGames(out, keep);
   const sw = document.createElement("div"); sw.className = "row rv-view"; sw.style.cssText = "gap:.4rem;margin:.4rem 0 .8rem";
-  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"]]
+  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"], ["lord", "Lord push: picked rows to grade"]]
     .map(([v, t]) => `<button class="btn small ${view === v ? "primary" : "ghost"}" data-view="${v}">${t}</button>`).join("");
   out.querySelector("h1")?.after(sw);
   sw.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => { view = b.dataset.view; try { localStorage.setItem("gvginfo.review.view", view); } catch { /* for this visit only */ } renderReview(out); });

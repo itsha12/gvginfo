@@ -506,6 +506,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   monks=False)`). Pushing the flagger is a decision of its own and no answer to their run (R-591), and no family (R-597):
   its readings (`cases.py pushes`, section E, his five questions on `their_runs`) stay a report. No verdict of any of
   these is advice.
+- The Lord push and Lord damage (R-632, R-633). Lord damage is gvg.report's to say, everywhere: what decides 28:00 is
+  aggressiveness, and raw damage matters only for killing the Lord. gvg.report's own record
+  (`summary.objectives.guild_lord_damage`: team scores with `lord_damage_equivalent`, every hit, heal and effect on a
+  Lord by the second with Entourage and the Amulet's limit, the pit NPCs' deaths, each Lord's health once a second) is
+  dropped by the trim, which keeps only each Lord's total (`lords[].taken`); it leaves life steal out, and the engine's
+  sum of the recorded hits (`Moments.lord_hits`) does not. Not built: at the rebuild one new trim version keeps that
+  record together with the flag objects (R-481), and the engine reads Lord damage, the 28:00 reading and Lord health
+  from it. Until then every Lord damage figure put to him sets gvg.report's match total beside the engine's sum, each
+  named for what it is; never give him the sum, or the health rebuilt by `lord.py`, as gvg.report's. Picked Lord pushes
+  are marked on the site, Model > Game review, the view "Lord push" (`review.js`; rows `data/model/lord_rows.json`,
+  written on the branch by `tools/golden/review.py lord <main>/data/model/lord_rows.json <report id>:<m:ss> ...`, which
+  reads the matches itself; his marks `data/model/lord_row_marks.json`, to be filed as set p4 of the key). Never put
+  Lord push rows to him in the chat for marking, and never write the rows again over rows he has marked without
+  saying so.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

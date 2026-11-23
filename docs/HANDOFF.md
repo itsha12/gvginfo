@@ -8,17 +8,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, afternoon: R-615 to R-631; the danger zone at 250, the hand-off record, T13, Lord rows out)
+## State (2026-11-23, later: R-632 and R-633; the Lord push page; gvg.report's Lord damage record probed)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-631. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-633. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   A team held in its base: no family, execution (R-621). Splits read in both halves, no advice at the matches in
   hand; no more matches until the engine is ready (R-570).
-- Built in this chat. The danger zone: heavy damage at 250 a player (R-615); the call's factors are morale (30 or
-  more under theirs) and the stand, the clock kept and not counted (R-616); one sentence a danger zone base res,
-  no verdict (R-617). The hand-off: `jobs.flag_hands`, a record of every flag life and put-down beside the plays,
-  and `cases.py handoff` with his three points and the hand-off returned (R-620 to R-629); T13 in the truths.
+- Built in this chat (no engine change, no play moved). The Lord push page: Model > Game review, the view "Lord
+  push", the eight picked rows (`data/model/lord_rows.json`, written by `review.py lord` on the branch), his marks
+  to `lord_row_marks.json` (R-633). Lord damage is gvg.report's to say, everywhere (R-632): probed once, its record
+  holds each team's aggressiveness, every hit by the second, Entourage, the pit NPCs and each Lord's health; the
+  trim keeps only the totals, so each row sets gvg.report's match total beside the engine's summed hits.
 - What it says. The danger zone at 250: 157 base res in 135 matches, 156 stay; one dies in 13%, two or more in 8%
   (4 to 8% and 2 to 5% outside it). The hand-off: a flag put down is returned 13% of the time out of range, 24%
   with one enemy in range, 41% with two or more; a returned hand-off costs a third of a flag a minute on and is
@@ -32,36 +33,35 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. The Lord push: his marks on the eight picked rows (file them as set p4 of the key with his words; a Classic row
-   read wrongly is fixed first, at the root), then what they say of the reading: a lone player or two with no
-   monk as a "push", visits under 15 s, the aim (179 of 191 read "Lord damage").
+1. The Lord push: his marks on the eight rows, read from `lord_row_marks.json` (file them as set p4 of the key
+   with his words; a Classic row read wrongly is fixed first, at the root), then what they say of the reading: a
+   lone player or two with no monk as a "push", visits under 15 s, the aim (179 of 191 read "Lord damage").
 2. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558); and with them what a team
    held in its base does in the first seconds of a hold (R-621).
 3. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
    replaced by the win model (the danger zone's sentence then goes on the Game review row), the replaced kinds
    retired, the causal map cleaned, SPEC and METHODS rewritten, the readability test, his list of R-398, the
-   merge, then one Train batch on the same 506 matches (he starts it; keep gvg.report's flag objects, R-481:
-   the second of a return is read from them).
+   merge, then one Train batch on the same 506 matches (he starts it). Before it, one new trim version keeps
+   gvg.report's flag objects (R-481) and its Lord damage record (R-632), and the engine reads both.
 4. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags
    (and from them which builds are the primary defender or the flag runner, R-628).
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Put to him on 2026-11-23, in the chat, for his grade and mark; set out again if he has not answered. The eight
-   Lord push rows (191 in 98 matches; he has graded three): Book v hook 24:57 (hook, six, a kill); hdm v Men 26:23
-   (Men, five against five pit NPCs) and 26:42 (hdm's three meanwhile); Crew v cope 24:44 (cope, read as killing
-   the defenders); hold v BcS 26:59 (BcS, two, no monk); BcS v hold 25:25 (hold, seven for 10 s); Apes v Crew
-   23:26 (Crew, one player); Team v hook 24:02 (hook, eight, wiped). Ids in `/data/model` are the plays' own:
-   `<rid8>-lord-<team>-<second>`.
+1. The eight Lord push rows wait on the page for his grade and mark (R-633; never in the chat). In four the
+   push's summed hits exceed gvg.report's total for the whole match, and BcS's push in hold v BcS 26:59 rests on 5
+   points gvg.report does not count. Offered: one more probe run so the eight rows show gvg.report's own figure
+   for each push now. For his ruling at the rebuild: the stand-in prices read the rebuilt Lord health (10% of it
+   is 9.5 points); read gvg.report's health or its aggressiveness there instead, and the prices move.
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
-  keep gvg.report's flag objects, which `replay_trim.mjs` drops (R-481).
+  keep gvg.report's flag objects and its Lord damage record, which `replay_trim.mjs` drops (R-481, R-632).
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays`. `jobs.py`,
   `moments.py`, the gate, the line-up and `confidence.py` need only Python; `cases.py` needs numpy and scikit-learn
   (`cache.py sync pull`, `warm` only for the fitted models). A full run (`moments.py all`) takes about 11 minutes

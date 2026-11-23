@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, later (a new chat): R-632 and R-633; the Lord push page; gvg.report's Lord damage record probed
+- His word. R-632: Lord damage is read from gvg.report everywhere; aggressiveness decides 28:00, raw damage matters only for the kill; stored figures for now, the refetch at the rebuild. R-633: the Lord push rows go on a page, the eight only; the three reading questions are dropped.
+- One probe run (Book v hook, 19f38ea6). gvg.report's Lord damage record holds its aggressiveness score for each team, every hit on a Lord by the second with Entourage and the Amulet's limit, the pit NPCs' deaths and each Lord's health once a second; the trim keeps only the two totals. It leaves life steal out, which is the whole of the difference from the engine's summed hits there (90 and 185).
+- Stored replays (658): the engine's sum and gvg.report's total differ by more than 5 on 230 of 1,316 Lords; who is ahead at 28:00 is the same by both in all 45 matches that get there.
+- Built on main: Model > Game review, a third view "Lord push" (`review.js`), the eight rows in `data/model/lord_rows.json`, each with gvg.report's match total beside the engine's sum for the push and the match; marks to `data/model/lord_row_marks.json`. On the branch: `tools/golden/review.py lord`. No engine change: no play moves.
+- Seen in the eight rows: in four the push's summed hits exceed gvg.report's total for the whole match; BcS's "push" in hold v BcS 26:59 rests on 5 points gvg.report does not count at all.
+
 ## 2026-11-23, afternoon (the same chat): R-630 and R-631; eight Lord push rows picked
 - His word: a hand-off is as read (R-630); a returned hand-off costs a third of a flag for a minute, the cost of one run (R-631).
 - The Lord push over every match: 191 pushes in 98 of the 105 matches that reach 23:30; more attackers than pit NPCs 153, as many 18, fewer 20; the aim reads "Lord damage" in 179; 55 kill the Lord; 21 last under 15 s; 16 start before 23:30. He has graded three (two Classic, one Visible).

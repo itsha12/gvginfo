@@ -402,14 +402,18 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 
 ## The Lord push
 - A moment of its own from about 23:30, for both sides (R-435). The result is the match: the Lord killed first, or
-  more Lord damage at 28:00 (R-142).
+  more aggressiveness at 28:00 (R-142, R-632).
 - The attackers are the players in the enemy's base, not only those beside the Lord (R-446). They are counted against
   the pit NPCs alive: as many, more, or fewer. The pit NPCs are the Bodyguard, two knights and two archers, and on
   Isle of Solitude the archer by the bridge in each base (R-435, R-140). Taking pit NPCs earlier means fewer players
   are needed at the end to break Entourage (R-148).
 - What is read beside it: one monk or two with the push (R-146); the aim, killing the defenders and the Lord before
-  28:00 or playing for Lord damage (*draft reading*); Lord damage from gvg.report's totals, as a value, not per player
-  (R-435, R-141).
+  28:00 or playing for Lord damage (*draft reading*); Lord damage, as a value, not per player (R-435, R-141).
+- Lord damage is gvg.report's to say, everywhere (R-632): what decides 28:00 is aggressiveness (damage to the enemy
+  Lord, less what a team casts on its own Lord; life steal is no Lord damage), and raw damage matters only for the
+  kill. Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
+  sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
+- Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one
   setting makes the engine stop reading it; medium when it is still read there but its details move, or it goes at
