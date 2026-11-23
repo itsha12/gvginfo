@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks. Later on 2026-11-22 his four answers (R-584 to R-587) were filed on the rows they were put to him with.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks. Later on 2026-11-22 his four answers (R-584 to R-587) were filed on the rows they were put to him with. Set p4 is the picked Lord push rows of Model > Game review > Lord push (R-633; eight rows of seven games, written against engine 50d656d with gvg.report's own Lord figures, his marks in data/model/lord_row_marks.json). Filed 2026-11-23: the four he had marked (three Classic and correct, one Visible and partly: when), each with his words and a check on the play the row is written from. The two rows of hdm v Men (rows 2 and 3) he cannot review (his observer platform) and they stay unmarked; rows 6 and 7 were not marked. With the marks he described the play for 28:00 as one play of both teams and told it apart from a push earlier than 28:00 out of a situation: the Classic checks here hold the rows as he saw them and are written again with that reading when it is built.",
  "version": 1,
  "rows": [
   {
@@ -36240,6 +36240,153 @@
     }
    ],
    "reading": "R-581: told as built before, from the second the flag is taken out of the pit: 'Crew single run (Monk 1); Team single run (8 Monk, handing it to Monk 5 (WoC))' at 10:49."
+  },
+  {
+   "id": "p4-1",
+   "set": "p4",
+   "scheme": 2,
+   "row": 1,
+   "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
+   "match": "Book v hook, Meditation",
+   "window": [
+    1497,
+    1523
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "hook pushes Book's Guild Lord with 6 in the base (2 monks) against 0 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): Ranger, AoB Derv, Hammer, Mesmer, Prot, 7 Monk. Defending (Book): Dervish 1, 7 Monk, 8 Monk. | Book defends with 3, 0 by the end (2 monks). Deaths during it: hook 0, Book 5. Book's Guild Lord is killed in it. | The match is decided by a Lord kill; hook wins. | Lord damage in this push by gvg.report's own record: 1,786 on Book's Lord (85 more is life steal, which gvg.report does not count), 0 of its 58 hits with Entourage up; 0 on hook's Lord meanwhile. | Book cast 2 enchantments or weapon spells on its own Lord during it: 100 off its aggressiveness. | Aggressiveness by gvg.report's count, hook against Book: -200 against 1,233 going in, 1,586 against 1,133 coming out; 1,611 against 1,133 when the match ends. | Book's Lord by gvg.report's estimate: 1,746 of 1,746 health going in, 36 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 1,871 on Book's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 1,811 on Book's Lord, 1,233 on hook's (the engine's summed hits: 1,901 and 1,418).",
+   "grade": "visible",
+   "mark": "partly",
+   "off": [
+    "when"
+   ],
+   "said": "I think the push starts at 23:11 against 4 defending (eventually mes/a leaves and derv is ressed).",
+   "play": "19f38ea6-lord-2-1497-70",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "team": "hook",
+      "start": [
+       1385,
+       1397
+      ]
+     },
+     "want": {
+      "beside.defenders": 4
+     },
+     "why": "Book v hook 24:57 (picked row, Visible, partly: when): 'I think the push starts at 23:11 against 4 defending (eventually mes/a leaves and derv is ressed).' Open: the engine starts it at 24:57 against 3."
+    }
+   ],
+   "reading": "His start is 23:11, 106 s before the engine's (24:57, the first hit on Book's Lord in the stretch) and 19 s before LORD_PUSH_FROM (23:30): the push is read from the hits on the Lord, he reads it from when hook's players are in Book's base against its defenders. Book's pit NPCs die at 23:49 to 23:59 by gvg.report's record, inside his push and before the engine's. Not fixed: the reading under it is to be rebuilt from his description of 2026-11-23 (the play for 28:00 as one play of both teams; a push earlier than 28:00 out of a situation)."
+  },
+  {
+   "id": "p4-4",
+   "set": "p4",
+   "scheme": 2,
+   "row": 4,
+   "rid": "cd870ad3-52e8-5de9-a73a-897015fab0dc",
+   "match": "Crew v cope, Uncharted",
+   "window": [
+    1484,
+    1523
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "cope pushes Crew's Guild Lord with 4 in the base (1 monk, 5 by the end) against 1 pit NPC: more attackers than pit NPCs; playing for killing the defenders | Pushing (cope): AoB Derv, Stand Mes, Hammer, 7 Monk. Defending (Crew): Prot, Stand Mes. | Crew defends with 2 (1 monk). Deaths during it: cope 0, Crew 8. Crew's Guild Lord is killed in it. | The match is decided by a Lord kill; cope wins. | Lord damage in this push by gvg.report's own record: 807 on Crew's Lord (105 more is life steal, which gvg.report does not count), 0 of its 31 hits with Entourage up; 0 on cope's Lord meanwhile. | Crew cast 4 enchantments or weapon spells on its own Lord during it: 200 off its aggressiveness. | Aggressiveness by gvg.report's count, cope against Crew: 1,073 against 0 going in, 1,880 against -200 coming out; 1,961 against -200 when the match ends. | Crew's Lord by gvg.report's estimate: 1,680 of 1,680 health going in, 808 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 937 on Crew's Lord, 0 on cope's meanwhile. Whole match, gvg.report's own total: 2,140 on Crew's Lord, 0 on cope's (the engine's summed hits: 2,236 and 0).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "good read on playing to kill defenders, I agree based on the amount of damage put into defenders.",
+   "play": "cd870ad3-lord-2-1484-97",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "team": "cope",
+      "start": [
+       1478,
+       1490
+      ]
+     },
+     "want": {
+      "aim": "killing the defenders"
+     },
+     "why": "Crew v cope 24:44 (picked row, Classic, correct): 'good read on playing to kill defenders, I agree based on the amount of damage put into defenders.'"
+    }
+   ]
+  },
+  {
+   "id": "p4-5",
+   "set": "p4",
+   "scheme": 2,
+   "row": 5,
+   "rid": "480337e8-5e25-5320-a7ff-45522d1bb4b2",
+   "match": "hold v BcS, Meditation",
+   "window": [
+    1619,
+    1656
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "BcS pushes hold's Guild Lord with 2 in the base (0 monks, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage | Pushing (BcS): Ranger, Ritualist. Defending (hold): Air Ele. | hold defends with 1, 2 by the end (0 monks). Deaths during it: BcS 2, hold 0. | The match is decided by Lord damage at 28:00; hold wins. | Lord damage in this push by gvg.report's own record: 0 on hold's Lord (5 more is life steal, which gvg.report does not count); 2,349 on BcS's Lord meanwhile. | Aggressiveness by gvg.report's count, BcS against hold: 0 against 107 going in, 0 against 2,456 coming out; 0 against 4,324 when the match ends. | hold's Lord by gvg.report's estimate: 1,697 of 1,697 health going in, 1,697 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 5 on hold's Lord, 2,478 on BcS's meanwhile. Whole match, gvg.report's own total: 0 on hold's Lord, 4,324 on BcS's (the engine's summed hits: 10 and 4,569).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "",
+   "play": "480337e8-lord-2-1619-151",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "team": "BcS",
+      "start": [
+       1613,
+       1625
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "why": "hold v BcS 26:59 (picked row, Classic, correct, no words)"
+    }
+   ]
+  },
+  {
+   "id": "p4-8",
+   "set": "p4",
+   "scheme": 2,
+   "row": 8,
+   "rid": "90810e04-6855-5045-a7f4-d32f47815ade",
+   "match": "Team v hook, Uncharted",
+   "window": [
+    1442,
+    1535
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "hook pushes Team's Guild Lord with 8 in the base (3 monks, 1 by the end) against 4 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): AoB Derv, Hammer, Ritualist, Ranger, Mesmer, Prot, 7 Monk, 8 Monk. Defending (Team): AoB Derv, Hammer, Stand Mes, Mes/A, Ritualist, Prot, 7 Monk, 8 Monk. | Team defends with 8, 3 by the end (3 monks). Deaths during it: hook 8, Team 0. | The match is decided by Lord damage at 28:00; Team wins. | Lord damage in this push by gvg.report's own record: 3,384 on Team's Lord (155 more is life steal, which gvg.report does not count), 1 of its 95 hits with Entourage up; 0 on hook's Lord meanwhile. | Team cast 7 enchantments or weapon spells on its own Lord during it: 350 off its aggressiveness. | Aggressiveness by gvg.report's count, hook against Team: -300 against 52 going in, 3,084 against -298 coming out; 184 against 3,675 when the match ends. | Team's Lord by gvg.report's estimate: 1,697 of 1,697 health going in, 1,005 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 3,564 on Team's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 3,525 on Team's Lord, 4,191 on hook's (the engine's summed hits: 3,589 and 4,340).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "good call, I also thing they are playing for Lord damage.",
+   "play": "90810e04-lord-2-1442-135",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "team": "hook",
+      "start": [
+       1436,
+       1448
+      ]
+     },
+     "want": {
+      "aim": "Lord damage"
+     },
+     "why": "Team v hook 24:02 (picked row, Classic, correct): 'good call, I also thing they are playing for Lord damage.'"
+    }
+   ]
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
