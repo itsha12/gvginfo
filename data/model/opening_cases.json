@@ -248,34 +248,6 @@
     111
    ],
    "reads": "too few"
-  },
-  "N18 a team with the stand already its own holds its flag more often than one without": {
-   "first": 0.22857142857142856,
-   "second": 0.304029304029304,
-   "difference": -0.07545787545787544,
-   "range": [
-    -0.1528373680612948,
-    0.0020822446117723112
-   ],
-   "n": [
-    105,
-    273
-   ],
-   "reads": "not clear"
-  },
-  "N19 of the teams that do not hold, one with the stand already its own is better off at 5:00 (if so, having the stand pays whatever is done with the flag)": {
-   "first": 3.454726044125248,
-   "second": -3.8218071610183384,
-   "difference": 7.276533205143586,
-   "range": [
-    1.7503214787444974,
-    12.595120260343696
-   ],
-   "n": [
-    81,
-    189
-   ],
-   "reads": "HOLDS"
   }
  },
  "as_it_fell": {
@@ -1578,264 +1550,264 @@
     }
    }
   },
-  "the stand already ours: hold the flag": {
-   "first": "holds it 15 s or more",
+  "hold: nobody caps while it holds": {
+   "first": "nobody caps while it holds",
    "second": "does not hold",
    "n": [
-    24,
-    81
-   ],
-   "matches": [
-    24,
-    81
-   ],
-   "under_the_floor": true,
-   "results": {
-    "flags at 5:00": {
-     "difference": 0.049185317153799646,
-     "range": [
-      -0.24444620886816484,
-      0.34579191906382734
-     ],
-     "n": [
-      22,
-      72
-     ],
-     "reads": "no reading"
-    },
-    "net kills by 5:00": {
-     "difference": 0.8393438014274008,
-     "range": [
-      -2.1805524836852883,
-      3.6267714918701217
-     ],
-     "n": [
-      23,
-      72
-     ],
-     "reads": "no reading"
-    },
-    "NPCs by 5:00": {
-     "difference": -0.35955350861819396,
-     "range": [
-      -1.6632571475463214,
-      0.7154970991304448
-     ],
-     "n": [
-      23,
-      72
-     ],
-     "reads": "no reading"
-    },
-    "the boosts of 2:00 and 4:00": {
-     "difference": 0.04308527443938328,
-     "range": [
-      -0.223598917322436,
-      0.2926862627700765
-     ],
-     "n": [
-      23,
-      72
-     ],
-     "reads": "no reading"
-    },
-    "chance of winning at 5:00": {
-     "difference": 6.821525603221184,
-     "range": [
-      -0.9032788946381902,
-      14.988635591910903
-     ],
-     "n": [
-      23,
-      81
-     ],
-     "reads": "no reading"
-    },
-    "chance of winning at 8:00": {
-     "difference": 1.0619927541116336,
-     "range": [
-      -9.755505726599885,
-      11.889564552641744
-     ],
-     "n": [
-      24,
-      81
-     ],
-     "reads": "no reading"
-    }
-   }
-  },
-  "the stand not ours: hold the flag": {
-   "first": "holds it 15 s or more",
-   "second": "does not hold",
-   "n": [
-    83,
-    190
-   ],
-   "matches": [
-    74,
-    160
-   ],
-   "under_the_floor": false,
-   "results": {
-    "flags at 5:00": {
-     "difference": 0.17947073241934428,
-     "range": [
-      0.008965359335915708,
-      0.3625212353682042
-     ],
-     "n": [
-      71,
-      170
-     ],
-     "reads": "better"
-    },
-    "net kills by 5:00": {
-     "difference": 1.843254438440845,
-     "range": [
-      0.595599905226147,
-      3.0728141150934585
-     ],
-     "n": [
-      71,
-      171
-     ],
-     "reads": "better"
-    },
-    "NPCs by 5:00": {
-     "difference": 0.31810113634840576,
-     "range": [
-      -0.17966909211143756,
-      0.7868244371529164
-     ],
-     "n": [
-      71,
-      171
-     ],
-     "reads": "no clear difference"
-    },
-    "the boosts of 2:00 and 4:00": {
-     "difference": 0.24302681922621866,
-     "range": [
-      0.1143442571631867,
-      0.37080853860362434
-     ],
-     "n": [
-      71,
-      171
-     ],
-     "reads": "better"
-    },
-    "chance of winning at 5:00": {
-     "difference": 6.695528949478699,
-     "range": [
-      2.1971206613710703,
-      10.479070688923086
-     ],
-     "n": [
-      83,
-      189
-     ],
-     "reads": "better"
-    },
-    "chance of winning at 8:00": {
-     "difference": 5.983268123432257,
-     "range": [
-      1.0439789381130524,
-      11.294751850907884
-     ],
-     "n": [
-      83,
-      189
-     ],
-     "reads": "better"
-    }
-   }
-  },
-  "hold while they do not": {
-   "first": "we hold, they do not",
-   "second": "we do not hold",
-   "n": [
-    74,
+    50,
     271
    ],
    "matches": [
-    74,
+    50,
     200
    ],
    "under_the_floor": false,
    "results": {
     "flags at 5:00": {
-     "difference": 0.16447487782636072,
+     "difference": 0.12583868097020423,
      "range": [
-      -0.019683621024389912,
-      0.3465513375811792
+      -0.07054677344043829,
+      0.31806778945297326
      ],
      "n": [
-      66,
+      43,
       242
      ],
      "reads": "no clear difference"
     },
     "net kills by 5:00": {
-     "difference": 1.8894819783680763,
+     "difference": 0.06295256272726046,
      "range": [
-      0.1597949223180564,
-      3.41531537876185
+      -1.9122215733788954,
+      1.9441012436934064
      ],
      "n": [
-      67,
+      44,
       243
      ],
-     "reads": "better"
+     "reads": "no clear difference"
     },
     "NPCs by 5:00": {
-     "difference": 0.16757403963462633,
+     "difference": 0.0896407178345793,
      "range": [
-      -0.5169191480104273,
-      0.6877729766615314
+      -0.6785125507745199,
+      0.8373947490901006
      ],
      "n": [
-      67,
+      44,
       243
      ],
      "reads": "no clear difference"
     },
     "the boosts of 2:00 and 4:00": {
-     "difference": 0.22255430762786366,
+     "difference": 0.12279926372120786,
      "range": [
-      0.08764076546062465,
-      0.3625129062130584
+      -0.049466455746926145,
+      0.25730144227627627
      ],
      "n": [
-      67,
+      44,
       243
      ],
-     "reads": "better"
+     "reads": "no clear difference"
     },
     "chance of winning at 5:00": {
-     "difference": 7.393270884082096,
+     "difference": 5.604329411380507,
      "range": [
-      3.2554194772314426,
-      11.22341959351213
+      0.26143321559258953,
+      10.418096401918275
      ],
      "n": [
-      73,
+      49,
       270
      ],
      "reads": "better"
     },
     "chance of winning at 8:00": {
-     "difference": 4.640503378742453,
+     "difference": 0.983387286057112,
      "range": [
-      -0.7379321071100298,
-      10.418879359445576
+      -5.657899690525912,
+      8.128830529712511
      ],
      "n": [
-      74,
+      50,
       270
      ],
      "reads": "no clear difference"
+    }
+   }
+  },
+  "hold: they cap while it holds (it waits for them to cap first)": {
+   "first": "they cap while it holds (it waits for them to cap first)",
+   "second": "does not hold",
+   "n": [
+    43,
+    271
+   ],
+   "matches": [
+    43,
+    200
+   ],
+   "under_the_floor": false,
+   "results": {
+    "flags at 5:00": {
+     "difference": 0.26555592788558746,
+     "range": [
+      0.04519773915335515,
+      0.4968014804239525
+     ],
+     "n": [
+      39,
+      242
+     ],
+     "reads": "better"
+    },
+    "net kills by 5:00": {
+     "difference": 3.196724922279019,
+     "range": [
+      2.006171436429928,
+      4.341381666117787
+     ],
+     "n": [
+      39,
+      243
+     ],
+     "reads": "better"
+    },
+    "NPCs by 5:00": {
+     "difference": 0.2787232807718226,
+     "range": [
+      -0.3269789798131089,
+      0.8715611821185708
+     ],
+     "n": [
+      39,
+      243
+     ],
+     "reads": "no clear difference"
+    },
+    "the boosts of 2:00 and 4:00": {
+     "difference": 0.2504926669635692,
+     "range": [
+      0.09799425865519534,
+      0.43302465531057527
+     ],
+     "n": [
+      39,
+      243
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 5:00": {
+     "difference": 8.567677305352204,
+     "range": [
+      4.0584792651582555,
+      13.84314229420844
+     ],
+     "n": [
+      43,
+      270
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 8:00": {
+     "difference": 9.670744745629346,
+     "range": [
+      3.1437452993172466,
+      16.199000894595248
+     ],
+     "n": [
+      43,
+      270
+     ],
+     "reads": "better"
+    }
+   }
+  },
+  "hold: their flag was already up when it began to hold": {
+   "first": "their flag was already up when it began to hold",
+   "second": "does not hold",
+   "n": [
+    14,
+    271
+   ],
+   "matches": [
+    14,
+    200
+   ],
+   "under_the_floor": true,
+   "results": {
+    "flags at 5:00": {
+     "difference": -0.25060413862644737,
+     "range": [
+      -0.5881349156914886,
+      0.06716196241138364
+     ],
+     "n": [
+      11,
+      242
+     ],
+     "reads": "no reading"
+    },
+    "net kills by 5:00": {
+     "difference": 1.6256875068144305,
+     "range": [
+      -1.114586087216689,
+      4.444088898047239
+     ],
+     "n": [
+      11,
+      243
+     ],
+     "reads": "no reading"
+    },
+    "NPCs by 5:00": {
+     "difference": -0.07941199865573881,
+     "range": [
+      -1.09091270983878,
+      0.8680561244665085
+     ],
+     "n": [
+      11,
+      243
+     ],
+     "reads": "no reading"
+    },
+    "the boosts of 2:00 and 4:00": {
+     "difference": 0.19516841500788484,
+     "range": [
+      -0.1258790819355016,
+      0.5104347360817559
+     ],
+     "n": [
+      11,
+      243
+     ],
+     "reads": "no reading"
+    },
+    "chance of winning at 5:00": {
+     "difference": 0.39773101341186035,
+     "range": [
+      -9.933932515528369,
+      9.49213589506027
+     ],
+     "n": [
+      14,
+      270
+     ],
+     "reads": "no reading"
+    },
+    "chance of winning at 8:00": {
+     "difference": -1.7114156674561607,
+     "range": [
+      -12.339044001123105,
+      7.054328782680235
+     ],
+     "n": [
+      14,
+      270
+     ],
+     "reads": "no reading"
     }
    }
   },
@@ -2474,7 +2446,11 @@
   "first flags": 126,
   "on it": 15
  },
- "stand_line": 363.0,
+ "hold_kinds": {
+  "nobody caps while it holds": 50,
+  "they cap while it holds (it waits for them to cap first)": 43,
+  "their flag was already up when it began to hold": 14
+ },
  "both_hold": {
   "openings": 33,
   "matches": 19

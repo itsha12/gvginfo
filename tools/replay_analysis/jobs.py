@@ -101,7 +101,6 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 RES_LOW_HP = 80                        # a player in their base as the res lands is low under this share of his health (Claude's draft, for the record only: no play or test reads it; a player under it dies in the 30 s after about four times as often)
 OPEN_KEYS = ("stand", "split", "back", "waits")
 OPEN_LATER_S = (300, 480)              # the opening is also read 5 and 8 minutes from the gates (R-590: "This plays out in a longer time period"; R-596, R-599: flags and kills at 3:00 and 5:00, the chance of winning at 5:00 and 8:00; 7:00 is "a bit too far out" and is not read)
-OPEN_STAND_S = (10, 20, 30)            # how far each main team stands from the flag stand, this long after the teams meet (R-600: a team holds its flag "because they are already in control of the stand or sometimes they just want to 8v8 without the flag game": who has the stand before anybody caps tells the two apart; for the record only)
 RES_SPOT_S = 40                        # the gamble of the base res (R-601: stay and risk it, or fall out) is read this long before the res, from a team in their base with enemy dead to come back (Claude's draft: twice LEAVE_RES_S, so that a team that falls out before the last 20 s is seen leaving)
 RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a minute after it and three minutes after it
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
@@ -251,10 +250,6 @@ def opening(M):
                             "runners": dict(collections.Counter(x["runner"] for x in rows if x["runner"])), "roles": {k: [role[a] for a in v] for k, v in (("stand", stand), ("split", spl), ("back", back), ("waits", waits))}}
     caps = sorted((u, tm) for tm, u in first_cap.items() if u is not None)
     out["caps"] = caps
-    def stand_d(k, x):                                                     # how far the middle of a team's main team stands from the flag stand
-        c = M.centre([a for a in M.main_team(k, x) if M.AL[a][x]], x)
-        return None if c is None or M.hall is None else int(d(c, M.hall.stand))
-    out["stand_d"] = [[stand_d(k, x) for k in st.teams] for x in (min(t_o + s_, T) - min(t_o + s_, T) % S for s_ in OPEN_STAND_S)]      # [team 1, team 2] at each of OPEN_STAND_S after the teams meet
     fd = min(((td, k) for k in st.teams for a in st.players[k] for td in st.death_times.get(a, []) if td < M.over), default=None)      # the first death of the match and whose (the deaths recorded as the match ends are none)
     out["first_death"] = None if fd is None else [int(fd[0]), fd[1]]
     def team_words(tm):
@@ -299,7 +294,6 @@ def opening_plays(M, K):
                          open={**{k: len(o["teams"][tm][k]) for k in OPEN_KEYS}, "their": {k: len(o["teams"][3 - tm][k]) for k in OPEN_KEYS}, "their_flag": dict(o["teams"][3 - tm]["flag"]),
                                "their_first_cap": o["teams"][3 - tm]["first_cap"], "meet": o["t"], "next": o["teams"][tm]["next"], "their_next": o["teams"][3 - tm]["next"],
                                "runners": o["teams"][tm]["runners"], "roles": o["teams"][tm]["roles"], "their_roles": o["teams"][3 - tm]["roles"],
-                               "stand_d": [[x[tm - 1], x[2 - tm]] for x in o["stand_d"]],      # [ours, theirs]: how far each main team stands from the flag stand 10, 20 and 30 s after the teams meet
                                "first_death": None if o["first_death"] is None else [o["first_death"][0], "own" if o["first_death"][1] == tm else "their"]}))      # what each team can see of the other at the gates (R-590): its players at the stand, on a split, back; its first flag, on whom
     return out
 

@@ -701,7 +701,7 @@
    },
    {
     "game": "hook v Men 6:00",
-    "his": false,
+    "his": null,
     "in_the_family": true,
     "marks": 2,
     "by_shrine": true,
@@ -746,7 +746,7 @@
    "fewer": 76.56502512832566
   },
   "agrees": 7,
-  "of": 8,
+  "of": 7,
   "three_marks": [
    {
     "rid": "3b7bfeac-18e1-5599-af30-b175eeb2ff1e",
@@ -1078,6 +1078,48 @@
      58
     ],
     "reads": "not clear"
+   },
+   "G5 [his guess] a team that stays with morale no higher than theirs (less than 30 above, summed over the eight) loses two or more of its players in the base more often": {
+    "first": 0.08,
+    "second": 0.0334075723830735,
+    "difference": 0.0465924276169265,
+    "range": [
+     -0.002623998017959375,
+     0.10103834337705299
+    ],
+    "n": [
+     75,
+     449
+    ],
+    "reads": "not clear"
+   },
+   "G5b ... and takes more deaths of its own by a minute after the res": {
+    "first": 0.5333333333333333,
+    "second": 0.2650334075723831,
+    "difference": 0.26829992576095024,
+    "range": [
+     0.030134847730666575,
+     0.5085033280849558
+    ],
+    "n": [
+     75,
+     449
+    ],
+    "reads": "HOLDS"
+   },
+   "G5c ... and takes fewer NPCs and kills for it (the two added)": {
+    "first": 3.4133333333333336,
+    "second": 4.55902004454343,
+    "difference": -1.1456867112100961,
+    "range": [
+     -1.7489637309148292,
+     -0.4318036157381743
+    ],
+    "n": [
+     75,
+     449
+    ],
+    "reads": "HOLDS"
    }
   },
   "factors": {
@@ -1202,7 +1244,62 @@
     "before": -0.9004468193914725,
     "under_the_floor": true
    },
-   "the clock: the res of 10:00 or earlier": {
+   "morale, ours less theirs: lower by 30 or more": {
+    "stayed": 27,
+    "fell out": 9,
+    "difference": 22.036375098543935,
+    "range": [
+     6.818400559271926,
+     36.70057995887992
+    ],
+    "before": 7.928009346765417,
+    "under_the_floor": true
+   },
+   "morale, ours less theirs: within 30": {
+    "stayed": 48,
+    "fell out": 14,
+    "difference": 15.655757945994425,
+    "range": [
+     4.904766806470521,
+     29.690093654904164
+    ],
+    "before": 5.645662173453322,
+    "under_the_floor": true
+   },
+   "morale, ours less theirs: higher by 30 to 120": {
+    "stayed": 178,
+    "fell out": 16,
+    "difference": -2.9607349239230105,
+    "range": [
+     -8.434555192184806,
+     2.7270924067027313
+    ],
+    "before": -5.571970661669075,
+    "under_the_floor": true
+   },
+   "morale, ours less theirs: higher by 120 or more": {
+    "stayed": 271,
+    "fell out": 19,
+    "difference": 3.196210207516458,
+    "range": [
+     -1.220019937064948,
+     9.02694523253133
+    ],
+    "before": 2.1948874038935897,
+    "under_the_floor": true
+   },
+   "morale, ours less theirs: not higher (under 30 either way, or lower)": {
+    "stayed": 75,
+    "fell out": 23,
+    "difference": 17.952919894992817,
+    "range": [
+     8.487293195171459,
+     27.29325801334512
+    ],
+    "before": 6.533188857696252,
+    "under_the_floor": true
+   },
+   "the clock (the Amulet of Protection): before the breakpoint (the res of 10:00 or earlier)": {
     "stayed": 303,
     "fell out": 34,
     "difference": 3.8918369513320403,
@@ -1213,20 +1310,16 @@
     "before": 0.9963658764019767,
     "under_the_floor": false
    },
-   "the clock: 12:00 to 20:00": {
-    "stayed": 156,
-    "fell out": 18,
-    "difference": -3.3472590007895393,
+   "the clock (the Amulet of Protection): the res of 12:00 or later": {
+    "stayed": 221,
+    "fell out": 24,
+    "difference": 4.39028797890626,
     "range": [
-     -7.602430892768326,
-     0.7760119722287689
+     -3.428689352379109,
+     12.022614761364913
     ],
-    "before": 0.44523970860220885,
+    "before": 1.2721504167408568,
     "under_the_floor": true
-   },
-   "the clock: 22:00 or later": {
-    "stayed": 65,
-    "fell out": 6
    },
    "the marks (by their shrine, NPCs on them, worn): two or all three": {
     "stayed": 278,
