@@ -2,6 +2,10 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23 (the same chat): R-608 and R-609; nothing built
+- His word: "Nobody capping is no one's decision" (R-608: who caps first is what two teams' choices come to, never a call); the base res is shown and assessed "only ... if teams are in the danger position", a rare family in which teams are not pushed out (R-609).
+- Set out for him in the chat: the opening's decisions as a list with what teams do, what is built for the base res, and the next steps. Found while doing it: two or more of the three marks are on in 294 of 582 spots (208 matches), so the marks are not yet his danger position.
+
 ## 2026-11-22, towards midnight (the same chat): R-603 to R-607; the holds read by who had capped, the clock at 12:00, the morale difference
 - His answers. R-603: for the Amulet of Protection "12 minutes is the breakpoint". R-604: in control of the stand is "having the flag stand captured", "There isn't really a concept of "in control of stand" being closer to stand". R-605: a team gone a middle 12 s before the res has fallen out. R-606: the circumstances are good, "morale difference would be helpful". R-607: hook v Men 6:00, "leave it, it's good".
 - Taken out (branch): the reading of who stands nearer the flag stand and the record under it (`open.stand_d`). The development set's plays are the same but for that key; 313 Classic rows pass.

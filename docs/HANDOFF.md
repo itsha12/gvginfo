@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-22, midnight: R-591 to R-607 answered and built; the opening, base res and push reports written again)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-607. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-609. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   Splits read in both halves, no advice at the matches in hand; no more matches until the engine is ready (R-570).
 - Built this chat (CLAUDE.md says how each is read): the opening judged call by call on flags, kills, NPCs, boosts
@@ -31,8 +31,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. His answers to "Open for Denning" 1, then what they call for; stage 3 for holds; the hand-off told apart (a
-   first flag returned as it changes hands).
+1. His answers to "Open for Denning" 1, then: the opening rebuilt on his list of decisions (R-608), the base res
+   told and assessed only in the danger position (R-609); stage 3 for a team held in its base; the hand-off told
+   apart (a first flag returned as it changes hands).
 2. The Lord push: picked rows from late games.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558).
@@ -45,9 +46,12 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Nothing waits on him from this chat: R-603 to R-607 answered the last five. For him to see when he next looks:
-   the hold that waits for the other team to cap first is where holding pays; the two sides of 12:00 do not differ
-   in what staying is worth; lower morale makes a stay cost more, as he guessed.
+1. Put to him on 2026-11-23, in the chat; set out again if he has not answered:
+   - The opening's decisions as a list (from the gates: eight, a player back, a split; the first flag, on whom;
+     at the stand: cap or hold; hand it on; send a player back before a cap; a split in the first 3:00): what he
+     would add or strike. Then rebuild `cases.py opening` on his list and take `HOLD_KINDS` out (R-608).
+   - The danger position of the base res (R-609): the three marks are on in half the stays, so they are not it.
+     Then tell and assess the base res only there.
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
