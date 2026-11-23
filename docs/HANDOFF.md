@@ -8,10 +8,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, early afternoon: R-615 to R-629; the danger zone at 250, the hand-off record, T13)
+## State (2026-11-23, afternoon: R-615 to R-631; the danger zone at 250, the hand-off record, T13, Lord rows out)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-629. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-631. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   A team held in its base: no family, execution (R-621). Splits read in both halves, no advice at the matches in
   hand; no more matches until the engine is ready (R-570).
@@ -32,7 +32,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. The Lord push: picked rows from late games.
+1. The Lord push: his marks on the eight picked rows (file them as set p4 of the key with his words; a Classic row
+   read wrongly is fixed first, at the root), then what they say of the reading: a lone player or two with no
+   monk as a "push", visits under 15 s, the aim (179 of 191 read "Lord damage").
 2. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558); and with them what a team
    held in its base does in the first seconds of a hold (R-621).
@@ -47,11 +49,12 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Put to him on 2026-11-23, in the chat; set out again if he has not answered:
-   - A hand-off is read as a living player putting the flag down with a team mate within an aggro bubble of it
-     (Claude's draft, under T13 and the cost of a return): is that his hand-off?
-   - A returned hand-off costs a third of a flag a minute on and is made up by three minutes, against his "nearly
-     a whole flag": does that read right to him, as the cost of one run?
+1. Put to him on 2026-11-23, in the chat, for his grade and mark; set out again if he has not answered. The eight
+   Lord push rows (191 in 98 matches; he has graded three): Book v hook 24:57 (hook, six, a kill); hdm v Men 26:23
+   (Men, five against five pit NPCs) and 26:42 (hdm's three meanwhile); Crew v cope 24:44 (cope, read as killing
+   the defenders); hold v BcS 26:59 (BcS, two, no monk); BcS v hold 25:25 (hold, seven for 10 s); Apes v Crew
+   23:26 (Crew, one player); Team v hook 24:02 (hook, eight, wiped). Ids in `/data/model` are the plays' own:
+   `<rid8>-lord-<team>-<second>`.
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

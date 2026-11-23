@@ -434,7 +434,7 @@ against general principles rather than past games. Match-by-match evidence lives
   it fell (+4.1 points of winning at 5:00, +1.0 to +7.2; +8.0 in an 8v8) but is not clear on matches the advice
   never saw; where both teams hold, nothing can be read.
 - `F52` **Denning:** A flag put down is returned when an enemy player picks it up, so a hand-off within the enemy's
-  reach risks the flag: a return probably costs nearly a whole flag of advantage. Common wisdom: a team already up
+  reach risks the flag: a returned hand-off costs about a third of a flag for a minute, the cost of one run. Common wisdom: a team already up
   on flags that runs on a frontliner should hand off to a midline player rather than run it all the way to the
   stand on the frontliner, where the enemy can simply hold its own flag and leave that team a player down, or force
   a hand-off close to them. A flag left on the ground never goes back by itself. Out of range is no enemy player

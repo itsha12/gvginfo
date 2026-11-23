@@ -450,11 +450,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   flag, 3 to 69 s late on RJT v RACK; the put-down carries `first_enemy_s`, the first enemy to stand on it, which has
   those four known returns right, and `returned_soon` (returned with an enemy on it within 15 s, `RETURN_SOON_S`, his
   window, R-629). A hand-off (`handoff`) is a living player putting the flag down with a team mate within an aggro
-  bubble of it: Claude's draft of the word, read before the result. `cases.py handoff <plays file>` (report
+  bubble of it (his reading of the word, R-630), read before the result. `cases.py handoff <plays file>` (report
   `data/model/handoff_cases.json`): A, the record, with X1 and X2 (in range a flag is returned more often: both hold);
   B, a hand-off returned against a flag that lay and was returned later (R-626, "contested v uncontested"), and what
   a returned hand-off costs in flags against one a team mate took up in the same range (a third of a flag a minute
-  on, made up by three minutes; the two do not start level: say so), with his truth T13 (R-629, in
+  on, made up by three minutes, which he has passed as the cost of one run, R-631; the two do not start level), with his truth T13 (R-629, in
   `tools/golden/truths.py`: it reads `flag_cost[rid].flag_hands`, not a play) at 1.5 and at 2 bubbles; C, his first
   point (F52), a later flag run by a frontliner with the stand held at the pickup (R-627: that is his case), run to
   the stand on him against handed on before it; D, his second

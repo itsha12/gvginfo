@@ -2,6 +2,11 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, afternoon (the same chat): R-630 and R-631; eight Lord push rows picked
+- His word: a hand-off is as read (R-630); a returned hand-off costs a third of a flag for a minute, the cost of one run (R-631).
+- The Lord push over every match: 191 pushes in 98 of the 105 matches that reach 23:30; more attackers than pit NPCs 153, as many 18, fewer 20; the aim reads "Lord damage" in 179; 55 kill the Lord; 21 last under 15 s; 16 start before 23:30. He has graded three (two Classic, one Visible).
+- Eight rows picked from October and November games and put to him in the chat for his marks (to be set p4 of the key): Book v hook 24:57, hdm v Men 26:23 and 26:42, Crew v cope 24:44, hold v BcS 26:59, BcS v hold 25:25, Apes v Crew 23:26, Team v hook 24:02. No engine change.
+
 ## 2026-11-23, early afternoon (the same chat): R-626 to R-629; the hand-off returned, his known truth T13
 - His word. R-626: a return costs "all of the above", "contested v uncontested" told apart, and "we just need to measure the flag difference that results from a returned hand-off flag". R-627: the held stand is his case. R-628: the builds are left to the data. R-629: one known truth, in his words.
 - Built (branch): on every put-down `handoff`, `first_enemy_s`, `return_by_s`, `returned_soon` (`RETURN_SOON_S` 15); `cases.py handoff`, B, rewritten; T13 in `truths.py`. 33,371 plays and the records the same as the run before; fifteen truths hold.

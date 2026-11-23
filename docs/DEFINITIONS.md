@@ -132,7 +132,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   primary defender or flag runner going by build (R-624). *As built* (`jobs.flag_hands`, a record beside the plays):
   one record a put-down (who and of which line, dead or not, where, the enemy in range, and what became of it: a
   team mate took it up, its carrier took it up again, returned, left lying) and one a flag life. A hand-off is a
-  living player putting the flag down with a team mate within an aggro bubble of it (Claude's draft). Returned in
+  living player putting the flag down with a team mate within an aggro bubble of it (R-630). A returned hand-off
+  costs about a third of a flag for a minute and is made up within three: the cost of one run (R-631). Returned in
   the next 15 s (R-629) is returned with an enemy player standing on the flag within 15 s of the put-down: an
   estimate until the rebuild keeps the second of a return (R-481). Up on flags, for the frontliner's run, is the
   held stand (R-627). Which builds are the primary defender or flag runner is left to the data (R-628).
