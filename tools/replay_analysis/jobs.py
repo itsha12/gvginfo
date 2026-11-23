@@ -106,8 +106,8 @@ RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a min
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
-RES_WORN = 150                         # heavy damage in the minute before: this much or more a player (R-612, his number: "Let's loosen the damage to 150 damage per player in the minute before"; 300, the upper third in the data, was Claude's draft)
-RES_MORALE_BEHIND = 30                 # morale significantly lower than the enemy's (R-606, R-613: "If you have significantly lower morale than enemy, staying is probably more dangerous"): the eight's morale summed is this much or more under theirs, two deaths' worth of death penalty (Claude's draft; between 6 and 52 it reads the same danger spots on 2026-11-23)
+RES_WORN = 250                         # heavy damage in the minute before: this much or more a player (R-615, his number: "Let's go with 250", when shown that at 150, R-612, the danger zone was in a third of matches and no deadlier than a base res outside it; 300, the upper third in the data, was Claude's draft)
+RES_MORALE_BEHIND = 30                 # morale significantly lower than the enemy's (R-606, R-613: "If you have significantly lower morale than enemy, staying is probably more dangerous"): the eight's morale summed is this much or more under theirs, two deaths' worth of death penalty (Claude's draft, confirmed by him, R-616: "Yes, the draft of 30 or more under is fine")
 RES_LATE_S = 720                       # the res of 12:00 and every res after it (R-603: "12 minutes is the breakpoint", the Amulet of Protection)
 RES_TAKEN_S = 60                       # ... and all damage on them over this long (his "it took a lot of monk energy (i.e. they took a lot of dmg)": energy is not in the replay, damage taken is)
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
@@ -1443,7 +1443,7 @@ def _res_stand(M, tm, ids, u):
     out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
     # The danger spot (R-610, his three factors: "Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before. I think
     # this is the danger spot"): half or more of the players in their base past the shrine, two or more enemy NPCs hitting them, and RES_WORN or more damage a
-    # player in the minute before (150, his number: R-612); for the main team, three or more of it (a res onto a split is another thing, R-595). One reading,
+    # player in the minute before (250, his number: R-615); for the main team, three or more of it (a res onto a split is another thing, R-595). One reading,
     # here: the base res plays and the reports ask for it.
     out["marks"] = [bool(in_) and out.get("past_shrine") is not None and out["past_shrine"] * 2 >= len(in_), out["npcs_hitting"] >= 2, out["taken"] is not None and out["taken"] >= RES_WORN]
     out["danger"] = len(in_) >= 3 and out["of_main"] * 2 > len(in_) and all(out["marks"])
@@ -1466,24 +1466,24 @@ def _res_context(e):
 
 
 def res_factors(M, p):
-    """His three factors of the call in the danger spot (R-613: "morale difference; whether the stand is capped; and 12 minute breakpoint"), from the position the
-    play is told at: the eight's morale summed, ours less theirs, and whether it is RES_MORALE_BEHIND or more under theirs; whether we hold the stand; whether
-    the res is that of 12:00 or a later one. `against`: how many of the three stand against the stay. Taken on his word, ahead of the data (he says so): a
-    record beside the call, no verdict, and the report says what the data shows of each."""
+    """His factors of the call in the danger spot, from the position the play is told at. Two count (R-616: "morale and stand only"): the eight's morale summed,
+    ours less theirs, and whether it is RES_MORALE_BEHIND or more under theirs; and whether we hold the stand. `against`: how many of the two stand against the
+    stay. The 12:00 breakpoint of R-613 is recorded (`late`) and not counted: it showed nothing in the stays. A record beside the call and no verdict (R-617:
+    whether a stay there is a mistake is not known; the engine says what the team stood at, what stood against the stay and what followed)."""
     st, mo = p["at_told"]["state"], p["at_told"]["after"][str(FLAG_AFTER_S[0])]["morale"]
     B = next(b for b in range(RES_EVERY, M.T + RES_EVERY + 1, RES_EVERY) if b > p["t0"])        # the res the play is told for (it is told RES_READ_S before it, or LEAVE_RES_S or less before it)
     f = {"morale": mo[0][0] - mo[1][0], "stand": st["stand"] == "own", "res": B}
     f["morale_behind"] = f["morale"] <= -RES_MORALE_BEHIND; f["late"] = B >= RES_LATE_S
-    f["against"] = int(f["morale_behind"]) + int(not f["stand"]) + int(f["late"])
+    f["against"] = int(f["morale_behind"]) + int(not f["stand"])
     return f
 
 
 def _factor_words(f):
     mor = "morale level with theirs" if f["morale"] == 0 else f"morale {abs(f['morale'])} {'over' if f['morale'] > 0 else 'under'} theirs"
-    words = (mor, "the stand held" if f["stand"] else "the stand not held", "the res of 12:00 or later" if f["late"] else "before 12:00")
-    on = (f["morale_behind"], not f["stand"], f["late"])
+    words = (mor, "the stand held" if f["stand"] else "the stand not held")
+    on = (f["morale_behind"], not f["stand"])
     a, b = [w for w, x in zip(words, on) if x], [w for w, x in zip(words, on) if not x]
-    return ("; against the stay: " + ", ".join(a) + ("; for it: " + ", ".join(b) if b else "")) if a else "; nothing of his three against the stay (" + ", ".join(b) + ")"
+    return ("; against the stay: " + ", ".join(a) + ("; for it: " + ", ".join(b) if b else "")) if a else "; nothing of his two factors against the stay (" + ", ".join(b) + ")"
 
 
 def res_spots(M):

@@ -2226,7 +2226,7 @@ def res_cases(D, M, B):
                  own_morale=mo[0][0], their_morale=mo[1][0], dm=mo[0][0] - mo[1][0], stand=st["stand"] == "own", their_alive=e["alive"][1], monks=e.get("monks") or 0, late=p["t0"] + RES_READ >= 720,
                  gap=m["gap"][p["team"]], fold=m["fold"], won=float(m["winner"] == p["team"]), chance=100 * c["p0"], more=None, held=False)
         if c["danger"] != (p.get("clear") is not False): raise ValueError(f"base res play {p['id']}: the danger spot and the call disagree: run moments.py all again on this engine (R-460)")
-        if c["danger"]:                                                        # his three factors (R-613), read in the engine (`jobs.res_factors`)
+        if c["danger"]:                                                        # his factors (R-613, R-616), read in the engine (`jobs.res_factors`)
             if "factors" not in r: raise ValueError(f"base res play {p['id']} in the danger spot carries no factors: run moments.py all again on this engine (R-460)")
             f_ = r["factors"]; c.update(factors=f_, behind=bool(f_["morale_behind"]), stand=bool(f_["stand"]), late=bool(f_["late"]), against=f_["against"], dm=f_["morale"])
         # the price of a death at this position, as the price of a position reads it (prices that never saw this match): one more death on our side is 15 of
@@ -2240,7 +2240,7 @@ def res_cases(D, M, B):
 
 
 RES_READ = 20                                    # a base res play is told this long before the res (`jobs.RES_READ_S`): the danger spot is read then
-GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (150 damage or more a player in the minute before, R-612)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
+GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (250 damage or more a player in the minute before, R-615)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
 HIS_RES = (("3b7bfeac", 1440, "yM v hook 24:00", True), ("512d445f", 720, "Crew v One 12:00", True), ("33dab8e5", 360, "Men v BcS 6:00", True), ("19f38ea6", 600, "Book v hook 10:00", True),
            ("39e9d728", 480, "DUM v ohno 8:00", True), ("c19f13e3", 600, "Men v NwAy 10:00", True), ("328de049", 960, "Book v cope 16:00", False), ("5527465c", 360, "hook v Men 6:00", None))      # his words of 2026-11-22 on the stays where two or more died: the six that are the greedy stay, one that is a res onto a split, and hook v Men, left as it is read (R-595, R-607)
 DANGER_VARS = ("own chance of winning at that second", "strength gap", "their morale", "our morale", "health of our players in their base", "their players alive", "their dead to come back", "outnumbered in their base once they res",
@@ -2274,14 +2274,15 @@ def spot_cases(D, M):
 
 FACTORS = (("morale", "morale 30 or more under theirs (the eight summed)", "morale not behind", lambda c: c["behind"]),
            ("stand", "the stand not held", "the stand held", lambda c: not c["stand"]),
-           ("clock", "the res of 12:00 or later", "before 12:00", lambda c: c["late"]))
+           ("clock", "the res of 12:00 or later (recorded, not counted: R-616)", "before 12:00", lambda c: c["late"]))      # the first two are the factors of the call (R-616: "morale and stand only"); the clock of R-613 is read beside them and counts for nothing
 
 
 def his_factors(S, g, pr, mn, rng):
-    """E. The call in the danger spot on his three factors (R-613: "morale difference; whether the stand is capped; and 12 minute breakpoint", taken on his word
-    ahead of the data): each factor against the stay beside the stays without it, then by how many of the three stand against the stay."""
+    """E. The call in the danger spot on his factors (R-613, R-616: the morale difference and whether the stand is held count; the 12:00 breakpoint is recorded
+    and not counted): each beside the stays without it, then by how many of the two stand against the stay. No verdict (R-617)."""
     g["factors"] = o = {"each": {}, "against": {}, "checks": {}}
-    pr(f"\nE. The call in the danger spot on his three factors (R-613), taken on his word ahead of the data: morale difference, whether the stand is held, and the 12:00 breakpoint ({len(S)} stays).")
+    pr(f"\nE. The call in the danger spot on his factors (R-613, R-616): the morale difference and whether the stand is held count against a stay; the 12:00 breakpoint is recorded beside them and not counted ({len(S)} stays).")
+    pr("   No verdict is built from them (R-617): whether a stay in the danger spot is a mistake is not known, and falling out cannot be set beside it.")
     pr("   One dies = one of its players in their base, in the 30 s after the res; win pts = the change in its chance of winning 90 s and three minutes on from the reading (90% range over whole matches).")
     pr(f"     {'':52} {'stays':>5}  {'one dies':>16}  {'two or more within 60 s':>23}  {'kills':>5}  {'NPCs':>5}  {'win pts 90 s':>12}  {'win pts 180 s':>22}  {'started at':>10}")
     def row(label, V, into):
@@ -2293,18 +2294,18 @@ def his_factors(S, g, pr, mn, rng):
     row("every stay in the danger spot", S, o["each"])
     for _, on, off, f in FACTORS:
         row(on, [c for c in S if f(c)], o["each"]); row("  " + off, [c for c in S if not f(c)], o["each"])
-    pr("   By how many of the three stand against the stay:")
-    for n_ in (0, 1, 2, 3): row(("none of the three", "one", "two", "all three")[n_], [c for c in S if c["against"] == n_], o["against"])
-    row("two or three", [c for c in S if c["against"] >= 2], o["against"])
+    pr("   By how many of the two (morale behind, the stand not held) stand against the stay:")
+    for n_ in (0, 1, 2): row(("neither", "one", "both")[n_], [c for c in S if c["against"] == n_], o["against"])
+    row("one or both", [c for c in S if c["against"] >= 1], o["against"])
     rd = lambda *a, **k: _reading(pr, o, S, *a, **k)
     pr("   The readings (his factors as he gave them; each a difference between two groups of the stays):")
     for i, (key, on, off, f) in enumerate(FACTORS):
         rd(f"E{2 * i + 1} with {on} a player dies of the res more often", f, lambda c: True, +1, lambda c: c["died"], on.split(" (")[0], off)
         rd(f"E{2 * i + 2} ... and the stay is worse off three minutes on", f, lambda c: True, -1, lambda c: c["v"]["180"], on.split(" (")[0], off, unit=" points")
-    rd("E7 with one or more of the three against it a player dies of the res more often than with none", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["died"], "one or more against", "none")
-    rd("E8 ... and two or more die within 60 s more often", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["two_60"], "one or more against", "none")
-    rd("E9 ... and the stay is worse off three minutes on", lambda c: c["against"] >= 1, lambda c: True, -1, lambda c: c["v"]["180"], "one or more against", "none", unit=" points")
-    rd("E10 with two or more of the three against it the stay is worse off three minutes on than with one or none", lambda c: c["against"] >= 2, lambda c: True, -1, lambda c: c["v"]["180"], "two or more against", "one or none", unit=" points")
+    rd("E7 with morale behind or the stand not held a player dies of the res more often than with neither", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["died"], "one or both against", "neither")
+    rd("E8 ... and two or more die within 60 s more often", lambda c: c["against"] >= 1, lambda c: True, +1, lambda c: c["two_60"], "one or both against", "neither")
+    rd("E9 ... and the stay is worse off three minutes on", lambda c: c["against"] >= 1, lambda c: True, -1, lambda c: c["v"]["180"], "one or both against", "neither", unit=" points")
+    rd("E10 with both against it the stay is worse off three minutes on than with one or neither", lambda c: c["against"] >= 2, lambda c: True, -1, lambda c: c["v"]["180"], "both against", "one or neither", unit=" points")
 
 
 def death_cost(S, g, pr, mn, rng):
@@ -2366,31 +2367,48 @@ def death_cost(S, g, pr, mn, rng):
        f" it takes {mn(S, 'npcs'):.2f} NPCs and loses {o['weighed']['own npcs']:.2f} (footmen among them, which are not priced). A sum of prices, not a comparison with falling out, which almost nobody does.")
 
 
+RES_BEHIND = 30                                  # `jobs.RES_MORALE_BEHIND`, his (R-616): the sentence says the morale difference as a factor from here
+
+
+def res_sentence(r):
+    """The sentence for one base res in the danger zone (R-617, his form: "team X had 70% win chance, but was in danger zone with significant factors against,
+    took 2 deaths and lost -20 points"): where the team stood, what of his two factors stood against the stay (R-616), and what followed. It says what
+    happened and gives no verdict: whether the stay was a mistake is not known, since almost nobody falls out."""
+    foe = next((t for t in r["teams"] if t != r["team"]), "their")
+    ag = [w for w, on in zip((f"morale {-r['morale']} under theirs", "the stand not held"), (r["morale"] <= -RES_BEHIND, not r["stand"])) if on]
+    n, k, pts = r["deaths_60"] or 0, r["kills_90"], r["win_points_180"]
+    lost = "took no deaths" if n == 0 else "took one death" if n == 1 else f"took {n} deaths"      # deaths, as he says it ("took 2 deaths"): a player brought back can die again inside the minute
+    moved = f"{'gained' if pts > 0 else 'lost'} {abs(pts):.0f} point{'' if round(abs(pts)) == 1 else 's'} of its chance of winning" if abs(pts) >= 0.5 else "its chance of winning did not move"
+    ch = round(r["started_at"]); had = f"had {'an' if ch in (8, 11, 18) or 80 <= ch <= 89 else 'a'} {ch}% chance of winning"
+    spot = f"({r['past_shrine']} of {r['n']} past their res shrine, {r['npcs_hitting']} NPCs on them, {r['taken']} damage a player in the minute before)"
+    if r["call"] != RES_CALLS[0]:
+        return (f"{r['team']} {had} and left {foe}'s base before the base res of {cl(r['res'])}, out of the danger zone {spot}, with {', '.join(ag) if ag else 'nothing'} against a stay; "
+                f"it {lost} in the minute after the res, got {k} kill{'' if k == 1 else 's'} in 90 s, and three minutes on {moved}.")
+    return (f"{r['team']} {had} and stayed through {foe}'s base res of {cl(r['res'])} in the danger zone {spot}, with {', '.join(ag) if ag else 'nothing'} against the stay; "
+            f"it {lost} within 60 s of the res, got {k} kill{'' if k == 1 else 's'} in 90 s, and three minutes on {moved}.")
+
+
 def danger_calls(X, M, g, pr):
-    """Every base res in the danger zone with its call and his three factors (R-612: "I would want to see the base res call just for every danger zone base
-    res"): kept whole in the report's file; printed, those with two or more of the three against the stay and those where two or more died."""
+    """Every base res in the danger zone with its call, his two factors (R-616) and its sentence (R-617; R-614: "I would want to see the base res call just for
+    every danger zone base res"): kept whole in the report's file; printed, those with a factor against the stay and those where two or more died."""
     rows = []
     for c in sorted(X, key=lambda c: (M[c["rid"]]["date"], c["rid"], c["t"])):
         m, f = M[c["rid"]], c["factors"]
-        rows.append({"rid": c["rid"], "date": m["date"], "teams": m["teams"], "map": m["map"], "length_s": m["length_s"], "team": c["team"], "res": f["res"], "call": RES_CALLS[0] if c["stayed"] else RES_CALLS[1], "n": c["n"], "past_shrine": c["past"], "npcs_hitting": c["early"]["npcs_hitting"], "taken": c["taken"],
-                     "morale": f["morale"], "stand": f["stand"], "late": f["late"], "against": f["against"], "deaths_30": c["deaths"], "deaths_60": c["deaths_60"], "kills_90": c["kills"], "npcs_90": c["npcs"], "started_at": c["chance"], "win_points_180": c["v"]["180"]})
+        if f["morale_behind"] != (f["morale"] <= -RES_BEHIND): raise ValueError(f"base res {c['rid']} {c['t']}: the morale factor is read on another number than the sentence's: set RES_BEHIND to jobs.RES_MORALE_BEHIND (R-460)")
+        r = {"rid": c["rid"], "date": m["date"], "teams": m["teams"], "map": m["map"], "length_s": m["length_s"], "team": c["team"], "res": f["res"], "call": RES_CALLS[0] if c["stayed"] else RES_CALLS[1], "n": c["n"], "past_shrine": c["past"], "npcs_hitting": c["early"]["npcs_hitting"], "taken": c["taken"],
+             "morale": f["morale"], "stand": f["stand"], "late": f["late"], "against": f["against"], "deaths_30": c["deaths"], "deaths_60": c["deaths_60"], "kills_90": c["kills"], "npcs_90": c["npcs"], "started_at": c["chance"], "win_points_180": c["v"]["180"]}
+        r["sentence"] = res_sentence(r); rows.append(r)
     g["calls"] = rows
-    def line(r):
-        ag = [w for w, on in zip((f"morale {-r['morale']} under theirs", "the stand not held", "12:00 or later"), (r["morale"] <= -30, not r["stand"], r["late"])) if on]
-        return (f"     {r['date']} {' v '.join(r['teams'])}, {r['map']}, {cl(r['length_s'] or 0)} long: {r['team']} at the res of {cl(r['res'])}, {'stayed' if r['call'] == RES_CALLS[0] else 'LEFT before it'}; {r['past_shrine']} of {r['n']} past the shrine, {r['npcs_hitting']} NPCs on them, {r['taken']} damage each;"
-                f" against the stay: {', '.join(ag) or 'nothing'}; {r['deaths_60']} die within 60 s, {r['kills_90']} kills; started at {r['started_at']:.0f}%, then {r['win_points_180']:+.1f}   https://gvg.report/report/{r['rid']}#map")
-    pr(f"\nI. Every base res in the danger zone with its call and his three factors: {len(rows)}, kept whole in the report's file (`danger.calls`). Those with two or more of the three against the stay:")
+    line = lambda r: f"     {r['date']} {' v '.join(r['teams'])}, {r['map']}, {cl(r['length_s'] or 0)} long: {r['sentence']}   https://gvg.report/report/{r['rid']}#map"
+    pr(f"\nI. Every base res in the danger zone as a sentence (R-617): {len(rows)}, kept whole in the report's file (`danger.calls`). What happened and no verdict. Those with a factor against the stay (R-616):")
     for r in rows:
-        if r["against"] >= 2: pr(line(r))
-    pr("   Those with morale 30 or more under theirs:")
+        if r["against"] >= 1: pr(line(r))
+    pr("   Those with neither against it where two or more of the players in their base died within 60 s of the res:")
     for r in rows:
-        if r["morale"] <= -30 and r["against"] < 2: pr(line(r))
-    pr("   Those where two or more of the players in their base died within 60 s of the res:")
-    for r in rows:
-        if (r["deaths_60"] or 0) >= 2: pr(line(r))
-    left = [r for r in rows if r["call"] != RES_CALLS[0]]
+        if (r["deaths_60"] or 0) >= 2 and r["against"] == 0: pr(line(r))
+    left = [r for r in rows if r["call"] != RES_CALLS[0] and r["against"] == 0]
     if left:
-        pr("   Those that left before the res:")
+        pr("   Those that left before the res, with neither against a stay:")
         for r in left: pr(line(r))
 
 
@@ -2437,7 +2455,7 @@ def danger_report(D, M, C, res, pr):
     death_cost(S, g, pr, mn, rng)
     # ---- G. why some die and some do not
     pr(f"\nG. Why some stays in the danger spot take deaths and some do not ({len(S)} stays), by what the team can know before the res. One dies = one of its players in their base, in the 30 s after the res;")
-    pr("   win pts = the change in its chance of winning three minutes on, with the 90% range over whole matches. The three factors are on in every row, so they tell nothing apart here.")
+    pr("   win pts = the change in its chance of winning three minutes on, with the 90% range over whole matches. The three factors of the danger spot are on in every row, so they tell nothing apart here.")
     head = f"     {'':62} {'stays':>5}  {'one dies':>16}  {'two or more within 60 s':>23}  {'kills':>5}  {'NPCs':>5}  {'win pts':>22}  {'started at':>10}"
     pr(head)
     def row(label, V):

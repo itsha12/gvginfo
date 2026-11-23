@@ -24110,11 +24110,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "HC v hdm, Jade (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The danger zone at 150 damage a player is in a third of matches and no deadlier than a base res outside it: keep 150, return to 300, or read 200 and 250? Four more of the base res rows he graded Classic lie outside it at 250.",
+    "said": "Let's go with 250.",
+    "reading": "R-615, with R-614 (\"I don't really need the classic base res rows anymore. We can have them as context\"): told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-af83-9",
@@ -24471,11 +24493,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "HC v hdm, Jade (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       574,
+       586
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The danger zone at 150 damage a player is in a third of matches and no deadlier than a base res outside it: keep 150, return to 300, or read 200 and 250? Four more of the base res rows he graded Classic lie outside it at 250.",
+    "said": "Let's go with 250.",
+    "reading": "R-615, with R-614 (\"I don't really need the classic base res rows anymore. We can have them as context\"): told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-af83-17",
@@ -25616,11 +25660,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "RACK v hdm, Meditation (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The danger zone at 150 damage a player is in a third of matches and no deadlier than a base res outside it: keep 150, return to 300, or read 200 and 250? Four more of the base res rows he graded Classic lie outside it at 250.",
+    "said": "Let's go with 250.",
+    "reading": "R-615, with R-614 (\"I don't really need the classic base res rows anymore. We can have them as context\"): told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-d06e-notes",
@@ -34265,11 +34331,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v NwAy, Corrupted (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "NwAy",
+      "start": [
+       214,
+       226
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The danger zone at 150 damage a player is in a third of matches and no deadlier than a base res outside it: keep 150, return to 300, or read 200 and 250? Four more of the base res rows he graded Classic lie outside it at 250.",
+    "said": "Let's go with 250.",
+    "reading": "R-615, with R-614 (\"I don't really need the classic base res rows anymore. We can have them as context\"): told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-c19f-9",
