@@ -44,9 +44,12 @@ for (const c of cands) {
 for (const d of direct) {
   try {
     const r = await get(BASE + d);
-    let keys = "", picked = null;
-    try { const j = JSON.parse(r.text); if (PICK.length) picked = Object.fromEntries(PICK.map((p) => [p, dig(j, p) ?? null])); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0); } catch {}
-    fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), `${r.status} ${r.type} ${r.text.length} bytes\nKEYS ${keys}\n` + (picked ? JSON.stringify(picked) : r.text.slice(0, 8000000)));
+    let keys = "", picked = null, sizes = "";
+    try { const j = JSON.parse(r.text); if (PICK.length) picked = Object.fromEntries(PICK.map((p) => [p, dig(j, p) ?? null])); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0);
+      // SIZES: where the bytes of a response are, every part of 100 KB or more down to four levels (a summary payload is over 100 MB)
+      const big = []; const size = (o, name, depth) => { const n = JSON.stringify(o)?.length || 0; if (n >= 100000 || depth === 0) { big.push(`${name || "(all)"} ${n}`); if (depth < 4 && o && typeof o === "object" && !Array.isArray(o)) for (const [k, v] of Object.entries(o)) size(v, name ? name + "." + k : k, depth + 1); else if (Array.isArray(o)) big.push(`${name} [${o.length} items]`); } };
+      size(j, "", 0); sizes = big.join("; "); } catch {}
+    fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), `${r.status} ${r.type} ${r.text.length} bytes\nKEYS ${keys}\nSIZES ${sizes}\n` + (picked ? JSON.stringify(picked) : r.text.slice(0, 8000000)));
   } catch (e) { fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), "FAILED " + e.message); }
   await new Promise((s) => setTimeout(s, 1500));
 }
