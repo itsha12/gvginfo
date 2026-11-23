@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, late afternoon (a new chat, docs and the key only): his Lord push marks; R-640 to R-643, the play for 28:00
+- His marks on four of the eight Lord push rows filed as set p4 of the key, his words kept: Crew v cope 24:44, hold v BcS 26:59 and Team v hook 24:02 Classic and correct; Book v hook Visible, partly (when: his start is 23:11 against four defending, the engine's 24:57). The checks are not scored (no replays fetched); they are written from the rows as he saw them.
+- His description, R-640: the play for 28:00 is one play of both teams, whom each sends and whom it keeps, by the Lord damage held, DP and the pit NPCs. R-641: a push before it by a team already in a situation is another kind; the rows sorted and confirmed. R-642: often set before 26:00, about 24:30 his estimate of the earliest; "28" is the end of the match, and a play for 28:00 may end in a kill.
+- From `lord_gvg.json`: in the five picked games that ran to the end the deciding Lord damage began between 26:00 and 27:00, and four of the rows picked from them sat elsewhere; the engine reads hits on a Lord, one row a team, and so cannot tell this play.
+- R-643: the rows of BcS v hold 25:25 and Apes v Crew 23:26 taken off the page unmarked (six remain); hdm v Men he cannot review.
+- Put to him: a push before 28:00 told with its situation and not as a row of its own; more rows only after a draft reading. No engine change.
+
 ## 2026-11-23, later (a new chat, docs only): R-636; gvg.report's prot, knockdown and death-recap data probed
 - No build (his word: things are being built). Probed from the site in the chat, hdm v Men (0f1fd794) and BcS v Apes (04befe7e). The summary holds per skill blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target (the Lord too); what each player received from whom; who stripped each enchantment; and in every death and spike save the healing, prevention, prots up, knockdowns and interrupts on the target. The trim and `extract.mjs` keep none of it.
 - His word, R-636: keep it all at the rebuild with R-481 and R-632 (about 5 to 6 KB gzipped a match, its own file, summaries only fetched again); crits and cast timing stay out.

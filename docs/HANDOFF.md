@@ -8,18 +8,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, later: R-632 to R-635; the Lord push page on gvg.report's own figures)
+## State (2026-11-23, late afternoon: his Lord push marks filed; R-640 to R-643, the play for 28:00)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-635. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-643. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   A team held in its base: no family, execution (R-621). Splits read in both halves, no advice at the matches in
   hand; no more matches until the engine is ready (R-570).
-- Built in this chat (no engine change, no play moved). The Lord push page: Model > Game review, the view "Lord
-  push", the eight picked rows (`data/model/lord_rows.json`, written by `review.py lord` on the branch), his marks
-  to `lord_row_marks.json` (R-633). Lord damage is gvg.report's to say, everywhere (R-632): its record holds each
-  team's aggressiveness (R-634), every hit by the second, Entourage, the pit NPCs and each Lord's health; the trim
-  keeps only the totals, so the record of the seven games is kept in `lord_gvg.json` and each row reads it.
+- This chat (docs and the key only; no engine change). The Lord push page has six rows (R-643): four marked and
+  filed as set p4 of the key (three Classic and correct, Book v hook Visible with his start of 23:11), hdm v Men's
+  two unmarked (he cannot review that game). His description (R-640 to R-642): the play for 28:00 is one play of
+  both teams (whom each sends and keeps); a push before it out of a situation is another kind; "28" is the end of
+  the match, not the clock. gvg.report's record of the seven games is in `lord_gvg.json` (R-632, R-634).
 - What it says. The danger zone at 250: 157 base res in 135 matches, 156 stay; one dies in 13%, two or more in 8%
   (4 to 8% and 2 to 5% outside it). The hand-off: a flag put down is returned 13% of the time out of range, 24%
   with one enemy in range, 41% with two or more; a returned hand-off costs a third of a flag a minute on and is
@@ -33,9 +33,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. The Lord push: his marks on the eight rows, read from `lord_row_marks.json` (file them as set p4 of the key
-   with his words; a Classic row read wrongly is fixed first, at the root), then what they say of the reading: a
-   lone player or two with no monk as a "push", visits under 15 s, the aim (179 of 191 read "Lord damage").
+1. The play for 28:00 (R-640 to R-642), at his go: a draft reading from where the players stand (sent or kept,
+   both teams, one row a match), built at the root in place of the hits on a Lord, tested on hold v BcS 26:59 and
+   hdm v Men (plays for 28:00) and on Book v hook, Crew v cope and Team v hook 24:02 (must not be); then rows of it.
 2. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558); and with them what a team
    held in its base does in the first seconds of a hold (R-621).
@@ -51,10 +51,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. The eight Lord push rows wait on the page for his grade and mark (R-633; never in the chat), each with
-   gvg.report's own figures. Put to him, not yet answered: what the trim keeps of the Lord record at the rebuild.
-   He asked for the aggressiveness counts only; recommended beside them the hits by the second and the health
-   where it changes (3 KB a match, no more to download), without which R-635 cannot be read.
+1. Put to him 2026-11-23, to rule: a push before 28:00 told with the situation it grew out of (recommended) or as
+   a row of its own (R-641); new rows only once the draft reading exists, picked for the shapes not yet seen. Not
+   yet answered from before: what the trim keeps of the Lord record at the rebuild (he asked for the aggressiveness
+   counts only; recommended also the hits by the second and the health where it changes, 3 KB a match, for R-635).
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

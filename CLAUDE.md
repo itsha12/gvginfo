@@ -529,6 +529,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   <main>/data/model/lord_gvg.json`, which reads the matches itself; his marks `data/model/lord_row_marks.json`, to be
   filed as set p4 of the key). Never put Lord push rows to him in the chat for marking, and never write the rows
   again over rows he has marked without saying so.
+  His description of 2026-11-23 (R-640 to R-642), not built: the play for 28:00 is one play of both teams (whom each
+  sends to the enemy's base and whom it keeps, by the Lord damage it holds, its DP and the pit NPCs in each pit), told
+  once; a push on the Lord before it by a team already in a situation, which the enemy often answers by waiting to
+  kill the pushers, is another kind. "28" is the end of the match, not the clock: never pick or tell the play by the
+  match's length or by a Lord kill. Rebuild the reading at the root from where the players stand, never from hits on a
+  Lord, against set p4 (hold v BcS 26:59 a play for 28:00; Book v hook, Crew v cope 24:44 and Team v hook 24:02 not).
 - What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot

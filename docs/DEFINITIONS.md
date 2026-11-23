@@ -401,8 +401,18 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   the snare on the defender (R-121) and the shadow with a snare (R-125; R-434, item 9).
 
 ## The Lord push
-- A moment of its own from about 23:30, for both sides (R-435). The result is the match: the Lord killed first, or
-  more aggressiveness at 28:00 (R-142, R-632).
+- Two kinds of play, told apart (R-640, R-641, amending R-435). The play for 28:00: late in the match each team
+  decides whom it sends to the enemy's base (for the kill, or for the most Lord damage) and whom it keeps to defend
+  (to protect its Lord and hold Lord damage down), by the Lord damage it already has, its DP and the pit NPCs alive
+  in each pit; where the other team makes its own play in answer, the two are one play, told once (R-640). And a
+  push on the Lord before it, by a team already in a situation, which the other team often answers by waiting to
+  kill the pushers and not by a push of its own (R-641; *open: a row of its own, or told with the situation it
+  grew out of*).
+- "28" is the end of the match, not the clock at 28:00 (R-642): a replay may run to 28:14, and a play for 28:00
+  may end in a Lord kill before it, so neither the length of the match nor how it ended tells the play. It is set
+  when the match allows, often before the 26:00 base res; about 24:30 is his estimate of the earliest, not a line.
+- As built it is neither yet: a stretch of hits on a Lord from about 23:30, one row a team (R-435). The result is
+  the match: the Lord killed first, or more aggressiveness at the end (R-142, R-632).
 - The attackers are the players in the enemy's base, not only those beside the Lord (R-446). They are counted against
   the pit NPCs alive: as many, more, or fewer. The pit NPCs are the Bodyguard, two knights and two archers, and on
   Isle of Solitude the archer by the bridge in each base (R-435, R-140). Taking pit NPCs earlier means fewer players
