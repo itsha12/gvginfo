@@ -2,6 +2,16 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, late morning (a new chat): R-615 to R-620; the danger zone at 250, two factors, the sentence
+- His word. R-615: "Let's go with 250." R-616: "morale and stand only", and 30 under is fine. R-617: "We have no idea if it's a mistake or not"; the engine is to say what the team stood at, what stood against the stay and what followed. R-618: Men v BcS and DUM v ohno stay out, "they look distinct (low NPCs in particular)".
+- Built (branch): `RES_WORN` 250; `res_factors` counts morale and the stand, the clock kept as `late`; `cases.res_sentence`, one sentence a danger zone base res (section I, `danger.calls[].sentence`). Development set: 5,620 plays the same but for 104 base res plays (`res`, `unclear`, `scenario`, `clear`).
+- Checkpoint (every counted match): 564 matches, 33,371 plays, no errors; fourteen truths hold; self-check 6 in 4. The key: four more Classic base res rows outside the zone check for context (18 of 25); 313 Classic rows pass.
+- The danger zone at 250 (`cases.py res`): 157 base res in 135 of 564 matches, 156 stayed; one dies in 13% (9 to 18), two or more within 60 s in 8%, against 4 to 8% and 2 to 5% with fewer of the three factors on: now the deadlier spot.
+- The two factors (E): one or both against, 27 stays, one dies 22% and two or more 19%, -4.1 points three minutes on, started at 71%; neither, 129 stays, 11% and 5%, +1.0, started at 95%. The stand not held 24 stays (21%, 17%); morale behind 6. All under the floor of 30.
+- A death (F): two or more die in 12 stays, 14.7 points lower than like stays without (-23.4 to -5.1); one death 2.8 lower, not clear (15). As priced: -0.6 for a team at 90% or more (125 of 156 stays), -5.6 at 50 to 75%. Like spots (H): T1 to T3 not clear at 250.
+- Asked by him and answered in the chat, not built: how a team held in its base is to be read (R-619: probably no decision, wanted for execution), and what the hand-off is built into (R-620: his three points and the rule that a flag put down is returned when an enemy picks it up).
+- Filed: R-615 to R-620, DEFINITIONS, CLAUDE.md, tactics P17 to P20 and F52 to F54, gvg-rules.
+
 ## 2026-11-23, mid-morning (the same chat): R-612 to R-614; the base res a call only in the danger zone, his three factors, what a death costs
 - His word. R-612: heavy damage is "150 damage per player in the minute before". R-613: the factors of the call are "morale difference; whether the stand is capped; and 12 minute breakpoint", ahead of the data; not the chance of winning, not health. R-614: "I would want to see the base res call just for every danger zone base res", the rest "as context".
 - Built (branch): `RES_WORN` 150; a base res outside the danger spot is context with no call (`_res_context`), in it the call carries `res.factors` and says them (`res_factors`). 33,371 plays the same but for base res plays (`clear`, `unclear`, `res`, `scenario`); fourteen truths hold; self-check 6 in 4.

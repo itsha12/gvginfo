@@ -310,29 +310,34 @@ against general principles rather than past games. Match-by-match evidence lives
   res shrine, the NPCs on it and its health: very close to the shrine or deep past it, in the pit with knights,
   archers or footmen on its players, after a long fight that has cost its monks their energy. It can pull out, run a
   flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** the
-  danger spot (half or more of the main team past their res shrine, two or more NPCs hitting them, 150 damage or
-  more a player in the minute before) comes up in 192 of 564 matches; nearly every team stays (242 of 243), one of
-  its players dies in 10% of stays and two or more within a minute in 5%. A death there costs most where the match
-  is still open: about 5 points of the chance of winning a death for a team between 50 and 75%, under 1 for a team
-  at 90% or more; the stays where two or more died ended 16 points lower than like stays where nobody did.
-  [yM v hook] [Crew v One] [Book v hook] [Men v NwAy]
+  danger spot (half or more of the main team past their res shrine, two or more NPCs hitting them, 250 damage or
+  more a player in the minute before) comes up in 135 of 564 matches; nearly every team stays (156 of 157), one of
+  its players dies in 13% of stays and two or more within a minute in 8%, against 4 to 8% and 2 to 5% with fewer of
+  the three on. A death there costs most where the match is still open: about 5 points of the chance of winning a
+  death for a team between 50 and 75%, under 1 for a team at 90% or more; the stays where two or more died ended 15
+  points lower than like stays where nobody did. [yM v hook] [Crew v One] [Book v hook] [Men v NwAy]
 - `P18` **Denning:** Staying through a base res is a gamble. Deep by the shrine, NPCs on the players and heavy
   damage in the minute before are symptoms of staying (low health is not a sign to read: by then they are already
   likely to die); a team that falls out sheds all three: lower damage and time to recover energy, no NPCs on it, out
   of range of the players who base. Against that, the seconds before a base res are a very good chance to take NPCs
   and more kills. His guess: it is usually better to stay and risk it, unless the circumstances say otherwise (the
   build, the flag capped, the NPCs, how many are basing, morale, how late it is for the Amulet of Protection).
-  The engine is to say when staying is the correct or the incorrect call; for now the factors of that call are the
-  morale difference, whether the stand is capped and the 12 minute breakpoint, not the chance of winning (nobody
-  knows it in game) and not health (it goes with death in any situation). **Claude (data, 242 stays in the danger
-  spot):** with one or more of his three against the stay, two or more die within a minute in 8% against 3% with
-  none (+0 to +11); with two against, 14% (21 stays). The stand not held: one dies in 15% against 8%, not clear (39
-  stays). When staying is the wrong call is not yet a verdict: almost nobody falls out to compare with.
+  The factors of the call are the morale difference and whether the stand is capped (the 12 minute breakpoint is
+  noted, not counted), not the chance of winning (nobody knows it in game) and not health (it goes with death in any
+  situation). Whether a stay there is a mistake is not known; his assumption is that staying in the danger zone is
+  usually the correct play, since a kill means little to a team already far ahead and nobody knows that leaving
+  would not cost more. What is wanted is the plain account: the chance the team had, what stood against the stay,
+  the deaths it took and the points it lost. **Claude (data, 156 stays in the danger spot):** with morale behind or
+  the stand not held (27 stays, started at 71%) one dies in 22% and two or more within a minute in 19%, against 11%
+  and 5% with neither (129 stays, started at 95%): under the floor of 30, a size to look at. Almost nobody falls
+  out to compare with.
 - `P19` **Denning:** With significantly lower morale than the enemy, staying through their base res is probably more
   dangerous. For the Amulet of Protection, 12 minutes is the breakpoint. **Claude (data):** a team in the danger
-  spot with morale well under theirs (nine stays, mostly a losing team's last push) loses a player to the res in
-  four of them and two or more in three, against 8% and 4% of the rest: too few to be sure of, and the strongest
-  sign of the three. The two sides of 12:00 do not differ (one dies in 8% from 12:00 on against 10% before it).
+  spot with morale 30 or more under theirs (six stays, mostly a losing team's last push) takes deaths in three of
+  them: too few to be sure of. The two sides of 12:00 do not differ (one dies in 13% on each side).
+- `P20` **Denning:** A team held in its base is probably not making a decision: it is stuck there, and all it can do
+  is try to kill and keep its NPCs up. What matters there is execution: for a team already losing, what it does in
+  that spot that gains or loses win points.
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
@@ -428,6 +433,17 @@ against general principles rather than past games. Match-by-match evidence lives
   nearer the stand is not a kind of control. **Claude (data):** a first flag held 15 s or more at the stand reads better as
   it fell (+4.1 points of winning at 5:00, +1.0 to +7.2; +8.0 in an 8v8) but is not clear on matches the advice
   never saw; where both teams hold, nothing can be read.
+- `F52` **Denning:** A flag put down is returned when an enemy player picks it up, so a hand-off within the enemy's
+  reach risks the flag: a return probably costs nearly a whole flag of advantage. Common wisdom: a team already up
+  on flags that runs on a frontliner should hand off to a midline player rather than run it all the way to the
+  stand on the frontliner, where the enemy can simply hold its own flag and leave that team a player down, or force
+  a hand-off close to them.
+- `F53` **Denning:** Common wisdom at the opening: eight against seven, with their eighth waiting back, a flag that
+  came up on a frontliner should not stay on him; hand it to a midline player out of the enemy's range, where it
+  cannot be returned.
+- `F54` **Denning:** Common wisdom on holding a flag (8v8 with both teams holding, or more than a flag up): hold it
+  on the stand mesmer or another player who is not the primary split defender or the flag runner. Held on the Mes/A,
+  the team has nobody as good to defend a split or to run the next flag.
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
 - `F9` **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
   and each team defends its own flagger with 1 or 2 damage and the 8 monk.

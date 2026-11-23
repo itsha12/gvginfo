@@ -121,6 +121,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   when the second player goes back: until then the first run of the pair is a single run (R-485). A hand-off and a
   double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
   as a single run (R-426).
+- A flag returned (R-620): a flag put down is returned when an enemy player picks it up, which costs nearly a whole
+  flag of advantage (his assumption). What the hand-off is read for: a frontliner up on flags who runs his flag all
+  the way to the stand against one who hands it to a midline player; at the opening, eight against seven, a flag
+  kept on the frontliner against one handed to a midline player out of the enemy's range; and who holds a held flag
+  (the stand mesmer, or a player who is not the primary defender or the flag runner). *Not built:* a return at the
+  hand-off is not yet told apart from a flag lost another way.
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
   a half from 1.3, two flags from 1.7 (R-408, in his units of R-375). Flag position is never judged from who holds the
   stand (R-045). A lead is something a team keeps or gives up for something else (R-412). The runner's cost is no fixed
@@ -261,6 +267,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   pit archers are the archers his hall labels place in the pit; a coming boost is timed from the stand's capture,
   never from another trigger of the same moment; a double run is the pair of runs, the second flag included.
 - Held in its base (pinned): a break-out meets the job only if no player and no pit NPC was lost before it (R-478).
+  It is probably no decision: "the only thing they can do is to try to kill and keep up NPCs"; it is wanted for
+  execution, what a team already losing does there that gains or loses win points (R-619; how it is read is not
+  settled).
   *As built:* held in is the main team on its own ground no further out than its doors with the enemy's main team on
   that ground; a break-out is half the living players, four at least, out past the doors where being held in ends.
 - Which games count: from 1 September 2026, and never a game in which a team fields a henchman (R-476, R-477); a team
@@ -333,22 +342,25 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The base res as a decision (R-592, R-609, R-610, R-614): only in the danger spot. It is the main team's (a res onto
   a split is another thing, R-595), and in it teams are not pushed out. The danger spot is his three factors
   together: half of the team past their res shrine, two or more NPCs attacking them, and heavy damage taken in the
-  minute before, which is 150 damage a player (R-612); low health is not one ("they are already likely to die",
-  R-602). *As built* (one reading, `jobs._res_stand`): three or more of the main team in their base 20 s before the
-  res, half or more of those past the shrine by the walk, two or more enemy NPCs hitting them in the 20 s before,
-  150 or more damage a player in the minute before. A base res in the danger spot is told with its call (stayed
-  through the res, or left before it); every other base res is told as context with no call, saying which part of
-  the danger spot is missing (R-614).
-- The factors of the call in the danger spot (R-613), for now and ahead of the data: the morale difference, whether
-  the stand is capped, and the 12 minute breakpoint (R-603). The chance of winning is not a factor ("we don't know
-  what win chance we have"), nor is health ("it correlates with death regardless of the situation"). *As built*
-  (`jobs.res_factors`, `res.factors` on the play and said on its row): against the stay are morale 30 or more under
-  theirs over the eight (Claude's draft), the stand not held, and the res of 12:00 or later. A record beside the
-  call, no verdict: how the three combine is not ruled.
+  minute before, which is 250 damage a player (R-615, after 150, R-612); low health is not one ("they are already
+  likely to die", R-602). *As built* (one reading, `jobs._res_stand`): three or more of the main team in their base
+  20 s before the res, half or more of those past the shrine by the walk, two or more enemy NPCs hitting them in the
+  20 s before, 250 or more damage a player in the minute before. A base res in the danger spot is told with its call
+  (stayed through the res, or left before it); every other base res is told as context with no call, saying which
+  part of the danger spot is missing (R-614). Men v BcS 6:00 and DUM v ohno 8:00 are outside it and stay out: "they
+  look distinct (low NPCs in particular)" (R-618).
+- The factors of the call in the danger spot (R-613, R-616): the morale difference and whether the stand is capped.
+  Significantly lower morale is 30 or more under theirs over the eight (R-616). The 12 minute breakpoint (R-603) is
+  recorded and not counted. The chance of winning is not a factor ("we don't know what win chance we have"), nor is
+  health ("it correlates with death regardless of the situation"). *As built* (`jobs.res_factors`, `res.factors` on
+  the play and said on its row): against the stay are morale 30 or more under theirs and the stand not held;
+  `against` counts the two, `late` is kept beside them.
 - Staying in the danger spot is a gamble (R-601): falling out takes away the damage, the NPCs and the range of the
-  players who base; staying risks deaths for the NPCs and kills of the seconds before the res. The engine is to say
-  when staying is the correct or the incorrect call (R-610): read on his three factors (R-613), with no verdict
-  yet. What a death costs there is priced (`cases.py res`, F). A team gone a middle 12 s before the res has fallen
+  players who base; staying risks deaths for the NPCs and kills of the seconds before the res. Whether a stay there
+  is a mistake is not known, and his assumption is that staying is usually correct (R-617): the engine gives no
+  verdict. It says, for each danger zone base res, the chance of winning the team had, what stood against the stay,
+  the deaths it took and the points it lost or gained (*as built:* `cases.res_sentence`, section I of `cases.py
+  res`). What a death costs there is priced (`cases.py res`, F). A team gone a middle 12 s before the res has fallen
   out (R-605).
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
