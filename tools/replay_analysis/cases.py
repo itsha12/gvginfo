@@ -2975,7 +2975,7 @@ def handoff(path, out_json=None):
     for c in hand: c["fate"] = "returned within 15 s" if c["returned_soon"] else "returned later" if c["returned"] else "a team mate took it up" if c["then"] == "a team mate took it up" else "its carrier took it up again" if c["then"] == "its carrier took it up again" else "left lying"
     soon = [c for c in live if c["returned_soon"]]
     pr(f"\nB. A hand-off returned, against a flag that lay and was returned later (R-626: \"contested v uncontested\"). A hand-off = a living player puts the flag down with a team mate within an aggro bubble of it")
-    pr(f"   ({len(hand)} of the {len(live)} put-downs; Claude's draft of the word). Returned within 15 s = returned, with an enemy player standing on the flag within 15 s of the put-down: the second of a return is an")
+    pr(f"   ({len(hand)} of the {len(live)} put-downs; his reading of the word, R-630). Returned within 15 s = returned, with an enemy player standing on the flag within 15 s of the put-down: the second of a return is an")
     pr(f"   estimate until the rebuild (R-481); of {len(soon)} such returns {sum(1 for c in soon if c['returned_soon_sure'])} are certain on the latest second it can have gone back too. On RJT v RACK the estimate has all four known returns right.")
     pr("   1. Every returned flag, by how long it lay before an enemy player first stood on it (flags = the change in the tally of R-408 from the put-down; the boost and the player sent back are in the tally):")
     pr(f"     {'':44} {'returns':>7}  {'started at':>10}  {'flags 60 s':>10}  {'flags 90 s':>10}  {'flags 180 s':>11}  {'win pts 180 s':>13}")

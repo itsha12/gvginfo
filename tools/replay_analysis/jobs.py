@@ -1531,7 +1531,7 @@ def flag_hands(M):
                  players within an aggro bubble of it then (R-623: "about an aggro bubble is the correct distance", FIGHT_CLOSE) and the nearest, and what
                  became of the flag: a team mate took it up (and whether that is a hand-off, `Moments.handed_on`, R-580), its carrier took it up again, it
                  was returned, or it was left lying to the end. `handoff`: put down by a living player with a team mate within an aggro bubble of it (a hand-off
-                 tried, whatever came of it; Claude's draft of the word, read before the result). `first_enemy_s`: seconds until a living enemy player first
+                 tried, whatever came of it; his reading of the word, R-630; read before the result). `first_enemy_s`: seconds until a living enemy player first
                  stands on the flag (RETURN_R), the soonest it can have been returned; `return_by_s`: the latest (the last enemy on it before the next pickup
                  at the spawn). `returned_soon`: returned, with an enemy on it within RETURN_SOON_S of the put-down (R-626, R-629: a contested return, a
                  hand-off returned, against a flag that lay and was returned later); `returned_soon_sure` where the latest second is inside it too.
