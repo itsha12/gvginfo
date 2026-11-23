@@ -25,7 +25,7 @@ against general principles rather than past games. Match-by-match evidence lives
 - `W1` A match ends when a Guild Lord dies, when a team resigns, or at the 28:00 tiebreak on Lord damage.
 - `W2` **Denning:** Teams resign when a match is lost (RACK resigned against Men).
 - `W3` The 28:00 tiebreak is aggressiveness: +1 per point of damage to the enemy Lord, -50 per enchantment or weapon
-  spell on your own Lord (GvG match rules page).
+  spell on your own Lord, -300 while he has Entourage up (GvG match rules page).
 - `W4` **Denning:** One of the values of taking pit NPCs during a match is that fewer players need to be sent to the
   enemy base at 28:00 while still breaking Entourage.
 

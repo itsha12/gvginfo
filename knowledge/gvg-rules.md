@@ -22,7 +22,8 @@ Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-gam
 The wiki page is tagged as outdated — verify.
 - +1 per point of damage dealt to the enemy Guild Lord.
 - +30 per attack against the enemy Guild Lord that misses because of Blind.
-- −50 per enchantment or weapon spell cast on your own Guild Lord (can go below 0).
+- −50 per enchantment or weapon spell cast on your own Guild Lord (can go below 0); −300 while he has Entourage up
+  (Denning).
 - Life stealing and Health degeneration are not damage, so they add nothing.
 
 ## Flag stand and morale

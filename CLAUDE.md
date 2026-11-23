@@ -510,16 +510,25 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   aggressiveness, and raw damage matters only for killing the Lord. gvg.report's own record
   (`summary.objectives.guild_lord_damage`: team scores with `lord_damage_equivalent`, every hit, heal and effect on a
   Lord by the second with Entourage and the Amulet's limit, the pit NPCs' deaths, each Lord's health once a second) is
-  dropped by the trim, which keeps only each Lord's total (`lords[].taken`); it leaves life steal out, and the engine's
-  sum of the recorded hits (`Moments.lord_hits`) does not. Not built: at the rebuild one new trim version keeps that
-  record together with the flag objects (R-481), and the engine reads Lord damage, the 28:00 reading and Lord health
-  from it. Until then every Lord damage figure put to him sets gvg.report's match total beside the engine's sum, each
-  named for what it is; never give him the sum, or the health rebuilt by `lord.py`, as gvg.report's. Picked Lord pushes
+  dropped by the trim, which keeps only each Lord's total (`lords[].taken`, flux damage in it); it leaves life steal
+  out, and the engine's sum of the recorded hits (`Moments.lord_hits`) does not. Aggressiveness (R-634) is each point
+  of damage to the enemy Lord, 30 for an attack missed through Blind, less 50 for an enchantment or weapon spell on a
+  team's own Lord, 300 with Entourage up; it rebuilds exactly from the record's event list, a hit counted for the team
+  that dealt it (source "map" is the flux, nobody's). Not built: at the rebuild one new trim version keeps that record
+  together with the flag objects (R-481), and the engine reads Lord damage, the aggressiveness lead and gvg.report's
+  Lord health from it (R-635: health for the kill, the lead for 28:00, in the price of a position). Until then the
+  record is kept for single matches in `data/model/lord_gvg.json` (`tools/golden/review.py lord-record <that file>
+  <probe files>`, from a probe run with the pick `summary.objectives.guild_lord_damage`; about 3 KB a match), and
+  every Lord damage figure put to him is gvg.report's where that file has the match, else its match total set beside
+  the engine's sum, each named for what it is; never give him the sum, or the health rebuilt by `lord.py`, as
+  gvg.report's. The engine's own push window stops at the whole second of its last hit and drops what lands later in
+  that second (hdm v Men 26:42: 344 for 374): left, since the record replaces it. A fetch downloads about 180 MB of
+  replay and 65 to 110 MB of summary a match, and gvg.report serves no smaller Lord damage payload. Picked Lord pushes
   are marked on the site, Model > Game review, the view "Lord push" (`review.js`; rows `data/model/lord_rows.json`,
-  written on the branch by `tools/golden/review.py lord <main>/data/model/lord_rows.json <report id>:<m:ss> ...`, which
-  reads the matches itself; his marks `data/model/lord_row_marks.json`, to be filed as set p4 of the key). Never put
-  Lord push rows to him in the chat for marking, and never write the rows again over rows he has marked without
-  saying so.
+  written on the branch by `tools/golden/review.py lord <main>/data/model/lord_rows.json <report id>:<m:ss> ... --gvg
+  <main>/data/model/lord_gvg.json`, which reads the matches itself; his marks `data/model/lord_row_marks.json`, to be
+  filed as set p4 of the key). Never put Lord push rows to him in the chat for marking, and never write the rows
+  again over rows he has marked without saying so.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

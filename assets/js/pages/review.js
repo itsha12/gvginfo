@@ -380,14 +380,18 @@ const num = (v) => Number(v).toLocaleString("en-CA");
 const lOffBoxes = (m) => `<div class="rv-offs"><span class="muted small">What is off:</span> ${LOFFS.map(([v, t]) => `<label><input type="checkbox" data-off value="${v}"${(m?.off || []).includes(v) ? " checked" : ""}> ${t}</label>`).join("")}</div>`;
 
 function lordRow(r, i, m) {
-  const d = r.damage, dec = isDecision(m), over = d.push[0] > d.match_gvg[0] || d.push[1] > d.match_gvg[1];
-  const cell = (k) => d.unobserved?.[k] ? `<span class="muted" style="grid-column:span 3">not observed in the replay</span>` : `<span>${num(d.push[k])}</span><span><b>${num(d.match_gvg[k])}</b></span><span>${num(d.match_hits[k])}</span>`;
+  const d = r.damage, dec = isDecision(m), g = d.gvg, cols = g ? 4 : 3;
+  // each Lord's line: the push by gvg.report's own record where it is kept, the push as the engine sums the recorded hits, then the whole match both ways
+  const cell = (k) => d.unobserved?.[k] ? `<span class="muted" style="grid-column:span ${cols}">not observed in the replay</span>`
+    : `${g ? `<span><b>${num(g.push[k])}</b></span>` : ""}<span>${num(d.push[k])}</span><span><b>${num(d.match_gvg[k])}</b></span><span>${num(d.match_hits[k])}</span>`;
+  const over = !g && (d.push[0] > d.match_gvg[0] || d.push[1] > d.match_gvg[1]);
   return `<tr class="rv-sit ${lDone(m) ? "rv-done" : "rv-todo"}"><td class="rv-n">${i + 1}</td><td class="rv-t">${clock(r.t0)}–${clock(r.t1)}</td>
     <td><div class="small"><b>${esc(r.teams.join(" v "))}</b>, ${esc(r.date)}, ${esc(r.map)}, ${clock(r.length_s)} long. <a href="https://gvg.report/report/${esc(r.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a> and go to <b>${clock(r.t0)}</b>.</div>
       <div style="margin-top:.3rem"><b>${esc(r.reads)}</b></div>
       ${r.lines.map((x) => `<div>${esc(x)}</div>`).join("")}
-      <div class="rv-ld"><span class="h">Lord damage</span><span class="h">In this push<br><small>engine's sum of the recorded hits</small></span><span class="h">Whole match<br><small>gvg.report's own total</small></span><span class="h">Whole match<br><small>engine's summed hits</small></span>
-        <span>On ${esc(d.lords[0])}'s Lord</span>${cell(0)}<span>On ${esc(d.lords[1])}'s Lord</span>${cell(1)}</div>
+      <div class="rv-ld" style="grid-template-columns:max-content repeat(${cols},minmax(4rem,auto))"><span class="h l">Lord damage</span>${g ? `<span class="h">In this push<br><small>gvg.report's own record</small></span>` : ""}<span class="h">In this push<br><small>engine's sum of the recorded hits</small></span><span class="h">Whole match<br><small>gvg.report's own total</small></span><span class="h">Whole match<br><small>engine's summed hits</small></span>
+        <span class="l">On ${esc(d.lords[0])}'s Lord</span>${cell(0)}<span class="l">On ${esc(d.lords[1])}'s Lord</span>${cell(1)}</div>
+      ${(r.gvg_lines || []).map((x) => `<div>${esc(x)}</div>`).join("")}
       ${over ? `<div class="small rv-not">The push's summed hits come to more than gvg.report counts for the whole match: the engine is counting hits that gvg.report leaves out of Lord damage.</div>` : ""}
       ${r.calls.map((c) => `<div class="muted small"><b>${esc(c.team)}</b> (${esc(c.side)}): ${esc(c.job)}. ${c.met ? "Met" : "Not met"} (${c.tests.map(([ok, t]) => `${esc(t)}: ${ok ? "yes" : "no"}`).join("; ")}).</div>`).join("")}</td>
     <td class="rv-mark" data-id="${esc(r.id)}">${gradeBoxes(r.id, m)}
@@ -410,7 +414,8 @@ async function renderLord(out, keep = false) {
   <p>Lord pushes picked from late games, one row each. Watch each one and grade it as you would a situation of a game: is it a Lord push at all and how clear a one, then whether the engine read it as you do. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
   <details class="rv-terms"><summary>How to read and mark a row</summary><ul class="small">
     <li><b>A Lord push</b>, as the engine reads it: from 23:30, a stretch in which a team damages the enemy's Guild Lord. The row says who is in their base with how many monks, how many of the Lord's pit NPCs (Bodyguard, knights, archers) are alive, who defends, the deaths during it, and how the match was decided.</li>
-    <li><b>Lord damage is gvg.report's to say.</b> The bold column is gvg.report's own Lord damage total for the whole match on each Lord. That is the only figure of gvg.report's kept in the stored replays so far, so the push's own figure is still the engine's sum of the hits gvg.report recorded during it. Where the two whole-match columns differ, the engine is counting hits gvg.report leaves out: on the one match checked so far (Book v hook) the whole difference is life steal, which gvg.report does not count as Lord damage. From the next rebuild the engine reads gvg.report's own record second by second.</li>
+    <li><b>Lord damage is gvg.report's to say.</b> The bold figures are gvg.report's own: its Lord damage in the push and for the whole match. Beside each is the engine's sum of the recorded hits, which is what the engine still reads until the next rebuild. The two differ where gvg.report leaves hits out of Lord damage: life steal, and what the month's flux does to a Lord.</li>
+    <li><b>Aggressiveness</b> is what decides a match at 28:00, as gvg.report counts it: each point of damage to the enemy Lord, 30 for each attack on him missed through Blind, less 50 for each enchantment or weapon spell a team casts on its own Lord, or 300 when its Lord has Entourage up. The row gives each team's count going into the push, coming out of it and at the end of the match. Under Entourage a hit on the Lord does 30 at most, so the row also says how many of the push's hits landed with it up.</li>
     <li><b>Grade the moment as you see it in the game</b>, not the engine's wording of it. <span class="rv-g rv-g-classic on">Classic</span> a textbook Lord push: the engine must read it exactly as you do. <span class="rv-g rv-g-visible on">Visible</span> a real one, but messier. <span class="rv-g rv-g-weak on">Weak</span> technically there, but not something a team would act on. <span class="rv-g rv-g-none on">No decision</span> no Lord push is happening here. <span class="rv-g rv-g-repeat on">Repeat</span> the same push is already told in another row.</li>
     <li>For a Classic, Visible or Weak push, say whether the engine read it: <b>Correct</b>, <b>Partly</b> (tick what is off: the numbers, who, when, what they are playing for) or <b>Incorrect</b> (something else is happening; tick Kind of play). Then say what you see in your own words.</li>
     <li>For a <b>Weak</b> or <b>No decision</b> grade, tick why, as on the games.</li>
@@ -423,7 +428,7 @@ async function renderLord(out, keep = false) {
     <h4 style="margin:.9rem 0 .3rem">Anything else about these Lord pushes</h4>
     <textarea data-lnotes placeholder="Anything that holds for all of them, or a Lord push you would rather have been shown." style="min-height:70px">${esc(notes)}</textarea>
     <div class="row rv-bar"><button class="btn small primary" data-lsave>Save your marks</button></div></section>
-  ${RV_STYLE}<style>.rv-lord td>div{margin-top:.25rem}.rv-lord td>div.rv-ld{display:grid;grid-template-columns:auto repeat(3,minmax(4.5rem,auto));justify-content:start;gap:.15rem 1.2rem;margin:.5rem 0;padding:.3rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.84rem}.rv-ld span{text-align:right}.rv-ld span:nth-child(4n+1){text-align:left}.rv-ld .h{font-weight:600;align-self:end}.rv-ld small{font-weight:400;color:var(--muted)}</style>`;
+  ${RV_STYLE}<style>.rv-lord td>div{margin-top:.25rem}.rv-lord td>div.rv-ld{display:grid;justify-content:start;gap:.15rem .9rem;margin:.5rem 0;padding:.3rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:.84rem}.rv-ld span{text-align:right}.rv-ld span.l{text-align:left;white-space:nowrap}.rv-ld .h{font-weight:600;align-self:end}.rv-ld small{font-weight:400;color:var(--muted)}</style>`;
 
   const redraw = async (focus) => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); if (focus) out.querySelector(`.rv-mark[data-id="${CSS.escape(focus)}"] [data-why]`)?.focus({ preventScroll: true }); };
   const text = Object.fromEntries(R.map((r) => [r.id, r.text]));

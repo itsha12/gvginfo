@@ -409,9 +409,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   are needed at the end to break Entourage (R-148).
 - What is read beside it: one monk or two with the push (R-146); the aim, killing the defenders and the Lord before
   28:00 or playing for Lord damage (*draft reading*); Lord damage, as a value, not per player (R-435, R-141).
-- Lord damage is gvg.report's to say, everywhere (R-632): what decides 28:00 is aggressiveness (damage to the enemy
-  Lord, less what a team casts on its own Lord; life steal is no Lord damage), and raw damage matters only for the
-  kill. Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
+- Lord damage is gvg.report's to say, everywhere (R-632): what decides 28:00 is aggressiveness, and raw damage
+  matters only for the kill. Aggressiveness (R-634): each point of damage to the enemy Lord, 30 for each attack on
+  him missed through Blind, less 50 for each enchantment or weapon spell a team casts on its own Lord, or 300 while
+  he has Entourage up; life steal, and what the month's flux does to a Lord, are no team's Lord damage. At the
+  rebuild the price of a position reads gvg.report's Lord health for the kill and the aggressiveness lead for 28:00
+  (R-635). Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
   sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
