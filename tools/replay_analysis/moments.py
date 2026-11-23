@@ -43,6 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
+from common import END_LOOK_FROM, END_BACK_S, END_ALREADY_S, PLAY28_FROM, LORD_BASE_R as END_BASE_R
 from common import (FLAG_LEFT_S, STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
@@ -155,6 +156,7 @@ class Moments:
         self._eng = {}
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
+        self._ep = None
         self._bu = {}                                         # run record -> (brought up with the team, when it first stands at the stand) (R-505)
         self._hd = None                                       # (player, second): a flag held at home inside his team: a flag in hand, no run (R-576); built by run_starts
         self._pr = None                                       # (player, second): a defender carries his flag about on his own ground: a part-run, not a run (R-535); built by run_starts
@@ -1959,6 +1961,78 @@ class Moments:
         for r in out: r["ids"] = sorted(r["ids"]); r["roles"] = [self.m.roles[a] for a in r["ids"]]; r["dmg"] = round(r["dmg"])
         return sorted(out, key=lambda r: r["t"])
 
+    def _end_place(self, a, t, tm):
+        """Sent, kept or neither at a second (R-640, R-446): sent is on the enemy's ground within END_BASE_R of their Guild Lord, in their base and not only
+        beside him; a player who stops at their footmen or their door has not been sent (R-646: Crew v cope 24:29, his "NO corresponding push")."""
+        if not self.AL[a][t]: return "dead"
+        k, s = self.place_at(a, t)
+        if s is None or k in ("stand", "greater stand", "field"): return "field"
+        if s == self.st.side.get(tm): return "kept"
+        return "sent" if math.dist(self.P[a][t], self.hall.lord[s]) <= END_BASE_R else "field"
+
+    def end_play(self):
+        """The end of the match, one record (R-640 to R-646; R-362: the record is the work). A DRAFT: no play reads it and it moves none (R-647: nothing is
+        told from it until he has marked its rows). His description: late in the match each team decides whom it sends to the enemy's base (for the kill, or
+        for the most Lord damage) and whom it keeps to defend, and where both do so the two are one play. "28" is the end of the match, not the clock (R-642).
+        Read from where the players stand, never from hits on a Lord: at the end of play (the Lord's death, or END_BACK_S before the match is over) every
+        player's last place alive, sent, kept or neither (`_end_place`; a player dead at the end counts where he died), and `since`, when his last unbroken
+        stay there began (other places for JOIN_S or less do not break it; a death does). A team's send is the middle of its sent players' `since`; the
+        arrangement is `set` at the later team's send. `at` is what each team had when the first group went and when it was set (pit NPCs alive, morale
+        summed over the eight, players alive, Lord damage so far by the engine's sum of the recorded hits). `kind` tells a play for 28:00 from a push before
+        it (R-641) by his three signs read together (R-646: early, one team already in the enemy's base, no push in return), kept apart as `killer_send`,
+        `already` and `in_return`: a match run to its end always ends in a play for 28:00; a match ended by a Lord kill holds one only when the team that
+        killed him sent its players at PLAY28_FROM or later (a draft line, his to decide). Where the signs disagree the record says so and decides nothing."""
+        if self._ep is not None: return self._ep
+        st, m = self.st, self.m
+        dead = {tm: next((r[0] / 10 for r in m.o["ev"] if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "guild_lord" and m.A[r[2]].get("team") == tm), None) for tm in st.teams}
+        ltm = next((tm for tm in st.teams if dead[tm] is not None), None)
+        E = min(int(dead[ltm]) if ltm else self.over, 28 * 60, self.T) - (0 if ltm else END_BACK_S)
+        out = {"end": E, "lord_killed": m.tag[ltm] if ltm else None, "teams": [m.tag[tm] for tm in st.teams], "tms": list(st.teams), "map": m.o["meta"].get("map"), "date": self.day, "players": {}}
+        if self.hall is None or E < END_LOOK_FROM + 60:
+            self._ep = dict(out, short=True); return self._ep
+        for tm in st.teams:
+            rec = []
+            for a in st.players[tm]:
+                s = [self._end_place(a, t, tm) for t in range(END_LOOK_FROM, E + 1)]
+                i, died = len(s) - 1, None
+                while i >= 0 and s[i] == "dead": i -= 1
+                if i < 0: rec.append({"id": a, "role": m.roles[a], "place": "dead", "since": None, "died": None}); continue
+                if i < len(s) - 1: died = END_LOOK_FROM + i + 1
+                F, j, first = s[i], i, i
+                while j >= 0:
+                    if s[j] == F: first = j; j -= 1; continue
+                    k = j
+                    while k >= 0 and s[k] != F: k -= 1
+                    if k < 0 or j - k > JOIN_S or "dead" in s[k + 1:j + 1]: break
+                    j = k
+                rec.append({"id": a, "role": m.roles[a], "place": F, "since": END_LOOK_FROM + first, "before": first == 0, "died": died})
+            out["players"][m.tag[tm]] = rec
+        sends = {}
+        for tg, rec in out["players"].items():
+            xs = sorted(r["since"] for r in rec if r["place"] == "sent")
+            sends[tg] = {"sent": len(xs), "kept": sum(1 for r in rec if r["place"] == "kept"), "send": statistics.median(xs) if xs else None, "first": xs[0] if xs else None}
+        out["sends"] = sends
+        ss = [v["send"] for v in sends.values() if v["send"] is not None]
+        out["set"] = max(ss) if ss else None
+        out["shape"] = "both send" if len(ss) == 2 else "one sends" if ss else "neither sends"
+        firsts = [v["first"] for v in sends.values() if v["first"] is not None]
+        out["already"] = bool(ss) and min(firsts) <= out["set"] - END_ALREADY_S          # a team stood in the enemy's base well before the arrangement was set
+        # A match ended by a Lord kill is read on the send of the team that killed him, not on the later team's: one player of the other team reaching
+        # their pit late does not make a push in return (Crew v cope: cope in Crew's base since before 20:00, Crew's Mes/A alone in cope's pit for 9 s at 25:07).
+        killer = next((tg for tg in out["teams"] if tg != out["lord_killed"]), None) if out["lord_killed"] else None
+        out["killer_send"] = sends[killer]["send"] if killer else None
+        out["in_return"] = sends[out["lord_killed"]]["sent"] if killer else None       # how many of the other team were sent in return
+        out["kind"] = None if not ss else "play for 28:00" if not killer or (out["killer_send"] is not None and out["killer_send"] >= PLAY28_FROM) else "push before it"
+        if ss:                                                                           # what each team had when the first group went and when it was set
+            def had(t):
+                t = int(t)
+                return {"t": t, "pit_npcs": [sum(1 for z, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > t) for tm in st.teams],
+                        "morale": [sum(st.morale(a, t) for a in st.players[tm]) for tm in st.teams], "alive": [sum(1 for a in st.players[tm] if self.AL[a][t]) for tm in st.teams],
+                        "lord_damage_by": [round(sum(v for u, _, v in self.lord_hits.get(3 - tm, ()) if u <= t)) for tm in st.teams], "next_res": st.next_res(t)}
+            out["at"] = {"first": had(min(ss)), "set": had(out["set"])}
+        self._ep = out
+        return out
+
     def timing(self):
         """The timing choices the record keeps (R-377, R-400), one record each:
           delayed pickup     the flagger stood at his spawn PICKUP_DELAY_S or longer with an enemy on him before picking up;
@@ -3445,6 +3519,10 @@ if __name__ == "__main__":
         print(f"{brief} pickups dropped within {SERIOUS_CARRY_S} s without a capture (not counted as carries); {bad} matches failed")
     elif a:
         from replaylib import Match
+        if len(a) > 1 and a[1] == "end":                       # the end of the match as the draft record reads it (R-640 to R-646)
+            from state import GameState
+            import common
+            print(json.dumps(Moments(GameState(Match.from_branch(next((r for r in common.replay_ids() if r.startswith(a[0])), a[0])))).end_play(), ensure_ascii=False, indent=1)); sys.exit()
         if len(a) > 1 and a[1] in ("splits", "flags"):         # the records, as kept
             from replaylib import Match
             from state import GameState
