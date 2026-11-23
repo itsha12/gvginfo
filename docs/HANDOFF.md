@@ -43,7 +43,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    replaced by the win model (the danger zone's sentence then goes on the Game review row), the replaced kinds
    retired, the causal map cleaned, SPEC and METHODS rewritten, the readability test, his list of R-398, the
    merge, then one Train batch on the same 506 matches (he starts it). Before it, a new trim keeps gvg.report's flag
-   objects (R-481), Lord damage record (R-632), prot, degen, interrupt and death-recap items (R-636 to R-639), read by the engine;
+   objects (R-481), Lord damage record (R-632) and prot, degen, interrupt and death items (R-636 to R-639);
    who stripped which enchantment is read from our replays (R-637).
 4. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags
    (and from them which builds are the primary defender or the flag runner, R-628).
