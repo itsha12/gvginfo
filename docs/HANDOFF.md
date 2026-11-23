@@ -43,7 +43,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    replaced by the win model (the danger zone's sentence then goes on the Game review row), the replaced kinds
    retired, the causal map cleaned, SPEC and METHODS rewritten, the readability test, his list of R-398, the
    merge, then one Train batch on the same 506 matches (he starts it). Before it, a new trim keeps gvg.report's flag
-   objects (R-481), Lord damage record (R-632) and prot and death-recap items (R-636), and the engine reads them;
+   objects (R-481), Lord damage record (R-632), prot, degen and death-recap items (R-636, R-638), read by the engine;
    who stripped which enchantment is read from our replays (R-637).
 4. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags
    (and from them which builds are the primary defender or the flag runner, R-628).
@@ -61,7 +61,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
-  keep what R-481, R-632 and R-636 list (dropped by `replay_trim.mjs` and `extract.mjs`; R-636 in its own file a match).
+  keep what R-481, R-632, R-636 and R-638 list (dropped by the trim and `extract.mjs`; R-636 in its own file a match).
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays`. `jobs.py`,
   `moments.py`, the gate, the line-up and `confidence.py` need only Python; `cases.py` needs numpy and scikit-learn
   (`cache.py sync pull`, `warm` only for the fitted models). A full run (`moments.py all`) takes about 11 minutes
