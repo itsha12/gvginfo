@@ -437,13 +437,23 @@ against general principles rather than past games. Match-by-match evidence lives
   reach risks the flag: a return probably costs nearly a whole flag of advantage. Common wisdom: a team already up
   on flags that runs on a frontliner should hand off to a midline player rather than run it all the way to the
   stand on the frontliner, where the enemy can simply hold its own flag and leave that team a player down, or force
-  a hand-off close to them.
+  a hand-off close to them. A flag left on the ground never goes back by itself. Out of range is no enemy player
+  within about an aggro bubble. **Claude (data, 4,324 put-downs by a living player):** returned 13% of the time out
+  of range, 24% with one enemy player in range and 41% with two or more. A return against a flag a team mate took up
+  reads -0.16 of a flag 90 s on and -2.8 points of winning, the two not starting level: less than a whole flag. With
+  the stand held at the pickup, a later flag run to the stand on the frontliner (416) and one handed on before it
+  (185) are each returned 6% of the time and do not differ clearly in deaths, flags or the chance of winning; the
+  frontliner's flag is capped a middle 43 s from the pickup against 66 s. A frontliner's hand-off in range is
+  returned half the time.
 - `F53` **Denning:** Common wisdom at the opening: eight against seven, with their eighth waiting back, a flag that
   came up on a frontliner should not stay on him; hand it to a midline player out of the enemy's range, where it
-  cannot be returned.
+  cannot be returned. **Claude (data):** only 23 such openings in 564 matches: kept on the frontliner 8, three
+  returned; handed on 15, one returned. Too few to read.
 - `F54` **Denning:** Common wisdom on holding a flag (8v8 with both teams holding, or more than a flag up): hold it
   on the stand mesmer or another player who is not the primary split defender or the flag runner. Held on the Mes/A,
-  the team has nobody as good to defend a split or to run the next flag.
+  the team has nobody as good to defend a split or to run the next flag. The primary defender goes by build.
+  **Claude (data):** 79 flags held 15 s or longer at the stand before a cap, three on a stand mesmer and six on a
+  Mes/A: too few to read.
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
 - `F9` **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
   and each team defends its own flagger with 1 or 2 damage and the 8 monk.

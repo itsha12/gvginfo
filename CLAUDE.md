@@ -439,16 +439,26 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   not in the replay; `RES_LOW_HP` in `jobs.py` and `RES_LOW` in `cases.py` are Claude's drafts and no play reads them),
   and "base" is not made smaller until he says where the line goes. The opening play carries what the other team showed
   (`open.their`, `their_flag`, `their_first_cap`), the line of the first carrier (`beside.flag.line`, `common.line`) and
-  the record 5 and 8 minutes from the gates (`open.later`, `OPEN_LATER_S`, R-599, with what the price of a position reads). Not yet read: a flag
-  returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded). He has
-  given his word to read it (R-620) and said what it is for (tactics F52 to F54): a frontliner up on flags who runs his
-  flag to the stand against one who hands it to a midline player; at the opening, eight against seven, the flag kept on
-  the frontliner against handed on out of the enemy's range; and who holds a held flag. Build the record of every
-  put-down first (who, where, the enemy within reach, what became of the flag) and read his three points from it; the
-  second of a return is inferred until the rebuild (R-481). A team held in its base is probably no decision and is wanted
-  for execution (R-619): no stage 3 for it, and nothing built until he has said how it is to be read.
+  the record 5 and 8 minutes from the gates (`open.later`, `OPEN_LATER_S`, R-599, with what the price of a position reads). The hand-off and the flag
+  returned (R-620 to R-625): `jobs.flag_hands`, a record kept beside the plays as `flag_cost[rid].flag_hands` (it tells no
+  play and changes none): `lives`, one a flag life (who ran it and of which line, every carrier, when it first stood in
+  hand at the stand and on whom, how long it was held and by whom, how it ended, the position at the pickup and at the
+  start of a hold), and `put_downs`, one a carry that ended on the ground (who and of which line, dead or not, where, the
+  living enemy players within an aggro bubble of it, `enemy_near`, R-623, and what became of it: a team mate took it up,
+  its carrier took it up again, returned, left lying). A flag goes back only when an enemy player picks it up (R-622).
+  The second of a return is not kept: `flag_lives` infers it 3 to 69 s late on RJT v RACK (R-481, for the rebuild); do
+  not read anything from when a flag was returned. `cases.py handoff <plays file>` (report
+  `data/model/handoff_cases.json`): A, the record, with X1 and X2 (in range a flag is returned more often: both hold);
+  B, what a return costs against a flag a team mate took up (it reads -0.16 of a flag, against his "nearly a whole
+  flag": say both, and that the two groups do not start level); C, his first point (F52), a later flag run by a
+  frontliner with the stand held at the pickup, run to the stand on him against handed on before it; D, his second
+  (F53), a first flag on a frontliner at eight against seven, kept or handed on; E, his third (F54), who holds a held
+  flag, the holder named by build (R-624; the groups are Claude's, and which builds are the primary defender or the flag
+  runner beyond the Mes/A is his to say); F, moments to look at. How a flag is carried follows the spot a team is in:
+  none of it is advice. D and E are under the floor at 564 matches. A team held in its base is no decision family and
+  is read as execution with the measurements of R-572 (R-619, R-621): no stage 3 for it.
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
-  out: nothing may differ.
+  out: nothing may differ (`flag_hands` is in `flag_cost`, not in the plays).
   From his answers of 2026-11-22 and 23 (R-591 to R-614), as built now.
   The base res is a call only in the danger zone (R-592, R-609, R-610, R-614): the main team, three or more of it in their
   base, with his three factors on 20 s before the res: half or more of them past their res shrine, two or more enemy NPCs

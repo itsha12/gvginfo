@@ -121,12 +121,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   when the second player goes back: until then the first run of the pair is a single run (R-485). A hand-off and a
   double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
   as a single run (R-426).
-- A flag returned (R-620): a flag put down is returned when an enemy player picks it up, which costs nearly a whole
-  flag of advantage (his assumption). What the hand-off is read for: a frontliner up on flags who runs his flag all
-  the way to the stand against one who hands it to a midline player; at the opening, eight against seven, a flag
-  kept on the frontliner against one handed to a midline player out of the enemy's range; and who holds a held flag
-  (the stand mesmer, or a player who is not the primary defender or the flag runner). *Not built:* a return at the
-  hand-off is not yet told apart from a flag lost another way.
+- A flag returned (R-620, R-622): a flag put down goes back only when an enemy player picks it up, never by itself;
+  his assumption is that it costs nearly a whole flag of advantage. Out of range of the enemy is no enemy player
+  within about an aggro bubble of the put-down (R-623). What the hand-off is read for: a frontliner up on flags who
+  runs his flag all the way to the stand against one who hands it to a midline player; at the opening, eight
+  against seven, a flag kept on the frontliner against one handed on out of range; and who holds a held flag, the
+  primary defender or flag runner going by build (R-624). *As built* (`jobs.flag_hands`, a record beside the plays):
+  one record a put-down (who and of which line, dead or not, where, the enemy in range, and what became of it: a
+  team mate took it up, its carrier took it up again, returned, left lying) and one a flag life. The second of a
+  return is not kept until the rebuild (R-481).
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
   a half from 1.3, two flags from 1.7 (R-408, in his units of R-375). Flag position is never judged from who holds the
   stand (R-045). A lead is something a team keeps or gives up for something else (R-412). The runner's cost is no fixed
@@ -267,9 +270,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   pit archers are the archers his hall labels place in the pit; a coming boost is timed from the stand's capture,
   never from another trigger of the same moment; a double run is the pair of runs, the second flag included.
 - Held in its base (pinned): a break-out meets the job only if no player and no pit NPC was lost before it (R-478).
-  It is probably no decision: "the only thing they can do is to try to kill and keep up NPCs"; it is wanted for
-  execution, what a team already losing does there that gains or loses win points (R-619; how it is read is not
-  settled).
+  It is no decision family: "the only thing they can do is to try to kill and keep up NPCs"; what a team already
+  losing does there that gains or loses win points is read as execution, with the execution measurements (R-619,
+  R-621; not built).
   *As built:* held in is the main team on its own ground no further out than its doors with the enemy's main team on
   that ground; a break-out is half the living players, four at least, out past the doors where being held in ends.
 - Which games count: from 1 September 2026, and never a game in which a team fields a henchman (R-476, R-477); a team

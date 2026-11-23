@@ -2,6 +2,16 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, midday (the same chat): R-621 to R-625; the hand-off record and his three points
+- His word: a team held in its base is read as execution, no family (R-621); a flag goes back "only when an enemy picks it up" (R-622); out of range is "about an aggro bubble" (R-623); the primary defender goes "by built" (R-624); build the record and the readings (R-625).
+- Built (branch): `jobs.flag_hands`, one record a flag life and one a put-down, kept in `flag_cost`; `cases.py handoff` (`handoff_cases.json`). Every counted match: 33,371 plays and the records the same as the run before, no errors.
+- The record: 4,506 put-downs, 182 a carrier dying with it. By a living player: a team mate took it up 2,659, the carrier again 480, returned 800, left lying 385. Returned 13% out of range, 24% with one in range, 41% with two or more (X1 +21%, +19 to +23, holds; X2 holds).
+- A return against a flag a team mate took up: -0.16 of a flag 90 s on (-0.22 to -0.11), -2.8 points three minutes on; not level at the start (37% against 49%). Short of his "nearly a whole flag".
+- His first point (the stand held at the pickup, 711 later flags run by a frontliner): run to the stand on him 416, handed on before it 185; returned 6% each; no clear difference in deaths, flags or the chance of winning. A frontliner's hand-off: returned 24% out of range, 50% in range before the stand.
+- His second: 23 openings of eight against seven with the first flag on a frontliner (kept 8, three returned; handed on 15, one returned). His third: 79 held flags, three on a stand mesmer, six on a Mes/A. Both too few.
+- RJT v RACK: four returned flags in the record, as in gvg.report's list; the second of a return is not kept (R-481).
+- Filed: R-621 to R-625, DEFINITIONS, CLAUDE.md, tactics F52 to F54, gvg-rules.
+
 ## 2026-11-23, late morning (a new chat): R-615 to R-620; the danger zone at 250, two factors, the sentence
 - His word. R-615: "Let's go with 250." R-616: "morale and stand only", and 30 under is fine. R-617: "We have no idea if it's a mistake or not"; the engine is to say what the team stood at, what stood against the stay and what followed. R-618: Men v BcS and DUM v ohno stay out, "they look distinct (low NPCs in particular)".
 - Built (branch): `RES_WORN` 250; `res_factors` counts morale and the stand, the clock kept as `late`; `cases.res_sentence`, one sentence a danger zone base res (section I, `danger.calls[].sentence`). Development set: 5,620 plays the same but for 104 base res plays (`res`, `unclear`, `scenario`, `clear`).
