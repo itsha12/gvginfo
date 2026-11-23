@@ -9,6 +9,30 @@
    "off": [
     "when"
    ]
+  },
+  "s:cd870ad3-lord-2-1484": {
+   "grade": "classic",
+   "why": "good read on playing to kill defenders, I agree based on the amount of damage put into defenders.",
+   "reason": [],
+   "text": "cope pushes Crew's Guild Lord with 4 in the base (1 monk, 5 by the end) against 1 pit NPC: more attackers than pit NPCs; playing for killing the defenders | Pushing (cope): AoB Derv, Stand Mes, Hammer, 7 Monk. Defending (Crew): Prot, Stand Mes. | Crew defends with 2 (1 monk). Deaths during it: cope 0, Crew 8. Crew's Guild Lord is killed in it. | The match is decided by a Lord kill; cope wins. | Lord damage in this push by gvg.report's own record: 807 on Crew's Lord (105 more is life steal, which gvg.report does not count), 0 of its 31 hits with Entourage up; 0 on cope's Lord meanwhile. | Crew cast 4 enchantments or weapon spells on its own Lord during it: 200 off its aggressiveness. | Aggressiveness by gvg.report's count, cope against Crew: 1,073 against 0 going in, 1,880 against -200 coming out; 1,961 against -200 when the match ends. | Crew's Lord by gvg.report's estimate: 1,680 of 1,680 health going in, 808 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 937 on Crew's Lord, 0 on cope's meanwhile. Whole match, gvg.report's own total: 2,140 on Crew's Lord, 0 on cope's (the engine's summed hits: 2,236 and 0).",
+   "mark": "correct",
+   "off": []
+  },
+  "s:480337e8-lord-2-1619": {
+   "grade": "classic",
+   "why": "",
+   "reason": [],
+   "text": "BcS pushes hold's Guild Lord with 2 in the base (0 monks, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage | Pushing (BcS): Ranger, Ritualist. Defending (hold): Air Ele. | hold defends with 1, 2 by the end (0 monks). Deaths during it: BcS 2, hold 0. | The match is decided by Lord damage at 28:00; hold wins. | Lord damage in this push by gvg.report's own record: 0 on hold's Lord (5 more is life steal, which gvg.report does not count); 2,349 on BcS's Lord meanwhile. | Aggressiveness by gvg.report's count, BcS against hold: 0 against 107 going in, 0 against 2,456 coming out; 0 against 4,324 when the match ends. | hold's Lord by gvg.report's estimate: 1,697 of 1,697 health going in, 1,697 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 5 on hold's Lord, 2,478 on BcS's meanwhile. Whole match, gvg.report's own total: 0 on hold's Lord, 4,324 on BcS's (the engine's summed hits: 10 and 4,569).",
+   "mark": "correct",
+   "off": []
+  },
+  "s:90810e04-lord-2-1442": {
+   "grade": "classic",
+   "why": "good call, I also thing they are playing for Lord damage.",
+   "reason": [],
+   "text": "hook pushes Team's Guild Lord with 8 in the base (3 monks, 1 by the end) against 4 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): AoB Derv, Hammer, Ritualist, Ranger, Mesmer, Prot, 7 Monk, 8 Monk. Defending (Team): AoB Derv, Hammer, Stand Mes, Mes/A, Ritualist, Prot, 7 Monk, 8 Monk. | Team defends with 8, 3 by the end (3 monks). Deaths during it: hook 8, Team 0. | The match is decided by Lord damage at 28:00; Team wins. | Lord damage in this push by gvg.report's own record: 3,384 on Team's Lord (155 more is life steal, which gvg.report does not count), 1 of its 95 hits with Entourage up; 0 on hook's Lord meanwhile. | Team cast 7 enchantments or weapon spells on its own Lord during it: 350 off its aggressiveness. | Aggressiveness by gvg.report's count, hook against Team: -300 against 52 going in, 3,084 against -298 coming out; 184 against 3,675 when the match ends. | Team's Lord by gvg.report's estimate: 1,697 of 1,697 health going in, 1,005 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 3,564 on Team's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 3,525 on Team's Lord, 4,191 on hook's (the engine's summed hits: 3,589 and 4,340).",
+   "mark": "correct",
+   "off": []
   }
  },
  "at": "2026-11-23",
