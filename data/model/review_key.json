@@ -13031,11 +13031,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "HC v Team, Imperial (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       1054,
+       1066
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-9b5c-53",
@@ -13098,11 +13120,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "HC v Team, Imperial (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       1174,
+       1186
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-9b5c-notes",
@@ -14584,11 +14628,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v Crew, Jade (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Crew",
+      "start": [
+       1534,
+       1546
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-5168-34",
@@ -17310,11 +17376,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v RACK, Nomad's (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-45cf-16",
@@ -17996,11 +18084,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v RACK, Nomad's (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       814,
+       826
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-45cf-30",
@@ -18189,11 +18299,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v RACK, Nomad's (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       934,
+       946
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-45cf-34",
@@ -22004,11 +22136,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v hold, Meditation (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       1174,
+       1186
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-572c-65",
@@ -22945,9 +23099,10 @@
       ]
      },
      "want": {
-      "clear": null
+      "met": true
      },
-     "auto": true
+     "why": "hold v Men 4:00 (Classic; the call marked incorrect): 'ranger dies on split, not because of base res': the test counted a death of a player who was at home defending a split, not in hold's base. The test now covers the players in the base at the res",
+     "held": "2026-11-18"
     },
     {
      "has": {
@@ -22959,12 +23114,33 @@
       ]
      },
      "want": {
-      "met": true
+      "clear": false
      },
-     "why": "hold v Men 4:00 (Classic; the call marked incorrect): 'ranger dies on split, not because of base res': the test counted a death of a player who was at home defending a split, not in hold's base. The test now covers the players in the base at the res",
-     "held": "2026-11-18"
+     "why": "hold v Men, Uncharted (R-614): a base res outside the danger spot, told as context with no call"
     }
-   ]
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       214,
+       226
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-b870-12",
@@ -25295,11 +25471,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "RACK v hdm, Meditation (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-d06e-9",
@@ -27785,11 +27983,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "hold v RACK, Imperial (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "RACK",
+      "start": [
+       1054,
+       1066
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-d492-44",
@@ -30284,11 +30504,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "HC v cope, Nomad's (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-3d0f-24",
@@ -30784,11 +31026,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "옷옷옷옷 v hdm, Jade (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "옷옷옷옷",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-5317-8",
@@ -34412,11 +34676,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v NwAy, Corrupted (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-c19f-13",
@@ -34980,11 +35266,33 @@
       ]
      },
      "want": {
+      "clear": false
+     },
+     "why": "Men v NwAy, Corrupted (R-614): a base res outside the danger spot, told as context with no call"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "NwAy",
+      "start": [
+       694,
+       706
+      ]
+     },
+     "want": {
       "clear": null
      },
      "auto": true
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-23",
+    "asked": "The base res is a decision only in the danger spot (R-609, R-610); 14 of the base res rows he graded Classic lie outside it at 150 damage a player.",
+    "said": "I don't really need the classic base res rows anymore. We can have them as context but just in general, I would want to see the base res call just for every danger zone base res.",
+    "reading": "R-614: told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   }
   },
   {
    "id": "f1-c19f-27",

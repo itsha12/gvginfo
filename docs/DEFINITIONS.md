@@ -330,20 +330,26 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   health and energy with NPCs on its players, while the enemy resses at nearly full strength. *As built:* a stay
   carries the health of the players in the base as the res lands, how many stand right inside (the pit or the base,
   not a door) and the pit NPCs alive; energy is not in the replay.
-- The base res as a decision (R-592, R-609, R-610): only in the danger spot. It is the main team's (a res onto a
-  split is another thing, R-595), a rare family, and in it teams are not pushed out. The danger spot is his three
-  factors together: half of the team past their res shrine, two or more NPCs attacking them, and heavy damage taken
-  in the minute before; low health is not one ("they are already likely to die", R-602). *As built* (one reading,
-  `jobs._res_stand`): three or more of the main team in their base 20 s before the res, half or more of those past
-  the shrine by the walk, two or more enemy NPCs hitting them in the 20 s before, 300 or more damage a player in the
-  minute before (Claude's draft from the data). The telling of a base res outside it is not yet changed.
+- The base res as a decision (R-592, R-609, R-610, R-614): only in the danger spot. It is the main team's (a res onto
+  a split is another thing, R-595), and in it teams are not pushed out. The danger spot is his three factors
+  together: half of the team past their res shrine, two or more NPCs attacking them, and heavy damage taken in the
+  minute before, which is 150 damage a player (R-612); low health is not one ("they are already likely to die",
+  R-602). *As built* (one reading, `jobs._res_stand`): three or more of the main team in their base 20 s before the
+  res, half or more of those past the shrine by the walk, two or more enemy NPCs hitting them in the 20 s before,
+  150 or more damage a player in the minute before. A base res in the danger spot is told with its call (stayed
+  through the res, or left before it); every other base res is told as context with no call, saying which part of
+  the danger spot is missing (R-614).
+- The factors of the call in the danger spot (R-613), for now and ahead of the data: the morale difference, whether
+  the stand is capped, and the 12 minute breakpoint (R-603). The chance of winning is not a factor ("we don't know
+  what win chance we have"), nor is health ("it correlates with death regardless of the situation"). *As built*
+  (`jobs.res_factors`, `res.factors` on the play and said on its row): against the stay are morale 30 or more under
+  theirs over the eight (Claude's draft), the stand not held, and the res of 12:00 or later. A record beside the
+  call, no verdict: how the three combine is not ruled.
 - Staying in the danger spot is a gamble (R-601): falling out takes away the damage, the NPCs and the range of the
   players who base; staying risks deaths for the NPCs and kills of the seconds before the res. The engine is to say
-  when staying is the correct or the incorrect call (R-610): not built, the reading does not yet hold on unseen
-  matches. What is read: why some stays take deaths and some do not, by the circumstances he names (R-606: the
-  flag, their pit NPCs, their dead to come back, each team's morale and the difference, the clock on either side of
-  12:00, the breakpoint for the Amulet of Protection, R-603, the monks in their base). A team gone a middle 12 s
-  before the res has fallen out (R-605).
+  when staying is the correct or the incorrect call (R-610): read on his three factors (R-613), with no verdict
+  yet. What a death costs there is priced (`cases.py res`, F). A team gone a middle 12 s before the res has fallen
+  out (R-605).
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

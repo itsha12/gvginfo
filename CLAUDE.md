@@ -443,23 +443,30 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   word: a flag returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded).
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
   out: nothing may differ.
-  From his answers of 2026-11-22 and 23 (R-591 to R-611), as built now.
-  The base res is a decision only in the danger spot (R-592, R-609, R-610): the main team, three or more of it in their
+  From his answers of 2026-11-22 and 23 (R-591 to R-614), as built now.
+  The base res is a call only in the danger zone (R-592, R-609, R-610, R-614): the main team, three or more of it in their
   base, with his three factors on 20 s before the res: half or more of them past their res shrine, two or more enemy NPCs
-  hitting them, and heavy damage in the minute before (`RES_WORN`, Claude's draft from the data). One reading, in the
+  hitting them, and 150 or more damage a player in the minute before (`RES_WORN`, his number, R-612). One reading, in the
   engine: `jobs._res_stand` (`marks`, `danger`), on every base res play as `res.early` (20 s before, when staying or
-  leaving is still the team's) and `res.at_res`, and on the res spots. Low health is not a factor (R-602). The telling is
-  not yet changed: outside the danger spot a base res is told as before, and 19 of the 25 base res rows he graded Classic
-  lie outside it: ask him before any play is taken out (R-494). `cases.py res` (`danger_report`): D, where the danger spot
-  is and what a stay there cost and brought, with his eight games (`HIS_RES`; Men v BcS 6:00 and DUM v ohno 8:00 are
-  outside it as he defined it: bring him that, never an exception; hook v Men 6:00 is left as read, R-607); E, why some
-  stays take deaths and some do not, by what the team can know before the res (thirds of the danger spot's own stays; the
-  readings D1 to D8; the clock on either side of 12:00, the breakpoint for the Amulet of Protection, R-603; the morale
-  difference, R-606); F, when the stay is the right call: like spots among the stays with the test on unseen matches (T1
-  to T3), set against holding what the team had, since almost nobody falls out of the danger spot (`jobs.res_spots`, the
-  record 40 s before the res kept beside the plays in `flag_cost[rid]`, R-601, R-605, says who does; the prices are not
-  fitted on it). No reading of F is a verdict until T1 holds: on 2026-11-23 it does not, and the danger spot's stays have
-  too few deaths (15) to carry a fitted input (SPEC 5, rule 3).
+  leaving is still the team's) and `res.at_res`, and on the res spots. Low health is not a factor (R-602). Every other
+  base res is context with no call (`jobs._res_context`: `clear` false, `unclear` saying which part of the danger spot is
+  missing, R-488); the Classic base res rows outside the zone check that in the key, his words under `later` (R-614). The
+  call carries his three factors (R-613, taken on his word ahead of the data: `jobs.res_factors`, `res.factors`, said on
+  the row): morale `RES_MORALE_BEHIND` or more under theirs over the eight (Claude's draft), the stand not held, the res of
+  12:00 or later; `against` counts them. No verdict is built from them and how they combine is his to say; the chance of
+  winning and health are not factors of the call (R-613), though like spots are still set level on them. `cases.py res`
+  (`danger_report`): D, where the danger zone is, with his eight games (`HIS_RES`; Men v BcS 6:00 and DUM v ohno 8:00 are
+  outside it as he defined it, at 150 as at 300: bring him that, never an exception; hook v Men 6:00 is left as read,
+  R-607); E, the call on his three factors, each and by how many stand against the stay (`his_factors`, E1 to E10); F,
+  what a death costs there (`death_cost`: as it fell by how many died, raw and set level on where the team started, and
+  as the price of a position reads one more death, a kill and a pit NPC at that position); G, what else separates the
+  stays that take deaths (thirds of the zone's own stays, D1 to D8); H, like spots among the stays with the test on unseen
+  matches (T1 to T3), set against holding what the team had, since almost nobody falls out (`jobs.res_spots`, the record
+  40 s before the res kept beside the plays in `flag_cost[rid]`, R-601, R-605; the prices are not fitted on it); I, every
+  danger zone base res with its call and factors (`danger.calls` in the report's file). On 2026-11-23, 242 stays: T1 holds
+  for the first time (the stays read worst end 3.6 points lower) but T2 and T3, the deaths, do not, and it sets stays
+  against stays, never against falling out: no verdict from it. A fitted input needs 20 events each (SPEC 5, rule 3): 33
+  stays with a death carry one at most.
   The opening is set out on his seven decisions (R-611; `cases.py opening`): from the gates (`GATES`), the first flag and on
   whom, cap or hold at the stand, hand the flag on, send a player back before a cap (`open.next`), a split in the first
   3:00, and a flag against none. Each is judged on flags and kills first, then the boosts and the chance of winning at 5:00

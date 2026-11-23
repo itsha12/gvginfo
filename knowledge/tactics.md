@@ -310,25 +310,29 @@ against general principles rather than past games. Match-by-match evidence lives
   res shrine, the NPCs on it and its health: very close to the shrine or deep past it, in the pit with knights,
   archers or footmen on its players, after a long fight that has cost its monks their energy. It can pull out, run a
   flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** the
-  danger spot (half or more of the main team past their res shrine, two or more NPCs hitting them, heavy damage in
-  the minute before) comes up in 104 of 564 matches; nearly every team stays (117 of 118), one of its players dies
-  in 13% of stays and two or more within a minute in 9%. [yM v hook] [Crew v One] [Book v hook] [Men v NwAy]
+  danger spot (half or more of the main team past their res shrine, two or more NPCs hitting them, 150 damage or
+  more a player in the minute before) comes up in 192 of 564 matches; nearly every team stays (242 of 243), one of
+  its players dies in 10% of stays and two or more within a minute in 5%. A death there costs most where the match
+  is still open: about 5 points of the chance of winning a death for a team between 50 and 75%, under 1 for a team
+  at 90% or more; the stays where two or more died ended 16 points lower than like stays where nobody did.
+  [yM v hook] [Crew v One] [Book v hook] [Men v NwAy]
 - `P18` **Denning:** Staying through a base res is a gamble. Deep by the shrine, NPCs on the players and heavy
   damage in the minute before are symptoms of staying (low health is not a sign to read: by then they are already
   likely to die); a team that falls out sheds all three: lower damage and time to recover energy, no NPCs on it, out
   of range of the players who base. Against that, the seconds before a base res are a very good chance to take NPCs
   and more kills. His guess: it is usually better to stay and risk it, unless the circumstances say otherwise (the
   build, the flag capped, the NPCs, how many are basing, morale, how late it is for the Amulet of Protection).
-  The engine is to say when staying is the correct or the incorrect call. **Claude (data, 117 stays in the danger
-  spot):** the stays that take deaths are those of a team not far ahead (its chance of winning in the lowest third:
-  two or more die in 23% against 1%) and against an enemy that has not died much (their morale in the highest third:
-  17% against 4%); a team low on health is 5.7 points worse off three minutes on. The three factors themselves, the
-  number basing and the monks in the base tell nothing apart. When staying is the wrong call cannot be said yet: the
-  reading does not hold on unseen matches, and almost nobody falls out to compare with.
+  The engine is to say when staying is the correct or the incorrect call; for now the factors of that call are the
+  morale difference, whether the stand is capped and the 12 minute breakpoint, not the chance of winning (nobody
+  knows it in game) and not health (it goes with death in any situation). **Claude (data, 242 stays in the danger
+  spot):** with one or more of his three against the stay, two or more die within a minute in 8% against 3% with
+  none (+0 to +11); with two against, 14% (21 stays). The stand not held: one dies in 15% against 8%, not clear (39
+  stays). When staying is the wrong call is not yet a verdict: almost nobody falls out to compare with.
 - `P19` **Denning:** With significantly lower morale than the enemy, staying through their base res is probably more
-  dangerous. For the Amulet of Protection, 12 minutes is the breakpoint. **Claude (data):** a team that stays with
-  morale no higher than theirs takes 0.53 deaths by a minute after the res against 0.27 (+0.03 to +0.51) and fewer
-  NPCs and kills (3.41 against 4.56); the two sides of 12:00 do not differ in what staying is worth.
+  dangerous. For the Amulet of Protection, 12 minutes is the breakpoint. **Claude (data):** a team in the danger
+  spot with morale well under theirs (nine stays, mostly a losing team's last push) loses a player to the res in
+  four of them and two or more in three, against 8% and 4% of the rest: too few to be sure of, and the strongest
+  sign of the three. The two sides of 12:00 do not differ (one dies in 8% from 12:00 on against 10% before it).
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]

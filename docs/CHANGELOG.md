@@ -2,6 +2,16 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, mid-morning (the same chat): R-612 to R-614; the base res a call only in the danger zone, his three factors, what a death costs
+- His word. R-612: heavy damage is "150 damage per player in the minute before". R-613: the factors of the call are "morale difference; whether the stand is capped; and 12 minute breakpoint", ahead of the data; not the chance of winning, not health. R-614: "I would want to see the base res call just for every danger zone base res", the rest "as context".
+- Built (branch): `RES_WORN` 150; a base res outside the danger spot is context with no call (`_res_context`), in it the call carries `res.factors` and says them (`res_factors`). 33,371 plays the same but for base res plays (`clear`, `unclear`, `res`, `scenario`); fourteen truths hold; self-check 6 in 4.
+- The key: 14 of his 25 Classic base res rows are outside the zone and now check for context (his words under `later`, first checks retired); 313 Classic rows pass.
+- The danger zone at 150 (`cases.py res`): 243 base res in 192 of 564 matches, 242 stayed; one dies in 10% (6 to 13), two or more within 60 s in 5%: no more deadly than a base res with one or two of the three factors on (8% and 6%), and no longer rare. Men v BcS 6:00 and DUM v ohno 8:00 are still outside it.
+- His three factors (E): morale behind, 9 stays, a death in 4 and two or more in 3 (8% and 4% otherwise); the stand not held, 15% against 8%, not clear (39); 12:00 or later, 8% against 10%. With one or more against, two or more die in 8% against 3% (+0 to +11, holds); two against, 14% (21).
+- A death (F): as the price of a position reads it, -1.4 points on average (190 of 242 stays stand at 90% or more, where it is -0.6), -5.6 for a team at 50 to 75% and -11.4 for two; a kill there +5.2, a pit NPC +4.1. As it fell and set level on where the team started: one death -4.5 (-7.9 to -1.5; 20 stays), two or more -16.5 (-24.0 to -6.9; 13).
+- Like spots (H): T1 holds for the first time (the stays read worst end 3.6 points lower, -7.9 to -0.5), T2 and T3 (the deaths) do not; stays against stays, so no verdict.
+- Filed: R-612 to R-614, DEFINITIONS, CLAUDE.md, tactics P17 to P19.
+
 ## 2026-11-23, later (the same chat): R-610 and R-611; the opening on seven decisions, the base res on the danger spot
 - His answers. R-611: "Proceed with those 7." R-610: the danger spot is his three factors ("Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before"), and the engine is to say "when that is the correct/incorrect call".
 - Built (branch): the danger spot as one reading in the engine (`jobs._res_stand`: `marks`, `danger`, on every base res play and res spot; `RES_WORN` 300). Records only: 33,371 plays the same but for `res`; 313 Classic rows pass; fourteen truths hold; self-check 6 in 4.
