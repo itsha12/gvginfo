@@ -8,18 +8,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, late afternoon: his Lord push marks filed; R-640 to R-647; eight rows of the play for 28:00 to mark)
+## State (2026-11-23, late afternoon: his Lord push marks filed; R-640 to R-648; eight rows to mark; the end record in the engine)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-647. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-648. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   A team held in its base: no family, execution (R-621). Splits read in both halves, no advice at the matches in
   hand; no more matches until the engine is ready (R-570).
 - This chat (no engine change, no play moved). The Lord push page has twelve rows: four marked and filed as set p4
   (R-643, R-645) and eight of the draft, unmarked (R-647, ids `e:<report>-end`, written by `endplay.py rows`). His description (R-640 to R-642, R-644): the play for 28:00 is one play of both teams (whom each
   sends and keeps); a push before it out of a situation is told with that situation; "28" is the end of the match.
-  A draft reading, a tool on the branch (`tools/golden/endplay.py`): each player's last place at the end, sent or
-  kept; his three signs of a push before it and 25:00 as a draft cut (R-646). 42 matches run out, 44 end by a kill.
+  The draft is a record in the engine, `Moments.end_play` (R-648; no play reads it; development set identical, 313
+  Classic pass); `tools/golden/endplay.py` says it. 25:00 is a draft cut (`PLAY28_FROM`). 42 run out, 44 by a kill.
 - What it says. The danger zone at 250: 157 base res in 135 matches, 156 stay; one dies in 13%, two or more in 8%
   (4 to 8% and 2 to 5% outside it). The hand-off: a flag put down is returned 13% of the time out of range, 24%
   with one enemy in range, 41% with two or more; a returned hand-off costs a third of a flag a minute on and is
@@ -34,8 +34,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. The play for 28:00: his marks on the eight draft rows, read from `lord_row_marks.json` and filed in set p4 with
-   his words (the Kind of play tick says where the draft has the kind wrong); then the draft moved into the engine
-   at the root (a record in `moments.py`, the Lord play in `jobs.py` read from it, not from hits), tested on p4.
+   his words; then, with his word on Open 1, `jobs.lord_plays` read from `Moments.end_play` in place of the hits
+   on a Lord: one row a match for the play, a push before it as a Lord line on its pinned row (all 25 have one).
 2. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558); and with them what a team
    held in its base does in the first seconds of a hold (R-621).
@@ -51,10 +51,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Eight draft rows wait on the Lord push page for his grade and mark (R-647; never in the chat). He decides the
-   25:00 line later (R-646, R-647: `CUT` in the tool is a draft; in 16 kill games the killing team's send lies
-   between 24:30 and 25:30). Not yet answered from before: what the trim keeps of the Lord record (he asked for
-   the aggressiveness counts only; recommended also the hits and the health where it changes, R-635).
+1. Eight draft rows wait on the Lord push page (R-647). He decides the 25:00 line later. Put to him 2026-11-23 for
+   the Lord play: three Classic rows are pushes before it (hold v RACK 24:48, Crew v cope 24:44, Team v hook 24:02:
+   keep each as a Lord line on its pinned row, the checks rewritten); Men v Crew 27:03 and 27:20 become one play;
+   27 early Lord visits stop being told. From before: what the trim keeps of the Lord record (R-635).
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

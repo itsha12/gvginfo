@@ -536,15 +536,19 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   match's length or by a Lord kill. Rebuild the reading at the root from where the players stand, never from hits on a
   Lord, against set p4 (hold v BcS 26:59 a play for 28:00; Book v hook, Crew v cope 24:44 and Team v hook 24:02 not).
   A push before it is told with the situation it grew out of, never as a row of its own (R-644). The draft reading is
-  a tool on the branch, `tools/golden/endplay.py <report id>` or `all <out.json>` (report
-  `data/model/end_play_draft.json`): each player's last place alive at the end of play, sent or kept, and since when;
-  nothing in the engine reads it. Sent is within `LORD_BASE_R` of their Lord (R-446): a player who stops at their
+  a record in the engine on the branch, `Moments.end_play` (R-648; `moments.py <report id> end`; settings `END_*` and
+  `PLAY28_FROM` in `common.py`), said by `tools/golden/endplay.py <report id>` or `all <out.json>` (report
+  `data/model/end_play_draft.json`): each player's last place alive at the end of play, sent or kept, and since when,
+  and what each team had when the groups went; no play reads it. Sent is within `LORD_BASE_R` of their Lord (R-446): a player who stops at their
   footmen is not sent. What tells a push before it is his three signs together (R-646): early (25:00 is his "maybe",
   `CUT` in the tool, his to confirm), one team already in the enemy's base, no push in return; the tool reads a match
   ended by a Lord kill on the killing team's send. The signs disagree in about a third of the pushes before it. Eight
   rows of the draft are on the page for his marks (R-647: `endplay.py rows <main>/data/model/lord_rows.json <report
-  id>=<why picked>`, ids `e:<report>-end`, added and never rewritten); he decides the 25:00 line later. Move nothing
-  into `moments.py` or `jobs.py` until he has marked them.
+  id>=<why picked>`, ids `e:<report>-end`, added and never rewritten); he decides the 25:00 line later. `jobs.lord_plays`
+  still reads hits on a Lord: change it only with his marks on those rows and his word on the three Classic rows the
+  record reads as pushes before it (hold v RACK 24:48, Crew v cope 24:44, Team v hook 24:02) and on Men v Crew 27:03
+  and 27:20 becoming one play. Every push before it has a pinned row over it to be told with (R-644). The p4 games are
+  not in the development set: their checks are scored only on a run of every match.
 - What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot
