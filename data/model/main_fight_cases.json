@@ -1,117 +1,117 @@
 {
- "cases": 2332,
+ "cases": 2351,
  "skipped": {
-  "no told split on the enemy's ground in the first 20 s (players on their way, or the whole team's turn)": 488,
+  "no told split on the enemy's ground in the first 20 s (players on their way, or the whole team's turn)": 492,
   "no clear decision (the numbers never held, or a player counted twice)": 308,
-  "flag lead not read": 40,
   "a split of each team out at once (a trade): too few to read apart": 210,
+  "flag lead not read": 21,
   "no winner recorded": 5,
   "no main team alive 20 s in, or the match over": 2
  },
  "counts": {
   "Up at the main fight, their split in our base": {
-   "cases": 853,
-   "matches": 326,
-   "the split still on its way as the numbers are told": 137
+   "cases": 860,
+   "matches": 329,
+   "the split still on its way as the numbers are told": 139
   },
   "Down at the main fight, our split out": {
-   "cases": 754,
-   "matches": 299,
-   "the split still on its way as the numbers are told": 124
+   "cases": 759,
+   "matches": 302,
+   "the split still on its way as the numbers are told": 125
   },
   "Down at the main fight, their split in our base": {
-   "cases": 372,
-   "matches": 199,
-   "the split still on its way as the numbers are told": 23
+   "cases": 376,
+   "matches": 200,
+   "the split still on its way as the numbers are told": 24
   },
   "Up at the main fight, our split out": {
-   "cases": 353,
-   "matches": 192,
-   "the split still on its way as the numbers are told": 20
+   "cases": 356,
+   "matches": 193,
+   "the split still on its way as the numbers are told": 21
   }
  },
  "checks": {
   "M1 the team up at the main fight kills more often than the team down": {
-   "first": 0.3466003316749585,
-   "second": 0.20426287744227353,
-   "difference": 0.14233745423268498,
+   "first": 0.3503289473684211,
+   "second": 0.20440528634361232,
+   "difference": 0.14592366102480875,
    "range": [
-    0.10723421825004939,
-    0.178056071497274
+    0.11400584142648124,
+    0.17943339439920855
    ],
    "n": [
-    1206,
-    1126
+    1216,
+    1135
    ],
    "reads": "HOLDS"
   },
   "M2 up by two or more kills more often than up by one": {
-   "first": 0.45045045045045046,
-   "second": 0.30698739977090495,
-   "difference": 0.1434630506795455,
+   "first": 0.45209580838323354,
+   "second": 0.31179138321995464,
+   "difference": 0.1403044251632789,
    "range": [
-    0.08488300230973575,
-    0.19669945016419504
+    0.08860272409556462,
+    0.18895967201651356
    ],
    "n": [
-    333,
-    873
+    334,
+    882
    ],
    "reads": "HOLDS"
   },
   "M3 their split in our base and we are up at the main fight: we lose more pit NPCs than when we are down there (3 min)": {
-   "first": 1.0164126611957796,
-   "second": 0.8198924731182796,
-   "difference": 0.19652018807749994,
+   "first": 1.0209302325581395,
+   "second": 0.824468085106383,
+   "difference": 0.1964621474517565,
    "range": [
-    0.060352072226518165,
-    0.3198806225083614
+    0.06370149889870988,
+    0.3216714581030928
    ],
    "n": [
-    853,
-    372
+    860,
+    376
    ],
    "reads": "HOLDS"
   },
   "M4 our split out and we are down at the main fight: we take more pit NPCs than when we are up there (3 min)": {
-   "first": 1.0503978779840848,
-   "second": 0.8356940509915014,
-   "difference": 0.2147038269925834,
+   "first": 1.0553359683794465,
+   "second": 0.8426966292134831,
+   "difference": 0.21263933916596345,
    "range": [
-    0.06570335236877871,
-    0.35203907737296375
+    0.06430908498221016,
+    0.343285638149279
    ],
    "n": [
-    754,
-    353
+    759,
+    356
    ],
    "reads": "HOLDS"
   },
   "M5 a collapse on their split: they lose a player more often than when nobody is added (90 s)": {
    "first": 0.4087301587301587,
-   "second": 0.3751537515375154,
-   "difference": 0.03357640719264332,
+   "second": 0.3763702801461632,
+   "difference": 0.03235987858399553,
    "range": [
-    -0.01764878297915898,
-    0.08569115648475449
+    -0.025722628339191197,
+    0.08901449014708138
    ],
    "n": [
     252,
-    813
+    821
    ],
    "reads": "not clear"
   },
   "M6 more sent on our split: more of their pit NPCs fall than when nobody is added (3 min)": {
    "first": 1.0588235294117647,
-   "second": 0.9432098765432099,
-   "difference": 0.11561365286855485,
+   "second": 0.9497549019607843,
+   "difference": 0.10906862745098045,
    "range": [
-    -0.10225672295328096,
-    0.31490773815554773
+    -0.0900528756957328,
+    0.29697520102289887
    ],
    "n": [
     153,
-    810
+    816
    ],
    "reads": "not clear"
   }
@@ -119,539 +119,539 @@
  "as_it_fell": {
   "Up at the main fight, their split in our base": {
    "stay and kill": {
-    "cases": 400,
-    "matches": 233,
-    "started at": 53.37312529382891,
-    "the 60 s before": 0.05502670682615872,
-    "they lose one": 42.75,
-    "we lose one": 22.75,
-    "net kills": 0.7675,
-    "our pit NPCs": 0.99,
-    "their pit NPCs": 0.805,
-    "flags": -0.08183206106870228,
-    "win points 90": 1.1460487736721263,
-    "win points 180": 2.017946457818047
+    "cases": 404,
+    "matches": 235,
+    "started at": 53.756000661388526,
+    "the 60 s before": 0.21429031830061507,
+    "they lose one": 43.06930693069307,
+    "we lose one": 22.524752475247524,
+    "net kills": 0.7945544554455446,
+    "our pit NPCs": 0.9900990099009901,
+    "their pit NPCs": 0.8094059405940595,
+    "flags": -0.08331670822942643,
+    "win points 90": 1.2891272620690732,
+    "win points 180": 1.8378008259795504
    },
    "collapse on the split": {
     "cases": 159,
     "matches": 120,
-    "started at": 52.893849079455855,
-    "the 60 s before": 1.6244430192579418,
+    "started at": 52.78503515325128,
+    "the 60 s before": 1.2106694233685156,
     "they lose one": 42.138364779874216,
     "we lose one": 15.723270440251572,
     "net kills": 0.7169811320754716,
     "our pit NPCs": 1.0125786163522013,
     "their pit NPCs": 0.8176100628930818,
-    "flags": -0.05474358974358975,
-    "win points 90": 0.9006379708162052,
-    "win points 180": 2.444494730900197
+    "flags": -0.07308176100628931,
+    "win points 90": 1.0180212843234415,
+    "win points 180": 2.581360327398141
    },
    "run a flag for a backup": {
-    "cases": 89,
-    "matches": 73,
-    "started at": 42.991586757422645,
-    "the 60 s before": -1.476767007247596,
-    "they lose one": 29.213483146067414,
-    "we lose one": 17.97752808988764,
-    "net kills": 0.38202247191011235,
-    "our pit NPCs": 1.1235955056179776,
-    "their pit NPCs": 0.550561797752809,
-    "flags": 0.10213483146067416,
-    "win points 90": 0.44764194480648456,
-    "win points 180": 2.439407939882582
+    "cases": 87,
+    "matches": 71,
+    "started at": 42.71209513775142,
+    "the 60 s before": -1.2643869457201504,
+    "they lose one": 28.735632183908045,
+    "we lose one": 18.39080459770115,
+    "net kills": 0.3793103448275862,
+    "our pit NPCs": 1.103448275862069,
+    "their pit NPCs": 0.5632183908045977,
+    "flags": 0.08275862068965517,
+    "win points 90": 0.17509241123804792,
+    "win points 180": 1.6465972050017315
    },
    "pull a defender back to the main fight": {
-    "cases": 74,
+    "cases": 75,
     "matches": 63,
-    "started at": 50.78106704891838,
-    "the 60 s before": -0.27401336373299795,
-    "they lose one": 37.83783783783784,
-    "we lose one": 20.27027027027027,
-    "net kills": 0.4864864864864865,
-    "our pit NPCs": 1.0810810810810811,
-    "their pit NPCs": 0.7972972972972973,
-    "flags": -0.10749999999999998,
-    "win points 90": 0.7477651083045995,
-    "win points 180": 4.595662818054581
+    "started at": 51.459599661755384,
+    "the 60 s before": -0.2994857199536029,
+    "they lose one": 38.666666666666664,
+    "we lose one": 20.0,
+    "net kills": 0.5866666666666667,
+    "our pit NPCs": 1.0666666666666667,
+    "their pit NPCs": 0.8133333333333334,
+    "flags": -0.06561643835616436,
+    "win points 90": 0.748649700100207,
+    "win points 180": 4.3937729437779005
    },
    "push into their base for NPCs": {
     "cases": 70,
     "matches": 59,
-    "started at": 61.07564124758984,
-    "the 60 s before": 1.6365949136769127,
+    "started at": 60.9247195818201,
+    "the 60 s before": 2.038584342606019,
     "they lose one": 52.85714285714286,
     "we lose one": 35.714285714285715,
     "net kills": 0.7285714285714285,
     "our pit NPCs": 1.042857142857143,
     "their pit NPCs": 1.2857142857142858,
-    "flags": -0.1490625,
-    "win points 90": -0.7970544066498145,
-    "win points 180": -1.4608845145697686
+    "flags": -0.1938235294117647,
+    "win points 90": -0.4138989697292316,
+    "win points 180": -1.3382792087376814
    },
    "fall back and reset": {
-    "cases": 57,
-    "matches": 51,
-    "started at": 49.21825517738421,
-    "the 60 s before": 1.8907762034295308,
-    "they lose one": 40.35087719298245,
-    "we lose one": 31.57894736842105,
-    "net kills": 0.6140350877192983,
-    "our pit NPCs": 0.9824561403508771,
-    "their pit NPCs": 0.8070175438596491,
-    "flags": -0.32142857142857145,
-    "win points 90": -1.5065808732920807,
-    "win points 180": 2.870744004951369
+    "cases": 60,
+    "matches": 53,
+    "started at": 48.74590171274089,
+    "the 60 s before": 0.8963655146561881,
+    "they lose one": 41.66666666666667,
+    "we lose one": 33.33333333333333,
+    "net kills": 0.4666666666666667,
+    "our pit NPCs": 1.0833333333333333,
+    "their pit NPCs": 0.85,
+    "flags": -0.2993333333333333,
+    "win points 90": -0.07937565779836005,
+    "win points 180": 0.8918106547639665
    },
    "push their flagger": {
-    "cases": 4,
-    "matches": 4,
-    "started at": 68.44392163897322,
-    "the 60 s before": 2.706557112095,
-    "they lose one": 50.0,
+    "cases": 5,
+    "matches": 5,
+    "started at": 71.31943204390802,
+    "the 60 s before": 5.0011029858655,
+    "they lose one": 40.0,
     "we lose one": 0.0,
-    "net kills": 1.5,
-    "our pit NPCs": 0.25,
-    "their pit NPCs": 1.75,
-    "flags": -0.21,
-    "win points 90": 4.67518919408741,
-    "win points 180": 4.254446191360842
+    "net kills": 1.2,
+    "our pit NPCs": 0.6,
+    "their pit NPCs": 2.4,
+    "flags": -0.054000000000000006,
+    "win points 90": 5.008149523673419,
+    "win points 180": 6.59002742961882
    }
   },
   "Down at the main fight, our split out": {
    "stay and fight": {
-    "cases": 401,
-    "matches": 225,
-    "started at": 51.769039334647616,
-    "the 60 s before": -0.05338191520507155,
-    "they lose one": 19.950124688279303,
-    "we lose one": 37.65586034912718,
-    "net kills": -0.5985037406483791,
-    "our pit NPCs": 0.7007481296758105,
-    "their pit NPCs": 1.1271820448877805,
-    "flags": -0.002518891687657422,
-    "win points 90": -0.8091394526631877,
-    "win points 180": -2.2298441594547422
+    "cases": 404,
+    "matches": 227,
+    "started at": 51.65838347758937,
+    "the 60 s before": 0.12754594040461525,
+    "they lose one": 20.049504950495052,
+    "we lose one": 37.87128712871287,
+    "net kills": -0.5965346534653465,
+    "our pit NPCs": 0.7079207920792079,
+    "their pit NPCs": 1.131188118811881,
+    "flags": 0.005547263681592041,
+    "win points 90": -0.9514921892806296,
+    "win points 180": -1.9337671098128948
    },
    "send more on the split": {
     "cases": 133,
     "matches": 104,
-    "started at": 49.22892171520707,
-    "the 60 s before": -0.820765183277754,
+    "started at": 49.22273319291867,
+    "the 60 s before": -0.8823421770583872,
     "they lose one": 26.31578947368421,
     "we lose one": 38.34586466165413,
     "net kills": -0.45112781954887216,
     "our pit NPCs": 0.7443609022556391,
     "their pit NPCs": 1.0451127819548873,
-    "flags": 0.12054263565891475,
-    "win points 90": -0.40932117737093954,
-    "win points 180": -0.7214020863033831
+    "flags": 0.14946969696969697,
+    "win points 90": -0.8331801648452243,
+    "win points 180": -0.8396271536810088
    },
    "fall to footmen": {
     "cases": 108,
     "matches": 84,
-    "started at": 55.020011785114875,
-    "the 60 s before": 0.4563663025835067,
+    "started at": 55.09917379990209,
+    "the 60 s before": 0.36723392386988735,
     "they lose one": 20.37037037037037,
     "we lose one": 37.03703703703704,
     "net kills": -0.3888888888888889,
     "our pit NPCs": 0.7222222222222222,
     "their pit NPCs": 1.0925925925925926,
-    "flags": 0.13179245283018864,
-    "win points 90": 0.3085565930422433,
-    "win points 180": -0.10422037799289875
+    "flags": 0.08457943925233645,
+    "win points 90": 0.022393905525909603,
+    "win points 180": 0.12127448173267312
    },
    "bring players back from the split": {
     "cases": 89,
     "matches": 73,
-    "started at": 48.3923883848679,
-    "the 60 s before": 0.3351789393028766,
+    "started at": 48.32545776470638,
+    "the 60 s before": 0.30619097990445954,
     "they lose one": 21.34831460674157,
     "we lose one": 32.58426966292135,
     "net kills": -0.15730337078651685,
     "our pit NPCs": 0.7191011235955056,
     "their pit NPCs": 0.7640449438202247,
-    "flags": 0.14359550561797751,
-    "win points 90": -0.30925756481708366,
-    "win points 180": -2.360928500986652
+    "flags": 0.11415730337078651,
+    "win points 90": -0.07169263370563454,
+    "win points 180": -1.85608169257129
    },
    "retreat to the pit": {
-    "cases": 18,
-    "matches": 16,
-    "started at": 30.066920863586077,
-    "the 60 s before": -1.2341150949408015,
-    "they lose one": 16.666666666666664,
-    "we lose one": 66.66666666666666,
-    "net kills": -2.5,
-    "our pit NPCs": 1.3888888888888888,
-    "their pit NPCs": 0.6111111111111112,
-    "flags": 0.331875,
-    "win points 90": -5.990547619216247,
-    "win points 180": -12.902578876111903
+    "cases": 20,
+    "matches": 18,
+    "started at": 28.227941321562668,
+    "the 60 s before": -2.5998317111523113,
+    "they lose one": 20.0,
+    "we lose one": 70.0,
+    "net kills": -2.8,
+    "our pit NPCs": 1.45,
+    "their pit NPCs": 0.75,
+    "flags": 0.35888888888888887,
+    "win points 90": -4.59326448029577,
+    "win points 180": -7.361101353931356
    },
    "trade with a split": {
     "cases": 5,
     "matches": 5,
-    "started at": 30.969669200080137,
-    "the 60 s before": -9.422947155579497,
+    "started at": 30.79486373408483,
+    "the 60 s before": -9.360080658704204,
     "they lose one": 40.0,
     "we lose one": 40.0,
     "net kills": 0.0,
     "our pit NPCs": 1.2,
     "their pit NPCs": 0.8,
     "flags": 0.49400000000000005,
-    "win points 90": 0.5558350272329088,
-    "win points 180": 3.6335690604377744
+    "win points 90": 0.8056797821456276,
+    "win points 180": 3.350449712244232
    }
   },
   "Down at the main fight, their split in our base": {
    "stay and fight": {
-    "cases": 158,
-    "matches": 115,
-    "started at": 51.21603061740034,
-    "the 60 s before": -0.35838951955622617,
-    "they lose one": 31.0126582278481,
-    "we lose one": 32.91139240506329,
-    "net kills": -0.23417721518987342,
-    "our pit NPCs": 0.7784810126582279,
-    "their pit NPCs": 0.6139240506329114,
-    "flags": 0.0008860759493670922,
-    "win points 90": 0.033213280470254666,
-    "win points 180": -0.7994176166425478
+    "cases": 161,
+    "matches": 117,
+    "started at": 50.74915136972148,
+    "the 60 s before": -0.6732607449255489,
+    "they lose one": 31.05590062111801,
+    "we lose one": 34.161490683229815,
+    "net kills": -0.2422360248447205,
+    "our pit NPCs": 0.7888198757763976,
+    "their pit NPCs": 0.6086956521739131,
+    "flags": 0.005341614906832289,
+    "win points 90": -0.23692922940527797,
+    "win points 180": -0.6003439843612345
    },
    "collapse on the split": {
     "cases": 93,
     "matches": 74,
-    "started at": 54.71147141396466,
-    "the 60 s before": -1.2203415097526131,
+    "started at": 54.84169904959987,
+    "the 60 s before": -1.455455298554231,
     "they lose one": 38.70967741935484,
     "we lose one": 21.50537634408602,
     "net kills": 0.3548387096774194,
     "our pit NPCs": 0.6559139784946236,
     "their pit NPCs": 0.6666666666666666,
-    "flags": 0.06688172043010757,
-    "win points 90": 0.7702367233572575,
-    "win points 180": 1.4975152055998984
+    "flags": 0.02559139784946236,
+    "win points 90": 0.6855394256258526,
+    "win points 180": 1.2587979912142464
    },
    "pull a defender back to the main fight": {
     "cases": 61,
     "matches": 48,
-    "started at": 47.69102076465104,
-    "the 60 s before": -0.5853396935820058,
+    "started at": 47.611206338817176,
+    "the 60 s before": -0.7240677645175763,
     "they lose one": 29.508196721311474,
     "we lose one": 37.704918032786885,
     "net kills": -0.32786885245901637,
     "our pit NPCs": 0.9180327868852459,
     "their pit NPCs": 0.5573770491803278,
-    "flags": 0.16426229508196719,
-    "win points 90": 0.01002235767934228,
-    "win points 180": -1.087394231316403
+    "flags": 0.08360655737704917,
+    "win points 90": -0.165133421404137,
+    "win points 180": -1.5533495928983885
    },
    "fall to footmen": {
-    "cases": 54,
-    "matches": 45,
-    "started at": 53.1074111558169,
-    "the 60 s before": -1.1539447017703763,
-    "they lose one": 31.48148148148148,
-    "we lose one": 38.88888888888889,
-    "net kills": -0.46296296296296297,
-    "our pit NPCs": 1.1481481481481481,
-    "their pit NPCs": 0.48148148148148145,
-    "flags": 0.24333333333333332,
-    "win points 90": -1.3252808356905794,
-    "win points 180": -5.549699497399128
+    "cases": 55,
+    "matches": 46,
+    "started at": 52.3431329677092,
+    "the 60 s before": -1.126050945663763,
+    "they lose one": 30.909090909090907,
+    "we lose one": 40.0,
+    "net kills": -0.4727272727272727,
+    "our pit NPCs": 1.1454545454545455,
+    "their pit NPCs": 0.4727272727272727,
+    "flags": 0.1707272727272727,
+    "win points 90": -1.650764407880684,
+    "win points 180": -5.850533886520859
    },
    "retreat to the pit": {
     "cases": 4,
     "matches": 4,
-    "started at": 11.439991123304013,
-    "the 60 s before": -0.5279992668548689,
+    "started at": 11.17641419659076,
+    "the 60 s before": -0.2985616131540579,
     "they lose one": 50.0,
     "we lose one": 50.0,
     "net kills": -3.0,
     "our pit NPCs": 0.5,
     "their pit NPCs": 0.0,
-    "flags": 0.16333333333333333,
-    "win points 90": -1.3123691967066586,
-    "win points 180": 1.1546282364306242
+    "flags": 0.1225,
+    "win points 90": -0.8312786294091437,
+    "win points 180": 1.6134659401678744
    },
    "trade with a split": {
     "cases": 2,
     "matches": 2,
-    "started at": 78.34608756435178,
-    "the 60 s before": -4.867193601072423,
+    "started at": 78.3495144498695,
+    "the 60 s before": -4.657479792646324,
     "they lose one": 50.0,
     "we lose one": 0.0,
     "net kills": 2.0,
     "our pit NPCs": 0.5,
     "their pit NPCs": 2.5,
-    "flags": 0.47,
-    "win points 90": 9.622163319859734,
-    "win points 180": 16.509338962740888
+    "flags": 0.48,
+    "win points 90": 9.641348464133426,
+    "win points 180": 16.479416457740104
    }
   },
   "Up at the main fight, our split out": {
    "stay and kill": {
-    "cases": 170,
-    "matches": 118,
-    "started at": 47.32430282276109,
-    "the 60 s before": 0.8984467946937885,
-    "they lose one": 32.35294117647059,
-    "we lose one": 34.11764705882353,
-    "net kills": 0.18823529411764706,
-    "our pit NPCs": 0.5294117647058824,
-    "their pit NPCs": 0.8,
-    "flags": -0.0971764705882353,
-    "win points 90": 0.0680995299841201,
-    "win points 180": 0.9210741289834706
+    "cases": 173,
+    "matches": 121,
+    "started at": 47.488293802165856,
+    "the 60 s before": 1.1704428306284436,
+    "they lose one": 32.947976878612714,
+    "we lose one": 34.104046242774565,
+    "net kills": 0.2138728323699422,
+    "our pit NPCs": 0.5433526011560693,
+    "their pit NPCs": 0.8092485549132948,
+    "flags": -0.07780346820809249,
+    "win points 90": 0.16373344534194878,
+    "win points 180": 1.4123509944885357
    },
    "bring players back from the split": {
-    "cases": 87,
+    "cases": 88,
     "matches": 80,
-    "started at": 60.085881451743916,
-    "the 60 s before": 1.4060329428763294,
-    "they lose one": 45.97701149425287,
-    "we lose one": 22.988505747126435,
-    "net kills": 0.5517241379310345,
-    "our pit NPCs": 0.5862068965517241,
+    "started at": 60.42349096073912,
+    "the 60 s before": 1.5750784189048785,
+    "they lose one": 46.590909090909086,
+    "we lose one": 22.727272727272727,
+    "net kills": 0.5568181818181818,
+    "our pit NPCs": 0.5795454545454546,
     "their pit NPCs": 1.0,
-    "flags": -0.005930232558139543,
-    "win points 90": 0.9156760956519564,
-    "win points 180": 3.555875296423606
+    "flags": -0.00477272727272727,
+    "win points 90": 0.834755749427486,
+    "win points 180": 3.01716071073309
    },
    "run a flag for a backup": {
-    "cases": 36,
-    "matches": 33,
-    "started at": 40.3337531490495,
-    "the 60 s before": -0.6411988547635354,
-    "they lose one": 13.88888888888889,
-    "we lose one": 27.77777777777778,
-    "net kills": -0.3888888888888889,
-    "our pit NPCs": 0.5,
-    "their pit NPCs": 0.5,
-    "flags": -0.05305555555555553,
-    "win points 90": 1.4107108937169204,
-    "win points 180": 0.4004193196959009
+    "cases": 35,
+    "matches": 32,
+    "started at": 41.135110886924835,
+    "the 60 s before": -0.9234205476728238,
+    "they lose one": 14.285714285714285,
+    "we lose one": 25.71428571428571,
+    "net kills": -0.2857142857142857,
+    "our pit NPCs": 0.4,
+    "their pit NPCs": 0.5142857142857142,
+    "flags": 0.044857142857142866,
+    "win points 90": 1.5686354255899986,
+    "win points 180": 0.9530656885367027
    },
    "fall back and reset": {
     "cases": 24,
     "matches": 21,
-    "started at": 51.96869458963004,
-    "the 60 s before": -1.0256262785407826,
+    "started at": 51.65467186001668,
+    "the 60 s before": -1.5745188985454537,
     "they lose one": 16.666666666666664,
     "we lose one": 45.83333333333333,
     "net kills": -0.4583333333333333,
     "our pit NPCs": 0.7083333333333334,
     "their pit NPCs": 0.75,
-    "flags": -0.2554166666666667,
-    "win points 90": -6.58535950716847,
-    "win points 180": -10.61566766255846
+    "flags": -0.10791666666666673,
+    "win points 90": -2.789186775399743,
+    "win points 180": -9.15746920890381
    },
    "send more on the split": {
     "cases": 20,
     "matches": 18,
-    "started at": 50.27444959878977,
-    "the 60 s before": 2.4304525860435415,
+    "started at": 50.1485749531637,
+    "the 60 s before": 2.311380324440447,
     "they lose one": 25.0,
     "we lose one": 40.0,
     "net kills": -0.45,
     "our pit NPCs": 1.0,
     "their pit NPCs": 1.15,
-    "flags": -0.054000000000000006,
-    "win points 90": -0.5442257580892204,
-    "win points 180": -1.4529548867774207
+    "flags": -0.059499999999999977,
+    "win points 90": -0.4622280910049132,
+    "win points 180": -1.163928756877398
    },
    "push into their base for NPCs": {
     "cases": 12,
     "matches": 11,
-    "started at": 78.77616687673546,
-    "the 60 s before": 1.6435142515034051,
+    "started at": 79.7368535374678,
+    "the 60 s before": 2.9584837176056342,
     "they lose one": 33.33333333333333,
     "we lose one": 8.333333333333332,
     "net kills": 1.6666666666666667,
     "our pit NPCs": 0.0,
     "their pit NPCs": 0.8333333333333334,
-    "flags": -0.008333333333333318,
-    "win points 90": 2.508139917536503,
-    "win points 180": 1.9000714885827712
+    "flags": -0.1775,
+    "win points 90": 1.876975757406184,
+    "win points 180": 0.7395339297837141
    },
    "push their flagger": {
     "cases": 4,
     "matches": 4,
-    "started at": 63.027711424374466,
-    "the 60 s before": 4.717048534203902,
+    "started at": 62.89998577739312,
+    "the 60 s before": 4.715085521723692,
     "they lose one": 25.0,
     "we lose one": 25.0,
     "net kills": 0.0,
     "our pit NPCs": 0.75,
     "their pit NPCs": 0.75,
     "flags": -0.615,
-    "win points 90": -3.196362869965181,
-    "win points 180": 0.37875302376379516
+    "win points 90": -3.0952208968832204,
+    "win points 180": 0.5504523962947162
    }
   }
  },
  "trade": {
   "their split in our base (up: fewer sent home than they split; down: more)": {
    "90 s on": {
-    "difference": 0.619166488507651,
+    "difference": 1.0244050430116713,
     "range": [
-     -0.26747375850577937,
-     1.5740824217751235
+     0.2916113500981702,
+     1.8349828674552364
     ],
     "n": [
-     853,
-     372
+     860,
+     376
     ]
    },
    "180 s on": {
-    "difference": 2.994937586016723,
+    "difference": 2.8306384107627443,
     "range": [
-     1.481461628820794,
-     4.368876612141803
+     1.3998710260961693,
+     4.274430632970547
     ],
     "n": [
-     853,
-     372
+     860,
+     376
     ]
    },
    "the 60 s before": {
-    "difference": 1.1698863709193281,
+    "difference": 1.3745597956017868,
     "range": [
-     0.4815098475041855,
-     1.7267210315857295
+     0.7710221452965303,
+     1.9605281822521508
     ],
     "n": [
-     750,
-     349
+     757,
+     353
     ]
    }
   },
   "our split out (up: they sent more home than we split; down: fewer)": {
    "90 s on": {
-    "difference": 0.6069778753868436,
+    "difference": 1.0280246707221237,
     "range": [
-     -0.33266657662857385,
-     1.5103460714428887
+     0.2487494849061451,
+     1.9127516515561658
     ],
     "n": [
-     353,
-     754
+     356,
+     759
     ]
    },
    "180 s on": {
-    "difference": 2.5162856374772717,
+    "difference": 2.422937005409187,
     "range": [
-     0.8758396381465228,
-     4.0339471033708785
+     0.9806993504716173,
+     3.9785059796998845
     ],
     "n": [
-     353,
-     754
+     356,
+     759
     ]
    },
    "the 60 s before": {
-    "difference": 1.0618182826955072,
+    "difference": 1.1957591681820219,
     "range": [
-     0.3556621992747047,
-     1.6615737421927643
+     0.5803923396765341,
+     1.858007923191382
     ],
     "n": [
-     330,
-     655
+     333,
+     660
     ]
    }
   }
  },
- "K": 120,
+ "K": 90,
  "like_spots": {
   "Up at the main fight, their split in our base": {
-   "cases": 853,
+   "cases": 860,
    "against": "stay and kill",
    "calls": {
     "collapse on the split": {
      "cases": 159,
-     "worth": 0.3065435359832509,
+     "worth": 1.2438959265684215,
      "range": [
-      -3.2782593839967378,
-      3.89134645596324
+      -2.640626979384641,
+      5.128418832521485
      ],
      "reads": "no clear difference"
     },
     "run a flag for a backup": {
-     "cases": 89,
-     "worth": -0.6119309579167515,
+     "cases": 87,
+     "worth": -1.109136800739986,
      "range": [
-      -4.048293771376337,
-      2.824431855542834
+      -4.758409744997689,
+      2.540136143517717
      ],
      "reads": "no clear difference"
     },
     "pull a defender back to the main fight": {
-     "cases": 74,
-     "worth": 0.858528270985218,
+     "cases": 75,
+     "worth": 1.760471658492477,
      "range": [
-      -3.574669101959513,
-      5.291725643929949
+      -2.6681920281516236,
+      6.189135345136578
      ],
      "reads": "no clear difference"
     },
     "push into their base for NPCs": {
      "cases": 70,
-     "worth": -4.79403191985993,
+     "worth": -3.667342886840471,
      "range": [
-      -9.938407056153453,
-      0.35034321643359334
+      -8.816352686691438,
+      1.4816669130104962
      ],
      "reads": "no clear difference"
     },
     "fall back and reset": {
-     "cases": 57,
-     "worth": 0.3863829916278619,
+     "cases": 60,
+     "worth": -0.8524319971066078,
      "range": [
-      -4.974538215972337,
-      5.7473041992280605
+      -5.275042083348379,
+      3.570178089135163
      ],
      "reads": "no clear difference"
     },
     "push their flagger": {
-     "cases": 4,
+     "cases": 5,
      "reads": "too few"
     }
    }
   },
   "Down at the main fight, our split out": {
-   "cases": 754,
+   "cases": 759,
    "against": "stay and fight",
    "calls": {
     "send more on the split": {
      "cases": 133,
-     "worth": 4.134446909208112,
+     "worth": 3.8720777908440844,
      "range": [
-      0.35761831326068494,
-      7.911275505155539
+      -0.028432899647146126,
+      7.772588481335315
      ],
-     "reads": "better"
+     "reads": "no clear difference"
     },
     "fall to footmen": {
      "cases": 108,
-     "worth": 2.2040575393052837,
+     "worth": 1.1993626700676823,
      "range": [
-      -1.5398621597522495,
-      5.947977238362817
+      -2.765497582804307,
+      5.164222922939671
      ],
      "reads": "no clear difference"
     },
     "bring players back from the split": {
      "cases": 89,
-     "worth": 0.46311904967830836,
+     "worth": 0.14800707094368173,
      "range": [
-      -3.1854808399390877,
-      4.111718939295704
+      -3.5307339044633568,
+      3.8267480463507204
      ],
      "reads": "no clear difference"
     },
     "retreat to the pit": {
-     "cases": 18,
+     "cases": 20,
      "reads": "too few"
     },
     "trade with a split": {
@@ -661,33 +661,33 @@
    }
   },
   "Down at the main fight, their split in our base": {
-   "cases": 372,
+   "cases": 376,
    "against": "stay and fight",
    "calls": {
     "collapse on the split": {
      "cases": 93,
-     "worth": 2.774420063020377,
+     "worth": 2.453902247615473,
      "range": [
-      -0.189234329661784,
-      5.738074455702538
+      -0.66091148394072,
+      5.568715979171666
      ],
      "reads": "no clear difference"
     },
     "pull a defender back to the main fight": {
      "cases": 61,
-     "worth": 0.5114167406705755,
+     "worth": 0.09989162105880713,
      "range": [
-      -2.351302601409957,
-      3.374136082751108
+      -3.072591646305067,
+      3.272374888422681
      ],
      "reads": "no clear difference"
     },
     "fall to footmen": {
-     "cases": 54,
-     "worth": -3.961786981493088,
+     "cases": 55,
+     "worth": -4.209398062435528,
      "range": [
-      -7.765624618804383,
-      -0.15794934418179318
+      -8.139579466921763,
+      -0.27921665794929407
      ],
      "reads": "worse"
     },
@@ -702,24 +702,24 @@
    }
   },
   "Up at the main fight, our split out": {
-   "cases": 353,
+   "cases": 356,
    "against": "stay and kill",
    "calls": {
     "bring players back from the split": {
-     "cases": 87,
-     "worth": 1.9411226233918293,
+     "cases": 88,
+     "worth": 1.0616184455941577,
      "range": [
-      -0.7748143055425021,
-      4.65705955232616
+      -1.9725790388071647,
+      4.09581592999548
      ],
      "reads": "no clear difference"
     },
     "run a flag for a backup": {
-     "cases": 36,
-     "worth": -1.3950859602087482,
+     "cases": 35,
+     "worth": -1.5302661756496618,
      "range": [
-      -6.265125823692743,
-      3.474953903275247
+      -6.620280278451931,
+      3.559747927152607
      ],
      "reads": "no clear difference"
     },
@@ -746,468 +746,429 @@
   "Up at the main fight, their split in our base": {
    "60": {
     "tally": {
-     "cases": 853,
-     "no clear advice": 562,
-     "clear advice": 291
+     "cases": 860,
+     "no clear advice": 541,
+     "clear advice": 319
     },
-    "rows": 291,
-    "matched": 41,
+    "rows": 319,
+    "matched": 33,
     "advice": {
-     "collapse on the split": 20,
-     "pull a defender back to the main fight": 44,
-     "push into their base for NPCs": 151,
-     "run a flag for a backup": 41,
-     "stay and kill": 35
+     "push into their base for NPCs": 228,
+     "run a flag for a backup": 33,
+     "pull a defender back to the main fight": 20,
+     "stay and kill": 33,
+     "collapse on the split": 5
     },
     "v": {
-     "effect": -1.9453680638603992,
+     "effect": -1.3082492956603804,
      "range": [
-      -4.947754749950008,
-      0.7120612476564886
+      -3.3935959539717517,
+      1.444927981879483
      ],
-     "matched_mean": 0.20197524197973105,
-     "unmatched_mean": 1.1038550875979132,
+     "matched_mean": 2.9802397411328454,
+     "unmatched_mean": 0.2979435073058409,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 1.9876236744793314,
+     "effect": 1.1681358811028133,
      "range": [
-      -12.108118519574122,
-      14.084877655021707
+      -11.010916752526427,
+      14.230482262402623
      ],
-     "matched_mean": 12.707231696222566,
-     "unmatched_mean": 7.823798361556431,
+     "matched_mean": 13.45128532494621,
+     "unmatched_mean": 4.125847260980358,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": 1.7141324373611555,
+     "effect": 2.162587354078127,
      "range": [
-      -0.26150528669193124,
-      3.7172122313819895
+      -0.1525497137487803,
+      4.358597833098151
      ],
-     "matched_mean": 1.3654418906003902,
-     "unmatched_mean": 0.7660849913477693,
+     "matched_mean": 1.4659970133808053,
+     "unmatched_mean": 0.025376938266588288,
      "verdict": "no clear difference"
     },
-    "matches": 179
+    "matches": 195
    },
    "90": {
     "tally": {
-     "cases": 853,
-     "no clear advice": 539,
-     "clear advice": 314
+     "cases": 860,
+     "no clear advice": 562,
+     "clear advice": 298
     },
-    "rows": 314,
-    "matched": 39,
+    "rows": 298,
+    "matched": 50,
     "advice": {
-     "collapse on the split": 126,
-     "run a flag for a backup": 43,
-     "stay and kill": 24,
-     "push into their base for NPCs": 72,
-     "pull a defender back to the main fight": 47,
-     "fall back and reset": 2
+     "stay and kill": 50,
+     "collapse on the split": 104,
+     "run a flag for a backup": 23,
+     "pull a defender back to the main fight": 38,
+     "push into their base for NPCs": 79,
+     "fall back and reset": 4
     },
     "v": {
-     "effect": -2.9686829526192575,
+     "effect": 2.1460210988901007,
      "range": [
-      -7.157963147390517,
-      0.9697610616095429
+      -0.9709534155422438,
+      5.817123278692154
      ],
-     "matched_mean": 0.5051342321060582,
-     "unmatched_mean": 1.6334522753375285,
+     "matched_mean": 5.601803899114831,
+     "unmatched_mean": 1.4736348780678625,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": -2.132058636120168,
+     "effect": -3.6742272153921487,
      "range": [
-      -13.302233476051992,
-      8.686698935265136
+      -13.215212572592954,
+      5.396074494112577
      ],
-     "matched_mean": 9.229993744814209,
-     "unmatched_mean": 8.665345927734444,
+     "matched_mean": 8.058739172372238,
+     "unmatched_mean": 7.3411524741701415,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": 0.1703417277652547,
+     "effect": -0.4448256832561205,
      "range": [
-      -1.3250150082639724,
-      2.123437603571482
+      -2.1646477709113623,
+      1.1510488454224543
      ],
-     "matched_mean": -0.34034811442941215,
-     "unmatched_mean": 1.1908636963880144,
+     "matched_mean": 0.061531346987683366,
+     "unmatched_mean": 1.40890268138306,
      "verdict": "no clear difference"
     },
-    "matches": 178
+    "matches": 187
    },
    "180": {
     "tally": {
-     "cases": 853,
-     "clear advice": 229,
-     "no clear advice": 624
+     "cases": 860,
+     "no clear advice": 560,
+     "clear advice": 300
     },
-    "rows": 229,
-    "matched": 30,
+    "rows": 300,
+    "matched": 32,
     "advice": {
+     "collapse on the split": 91,
+     "pull a defender back to the main fight": 106,
+     "run a flag for a backup": 21,
+     "push into their base for NPCs": 69,
      "stay and kill": 9,
-     "collapse on the split": 73,
-     "run a flag for a backup": 27,
-     "pull a defender back to the main fight": 85,
-     "push into their base for NPCs": 33,
-     "fall back and reset": 2
+     "fall back and reset": 4
     },
     "v": {
-     "effect": -7.702421488801896,
+     "effect": -4.294184468774451,
      "range": [
-      -13.455088336720912,
-      -2.482297376343784
+      -10.311753648718502,
+      1.088410836810556
      ],
-     "matched_mean": -0.6657213970406477,
-     "unmatched_mean": 5.274934988930932,
-     "verdict": "worse"
-    },
-    "end": {
-     "effect": -1.503408594123926,
-     "range": [
-      -14.867167586701568,
-      11.909447382128336
-     ],
-     "matched_mean": 7.17986802747503,
-     "unmatched_mean": 7.216042762010015,
+     "matched_mean": -0.038178427141222215,
+     "unmatched_mean": 1.9008055385633567,
      "verdict": "no clear difference"
     },
-    "matches": 152
+    "end": {
+     "effect": -2.825203104779985,
+     "range": [
+      -15.782241505327052,
+      9.694156864294914
+     ],
+     "matched_mean": 3.5727849759057237,
+     "unmatched_mean": 3.8768508963822086,
+     "verdict": "no clear difference"
+    },
+    "pre": {
+     "effect": 0.5080539175461782,
+     "range": [
+      -1.0942281016724769,
+      2.127991100693367
+     ],
+     "matched_mean": 1.3860496413719887,
+     "unmatched_mean": 0.7856207901677927,
+     "verdict": "no clear difference"
+    },
+    "matches": 181
    }
   },
   "Down at the main fight, our split out": {
    "60": {
     "tally": {
-     "cases": 754,
-     "no clear advice": 447,
-     "clear advice": 307
+     "cases": 759,
+     "no clear advice": 444,
+     "clear advice": 315
     },
-    "rows": 307,
-    "matched": 49,
+    "rows": 315,
+    "matched": 60,
     "advice": {
-     "bring players back from the split": 34,
-     "fall to footmen": 97,
-     "send more on the split": 152,
-     "stay and fight": 24
+     "bring players back from the split": 56,
+     "send more on the split": 140,
+     "fall to footmen": 76,
+     "stay and fight": 43
     },
     "v": {
-     "effect": 1.168475974304003,
+     "effect": 1.1464754513418185,
      "range": [
-      -1.2340616748074058,
-      3.5955141185745525
+      -1.0088764077889312,
+      3.264853431252856
      ],
-     "matched_mean": 0.7903603810798128,
-     "unmatched_mean": -1.3929766379399926,
+     "matched_mean": 0.6273461463066684,
+     "unmatched_mean": -0.7967814873683272,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 6.4118092246373,
+     "effect": 0.040730236210996154,
      "range": [
-      -6.622422565731854,
-      17.180386082939744
+      -9.679249714745415,
+      11.043709898793105
      ],
-     "matched_mean": 0.28610688762864345,
-     "unmatched_mean": -6.5406555654756735,
+     "matched_mean": -3.913787825590306,
+     "unmatched_mean": -6.593034842225155,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": -1.7166120733066215,
+     "effect": -0.6111979468846783,
      "range": [
-      -5.362972514709407,
-      0.8541936275789012
+      -2.027871594727874,
+      0.8629483742935747
      ],
-     "matched_mean": -2.222360508670359,
-     "unmatched_mean": -0.24711691077877765,
+     "matched_mean": -1.6555180163866356,
+     "unmatched_mean": -0.24496301317624247,
      "verdict": "no clear difference"
     },
     "matches": 173
    },
    "90": {
     "tally": {
-     "cases": 754,
-     "no clear advice": 468,
-     "clear advice": 286
+     "cases": 759,
+     "no clear advice": 444,
+     "clear advice": 315
     },
-    "rows": 286,
-    "matched": 52,
+    "rows": 315,
+    "matched": 70,
     "advice": {
-     "fall to footmen": 110,
-     "send more on the split": 118,
-     "bring players back from the split": 24,
-     "stay and fight": 34
+     "send more on the split": 155,
+     "bring players back from the split": 28,
+     "fall to footmen": 86,
+     "stay and fight": 46
     },
     "v": {
-     "effect": -0.7815046934488542,
+     "effect": 1.7937648871007745,
      "range": [
-      -3.545965912222083,
-      1.8533099777682083
+      -0.4717666990143929,
+      4.013187103302752
      ],
-     "matched_mean": 0.71335306809729,
-     "unmatched_mean": -0.2756140859686161,
+     "matched_mean": 1.0236087317177867,
+     "unmatched_mean": -1.1653346140282617,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 1.5537084953244134,
+     "effect": -0.8121965091428444,
      "range": [
-      -10.511671238160927,
-      12.383756554544766
+      -9.628553148511058,
+      9.012549886218004
      ],
-     "matched_mean": -1.042268422111553,
-     "unmatched_mean": -4.716635004039223,
+     "matched_mean": -4.137399438301148,
+     "unmatched_mean": -6.283673791881263,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": -1.4355411621277492,
+     "effect": -0.513851311337785,
      "range": [
-      -4.13415975459817,
-      1.0354263996931248
+      -1.996572526054514,
+      0.9442001734852041
      ],
-     "matched_mean": -2.6345635017739295,
-     "unmatched_mean": -0.05194005863774516,
+     "matched_mean": -2.1741691736213236,
+     "unmatched_mean": -0.057526580110173954,
      "verdict": "no clear difference"
     },
-    "matches": 163
+    "matches": 179
    },
    "180": {
     "tally": {
-     "cases": 754,
-     "no clear advice": 454,
-     "clear advice": 300
+     "cases": 759,
+     "no clear advice": 441,
+     "clear advice": 318
     },
-    "rows": 300,
-    "matched": 54,
+    "rows": 318,
+    "matched": 56,
     "advice": {
-     "send more on the split": 142,
-     "fall to footmen": 102,
-     "stay and fight": 26,
-     "bring players back from the split": 30
+     "send more on the split": 158,
+     "fall to footmen": 93,
+     "stay and fight": 39,
+     "bring players back from the split": 28
     },
     "v": {
-     "effect": 3.851525013550755,
+     "effect": 8.359147284458357,
      "range": [
-      -1.2480958896939092,
-      9.220977519791152
+      2.7145772663728653,
+      13.484581912447752
      ],
-     "matched_mean": 1.9908084676069961,
-     "unmatched_mean": -2.795822164365878,
-     "verdict": "no clear difference"
+     "matched_mean": 4.261719583021859,
+     "unmatched_mean": -1.7847660352761074,
+     "verdict": "better"
     },
     "end": {
-     "effect": 1.8184673947625736,
+     "effect": 6.459362103455112,
      "range": [
-      -8.284646044971042,
-      10.786139918826224
+      -3.2008453752292154,
+      14.788570317134031
      ],
-     "matched_mean": -4.2282279974418975,
-     "unmatched_mean": -5.845830547197582,
+     "matched_mean": -2.378518282966781,
+     "unmatched_mean": -7.168282196751889,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": 1.8694486656414404,
+     "effect": -0.46575670884808523,
      "range": [
-      -0.006808514631985218,
-      3.320589254672199
+      -2.21853573803916,
+      1.1775346261316186
      ],
-     "matched_mean": 0.4421267513502493,
-     "unmatched_mean": 0.26490942692895497,
+     "matched_mean": -1.9265755141310974,
+     "unmatched_mean": 0.3149716051978282,
      "verdict": "no clear difference"
     },
-    "matches": 166
+    "matches": 187
    }
   },
   "Down at the main fight, their split in our base": {
    "60": {
     "tally": {
-     "cases": 372,
-     "clear advice": 95,
-     "no clear advice": 277
+     "cases": 376,
+     "no clear advice": 294,
+     "clear advice": 82
     },
-    "rows": 95,
-    "matched": 30,
+    "rows": 82,
+    "matched": 25,
     "advice": {
-     "stay and fight": 39,
-     "collapse on the split": 56
+     "stay and fight": 32,
+     "collapse on the split": 50
     },
-    "v": {
-     "effect": -0.538612951911117,
-     "range": [
-      -2.9593889596651297,
-      1.6107631926797785
-     ],
-     "matched_mean": 0.570995033802373,
-     "unmatched_mean": 0.6642187189795941,
-     "verdict": "no clear difference"
-    },
-    "end": {
-     "effect": -12.979337018528488,
-     "range": [
-      -35.08697870025836,
-      11.607278840907442
-     ],
-     "matched_mean": -6.846657000638646,
-     "unmatched_mean": 2.3125502979743673,
-     "verdict": "no clear difference"
-    },
-    "matches": 61
+    "verdict": "too few to call"
    },
    "90": {
     "tally": {
-     "cases": 372,
-     "clear advice": 105,
-     "no clear advice": 267
+     "cases": 376,
+     "no clear advice": 271,
+     "clear advice": 105
     },
     "rows": 105,
-    "matched": 34,
+    "matched": 29,
     "advice": {
-     "stay and fight": 41,
-     "collapse on the split": 64
+     "stay and fight": 35,
+     "collapse on the split": 67,
+     "pull a defender back to the main fight": 3
     },
-    "v": {
-     "effect": 1.3223212505903532,
-     "range": [
-      -1.5558998250147553,
-      4.282060359231913
-     ],
-     "matched_mean": 1.9783112695540548,
-     "unmatched_mean": -0.31373942019483325,
-     "verdict": "no clear difference"
-    },
-    "end": {
-     "effect": -10.773143454107846,
-     "range": [
-      -34.54776899397082,
-      7.534956192691522
-     ],
-     "matched_mean": -8.896631279964968,
-     "unmatched_mean": 0.388004041234136,
-     "verdict": "no clear difference"
-    },
-    "pre": {
-     "effect": 0.5430528364291938,
-     "range": [
-      -1.3327877773819945,
-      2.9783478189494694
-     ],
-     "matched_mean": 0.8670790657981671,
-     "unmatched_mean": -0.020091087556012757,
-     "verdict": "no clear difference"
-    },
-    "matches": 73
+    "verdict": "too few to call"
    },
    "180": {
     "tally": {
-     "cases": 372,
-     "clear advice": 163,
-     "no clear advice": 209
+     "cases": 376,
+     "no clear advice": 222,
+     "clear advice": 154
     },
-    "rows": 163,
-    "matched": 55,
+    "rows": 154,
+    "matched": 47,
     "advice": {
-     "stay and fight": 44,
-     "collapse on the split": 106,
-     "pull a defender back to the main fight": 13
+     "stay and fight": 42,
+     "collapse on the split": 101,
+     "pull a defender back to the main fight": 11
     },
     "v": {
-     "effect": 4.160803887240912,
+     "effect": 0.830951213252394,
      "range": [
-      -0.6934742472181619,
-      9.40801802219901
+      -3.265030067372148,
+      6.576053393594147
      ],
-     "matched_mean": 3.3642412929920567,
-     "unmatched_mean": -3.1698010719187777,
+     "matched_mean": -0.20492646132523562,
+     "unmatched_mean": -2.8242542772657555,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": -14.583532898031306,
+     "effect": -14.292543731827589,
      "range": [
-      -31.26517281808568,
-      -0.2561932200582462
+      -30.936606142794908,
+      2.111281746676892
      ],
-     "matched_mean": -10.666170461104358,
-     "unmatched_mean": 0.39767792597849694,
-     "verdict": "worse"
-    },
-    "pre": {
-     "effect": 1.2269363161063247,
-     "range": [
-      -0.48370394213633333,
-      3.067442575605756
-     ],
-     "matched_mean": -0.297175482033194,
-     "unmatched_mean": -1.5510276244518026,
+     "matched_mean": -10.076867760522422,
+     "unmatched_mean": 2.4390737240772378,
      "verdict": "no clear difference"
     },
-    "matches": 107
+    "pre": {
+     "effect": -0.4484501419668623,
+     "range": [
+      -2.1039765512401143,
+      1.585597260961622
+     ],
+     "matched_mean": -1.2969364745171938,
+     "unmatched_mean": -1.2568108569580405,
+     "verdict": "no clear difference"
+    },
+    "matches": 108
    }
   },
   "Up at the main fight, our split out": {
    "60": {
     "tally": {
-     "cases": 353,
-     "clear advice": 86,
-     "no clear advice": 267
+     "cases": 356,
+     "clear advice": 117,
+     "no clear advice": 239
     },
-    "rows": 86,
-    "matched": 23,
+    "rows": 117,
+    "matched": 22,
     "advice": {
-     "run a flag for a backup": 39,
-     "bring players back from the split": 20,
-     "stay and kill": 27
+     "run a flag for a backup": 48,
+     "bring players back from the split": 43,
+     "stay and kill": 26
     },
     "verdict": "too few to call"
    },
    "90": {
     "tally": {
-     "cases": 353,
-     "clear advice": 92,
-     "no clear advice": 261
+     "cases": 356,
+     "clear advice": 114,
+     "no clear advice": 242
     },
-    "rows": 92,
-    "matched": 28,
+    "rows": 114,
+    "matched": 27,
     "advice": {
-     "run a flag for a backup": 22,
-     "stay and kill": 27,
-     "bring players back from the split": 43
+     "run a flag for a backup": 33,
+     "stay and kill": 34,
+     "bring players back from the split": 47
     },
     "verdict": "too few to call"
    },
    "180": {
     "tally": {
-     "cases": 353,
-     "no clear advice": 235,
-     "clear advice": 118
+     "cases": 356,
+     "no clear advice": 243,
+     "clear advice": 113
     },
-    "rows": 118,
+    "rows": 113,
     "matched": 30,
     "advice": {
-     "bring players back from the split": 83,
-     "stay and kill": 31,
+     "stay and kill": 41,
+     "bring players back from the split": 68,
      "run a flag for a backup": 4
     },
     "v": {
-     "effect": -1.6887980083299585,
+     "effect": -1.8019677470215332,
      "range": [
-      -8.44766216276923,
-      5.0600727959864376
+      -6.778029205893361,
+      2.6019968816071524
      ],
-     "matched_mean": 1.6013443002538632,
-     "unmatched_mean": 0.46427899910587683,
+     "matched_mean": 0.8803979944611614,
+     "unmatched_mean": 1.4495890278528891,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": -10.429195223595249,
+     "effect": -15.00413541588038,
      "range": [
-      -23.772657945006877,
-      6.640856502450776
+      -25.676100774251566,
+      -2.071568433115757
      ],
-     "matched_mean": -9.410488732445417,
-     "unmatched_mean": 3.479072238194467,
-     "verdict": "no clear difference"
+     "matched_mean": -13.265430901042512,
+     "unmatched_mean": 3.934378865318524,
+     "verdict": "worse"
     },
-    "matches": 86
+    "matches": 81
    }
   }
  }

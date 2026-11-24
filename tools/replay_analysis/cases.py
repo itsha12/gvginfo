@@ -88,7 +88,8 @@ SCALE = (100.0, 1.0, 15.0, 80.0, 1.0, 0.1, 500.0)       # the unit each price is
 VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "the hall's flag run, s",
         "own chance of winning at that second")       # the last one is the whole position as the prices read it (2026-11-19: teams that sent nobody were already winning, and the eight before it did not hold that level)
 MORE = ("seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)", "their runner is a backline monk", "their runner's speed",
-        "their team's snares", "own team's snares", "seconds their flag should take to the stand", "the flag can beat the boost")
+        "their team's snares", "own team's snares", "seconds their flag should take to the stand", "the flag can beat the boost",
+        "their monks' energy in the fight")      # R-689, R-688, R-693: the answer to their run and running again read the enemy's monks only (the average, R-683); not at their boost (R-694)
 READS = (15, 30)                                 # the seconds after their runner set off at which our answer is read (R-543; 45 s dropped, R-544)
 HORIZONS = ("60", "90", "180")                   # what followed, read at three seconds from the decision (R-543; 120 s dropped, R-544)
 BACK_AND_RUN = 1.76                              # a full run from the stand in units of the hall's carry from the spawn: back to the spawn at running speed (205/270 of the carry), then the carry
@@ -195,6 +196,19 @@ def prices(D, M):
 
 
 # ---- the cases
+def _e_mean(D, rid, pid, side, where="plays"):
+    """The average energy of one side's backline monks at a play's decision (energy.py, R-683: the average told a little more than the lowest monk at most
+    decisions, 2026-11-24): side "own" or "their" (the fight) or "team" (our team's every living monk). None where the match has no energy (R-672) or no
+    monk of that side is read: a like spot fills a blank with the scenario's middle, so it leans nowhere. A plays file with no energy record stops (R-460)."""
+    E = D["flag_cost"][rid].get("energy")
+    if E is None: raise ValueError(f"the plays file carries no energy record for {rid}: run moments.py all again on this engine (R-460)")
+    if not E["ok"]: return None
+    r = E[where].get(pid)
+    if r is None: raise ValueError(f"no energy reading for {pid} (R-460)")
+    g = r["team"][0] if side == "team" else r[side]["monks"]
+    return g["mean"] if g and g["n"] else None
+
+
 def cases(D, M, B):
     """One case a flag play (Shadow of Haste runs set aside, R-456; the opening apart, R-541) or boost play, with the
     variables it is matched on and its priced result at each second read, from prices that never saw its match. A
@@ -233,7 +247,7 @@ def cases(D, M, B):
             if st["boost_in"] is not None:
                 if st["stand"] == "own": beats = None if eta is None else eta < st["boost_in"]
                 elif st["stand"] == "enemy": beats = BACK_AND_RUN * m["run_s"] < st["boost_in"]
-            more = [st["res_in"], stp[0], stp[1], float(tr["monks"] > 0), tr["speed"], tms["snare"][1], tms["snare"][0], eta, None if beats is None else float(beats)]
+            more = [st["res_in"], stp[0], stp[1], float(tr["monks"] > 0), tr["speed"], tms["snare"][1], tms["snare"][0], eta, None if beats is None else float(beats), _e_mean(D, p["rid"], p["id"], "their")]
         out.append({"id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "more": more, "v": v, "p0": p0,
                     "won": won, "held": held, "said": p["scenario"], "clock": p.get("clock"), "stand": st["stand"], "their": p.get("their"), "in_hand": in_hand, "beats": beats,
                     "their_flag": (p.get("beside") or {}).get("their_flag"), "boosts": {H: af[H]["boosts"] for H in HS},
@@ -1336,7 +1350,8 @@ def numbers_cases(D, M, B):
         res = [r for r in k["hard_res"] if r[1] == ("own" if p["numbers_side"] == "down" else "theirs")]      # a res on the side that is down
         # what a like spot is matched on (as for a flag play, with what a numbers situation adds): the flag lead, the boost clock, each side's players in the fight
         # and its morale, the strength gap, the base res, the chance of winning, where each main team stands, and each side's dead. `more` is unused here
-        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]]
+        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1],
+             _e_mean(D, p["rid"], p["id"], "own"), _e_mean(D, p["rid"], p["id"], "their")]      # R-689: both teams' monks at the main fight (R-688)
         out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "t": told, "side": p["numbers_side"], "source": p["source"], "call": call, "by": abs(n[0] - n[1]), "numbers": p["numbers"],
                     "x": x, "more": None, "fold": m["fold"], "won": won, "held": False, "kind": "numbers", "later": _num_call(p, NUM_LATER), "their_step": stp[1], "dead": k["dead"], "res_all": k["hard_res"],
                     "scenario": f"{'Up' if p['numbers_side'] == 'up' else 'Down'} on numbers from " + ("kills" if p["source"] == "kills" else "a runner away or players on the way"),
@@ -1506,7 +1521,7 @@ SPLIT_READS = (20, 40)                           # the seconds after a split is 
 SPLIT_VARS = ("flag lead", "seconds to the boost", "seconds to the base res", "own morale", "their morale", "strength gap", "own chance of winning at that second", "own main team's place (steps toward own pit)",
               "their main team's place (steps toward their pit)", "own pit NPCs already lost", "own dead", "their dead", "players on the split", "monks on the split", "self-defence skills on the split",
               "the split's snares", "the split's speed", "the split's escapes", "the split's damage a second on archers", "the split's damage a second on knights",
-              "the split's damage a second on the Bodyguard")      # R-566 and his agreement of 2026-11-21: the list put to him, with each side's dead and what the split can do as properties (R-539); its damage against the pit NPCs by rough class of bar (R-433, `npcpower.py`, `npc` on the split's properties), added 2026-11-23
+              "the split's damage a second on the Bodyguard", "our team's monks' energy")      # R-566 and his agreement of 2026-11-21: the list put to him, with each side's dead and what the split can do as properties (R-539); its damage against the pit NPCs by rough class of bar (R-433, `npcpower.py`, `npc` on the split's properties), added 2026-11-23
 SPLIT_SIZES = ("one player", "two players", "three players", "four or more")
 SPLIT_ANSWERS = ("nobody coming", "a defender on his way", "one defender, a monk", "one defender, not a monk", "one defender", "two monks", "fewer than the split", "mirror", "add one", "two or more extra", "a collapse", "the whole team")
 
@@ -1561,7 +1576,8 @@ def split_cases(D, M, B):
         size0, call0 = _split_answer(s, SPLIT_READS[0])
         # what a like spot is matched on (SPLIT_VARS), from the side of the team the split is sent against; a split not on their ground at the first read has no case among the like spots
         x = [st["flag_lead"], st["boost_in"], s["res_in"], mor[0][0], mor[1][0], gap, 100 * p0, s["steps"][1], s["steps"][0], st["npcs_lost"][0][0], s["dead"][1], s["dead"][0],
-             nm[0] if nm else None, nm[3] if nm else None, pp.get("self_defence"), pp.get("snare"), pp.get("speed"), pp.get("escapes")] + [(pp.get("npc") or {}).get(k) for k in ("archer", "knight", "bodyguard")]
+             nm[0] if nm else None, nm[3] if nm else None, pp.get("self_defence"), pp.get("snare"), pp.get("speed"), pp.get("escapes")] + [(pp.get("npc") or {}).get(k) for k in ("archer", "knight", "bodyguard")] \
+            + [_e_mean(D, rid, p["id"], "team")]      # R-689: the answer to their split by our own team's monks only (R-688)
         out.append({"id": p["id"], "rid": rid, "team": p["team"], "t": s["told"], "sid": sid, "fold": m["fold"], "won": won, "p0": p0, "pre": pre, "x": x, "more": None, "held": False, "kind": "split",
                     "scenario": size0 and f"A split of {size0}", "call": call0, "home": s["home"], "runner_out": s["runner_out"], "own_split": s["own_split"], "pit_alive": s["pit_alive"], "lord": {h: sum(v_ for t_, v_ in s["lord_damage"] if 0 <= t_ <= h) for h in (90, 180)},
                     "by": {h: (lambda v_: None if v_ is None else [v_[0], v_[1]])(s["numbers"][s["at"].index(h)]) for h in s["at"]},
@@ -1772,7 +1788,8 @@ def splits(path, out_json=None):
 MAIN_SCEN = ("Up at the main fight, their split in our base", "Down at the main fight, our split out", "Down at the main fight, their split in our base", "Up at the main fight, our split out")
 COLLAPSE, PULL_BACK, SEND_MORE, BRING_BACK = "collapse on the split", "pull a defender back to the main fight", "send more on the split", "bring players back from the split"
 MAIN_VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "seconds to the base res", "own chance of winning at that second",
-             "own main team's place", "their main team's place", "own dead", "their dead", "players on our split", "their defenders on it", "players on their split", "our defenders on it")
+             "own main team's place", "their main team's place", "own dead", "their dead", "players on our split", "their defenders on it", "players on their split", "our defenders on it",
+             "our monks' energy in the fight", "their monks' energy in the fight")      # R-689: up or down at the main fight, both teams' monks (R-688)
 
 
 def _main_whose(p):
@@ -1834,7 +1851,7 @@ def main_cases(D, M, B):
         if bf and bf["after"]["lead"][0] is not None and "npcs_lost" in bf["state"]: pre = 100 * (p0 - chance(beta, position(bf["state"], bf["after"], gap, False)))
         n = [int(x) for x in p["numbers"].split("v")]; k = p["clock"]; side = p["numbers_side"]
         scen = MAIN_SCEN[{("up", "theirs"): 0, ("down", "ours"): 1, ("down", "theirs"): 2, ("up", "ours"): 3}[(side, whose)]]
-        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]] + list(sp0)
+        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]] + list(sp0) + [_e_mean(D, p["rid"], p["id"], "own"), _e_mean(D, p["rid"], p["id"], "their")]
         out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "t": p["t0"], "side": side, "whose": whose, "call": call, "by": abs(n[0] - n[1]), "numbers": p["numbers"], "x": x, "more": None,
                     "fold": m["fold"], "won": won, "held": False, "kind": "main fight", "later": _main_call(p, NUM_LATER, lost_in(p, NUM_LATER)), "scenario": scen, "lasted": k["end"] - p["t0"], "res_in": k["res_in"], "p0": p0, "pre": pre,
                     "arriving": (sp0[2] if whose == "theirs" else sp0[0]) == 0, "split0": sp0, "split20": p["track"]["splits"][p["track"]["at"].index(NUM_READ)],
@@ -2243,7 +2260,8 @@ def res_cases(D, M, B):
         x0 = position(st, p["at_told"]["after"]["90"], c["gap"], False); beta = B[m["fold"]]
         bump = lambda i, d_: 100 * (chance(beta, [v + (d_ if j == i else 0) for j, v in enumerate(x0)]) - c["p0"])
         c.update(price={"one death": bump(2, -15), "two deaths": bump(2, -30), "a kill": bump(2, 15), "a pit NPC": bump(4, 1)})
-        c["x"] = [c["chance"], c["gap"], c["their_morale"], c["own_morale"], e["health"] if e["health"] is not None else 90.0, c["their_alive"], float(n), float(bool(c["outnumbered"])), float(c["stand"]), float(c["late"]), float(c["monks"]), float(e["pit_npcs"])]
+        c["x"] = [c["chance"], c["gap"], c["their_morale"], c["own_morale"], e["health"] if e["health"] is not None else 90.0, c["their_alive"], float(n), float(bool(c["outnumbered"])), float(c["stand"]), float(c["late"]), float(c["monks"]), float(e["pit_npcs"]),
+                  _e_mean(D, p["rid"], p["id"], "own"), _e_mean(D, p["rid"], p["id"], "their")]      # R-689, R-690: both teams' monks, 20 s before the res
         out.append(c)
     return out, skipped
 
@@ -2253,7 +2271,7 @@ GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (tw
 HIS_RES = (("3b7bfeac", 1440, "yM v hook 24:00", True), ("512d445f", 720, "Crew v One 12:00", True), ("33dab8e5", 360, "Men v BcS 6:00", True), ("19f38ea6", 600, "Book v hook 10:00", True),
            ("39e9d728", 480, "DUM v ohno 8:00", True), ("c19f13e3", 600, "Men v NwAy 10:00", True), ("328de049", 960, "Book v cope 16:00", False), ("5527465c", 360, "hook v Men 6:00", None))      # his words of 2026-11-22 on the stays where two or more died: the six that are the greedy stay, one that is a res onto a split, and hook v Men, left as it is read (R-595, R-607)
 DANGER_VARS = ("own chance of winning at that second", "strength gap", "their morale", "our morale", "health of our players in their base", "their players alive", "their dead to come back", "outnumbered in their base once they res",
-               "we hold the stand", "the res of 12:00 or later", "our monks in their base", "their pit NPCs alive")
+               "we hold the stand", "the res of 12:00 or later", "our monks in their base", "their pit NPCs alive", "our monks' energy in their base", "their monks' energy in the fight")      # R-689, R-690
 # what a team in the danger spot can know before the res, for "why some die and some do not" (R-610): a number is read in thirds of the danger spot's own stays
 DANGER_F = (("its chance of winning at that second", "chance", "%"), ("the strength gap", "gap", ""), ("their morale (summed over the eight; a death is 15 on one player)", "their_morale", ""),
             ("our morale", "own_morale", ""), ("morale, ours less theirs", "dm", ""), ("health of our players in their base", "e_health", "%"))
