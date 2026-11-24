@@ -1,11 +1,16 @@
 // Fetch match replays from gvg.report, trim them (replay_trim.mjs) and store them in a folder (the "replays" branch).
 // Requests come from replays/requests.txt on main: one per line, either a report id / gvg.report link, or
 // "latest:N" for the N most recent matches. Matches already stored are skipped, so the same list can be re-run.
+// Beside each stored replay goes <report id>.x.json.gz, what the trim leaves out (replay_extras.mjs: flag objects, the
+// Lord damage record, what each prot did, degen, interrupt attempts, energy). A stored match without it, or with an older
+// version of it, has both payloads fetched again and only that file written: the stored replay is never written again.
+// The ids in replays/extras_first.txt (optional, one a line) are done first.
 // Usage: node tools/gvgreport/replays.mjs <store dir>   (env: DELAY_MS=4000, MAX_FETCH=500)
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
 import { trimReplay, TRIM_VERSION } from "./replay_trim.mjs";
+import { buildExtras, EXTRAS_VERSION } from "./replay_extras.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const STORE = path.resolve(process.argv[2] || "store");
@@ -92,6 +97,17 @@ async function listing(n) {
   console.log(`Listed ${out.length} matches.`);
 }
 
+// Write the extras file of a stored match from its two payloads; the index entry gets `x` (the version) and `x_kb`.
+function writeExtras(id, entry, raw, sm) {
+  const stored = JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(STORE, entry.file))));
+  const x = buildExtras(raw, sm, stored);
+  const gz = zlib.gzipSync(JSON.stringify(x), { level: 9 });
+  fs.writeFileSync(path.join(STORE, entry.file.replace(/\.json\.gz$/, ".x.json.gz")), gz);
+  entry.x = EXTRAS_VERSION; entry.x_kb = Math.round(gz.length / 1024);
+  if (x.lord?.check) { entry.x_check = x.lord.check; console.warn(`  ${id}: Lord record: ${x.lord.check}`); } else delete entry.x_check;
+  return { kb: entry.x_kb, flags: x.flag_objects.length, recaps: x.recaps?.length ?? 0, attempts: x.attempts?.length ?? 0, lord: x.lord?.events.length ?? 0, energy: !!x.energy };
+}
+
 async function main() {
   const indexFile = path.join(STORE, "index.json");
   const index = readJson(indexFile, { format: "gvginfo.replay.v1", updated: null, matches: {} });
@@ -133,6 +149,7 @@ async function main() {
         length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024), summary: !!sm?.summary, trim: TRIM_VERSION };
       console.log(`  ${id}: ${out.meta.map}, ${t.map((x) => x.tag).join(" vs ")}, ${Math.round(gz.length / 1024)} KB`);
       await saveMap(out.meta.map_id, raw.report?.sessions?.[0], raw.report?.map_geometry?.pathing_maps);
+      try { writeExtras(id, index.matches[id], raw, sm); } catch (e) { console.warn(`  ${id}: extras not written: ${e.message}`); }
       done++;
       if (done % 20 === 0) { index.updated = new Date().toISOString(); fs.writeFileSync(indexFile, JSON.stringify(index, null, 1)); }
     } catch (e) { console.warn(`  ${id}: ${e.message}`); }
@@ -141,6 +158,34 @@ async function main() {
   index.updated = new Date().toISOString();
   fs.writeFileSync(indexFile, JSON.stringify(index, null, 1));
   console.log(`Stored ${done} new replays.`);
+
+  // the extras of matches stored before they were kept (or kept in an older version): fetched again, the replay left as it is
+  const firstFile = path.join(ROOT, "replays/extras_first.txt");
+  const first = fs.existsSync(firstFile) ? fs.readFileSync(firstFile, "utf8").split("\n").map((l) => (l.match(ID) || [])[0]?.toLowerCase()).filter(Boolean) : [];
+  const need = (id) => index.matches[id]?.file && (index.matches[id].x || 0) < EXTRAS_VERSION && !index.matches[id].x_missing;
+  const xtodo = [...new Set([...first, ...Object.keys(index.matches)])].filter(need).slice(0, Math.max(0, MAX - done));
+  const left = Object.keys(index.matches).filter(need).length;
+  console.log(`${left} stored matches without extras v${EXTRAS_VERSION}; ${xtodo.length} to fetch in this run.`);
+  let xdone = 0;
+  for (const id of xtodo) {
+    const entry = index.matches[id];
+    try {
+      const raw = await getJson(`${BASE}/api/reports/${encodeURIComponent(id)}?payload=replay`);
+      if (!raw?.report) { console.warn(`  ${id}: no replay data now (stored replay kept, no extras)`); entry.x_missing = true; }
+      else {
+        await sleep(1500);
+        const sm = await getJson(`${BASE}/api/reports/${encodeURIComponent(id)}?payload=summary`).catch(() => null);
+        // a summary that was there when the replay was stored and cannot be had now is a failed fetch: try again in a later run
+        if (!sm?.summary && entry.summary) throw new Error("the summary could not be fetched; left for a later run");
+        const r = writeExtras(id, entry, raw, sm);
+        console.log(`  ${id}: extras ${r.kb} KB (${r.flags} flag objects, ${r.lord} Lord events, ${r.recaps} recaps, ${r.attempts} interrupt attempts${r.energy ? ", energy" : ""})`);
+        xdone++;
+      }
+      index.updated = new Date().toISOString(); fs.writeFileSync(indexFile, JSON.stringify(index, null, 1));
+    } catch (e) { console.warn(`  ${id}: ${e.message}`); }
+    await sleep(DELAY);
+  }
+  console.log(`Wrote the extras of ${xdone} stored matches; ${left - xdone} left.`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

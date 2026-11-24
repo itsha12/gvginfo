@@ -1,0 +1,6 @@
+# Stored matches whose extras file (replay_extras.mjs) is written first: the matches with known figures to check a new version against.
+0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd
+eea5ba87-ac20-5ba3-a6c9-965f11ca8a65
+19f38ea6-59d3-5264-a5a1-8ae0fea2e640
+90810e04-6855-5045-a7f4-d32f47815ade
+04befe7e-4050-51d4-ac06-3560dcb02611
