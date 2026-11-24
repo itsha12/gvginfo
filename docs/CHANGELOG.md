@@ -2,8 +2,8 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
-## 2026-11-23, late night (a new chat, docs only): his answers to the open items, R-656 to R-660
-- The open items set out for him in the chat; no build, no play moved, nothing run.
+## 2026-11-23, late night (a new chat): his answers to the open items, R-656 to R-663; the new trim part built and its refetch started
+- The open items set out for him in the chat. No engine change and no play moved; the build is the new trim part, on main.
 - R-656: a Lord kill before 21:00 is left told nowhere as a Lord row; ohno v Book at 5 against 3 and "the kill" read from the result stand.
 - R-657: the probe of gvg.report for degen on NPCs and Lords is saved for later and is no condition of the rebuild: degen on players is gvg.report's, on a Lord not needed, on NPCs estimated (it moves the NPC damage of some kinds of bar). Amends R-649.
 - R-658: what a held team heals mostly follows what the holders hit (a reaction, never a call or a fix); a hold is to be told with what the holders went for, NPCs or players. Not built.
@@ -12,6 +12,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - The stage E plan put to him and agreed: the new trim first, then the engine on it, then the close; Claude starts the refetch once the trim is tested.
 - The new trim part built on main, as a file of its own beside each replay (`replay_extras.mjs`, `<id>.x.json.gz`, version 2): flag objects (R-481), the Lord record (R-632), prots, degen, attempts and recaps (R-636 to R-639), energy. The stored replays are not written again. `probe.mjs` learned `shape:` picks (two probe runs for the layouts).
 - Tested on five matches: RJT v RACK's four returns are the four flag objects at a spawn that no cap explains; Lord scores equal the stored ones; hdm v Men 210 attempts, 128 hit; Blazing Finale 4,183 and Jagged Strike 2,061 of degen. Found: degen on NPCs and Lords is in the summary by player, skill and target; BcS v Apes' Lord score is 30 off its events. The full refetch started (about 21 to 40 KB a match); the test also stored two new matches (660).
+- His word on what was found: R-661, degen on NPCs and Lords is read from gvg.report (in place of R-657's estimate); R-662, the engine does not read the energy estimate; R-663, the two matches the test stored come out once the run has saved, with the `latest:2` line.
 
 ## 2026-11-23, night (a new chat): his marks filed; his word R-649 to R-655; the Lord play rebuilt from the end record; what was left of the measurements
 - His marks on the eight draft rows of the play for 28:00 filed as p4-9 to p4-16 (seven Classic, six correct; one Visible), and the eleven flag cards (all told correctly and agreed with; his calls wait 5, send 4, hold 2). His question on Dz v Crew answered: Dz's three pit NPCs at 21:52 are its pit archers.

@@ -57,7 +57,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   Beside each replay, `YYYY-MM/<report id>.x.json.gz` holds what the trim leaves out (format at the top of
   `tools/gvgreport/replay_extras.mjs`; `x` in the index is its version): gvg.report's flag objects (R-481), Lord damage
   record (R-632), what each prot did, degen, interrupt attempts and death and spike-save recaps (R-636 to R-639), and its
-  energy model. It uses the replay's agent numbers and clock. A new version of it fetches both payloads again and writes
+  energy model (stored, never read by the engine: R-662). It uses the replay's agent numbers and clock. A new version of it fetches both payloads again and writes
   only that file: a stored replay is never written again. The engine does not read it yet (stage E).
 - Replay analysis toolkit: `tools/replay_analysis/` (`replaylib.py` = Match class: positions, groups, sides, carries,
   build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
@@ -589,9 +589,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   place damage shows up; the list of places is in the ruling (NPC damage by kind of bar, the execution measures,
   the danger zone's damage line of R-615, which is put to him again on the new figure, the aim of a Lord push, the
   death accounts and nodes). Amounts take degen in; who is in which fight, a stand-off and who killed a player
-  stay read from hits and casts (R-655). gvg.report's condition intervals name players only: degen on NPCs and on a Lord is in
-  nothing stored. Degen on a Lord is not needed and degen on NPCs is estimated (it moves the NPC damage of some kinds of
-  bar, R-433); the probe of gvg.report for it is saved for later and is no condition of the rebuild (R-657).
+  stay read from hits and casts (R-655). Degen on NPCs and on a Lord is read from gvg.report too (R-661, in place of the
+  estimate of R-657): its summary credits it to the player, the condition, the skill and the target, as totals for the
+  match with no time (the `targets` rows of list `d` in the file beside each replay), so it is shared out over the
+  stretches a player is on an NPC. The engine does not read gvg.report's energy estimate (R-662).
 - The measurements of R-572, on the branch (built 2026-11-23; each is a record or a report and moves no play: after any
   change to them compare the plays with the run before, the key `npc` left out wherever it stands).
   Execution, both teams by the same measures (2.12, R-299): `execution.py`. For the first `EXEC_S` (20 s, Claude's
