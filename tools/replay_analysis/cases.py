@@ -2389,7 +2389,9 @@ def res_sentence(r):
     lost = "took no deaths" if n == 0 else "took one death" if n == 1 else f"took {n} deaths"      # deaths, as he says it ("took 2 deaths"): a player brought back can die again inside the minute
     moved = f"{'gained' if pts > 0 else 'lost'} {abs(pts):.0f} point{'' if round(abs(pts)) == 1 else 's'} of its chance of winning" if abs(pts) >= 0.5 else "its chance of winning did not move"
     ch = round(r["started_at"]); had = f"had {'an' if ch in (8, 11, 18) or 80 <= ch <= 89 else 'a'} {ch}% chance of winning"
-    spot = f"({r['past_shrine']} of {r['n']} past their res shrine, {r['npcs_hitting']} NPCs on them, {r['taken']} damage a player in the minute before)"
+    en = r.get("monk_energy")                                              # R-690: monk energy beside the 300 line, never in place of it (the zone is still his three factors)
+    mon = "" if en is None else f", its monks at {en['mean']:.0f} on average, the lowest at {en['low']:.0f}"
+    spot = f"({r['past_shrine']} of {r['n']} past their res shrine, {r['npcs_hitting']} NPCs on them, {r['taken']} damage a player in the minute before{mon})"
     if r["call"] != RES_CALLS[0]:
         return (f"{r['team']} {had} and left {foe}'s base before the base res of {cl(r['res'])}, out of the danger zone {spot}, with {', '.join(ag) if ag else 'nothing'} against a stay; "
                 f"it {lost} in the minute after the res, got {k} kill{'' if k == 1 else 's'} in 90 s, and three minutes on {moved}.")
@@ -2397,7 +2399,7 @@ def res_sentence(r):
             f"it {lost} within 60 s of the res, got {k} kill{'' if k == 1 else 's'} in 90 s, and three minutes on {moved}.")
 
 
-def danger_calls(X, M, g, pr):
+def danger_calls(X, M, g, pr, D=None):
     """Every base res in the danger zone with its call, his two factors (R-616) and its sentence (R-617; R-614: "I would want to see the base res call just for
     every danger zone base res"): kept whole in the report's file; printed, those with a factor against the stay and those where two or more died."""
     rows = []
@@ -2406,6 +2408,9 @@ def danger_calls(X, M, g, pr):
         if f["morale_behind"] != (f["morale"] <= -RES_BEHIND): raise ValueError(f"base res {c['rid']} {c['t']}: the morale factor is read on another number than the sentence's: set RES_BEHIND to jobs.RES_MORALE_BEHIND (R-460)")
         r = {"rid": c["rid"], "date": m["date"], "teams": m["teams"], "map": m["map"], "length_s": m["length_s"], "team": c["team"], "res": f["res"], "call": RES_CALLS[0] if c["stayed"] else RES_CALLS[1], "n": c["n"], "past_shrine": c["past"], "npcs_hitting": c["early"]["npcs_hitting"], "taken": c["taken"],
              "morale": f["morale"], "stand": f["stand"], "late": f["late"], "against": f["against"], "deaths_30": c["deaths"], "deaths_60": c["deaths_60"], "kills_90": c["kills"], "npcs_90": c["npcs"], "started_at": c["chance"], "win_points_180": c["v"]["180"]}
+        e = _energy_of(D, c) if D is not None else None                   # R-690: the monks among the players in their base, 20 s before the res (energy.py)
+        g_ = e and e["own"]["monks"]
+        r["monk_energy"] = {"mean": g_["mean"], "low": g_["low"], "n": g_["n"]} if g_ and g_["n"] else None
         r["sentence"] = res_sentence(r); rows.append(r)
     g["calls"] = rows
     line = lambda r: f"     {r['date']} {' v '.join(r['teams'])}, {r['map']}, {cl(r['length_s'] or 0)} long: {r['sentence']}   https://gvg.report/report/{r['rid']}#map"
@@ -2498,7 +2503,7 @@ def danger_report(D, M, C, res, pr):
     pr("   The reading is what staying was worth at like spots, in the chance of winning three minutes on, against holding what the team had: \"the stay pays\" where its 90% range lies above nothing, \"the stay")
     pr("   costs\" where it lies below, else no clear reading. Falling out cannot be set beside it: in the danger spot almost nobody does.")
     g["reading"] = o = {}
-    if len(S) < 2 * MIN_PLAYS: pr(f"   Too few stays ({len(S)}) for like spots."); danger_calls(X, M, g, pr); return
+    if len(S) < 2 * MIN_PLAYS: pr(f"   Too few stays ({len(S)}) for like spots."); danger_calls(X, M, g, pr, D); return
     for c in S: c["call"] = "stayed"
     s_ = Scenario(S); s_.names = list(DANGER_VARS); K_ = MIN_PLAYS; o["K"] = K_
     pred = []
@@ -2533,7 +2538,7 @@ def danger_report(D, M, C, res, pr):
     P = [c for c in spot_cases(D, M) if c["danger"]]
     o["at_40_s"] = {"stayed": sum(1 for c in P if c["call"] == "stayed"), "fell out": sum(1 for c in P if c["call"] == "fell out")}
     pr(f"\n   Falling out of the danger spot (read 40 s before the res, R-601, R-605): {o['at_40_s']['stayed']} stayed through the res and {o['at_40_s']['fell out']} fell out before it: too few to say what falling out is worth there.")
-    danger_calls(X, M, g, pr)
+    danger_calls(X, M, g, pr, D)
 
 
 def base_res(path, out_json=None):
