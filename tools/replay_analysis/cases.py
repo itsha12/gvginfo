@@ -3465,8 +3465,9 @@ def send_report(path, out_json=None):
 # ---- energy at the decisions (R-689, piece 2; R-666 the third aspect, R-683, R-684, R-688): what followed each call by the monk energy of the fight
 ENERGY_READS = (("average", "mean"), ("lowest monk", "low"))       # R-683: the average of the monks in the fight, the lowest of them, and (apart) how many there are
 ENERGY_N = (("one monk", lambda n: n == 1), ("two monks", lambda n: n == 2), ("three or more", lambda n: n >= 3))
-ENERGY_NOT_READ = (("pressing the fight or allowing a stand-off", "no play tells this choice yet: a stand-off is read as no fight (R-405) and told as no row"),
-                   ("the Mesmer and midline playing offensively or defensively, whom they drain included", "no play of the new engine tells it yet (R-279's reading is the old tier's); whom a Mesmer drains comes with energy denial, piece 3"))
+ENERGY_NOT_READ = (("our split: once on a split, stay and kill or fall back, by the split's own monks only (R-695)", "the split's call to fall back is not yet read: its definition is put to him first"),)
+# taken out at his word, not to be read again without it: pressing the fight or allowing a stand-off (R-691), offensive or defensive play (execution, R-692),
+# our own monks at "our flag just in" (R-693), energy at their boost (R-694), and the send-or-not table of "our split" (R-695: the decision is another one)
 
 
 def _energy_of(D, c, where="plays"):
@@ -3580,13 +3581,11 @@ def energy_report(path, out_json=None):
     own, their = ("own", "our monks in the fight"), ("their", "their monks in the fight")
     DEC = (
         ("1. The answer to their flag run (their monks only, R-688)", [dict(c, call=run_call[c["call"]]) for c in R if c["read"] == READS[0] and not c["from_cap"]], "plays", (their,), list(run_call.values())),
-        ("2. Our flag just in, their run still on its way: run again or not (from our cap)", [dict(c, call=run_call[c["call"]]) for c in R if c["read"] == READS[0] and c["from_cap"]], "plays", (own, their), list(run_call.values())),
-        ("3. Their boost is 30 s away", [c for c in C if c["kind"] == "boost"], "plays", (own, their), ["run a flag", "send no flag"]),
+        ("2. Our flag just in, their run still on its way: run again or not (from our cap; their monks only, R-693)", [dict(c, call=run_call[c["call"]]) for c in R if c["read"] == READS[0] and c["from_cap"]], "plays", (their,), list(run_call.values())),
         ("4. Down a player or more at the main fight (not a family, R-557: context)", [c for c in NC if c["side"] == "down"], "plays", (own, their), list(DOWN_CALLS)),
         ("5. Up a player or more at the main fight (not a family, R-557: context)", [c for c in NC if c["side"] == "up"], "plays", (own, their), list(UP_CALLS)),
         ("7. The answer to their split (our own monks only, R-688: every living backline monk of the team, since the defenders are the call)", [dict(c, call=big(c)) for c in SC if big(c)], "plays", (("team", "our team's monks"),),
          ["fewer defenders than the split, 20 s in", "as many as the split or more"]),
-        ("8. Our split: send one in the next 30 s or not (every 30 s, our main team's fight)", [dict(c, call=send(c)) for c in TC], "split_ticks", (own, their), ["no split", "one player", "two or more"]),
         ("9. The base res in the danger zone (read 20 s before the res)", [c for c in RC if c["danger"]], "plays", (own, their), list(RES_CALLS)),
         ("10. After a wipe", W, "plays", (own, their), list(UP_CALLS)),
     )
@@ -3600,7 +3599,7 @@ def energy_report(path, out_json=None):
         pr("   calls: " + "; ".join(f"{k} {v}" for k, v in o["calls"].items()))
         for side, words in sides: o[words] = _energy_table(pr, Y, calls, side, words)
     pr("\nNot read yet:")
-    for k, v in ENERGY_NOT_READ: pr(f"   6/11. {k}: {v}")
+    for k, v in ENERGY_NOT_READ: pr(f"   {k}: {v}")
     # the danger zone both ways (R-615, R-676): his damage line stood in for monk energy; every base res play, by whether the line puts it in the zone and by
     # the monks' energy of the players in the base 20 s before the res, so that he can say whether energy replaces the line or sits beside it
     Y = [dict(c, _e=e) for c in RC for e in [_energy_of(D, c)] if e is not None and (e["own"]["monks"] or {}).get("n")]
