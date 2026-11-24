@@ -203,14 +203,22 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   False and every figure blank where a match has none (18 counted matches, R-672). Whose: the backline monks
   (`kind` "monk"), the midline for energy (Ritualist, Mesmer, Elementalist, Necromancer, smite monk: "midline"),
   nobody else (R-665, R-670, R-675). The scale is what a player would have on his double high set now (R-668,
-  R-686): shown + (top - the maximum of the set held), top 72 with death penalty or morale on it (an Elementalist's
-  top is his own highest maximum in the match). `at(a, t)`, `group(ids, t)` (the average, the lowest player and how
+  R-686): shown + what the change of set would add. For everybody but an Elementalist that is the double high top
+  less the maximum of the set held, the top 72 + 20 x morale / 100: death penalty and morale move a maximum by their
+  share of the BASE 20 energy only (+2 at a full boost, -3 a death, -12 at 60%), the game's rule and what
+  gvg.report's maximum does, so what a change of set adds never moves with morale. An Elementalist's maximum holds
+  his Energy Storage and falls with Overcast, so his is read from the set he holds (the replay's weapon set of each
+  sample, gvg.report's labels; `SET_HOLDS`: wand and focus 42, staff 40, single high 62, double high 72, anything
+  else 30). Found in the review of 2026-11-24 and not to be undone: the top had been 72 x (1 + morale / 100), which
+  read a monk on a boost 5 too high and one with death penalty 6 to 30 too low (43% of readings, against the team
+  with deaths behind it), and an Elementalist's top had been his highest maximum in the match, which counted his
+  Overcast as energy. A reading is the sample at or before its second, never the one after. `at(a, t)`, `group(ids, t)` (the average, the lowest player and how
   many, R-683), `out` (a monk under 20, a midline player under 15, R-681 and R-682: "yes" where even the most he can
   have is under it, "maybe" where only the least is). Those two lines are for the excuse only: at a decision no
   line is set and what followed is read across the range of energy there (R-669). `python3 energy.py cover` prints
-  the checks of the record (2026-11-24, 546 matches: a team's monks lose 0.7 in 10 s under fire and regain 1.3 at
-  rest; a death follows within 20 s 78% of the time where they average under 20 and 7% at 60 or more; a monk is out
-  for certain 0.8% of his time alive). Built (2): each fight's energy on every play, a record kept beside the plays
+  the checks of the record (2026-11-24, 546 matches, on the corrected scale: a team's monks lose 0.8 in 10 s under
+  fire and regain 1.2 at rest; a death follows within 20 s 89% of the time where they average under 20 and 8% at 60
+  or more; a monk is out for certain 0.5% of his time alive, a midline player 0.1%). Built (2): each fight's energy on every play, a record kept beside the plays
   (`energy.record`, `flag_cost[rid].energy`: no play reads it and none moves): at the second the decision arises
   (`energy.decision_second`: a flag play's `clock.anchor`, a base res 20 s before the res, else `t0`) and 60 s
   before, the backline monks and the midline of our side (a split play's own players, `who`; on every other play our
@@ -234,12 +242,28 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   than the lowest monk at most decisions): their monks' energy in MORE for every flag play (the answer to their run and
   our flag just in, R-693), both teams' at the numbers and main fight like spots, our team's (`team`) in SPLIT_VARS,
   both teams' in DANGER_VARS; none at their boost (R-694); a match with no energy takes the scenario's middle. (2) is
-  done. To build, in his order (R-689):
-  (3) the
-  excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of
-  the minute before went (spent, taken by the enemy, regained), energy denial read (R-685: Energy Surge and Energy
-  Burn deal 7 and 9 damage a point of energy taken, so the energy taken is their damage over that; Mind Wrack to
-  confirm), and whom a Mesmer drains read with offensive or defensive play, as execution (R-692); (4) monk casting efficiency
+  done. (3), the excuse, is built (2026-11-24; R-666 the second aspect, R-681, R-682, R-685, R-692), all of it in
+  `energy.py` (read the section "the excuse" there before touching it). `denial(m)`: every time an enemy skill took
+  energy from a player, with how much and how surely: Energy Surge and Energy Burn from their damage on the target
+  over 7 and 9 (exact where a whole multiple, a lower bound where a prot cut it, nothing where no damage is seen: a
+  player with no energy on the set he holds loses none); Mind Wrack 1 for every non-hex Mesmer skill its caster
+  finishes on the hexed player; Power Leak, Shame and Guilt the skill's figure at the caster's Domination Magic and
+  no more than the most the player can have (not sure); Malaise 1 every 3 s. `Energy.account(a, t0, t1)`: what he
+  had, the listed cost of every cast he started (R-680: finished, interrupted or cancelled), what was taken, and what
+  came back (the balance: regeneration, energy skills, a cost cut by a skill, and the error of the estimate; never
+  call it regeneration). `excuse(M, plays)`, kept beside the plays as `flag_cost[rid].excuse` (no play reads it and
+  none moves): at every death the backline monks in the dead player's fight a second before (`Moments.linked`), who
+  was out and each one's account of the minute before; and for every play with the job to kill (`kill_job`: the test
+  "more of theirs die"), met or not, the midline of the team in that fight, how long each was out, and his account.
+  `energy.py <report id> excuse [m:ss]` says a match's in sentences (`say_death`, `say_no_kill`); the death accounts
+  carry it as the answer "energy" (`forensics.death`); `execution.py` reads whom a team drains as two measures,
+  `drain` and `drain_on_monks` (execution, R-692). `cases.py excuse <plays file>` (report
+  `data/model/excuse_cases.json`): over 546 matches 7,432 deaths with a monk in the fight, every monk out at 1.1%
+  and one or more at 5.0%; a monk out at a death spent 88 in the minute before and had 3.5 taken (4% had 20 or more
+  taken, 76% under 5: a monk out is mostly a monk who spent it); about 440 energy a match is taken in all, 38% of
+  it from backline monks; of 2,393 failures to kill, a midline player was out for half the stretch in 0.1%. An excuse says what was so, never why a player died, and is no fix. To build,
+  in his order (R-689):
+  (4) monk casting efficiency
   (R-678 to R-680, R-687), with what each prot did (R-636) and the interrupt attempts (R-639), by monk role
   (R-671): healing landed plus damage prevented for the energy spent, blocks credited to any blocking skill,
   removals a count apart, cancelled casts apart as a bait that worked or energy burned.

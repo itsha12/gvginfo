@@ -541,6 +541,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   monks in that fight, a team's own and the enemy's each a factor.
 - Energy is read on the double high scale, what the player would have on his double high set, 72 at most for a
   monk: every monk carries one (R-667, R-668); the midline is read on it too (R-686).
+  *As built:* what he shows plus what the change of set would add. Death penalty and morale move a maximum by their
+  share of the base 20 energy only (+2 at a full boost, -3 a death), on every set alike, so the change of set adds
+  the same at any morale. An Elementalist's maximum holds his Energy Storage and falls with Overcast, so his is
+  read from the set he holds.
 - Low is no set point where energy is an input to a decision: it is read from the data, decision by decision
   (R-669), at every decision of R-688 at once (R-684; not the Lord push or a held team), with the fight's monk energy kept as the average, the lowest monk
   and the number of monks (R-683). Pressing the fight or allowing a stand-off is no decision for now (R-691); offensive or defensive Mesmer and midline
@@ -552,12 +556,20 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   leaving the enemy's ground (giving ground inside their base is staying; joining their own main team is falling back),
   read 20 s after they reach it, a split that dies inside those 20 s told apart (R-696).
 - Out of energy, for the excuse: a monk under 20, a midline player under 15, on that scale (R-681, R-682, R-686).
+  *As built:* out for certain where even the most he can have is under the line, possibly out where only the least
+  is. At a death the monks read are the backline monks in the dead player's fight a second before it; at a failure
+  to kill, the midline of the team that had the job, a player out where he was out for half the stretch or more.
+  With it, where the energy of the minute before went: what he had, what he spent on casts, what the enemy took,
+  what came back. An excuse says what was so, never why a player died.
 - A useful cast: healing landed plus damage prevented for the energy spent, Divine Favor counted, removals a
   count apart; a prot that prevented nothing bought nothing, the attacks a skill blocked excepted (Aegis, and any
   skill that blocks); no "not needed" measure (R-678, R-679, R-687). A cancelled cast costs its energy and is shown apart, as a bait that worked or energy burned
   (R-680).
 - Energy denial is read: energy the enemy took is no fault of the monk's, and whom a Mesmer drains belongs to
   playing offensively or defensively (R-685), read as execution (R-692).
+  *As built:* Energy Surge and Energy Burn from their damage (7 and 9 a point), Mind Wrack a point a skill, Power
+  Leak, Shame, Guilt and Malaise from the skill's own figure (not sure); whom a team drains is two execution
+  measures, the points taken and the share of them from their backline monks.
 - A match with no energy record keeps its place, energy blank (R-672).
 
 ## Degen as damage
