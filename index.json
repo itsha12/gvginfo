@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-24T03:49:56.774Z",
+ "updated": "2026-11-24T03:53:29.663Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -15,8 +15,8 @@
    "kb": 182,
    "summary": true,
    "trim": 3,
-   "x": 1,
-   "x_kb": 21
+   "x": 2,
+   "x_kb": 20
   },
   "cb5a5f57-be04-5af2-aa60-8114e98e1202": {
    "file": "2026-11/cb5a5f57-be04-5af2-aa60-8114e98e1202.json.gz",
@@ -30,7 +30,9 @@
    "length_s": 1694,
    "kb": 402,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "450bb88f-b9a4-537a-a453-17dd925baa65": {
    "file": "2026-11/450bb88f-b9a4-537a-a453-17dd925baa65.json.gz",
@@ -325,8 +327,8 @@
    "kb": 462,
    "summary": true,
    "trim": 3,
-   "x": 1,
-   "x_kb": 41
+   "x": 2,
+   "x_kb": 40
   },
   "faec428a-5b92-54d1-a28c-b79c7f27cfcf": {
    "file": "2026-11/faec428a-5b92-54d1-a28c-b79c7f27cfcf.json.gz",
@@ -760,7 +762,10 @@
    "length_s": 728,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26,
+   "x_check": "team 1: the events come to 3360, gvg.report's own score is 3390"
   },
   "ad75813a-2393-56f4-aee1-975ff4c85196": {
    "file": "2026-11/ad75813a-2393-56f4-aee1-975ff4c85196.json.gz",
@@ -4582,7 +4587,9 @@
    "length_s": 1693,
    "kb": 446,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38
   },
   "2bd43b13-b0d7-5fe4-ab0c-32897209152f": {
    "file": "2026-10/2bd43b13-b0d7-5fe4-ab0c-32897209152f.json.gz",
@@ -7397,8 +7404,8 @@
    "kb": 436,
    "summary": true,
    "trim": 3,
-   "x": 1,
-   "x_kb": 36
+   "x": 2,
+   "x_kb": 35
   },
   "7be03dbe-529d-5cf5-adbb-fb1f0043ca33": {
    "file": "2026-10/7be03dbe-529d-5cf5-adbb-fb1f0043ca33.json.gz",
