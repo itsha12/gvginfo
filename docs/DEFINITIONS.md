@@ -540,7 +540,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   a midline out of energy, rarely, is why a team does not kill); and an input to decisions, as the energy of the
   monks in that fight, a team's own and the enemy's each a factor.
 - A monk's energy is read on the double high scale, 72 at most: every monk carries a double high set (R-667, R-668).
-- Low is no set point: it is read from the data, decision by decision (R-669).
+- Low is no set point where energy is an input to a decision: it is read from the data, decision by decision
+  (R-669), at every decision at once (R-684), with the fight's monk energy kept as the average, the lowest monk
+  and the number of monks (R-683).
+- Out of energy, for the excuse: a monk under 20, a midline player under 15 (R-681, R-682).
+- A useful cast: healing landed plus damage prevented for the energy spent, Divine Favor counted, removals a
+  count apart; a prot that prevented nothing bought nothing, blocks excepted (Aegis); no "not needed" measure
+  (R-678, R-679). A cancelled cast costs its energy and is shown apart, as a bait that worked or energy burned
+  (R-680).
+- Energy denial is read: energy the enemy took is no fault of the monk's, and whom a Mesmer drains belongs to
+  playing offensively or defensively (R-685).
 - A match with no energy record keeps its place, energy blank (R-672).
 
 ## Degen as damage

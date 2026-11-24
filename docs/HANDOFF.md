@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-24, afternoon: R-668 to R-677; degen as damage begun; the energy plan with him)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 matches
-  trained. No workflow run in progress. Rulings run to R-677. The baseline (R-491): `baseline-2026-11-15`.
+  trained. No workflow run in progress. Rulings run to R-685. The baseline (R-491): `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. No family: numbers from kills (R-557), the push (R-597), a held team
   (R-621). No more matches until the engine is ready (R-570). Nothing waits for his marks.
 - On the branch (stage E, step 2; CLAUDE.md "The engine on the new trim"), at f865fa3: the reader, flag returns
@@ -20,7 +20,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   player took, NPC damage by kind of bar (benchmark rebuilt), the execution measures and `pressure.py`; the
   danger zone's line is 300 a player, hits and degen (R-676).
 - Development set: 6,933 plays, none gone or new (30 base res in the danger zone against 25); 323 Classic rows
-  pass. Last full run: 9022ffe. Energy: R-668 to R-675 filed (DEFINITIONS.md "Energy"); nothing built (R-674).
+  pass. Last full run: 9022ffe. Energy: R-668 to R-685 filed (DEFINITIONS.md "Energy"); nothing built (R-674).
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. Energy, worked through with him (R-674): his answers to the plan put to him on 2026-11-24, filed as rulings,
@@ -47,9 +47,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
    sender's side: raise them when more matches are trained. The execution list (R-557).
-1. The energy plan's questions, put to him 2026-11-24 (Q1 to Q8): what a useful cast is; when a prot or heal was
-   not needed; whether a cancelled cast costs its energy and how baiting counts; "out of energy" for the excuse;
-   the midline's out; collective monk energy (average, lowest, total); which decisions first; energy denial.
+1. Energy: his answers to Q1 to Q8 are R-678 to R-685. Put to him 2026-11-24 and open: the scale of his 20 and
+   15 (R-681, R-682); blocks read for every blocking skill (R-679); the list of decisions energy moves (R-684),
+   with the danger zone's damage line as a stand-in for monk energy; then his word to build.
 2. RACK v hdm 7:40 is told with its call again at 300 with degen (as he first graded it): told to him.
 3. The NPC damage table with degen (R-659) was shown to him 2026-11-24; no word on it yet.
 4. 옷옷옷옷 v RACK 6:15 (Visible, one row, R-495): told at 6:27, the take-up of a flag lying at the door. His to say
