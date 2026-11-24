@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-24T03:53:29.663Z",
+ "updated": "2026-11-24T05:31:30.498Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -46,7 +46,9 @@
    "length_s": 404,
    "kb": 113,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
    "file": "2026-10/d06ef3c7-521d-5de4-a453-5fdb82c7c467.json.gz",
@@ -60,7 +62,9 @@
    "length_s": 497,
    "kb": 131,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
    "file": "2026-10/a8ba43a8-7703-5131-a6ce-9e274fbd3ac4.json.gz",
@@ -74,7 +78,9 @@
    "length_s": 1064,
    "kb": 160,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "1f65fd3b-9c22-5bb1-a488-86c87801b3a3": {
    "file": "2026-10/1f65fd3b-9c22-5bb1-a488-86c87801b3a3.json.gz",
@@ -88,7 +94,9 @@
    "length_s": 150,
    "kb": 214,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "34ab1ac3-cd5d-578e-a457-bccff232274a": {
    "file": "2026-10/34ab1ac3-cd5d-578e-a457-bccff232274a.json.gz",
@@ -102,7 +110,9 @@
    "length_s": 856,
    "kb": 255,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "d492aa6c-a12b-5bce-a5ec-9ada965676f0": {
    "file": "2026-11/d492aa6c-a12b-5bce-a5ec-9ada965676f0.json.gz",
@@ -116,7 +126,9 @@
    "length_s": 1516,
    "kb": 293,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "45cf6756-afc8-51fa-ade0-162d7450be1c": {
    "file": "2026-11/45cf6756-afc8-51fa-ade0-162d7450be1c.json.gz",
@@ -130,7 +142,9 @@
    "length_s": 1156,
    "kb": 298,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "9b0816e2-c0eb-5797-a1b1-9962c8415307": {
    "file": "2026-10/9b0816e2-c0eb-5797-a1b1-9962c8415307.json.gz",
@@ -144,7 +158,9 @@
    "length_s": 1192,
    "kb": 305,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "84586253-61c8-5848-ad75-1bfda24302ba": {
    "file": "2026-10/84586253-61c8-5848-ad75-1bfda24302ba.json.gz",
@@ -158,7 +174,9 @@
    "length_s": 1660,
    "kb": 415,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "6f7743eb-940d-5cc3-aa5b-32c17a66bf5a": {
    "file": "2026-10/6f7743eb-940d-5cc3-aa5b-32c17a66bf5a.json.gz",
@@ -172,7 +190,9 @@
    "length_s": 376,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "49eec28d-0f4b-5cc1-a146-4d1ad0bd642b": {
    "file": "2026-10/49eec28d-0f4b-5cc1-a146-4d1ad0bd642b.json.gz",
@@ -186,7 +206,9 @@
    "length_s": 332,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "2df9b7fd-823e-5df7-ad4e-192612cd9249": {
    "file": "2026-10/2df9b7fd-823e-5df7-ad4e-192612cd9249.json.gz",
@@ -200,7 +222,9 @@
    "length_s": 1546,
    "kb": 258,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "1d073205-fdec-5684-aa7a-b03a558a9471": {
    "file": "2026-10/1d073205-fdec-5684-aa7a-b03a558a9471.json.gz",
@@ -214,7 +238,9 @@
    "length_s": 1303,
    "kb": 303,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d": {
    "file": "2026-10/f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d.json.gz",
@@ -228,7 +254,9 @@
    "length_s": 946,
    "kb": 227,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "5739e1e0-483e-58f1-a017-d0d8fee69c6e": {
    "file": "2026-10/5739e1e0-483e-58f1-a017-d0d8fee69c6e.json.gz",
@@ -242,7 +270,9 @@
    "length_s": 731,
    "kb": 177,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "29b7eca0-2660-5d04-adc2-06632123c2ec": {
    "file": "2026-10/29b7eca0-2660-5d04-adc2-06632123c2ec.json.gz",
@@ -256,7 +286,9 @@
    "length_s": 562,
    "kb": 105,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8": {
    "file": "2026-10/d016987b-e5a0-5cd5-a23c-4c5b2d2415f8.json.gz",
@@ -270,7 +302,9 @@
    "length_s": 443,
    "kb": 102,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "d4660b7b-1e09-584e-a786-0e9f48b3f343": {
    "file": "2026-09/d4660b7b-1e09-584e-a786-0e9f48b3f343.json.gz",
@@ -284,7 +318,9 @@
    "length_s": 373,
    "kb": 97,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c": {
    "file": "2026-11/28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c.json.gz",
@@ -298,7 +334,9 @@
    "length_s": 1616,
    "kb": 402,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 39
   },
   "bbef1904-cc55-54a4-aea4-ec0367e0d00b": {
    "file": "2026-11/bbef1904-cc55-54a4-aea4-ec0367e0d00b.json.gz",
@@ -312,7 +350,9 @@
    "length_s": 617,
    "kb": 155,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd": {
    "file": "2026-11/0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd.json.gz",
@@ -342,7 +382,9 @@
    "length_s": 1324,
    "kb": 353,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "25b008b8-486d-5f15-a310-114f6eecca05": {
    "file": "2026-11/25b008b8-486d-5f15-a310-114f6eecca05.json.gz",
@@ -356,7 +398,9 @@
    "length_s": 1330,
    "kb": 399,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "8086734b-4092-5628-a73e-4042618ea4fa": {
    "file": "2026-11/8086734b-4092-5628-a73e-4042618ea4fa.json.gz",
@@ -370,7 +414,9 @@
    "length_s": 335,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "29652def-2992-50c0-ade9-aaddd011aaa5": {
    "file": "2026-10/29652def-2992-50c0-ade9-aaddd011aaa5.json.gz",
@@ -384,7 +430,9 @@
    "length_s": 226,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6": {
    "file": "2026-10/a9fa1ae1-f83b-5cd0-a946-cf332aacfca6.json.gz",
@@ -398,7 +446,9 @@
    "length_s": 364,
    "kb": 93,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "f30bb176-a527-508c-acd5-f289b304ee79": {
    "file": "2026-09/f30bb176-a527-508c-acd5-f289b304ee79.json.gz",
@@ -412,7 +462,9 @@
    "length_s": 1628,
    "kb": 312,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "e905b193-051d-5ffb-ae10-118d3c46c055": {
    "file": "2026-09/e905b193-051d-5ffb-ae10-118d3c46c055.json.gz",
@@ -426,7 +478,9 @@
    "length_s": 944,
    "kb": 195,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "cd387d1c-9225-5a3e-ab28-05e785e9f31f": {
    "file": "2026-09/cd387d1c-9225-5a3e-ab28-05e785e9f31f.json.gz",
@@ -440,7 +494,9 @@
    "length_s": 427,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "498894e3-65bf-5f43-a221-38c1f7043166": {
    "file": "2026-07/498894e3-65bf-5f43-a221-38c1f7043166.json.gz",
@@ -454,7 +510,10 @@
    "length_s": 1213,
    "kb": 294,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15,
+   "x_check": "team 2: the events come to 3762, gvg.report's own score is 3822"
   },
   "c0f32eca-f1c2-58f3-af33-26573c782b3d": {
    "file": "2026-09/c0f32eca-f1c2-58f3-af33-26573c782b3d.json.gz",
@@ -468,7 +527,9 @@
    "length_s": 1318,
    "kb": 371,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "ec3eeb47-d0fb-5776-a52d-dc02b752a90a": {
    "file": "2026-07/ec3eeb47-d0fb-5776-a52d-dc02b752a90a.json.gz",
@@ -482,7 +543,9 @@
    "length_s": 517,
    "kb": 124,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "36a65ac6-e25a-5d66-a8ed-2bf1032f243a": {
    "file": "2026-10/36a65ac6-e25a-5d66-a8ed-2bf1032f243a.json.gz",
@@ -496,7 +559,9 @@
    "length_s": 1319,
    "kb": 304,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "0e25b283-38b6-59c7-ab8a-7b3397a61d45": {
    "file": "2026-08/0e25b283-38b6-59c7-ab8a-7b3397a61d45.json.gz",
@@ -510,7 +575,9 @@
    "length_s": 362,
    "kb": 90,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "7cd34bd3-93d7-5771-a219-3d27743bc7eb": {
    "file": "2026-10/7cd34bd3-93d7-5771-a219-3d27743bc7eb.json.gz",
@@ -524,7 +591,9 @@
    "length_s": 1693,
    "kb": 432,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "bfffbaa0-ecf0-566b-a660-ff668aa473a1": {
    "file": "2026-08/bfffbaa0-ecf0-566b-a660-ff668aa473a1.json.gz",
@@ -538,7 +607,9 @@
    "length_s": 361,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "1d394550-76b6-5343-a998-78cc7de9cf52": {
    "file": "2026-10/1d394550-76b6-5343-a998-78cc7de9cf52.json.gz",
@@ -552,7 +623,9 @@
    "length_s": 934,
    "kb": 216,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "b88983e3-67ff-5560-a3a7-7892f6d543c0": {
    "file": "2026-08/b88983e3-67ff-5560-a3a7-7892f6d543c0.json.gz",
@@ -566,7 +639,9 @@
    "length_s": 1099,
    "kb": 190,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "e7a65a0d-2700-5546-aa5f-f2bd7d93299d": {
    "file": "2026-10/e7a65a0d-2700-5546-aa5f-f2bd7d93299d.json.gz",
@@ -580,7 +655,9 @@
    "length_s": 667,
    "kb": 175,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "b4368c72-e097-521c-ad69-171f033df96b": {
    "file": "2026-08/b4368c72-e097-521c-ad69-171f033df96b.json.gz",
@@ -594,7 +671,9 @@
    "length_s": 1160,
    "kb": 232,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "61e3a1c4-8842-5bcf-a12c-dc4d2da41770": {
    "file": "2026-09/61e3a1c4-8842-5bcf-a12c-dc4d2da41770.json.gz",
@@ -608,7 +687,9 @@
    "length_s": 583,
    "kb": 151,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "c86a888d-57b8-54a5-aa25-b6fdff69656b": {
    "file": "2026-09/c86a888d-57b8-54a5-aa25-b6fdff69656b.json.gz",
@@ -622,7 +703,9 @@
    "length_s": 844,
    "kb": 191,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "3ee18c0c-d400-5988-abb5-5e19ff80f64a": {
    "file": "2026-10/3ee18c0c-d400-5988-abb5-5e19ff80f64a.json.gz",
@@ -636,7 +719,9 @@
    "length_s": 932,
    "kb": 237,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "5942a7d3-9129-5a9f-aed6-05262bab7522": {
    "file": "2026-07/5942a7d3-9129-5a9f-aed6-05262bab7522.json.gz",
@@ -650,7 +735,9 @@
    "length_s": 1285,
    "kb": 317,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "e14811f2-abbc-5bda-a34a-967d08fe778c": {
    "file": "2026-11/e14811f2-abbc-5bda-a34a-967d08fe778c.json.gz",
@@ -664,7 +751,9 @@
    "length_s": 319,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "79281720-08a2-550c-aa5f-df0e2a668260": {
    "file": "2026-09/79281720-08a2-550c-aa5f-df0e2a668260.json.gz",
@@ -678,7 +767,9 @@
    "length_s": 428,
    "kb": 109,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "2b13eea5-2968-5421-a481-60215131765d": {
    "file": "2026-09/2b13eea5-2968-5421-a481-60215131765d.json.gz",
@@ -692,7 +783,9 @@
    "length_s": 685,
    "kb": 169,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "5eedf9cf-fb31-53ac-af54-fa87322c9b74": {
    "file": "2026-09/5eedf9cf-fb31-53ac-af54-fa87322c9b74.json.gz",
@@ -706,7 +799,9 @@
    "length_s": 703,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "744a2513-353e-5e41-a6b0-d3354725b3f5": {
    "file": "2026-07/744a2513-353e-5e41-a6b0-d3354725b3f5.json.gz",
@@ -720,7 +815,10 @@
    "length_s": 233,
    "kb": 59,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9,
+   "x_check": "team 2: the events come to 6996, gvg.report's own score is 6998"
   },
   "6c7dfcaa-1141-592f-a625-d5109b087b35": {
    "file": "2026-09/6c7dfcaa-1141-592f-a625-d5109b087b35.json.gz",
@@ -734,7 +832,9 @@
    "length_s": 703,
    "kb": 183,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "1037e655-42ac-505f-af04-22b24458fd00": {
    "file": "2026-08/1037e655-42ac-505f-af04-22b24458fd00.json.gz",
@@ -748,7 +848,9 @@
    "length_s": 409,
    "kb": 117,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "04befe7e-4050-51d4-ac06-3560dcb02611": {
    "file": "2026-11/04befe7e-4050-51d4-ac06-3560dcb02611.json.gz",
@@ -779,7 +881,10 @@
    "length_s": 589,
    "kb": 125,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21,
+   "x_check": "team 1: the events come to 3103, gvg.report's own score is 3163"
   },
   "77206c78-5eb2-5a36-aa45-8e0168e624df": {
    "file": "2026-09/77206c78-5eb2-5a36-aa45-8e0168e624df.json.gz",
@@ -793,7 +898,9 @@
    "length_s": 550,
    "kb": 120,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "c553716d-a00b-5bff-ac49-6bfc480c5ca9": {
    "file": "2026-09/c553716d-a00b-5bff-ac49-6bfc480c5ca9.json.gz",
@@ -807,7 +914,9 @@
    "length_s": 1670,
    "kb": 360,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "a0d60daa-0700-5a31-a1f5-495c0db986df": {
    "file": "2026-09/a0d60daa-0700-5a31-a1f5-495c0db986df.json.gz",
@@ -821,7 +930,9 @@
    "length_s": 937,
    "kb": 243,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "29aad8d4-e585-5b0a-af7d-93527a333d2b": {
    "file": "2026-09/29aad8d4-e585-5b0a-af7d-93527a333d2b.json.gz",
@@ -835,7 +946,9 @@
    "length_s": 1693,
    "kb": 426,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "1cb73c20-1b06-5b7b-a728-25c7640f8a84": {
    "file": "2026-09/1cb73c20-1b06-5b7b-a728-25c7640f8a84.json.gz",
@@ -849,7 +962,9 @@
    "length_s": 1565,
    "kb": 278,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "a921418b-c4d1-5872-aca9-18f9ad99bf40": {
    "file": "2026-10/a921418b-c4d1-5872-aca9-18f9ad99bf40.json.gz",
@@ -863,7 +978,9 @@
    "length_s": 535,
    "kb": 146,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "7209c1a1-20ff-5f4f-a176-9cf92f7c594c": {
    "file": "2026-10/7209c1a1-20ff-5f4f-a176-9cf92f7c594c.json.gz",
@@ -877,7 +994,9 @@
    "length_s": 451,
    "kb": 112,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "572c2f95-b108-5dea-a98d-e7f39ae64514": {
    "file": "2026-11/572c2f95-b108-5dea-a98d-e7f39ae64514.json.gz",
@@ -891,7 +1010,9 @@
    "length_s": 1273,
    "kb": 321,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "5eebef5f-5389-5323-a62a-cbf7a40f993a": {
    "file": "2026-10/5eebef5f-5389-5323-a62a-cbf7a40f993a.json.gz",
@@ -905,7 +1026,9 @@
    "length_s": 248,
    "kb": 52,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "93c42add-af78-5fb0-afd4-1a33706d541c": {
    "file": "2026-10/93c42add-af78-5fb0-afd4-1a33706d541c.json.gz",
@@ -919,7 +1042,9 @@
    "length_s": 406,
    "kb": 105,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "4ff1ddfa-b03e-50f8-a919-c69f065eb20c": {
    "file": "2026-10/4ff1ddfa-b03e-50f8-a919-c69f065eb20c.json.gz",
@@ -933,7 +1058,9 @@
    "length_s": 691,
    "kb": 168,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "df28f03b-5b7f-54b2-a843-819b5ce27974": {
    "file": "2026-10/df28f03b-5b7f-54b2-a843-819b5ce27974.json.gz",
@@ -947,7 +1074,9 @@
    "length_s": 244,
    "kb": 53,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "6dd8966c-f41b-5c3d-ae07-7344afb5c88c": {
    "file": "2026-10/6dd8966c-f41b-5c3d-ae07-7344afb5c88c.json.gz",
@@ -961,7 +1090,9 @@
    "length_s": 1273,
    "kb": 313,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "b56cb743-cb5f-5dc7-ae59-5fe8d4075c94": {
    "file": "2026-10/b56cb743-cb5f-5dc7-ae59-5fe8d4075c94.json.gz",
@@ -975,7 +1106,9 @@
    "length_s": 599,
    "kb": 160,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "bad498e0-bdb7-5eab-a3c5-5fe2d79a00bb": {
    "file": "2026-10/bad498e0-bdb7-5eab-a3c5-5fe2d79a00bb.json.gz",
@@ -989,7 +1122,9 @@
    "length_s": 421,
    "kb": 94,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "8540edb4-7ae3-53d2-af81-5c2e20aca3d8": {
    "file": "2026-10/8540edb4-7ae3-53d2-af81-5c2e20aca3d8.json.gz",
@@ -1003,7 +1138,9 @@
    "length_s": 370,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "d93289f2-9328-53a3-ae4a-3a7c5464b2ba": {
    "file": "2026-11/d93289f2-9328-53a3-ae4a-3a7c5464b2ba.json.gz",
@@ -1017,7 +1154,9 @@
    "length_s": 836,
    "kb": 224,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "26ba6a2d-768d-504d-ace8-19241884f21c": {
    "file": "2026-11/26ba6a2d-768d-504d-ace8-19241884f21c.json.gz",
@@ -1031,7 +1170,9 @@
    "length_s": 587,
    "kb": 174,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "f2a9b858-508c-5565-ab57-ea1a6063086f": {
    "file": "2026-10/f2a9b858-508c-5565-ab57-ea1a6063086f.json.gz",
@@ -1045,7 +1186,9 @@
    "length_s": 241,
    "kb": 69,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "541e0951-a43d-5678-ac46-a9d5ae29299a": {
    "file": "2026-10/541e0951-a43d-5678-ac46-a9d5ae29299a.json.gz",
@@ -1059,7 +1202,9 @@
    "length_s": 313,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "f6a15931-e0ab-55cf-a72d-25ca64d8fe30": {
    "file": "2026-10/f6a15931-e0ab-55cf-a72d-25ca64d8fe30.json.gz",
@@ -1073,7 +1218,9 @@
    "length_s": 592,
    "kb": 140,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "256729a8-dcab-5351-a2a1-5f446865f6e5": {
    "file": "2026-10/256729a8-dcab-5351-a2a1-5f446865f6e5.json.gz",
@@ -1087,7 +1234,9 @@
    "length_s": 337,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "0f3c18b0-3123-5d2d-a09a-1930936ffbc7": {
    "file": "2026-10/0f3c18b0-3123-5d2d-a09a-1930936ffbc7.json.gz",
@@ -1101,7 +1250,9 @@
    "length_s": 232,
    "kb": 56,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "137d4b45-d222-5cd3-aac5-ed8855f315d4": {
    "file": "2026-10/137d4b45-d222-5cd3-aac5-ed8855f315d4.json.gz",
@@ -1115,7 +1266,9 @@
    "length_s": 1432,
    "kb": 323,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "516b2bd8-7333-5d2b-acd4-af6dee2be3ef": {
    "file": "2026-10/516b2bd8-7333-5d2b-acd4-af6dee2be3ef.json.gz",
@@ -1129,7 +1282,9 @@
    "length_s": 592,
    "kb": 165,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "427c825b-7e7f-54f4-aba9-7de41c9fcbaf": {
    "file": "2026-10/427c825b-7e7f-54f4-aba9-7de41c9fcbaf.json.gz",
@@ -1143,7 +1298,10 @@
    "length_s": 890,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25,
+   "x_check": "team 2: the events come to 1641, gvg.report's own score is 1671"
   },
   "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d": {
    "file": "2026-10/c8e26dc9-8cfb-5a36-aa1a-38f8c416753d.json.gz",
@@ -1157,7 +1315,9 @@
    "length_s": 1549,
    "kb": 441,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "910546b6-f76c-5018-ad4f-35e89cc07170": {
    "file": "2026-10/910546b6-f76c-5018-ad4f-35e89cc07170.json.gz",
@@ -1171,7 +1331,9 @@
    "length_s": 454,
    "kb": 116,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "94d74d87-fbd0-5de2-af5b-180902fee866": {
    "file": "2026-11/94d74d87-fbd0-5de2-af5b-180902fee866.json.gz",
@@ -1185,7 +1347,9 @@
    "length_s": 1327,
    "kb": 244,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "33dab8e5-e202-5a34-a433-3fcbe714e75c": {
    "file": "2026-10/33dab8e5-e202-5a34-a433-3fcbe714e75c.json.gz",
@@ -1199,7 +1363,9 @@
    "length_s": 1057,
    "kb": 249,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "918fb824-4066-5ab7-a44b-c8110869e8df": {
    "file": "2026-10/918fb824-4066-5ab7-a44b-c8110869e8df.json.gz",
@@ -1213,7 +1379,9 @@
    "length_s": 232,
    "kb": 58,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "885d6a9e-8df5-5a7a-a5ca-1cdb0de0c1ca": {
    "file": "2026-10/885d6a9e-8df5-5a7a-a5ca-1cdb0de0c1ca.json.gz",
@@ -1227,7 +1395,9 @@
    "length_s": 724,
    "kb": 156,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "31a56cfb-c75a-591f-a7f5-befe157174dd": {
    "file": "2026-10/31a56cfb-c75a-591f-a7f5-befe157174dd.json.gz",
@@ -1241,7 +1411,9 @@
    "length_s": 247,
    "kb": 64,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa": {
    "file": "2026-10/5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa.json.gz",
@@ -1255,7 +1427,9 @@
    "length_s": 719,
    "kb": 213,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "99d9b260-fc3f-5305-af78-06ad28699323": {
    "file": "2026-10/99d9b260-fc3f-5305-af78-06ad28699323.json.gz",
@@ -1269,7 +1443,9 @@
    "length_s": 709,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "e3bbd514-c22d-531b-a1d8-74452e2f9e8e": {
    "file": "2026-10/e3bbd514-c22d-531b-a1d8-74452e2f9e8e.json.gz",
@@ -1283,7 +1459,9 @@
    "length_s": 370,
    "kb": 96,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "1086d31d-2728-5802-aedc-3da3db383fbb": {
    "file": "2026-11/1086d31d-2728-5802-aedc-3da3db383fbb.json.gz",
@@ -1297,7 +1475,9 @@
    "length_s": 355,
    "kb": 89,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "bb669b6f-5c52-589e-a4ed-1c621556c9a4": {
    "file": "2026-11/bb669b6f-5c52-589e-a4ed-1c621556c9a4.json.gz",
@@ -1311,7 +1491,9 @@
    "length_s": 1693,
    "kb": 394,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38
   },
   "1729daac-175f-50db-a0ee-ea543f3a22e0": {
    "file": "2026-10/1729daac-175f-50db-a0ee-ea543f3a22e0.json.gz",
@@ -1325,7 +1507,9 @@
    "length_s": 1526,
    "kb": 385,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "09d2abcb-8c61-52f1-ac60-67367d988be2": {
    "file": "2026-10/09d2abcb-8c61-52f1-ac60-67367d988be2.json.gz",
@@ -1339,7 +1523,9 @@
    "length_s": 325,
    "kb": 74,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "6db63508-5a38-569a-a345-8d0491207f43": {
    "file": "2026-10/6db63508-5a38-569a-a345-8d0491207f43.json.gz",
@@ -1353,7 +1539,9 @@
    "length_s": 1693,
    "kb": 446,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "d5d66293-7127-5238-a2dd-de58af339ca3": {
    "file": "2026-10/d5d66293-7127-5238-a2dd-de58af339ca3.json.gz",
@@ -1367,7 +1555,9 @@
    "length_s": 463,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "39229b8c-24bc-5823-a4a7-9da747fe1189": {
    "file": "2026-10/39229b8c-24bc-5823-a4a7-9da747fe1189.json.gz",
@@ -1381,7 +1571,9 @@
    "length_s": 454,
    "kb": 124,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "b1d02c62-0f04-57be-ad7a-e32ccd2611c7": {
    "file": "2026-10/b1d02c62-0f04-57be-ad7a-e32ccd2611c7.json.gz",
@@ -1395,7 +1587,9 @@
    "length_s": 337,
    "kb": 70,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "d566775e-f665-5107-afcc-fb7289582f95": {
    "file": "2026-10/d566775e-f665-5107-afcc-fb7289582f95.json.gz",
@@ -1409,7 +1603,9 @@
    "length_s": 1693,
    "kb": 450,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 39
   },
   "81b3dd52-3bfe-509d-ad69-512a13359820": {
    "file": "2026-10/81b3dd52-3bfe-509d-ad69-512a13359820.json.gz",
@@ -1423,7 +1619,9 @@
    "length_s": 1088,
    "kb": 255,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "51683de9-4096-5833-ad4a-56a69c4759e4": {
    "file": "2026-10/51683de9-4096-5833-ad4a-56a69c4759e4.json.gz",
@@ -1437,7 +1635,10 @@
    "length_s": 1694,
    "kb": 318,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30,
+   "x_check": "team 2: the events come to 4710, gvg.report's own score is 4740"
   },
   "3bab5ee7-c0b2-524e-a626-d816c1e2198d": {
    "file": "2026-11/3bab5ee7-c0b2-524e-a626-d816c1e2198d.json.gz",
@@ -1451,7 +1652,9 @@
    "length_s": 256,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "f9d6932f-090d-532a-aa9f-3b5a58613df0": {
    "file": "2026-11/f9d6932f-090d-532a-aa9f-3b5a58613df0.json.gz",
@@ -1465,7 +1668,9 @@
    "length_s": 235,
    "kb": 59,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "99494912-895b-5094-a0a0-0d82dd969946": {
    "file": "2026-10/99494912-895b-5094-a0a0-0d82dd969946.json.gz",
@@ -1479,7 +1684,9 @@
    "length_s": 715,
    "kb": 175,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "f6d2cf66-22be-5a4a-ab55-3073dfa7cba9": {
    "file": "2026-10/f6d2cf66-22be-5a4a-ab55-3073dfa7cba9.json.gz",
@@ -1493,7 +1700,9 @@
    "length_s": 1234,
    "kb": 287,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "2957d88e-da7a-5089-a292-bcd4784bf9be": {
    "file": "2026-10/2957d88e-da7a-5089-a292-bcd4784bf9be.json.gz",
@@ -1507,7 +1716,9 @@
    "length_s": 712,
    "kb": 148,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "380bb3ea-89f3-5c07-a0be-234bfa4e6ee9": {
    "file": "2026-10/380bb3ea-89f3-5c07-a0be-234bfa4e6ee9.json.gz",
@@ -1521,7 +1732,9 @@
    "length_s": 349,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "2b2f2c43-de16-5587-a9d9-c01a3d1fec69": {
    "file": "2026-10/2b2f2c43-de16-5587-a9d9-c01a3d1fec69.json.gz",
@@ -1535,7 +1748,9 @@
    "length_s": 799,
    "kb": 205,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "884311d5-c914-5f72-a228-a16c01aa9a15": {
    "file": "2026-10/884311d5-c914-5f72-a228-a16c01aa9a15.json.gz",
@@ -1549,7 +1764,9 @@
    "length_s": 718,
    "kb": 180,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "566a6ddf-a121-5094-aa53-edfbaedd94b2": {
    "file": "2026-10/566a6ddf-a121-5094-aa53-edfbaedd94b2.json.gz",
@@ -1563,7 +1780,9 @@
    "length_s": 491,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "ba85aafc-0bd8-518d-a814-e5f7e9e01baf": {
    "file": "2026-11/ba85aafc-0bd8-518d-a814-e5f7e9e01baf.json.gz",
@@ -1577,7 +1796,9 @@
    "length_s": 811,
    "kb": 200,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "62a95800-b9e2-507d-afc7-d5989827ab04": {
    "file": "2026-10/62a95800-b9e2-507d-afc7-d5989827ab04.json.gz",
@@ -1591,7 +1812,9 @@
    "length_s": 601,
    "kb": 119,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "d9d75e55-cafe-5408-a092-7c4073de9f1a": {
    "file": "2026-10/d9d75e55-cafe-5408-a092-7c4073de9f1a.json.gz",
@@ -1605,7 +1828,9 @@
    "length_s": 1007,
    "kb": 169,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "3690a9a1-92ad-5c6a-a96a-a806a500dcbf": {
    "file": "2026-09/3690a9a1-92ad-5c6a-a96a-a806a500dcbf.json.gz",
@@ -1619,7 +1844,9 @@
    "length_s": 604,
    "kb": 105,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "4f645fbd-0559-5978-ac3b-7283366eb358": {
    "file": "2026-10/4f645fbd-0559-5978-ac3b-7283366eb358.json.gz",
@@ -1633,7 +1860,9 @@
    "length_s": 856,
    "kb": 181,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc": {
    "file": "2026-09/18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc.json.gz",
@@ -1647,7 +1876,9 @@
    "length_s": 1385,
    "kb": 367,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "0881f8b3-a2f3-5087-a838-9f40b8601ea3": {
    "file": "2026-09/0881f8b3-a2f3-5087-a838-9f40b8601ea3.json.gz",
@@ -1661,7 +1892,9 @@
    "length_s": 1459,
    "kb": 350,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "03a87923-8d19-5c72-abc9-2a035df04b81": {
    "file": "2026-09/03a87923-8d19-5c72-abc9-2a035df04b81.json.gz",
@@ -1675,7 +1908,9 @@
    "length_s": 518,
    "kb": 130,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "d22e2968-e061-574c-a0b5-4108c696a90d": {
    "file": "2026-09/d22e2968-e061-574c-a0b5-4108c696a90d.json.gz",
@@ -1689,7 +1924,9 @@
    "length_s": 449,
    "kb": 106,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "4f35c4a9-3f61-59ba-ad9a-cb1bb15f31c0": {
    "file": "2026-10/4f35c4a9-3f61-59ba-ad9a-cb1bb15f31c0.json.gz",
@@ -1703,7 +1940,9 @@
    "length_s": 793,
    "kb": 223,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "70134991-57bc-5b1d-a499-e6d242bb35af": {
    "file": "2026-09/70134991-57bc-5b1d-a499-e6d242bb35af.json.gz",
@@ -1717,7 +1956,9 @@
    "length_s": 1492,
    "kb": 397,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "f5bb5394-8615-5ab5-a6ea-46bc3396f68d": {
    "file": "2026-10/f5bb5394-8615-5ab5-a6ea-46bc3396f68d.json.gz",
@@ -1731,7 +1972,9 @@
    "length_s": 961,
    "kb": 263,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "b54218f3-b85a-59c5-ab27-5c85025bf1c8": {
    "file": "2026-09/b54218f3-b85a-59c5-ab27-5c85025bf1c8.json.gz",
@@ -1745,7 +1988,9 @@
    "length_s": 1453,
    "kb": 409,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "c975fcf5-19e5-5bb6-aaaa-4ab27c9cb7bd": {
    "file": "2026-09/c975fcf5-19e5-5bb6-aaaa-4ab27c9cb7bd.json.gz",
@@ -1759,7 +2004,9 @@
    "length_s": 1063,
    "kb": 245,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "8621bcc1-3282-53ff-a11d-fd08ea4e6160": {
    "file": "2026-09/8621bcc1-3282-53ff-a11d-fd08ea4e6160.json.gz",
@@ -1773,7 +2020,9 @@
    "length_s": 601,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "3b9c897a-99fb-59ed-ad6f-1c2ae0348745": {
    "file": "2026-09/3b9c897a-99fb-59ed-ad6f-1c2ae0348745.json.gz",
@@ -1787,7 +2036,9 @@
    "length_s": 1693,
    "kb": 378,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "82c41cb9-ad64-5e28-a069-e533f94e0d6b": {
    "file": "2026-09/82c41cb9-ad64-5e28-a069-e533f94e0d6b.json.gz",
@@ -1801,7 +2052,9 @@
    "length_s": 1031,
    "kb": 249,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "bd26f29a-f97b-5cf1-a4a6-41e33ad58d3b": {
    "file": "2026-10/bd26f29a-f97b-5cf1-a4a6-41e33ad58d3b.json.gz",
@@ -1815,7 +2068,9 @@
    "length_s": 334,
    "kb": 67,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "862d6629-38f3-5359-a885-0285354ce534": {
    "file": "2026-09/862d6629-38f3-5359-a885-0285354ce534.json.gz",
@@ -1829,7 +2084,9 @@
    "length_s": 1666,
    "kb": 480,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 41
   },
   "ce2082b0-caf2-5e98-a926-152b64dd624d": {
    "file": "2026-09/ce2082b0-caf2-5e98-a926-152b64dd624d.json.gz",
@@ -1843,7 +2100,9 @@
    "length_s": 1048,
    "kb": 229,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "92b0a4af-442d-51b9-ae75-6d915e16a4ce": {
    "file": "2026-09/92b0a4af-442d-51b9-ae75-6d915e16a4ce.json.gz",
@@ -1857,7 +2116,9 @@
    "length_s": 694,
    "kb": 151,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "6023823f-1e09-50b5-a8ab-63f809546e0c": {
    "file": "2026-09/6023823f-1e09-50b5-a8ab-63f809546e0c.json.gz",
@@ -1871,7 +2132,9 @@
    "length_s": 226,
    "kb": 65,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "965d7c49-5c32-5644-ac24-6c495f82fc41": {
    "file": "2026-11/965d7c49-5c32-5644-ac24-6c495f82fc41.json.gz",
@@ -1885,7 +2148,9 @@
    "length_s": 347,
    "kb": 77,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542": {
    "file": "2026-11/9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542.json.gz",
@@ -1899,7 +2164,9 @@
    "length_s": 694,
    "kb": 166,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4": {
    "file": "2026-11/82fa12be-98d8-57e0-aa8e-c8e1e0253ea4.json.gz",
@@ -1913,7 +2180,10 @@
    "length_s": 488,
    "kb": 125,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18,
+   "x_check": "team 2: the events come to 3979, gvg.report's own score is 4009"
   },
   "21459385-888c-5151-aacd-349d9608b7f6": {
    "file": "2026-11/21459385-888c-5151-aacd-349d9608b7f6.json.gz",
@@ -1927,7 +2197,9 @@
    "length_s": 448,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "3b341008-8ca4-5fbb-aaab-729ca445e4df": {
    "file": "2026-11/3b341008-8ca4-5fbb-aaab-729ca445e4df.json.gz",
@@ -1941,7 +2213,9 @@
    "length_s": 1348,
    "kb": 326,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "8c5fe04a-a7be-59f2-a7e9-b6416bab25c4": {
    "file": "2026-11/8c5fe04a-a7be-59f2-a7e9-b6416bab25c4.json.gz",
@@ -1955,7 +2229,9 @@
    "length_s": 1288,
    "kb": 358,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "3dd84ec7-29f5-578d-a7ad-42a272bff049": {
    "file": "2026-10/3dd84ec7-29f5-578d-a7ad-42a272bff049.json.gz",
@@ -1969,7 +2245,9 @@
    "length_s": 1229,
    "kb": 268,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "457b3a21-b67f-5164-a70d-adfd73423fcf": {
    "file": "2026-09/457b3a21-b67f-5164-a70d-adfd73423fcf.json.gz",
@@ -1983,7 +2261,9 @@
    "length_s": 1693,
    "kb": 435,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "b31ffe18-07a9-589f-a516-8862f80ab668": {
    "file": "2026-09/b31ffe18-07a9-589f-a516-8862f80ab668.json.gz",
@@ -1997,7 +2277,9 @@
    "length_s": 514,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "506102ee-ef94-5ecf-a485-c1c836193322": {
    "file": "2026-09/506102ee-ef94-5ecf-a485-c1c836193322.json.gz",
@@ -2011,7 +2293,10 @@
    "length_s": 1694,
    "kb": 446,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 41,
+   "x_check": "team 2: the events come to 3721, gvg.report's own score is 3723"
   },
   "8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f": {
    "file": "2026-09/8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f.json.gz",
@@ -2025,7 +2310,9 @@
    "length_s": 1532,
    "kb": 390,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "4f3405ed-8f44-5eec-a64a-1d2e16d7a748": {
    "file": "2026-11/4f3405ed-8f44-5eec-a64a-1d2e16d7a748.json.gz",
@@ -2039,7 +2326,9 @@
    "length_s": 502,
    "kb": 124,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "7d636b3e-ae88-511c-a3a8-f46f2e8ec23e": {
    "file": "2026-11/7d636b3e-ae88-511c-a3a8-f46f2e8ec23e.json.gz",
@@ -2053,7 +2342,9 @@
    "length_s": 490,
    "kb": 123,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "2e35b684-d42f-52e0-a00e-d033b39800bd": {
    "file": "2026-10/2e35b684-d42f-52e0-a00e-d033b39800bd.json.gz",
@@ -2067,7 +2358,9 @@
    "length_s": 238,
    "kb": 69,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "706046a3-440a-5269-af04-b521c7ce5e18": {
    "file": "2026-09/706046a3-440a-5269-af04-b521c7ce5e18.json.gz",
@@ -2081,7 +2374,9 @@
    "length_s": 487,
    "kb": 112,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "5cc1b04b-e4fd-556c-af09-b3dc42fd65fb": {
    "file": "2026-08/5cc1b04b-e4fd-556c-af09-b3dc42fd65fb.json.gz",
@@ -2095,7 +2390,9 @@
    "length_s": 467,
    "kb": 124,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "e1a7bba2-6f4a-5cb6-a253-72cda5d2d60d": {
    "file": "2026-07/e1a7bba2-6f4a-5cb6-a253-72cda5d2d60d.json.gz",
@@ -2109,7 +2406,9 @@
    "length_s": 362,
    "kb": 93,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "d4a1ef78-7155-570b-a0bb-8b1ab7a5c739": {
    "file": "2026-08/d4a1ef78-7155-570b-a0bb-8b1ab7a5c739.json.gz",
@@ -2123,7 +2422,9 @@
    "length_s": 425,
    "kb": 114,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "73d36ead-fb65-51aa-ac0e-60a0d114f048": {
    "file": "2026-07/73d36ead-fb65-51aa-ac0e-60a0d114f048.json.gz",
@@ -2137,7 +2438,9 @@
    "length_s": 421,
    "kb": 94,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "0e7eb6e1-9ccd-5927-af54-6467e42e73d1": {
    "file": "2026-09/0e7eb6e1-9ccd-5927-af54-6467e42e73d1.json.gz",
@@ -2151,7 +2454,9 @@
    "length_s": 349,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "6bd57984-cd77-5ae7-a693-287c3e435bcd": {
    "file": "2026-08/6bd57984-cd77-5ae7-a693-287c3e435bcd.json.gz",
@@ -2165,7 +2470,9 @@
    "length_s": 830,
    "kb": 222,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "7f235f9a-1d45-529e-a4b4-5cfed591399f": {
    "file": "2026-08/7f235f9a-1d45-529e-a4b4-5cfed591399f.json.gz",
@@ -2179,7 +2486,9 @@
    "length_s": 235,
    "kb": 64,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "78d1d2a2-098d-51fc-a89f-9d6ad2020abb": {
    "file": "2026-08/78d1d2a2-098d-51fc-a89f-9d6ad2020abb.json.gz",
@@ -2193,7 +2502,10 @@
    "length_s": 691,
    "kb": 156,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13,
+   "x_check": "team 1: the events come to 1889, gvg.report's own score is 1920"
   },
   "e646a336-4356-5731-a7a3-226440f798a1": {
    "file": "2026-08/e646a336-4356-5731-a7a3-226440f798a1.json.gz",
@@ -2207,7 +2519,9 @@
    "length_s": 351,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "8172d6a1-0f08-54ad-abea-ca11665021b2": {
    "file": "2026-10/8172d6a1-0f08-54ad-abea-ca11665021b2.json.gz",
@@ -2221,7 +2535,9 @@
    "length_s": 355,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "89af510d-2491-5b36-ad59-d3b9c6764815": {
    "file": "2026-08/89af510d-2491-5b36-ad59-d3b9c6764815.json.gz",
@@ -2235,7 +2551,9 @@
    "length_s": 818,
    "kb": 154,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "2c6fc75c-300e-5f13-ac46-8a6c71f02e8b": {
    "file": "2026-08/2c6fc75c-300e-5f13-ac46-8a6c71f02e8b.json.gz",
@@ -2249,7 +2567,9 @@
    "length_s": 365,
    "kb": 93,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "d94f50d4-6e95-5d74-abe4-b4532ba504ea": {
    "file": "2026-10/d94f50d4-6e95-5d74-abe4-b4532ba504ea.json.gz",
@@ -2263,7 +2583,9 @@
    "length_s": 352,
    "kb": 96,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "e96a75b6-1fe4-5fe9-acda-5baaf44a5116": {
    "file": "2026-09/e96a75b6-1fe4-5fe9-acda-5baaf44a5116.json.gz",
@@ -2277,7 +2599,9 @@
    "length_s": 1213,
    "kb": 356,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "817af1c5-2b8d-5516-a3ca-a69a914f3702": {
    "file": "2026-08/817af1c5-2b8d-5516-a3ca-a69a914f3702.json.gz",
@@ -2291,7 +2615,9 @@
    "length_s": 967,
    "kb": 292,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "a7c70f96-53cc-57c8-a3c5-8c5b71e6f841": {
    "file": "2026-10/a7c70f96-53cc-57c8-a3c5-8c5b71e6f841.json.gz",
@@ -2305,7 +2631,9 @@
    "length_s": 796,
    "kb": 212,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "e7d338ff-a25e-5637-acca-45a343972351": {
    "file": "2026-09/e7d338ff-a25e-5637-acca-45a343972351.json.gz",
@@ -2319,7 +2647,9 @@
    "length_s": 307,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "cf2968cd-662e-558d-ac5a-bcb180b85521": {
    "file": "2026-10/cf2968cd-662e-558d-ac5a-bcb180b85521.json.gz",
@@ -2333,7 +2663,9 @@
    "length_s": 178,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "37d79f7a-ea68-59d3-a948-37f84aa0c955": {
    "file": "2026-10/37d79f7a-ea68-59d3-a948-37f84aa0c955.json.gz",
@@ -2347,7 +2679,9 @@
    "length_s": 970,
    "kb": 145,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "6c365652-bdec-54c6-a243-a7341c0e7d7e": {
    "file": "2026-08/6c365652-bdec-54c6-a243-a7341c0e7d7e.json.gz",
@@ -2361,7 +2695,9 @@
    "length_s": 539,
    "kb": 139,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "cfcf40ef-1096-53a0-a0e0-91b1233da784": {
    "file": "2026-08/cfcf40ef-1096-53a0-a0e0-91b1233da784.json.gz",
@@ -2375,7 +2711,9 @@
    "length_s": 679,
    "kb": 180,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "15f5a4cd-a4fe-51ad-a2b2-2e3dbc44a473": {
    "file": "2026-07/15f5a4cd-a4fe-51ad-a2b2-2e3dbc44a473.json.gz",
@@ -2389,7 +2727,9 @@
    "length_s": 484,
    "kb": 133,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "d9068a1b-bfcc-5970-a852-38a7d4c73383": {
    "file": "2026-08/d9068a1b-bfcc-5970-a852-38a7d4c73383.json.gz",
@@ -2403,7 +2743,9 @@
    "length_s": 253,
    "kb": 61,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "5781d01c-1806-5b96-a0e7-877214a8328b": {
    "file": "2026-10/5781d01c-1806-5b96-a0e7-877214a8328b.json.gz",
@@ -2417,7 +2759,9 @@
    "length_s": 811,
    "kb": 207,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "16b1824d-a5b6-5756-a52d-8223ea6a1477": {
    "file": "2026-07/16b1824d-a5b6-5756-a52d-8223ea6a1477.json.gz",
@@ -2431,7 +2775,9 @@
    "length_s": 466,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "9a5c0133-32bc-5e8e-a8b2-013f7cf9bec1": {
    "file": "2026-09/9a5c0133-32bc-5e8e-a8b2-013f7cf9bec1.json.gz",
@@ -2445,7 +2791,9 @@
    "length_s": 574,
    "kb": 135,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "31c510c8-22a7-5a84-ae47-af94a468bbf0": {
    "file": "2026-09/31c510c8-22a7-5a84-ae47-af94a468bbf0.json.gz",
@@ -2459,7 +2807,9 @@
    "length_s": 253,
    "kb": 61,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "d87c0c22-aa85-57ef-a64b-0b4c3f4fbaa0": {
    "file": "2026-08/d87c0c22-aa85-57ef-a64b-0b4c3f4fbaa0.json.gz",
@@ -2473,7 +2823,9 @@
    "length_s": 292,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "da579e5d-a80a-5462-ac86-7e80d72943c6": {
    "file": "2026-08/da579e5d-a80a-5462-ac86-7e80d72943c6.json.gz",
@@ -2487,7 +2839,9 @@
    "length_s": 323,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "50904932-2712-54e1-a659-a588c0bb25f0": {
    "file": "2026-08/50904932-2712-54e1-a659-a588c0bb25f0.json.gz",
@@ -2501,7 +2855,9 @@
    "length_s": 463,
    "kb": 116,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "8b13dfbf-b914-5ee8-a1af-11d7f9645ef1": {
    "file": "2026-10/8b13dfbf-b914-5ee8-a1af-11d7f9645ef1.json.gz",
@@ -2515,7 +2871,9 @@
    "length_s": 367,
    "kb": 110,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "63f31e00-7cf9-59dc-a336-aa8061d691ad": {
    "file": "2026-07/63f31e00-7cf9-59dc-a336-aa8061d691ad.json.gz",
@@ -2529,7 +2887,9 @@
    "length_s": 658,
    "kb": 178,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "659395dd-44dd-5005-a097-ac92068e8a1e": {
    "file": "2026-08/659395dd-44dd-5005-a097-ac92068e8a1e.json.gz",
@@ -2543,7 +2903,9 @@
    "length_s": 253,
    "kb": 60,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 7
   },
   "febccb6c-2397-5d46-abe2-e1c3bcfbeaef": {
    "file": "2026-11/febccb6c-2397-5d46-abe2-e1c3bcfbeaef.json.gz",
@@ -2557,7 +2919,9 @@
    "length_s": 668,
    "kb": 149,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "ee0dc982-2d78-5c66-ae1a-c6ddebae6a78": {
    "file": "2026-11/ee0dc982-2d78-5c66-ae1a-c6ddebae6a78.json.gz",
@@ -2571,7 +2935,9 @@
    "length_s": 499,
    "kb": 132,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "bf17b54e-b4e4-50e3-a763-0de82e844800": {
    "file": "2026-09/bf17b54e-b4e4-50e3-a763-0de82e844800.json.gz",
@@ -2585,7 +2951,9 @@
    "length_s": 943,
    "kb": 231,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "90f49184-7441-58cc-a503-dc220e1b27e4": {
    "file": "2026-08/90f49184-7441-58cc-a503-dc220e1b27e4.json.gz",
@@ -2599,7 +2967,9 @@
    "length_s": 1693,
    "kb": 439,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "13ffa247-e591-5d14-adc3-eb7a3828f04b": {
    "file": "2026-07/13ffa247-e591-5d14-adc3-eb7a3828f04b.json.gz",
@@ -2613,7 +2983,9 @@
    "length_s": 439,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "65d55cb7-bb39-592a-a944-ba820f7dd4a1": {
    "file": "2026-09/65d55cb7-bb39-592a-a944-ba820f7dd4a1.json.gz",
@@ -2627,7 +2999,9 @@
    "length_s": 403,
    "kb": 113,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "91d44b9b-2b3c-5b50-ae14-7bbc1dbd5807": {
    "file": "2026-08/91d44b9b-2b3c-5b50-ae14-7bbc1dbd5807.json.gz",
@@ -2641,7 +3015,9 @@
    "length_s": 709,
    "kb": 197,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "2c764dac-d2cb-50e3-a072-6b5b3bb9b633": {
    "file": "2026-10/2c764dac-d2cb-50e3-a072-6b5b3bb9b633.json.gz",
@@ -2655,7 +3031,9 @@
    "length_s": 1253,
    "kb": 271,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "1af4f8f8-57d2-5f68-ae23-05564e57993c": {
    "file": "2026-09/1af4f8f8-57d2-5f68-ae23-05564e57993c.json.gz",
@@ -2669,7 +3047,9 @@
    "length_s": 1694,
    "kb": 467,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "53175808-daeb-5e11-a57e-f5b96124d398": {
    "file": "2026-10/53175808-daeb-5e11-a57e-f5b96124d398.json.gz",
@@ -2683,7 +3063,9 @@
    "length_s": 829,
    "kb": 196,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "461b2a66-72b0-5423-a8b3-46f4e5c40548": {
    "file": "2026-09/461b2a66-72b0-5423-a8b3-46f4e5c40548.json.gz",
@@ -2697,7 +3079,9 @@
    "length_s": 362,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "b88a50c4-e2ba-57ed-afe4-0a5b08299b22": {
    "file": "2026-07/b88a50c4-e2ba-57ed-afe4-0a5b08299b22.json.gz",
@@ -2711,7 +3095,9 @@
    "length_s": 484,
    "kb": 126,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "f5de5cea-6491-5291-ab8d-e7d5d7a0b659": {
    "file": "2026-09/f5de5cea-6491-5291-ab8d-e7d5d7a0b659.json.gz",
@@ -2725,7 +3111,9 @@
    "length_s": 337,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "29db0f71-dbab-59b4-a9b3-94be9a501a79": {
    "file": "2026-08/29db0f71-dbab-59b4-a9b3-94be9a501a79.json.gz",
@@ -2739,7 +3127,9 @@
    "length_s": 826,
    "kb": 222,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "ba740817-cc63-5944-a3b7-d4f73df946fd": {
    "file": "2026-08/ba740817-cc63-5944-a3b7-d4f73df946fd.json.gz",
@@ -2753,7 +3143,9 @@
    "length_s": 466,
    "kb": 102,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "c94aa0ec-8497-5de4-ae2c-1f6a872d52d1": {
    "file": "2026-08/c94aa0ec-8497-5de4-ae2c-1f6a872d52d1.json.gz",
@@ -2767,7 +3159,9 @@
    "length_s": 478,
    "kb": 104,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "4af639af-42ca-5840-a8c0-1cc84e510965": {
    "file": "2026-08/4af639af-42ca-5840-a8c0-1cc84e510965.json.gz",
@@ -2781,7 +3175,9 @@
    "length_s": 346,
    "kb": 94,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "4e28d0a1-fa73-5801-a29b-7b7d14265809": {
    "file": "2026-08/4e28d0a1-fa73-5801-a29b-7b7d14265809.json.gz",
@@ -2795,7 +3191,9 @@
    "length_s": 737,
    "kb": 167,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "713d9cd0-d843-5087-a4de-6daf8ecd79f3": {
    "file": "2026-10/713d9cd0-d843-5087-a4de-6daf8ecd79f3.json.gz",
@@ -2809,7 +3207,9 @@
    "length_s": 376,
    "kb": 103,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "0ae8543f-9a09-5c78-ab8e-8292ac71e82d": {
    "file": "2026-07/0ae8543f-9a09-5c78-ab8e-8292ac71e82d.json.gz",
@@ -2823,7 +3223,9 @@
    "length_s": 1142,
    "kb": 276,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "c3248c2d-01f5-51de-a994-a1da444dd4f7": {
    "file": "2026-09/c3248c2d-01f5-51de-a994-a1da444dd4f7.json.gz",
@@ -2837,7 +3239,9 @@
    "length_s": 313,
    "kb": 67,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "94e53710-b1d9-5186-a9c2-473437d70ee6": {
    "file": "2026-10/94e53710-b1d9-5186-a9c2-473437d70ee6.json.gz",
@@ -2851,7 +3255,9 @@
    "length_s": 199,
    "kb": 58,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "58d79a79-3a61-576b-a0e1-9b0d1d6c9529": {
    "file": "2026-08/58d79a79-3a61-576b-a0e1-9b0d1d6c9529.json.gz",
@@ -2865,7 +3271,10 @@
    "length_s": 670,
    "kb": 202,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15,
+   "x_check": "team 1: the events come to 4667, gvg.report's own score is 4728"
   },
   "e31372a7-d1cb-58d3-a483-b305f96786e4": {
    "file": "2026-07/e31372a7-d1cb-58d3-a483-b305f96786e4.json.gz",
@@ -2879,7 +3288,9 @@
    "length_s": 832,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "40c94062-14f1-551d-ac8b-a963113cc332": {
    "file": "2026-08/40c94062-14f1-551d-ac8b-a963113cc332.json.gz",
@@ -2893,7 +3304,9 @@
    "length_s": 1531,
    "kb": 363,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "7e05bf53-770b-5a23-ab72-26babc78f1ff": {
    "file": "2026-09/7e05bf53-770b-5a23-ab72-26babc78f1ff.json.gz",
@@ -2907,7 +3320,9 @@
    "length_s": 1693,
    "kb": 491,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 40
   },
   "21ee7fe1-1753-58e3-a31a-c32fa53f533d": {
    "file": "2026-09/21ee7fe1-1753-58e3-a31a-c32fa53f533d.json.gz",
@@ -2921,7 +3336,9 @@
    "length_s": 791,
    "kb": 193,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "27618d5b-0360-556c-aac4-c56b314adffb": {
    "file": "2026-09/27618d5b-0360-556c-aac4-c56b314adffb.json.gz",
@@ -2935,7 +3352,9 @@
    "length_s": 1693,
    "kb": 270,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "b7bf8fb0-7533-5a34-a287-3f99775be5ed": {
    "file": "2026-09/b7bf8fb0-7533-5a34-a287-3f99775be5ed.json.gz",
@@ -2949,7 +3368,9 @@
    "length_s": 1694,
    "kb": 480,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "d48b3b17-3494-5f76-acd4-904db81d1d64": {
    "file": "2026-09/d48b3b17-3494-5f76-acd4-904db81d1d64.json.gz",
@@ -2963,7 +3384,9 @@
    "length_s": 1447,
    "kb": 323,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "1daf140d-efb3-5b8d-aa20-14f36371b766": {
    "file": "2026-09/1daf140d-efb3-5b8d-aa20-14f36371b766.json.gz",
@@ -2977,7 +3400,9 @@
    "length_s": 1294,
    "kb": 306,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "d4a7392b-a1b2-5511-ac51-b2ab9ecf2ad7": {
    "file": "2026-08/d4a7392b-a1b2-5511-ac51-b2ab9ecf2ad7.json.gz",
@@ -2991,7 +3416,9 @@
    "length_s": 433,
    "kb": 127,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "b7099f35-95b1-52b7-aaad-4129d1e67ade": {
    "file": "2026-07/b7099f35-95b1-52b7-aaad-4129d1e67ade.json.gz",
@@ -3005,7 +3432,9 @@
    "length_s": 905,
    "kb": 191,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "76afed45-e9fe-5428-a22f-4f19341d08d8": {
    "file": "2026-10/76afed45-e9fe-5428-a22f-4f19341d08d8.json.gz",
@@ -3019,7 +3448,9 @@
    "length_s": 769,
    "kb": 169,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "fbe7d90d-532c-5e2e-aeff-82db1c3bd509": {
    "file": "2026-10/fbe7d90d-532c-5e2e-aeff-82db1c3bd509.json.gz",
@@ -3033,7 +3464,9 @@
    "length_s": 1438,
    "kb": 368,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "15a20f7a-0112-519a-a5f9-797a6822bf1b": {
    "file": "2026-09/15a20f7a-0112-519a-a5f9-797a6822bf1b.json.gz",
@@ -3047,7 +3480,9 @@
    "length_s": 541,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "265a776e-1cd6-5bf7-adaf-2694fea71d63": {
    "file": "2026-07/265a776e-1cd6-5bf7-adaf-2694fea71d63.json.gz",
@@ -3061,7 +3496,9 @@
    "length_s": 196,
    "kb": 46,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 6
   },
   "5369ad1c-bbfc-537e-a1fc-162a05220b6b": {
    "file": "2026-07/5369ad1c-bbfc-537e-a1fc-162a05220b6b.json.gz",
@@ -3075,7 +3512,9 @@
    "length_s": 706,
    "kb": 173,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "9a5b157b-e324-5810-a57b-6f713ea64fd4": {
    "file": "2026-10/9a5b157b-e324-5810-a57b-6f713ea64fd4.json.gz",
@@ -3089,7 +3528,9 @@
    "length_s": 742,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "dc25fca8-e62b-5dbc-abb6-b98aa4487079": {
    "file": "2026-06/dc25fca8-e62b-5dbc-abb6-b98aa4487079.json.gz",
@@ -3103,7 +3544,9 @@
    "length_s": 371,
    "kb": 108,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "94e0def8-dca4-569d-a087-019a870a3d8c": {
    "file": "2026-07/94e0def8-dca4-569d-a087-019a870a3d8c.json.gz",
@@ -3117,7 +3560,9 @@
    "length_s": 344,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "0b3148e9-4e47-5b26-a2e3-b9d63ab52b44": {
    "file": "2026-08/0b3148e9-4e47-5b26-a2e3-b9d63ab52b44.json.gz",
@@ -3131,7 +3576,9 @@
    "length_s": 401,
    "kb": 97,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "81ad5882-7b07-5fe8-aedc-d2f2466e35d4": {
    "file": "2026-08/81ad5882-7b07-5fe8-aedc-d2f2466e35d4.json.gz",
@@ -3145,7 +3592,9 @@
    "length_s": 1183,
    "kb": 249,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "04a72e8e-5963-5ab9-add6-8edb99163f1f": {
    "file": "2026-09/04a72e8e-5963-5ab9-add6-8edb99163f1f.json.gz",
@@ -3159,7 +3608,9 @@
    "length_s": 556,
    "kb": 127,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "cc4fc856-7f4d-5096-a904-f7392072c56c": {
    "file": "2026-08/cc4fc856-7f4d-5096-a904-f7392072c56c.json.gz",
@@ -3173,7 +3624,9 @@
    "length_s": 436,
    "kb": 120,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "83d1ff5d-9fea-5e6f-ae2a-c85e245b6eb8": {
    "file": "2026-09/83d1ff5d-9fea-5e6f-ae2a-c85e245b6eb8.json.gz",
@@ -3187,7 +3640,9 @@
    "length_s": 226,
    "kb": 59,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e": {
    "file": "2026-10/7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e.json.gz",
@@ -3201,7 +3656,9 @@
    "length_s": 886,
    "kb": 193,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "f221e39f-faa4-5772-a498-b87e532515a6": {
    "file": "2026-09/f221e39f-faa4-5772-a498-b87e532515a6.json.gz",
@@ -3215,7 +3672,9 @@
    "length_s": 433,
    "kb": 112,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "6584fb28-657d-5f98-a762-d5aec456face": {
    "file": "2026-10/6584fb28-657d-5f98-a762-d5aec456face.json.gz",
@@ -3229,7 +3688,9 @@
    "length_s": 448,
    "kb": 99,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "c2abad8e-8baa-58f6-a330-8fa18efaa156": {
    "file": "2026-10/c2abad8e-8baa-58f6-a330-8fa18efaa156.json.gz",
@@ -3243,7 +3704,9 @@
    "length_s": 1636,
    "kb": 367,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "86640677-2c61-5061-a1d5-f9d48bfc0526": {
    "file": "2026-10/86640677-2c61-5061-a1d5-f9d48bfc0526.json.gz",
@@ -3257,7 +3720,9 @@
    "length_s": 841,
    "kb": 210,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "113190c3-1390-5291-a67c-ed7b58bf77c1": {
    "file": "2026-11/113190c3-1390-5291-a67c-ed7b58bf77c1.json.gz",
@@ -3271,7 +3736,9 @@
    "length_s": 1205,
    "kb": 265,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "5a4db343-62b2-50be-af42-4f98516fa6f6": {
    "file": "2026-10/5a4db343-62b2-50be-af42-4f98516fa6f6.json.gz",
@@ -3285,7 +3752,9 @@
    "length_s": 499,
    "kb": 104,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "effa2b74-a140-536a-a1fe-c9d751791236": {
    "file": "2026-09/effa2b74-a140-536a-a1fe-c9d751791236.json.gz",
@@ -3299,7 +3768,9 @@
    "length_s": 223,
    "kb": 61,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "6cbf1a47-6197-5827-ab7f-155ed99ecbc7": {
    "file": "2026-09/6cbf1a47-6197-5827-ab7f-155ed99ecbc7.json.gz",
@@ -3313,7 +3784,9 @@
    "length_s": 262,
    "kb": 66,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "7fb4d7d3-aa92-5feb-a5af-aa659231f20b": {
    "file": "2026-10/7fb4d7d3-aa92-5feb-a5af-aa659231f20b.json.gz",
@@ -3327,7 +3800,9 @@
    "length_s": 547,
    "kb": 138,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "4732d15c-e062-5794-a8e1-0ad75f3009e5": {
    "file": "2026-09/4732d15c-e062-5794-a8e1-0ad75f3009e5.json.gz",
@@ -3341,7 +3816,9 @@
    "length_s": 217,
    "kb": 62,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "90f6bf08-15cd-5e38-aa98-23e1837b79e0": {
    "file": "2026-09/90f6bf08-15cd-5e38-aa98-23e1837b79e0.json.gz",
@@ -3355,7 +3832,9 @@
    "length_s": 535,
    "kb": 109,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "fca07aa2-6a37-577f-a277-b61243f85e42": {
    "file": "2026-10/fca07aa2-6a37-577f-a277-b61243f85e42.json.gz",
@@ -3369,7 +3848,9 @@
    "length_s": 607,
    "kb": 160,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "13bbd90b-447d-58ff-ad9b-68f14cefa564": {
    "file": "2026-09/13bbd90b-447d-58ff-ad9b-68f14cefa564.json.gz",
@@ -3383,7 +3864,9 @@
    "length_s": 1024,
    "kb": 192,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "10bc4cdc-245a-54f2-a51b-b4312437bf06": {
    "file": "2026-11/10bc4cdc-245a-54f2-a51b-b4312437bf06.json.gz",
@@ -3397,7 +3880,9 @@
    "length_s": 740,
    "kb": 195,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "5aa871bd-42b5-56f6-a193-2c6c4dea3fee": {
    "file": "2026-10/5aa871bd-42b5-56f6-a193-2c6c4dea3fee.json.gz",
@@ -3411,7 +3896,9 @@
    "length_s": 538,
    "kb": 147,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "284fbd8f-415b-5848-a20f-3f9e32af7ea3": {
    "file": "2026-10/284fbd8f-415b-5848-a20f-3f9e32af7ea3.json.gz",
@@ -3425,7 +3912,9 @@
    "length_s": 292,
    "kb": 78,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "b4444258-8e63-53ea-a9a8-1285ebc3a65d": {
    "file": "2026-09/b4444258-8e63-53ea-a9a8-1285ebc3a65d.json.gz",
@@ -3439,7 +3928,9 @@
    "length_s": 442,
    "kb": 119,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "c3973a8c-9b5f-5186-ac9b-2bfb7eff396c": {
    "file": "2026-09/c3973a8c-9b5f-5186-ac9b-2bfb7eff396c.json.gz",
@@ -3453,7 +3944,9 @@
    "length_s": 1693,
    "kb": 424,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "52b456ba-27fc-58a0-af94-a6ec8b430305": {
    "file": "2026-09/52b456ba-27fc-58a0-af94-a6ec8b430305.json.gz",
@@ -3467,7 +3960,9 @@
    "length_s": 586,
    "kb": 132,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "d73e6f3a-034b-55b3-ac71-08c86c6b9bea": {
    "file": "2026-09/d73e6f3a-034b-55b3-ac71-08c86c6b9bea.json.gz",
@@ -3481,7 +3976,9 @@
    "length_s": 1535,
    "kb": 363,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "3d111fa9-83d9-573f-a537-e8984c72dd82": {
    "file": "2026-09/3d111fa9-83d9-573f-a537-e8984c72dd82.json.gz",
@@ -3495,7 +3992,9 @@
    "length_s": 571,
    "kb": 135,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "8da8570a-2b81-55ee-a016-95ea78476208": {
    "file": "2026-11/8da8570a-2b81-55ee-a016-95ea78476208.json.gz",
@@ -3509,7 +4008,9 @@
    "length_s": 1205,
    "kb": 309,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "9d84b1e6-6aef-5d0c-a417-fb87875add27": {
    "file": "2026-10/9d84b1e6-6aef-5d0c-a417-fb87875add27.json.gz",
@@ -3523,7 +4024,9 @@
    "length_s": 1666,
    "kb": 380,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "08ae81ba-1d16-5e2b-a676-2773109991f3": {
    "file": "2026-09/08ae81ba-1d16-5e2b-a676-2773109991f3.json.gz",
@@ -3537,7 +4040,9 @@
    "length_s": 812,
    "kb": 178,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "cbde6ce2-56e0-5130-a0e2-59f7ead0eb61": {
    "file": "2026-09/cbde6ce2-56e0-5130-a0e2-59f7ead0eb61.json.gz",
@@ -3551,7 +4056,9 @@
    "length_s": 322,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "368cb5d2-f517-5137-ae27-0607789747a8": {
    "file": "2026-10/368cb5d2-f517-5137-ae27-0607789747a8.json.gz",
@@ -3565,7 +4072,10 @@
    "length_s": 1694,
    "kb": 463,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 39,
+   "x_check": "team 1: the events come to 1662, gvg.report's own score is 1692"
   },
   "9eb315c2-bb0f-54aa-ae59-20db911cdbed": {
    "file": "2026-09/9eb315c2-bb0f-54aa-ae59-20db911cdbed.json.gz",
@@ -3579,7 +4089,9 @@
    "length_s": 1561,
    "kb": 367,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "a10462fb-c1ca-55cc-a54a-dbfa7a4e3918": {
    "file": "2026-09/a10462fb-c1ca-55cc-a54a-dbfa7a4e3918.json.gz",
@@ -3593,7 +4105,10 @@
    "length_s": 781,
    "kb": 138,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18,
+   "x_check": "team 1: the events come to 1845, gvg.report's own score is 1905"
   },
   "bfef12ce-6ed9-53e9-a306-44349c368add": {
    "file": "2026-10/bfef12ce-6ed9-53e9-a306-44349c368add.json.gz",
@@ -3607,7 +4122,9 @@
    "length_s": 820,
    "kb": 207,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "d85fc71e-22f4-5f30-a45c-b54e8fdde29b": {
    "file": "2026-10/d85fc71e-22f4-5f30-a45c-b54e8fdde29b.json.gz",
@@ -3621,7 +4138,9 @@
    "length_s": 1642,
    "kb": 445,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "ad347cfb-1179-5a06-a484-37aa63bfebd4": {
    "file": "2026-10/ad347cfb-1179-5a06-a484-37aa63bfebd4.json.gz",
@@ -3635,7 +4154,9 @@
    "length_s": 1418,
    "kb": 366,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "6c8fa702-acab-5643-afde-23590009295b": {
    "file": "2026-09/6c8fa702-acab-5643-afde-23590009295b.json.gz",
@@ -3649,7 +4170,9 @@
    "length_s": 556,
    "kb": 92,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "328de049-54fa-5d8e-a401-651e954b288d": {
    "file": "2026-10/328de049-54fa-5d8e-a401-651e954b288d.json.gz",
@@ -3663,7 +4186,9 @@
    "length_s": 1085,
    "kb": 279,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96": {
    "file": "2026-11/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96.json.gz",
@@ -3677,7 +4202,9 @@
    "length_s": 1220,
    "kb": 330,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "a44589cc-6a77-54f1-a3fc-4df044769e09": {
    "file": "2026-10/a44589cc-6a77-54f1-a3fc-4df044769e09.json.gz",
@@ -3691,7 +4218,9 @@
    "length_s": 1693,
    "kb": 400,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "023475ba-4e0c-5ce0-a1d6-f9c660a5d16d": {
    "file": "2026-10/023475ba-4e0c-5ce0-a1d6-f9c660a5d16d.json.gz",
@@ -3705,7 +4234,9 @@
    "length_s": 1186,
    "kb": 284,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "cd870ad3-52e8-5de9-a73a-897015fab0dc": {
    "file": "2026-10/cd870ad3-52e8-5de9-a73a-897015fab0dc.json.gz",
@@ -3719,7 +4250,9 @@
    "length_s": 1538,
    "kb": 408,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "5b64767d-74c1-5c11-a89f-381f5dffb5c3": {
    "file": "2026-10/5b64767d-74c1-5c11-a89f-381f5dffb5c3.json.gz",
@@ -3733,7 +4266,9 @@
    "length_s": 352,
    "kb": 99,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "a0fae334-fc73-546f-aefc-9b8b16607862": {
    "file": "2026-09/a0fae334-fc73-546f-aefc-9b8b16607862.json.gz",
@@ -3747,7 +4282,9 @@
    "length_s": 1673,
    "kb": 457,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 41
   },
   "e865554f-b071-5bdb-a49f-4208891c3649": {
    "file": "2026-10/e865554f-b071-5bdb-a49f-4208891c3649.json.gz",
@@ -3761,7 +4298,9 @@
    "length_s": 533,
    "kb": 153,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "9fb1069f-7f28-563b-a567-81ad4186deaf": {
    "file": "2026-09/9fb1069f-7f28-563b-a567-81ad4186deaf.json.gz",
@@ -3775,7 +4314,9 @@
    "length_s": 1405,
    "kb": 380,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "73462719-af75-516a-a249-bcb95b4f2bde": {
    "file": "2026-10/73462719-af75-516a-a249-bcb95b4f2bde.json.gz",
@@ -3789,7 +4330,9 @@
    "length_s": 1456,
    "kb": 430,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "83d65585-036c-5b56-af66-017ceb0af084": {
    "file": "2026-10/83d65585-036c-5b56-af66-017ceb0af084.json.gz",
@@ -3803,7 +4346,9 @@
    "length_s": 337,
    "kb": 100,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "2f082635-48af-51d0-afc9-f8b6ec2cbebf": {
    "file": "2026-10/2f082635-48af-51d0-afc9-f8b6ec2cbebf.json.gz",
@@ -3817,7 +4362,9 @@
    "length_s": 577,
    "kb": 155,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "0f6a7e67-37aa-5fd8-aa92-e6e91f027f85": {
    "file": "2026-09/0f6a7e67-37aa-5fd8-aa92-e6e91f027f85.json.gz",
@@ -3831,7 +4378,9 @@
    "length_s": 892,
    "kb": 164,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "0ab1d6cd-09aa-503b-ad34-cdfc570a52b0": {
    "file": "2026-10/0ab1d6cd-09aa-503b-ad34-cdfc570a52b0.json.gz",
@@ -3845,7 +4394,9 @@
    "length_s": 1432,
    "kb": 360,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "60cca52b-f827-5beb-ace6-db6454e72c8e": {
    "file": "2026-09/60cca52b-f827-5beb-ace6-db6454e72c8e.json.gz",
@@ -3859,7 +4410,9 @@
    "length_s": 253,
    "kb": 43,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 6
   },
   "07b6b99a-d32b-5ab2-a6a0-542a1045f980": {
    "file": "2026-09/07b6b99a-d32b-5ab2-a6a0-542a1045f980.json.gz",
@@ -3873,7 +4426,10 @@
    "length_s": 1543,
    "kb": 323,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27,
+   "x_check": "team 2: the events come to 2323, gvg.report's own score is 2383"
   },
   "3a2d3d65-d3d3-51c6-a041-b3dcee70fb13": {
    "file": "2026-11/3a2d3d65-d3d3-51c6-a041-b3dcee70fb13.json.gz",
@@ -3887,7 +4443,9 @@
    "length_s": 460,
    "kb": 90,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "3ba08a68-bd67-5d9d-a851-03b998b0b9b9": {
    "file": "2026-09/3ba08a68-bd67-5d9d-a851-03b998b0b9b9.json.gz",
@@ -3901,7 +4459,9 @@
    "length_s": 1075,
    "kb": 223,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "d9099718-a6ea-56f2-a176-17e30b378dc3": {
    "file": "2026-09/d9099718-a6ea-56f2-a176-17e30b378dc3.json.gz",
@@ -3915,7 +4475,9 @@
    "length_s": 790,
    "kb": 175,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "d9e8531e-e43b-594a-acad-6737954e1230": {
    "file": "2026-09/d9e8531e-e43b-594a-acad-6737954e1230.json.gz",
@@ -3929,7 +4491,9 @@
    "length_s": 1573,
    "kb": 251,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "a40aae2a-e4b9-56d0-a098-540d14ddc6b7": {
    "file": "2026-09/a40aae2a-e4b9-56d0-a098-540d14ddc6b7.json.gz",
@@ -3943,7 +4507,9 @@
    "length_s": 349,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "b3621d94-0fc5-50f8-a73e-9d9d8fd2fde6": {
    "file": "2026-10/b3621d94-0fc5-50f8-a73e-9d9d8fd2fde6.json.gz",
@@ -3957,7 +4523,9 @@
    "length_s": 334,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "e64afdae-ddca-5fd1-a3eb-a7747d10b405": {
    "file": "2026-10/e64afdae-ddca-5fd1-a3eb-a7747d10b405.json.gz",
@@ -3971,7 +4539,9 @@
    "length_s": 460,
    "kb": 131,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "bd18e63f-1f72-5f8e-a8f2-cde995859916": {
    "file": "2026-10/bd18e63f-1f72-5f8e-a8f2-cde995859916.json.gz",
@@ -3985,7 +4555,9 @@
    "length_s": 1693,
    "kb": 499,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 44
   },
   "8bf4ffae-780e-535e-aa7b-44027b0fa6cc": {
    "file": "2026-10/8bf4ffae-780e-535e-aa7b-44027b0fa6cc.json.gz",
@@ -3999,7 +4571,9 @@
    "length_s": 1045,
    "kb": 262,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "85fa697c-20a1-5851-a092-9aa5077e2232": {
    "file": "2026-09/85fa697c-20a1-5851-a092-9aa5077e2232.json.gz",
@@ -4013,7 +4587,9 @@
    "length_s": 397,
    "kb": 81,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "1e05a7ca-78ac-5340-a3a3-1ca8870a8165": {
    "file": "2026-10/1e05a7ca-78ac-5340-a3a3-1ca8870a8165.json.gz",
@@ -4027,7 +4603,9 @@
    "length_s": 493,
    "kb": 120,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "5527465c-2adf-5c1c-a22f-1dac53eebcce": {
    "file": "2026-09/5527465c-2adf-5c1c-a22f-1dac53eebcce.json.gz",
@@ -4041,7 +4619,9 @@
    "length_s": 835,
    "kb": 198,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "f42e3d5b-2071-56f5-a0b2-ddfbbaa5d47e": {
    "file": "2026-09/f42e3d5b-2071-56f5-a0b2-ddfbbaa5d47e.json.gz",
@@ -4055,7 +4635,9 @@
    "length_s": 1457,
    "kb": 377,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "159e0bde-82ca-52f1-abd9-d9eb7e74f718": {
    "file": "2026-09/159e0bde-82ca-52f1-abd9-d9eb7e74f718.json.gz",
@@ -4069,7 +4651,9 @@
    "length_s": 352,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "7887be10-9e0b-5344-a0cb-311924998088": {
    "file": "2026-09/7887be10-9e0b-5344-a0cb-311924998088.json.gz",
@@ -4083,7 +4667,9 @@
    "length_s": 235,
    "kb": 56,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "3b7bfeac-18e1-5599-af30-b175eeb2ff1e": {
    "file": "2026-09/3b7bfeac-18e1-5599-af30-b175eeb2ff1e.json.gz",
@@ -4097,7 +4683,9 @@
    "length_s": 1546,
    "kb": 397,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "ccd78801-c6e8-549b-add2-ca9c98926d1c": {
    "file": "2026-09/ccd78801-c6e8-549b-add2-ca9c98926d1c.json.gz",
@@ -4111,7 +4699,9 @@
    "length_s": 1693,
    "kb": 431,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38
   },
   "92977824-d166-5e37-a5c4-dc4846027086": {
    "file": "2026-09/92977824-d166-5e37-a5c4-dc4846027086.json.gz",
@@ -4125,7 +4715,9 @@
    "length_s": 1514,
    "kb": 380,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "fe3fd3d2-4563-5379-a08b-d24301c206a5": {
    "file": "2026-09/fe3fd3d2-4563-5379-a08b-d24301c206a5.json.gz",
@@ -4139,7 +4731,10 @@
    "length_s": 1334,
    "kb": 383,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36,
+   "x_check": "team 2: the events come to 1835, gvg.report's own score is 1864"
   },
   "7208fa8f-5b39-59d9-a432-ffd4c254743d": {
    "file": "2026-09/7208fa8f-5b39-59d9-a432-ffd4c254743d.json.gz",
@@ -4153,7 +4748,9 @@
    "length_s": 682,
    "kb": 140,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "366b75bc-9286-522b-a3a0-b9c199291d1a": {
    "file": "2026-10/366b75bc-9286-522b-a3a0-b9c199291d1a.json.gz",
@@ -4167,7 +4764,9 @@
    "length_s": 667,
    "kb": 210,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "6f5f7713-b39b-5642-ae11-2c597edf9cf6": {
    "file": "2026-09/6f5f7713-b39b-5642-ae11-2c597edf9cf6.json.gz",
@@ -4181,7 +4780,9 @@
    "length_s": 1049,
    "kb": 259,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "d667a587-dd0c-5dd1-a553-efb62c3461fb": {
    "file": "2026-09/d667a587-dd0c-5dd1-a553-efb62c3461fb.json.gz",
@@ -4195,7 +4796,9 @@
    "length_s": 580,
    "kb": 145,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "5c2dbcaa-aeb5-5b7c-adc0-b06c00127253": {
    "file": "2026-09/5c2dbcaa-aeb5-5b7c-adc0-b06c00127253.json.gz",
@@ -4209,7 +4812,9 @@
    "length_s": 472,
    "kb": 104,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "8240a0a7-9392-53cf-a513-f72fff0d7513": {
    "file": "2026-11/8240a0a7-9392-53cf-a513-f72fff0d7513.json.gz",
@@ -4223,7 +4828,9 @@
    "length_s": 898,
    "kb": 248,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "b3661a7e-edd2-5e8b-a059-069dd1afc449": {
    "file": "2026-09/b3661a7e-edd2-5e8b-a059-069dd1afc449.json.gz",
@@ -4237,7 +4844,9 @@
    "length_s": 571,
    "kb": 159,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "354d49dc-0138-5578-a1ac-7bf4282fc96f": {
    "file": "2026-09/354d49dc-0138-5578-a1ac-7bf4282fc96f.json.gz",
@@ -4251,7 +4860,9 @@
    "length_s": 352,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "99f92e43-eaea-5152-a079-f6ab371ee3e1": {
    "file": "2026-09/99f92e43-eaea-5152-a079-f6ab371ee3e1.json.gz",
@@ -4265,7 +4876,9 @@
    "length_s": 361,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "267e4df2-b0c5-5de7-adb3-6704e0ed49a0": {
    "file": "2026-09/267e4df2-b0c5-5de7-adb3-6704e0ed49a0.json.gz",
@@ -4279,7 +4892,9 @@
    "length_s": 985,
    "kb": 236,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "8a89886b-8c33-5c1b-a656-d7284af7b869": {
    "file": "2026-09/8a89886b-8c33-5c1b-a656-d7284af7b869.json.gz",
@@ -4293,7 +4908,10 @@
    "length_s": 343,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10,
+   "x_check": "team 2: the events come to 4101, gvg.report's own score is 4104"
   },
   "f65cbc1c-aa43-5409-a55f-cd3b4bd2a570": {
    "file": "2026-09/f65cbc1c-aa43-5409-a55f-cd3b4bd2a570.json.gz",
@@ -4307,7 +4925,9 @@
    "length_s": 349,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "276f8d04-5c9e-57e1-afaa-422d5f4bcbfa": {
    "file": "2026-09/276f8d04-5c9e-57e1-afaa-422d5f4bcbfa.json.gz",
@@ -4321,7 +4941,9 @@
    "length_s": 364,
    "kb": 83,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "b264d21f-8b86-51a7-ae6a-65db0e814dcd": {
    "file": "2026-09/b264d21f-8b86-51a7-ae6a-65db0e814dcd.json.gz",
@@ -4335,7 +4957,9 @@
    "length_s": 250,
    "kb": 60,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "ba239d4a-e392-5886-a027-df4b47f1dfbe": {
    "file": "2026-11/ba239d4a-e392-5886-a027-df4b47f1dfbe.json.gz",
@@ -4349,7 +4973,9 @@
    "length_s": 220,
    "kb": 55,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "c0575e28-03b1-52b7-a3e1-f422c89817c0": {
    "file": "2026-09/c0575e28-03b1-52b7-a3e1-f422c89817c0.json.gz",
@@ -4363,7 +4989,9 @@
    "length_s": 581,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "a899db48-1dba-52c1-a532-4930d4dc52e5": {
    "file": "2026-11/a899db48-1dba-52c1-a532-4930d4dc52e5.json.gz",
@@ -4377,7 +5005,9 @@
    "length_s": 550,
    "kb": 144,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "a7d1e003-23fc-5b3f-a80d-a13403834ff2": {
    "file": "2026-10/a7d1e003-23fc-5b3f-a80d-a13403834ff2.json.gz",
@@ -4391,7 +5021,9 @@
    "length_s": 1450,
    "kb": 377,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "838de574-f3e9-5399-ab07-fbc323bb1e3f": {
    "file": "2026-10/838de574-f3e9-5399-ab07-fbc323bb1e3f.json.gz",
@@ -4405,7 +5037,9 @@
    "length_s": 1078,
    "kb": 282,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "b870f84e-b838-5f2a-ae83-b1e25499d9ee": {
    "file": "2026-10/b870f84e-b838-5f2a-ae83-b1e25499d9ee.json.gz",
@@ -4419,7 +5053,9 @@
    "length_s": 538,
    "kb": 140,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "0426f3a7-3ddd-5a71-a53d-69597a130430": {
    "file": "2026-09/0426f3a7-3ddd-5a71-a53d-69597a130430.json.gz",
@@ -4433,7 +5069,9 @@
    "length_s": 653,
    "kb": 133,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "da57e314-d9f6-5293-a578-496d5b139f05": {
    "file": "2026-10/da57e314-d9f6-5293-a578-496d5b139f05.json.gz",
@@ -4447,7 +5085,9 @@
    "length_s": 1309,
    "kb": 392,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "9a344301-a63f-53b7-a4bb-554f665ba18b": {
    "file": "2026-09/9a344301-a63f-53b7-a4bb-554f665ba18b.json.gz",
@@ -4461,7 +5101,9 @@
    "length_s": 1693,
    "kb": 401,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "113c3dc5-a172-5fcc-af51-02392df65383": {
    "file": "2026-09/113c3dc5-a172-5fcc-af51-02392df65383.json.gz",
@@ -4475,7 +5117,10 @@
    "length_s": 1693,
    "kb": 303,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31,
+   "x_check": "team 2: the events come to 8899, gvg.report's own score is 8901"
   },
   "8aad2895-62a2-5696-a186-c71b2d325bf4": {
    "file": "2026-09/8aad2895-62a2-5696-a186-c71b2d325bf4.json.gz",
@@ -4489,7 +5134,9 @@
    "length_s": 769,
    "kb": 129,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "638aa10f-472e-5f17-a347-51a797a80fc3": {
    "file": "2026-10/638aa10f-472e-5f17-a347-51a797a80fc3.json.gz",
@@ -4503,7 +5150,9 @@
    "length_s": 706,
    "kb": 176,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "dac72124-47c5-543d-a076-dd8afe568f6a": {
    "file": "2026-09/dac72124-47c5-543d-a076-dd8afe568f6a.json.gz",
@@ -4517,7 +5166,10 @@
    "length_s": 1693,
    "kb": 425,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 40,
+   "x_check": "team 2: the events come to 8406, gvg.report's own score is 8404"
   },
   "bf1a87a1-b267-57fc-a9f6-fb42ef9d4c53": {
    "file": "2026-10/bf1a87a1-b267-57fc-a9f6-fb42ef9d4c53.json.gz",
@@ -4531,7 +5183,9 @@
    "length_s": 442,
    "kb": 126,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "1dc23b25-7a0b-5fe0-a190-5a87e85c81e9": {
    "file": "2026-09/1dc23b25-7a0b-5fe0-a190-5a87e85c81e9.json.gz",
@@ -4545,7 +5199,9 @@
    "length_s": 241,
    "kb": 66,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "df25de4c-a631-5417-aa31-262a222beae8": {
    "file": "2026-09/df25de4c-a631-5417-aa31-262a222beae8.json.gz",
@@ -4559,7 +5215,9 @@
    "length_s": 250,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "719f5189-a1dc-5955-a187-a20e09d2831c": {
    "file": "2026-10/719f5189-a1dc-5955-a187-a20e09d2831c.json.gz",
@@ -4573,7 +5231,9 @@
    "length_s": 448,
    "kb": 101,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "90810e04-6855-5045-a7f4-d32f47815ade": {
    "file": "2026-10/90810e04-6855-5045-a7f4-d32f47815ade.json.gz",
@@ -4603,7 +5263,9 @@
    "length_s": 1546,
    "kb": 337,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "bdaa145f-1471-57b3-ab2f-a04f090b7abb": {
    "file": "2026-10/bdaa145f-1471-57b3-ab2f-a04f090b7abb.json.gz",
@@ -4617,7 +5279,9 @@
    "length_s": 761,
    "kb": 128,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "476fdb0c-1235-5682-a9d9-47190a498784": {
    "file": "2026-09/476fdb0c-1235-5682-a9d9-47190a498784.json.gz",
@@ -4631,7 +5295,9 @@
    "length_s": 376,
    "kb": 77,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "2cacd546-3d3a-5edc-afe9-19e612b161b5": {
    "file": "2026-10/2cacd546-3d3a-5edc-afe9-19e612b161b5.json.gz",
@@ -4645,7 +5311,10 @@
    "length_s": 313,
    "kb": 86,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13,
+   "x_check": "team 1: the events come to 2729, gvg.report's own score is 2789"
   },
   "8b6395d7-90c9-5aa3-a368-704ee72e96d8": {
    "file": "2026-09/8b6395d7-90c9-5aa3-a368-704ee72e96d8.json.gz",
@@ -4659,7 +5328,9 @@
    "length_s": 383,
    "kb": 86,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "0dfb1709-db25-5df3-a48d-fd3a8117b14a": {
    "file": "2026-09/0dfb1709-db25-5df3-a48d-fd3a8117b14a.json.gz",
@@ -4673,7 +5344,9 @@
    "length_s": 319,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "00331085-84e0-5a8b-ac23-4077dac58c02": {
    "file": "2026-09/00331085-84e0-5a8b-ac23-4077dac58c02.json.gz",
@@ -4687,7 +5360,9 @@
    "length_s": 1079,
    "kb": 217,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "4c12fd75-1d7b-5367-ab20-4bd8c29e7949": {
    "file": "2026-09/4c12fd75-1d7b-5367-ab20-4bd8c29e7949.json.gz",
@@ -4701,7 +5376,9 @@
    "length_s": 328,
    "kb": 84,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "08b9b22b-37a1-5356-ae47-2fa2e6036256": {
    "file": "2026-09/08b9b22b-37a1-5356-ae47-2fa2e6036256.json.gz",
@@ -4715,7 +5392,9 @@
    "length_s": 244,
    "kb": 56,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 6
   },
   "b57ab90a-ef22-530b-a461-7359224952f4": {
    "file": "2026-10/b57ab90a-ef22-530b-a461-7359224952f4.json.gz",
@@ -4729,7 +5408,9 @@
    "length_s": 862,
    "kb": 196,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "dae60f33-00a0-5b98-ae10-69a8b5424269": {
    "file": "2026-09/dae60f33-00a0-5b98-ae10-69a8b5424269.json.gz",
@@ -4743,7 +5424,9 @@
    "length_s": 589,
    "kb": 134,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "8a217933-b426-5664-aaf9-22e22ca6b280": {
    "file": "2026-09/8a217933-b426-5664-aaf9-22e22ca6b280.json.gz",
@@ -4757,7 +5440,9 @@
    "length_s": 205,
    "kb": 54,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "4e2fc3c7-5680-5b93-ad92-86133b4a5dc2": {
    "file": "2026-09/4e2fc3c7-5680-5b93-ad92-86133b4a5dc2.json.gz",
@@ -4771,7 +5456,9 @@
    "length_s": 466,
    "kb": 113,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "62ab0750-3634-5e30-a041-3af4c6b496cb": {
    "file": "2026-09/62ab0750-3634-5e30-a041-3af4c6b496cb.json.gz",
@@ -4785,7 +5472,9 @@
    "length_s": 482,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "90ad5f3b-3457-5258-a098-0cd177e841cc": {
    "file": "2026-10/90ad5f3b-3457-5258-a098-0cd177e841cc.json.gz",
@@ -4799,7 +5488,9 @@
    "length_s": 167,
    "kb": 169,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "cbf7d54b-9a84-54d2-afd7-6672ae762c25": {
    "file": "2026-09/cbf7d54b-9a84-54d2-afd7-6672ae762c25.json.gz",
@@ -4813,7 +5504,9 @@
    "length_s": 1438,
    "kb": 324,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "e9bbb5bf-e3f6-5d36-a168-fec153561605": {
    "file": "2026-09/e9bbb5bf-e3f6-5d36-a168-fec153561605.json.gz",
@@ -4827,7 +5520,9 @@
    "length_s": 646,
    "kb": 180,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "d26a7f5c-428f-5b34-a25c-11b4dcb407be": {
    "file": "2026-09/d26a7f5c-428f-5b34-a25c-11b4dcb407be.json.gz",
@@ -4841,7 +5536,9 @@
    "length_s": 1331,
    "kb": 283,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "65f274b6-a46b-5dcf-aae4-0a4d09448f2d": {
    "file": "2026-10/65f274b6-a46b-5dcf-aae4-0a4d09448f2d.json.gz",
@@ -4855,7 +5552,9 @@
    "length_s": 404,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "0e72cb3c-ea94-5c03-a245-476a67b828ca": {
    "file": "2026-10/0e72cb3c-ea94-5c03-a245-476a67b828ca.json.gz",
@@ -4869,7 +5568,9 @@
    "length_s": 241,
    "kb": 54,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "bd3aa6a4-bc68-52c7-ac37-2fdf071652ac": {
    "file": "2026-10/bd3aa6a4-bc68-52c7-ac37-2fdf071652ac.json.gz",
@@ -4883,7 +5584,9 @@
    "length_s": 1060,
    "kb": 264,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "0f47b035-f02f-5e47-a3de-fa2f7cb0ecd0": {
    "file": "2026-10/0f47b035-f02f-5e47-a3de-fa2f7cb0ecd0.json.gz",
@@ -4897,7 +5600,9 @@
    "length_s": 899,
    "kb": 213,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "4d955e11-8302-5ba8-a749-b5ddfab9a145": {
    "file": "2026-10/4d955e11-8302-5ba8-a749-b5ddfab9a145.json.gz",
@@ -4911,7 +5616,9 @@
    "length_s": 763,
    "kb": 181,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "8311c117-5611-59ad-a094-3a157a7321c9": {
    "file": "2026-09/8311c117-5611-59ad-a094-3a157a7321c9.json.gz",
@@ -4925,7 +5632,9 @@
    "length_s": 1039,
    "kb": 237,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "cacbe610-a5aa-5307-abaf-6088a46d5da6": {
    "file": "2026-09/cacbe610-a5aa-5307-abaf-6088a46d5da6.json.gz",
@@ -4939,7 +5648,9 @@
    "length_s": 811,
    "kb": 177,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "56fbdf34-7209-5215-a2f8-31ed675cd120": {
    "file": "2026-09/56fbdf34-7209-5215-a2f8-31ed675cd120.json.gz",
@@ -4953,7 +5664,9 @@
    "length_s": 1069,
    "kb": 236,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "645cb6e9-ef69-5253-a1af-ab3950ab7025": {
    "file": "2026-10/645cb6e9-ef69-5253-a1af-ab3950ab7025.json.gz",
@@ -4967,7 +5680,9 @@
    "length_s": 1207,
    "kb": 260,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "ecf3315b-bcef-5dd1-a7e1-6afe043ac073": {
    "file": "2026-10/ecf3315b-bcef-5dd1-a7e1-6afe043ac073.json.gz",
@@ -4981,7 +5696,9 @@
    "length_s": 949,
    "kb": 231,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "1b1abe4f-8e20-5932-acd8-9ddfc9620d89": {
    "file": "2026-10/1b1abe4f-8e20-5932-acd8-9ddfc9620d89.json.gz",
@@ -4995,7 +5712,9 @@
    "length_s": 502,
    "kb": 105,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "b4cf3462-404e-585f-a8e3-83cc3dd92a99": {
    "file": "2026-10/b4cf3462-404e-585f-a8e3-83cc3dd92a99.json.gz",
@@ -5009,7 +5728,9 @@
    "length_s": 848,
    "kb": 203,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "f252e06f-eca2-5232-a6a7-be82ec246cc0": {
    "file": "2026-09/f252e06f-eca2-5232-a6a7-be82ec246cc0.json.gz",
@@ -5023,7 +5744,9 @@
    "length_s": 367,
    "kb": 96,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "ec92867f-c951-5299-a1de-3ba47e08bd9d": {
    "file": "2026-09/ec92867f-c951-5299-a1de-3ba47e08bd9d.json.gz",
@@ -5037,7 +5760,9 @@
    "length_s": 586,
    "kb": 128,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "cf5bb1ff-eb7c-5ce1-aee8-e8b26f8cf03b": {
    "file": "2026-09/cf5bb1ff-eb7c-5ce1-aee8-e8b26f8cf03b.json.gz",
@@ -5051,7 +5776,9 @@
    "length_s": 205,
    "kb": 58,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "85498a8a-a558-5502-a52d-3ab7acfa7052": {
    "file": "2026-09/85498a8a-a558-5502-a52d-3ab7acfa7052.json.gz",
@@ -5065,7 +5792,10 @@
    "length_s": 1679,
    "kb": 377,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35,
+   "x_check": "team 2: the events come to 11862, gvg.report's own score is 12792"
   },
   "4158d234-8598-59ec-a745-5f6a17686242": {
    "file": "2026-09/4158d234-8598-59ec-a745-5f6a17686242.json.gz",
@@ -5079,7 +5809,9 @@
    "length_s": 1627,
    "kb": 379,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "59504610-06b4-5c27-add9-491ebae34a19": {
    "file": "2026-09/59504610-06b4-5c27-add9-491ebae34a19.json.gz",
@@ -5093,7 +5825,9 @@
    "length_s": 340,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "6acf4b9e-51f6-5596-a208-d4ebaf5e2539": {
    "file": "2026-10/6acf4b9e-51f6-5596-a208-d4ebaf5e2539.json.gz",
@@ -5107,7 +5841,10 @@
    "length_s": 1652,
    "kb": 424,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38,
+   "x_check": "team 2: the events come to 9926, gvg.report's own score is 9930"
   },
   "fba78a16-96c7-5d36-af15-1783bb95f17f": {
    "file": "2026-10/fba78a16-96c7-5d36-af15-1783bb95f17f.json.gz",
@@ -5121,7 +5858,9 @@
    "length_s": 364,
    "kb": 99,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "8410d3d9-9054-5a82-aa8c-9087dd6a7306": {
    "file": "2026-09/8410d3d9-9054-5a82-aa8c-9087dd6a7306.json.gz",
@@ -5135,7 +5874,9 @@
    "length_s": 908,
    "kb": 174,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "e906615a-ad2c-5e55-a65a-bbe6020cce4d": {
    "file": "2026-09/e906615a-ad2c-5e55-a65a-bbe6020cce4d.json.gz",
@@ -5149,7 +5890,9 @@
    "length_s": 608,
    "kb": 144,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "75312515-a408-5381-a999-7ec2432a66f8": {
    "file": "2026-10/75312515-a408-5381-a999-7ec2432a66f8.json.gz",
@@ -5163,7 +5906,9 @@
    "length_s": 628,
    "kb": 90,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "43b3f8cd-15c5-5400-ad8f-5e57b2336a01": {
    "file": "2026-09/43b3f8cd-15c5-5400-ad8f-5e57b2336a01.json.gz",
@@ -5177,7 +5922,9 @@
    "length_s": 335,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "88707370-3519-53eb-ac4d-9eccf5a8eda1": {
    "file": "2026-09/88707370-3519-53eb-ac4d-9eccf5a8eda1.json.gz",
@@ -5191,7 +5938,9 @@
    "length_s": 326,
    "kb": 70,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "427f6a9f-d37b-5777-a859-b00e148ab204": {
    "file": "2026-11/427f6a9f-d37b-5777-a859-b00e148ab204.json.gz",
@@ -5205,7 +5954,9 @@
    "length_s": 310,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "ca387a42-f896-5055-ae6d-c2122c86083e": {
    "file": "2026-09/ca387a42-f896-5055-ae6d-c2122c86083e.json.gz",
@@ -5219,7 +5970,9 @@
    "length_s": 250,
    "kb": 66,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "83991db3-8df8-5d70-a6ee-15aef06f3a8f": {
    "file": "2026-10/83991db3-8df8-5d70-a6ee-15aef06f3a8f.json.gz",
@@ -5233,7 +5986,9 @@
    "length_s": 1498,
    "kb": 409,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "c80a8da8-02f5-5ef2-a906-7fff922d7aae": {
    "file": "2026-10/c80a8da8-02f5-5ef2-a906-7fff922d7aae.json.gz",
@@ -5247,7 +6002,9 @@
    "length_s": 1693,
    "kb": 477,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 45
   },
   "db72bb2e-5e12-58e2-a238-a311cf008f37": {
    "file": "2026-09/db72bb2e-5e12-58e2-a238-a311cf008f37.json.gz",
@@ -5261,7 +6018,9 @@
    "length_s": 589,
    "kb": 152,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "d743cea3-7d2a-5335-a809-8a68fdff8cef": {
    "file": "2026-10/d743cea3-7d2a-5335-a809-8a68fdff8cef.json.gz",
@@ -5275,7 +6034,9 @@
    "length_s": 397,
    "kb": 71,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "13eace7b-2a52-5a3d-ad37-a3481154dbb5": {
    "file": "2026-10/13eace7b-2a52-5a3d-ad37-a3481154dbb5.json.gz",
@@ -5289,7 +6050,9 @@
    "length_s": 367,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "72612fb1-33a3-597d-a040-4652161e62cf": {
    "file": "2026-10/72612fb1-33a3-597d-a040-4652161e62cf.json.gz",
@@ -5303,7 +6066,9 @@
    "length_s": 367,
    "kb": 106,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "be542964-037e-51ee-a2c4-ae67c25b5626": {
    "file": "2026-09/be542964-037e-51ee-a2c4-ae67c25b5626.json.gz",
@@ -5317,7 +6082,9 @@
    "length_s": 1613,
    "kb": 440,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "689479c6-5755-5a89-a32e-3264891eeaf2": {
    "file": "2026-09/689479c6-5755-5a89-a32e-3264891eeaf2.json.gz",
@@ -5331,7 +6098,9 @@
    "length_s": 472,
    "kb": 100,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "27d03c34-b283-5a83-a5dd-70a02424523d": {
    "file": "2026-09/27d03c34-b283-5a83-a5dd-70a02424523d.json.gz",
@@ -5345,7 +6114,9 @@
    "length_s": 1402,
    "kb": 345,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "19020b66-1e90-5195-a3b5-980f80b91038": {
    "file": "2026-09/19020b66-1e90-5195-a3b5-980f80b91038.json.gz",
@@ -5359,7 +6130,9 @@
    "length_s": 334,
    "kb": 90,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "604b7218-9477-583b-af89-d37263a2767e": {
    "file": "2026-09/604b7218-9477-583b-af89-d37263a2767e.json.gz",
@@ -5373,7 +6146,9 @@
    "length_s": 673,
    "kb": 186,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "6e152c51-c789-52b3-a706-99d3c4c339b3": {
    "file": "2026-10/6e152c51-c789-52b3-a706-99d3c4c339b3.json.gz",
@@ -5387,7 +6162,9 @@
    "length_s": 424,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "c19f13e3-7c93-5ea8-ae4c-16f2d75104da": {
    "file": "2026-09/c19f13e3-7c93-5ea8-ae4c-16f2d75104da.json.gz",
@@ -5401,7 +6178,9 @@
    "length_s": 959,
    "kb": 238,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "314e7d2b-299f-5290-aed0-8f4fc426446e": {
    "file": "2026-10/314e7d2b-299f-5290-aed0-8f4fc426446e.json.gz",
@@ -5415,7 +6194,10 @@
    "length_s": 817,
    "kb": 225,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22,
+   "x_check": "team 1: the events come to 1445, gvg.report's own score is 1475"
   },
   "ad3f2125-a7f7-5a8b-af13-584abfc4384c": {
    "file": "2026-09/ad3f2125-a7f7-5a8b-af13-584abfc4384c.json.gz",
@@ -5429,7 +6211,9 @@
    "length_s": 1693,
    "kb": 419,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "dc8e5146-885a-580a-a85f-dbb98df67857": {
    "file": "2026-10/dc8e5146-885a-580a-a85f-dbb98df67857.json.gz",
@@ -5443,7 +6227,9 @@
    "length_s": 175,
    "kb": 77,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "231f0dd3-f5cc-56a6-a187-a3bf9c99cc9e": {
    "file": "2026-09/231f0dd3-f5cc-56a6-a187-a3bf9c99cc9e.json.gz",
@@ -5457,7 +6243,9 @@
    "length_s": 1198,
    "kb": 267,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "a0ff75fb-4523-5e2b-a8cf-77ea558c1c7a": {
    "file": "2026-09/a0ff75fb-4523-5e2b-a8cf-77ea558c1c7a.json.gz",
@@ -5471,7 +6259,9 @@
    "length_s": 343,
    "kb": 81,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "86e36000-4abb-5503-a50c-6c1a5414f97d": {
    "file": "2026-10/86e36000-4abb-5503-a50c-6c1a5414f97d.json.gz",
@@ -5485,7 +6275,9 @@
    "length_s": 601,
    "kb": 169,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816": {
    "file": "2026-10/ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816.json.gz",
@@ -5499,7 +6291,9 @@
    "length_s": 1184,
    "kb": 290,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "39e9d728-9eec-5804-a9cf-14db1ef436c2": {
    "file": "2026-09/39e9d728-9eec-5804-a9cf-14db1ef436c2.json.gz",
@@ -5513,7 +6307,10 @@
    "length_s": 1693,
    "kb": 369,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36,
+   "x_check": "team 1: the events come to 5868, gvg.report's own score is 5898; team 2: the events come to 11771, gvg.report's own score is 11799"
   },
   "af831111-a724-5a33-ad1d-e01bebeaac6e": {
    "file": "2026-10/af831111-a724-5a33-ad1d-e01bebeaac6e.json.gz",
@@ -5527,7 +6324,9 @@
    "length_s": 1036,
    "kb": 257,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38
   },
   "a2be2d5f-43bd-5007-abb7-4bd317947c58": {
    "file": "2026-10/a2be2d5f-43bd-5007-abb7-4bd317947c58.json.gz",
@@ -5541,7 +6340,9 @@
    "length_s": 607,
    "kb": 187,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "22415c15-10a8-50a4-af4f-3bb410464703": {
    "file": "2026-10/22415c15-10a8-50a4-af4f-3bb410464703.json.gz",
@@ -5555,7 +6356,9 @@
    "length_s": 1252,
    "kb": 389,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "6bf37f15-ecf2-56bc-ace9-ddcbd10dfdc0": {
    "file": "2026-09/6bf37f15-ecf2-56bc-ace9-ddcbd10dfdc0.json.gz",
@@ -5569,7 +6372,9 @@
    "length_s": 347,
    "kb": 84,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "a9241601-d45e-5924-a4e5-67d5f81bb054": {
    "file": "2026-10/a9241601-d45e-5924-a4e5-67d5f81bb054.json.gz",
@@ -5583,7 +6388,9 @@
    "length_s": 731,
    "kb": 185,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "83265eeb-6376-5c0d-ab6d-54f0db1c6599": {
    "file": "2026-09/83265eeb-6376-5c0d-ab6d-54f0db1c6599.json.gz",
@@ -5597,7 +6404,9 @@
    "length_s": 1267,
    "kb": 326,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "4629b08c-60ca-5b1b-a349-b241e5d2305a": {
    "file": "2026-11/4629b08c-60ca-5b1b-a349-b241e5d2305a.json.gz",
@@ -5611,7 +6420,9 @@
    "length_s": 1282,
    "kb": 334,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "46758ff7-eaf1-5c2e-a818-3fca4b1408a1": {
    "file": "2026-09/46758ff7-eaf1-5c2e-a818-3fca4b1408a1.json.gz",
@@ -5625,7 +6436,9 @@
    "length_s": 319,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "cb614966-9d75-5630-abae-69f1562e96dc": {
    "file": "2026-09/cb614966-9d75-5630-abae-69f1562e96dc.json.gz",
@@ -5639,7 +6452,9 @@
    "length_s": 442,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "ad4aaeb2-5ca6-5a3d-a6bc-cd93a9c1e183": {
    "file": "2026-09/ad4aaeb2-5ca6-5a3d-a6bc-cd93a9c1e183.json.gz",
@@ -5653,7 +6468,9 @@
    "length_s": 289,
    "kb": 76,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "bda542c7-57d7-565c-a061-56f8ba84df74": {
    "file": "2026-10/bda542c7-57d7-565c-a061-56f8ba84df74.json.gz",
@@ -5667,7 +6484,9 @@
    "length_s": 670,
    "kb": 159,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "70416f89-e8ab-57a6-a0cd-15b2912441f2": {
    "file": "2026-09/70416f89-e8ab-57a6-a0cd-15b2912441f2.json.gz",
@@ -5681,7 +6500,9 @@
    "length_s": 193,
    "kb": 49,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "d6ef0b00-a841-55ac-a976-4eca9f15c175": {
    "file": "2026-09/d6ef0b00-a841-55ac-a976-4eca9f15c175.json.gz",
@@ -5695,7 +6516,10 @@
    "length_s": 1693,
    "kb": 438,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36,
+   "x_check": "team 2: the events come to 6646, gvg.report's own score is 6649"
   },
   "b3ff0009-86da-5781-a933-e99445b8a0b8": {
    "file": "2026-09/b3ff0009-86da-5781-a933-e99445b8a0b8.json.gz",
@@ -5709,7 +6533,9 @@
    "length_s": 250,
    "kb": 61,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "2125c1f6-8075-5960-a5f2-14695d8b8c25": {
    "file": "2026-10/2125c1f6-8075-5960-a5f2-14695d8b8c25.json.gz",
@@ -5723,7 +6549,9 @@
    "length_s": 1552,
    "kb": 447,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "95a5c543-e80b-5b28-ab81-2ed391a374c0": {
    "file": "2026-10/95a5c543-e80b-5b28-ab81-2ed391a374c0.json.gz",
@@ -5737,7 +6565,9 @@
    "length_s": 1303,
    "kb": 362,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "c57034e7-d30c-5250-ab14-22c7ef73bae3": {
    "file": "2026-09/c57034e7-d30c-5250-ab14-22c7ef73bae3.json.gz",
@@ -5751,7 +6581,9 @@
    "length_s": 952,
    "kb": 193,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "01b3c945-db73-5ed2-ad0a-7573b855ef58": {
    "file": "2026-10/01b3c945-db73-5ed2-ad0a-7573b855ef58.json.gz",
@@ -5765,7 +6597,9 @@
    "length_s": 476,
    "kb": 89,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "eaf05d44-9eb8-558c-a324-253f43a11041": {
    "file": "2026-09/eaf05d44-9eb8-558c-a324-253f43a11041.json.gz",
@@ -5779,7 +6613,9 @@
    "length_s": 364,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "11d086b2-5d01-57cb-a116-6c8a54cb9191": {
    "file": "2026-11/11d086b2-5d01-57cb-a116-6c8a54cb9191.json.gz",
@@ -5793,7 +6629,9 @@
    "length_s": 182,
    "kb": 34,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 7
   },
   "2ce13ef6-1f29-5741-a418-c7415b0e7fea": {
    "file": "2026-09/2ce13ef6-1f29-5741-a418-c7415b0e7fea.json.gz",
@@ -5807,7 +6645,9 @@
    "length_s": 922,
    "kb": 259,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "6416d1ca-de72-58b7-a53f-cb5a6e8c456e": {
    "file": "2026-10/6416d1ca-de72-58b7-a53f-cb5a6e8c456e.json.gz",
@@ -5821,7 +6661,9 @@
    "length_s": 244,
    "kb": 64,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "9a1e7105-3f77-51fe-a869-3a895947cd17": {
    "file": "2026-10/9a1e7105-3f77-51fe-a869-3a895947cd17.json.gz",
@@ -5835,7 +6677,9 @@
    "length_s": 328,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "0e2a7988-e373-516e-af33-d673edbcf52c": {
    "file": "2026-11/0e2a7988-e373-516e-af33-d673edbcf52c.json.gz",
@@ -5849,7 +6693,9 @@
    "length_s": 965,
    "kb": 125,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "799ca1a5-3c22-51c7-a654-f3b25368173a": {
    "file": "2026-09/799ca1a5-3c22-51c7-a654-f3b25368173a.json.gz",
@@ -5863,7 +6709,9 @@
    "length_s": 248,
    "kb": 51,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "c63abf8c-fada-5522-a0ee-60a14882b18a": {
    "file": "2026-09/c63abf8c-fada-5522-a0ee-60a14882b18a.json.gz",
@@ -5877,7 +6725,9 @@
    "length_s": 352,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "76b61497-96ee-5a39-a277-b7be16c608a0": {
    "file": "2026-10/76b61497-96ee-5a39-a277-b7be16c608a0.json.gz",
@@ -5891,7 +6741,9 @@
    "length_s": 1309,
    "kb": 333,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 27
   },
   "fe0bdc51-c534-5b26-ae81-159809f5b3b7": {
    "file": "2026-11/fe0bdc51-c534-5b26-ae81-159809f5b3b7.json.gz",
@@ -5905,7 +6757,9 @@
    "length_s": 1195,
    "kb": 290,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "ab2c7e42-bd7b-5312-a699-3ee39fb07c97": {
    "file": "2026-09/ab2c7e42-bd7b-5312-a699-3ee39fb07c97.json.gz",
@@ -5919,7 +6773,9 @@
    "length_s": 736,
    "kb": 177,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "70e2336b-ec88-5b21-aedc-d46e9866c903": {
    "file": "2026-09/70e2336b-ec88-5b21-aedc-d46e9866c903.json.gz",
@@ -5933,7 +6789,9 @@
    "length_s": 1099,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "98427f85-1711-5260-aada-1b3e253f320a": {
    "file": "2026-10/98427f85-1711-5260-aada-1b3e253f320a.json.gz",
@@ -5947,7 +6805,9 @@
    "length_s": 1693,
    "kb": 459,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "336d3897-3c0b-5213-a44b-4a84419cc9e1": {
    "file": "2026-10/336d3897-3c0b-5213-a44b-4a84419cc9e1.json.gz",
@@ -5961,7 +6821,9 @@
    "length_s": 1694,
    "kb": 473,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 41
   },
   "681495c7-8b87-5c28-a778-602ebbde4136": {
    "file": "2026-10/681495c7-8b87-5c28-a778-602ebbde4136.json.gz",
@@ -5975,7 +6837,9 @@
    "length_s": 153,
    "kb": 250,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "149fbdc6-f703-5171-a24e-9165a20cecb6": {
    "file": "2026-11/149fbdc6-f703-5171-a24e-9165a20cecb6.json.gz",
@@ -5989,7 +6853,9 @@
    "length_s": 700,
    "kb": 164,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "6db76f51-77f5-5e1d-a1bc-7001a0105c58": {
    "file": "2026-09/6db76f51-77f5-5e1d-a1bc-7001a0105c58.json.gz",
@@ -6003,7 +6869,9 @@
    "length_s": 239,
    "kb": 59,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "075cee4a-ce3f-5ea6-af34-31a500f6cb4e": {
    "file": "2026-10/075cee4a-ce3f-5ea6-af34-31a500f6cb4e.json.gz",
@@ -6017,7 +6885,9 @@
    "length_s": 473,
    "kb": 80,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "cff1862d-6e5e-5397-a048-934098febf6e": {
    "file": "2026-10/cff1862d-6e5e-5397-a048-934098febf6e.json.gz",
@@ -6031,7 +6901,9 @@
    "length_s": 565,
    "kb": 139,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "cc26722b-9777-5205-a78a-cf4bf6a449e8": {
    "file": "2026-09/cc26722b-9777-5205-a78a-cf4bf6a449e8.json.gz",
@@ -6045,7 +6917,9 @@
    "length_s": 595,
    "kb": 149,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "74e9e7f5-4c6d-553c-ab02-aa63dd2ffb15": {
    "file": "2026-09/74e9e7f5-4c6d-553c-ab02-aa63dd2ffb15.json.gz",
@@ -6059,7 +6933,9 @@
    "length_s": 1195,
    "kb": 282,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "cbb9f741-7392-5556-a572-fe98934102da": {
    "file": "2026-09/cbb9f741-7392-5556-a572-fe98934102da.json.gz",
@@ -6073,7 +6949,9 @@
    "length_s": 362,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "b4bb1110-897a-5352-aa53-038f61119fa7": {
    "file": "2026-10/b4bb1110-897a-5352-aa53-038f61119fa7.json.gz",
@@ -6087,7 +6965,9 @@
    "length_s": 358,
    "kb": 96,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "7e4f1a58-8579-55d3-ac96-7dd1e73c17a5": {
    "file": "2026-09/7e4f1a58-8579-55d3-ac96-7dd1e73c17a5.json.gz",
@@ -6101,7 +6981,9 @@
    "length_s": 301,
    "kb": 66,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "45a78828-077f-5a83-aff6-8fd8c98da280": {
    "file": "2026-09/45a78828-077f-5a83-aff6-8fd8c98da280.json.gz",
@@ -6115,7 +6997,9 @@
    "length_s": 463,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "c06f6b5d-66e4-5023-aa03-3444f5ad5b57": {
    "file": "2026-10/c06f6b5d-66e4-5023-aa03-3444f5ad5b57.json.gz",
@@ -6129,7 +7013,9 @@
    "length_s": 553,
    "kb": 141,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "fb9ee671-d715-53e9-a163-5821ebbaedc2": {
    "file": "2026-10/fb9ee671-d715-53e9-a163-5821ebbaedc2.json.gz",
@@ -6143,7 +7029,9 @@
    "length_s": 938,
    "kb": 241,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "e9a25309-dd47-53a5-a0c8-fe2888dd5078": {
    "file": "2026-09/e9a25309-dd47-53a5-a0c8-fe2888dd5078.json.gz",
@@ -6157,7 +7045,9 @@
    "length_s": 1522,
    "kb": 349,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "b8e25255-85c6-55da-a4f6-1a717f4f3805": {
    "file": "2026-10/b8e25255-85c6-55da-a4f6-1a717f4f3805.json.gz",
@@ -6171,7 +7061,9 @@
    "length_s": 1174,
    "kb": 237,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "25a90723-16b6-533d-a15d-570d9901c8a7": {
    "file": "2026-09/25a90723-16b6-533d-a15d-570d9901c8a7.json.gz",
@@ -6185,7 +7077,9 @@
    "length_s": 1435,
    "kb": 245,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "1c47aaab-0627-5950-a442-152a093f2e07": {
    "file": "2026-09/1c47aaab-0627-5950-a442-152a093f2e07.json.gz",
@@ -6199,7 +7093,9 @@
    "length_s": 1397,
    "kb": 349,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "df4b3126-a073-5a2b-a5a7-a25b92fec2e3": {
    "file": "2026-10/df4b3126-a073-5a2b-a5a7-a25b92fec2e3.json.gz",
@@ -6213,7 +7109,9 @@
    "length_s": 1276,
    "kb": 363,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "dcb30783-ca14-5691-ada8-b64967833587": {
    "file": "2026-09/dcb30783-ca14-5691-ada8-b64967833587.json.gz",
@@ -6227,7 +7125,9 @@
    "length_s": 799,
    "kb": 130,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "d168a3e3-b531-5859-a418-0674bbad4317": {
    "file": "2026-09/d168a3e3-b531-5859-a418-0674bbad4317.json.gz",
@@ -6241,7 +7141,9 @@
    "length_s": 239,
    "kb": 59,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "19325650-cd6f-594e-a12c-e995503fdbaa": {
    "file": "2026-09/19325650-cd6f-594e-a12c-e995503fdbaa.json.gz",
@@ -6255,7 +7157,9 @@
    "length_s": 457,
    "kb": 119,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "61c6de3f-aff0-5152-ae9d-280364926d08": {
    "file": "2026-10/61c6de3f-aff0-5152-ae9d-280364926d08.json.gz",
@@ -6269,7 +7173,9 @@
    "length_s": 358,
    "kb": 101,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "480337e8-5e25-5320-a7ff-45522d1bb4b2": {
    "file": "2026-10/480337e8-5e25-5320-a7ff-45522d1bb4b2.json.gz",
@@ -6283,7 +7189,9 @@
    "length_s": 1693,
    "kb": 426,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 39
   },
   "15522caa-71a9-5699-a766-1716b48d6e97": {
    "file": "2026-10/15522caa-71a9-5699-a766-1716b48d6e97.json.gz",
@@ -6297,7 +7205,10 @@
    "length_s": 1549,
    "kb": 347,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35,
+   "x_check": "team 1: the events come to 807, gvg.report's own score is 837"
   },
   "1fe6edba-2925-5045-a0b6-7e0c8cbf12b4": {
    "file": "2026-09/1fe6edba-2925-5045-a0b6-7e0c8cbf12b4.json.gz",
@@ -6311,7 +7222,9 @@
    "length_s": 940,
    "kb": 218,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "908c617c-8f0d-5686-af2e-705e8c515996": {
    "file": "2026-09/908c617c-8f0d-5686-af2e-705e8c515996.json.gz",
@@ -6325,7 +7238,9 @@
    "length_s": 376,
    "kb": 87,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "776323c5-276d-5816-a25e-ff5d8e968b76": {
    "file": "2026-10/776323c5-276d-5816-a25e-ff5d8e968b76.json.gz",
@@ -6339,7 +7254,9 @@
    "length_s": 484,
    "kb": 131,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "ffb99c54-3fbf-55e0-a55a-5969557b16b7": {
    "file": "2026-09/ffb99c54-3fbf-55e0-a55a-5969557b16b7.json.gz",
@@ -6353,7 +7270,9 @@
    "length_s": 356,
    "kb": 90,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "c2791abf-ae24-5365-a673-efa0661fa62d": {
    "file": "2026-09/c2791abf-ae24-5365-a673-efa0661fa62d.json.gz",
@@ -6367,7 +7286,9 @@
    "length_s": 1430,
    "kb": 401,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "fabafc13-44f1-5d83-a24a-1736de28d346": {
    "file": "2026-10/fabafc13-44f1-5d83-a24a-1736de28d346.json.gz",
@@ -6381,7 +7302,9 @@
    "length_s": 1694,
    "kb": 441,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 45
   },
   "3953ce4a-faf6-5484-aa75-0b2ab0671b52": {
    "file": "2026-10/3953ce4a-faf6-5484-aa75-0b2ab0671b52.json.gz",
@@ -6395,7 +7318,9 @@
    "length_s": 1693,
    "kb": 450,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "8d3f3d56-d666-56e4-ad16-7a6f3c2042c0": {
    "file": "2026-09/8d3f3d56-d666-56e4-ad16-7a6f3c2042c0.json.gz",
@@ -6409,7 +7334,9 @@
    "length_s": 607,
    "kb": 152,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "3f6372d1-cee0-5246-aa5f-c7d8584adf12": {
    "file": "2026-09/3f6372d1-cee0-5246-aa5f-c7d8584adf12.json.gz",
@@ -6423,7 +7350,9 @@
    "length_s": 340,
    "kb": 89,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "393d2cc6-1fd2-583b-a924-2e8e75cad275": {
    "file": "2026-09/393d2cc6-1fd2-583b-a924-2e8e75cad275.json.gz",
@@ -6437,7 +7366,9 @@
    "length_s": 325,
    "kb": 80,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "feed4411-9c81-54af-ab77-10efe031659c": {
    "file": "2026-10/feed4411-9c81-54af-ab77-10efe031659c.json.gz",
@@ -6451,7 +7382,9 @@
    "length_s": 1561,
    "kb": 469,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "05302d96-c88a-5ae9-a2ca-755c7c363928": {
    "file": "2026-09/05302d96-c88a-5ae9-a2ca-755c7c363928.json.gz",
@@ -6465,7 +7398,9 @@
    "length_s": 328,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "83dd4d0d-4ab5-5ada-a5db-3ad508ebb27b": {
    "file": "2026-11/83dd4d0d-4ab5-5ada-a5db-3ad508ebb27b.json.gz",
@@ -6479,7 +7414,9 @@
    "length_s": 238,
    "kb": 63,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "62ca723d-1fbb-5d8b-afb8-ec1f44fd509a": {
    "file": "2026-09/62ca723d-1fbb-5d8b-afb8-ec1f44fd509a.json.gz",
@@ -6493,7 +7430,9 @@
    "length_s": 1393,
    "kb": 386,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "95d2dbf0-5919-50b7-a09f-a7c1d1972b66": {
    "file": "2026-09/95d2dbf0-5919-50b7-a09f-a7c1d1972b66.json.gz",
@@ -6507,7 +7446,9 @@
    "length_s": 244,
    "kb": 67,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "37158a80-cd95-5ab2-afbc-04fa6f7cefa3": {
    "file": "2026-09/37158a80-cd95-5ab2-afbc-04fa6f7cefa3.json.gz",
@@ -6521,7 +7462,9 @@
    "length_s": 589,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "9b962f38-d14d-5c6c-a110-f013751a4744": {
    "file": "2026-10/9b962f38-d14d-5c6c-a110-f013751a4744.json.gz",
@@ -6535,7 +7478,9 @@
    "length_s": 338,
    "kb": 77,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "1c082eb9-2f6c-5d56-a445-ecebff9d6869": {
    "file": "2026-09/1c082eb9-2f6c-5d56-a445-ecebff9d6869.json.gz",
@@ -6549,7 +7494,9 @@
    "length_s": 700,
    "kb": 162,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "864a6351-162a-5b32-a5c3-072bce276078": {
    "file": "2026-09/864a6351-162a-5b32-a5c3-072bce276078.json.gz",
@@ -6563,7 +7510,9 @@
    "length_s": 577,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "81c3fba6-3991-5bb8-ad70-13e24150ddac": {
    "file": "2026-09/81c3fba6-3991-5bb8-ad70-13e24150ddac.json.gz",
@@ -6577,7 +7526,9 @@
    "length_s": 337,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "351c014b-5cfa-5489-aef3-8808e162ddd8": {
    "file": "2026-09/351c014b-5cfa-5489-aef3-8808e162ddd8.json.gz",
@@ -6591,7 +7542,9 @@
    "length_s": 253,
    "kb": 60,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "55631140-b61e-5c8c-a84d-9282faf5febf": {
    "file": "2026-09/55631140-b61e-5c8c-a84d-9282faf5febf.json.gz",
@@ -6605,7 +7558,9 @@
    "length_s": 1201,
    "kb": 351,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "d18dc4a1-f212-5f07-a3be-ba44eacef71e": {
    "file": "2026-10/d18dc4a1-f212-5f07-a3be-ba44eacef71e.json.gz",
@@ -6619,7 +7574,9 @@
    "length_s": 577,
    "kb": 137,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "8589ea21-a396-52ce-a9b1-168aa69e55e8": {
    "file": "2026-10/8589ea21-a396-52ce-a9b1-168aa69e55e8.json.gz",
@@ -6633,7 +7590,10 @@
    "length_s": 328,
    "kb": 96,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14,
+   "x_check": "team 2: the events come to 2630, gvg.report's own score is 2632"
   },
   "720c8e30-3bd9-5306-ad8f-20587e6456d5": {
    "file": "2026-09/720c8e30-3bd9-5306-ad8f-20587e6456d5.json.gz",
@@ -6647,7 +7607,9 @@
    "length_s": 1025,
    "kb": 241,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "933638bc-02b4-5e63-a2d8-76b87f611018": {
    "file": "2026-09/933638bc-02b4-5e63-a2d8-76b87f611018.json.gz",
@@ -6661,7 +7623,9 @@
    "length_s": 1693,
    "kb": 407,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "8684826a-4ce8-59cb-a5f9-d7bf81307491": {
    "file": "2026-09/8684826a-4ce8-59cb-a5f9-d7bf81307491.json.gz",
@@ -6675,7 +7639,9 @@
    "length_s": 1694,
    "kb": 505,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 42
   },
   "0625a9e9-a9d5-5d4a-a5c0-8f66d2df5dab": {
    "file": "2026-09/0625a9e9-a9d5-5d4a-a5c0-8f66d2df5dab.json.gz",
@@ -6689,7 +7655,9 @@
    "length_s": 1450,
    "kb": 371,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "866f4285-113d-5c48-aceb-8792c1c71213": {
    "file": "2026-09/866f4285-113d-5c48-aceb-8792c1c71213.json.gz",
@@ -6703,7 +7671,9 @@
    "length_s": 335,
    "kb": 74,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "cdd9aacd-73ed-5e1c-a22d-8961fd233749": {
    "file": "2026-09/cdd9aacd-73ed-5e1c-a22d-8961fd233749.json.gz",
@@ -6717,7 +7687,9 @@
    "length_s": 961,
    "kb": 157,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "8d983f1c-5e32-5dbc-a38c-fbdb77fc07bd": {
    "file": "2026-09/8d983f1c-5e32-5dbc-a38c-fbdb77fc07bd.json.gz",
@@ -6731,7 +7703,9 @@
    "length_s": 470,
    "kb": 91,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "df634bdc-5931-5685-a8ae-133e7e360244": {
    "file": "2026-09/df634bdc-5931-5685-a8ae-133e7e360244.json.gz",
@@ -6745,7 +7719,9 @@
    "length_s": 916,
    "kb": 110,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "5dc1edea-3fa3-561a-a799-7ba2a9954210": {
    "file": "2026-09/5dc1edea-3fa3-561a-a799-7ba2a9954210.json.gz",
@@ -6759,7 +7735,9 @@
    "length_s": 370,
    "kb": 79,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "7be7e35b-73a8-5c71-a053-31ddde14b3d1": {
    "file": "2026-09/7be7e35b-73a8-5c71-a053-31ddde14b3d1.json.gz",
@@ -6773,7 +7751,9 @@
    "length_s": 701,
    "kb": 144,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "f424366d-2b9d-56e3-ac7a-3c8655dc55c7": {
    "file": "2026-10/f424366d-2b9d-56e3-ac7a-3c8655dc55c7.json.gz",
@@ -6787,7 +7767,9 @@
    "length_s": 478,
    "kb": 129,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "1796f9bc-b1cd-51a2-a7c2-7f3bb496a17a": {
    "file": "2026-09/1796f9bc-b1cd-51a2-a7c2-7f3bb496a17a.json.gz",
@@ -6801,7 +7783,9 @@
    "length_s": 1679,
    "kb": 492,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 42
   },
   "52f25405-ae9d-51f4-a4a2-972bb6787800": {
    "file": "2026-10/52f25405-ae9d-51f4-a4a2-972bb6787800.json.gz",
@@ -6815,7 +7799,9 @@
    "length_s": 503,
    "kb": 121,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "e8402a4d-e02f-59a4-a50e-8d839f72768a": {
    "file": "2026-10/e8402a4d-e02f-59a4-a50e-8d839f72768a.json.gz",
@@ -6829,7 +7815,9 @@
    "length_s": 689,
    "kb": 191,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "bd2417a0-d981-55e9-ab17-9353b7c2d92a": {
    "file": "2026-09/bd2417a0-d981-55e9-ab17-9353b7c2d92a.json.gz",
@@ -6843,7 +7831,9 @@
    "length_s": 820,
    "kb": 181,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "66cda000-64f2-56c4-a66a-c5f18f428c8e": {
    "file": "2026-09/66cda000-64f2-56c4-a66a-c5f18f428c8e.json.gz",
@@ -6857,7 +7847,9 @@
    "length_s": 488,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "1dfb0d42-ac48-5d3e-a6b8-8c21fd74bc58": {
    "file": "2026-10/1dfb0d42-ac48-5d3e-a6b8-8c21fd74bc58.json.gz",
@@ -6871,7 +7863,9 @@
    "length_s": 838,
    "kb": 251,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "1abf62cc-909d-5900-a4c0-121c3dfc2cea": {
    "file": "2026-11/1abf62cc-909d-5900-a4c0-121c3dfc2cea.json.gz",
@@ -6885,7 +7879,9 @@
    "length_s": 701,
    "kb": 150,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "74be0781-1d41-564b-ab60-83c0b8210d4c": {
    "file": "2026-10/74be0781-1d41-564b-ab60-83c0b8210d4c.json.gz",
@@ -6899,7 +7895,9 @@
    "length_s": 247,
    "kb": 73,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "1bd4462d-9a25-58b6-adc5-26a2a2b1f179": {
    "file": "2026-10/1bd4462d-9a25-58b6-adc5-26a2a2b1f179.json.gz",
@@ -6913,7 +7911,9 @@
    "length_s": 323,
    "kb": 81,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "7019ebb7-53d3-5d10-a7b6-236999cdd1aa": {
    "file": "2026-09/7019ebb7-53d3-5d10-a7b6-236999cdd1aa.json.gz",
@@ -6927,7 +7927,9 @@
    "length_s": 571,
    "kb": 146,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "94c556ce-100d-519c-a311-5e83b186c92c": {
    "file": "2026-09/94c556ce-100d-519c-a311-5e83b186c92c.json.gz",
@@ -6941,7 +7943,9 @@
    "length_s": 1555,
    "kb": 315,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "5f9df5bb-014e-5494-a552-e66a2dc9794d": {
    "file": "2026-09/5f9df5bb-014e-5494-a552-e66a2dc9794d.json.gz",
@@ -6955,7 +7959,9 @@
    "length_s": 1693,
    "kb": 413,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "0ffba2c7-b8bc-5c87-afb5-102acfd6ef1f": {
    "file": "2026-09/0ffba2c7-b8bc-5c87-afb5-102acfd6ef1f.json.gz",
@@ -6969,7 +7975,10 @@
    "length_s": 1384,
    "kb": 325,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33,
+   "x_check": "team 1: the events come to 2254, gvg.report's own score is 2284"
   },
   "8bb5f247-8c7e-5677-a6cd-c838e72a6a46": {
    "file": "2026-09/8bb5f247-8c7e-5677-a6cd-c838e72a6a46.json.gz",
@@ -6983,7 +7992,9 @@
    "length_s": 574,
    "kb": 121,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "3ab8082d-2b1e-506f-ada8-3d8edaa72a53": {
    "file": "2026-10/3ab8082d-2b1e-506f-ada8-3d8edaa72a53.json.gz",
@@ -6997,7 +8008,9 @@
    "length_s": 604,
    "kb": 152,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "2966a590-a5ee-5ced-a212-686c4e56aa06": {
    "file": "2026-10/2966a590-a5ee-5ced-a212-686c4e56aa06.json.gz",
@@ -7011,7 +8024,9 @@
    "length_s": 964,
    "kb": 177,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "fe54af9c-2172-51cc-af0b-06c49bfbb515": {
    "file": "2026-09/fe54af9c-2172-51cc-af0b-06c49bfbb515.json.gz",
@@ -7025,7 +8040,9 @@
    "length_s": 1045,
    "kb": 237,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "ae4ab88a-8926-53ba-ae82-03937538dd87": {
    "file": "2026-09/ae4ab88a-8926-53ba-ae82-03937538dd87.json.gz",
@@ -7039,7 +8056,9 @@
    "length_s": 949,
    "kb": 220,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "2ee3795b-7444-5189-a7f4-12cb2b6ce483": {
    "file": "2026-10/2ee3795b-7444-5189-a7f4-12cb2b6ce483.json.gz",
@@ -7053,7 +8072,9 @@
    "length_s": 496,
    "kb": 94,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a": {
    "file": "2026-11/3d0f3fc5-d078-50f8-adfa-ba7becc95a8a.json.gz",
@@ -7067,7 +8088,9 @@
    "length_s": 442,
    "kb": 101,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "dca994da-671d-546a-ae29-8c6cbb1e0f17": {
    "file": "2026-09/dca994da-671d-546a-ae29-8c6cbb1e0f17.json.gz",
@@ -7081,7 +8104,9 @@
    "length_s": 848,
    "kb": 230,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "349561f3-e4e3-5107-a161-0fdcd4f4dc55": {
    "file": "2026-09/349561f3-e4e3-5107-a161-0fdcd4f4dc55.json.gz",
@@ -7095,7 +8120,9 @@
    "length_s": 1441,
    "kb": 354,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "c56fda1e-a441-5835-aa17-1971ff3768ce": {
    "file": "2026-10/c56fda1e-a441-5835-aa17-1971ff3768ce.json.gz",
@@ -7109,7 +8136,9 @@
    "length_s": 559,
    "kb": 139,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "e46971fe-e5a2-5635-a03f-7ca700a96fec": {
    "file": "2026-10/e46971fe-e5a2-5635-a03f-7ca700a96fec.json.gz",
@@ -7123,7 +8152,9 @@
    "length_s": 1006,
    "kb": 258,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "32882ec3-b8e8-52b5-a232-9d509cfec65e": {
    "file": "2026-10/32882ec3-b8e8-52b5-a232-9d509cfec65e.json.gz",
@@ -7137,7 +8168,9 @@
    "length_s": 1688,
    "kb": 414,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d": {
    "file": "2026-09/b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d.json.gz",
@@ -7151,7 +8184,9 @@
    "length_s": 850,
    "kb": 186,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "8059092e-052c-593d-ab8d-365c5d4582c2": {
    "file": "2026-09/8059092e-052c-593d-ab8d-365c5d4582c2.json.gz",
@@ -7165,7 +8200,9 @@
    "length_s": 340,
    "kb": 84,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "8a3dc597-8445-5224-a9de-8d56c64469cd": {
    "file": "2026-10/8a3dc597-8445-5224-a9de-8d56c64469cd.json.gz",
@@ -7179,7 +8216,10 @@
    "length_s": 250,
    "kb": 54,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9,
+   "x_check": "team 1: the events come to 6645, gvg.report's own score is 6675"
   },
   "e4bd9c29-b8fe-54bd-a9c0-04de76ac13ac": {
    "file": "2026-09/e4bd9c29-b8fe-54bd-a9c0-04de76ac13ac.json.gz",
@@ -7193,7 +8233,9 @@
    "length_s": 826,
    "kb": 157,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "cc9d407a-a53a-5925-ab3b-6cf51e897b69": {
    "file": "2026-09/cc9d407a-a53a-5925-ab3b-6cf51e897b69.json.gz",
@@ -7207,7 +8249,9 @@
    "length_s": 328,
    "kb": 85,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "c6832848-d4ce-5825-a8ed-1705b3e830ee": {
    "file": "2026-09/c6832848-d4ce-5825-a8ed-1705b3e830ee.json.gz",
@@ -7221,7 +8265,9 @@
    "length_s": 800,
    "kb": 190,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "baf2138d-aa6b-50b9-a14c-9698e74e0a34": {
    "file": "2026-10/baf2138d-aa6b-50b9-a14c-9698e74e0a34.json.gz",
@@ -7235,7 +8281,9 @@
    "length_s": 370,
    "kb": 82,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "cc92c453-101e-55b0-a199-f662d8f29edf": {
    "file": "2026-10/cc92c453-101e-55b0-a199-f662d8f29edf.json.gz",
@@ -7249,7 +8297,9 @@
    "length_s": 1409,
    "kb": 333,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "0e1f8299-992b-5ee2-a24b-ddbf13461a6d": {
    "file": "2026-10/0e1f8299-992b-5ee2-a24b-ddbf13461a6d.json.gz",
@@ -7263,7 +8313,9 @@
    "length_s": 1424,
    "kb": 417,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "35f854ca-cb61-5fcc-ad4b-b25d37d16213": {
    "file": "2026-10/35f854ca-cb61-5fcc-ad4b-b25d37d16213.json.gz",
@@ -7277,7 +8329,9 @@
    "length_s": 457,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "d96d769c-5c4b-5bab-af1c-5557cdf5100e": {
    "file": "2026-09/d96d769c-5c4b-5bab-af1c-5557cdf5100e.json.gz",
@@ -7291,7 +8345,9 @@
    "length_s": 797,
    "kb": 151,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "a2b02ecf-e235-5936-a4a9-26bcd45fdd7b": {
    "file": "2026-09/a2b02ecf-e235-5936-a4a9-26bcd45fdd7b.json.gz",
@@ -7305,7 +8361,9 @@
    "length_s": 730,
    "kb": 175,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "e7a93c30-8c9d-527f-a080-465c38c75136": {
    "file": "2026-09/e7a93c30-8c9d-527f-a080-465c38c75136.json.gz",
@@ -7319,7 +8377,9 @@
    "length_s": 787,
    "kb": 174,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "0fb75f74-f5e5-5f52-acb0-1d363b6cbcb1": {
    "file": "2026-09/0fb75f74-f5e5-5f52-acb0-1d363b6cbcb1.json.gz",
@@ -7333,7 +8393,9 @@
    "length_s": 1091,
    "kb": 231,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "78f14e00-1504-5e40-a270-c73133f78cd3": {
    "file": "2026-10/78f14e00-1504-5e40-a270-c73133f78cd3.json.gz",
@@ -7347,7 +8409,9 @@
    "length_s": 1693,
    "kb": 442,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "ea8fa36e-8b89-53bc-ae15-2c7d8ed262fa": {
    "file": "2026-10/ea8fa36e-8b89-53bc-ae15-2c7d8ed262fa.json.gz",
@@ -7361,7 +8425,9 @@
    "length_s": 457,
    "kb": 108,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "4a1e6f7c-781d-5268-a115-69849f568094": {
    "file": "2026-10/4a1e6f7c-781d-5268-a115-69849f568094.json.gz",
@@ -7375,7 +8441,9 @@
    "length_s": 470,
    "kb": 89,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "6f9f7ba1-f18e-55aa-a562-b101d75b14dc": {
    "file": "2026-11/6f9f7ba1-f18e-55aa-a562-b101d75b14dc.json.gz",
@@ -7389,7 +8457,9 @@
    "length_s": 1082,
    "kb": 251,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "19f38ea6-59d3-5264-a5a1-8ae0fea2e640": {
    "file": "2026-10/19f38ea6-59d3-5264-a5a1-8ae0fea2e640.json.gz",
@@ -7419,7 +8489,9 @@
    "length_s": 809,
    "kb": 184,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "ad5a505f-f9c3-5a67-a067-6f98951c29ec": {
    "file": "2026-10/ad5a505f-f9c3-5a67-a067-6f98951c29ec.json.gz",
@@ -7433,7 +8505,9 @@
    "length_s": 718,
    "kb": 167,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "418cf874-f817-523d-a810-56c7498bb69e": {
    "file": "2026-09/418cf874-f817-523d-a810-56c7498bb69e.json.gz",
@@ -7447,7 +8521,9 @@
    "length_s": 1312,
    "kb": 302,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "26c11b11-3665-564e-acd3-cd17cad20529": {
    "file": "2026-10/26c11b11-3665-564e-acd3-cd17cad20529.json.gz",
@@ -7461,7 +8537,9 @@
    "length_s": 452,
    "kb": 110,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "d38af3a4-3e6c-59bc-aaab-40c39ab3d2fc": {
    "file": "2026-10/d38af3a4-3e6c-59bc-aaab-40c39ab3d2fc.json.gz",
@@ -7475,7 +8553,9 @@
    "length_s": 445,
    "kb": 111,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "8c126413-c7c8-5013-a905-5d440ccd4008": {
    "file": "2026-09/8c126413-c7c8-5013-a905-5d440ccd4008.json.gz",
@@ -7489,7 +8569,9 @@
    "length_s": 581,
    "kb": 166,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "7761aa5f-0ff1-5724-a537-f257af86b9a5": {
    "file": "2026-09/7761aa5f-0ff1-5724-a537-f257af86b9a5.json.gz",
@@ -7503,7 +8585,9 @@
    "length_s": 1183,
    "kb": 364,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "9c9f7436-11d7-5283-a5aa-cbcc5f68bb77": {
    "file": "2026-09/9c9f7436-11d7-5283-a5aa-cbcc5f68bb77.json.gz",
@@ -7517,7 +8601,9 @@
    "length_s": 592,
    "kb": 137,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "0ac3b55c-5222-5954-acdb-c264654a916e": {
    "file": "2026-09/0ac3b55c-5222-5954-acdb-c264654a916e.json.gz",
@@ -7531,7 +8617,9 @@
    "length_s": 358,
    "kb": 83,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "e082fa8f-a7f9-57d4-a0d2-05e948798247": {
    "file": "2026-09/e082fa8f-a7f9-57d4-a0d2-05e948798247.json.gz",
@@ -7545,7 +8633,9 @@
    "length_s": 475,
    "kb": 117,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "31a7bf44-a2fc-58ef-a423-cd6bff1480b2": {
    "file": "2026-09/31a7bf44-a2fc-58ef-a423-cd6bff1480b2.json.gz",
@@ -7559,7 +8649,9 @@
    "length_s": 455,
    "kb": 134,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "01c0b3c1-673c-5602-af1b-2a5b1ecc9c59": {
    "file": "2026-10/01c0b3c1-673c-5602-af1b-2a5b1ecc9c59.json.gz",
@@ -7573,7 +8665,9 @@
    "length_s": 370,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "5f73aa34-e796-5668-a711-137a0d36d1a5": {
    "file": "2026-09/5f73aa34-e796-5668-a711-137a0d36d1a5.json.gz",
@@ -7587,7 +8681,9 @@
    "length_s": 484,
    "kb": 116,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "75a2d31d-9940-58fa-a28c-517797eb8d0e": {
    "file": "2026-10/75a2d31d-9940-58fa-a28c-517797eb8d0e.json.gz",
@@ -7601,7 +8697,9 @@
    "length_s": 316,
    "kb": 76,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "a09cd678-2832-515f-a998-cf240fed8190": {
    "file": "2026-09/a09cd678-2832-515f-a998-cf240fed8190.json.gz",
@@ -7615,7 +8713,9 @@
    "length_s": 362,
    "kb": 71,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "a12095ca-66e8-5221-a38d-3eaac067fb54": {
    "file": "2026-11/a12095ca-66e8-5221-a38d-3eaac067fb54.json.gz",
@@ -7629,7 +8729,9 @@
    "length_s": 221,
    "kb": 47,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "2313f7aa-e4e4-5c39-a8c6-202f3d30d31b": {
    "file": "2026-10/2313f7aa-e4e4-5c39-a8c6-202f3d30d31b.json.gz",
@@ -7643,7 +8745,9 @@
    "length_s": 329,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "1eb66e34-a3a9-5797-a9c5-c78df1b6d4ee": {
    "file": "2026-09/1eb66e34-a3a9-5797-a9c5-c78df1b6d4ee.json.gz",
@@ -7657,7 +8761,9 @@
    "length_s": 466,
    "kb": 95,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "d198ffcc-8955-5cfc-a2bf-5e8deb7b9153": {
    "file": "2026-10/d198ffcc-8955-5cfc-a2bf-5e8deb7b9153.json.gz",
@@ -7671,7 +8777,9 @@
    "length_s": 571,
    "kb": 160,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "b547337a-ad89-5dfd-a180-75e4df97f78b": {
    "file": "2026-10/b547337a-ad89-5dfd-a180-75e4df97f78b.json.gz",
@@ -7685,7 +8793,9 @@
    "length_s": 812,
    "kb": 222,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "e9b8486c-7ef2-5f6c-a4a4-01cc729c9afd": {
    "file": "2026-10/e9b8486c-7ef2-5f6c-a4a4-01cc729c9afd.json.gz",
@@ -7699,7 +8809,9 @@
    "length_s": 1693,
    "kb": 457,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 42
   },
   "321a221c-ea4a-5799-a0cc-eea320d2822e": {
    "file": "2026-10/321a221c-ea4a-5799-a0cc-eea320d2822e.json.gz",
@@ -7713,7 +8825,9 @@
    "length_s": 685,
    "kb": 182,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "61b12cd4-1614-5c8a-aa1f-d2a2a0eeba2e": {
    "file": "2026-09/61b12cd4-1614-5c8a-aa1f-d2a2a0eeba2e.json.gz",
@@ -7727,7 +8841,9 @@
    "length_s": 514,
    "kb": 108,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "3b3bb49b-1ff2-533d-a5a7-55cd86c48afb": {
    "file": "2026-09/3b3bb49b-1ff2-533d-a5a7-55cd86c48afb.json.gz",
@@ -7741,7 +8857,9 @@
    "length_s": 344,
    "kb": 93,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "021c32e2-6d5b-5f2c-a3a1-0cea3ed2bf7b": {
    "file": "2026-09/021c32e2-6d5b-5f2c-a3a1-0cea3ed2bf7b.json.gz",
@@ -7755,7 +8873,9 @@
    "length_s": 457,
    "kb": 114,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "41248821-c69c-5b3b-ae64-b39162186935": {
    "file": "2026-10/41248821-c69c-5b3b-ae64-b39162186935.json.gz",
@@ -7769,7 +8889,9 @@
    "length_s": 487,
    "kb": 118,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "c6e963cf-814c-5297-a81b-1f7f7b04669b": {
    "file": "2026-09/c6e963cf-814c-5297-a81b-1f7f7b04669b.json.gz",
@@ -7783,7 +8905,9 @@
    "length_s": 217,
    "kb": 63,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "6bb0b648-8ff6-59ad-afee-e4348e3df0b1": {
    "file": "2026-10/6bb0b648-8ff6-59ad-afee-e4348e3df0b1.json.gz",
@@ -7797,7 +8921,9 @@
    "length_s": 236,
    "kb": 65,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "0f5da5fc-c47d-5249-a5b9-f9a9fd6c92ca": {
    "file": "2026-11/0f5da5fc-c47d-5249-a5b9-f9a9fd6c92ca.json.gz",
@@ -7811,7 +8937,9 @@
    "length_s": 439,
    "kb": 122,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "512d445f-03eb-56ea-a9ed-6b8f596f7c57": {
    "file": "2026-10/512d445f-03eb-56ea-a9ed-6b8f596f7c57.json.gz",
@@ -7825,7 +8953,9 @@
    "length_s": 919,
    "kb": 231,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "d1e4b578-92f2-5cc0-ad44-419ab8658768": {
    "file": "2026-11/d1e4b578-92f2-5cc0-ad44-419ab8658768.json.gz",
@@ -7839,7 +8969,9 @@
    "length_s": 734,
    "kb": 187,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "a6d52f60-03a9-58c4-a687-3bcf77eca500": {
    "file": "2026-11/a6d52f60-03a9-58c4-a687-3bcf77eca500.json.gz",
@@ -7853,7 +8985,9 @@
    "length_s": 514,
    "kb": 109,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "5f380eb5-7b0f-5b35-acbd-b82c08e02750": {
    "file": "2026-09/5f380eb5-7b0f-5b35-acbd-b82c08e02750.json.gz",
@@ -7867,7 +9001,10 @@
    "length_s": 469,
    "kb": 113,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16,
+   "x_check": "team 2: the events come to 5158, gvg.report's own score is 5160"
   },
   "d70f3684-8f70-5513-a327-83e1a45013f1": {
    "file": "2026-09/d70f3684-8f70-5513-a327-83e1a45013f1.json.gz",
@@ -7881,7 +9018,9 @@
    "length_s": 1633,
    "kb": 387,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 31
   },
   "2615ca0c-12b4-5ae6-a73d-53c0f0fc627c": {
    "file": "2026-09/2615ca0c-12b4-5ae6-a73d-53c0f0fc627c.json.gz",
@@ -7895,7 +9034,9 @@
    "length_s": 919,
    "kb": 232,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "00cb0759-90c2-5d30-acf1-cae674b4cbae": {
    "file": "2026-09/00cb0759-90c2-5d30-acf1-cae674b4cbae.json.gz",
@@ -7909,7 +9050,9 @@
    "length_s": 319,
    "kb": 74,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "62c3fad6-2ebb-5a65-ae51-186c08822dc4": {
    "file": "2026-09/62c3fad6-2ebb-5a65-ae51-186c08822dc4.json.gz",
@@ -7923,7 +9066,9 @@
    "length_s": 1295,
    "kb": 347,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37": {
    "file": "2026-09/cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37.json.gz",
@@ -7937,7 +9082,9 @@
    "length_s": 709,
    "kb": 188,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "453bd7a0-ec5b-5e03-a6a2-023431c7deaa": {
    "file": "2026-10/453bd7a0-ec5b-5e03-a6a2-023431c7deaa.json.gz",
@@ -7951,7 +9098,9 @@
    "length_s": 244,
    "kb": 67,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "ee3a719f-bd1a-561d-a5b5-57cae6999c1f": {
    "file": "2026-09/ee3a719f-bd1a-561d-a5b5-57cae6999c1f.json.gz",
@@ -7965,7 +9114,9 @@
    "length_s": 1615,
    "kb": 330,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "45dce220-c25c-5517-a3fe-d3aecae8b24b": {
    "file": "2026-09/45dce220-c25c-5517-a3fe-d3aecae8b24b.json.gz",
@@ -7979,7 +9130,9 @@
    "length_s": 1081,
    "kb": 163,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "ca1d2938-439e-58cb-a5ca-3809630261f3": {
    "file": "2026-10/ca1d2938-439e-58cb-a5ca-3809630261f3.json.gz",
@@ -7993,7 +9146,9 @@
    "length_s": 316,
    "kb": 84,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "bc881136-fb76-5d27-ac37-6a800a7c95b1": {
    "file": "2026-09/bc881136-fb76-5d27-ac37-6a800a7c95b1.json.gz",
@@ -8007,7 +9162,9 @@
    "length_s": 590,
    "kb": 155,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "8f1fa3af-ede9-5a2a-af1e-cdc3123b62b1": {
    "file": "2026-09/8f1fa3af-ede9-5a2a-af1e-cdc3123b62b1.json.gz",
@@ -8021,7 +9178,9 @@
    "length_s": 914,
    "kb": 251,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "65be200c-cb5c-59e5-ab98-915440357362": {
    "file": "2026-09/65be200c-cb5c-59e5-ab98-915440357362.json.gz",
@@ -8035,7 +9194,9 @@
    "length_s": 1414,
    "kb": 404,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "1ce09092-0587-5339-adf7-f1bea9f65106": {
    "file": "2026-09/1ce09092-0587-5339-adf7-f1bea9f65106.json.gz",
@@ -8049,7 +9210,9 @@
    "length_s": 1294,
    "kb": 309,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "58e62f93-4622-5ee6-a405-f4c123b11874": {
    "file": "2026-09/58e62f93-4622-5ee6-a405-f4c123b11874.json.gz",
@@ -8063,7 +9226,9 @@
    "length_s": 973,
    "kb": 235,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "c71fdca0-91ef-5ef5-a344-5d9c3b6db05d": {
    "file": "2026-09/c71fdca0-91ef-5ef5-a344-5d9c3b6db05d.json.gz",
@@ -8077,7 +9242,9 @@
    "length_s": 1666,
    "kb": 396,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "b49cfc09-8eb7-52c6-af9b-d0add769b9b9": {
    "file": "2026-10/b49cfc09-8eb7-52c6-af9b-d0add769b9b9.json.gz",
@@ -8091,7 +9258,9 @@
    "length_s": 238,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "12cf048e-1198-5eb6-ac28-59d5057ab8d3": {
    "file": "2026-10/12cf048e-1198-5eb6-ac28-59d5057ab8d3.json.gz",
@@ -8105,7 +9274,9 @@
    "length_s": 830,
    "kb": 199,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "a81309a8-d361-5f77-a338-42e912afe4eb": {
    "file": "2026-09/a81309a8-d361-5f77-a338-42e912afe4eb.json.gz",
@@ -8119,7 +9290,9 @@
    "length_s": 331,
    "kb": 84,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "b2611ae9-afb9-5829-a97a-a9b81a7afc56": {
    "file": "2026-09/b2611ae9-afb9-5829-a97a-a9b81a7afc56.json.gz",
@@ -8133,7 +9306,10 @@
    "length_s": 1333,
    "kb": 353,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36,
+   "x_check": "team 2: the events come to 1135, gvg.report's own score is 1165"
   },
   "6aaa0f6d-da4e-5666-a036-7527fc7bd9d4": {
    "file": "2026-10/6aaa0f6d-da4e-5666-a036-7527fc7bd9d4.json.gz",
@@ -8147,7 +9323,9 @@
    "length_s": 1520,
    "kb": 403,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33
   },
   "371cfc1d-56cf-5102-aff6-1f4e5d548b21": {
    "file": "2026-09/371cfc1d-56cf-5102-aff6-1f4e5d548b21.json.gz",
@@ -8161,7 +9339,9 @@
    "length_s": 419,
    "kb": 102,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "f4c0236f-a002-5267-a665-c25e208b12ab": {
    "file": "2026-09/f4c0236f-a002-5267-a665-c25e208b12ab.json.gz",
@@ -8175,7 +9355,9 @@
    "length_s": 1076,
    "kb": 213,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 22
   },
   "ddb65003-325f-5209-a4d1-6b1abd80f9ee": {
    "file": "2026-11/ddb65003-325f-5209-a4d1-6b1abd80f9ee.json.gz",
@@ -8189,7 +9371,9 @@
    "length_s": 481,
    "kb": 123,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "4c95e41e-356f-52ad-a296-4c9ca4f92f8b": {
    "file": "2026-10/4c95e41e-356f-52ad-a296-4c9ca4f92f8b.json.gz",
@@ -8203,7 +9387,9 @@
    "length_s": 355,
    "kb": 92,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "0fce6cf8-5626-53eb-a4d5-dcc8d9878e3f": {
    "file": "2026-11/0fce6cf8-5626-53eb-a4d5-dcc8d9878e3f.json.gz",
@@ -8217,7 +9403,9 @@
    "length_s": 1123,
    "kb": 162,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 23
   },
   "037870de-1d44-5705-a260-47bdf094e967": {
    "file": "2026-09/037870de-1d44-5705-a260-47bdf094e967.json.gz",
@@ -8231,7 +9419,9 @@
    "length_s": 472,
    "kb": 107,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "5948513a-ac72-5ea4-a46e-37f25370d7b7": {
    "file": "2026-09/5948513a-ac72-5ea4-a46e-37f25370d7b7.json.gz",
@@ -8245,7 +9435,9 @@
    "length_s": 250,
    "kb": 63,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "1687d679-5a81-5e81-a352-0b066b735400": {
    "file": "2026-09/1687d679-5a81-5e81-a352-0b066b735400.json.gz",
@@ -8259,7 +9451,9 @@
    "length_s": 589,
    "kb": 131,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "11697e16-9117-530b-a293-e720a802001c": {
    "file": "2026-10/11697e16-9117-530b-a293-e720a802001c.json.gz",
@@ -8273,7 +9467,9 @@
    "length_s": 1694,
    "kb": 475,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 42
   },
   "da8868e6-09eb-5df0-a211-441a872b6434": {
    "file": "2026-10/da8868e6-09eb-5df0-a211-441a872b6434.json.gz",
@@ -8287,7 +9483,9 @@
    "length_s": 1276,
    "kb": 362,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 32
   },
   "5bd96957-db9d-5c5c-abda-12cf557644ca": {
    "file": "2026-09/5bd96957-db9d-5c5c-abda-12cf557644ca.json.gz",
@@ -8301,7 +9499,9 @@
    "length_s": 1694,
    "kb": 445,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "bb66246b-eb65-5edc-a5d0-376f7409ca45": {
    "file": "2026-11/bb66246b-eb65-5edc-a5d0-376f7409ca45.json.gz",
@@ -8315,7 +9515,9 @@
    "length_s": 422,
    "kb": 131,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "26fe2851-0355-5e98-a698-eed9daf582a9": {
    "file": "2026-10/26fe2851-0355-5e98-a698-eed9daf582a9.json.gz",
@@ -8329,7 +9531,9 @@
    "length_s": 964,
    "kb": 257,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "7c41f2e1-e162-5ac5-a525-d78781434414": {
    "file": "2026-09/7c41f2e1-e162-5ac5-a525-d78781434414.json.gz",
@@ -8343,7 +9547,9 @@
    "length_s": 236,
    "kb": 65,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "78c5bf08-c63a-50cd-a41e-ef7311995938": {
    "file": "2026-10/78c5bf08-c63a-50cd-a41e-ef7311995938.json.gz",
@@ -8357,7 +9563,9 @@
    "length_s": 950,
    "kb": 239,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "51f68aeb-2d67-5fd0-a352-68d4ec72b2ad": {
    "file": "2026-09/51f68aeb-2d67-5fd0-a352-68d4ec72b2ad.json.gz",
@@ -8371,7 +9579,9 @@
    "length_s": 716,
    "kb": 179,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 21
   },
   "5820a562-bf0a-57a3-a346-cb33b73c18b5": {
    "file": "2026-11/5820a562-bf0a-57a3-a346-cb33b73c18b5.json.gz",
@@ -8385,7 +9595,9 @@
    "length_s": 229,
    "kb": 55,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "8be99b9b-dcf5-56de-add5-73599df7fa94": {
    "file": "2026-10/8be99b9b-dcf5-56de-add5-73599df7fa94.json.gz",
@@ -8399,7 +9611,9 @@
    "length_s": 133,
    "kb": 35,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "166570cd-2159-5ab1-a98b-d280e93fb94c": {
    "file": "2026-10/166570cd-2159-5ab1-a98b-d280e93fb94c.json.gz",
@@ -8413,7 +9627,9 @@
    "length_s": 242,
    "kb": 55,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "a25402e0-f61f-5ca3-a2d2-3983344acb8a": {
    "file": "2026-09/a25402e0-f61f-5ca3-a2d2-3983344acb8a.json.gz",
@@ -8427,7 +9643,10 @@
    "length_s": 613,
    "kb": 134,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16,
+   "x_check": "team 1: the events come to 2530, gvg.report's own score is 2650"
   },
   "cf9ff564-86ad-57e9-a37d-7c55019a5c85": {
    "file": "2026-10/cf9ff564-86ad-57e9-a37d-7c55019a5c85.json.gz",
@@ -8441,7 +9660,9 @@
    "length_s": 448,
    "kb": 136,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 17
   },
   "aa15075f-aef9-5f64-a967-fab90c96ab85": {
    "file": "2026-11/aa15075f-aef9-5f64-a967-fab90c96ab85.json.gz",
@@ -8455,7 +9676,9 @@
    "length_s": 466,
    "kb": 99,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "17662751-a293-59b0-a656-6e1f3c2bad73": {
    "file": "2026-10/17662751-a293-59b0-a656-6e1f3c2bad73.json.gz",
@@ -8469,7 +9692,9 @@
    "length_s": 892,
    "kb": 246,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "f768ce91-9695-59fd-a587-597a8615c3c9": {
    "file": "2026-10/f768ce91-9695-59fd-a587-597a8615c3c9.json.gz",
@@ -8483,7 +9708,9 @@
    "length_s": 1150,
    "kb": 273,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 25
   },
   "fb87a310-bc8d-5370-a7c6-1c4b1f141b81": {
    "file": "2026-09/fb87a310-bc8d-5370-a7c6-1c4b1f141b81.json.gz",
@@ -8497,7 +9724,10 @@
    "length_s": 316,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14,
+   "x_check": "team 1: the events come to 3763, gvg.report's own score is 3765"
   },
   "af5a8ef0-770f-58b0-a208-c175cf576a15": {
    "file": "2026-09/af5a8ef0-770f-58b0-a208-c175cf576a15.json.gz",
@@ -8511,7 +9741,9 @@
    "length_s": 343,
    "kb": 76,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "cc5c2d75-968c-5574-a461-a9890cb25642": {
    "file": "2026-09/cc5c2d75-968c-5574-a461-a9890cb25642.json.gz",
@@ -8525,7 +9757,9 @@
    "length_s": 1660,
    "kb": 330,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "617aa3df-f264-553b-afe2-b9f5cb7068c2": {
    "file": "2026-10/617aa3df-f264-553b-afe2-b9f5cb7068c2.json.gz",
@@ -8539,7 +9773,9 @@
    "length_s": 1627,
    "kb": 386,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 34
   },
   "6e628e05-a63e-5b85-a387-886d10ec9786": {
    "file": "2026-09/6e628e05-a63e-5b85-a387-886d10ec9786.json.gz",
@@ -8553,7 +9789,9 @@
    "length_s": 332,
    "kb": 66,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "37ccbc87-b760-5bd4-adaa-f841953ea14f": {
    "file": "2026-10/37ccbc87-b760-5bd4-adaa-f841953ea14f.json.gz",
@@ -8567,7 +9805,9 @@
    "length_s": 1694,
    "kb": 461,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 37
   },
   "397a1568-406b-5f47-ac44-bab6782a68a1": {
    "file": "2026-10/397a1568-406b-5f47-ac44-bab6782a68a1.json.gz",
@@ -8581,7 +9821,9 @@
    "length_s": 484,
    "kb": 124,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 12
   },
   "77b64e5c-caf6-5b64-a52a-1e6b422108d5": {
    "file": "2026-10/77b64e5c-caf6-5b64-a52a-1e6b422108d5.json.gz",
@@ -8595,7 +9837,9 @@
    "length_s": 1694,
    "kb": 413,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 38
   },
   "a05c566f-c022-5720-aa33-6379c728b3bf": {
    "file": "2026-09/a05c566f-c022-5720-aa33-6379c728b3bf.json.gz",
@@ -8609,7 +9853,10 @@
    "length_s": 364,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15,
+   "x_check": "team 2: the events come to 7226, gvg.report's own score is 7466"
   },
   "7255f1cf-9de8-5fc2-aa0d-6b012cc80fee": {
    "file": "2026-10/7255f1cf-9de8-5fc2-aa0d-6b012cc80fee.json.gz",
@@ -8623,7 +9870,9 @@
    "length_s": 916,
    "kb": 243,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "e698e80a-b589-5343-ab87-a4b0439372dc": {
    "file": "2026-10/e698e80a-b589-5343-ab87-a4b0439372dc.json.gz",
@@ -8637,7 +9886,9 @@
    "length_s": 217,
    "kb": 65,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 9
   },
   "fcee27d7-d206-52f5-a27f-da601086cabb": {
    "file": "2026-10/fcee27d7-d206-52f5-a27f-da601086cabb.json.gz",
@@ -8651,7 +9902,9 @@
    "length_s": 388,
    "kb": 83,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "beaac0b1-38cb-5ba1-aebc-3e71ce81e9b3": {
    "file": "2026-09/beaac0b1-38cb-5ba1-aebc-3e71ce81e9b3.json.gz",
@@ -8665,7 +9918,9 @@
    "length_s": 695,
    "kb": 167,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "f2a214ca-997f-5303-a2a1-efff808fe24b": {
    "file": "2026-09/f2a214ca-997f-5303-a2a1-efff808fe24b.json.gz",
@@ -8679,7 +9934,9 @@
    "length_s": 814,
    "kb": 112,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 11
   },
   "5f496a04-d424-5841-af3f-e73b72daf1c2": {
    "file": "2026-09/5f496a04-d424-5841-af3f-e73b72daf1c2.json.gz",
@@ -8693,7 +9950,9 @@
    "length_s": 1189,
    "kb": 321,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 18
   },
   "591954bc-fca2-5ba6-a5f1-ed2b40becdc6": {
    "file": "2026-10/591954bc-fca2-5ba6-a5f1-ed2b40becdc6.json.gz",
@@ -8707,7 +9966,9 @@
    "length_s": 332,
    "kb": 88,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "e14d826d-1c32-5bea-a5fc-d8a72142447e": {
    "file": "2026-09/e14d826d-1c32-5bea-a5fc-d8a72142447e.json.gz",
@@ -8721,7 +9982,10 @@
    "length_s": 1327,
    "kb": 331,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 33,
+   "x_check": "team 1: the events come to 13072, gvg.report's own score is 13068"
   },
   "1bfe590c-110e-5a8b-a7e2-aa4ac1b00abe": {
    "file": "2026-09/1bfe590c-110e-5a8b-a7e2-aa4ac1b00abe.json.gz",
@@ -8735,7 +9999,10 @@
    "length_s": 1678,
    "kb": 428,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 41,
+   "x_check": "team 1: the events come to 3221, gvg.report's own score is 3343"
   },
   "d58b97e0-a184-59be-abfd-c401e3570b70": {
    "file": "2026-09/d58b97e0-a184-59be-abfd-c401e3570b70.json.gz",
@@ -8749,7 +10016,9 @@
    "length_s": 385,
    "kb": 89,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "06acd6d9-af4f-5039-a106-ab545218e441": {
    "file": "2026-10/06acd6d9-af4f-5039-a106-ab545218e441.json.gz",
@@ -8763,7 +10032,9 @@
    "length_s": 472,
    "kb": 114,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "8e397462-5d47-5654-a8a4-d7809f9f5deb": {
    "file": "2026-09/8e397462-5d47-5654-a8a4-d7809f9f5deb.json.gz",
@@ -8777,7 +10048,9 @@
    "length_s": 457,
    "kb": 86,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "c1a2eda8-db43-593f-afc2-8c572f99f0d0": {
    "file": "2026-09/c1a2eda8-db43-593f-afc2-8c572f99f0d0.json.gz",
@@ -8791,7 +10064,9 @@
    "length_s": 919,
    "kb": 128,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "37c85b7e-85d0-5da5-aba5-fa3ce7d79be8": {
    "file": "2026-10/37c85b7e-85d0-5da5-aba5-fa3ce7d79be8.json.gz",
@@ -8805,7 +10080,9 @@
    "length_s": 1573,
    "kb": 425,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 35
   },
   "b0bc6175-1d7f-50ad-a9e4-079d885f00a6": {
    "file": "2026-09/b0bc6175-1d7f-50ad-a9e4-079d885f00a6.json.gz",
@@ -8819,7 +10096,9 @@
    "length_s": 367,
    "kb": 100,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "52365e32-0477-500e-acce-c5590338d4b3": {
    "file": "2026-09/52365e32-0477-500e-acce-c5590338d4b3.json.gz",
@@ -8833,7 +10112,9 @@
    "length_s": 577,
    "kb": 135,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "63227475-cb33-502a-a39b-c255a58a061a": {
    "file": "2026-09/63227475-cb33-502a-a39b-c255a58a061a.json.gz",
@@ -8847,7 +10128,9 @@
    "length_s": 1376,
    "kb": 257,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "090b0068-ebf2-584d-a34d-3f46307aaefd": {
    "file": "2026-09/090b0068-ebf2-584d-a34d-3f46307aaefd.json.gz",
@@ -8861,7 +10144,9 @@
    "length_s": 1066,
    "kb": 292,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "0c702715-9b49-5c03-a286-094f4e08e93c": {
    "file": "2026-09/0c702715-9b49-5c03-a286-094f4e08e93c.json.gz",
@@ -8875,7 +10160,9 @@
    "length_s": 386,
    "kb": 81,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "efb56ec6-4ef7-57bd-a53b-cc0ba78e84a6": {
    "file": "2026-10/efb56ec6-4ef7-57bd-a53b-cc0ba78e84a6.json.gz",
@@ -8889,7 +10176,9 @@
    "length_s": 1694,
    "kb": 443,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "725ca9c1-1c77-5c7b-a26f-d07e2af003a9": {
    "file": "2026-09/725ca9c1-1c77-5c7b-a26f-d07e2af003a9.json.gz",
@@ -8903,7 +10192,9 @@
    "length_s": 1315,
    "kb": 360,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "9af59008-5583-596c-a784-34aaa3a67494": {
    "file": "2026-10/9af59008-5583-596c-a784-34aaa3a67494.json.gz",
@@ -8917,7 +10208,9 @@
    "length_s": 613,
    "kb": 108,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "996e36a3-0191-516c-ae13-2fc9651534ae": {
    "file": "2026-10/996e36a3-0191-516c-ae13-2fc9651534ae.json.gz",
@@ -8931,7 +10224,9 @@
    "length_s": 1693,
    "kb": 435,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 40
   },
   "597fe160-569e-5180-ae19-0f1b1ce79e10": {
    "file": "2026-10/597fe160-569e-5180-ae19-0f1b1ce79e10.json.gz",
@@ -8945,7 +10240,9 @@
    "length_s": 1690,
    "kb": 355,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 36
   },
   "52274ce2-0bfb-5a6d-a594-64b8cf3830f5": {
    "file": "2026-09/52274ce2-0bfb-5a6d-a594-64b8cf3830f5.json.gz",
@@ -8959,7 +10256,9 @@
    "length_s": 613,
    "kb": 166,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 19
   },
   "7954b460-4aa1-56bd-a8e5-445b1f0a23bb": {
    "file": "2026-09/7954b460-4aa1-56bd-a8e5-445b1f0a23bb.json.gz",
@@ -8973,7 +10272,9 @@
    "length_s": 373,
    "kb": 102,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 14
   },
   "4df00cbb-0e7b-5b07-a061-870e46528936": {
    "file": "2026-09/4df00cbb-0e7b-5b07-a061-870e46528936.json.gz",
@@ -8987,7 +10288,9 @@
    "length_s": 1645,
    "kb": 360,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 30
   },
   "1569ee0e-5d88-5c1e-aa96-5f092be5ff7a": {
    "file": "2026-09/1569ee0e-5d88-5c1e-aa96-5f092be5ff7a.json.gz",
@@ -9001,7 +10304,9 @@
    "length_s": 526,
    "kb": 78,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 6
   },
   "892d580f-2720-5766-a93d-ec462f126bad": {
    "file": "2026-09/892d580f-2720-5766-a93d-ec462f126bad.json.gz",
@@ -9015,7 +10320,9 @@
    "length_s": 1426,
    "kb": 319,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 29
   },
   "e286dd7d-064b-564a-a256-6a5bf9043f71": {
    "file": "2026-09/e286dd7d-064b-564a-a256-6a5bf9043f71.json.gz",
@@ -9029,7 +10336,9 @@
    "length_s": 931,
    "kb": 230,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "36f7f283-c7c2-5b82-a1ac-ad282f6c9822": {
    "file": "2026-09/36f7f283-c7c2-5b82-a1ac-ad282f6c9822.json.gz",
@@ -9043,7 +10352,9 @@
    "length_s": 259,
    "kb": 68,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "9a080f4e-ff97-5cac-a8d7-47610a9a0b2a": {
    "file": "2026-09/9a080f4e-ff97-5cac-a8d7-47610a9a0b2a.json.gz",
@@ -9057,7 +10368,9 @@
    "length_s": 1417,
    "kb": 332,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 28
   },
   "02380efc-c9b3-5508-a76b-6c50c6f2b7dd": {
    "file": "2026-09/02380efc-c9b3-5508-a76b-6c50c6f2b7dd.json.gz",
@@ -9071,7 +10384,9 @@
    "length_s": 1330,
    "kb": 325,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 26
   },
   "4be71525-9228-5fdc-a6ce-87ec632971ee": {
    "file": "2026-09/4be71525-9228-5fdc-a6ce-87ec632971ee.json.gz",
@@ -9085,7 +10400,9 @@
    "length_s": 316,
    "kb": 49,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 7
   },
   "05d64802-0444-5627-a187-de28516e1950": {
    "file": "2026-09/05d64802-0444-5627-a187-de28516e1950.json.gz",
@@ -9099,7 +10416,9 @@
    "length_s": 586,
    "kb": 137,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "da4ecc5f-ee7f-590c-a404-7f184db9fca3": {
    "file": "2026-09/da4ecc5f-ee7f-590c-a404-7f184db9fca3.json.gz",
@@ -9113,7 +10432,9 @@
    "length_s": 371,
    "kb": 98,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 15
   },
   "6f77ff0b-df5c-5c05-a865-442380ecb92c": {
    "file": "2026-09/6f77ff0b-df5c-5c05-a865-442380ecb92c.json.gz",
@@ -9127,7 +10448,9 @@
    "length_s": 493,
    "kb": 94,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 13
   },
   "2afda98e-f6a9-5d8f-a6c4-f4a859e4946b": {
    "file": "2026-09/2afda98e-f6a9-5d8f-a6c4-f4a859e4946b.json.gz",
@@ -9141,7 +10464,9 @@
    "length_s": 556,
    "kb": 146,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "7ff01864-64ea-5d6a-a396-a959c9673701": {
    "file": "2026-09/7ff01864-64ea-5d6a-a396-a959c9673701.json.gz",
@@ -9155,7 +10480,9 @@
    "length_s": 706,
    "kb": 123,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "3194be0d-2081-5a71-a7ce-26051d9e2e57": {
    "file": "2026-09/3194be0d-2081-5a71-a7ce-26051d9e2e57.json.gz",
@@ -9169,7 +10496,9 @@
    "length_s": 610,
    "kb": 92,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 8
   },
   "96bcf507-705c-5d3d-ae08-361a2c3bcf6d": {
    "file": "2026-10/96bcf507-705c-5d3d-ae08-361a2c3bcf6d.json.gz",
@@ -9183,7 +10512,9 @@
    "length_s": 604,
    "kb": 159,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 20
   },
   "a7f806a4-2905-5851-a82c-b306ca3dac97": {
    "file": "2026-10/a7f806a4-2905-5851-a82c-b306ca3dac97.json.gz",
@@ -9197,7 +10528,9 @@
    "length_s": 850,
    "kb": 238,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 24
   },
   "7af8445a-d417-579c-a439-467283fdecd9": {
    "file": "2026-10/7af8445a-d417-579c-a439-467283fdecd9.json.gz",
@@ -9211,7 +10544,9 @@
    "length_s": 466,
    "kb": 125,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 16
   },
   "142a3b2c-9394-545e-a753-1048a3ad814a": {
    "file": "2026-09/142a3b2c-9394-545e-a753-1048a3ad814a.json.gz",
@@ -9225,7 +10560,9 @@
    "length_s": 241,
    "kb": 57,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 2,
+   "x_kb": 10
   },
   "0e935804-81b8-5698-aff8-cc830e25fa77": {
    "file": "2026-11/0e935804-81b8-5698-aff8-cc830e25fa77.json.gz",
@@ -9240,7 +10577,7 @@
    "kb": 88,
    "summary": true,
    "trim": 3,
-   "x": 1,
+   "x": 2,
    "x_kb": 12
   },
   "524ee2e7-d9a8-53fe-aa2f-2529db6eedce": {
@@ -9256,8 +10593,8 @@
    "kb": 486,
    "summary": true,
    "trim": 3,
-   "x": 1,
-   "x_kb": 62
+   "x": 2,
+   "x_kb": 61
   }
  }
 }
