@@ -49,6 +49,13 @@ class Match:
             self._x = Extras.load(self._src[1]) if self._src[0] == "path" else Extras.from_branch(self._src[1], self._src[2], self._src[3])
         return self._x
 
+    def degen(self):
+        """Degen as damage (degen.py; R-638, R-649): gvg.report's totals laid over the seconds the replay shows them, read once."""
+        if getattr(self, "_dg", None) is None:
+            from degen import Degen
+            self._dg = Degen(self)
+        return self._dg
+
     @classmethod
     def from_branch(cls, report_id, repo=None):
         repo = repo or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

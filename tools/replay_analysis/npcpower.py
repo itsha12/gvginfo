@@ -17,6 +17,11 @@ The Lord's figures here are the engine's sum of recorded hits, which is a rate f
 damage totals are gvg.report's to say (R-632). Healing and armour are inside the measure (damage is as applied), and
 so is the Amulet of Protection's limit on the Lord.
 
+Degen is in the damage (R-649, R-661): the replays record it as no damage, so the amounts are the recorded hits plus
+gvg.report's degen on each NPC, which it credits to the player who put it there as a total for the match and which
+`degen.py` lays over the stretches he or his team was hitting that NPC. The stretches themselves, when a group is on
+a kind of NPC and who is hitting, stay read from the hits (R-655).
+
 The benchmark is `data/benchmarks/npc_damage.json` (`python3 npcpower.py bench`). `group(m, ids)` reads it: the rate
 of a group against each kind and the seconds to kill one. A class with fewer than MIN_STRETCHES stretches on a kind
 takes the rate of all classes pooled (said in the file as `pooled`): a blank would read as "does no damage".
@@ -75,6 +80,14 @@ def match_rows(rid):
     by_team = collections.defaultdict(list)              # (team, kind) -> [(second, player)]
     for (a, k), v in hits.items():
         for t, _ in v: by_team[(m.team(a), k)].append((t, a))
+    # Degen counts in the amounts (R-649, R-661): gvg.report's degen on each NPC, credited to the player and laid over the stretches he or his team was hitting it
+    # (degen.py). When a group is on a kind of NPC is still read from the hits alone (R-655), so the stretches below do not move.
+    dg = collections.defaultdict(list)                   # (player, kind) -> [(second, amount)]
+    for tg, v in m.degen().rows.items():
+        k = m.A[tg].get("npc") if tg < len(m.A) else None
+        if k not in KINDS: continue
+        for u, n, src, _ in v:
+            if src in pl and m.A[tg].get("team") not in (None, m.team(src)): dg[(src, k)].append((u, n)); taken[tg] += n
     with_group = collections.defaultdict(lambda: [0.0, 0.0, 0])           # (player, kind) -> damage, seconds his group was on that kind, stretches
     for (tm, k), v in by_team.items():
         v.sort()
@@ -91,7 +104,7 @@ def match_rows(rid):
                 if any(m.alive(m.snap(h, mid)) and m.dist(b, h, mid) < WITH_R for h in who): there.add(b)
             for b in there:
                 g = with_group[(b, k)]
-                g[0] += sum(n for t, n in hits.get((b, k), ()) if s0 <= t <= s1); g[1] += s1 - s0; g[2] += 1
+                g[0] += sum(n for t, n in hits.get((b, k), ()) if s0 <= t <= s1) + sum(n for t, n in dg.get((b, k), ()) if s0 <= t <= s1); g[1] += s1 - s0; g[2] += 1
     players = []
     for a in m.PL:
         row = {"cls": bar_class(m, a), "role": m.roles.get(a), "team": m.tag.get(m.team(a))}

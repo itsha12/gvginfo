@@ -7,10 +7,12 @@
   pre-kiting   seconds the player kept its distance from a melee heading for it before contact: the melee has started
                no attack in the last 3 s, moved 200+ toward the player over 2 s (heading within about 37 degrees), the
                gap shrank by less than a third of the melee's travel, and the player was moving.
-  degen        degeneration the player put on enemies, in pip-seconds (1 pip = 2 health a second): bleeding 3, poison 4,
-               disease 4, burning 7 pips (game values), plus health-degeneration hexes at the caster's rank (skill text).
-               Uptime is measured (the replays' condition and hex intervals, removal included); degen caps at 10 pips on
-               one target at a time. The replays record degeneration as no damage at all, so without this it was unseen.
+  degen        degeneration the player put on enemies, in pip-seconds (1 pip = 2 health a second). The amounts are
+               gvg.report's (R-638; degen.py): what landed on each player from each source, net of regen, as totals
+               for the match, laid over the seconds the replay shows that condition or hex on the target. Until
+               2026-11-24 they were game pip values on the replay's intervals, which credited most burning to nobody
+               and did not net off regen. Degen gvg.report credits to nobody is on the target and is no player's;
+               a weapon's own upkeep is not degen put on anybody. Capped at 10 pips on one target at a time.
   baits        enemy interrupts that landed on nothing because the player cancelled: an enemy finished an interrupt skill
                on the player, no interrupt from it landed within 1 s, and the player stopped a cast (no interrupt on it)
                in the 2 s before. Only baits the data proves; a cancel that scared an interrupter off can't be seen.
@@ -160,17 +162,25 @@ def build(rid):
                             P, d0, d1, sP = best
                             if d0 - d1 < travel / 3 and sP.get("st") == "m": out["prekite"][P].append(t)
 
-    # ---- degen: condition and hex intervals on enemies (pip-seconds kept as intervals)
+    # ---- degen: gvg.report's own figures (R-638; degen.py), kept as intervals of pips (1 pip = 2 health a second, as landed and net of regen)
+    runs = {}
+    for target, v in m.degen().rows.items():
+        if target not in PL: continue
+        for u, n, src, kind in v:                          # one row a second a source; seconds that follow on with the same amount are one interval
+            k = (target, src if src in PL else None, kind, round(n / PIP_HP, 2))
+            r = runs.get(k)
+            if r and r[-1][1] == u: r[-1][1] = u + 1
+            else: runs.setdefault(k, []).append([u, u + 1])
+    for (target, caster, kind, pips), v in runs.items():
+        out["degen"] += [(float(s0), float(s1), pips, caster, target) for s0, s1 in v]
+    out["degen"].sort(key=lambda x: (x[0], x[4], x[1]))
     for x in m.o.get("effects") or []:
         if x[0] is None: continue
         s0, s1 = x[0] / 10, (x[1] if x[1] is not None else end * 10) / 10
         caster, target = x[4], x[5]
         if target not in PL: continue
-        if x[2] == "c" and (x[7] or "") in COND_PIPS:
-            out["degen"].append((s0, s1, COND_PIPS[x[7]], caster if caster in PL else None, target))
-        elif x[2] == "h":
-            nm = m.sk(x[3]); p = _hex_pips(m, caster, nm)
-            if p: out["degen"].append((s0, s1, round(p, 1), caster if caster in PL else None, target))
+        if x[2] == "h":
+            nm = m.sk(x[3])
             if _base(nm) in CAST_PREVENTION and caster in PL:
                 trig = (s1 - s0) < 5.5 and any(s1 - 1.5 <= c0 <= s1 + 0.2 for c0, _, _, _ in casts.get(target, ()))
                 out["castprev"].append((s0, min(s1, s0 + 6.5), caster, target, int(trig), _base(nm)))

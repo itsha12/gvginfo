@@ -1405,14 +1405,18 @@ def pinned_plays(M, K):
 
 # ---- in their base as their dead come back (gap 5)
 def _dmg_on(M):
-    """Player -> [(second, amount, from an enemy NPC, the actor)]: every damage a player took, read once a match."""
+    """Player -> [(second, amount, from an enemy NPC, the actor, degen)]: every damage a player took, read once a match. The hits are the replay's; degen,
+    which the replay records as no damage, is gvg.report's (R-638, R-649: `Match.degen`, the last field True on its rows; a weapon's own upkeep is not in
+    it). Amounts take both; who is hitting a player is asked of the hits alone (R-655)."""
     if getattr(M, "_dmg_taken", None) is None:
         A, o = M.m.A, collections.defaultdict(list)
+        is_npc = lambda src, tg: isinstance(src, int) and src not in M.P and bool(A[src].get("npc")) and A[src].get("team") not in (None, M.m.team(tg))
         for r in M.m.o["ev"]:
             if r[1] != "dm" or r[3] not in M.P: continue
             src = r[2] if isinstance(r[2], int) and r[2] < len(A) else None
-            npc = src is not None and src not in M.P and bool(A[src].get("npc")) and A[src].get("team") not in (None, M.m.team(r[3]))
-            o[r[3]].append((r[0] / 10, r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0, npc, src))
+            o[r[3]].append((r[0] / 10, r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0, is_npc(src, r[3]), src, False))
+        for tg, v in M.m.degen().rows.items():
+            if tg in M.P: o[tg] += [(u, n, is_npc(src, tg), src if isinstance(src, int) else None, True) for u, n, src, kind in v]
         M._dmg_taken = o
     return M._dmg_taken
 
@@ -1443,8 +1447,15 @@ def _res_stand(M, tm, ids, u):
     else: out["shrine"] = out["shrine_walk"] = out["past_shrine"] = None      # a hall with no labelled res shrine: not read (every stored hall has one)
     D = _dmg_on(M)
     npc = [(a, x) for a in in_ for x in D.get(a, ()) if x[2] and u - RES_NPC_S < x[0] <= u]
-    out["npc_dmg"] = round(sum(x[1] for _, x in npc)); out["npc_on"] = len({a for a, _ in npc}); out["npcs_hitting"] = len({x[3] for _, x in npc})
-    out["taken"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
+    hit = [(a, x) for a, x in npc if not x[4]]                               # who is hitting whom is read from the hits (R-655): an NPC's bleeding runs on after he has turned away
+    out["npc_dmg"] = round(sum(x[1] for _, x in hit)); out["npc_dmg_all"] = round(sum(x[1] for _, x in npc)); out["npc_on"] = len({a for a, _ in hit}); out["npcs_hitting"] = len({x[3] for _, x in hit})
+    # The damage a player in the minute before. `taken` is the recorded hits, the figure he set his 250 on (R-615) and the one the danger spot is still asked of;
+    # `taken_degen` is the degen beside it and `taken_all` the two together (R-649: degen counts in every damage figure, and the 250 "is put to him again on the
+    # new figure"). Until he has given the line on the new figure the mark below does not move: on the development set the zone at 250 of hits and degen takes
+    # in 36 base res against 25, two of his Classic rows outside it among them (RACK v hdm 7:40, Men v NwAy 3:40). When he has, read `taken_all` in `marks`.
+    out["taken"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if not x[4] and u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
+    out["taken_degen"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if x[4] and u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
+    out["taken_all"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
     mt = set(M.main_team(tm, u))
     out["of_main"] = sum(1 for a in in_ if a in mt)
     out["monks"] = sum(1 for a in in_ if M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a])      # backline monks among them (a smiter is damage, R-457)

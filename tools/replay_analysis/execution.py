@@ -15,8 +15,9 @@ Measures (MEASURES: key, the direction a higher value should go for the team doi
 Amounts by players are a living player a 10 s; counts are the group's a 10 s; shares are 0 to 1, blank where there is
 nothing to take a share of (a blank that means "no damage dealt", not a fault, R-460).
 
-Sources: the replay's damage, heal and interrupt events; `pressure.py` (kiting, degen, baits, knockdowns, disables,
-cast prevention); the event layer (`eventlayer.py`: strips and wasted strips, time spent Blind, hexes kept up, hex
+Sources: the replay's damage, heal and interrupt events; degen, which the replay records as no damage, from gvg.report
+(`degen.py`, R-638, R-649: in the damage on their players, the shares and the damage on their NPCs, and shown apart);
+`pressure.py` (kiting, baits, knockdowns, disables, cast prevention); the event layer (`eventlayer.py`: strips and wasted strips, time spent Blind, hexes kept up, hex
 removal); the usual damage of each role (`eventlayer.usual_dps`, the role's measured middle).
 The team's own care, read with `forensics.py` on the play's window (the measurements of a death, asked of a play):
 casts into a ready interrupt (`Forensics.casting`), attacks made while Blind, and damage taken off a shield set while
@@ -32,8 +33,8 @@ EXEC_MIN_S = 6              # a play shorter than this has no execution read
 EXEC_STEP = 2               # who meets whom is read every other second, as the fights are
 
 MEASURES = (
-    ("dmg", +1, "damage on their players, a living player a 10 s"),
-    ("dmg_v_usual", +1, "that damage against the usual of the players alive (1.0 is the usual)"),
+    ("dmg", +1, "damage on their players, hits and degen, a living player a 10 s"),
+    ("dmg_v_usual", +1, "the hits in that damage against the usual of the players alive (1.0 is the usual; the usual is of hits)"),
     ("healer_share", 0, "share of that damage on their backline monks (offence or defence: no direction, R-304)"),
     ("focus", 0, "share of that damage on the one player hit most"),
     ("spikes", +1, f"bursts of {SPIKE_BURST[0]} or more on one player inside {SPIKE_BURST[1]:.0f} s, a 10 s"),
@@ -43,7 +44,7 @@ MEASURES = (
     ("knockdowns_on_casting", +1, "knockdowns landed on a player who was casting, a 10 s"),
     ("disable", +1, "skill-seconds disabled on them (Complicate, Power Lock, Power Block, Blackout), a 10 s"),
     ("castprev", +1, "casts of theirs punished by Shame, Guilt or Diversion, a 10 s"),
-    ("degen", +1, "degeneration kept on them, pip-seconds a 10 s"),
+    ("degen", +1, "degen landed on their players, health a living player a 10 s (gvg.report's, in the damage above too)"),
     ("kite", +1, "seconds their melee chased without hitting (kiting and pre-kiting), a 10 s"),
     ("baits", +1, "their interrupts thrown at a cancelled cast, a 10 s"),
     ("strips", +1, "useful strips (a prot off a player under attack, or an enchantment off their midline or frontline), a 10 s"),
@@ -89,8 +90,16 @@ class Exec:
                 if r[3] in pl and m.team(r[3]) != m.team(r[2]): self.dm.append((r[0] / 10, r[2], r[3], n))
                 elif m.A[r[3]].get("npc") and m.A[r[3]].get("team") not in (None, m.team(r[2])): self.dm_npc.append((r[0] / 10, r[2], r[3], n))
             elif m.A[r[3]].get("npc") and m.A[r[3]].get("team") == m.team(r[2]): self.hl_npc.append((r[0] / 10, r[2], r[3], n))
-        for L in (self.dm, self.dm_npc, self.hl_npc): L.sort(key=lambda x: x[0])
-        self._t = {id(L): [x[0] for x in L] for L in (self.dm, self.dm_npc, self.hl_npc)}
+        # Degen is damage too (R-638, R-649): gvg.report's, by the player it credits (degen.py). It counts in the amounts and the shares; a spike is still read
+        # from the hits, and so is the damage against the roles' usual until the usual itself takes degen in (eventlayer.py, at the rebuild).
+        self.dg, self.dg_npc = [], []
+        for tg, v in m.degen().rows.items():
+            for u, n, src, _ in v:
+                if src not in pl or tg >= len(m.A): continue
+                if tg in pl and m.team(tg) != m.team(src): self.dg.append((u, src, tg, n))
+                elif m.A[tg].get("npc") and m.A[tg].get("team") not in (None, m.team(src)): self.dg_npc.append((u, src, tg, n))
+        for L in (self.dm, self.dm_npc, self.hl_npc, self.dg, self.dg_npc): L.sort(key=lambda x: x[0])
+        self._t = {id(L): [x[0] for x in L] for L in (self.dm, self.dm_npc, self.hl_npc, self.dg, self.dg_npc)}
         self.intr = sorted((i[0] / 10, i[1], i[3]) for i in (m.o.get("interrupts") or []) if i[0] is not None and i[1] in pl and i[3] in pl)
         import forensics
         self.F = forensics.Forensics(rid, m)
@@ -118,7 +127,12 @@ class Exec:
         by_t = collections.defaultdict(list)
         for t, a, b, n in self._cut(self.dm, t0, t1):
             if a in X and b in Y: by_t[b].append((t, n))
-        tot = sum(n for v in by_t.values() for _, n in v)
+        hit_tot = sum(n for v in by_t.values() for _, n in v)
+        on = collections.Counter({b: sum(n for _, n in v) for b, v in by_t.items()})      # target -> damage on him, hits and degen
+        dg_tot = 0.0
+        for t, a, b, n in self._cut(self.dg, t0, t1):
+            if a in X and b in Y: on[b] += n; dg_tot += n
+        tot = hit_tot + dg_tot
         usual = sum(self.usual[a] for u in range(int(t0), int(t1)) for a in X if M.AL[a][min(u, M.T)])
         spikes = 0
         for v in by_t.values():
@@ -139,9 +153,9 @@ class Exec:
         blind_att = sum(1 for a in X for t in self.att[a][bisect.bisect_left(self.att[a], t0):bisect.bisect_left(self.att[a], t1)] if any(s0 <= t <= s1 for s0, s1 in self.blind.get(a, ())))
         out = {
             "dmg": p10(tot),
-            "dmg_v_usual": round(tot / usual, 2) if usual > 0 else None,
-            "healer_share": round(sum(n for b, v in by_t.items() if b in self.healer for _, n in v) / tot, 2) if tot else None,
-            "focus": round(max(sum(n for _, n in v) for v in by_t.values()) / tot, 2) if tot else None,
+            "dmg_v_usual": round(hit_tot / usual, 2) if usual > 0 else None,
+            "healer_share": round(sum(n for b, n in on.items() if b in self.healer) / tot, 2) if tot else None,
+            "focus": round(max(on.values()) / tot, 2) if tot else None,
             "spikes": g10(spikes),
             "interrupts": g10(len(intr)),
             "interrupts_on_healers": g10(sum(1 for _, b in intr if b in self.healer)),
@@ -149,7 +163,7 @@ class Exec:
             "knockdowns_on_casting": g10(tw["knockdowns_on_casting"]),
             "disable": g10(tw["disable_skill_secs"]),
             "castprev": g10(tw["castprev_triggered"]),
-            "degen": g10(tw["degen_pip_secs"]),
+            "degen": p10(dg_tot),
             "kite": g10(tw["kite_secs"] + tw["prekite_secs"]),
             "baits": g10(tw["baits"]),
             "strips": g10(sum(1 for s in R.get("strips", ()) if t0 <= s["t"] < t1 and s["team"] == tag and s["by"] in xr and s.get("useful"))),
@@ -157,7 +171,7 @@ class Exec:
             "blind_secs": g10(sum(ov(b["t"], b["end"]) for b in R.get("blinds", ()) if b["team"] == tag and b.get("attacker") and b["target"] in yr)),
             "hex_secs": g10(sum(ov(h["t"], h["t"] + (h.get("secs") or 0)) for h in R.get("hexes", ()) if h["team"] == ftag and h["target"] in yr)),
             "hex_removed": g10(sum(1 for h in R.get("hex_removals", ()) if t0 <= h["t"] < t1 and h["team"] == tag and h["by"] in xr and h.get("removed"))),
-            "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X)),
+            "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X) + sum(n for t, a, b, n in self._cut(self.dg_npc, t0, t1) if a in X)),
             "npc_heal": g10(sum(n for t, a, b, n in self._cut(self.hl_npc, t0, t1) if a in X)),
             "into_ready": g10(sum(F.casting(a, t0, t1)["measures"]["into_ready_interrupt"] for a in X)),
             "blind_attacks": g10(blind_att),

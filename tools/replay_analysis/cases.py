@@ -3165,7 +3165,7 @@ def exec_place(bench, kind, side, key, v):
 EXEC_SAY = {"dmg": "damage on their players", "dmg_v_usual": "damage against the usual of the players alive", "healer_share": "the share of its damage on their backline monks",
             "focus": "the share of its damage on one player", "spikes": "spikes", "interrupts": "interrupts landed", "interrupts_on_healers": "interrupts on their backline monks",
             "knockdowns": "knockdowns", "knockdowns_on_casting": "knockdowns on a casting player", "disable": "skills disabled", "castprev": "casts punished by Shame, Guilt or Diversion",
-            "degen": "degen kept on them", "kite": "their melee kited", "baits": "their interrupts baited", "strips": "useful strips", "strips_wasted": "strips that removed nothing",
+            "degen": "degen landed on them", "kite": "their melee kited", "baits": "their interrupts baited", "strips": "useful strips", "strips_wasted": "strips that removed nothing",
             "blind_secs": "Blind kept on their attackers", "hex_secs": "hexes kept on them", "hex_removed": "hexes taken off its own players", "npc_dmg": "damage on their NPCs",
             "npc_heal": "healing of its own NPCs", "into_ready": "casts started into a ready interrupt", "blind_attacks": "attacks made while Blind",
             "off_shield": "the share of the damage it took off its shield sets while not casting"}
