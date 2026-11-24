@@ -210,13 +210,22 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   line is set and what followed is read across the range of energy there (R-669). `python3 energy.py cover` prints
   the checks of the record (2026-11-24, 546 matches: a team's monks lose 0.7 in 10 s under fire and regain 1.3 at
   rest; a death follows within 20 s 78% of the time where they average under 20 and 7% at 60 or more; a monk is out
-  for certain 0.8% of his time alive). Built: the reading only; nothing reads it and no play moves. To build, in his
-  order (R-689): (2) each fight's monk energy, own and enemy, on every play at the second the decision arises and
-  60 s before (only the monks in that fight: a split's own, R-666), in the like spots, and one table a decision of
-  what followed each call by energy, for the decisions of R-688 at once (not the Lord push, not a held team; the
-  answer to their run by the enemy's monks only, the answer to their split by our own only); the directions Claude
-  expected are in the chat of 2026-11-24 and are expectations, never advice, and the danger zone is shown by its
-  damage line and by monk energy beside it, his to say which stays (the line stood in for energy, R-615); (3) the
+  for certain 0.8% of his time alive). Built (2): each fight's energy on every play, a record kept beside the plays
+  (`energy.record`, `flag_cost[rid].energy`: no play reads it and none moves): at the second the decision arises
+  (`energy.decision_second`: a flag play's `clock.anchor`, a base res 20 s before the res, else `t0`) and 60 s
+  before, the backline monks and the midline of our side (a split play's own players, `who`; on every other play our
+  main team, since a flag, boost or push play names its runners or pushers) and of theirs (enemy players `linked` to
+  ours in the 4 s to it, else their main team, `their_from`), each as `group`, with `team` (every living backline
+  monk of each team: what the answer to their split reads, the defenders being the call itself); the split ticks
+  and base res spots carry the same. `cases.py energy <plays file>` (report `data/model/energy_cases.json`): for
+  each decision of R-688 with a reader (their run, run again from our cap, their boost, down and up at the main
+  fight, the answer to their split, our split, the danger zone base res, after a wipe) what followed each call by
+  the fight's monk energy (average and lowest monk in thirds of that decision's own cases, R-669; how many monks
+  apart), the minute before beside every row, and the danger zone read both ways (damage line and monk energy).
+  Not readable yet: pressing the fight or allowing a stand-off (no play tells it) and offensive or defensive
+  play (no play of the new engine). Left of (2): energy among what like spots are matched on (2026-11-24, 546
+  matches: the average told a little more than the lowest monk at most decisions). To build, in his order (R-689):
+  (3) the
   excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of
   the minute before went (spent, taken by the enemy, regained), energy denial read (R-685: Energy Surge and Energy
   Burn deal 7 and 9 damage a point of energy taken, so the energy taken is their damage over that; Mind Wrack to

@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-24, evening (a new chat): energy on every play and its tables (R-689, piece 2)
+- Built on `bundle-4` at e7fcad1: `energy.record` (each fight's backline monks and midline, own and enemy, at the decision second and 60 s before; every living monk of each team beside it), kept beside the plays as `flag_cost[rid].energy` with the split ticks and base res spots. Development set: 6,933 plays identical; 323 Classic rows pass.
+- `cases.py energy`: what followed each call by monk energy for nine decisions of R-688 (report `data/model/energy_cases.json`, 564 matches, 546 with energy). Not readable yet: pressing or allowing a stand-off, offensive or defensive play.
+- Read over all matches: where their monks were in the lowest third (under 52) a team that held off their run did +1.5 win points against -2.1 in the highest (it started at 65% against 45%); up at the main fight against their monks under 45, staying to kill took +6.2 net kills against +1.8; at their boost, sending no flag did -7.8 where their monks were low, running +0.5; the answer to their split barely moves with our monks (+0.7).
+- The danger zone both ways: in the zone with our monks under 58, 0.31 deaths after the res; 58 or more, 0.10 to 0.14; outside it 0.04 to 0.09. 156 stays and 1 leave in the zone: the two calls cannot be set side by side.
+
 ## 2026-11-24, afternoon (the same chat): R-674 to R-677; the danger zone's line at 300 with degen; the energy plan put to him
 - R-674: energy is not final and is worked through with him next. R-675: the Ranger and the Paragon are not read for energy. R-676: the danger zone's damage line is 300 a player in the minute before, hits and degen (amends R-615). R-677: a Vampiric weapon's upkeep left out, degen credited to nobody counts in what a team took, the Miasma ignored.
 - Built on `bundle-4` at f865fa3: `jobs.RES_WORN` 300, asked of `taken_all`. Development set: 30 base res in the danger zone against 25 (joined: 옷옷옷옷 v cope 3:40, RACK v hdm 7:40, meow v One 13:40, 17:40 and 19:40; none left); 129 base res rows reworded, no play gone or new.

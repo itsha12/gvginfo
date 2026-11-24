@@ -8,7 +8,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-24, afternoon: rulings to R-689; degen as damage begun; energy settled, its reading built)
+## State (2026-11-24, evening: rulings to R-689; energy on every play and its tables built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 matches
   trained. No workflow run in progress. Rulings run to R-689. The baseline (R-491): `baseline-2026-11-15`.
@@ -19,16 +19,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   `Match.degen()`, gvg.report's totals laid over the seconds the replay shows them. Taken in so far by the damage a
   player took, NPC damage by kind of bar (benchmark rebuilt), the execution measures and `pressure.py`; the
   danger zone's line is 300 a player, hits and degen (R-676).
-- Development set: 6,933 plays, none gone or new (30 base res in the danger zone against 25); 323 Classic rows
-  pass. Last full run: 9022ffe. Energy: settled (R-664 to R-689; DEFINITIONS.md "Energy"); the
-  reading is built (`energy.py`, `Match.energy()`), read by nothing yet.
+- Development set: 6,933 plays, identical to the run before; 323 Classic rows pass. Last full run: e7fcad1
+  (18 minutes). Energy (R-664 to R-689): the reading and piece (2) built: each fight's monk energy on every play
+  (`flag_cost[rid].energy`, read by no play) and `cases.py energy`, the tables of R-688, shown to him 2026-11-24.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. Energy, in his order (R-689; CLAUDE.md "The engine on the new trim" has each piece in full). Built: the
-   reading. Next: (2) each fight's monk energy, own and enemy, on every play and in the like spots, then one table
-   a decision for the decisions of R-688 at once, shown to him with the danger zone read both ways (damage line,
-   monk energy); (3) the excuse with energy denial (R-681, R-682, R-685); (4) casting efficiency with R-636 and
-   R-639 (R-678 to R-680, R-687). Each piece: the development set, the key, `compare.py`.
+   reading; (2) the record and the tables. Next: his word on the tables (Open 1); energy among what like spots are
+   matched on (the average); (3) the excuse with energy denial (R-681, R-682, R-685); (4) casting efficiency with
+   R-636 and R-639 (R-678 to R-680, R-687). Each piece: the development set, the key, `compare.py`.
 2. Stage E, step 2 goes on: the rest of degen (R-649): the death accounts read gvg.report's recaps (R-636, R-638);
    `eventlayer.py` (the roles' usual, so `dmg_v_usual` takes degen on both sides), `forensics.py`, `events.py`,
    `nodes.py`, `fights.py`, `scoreboard.py`, `phases.py`, `episodes.py` wherever damage is summed from hits; the
@@ -46,9 +45,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
    sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Energy: nothing open. To tell him with the tables: on the double high scale a monk is out (under 20) 0.8% of
-   his time and a midline player (under 15) 0.2%, so the excuse will be rare; his nuances on the decisions wait
-   for the data (R-688).
+1. Energy tables shown 2026-11-24 (546 matches). Open for him: the danger zone, whether monk energy replaces the
+   300 line or sits beside it (in the zone, monks under 58: 0.31 deaths after the res; 58 or more: 0.10 to 0.14;
+   outside it 0.04 to 0.09); his nuances on the directions (R-688); whether pressing or allowing a stand-off and
+   offensive or defensive play need a play of their own to be read. A monk is out 0.8% of his time.
 2. RACK v hdm 7:40 is told with its call again at 300 with degen (as he first graded it): told to him.
 3. The NPC damage table with degen (R-659) was shown to him 2026-11-24; no word on it yet.
 4. 옷옷옷옷 v RACK 6:15 (Visible, one row, R-495): told at 6:27, the take-up of a flag lying at the door. His to say
