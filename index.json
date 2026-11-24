@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-11T23:24:11.848Z",
+ "updated": "2026-11-24T03:49:56.774Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -14,7 +14,9 @@
    "length_s": 836,
    "kb": 182,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 1,
+   "x_kb": 21
   },
   "cb5a5f57-be04-5af2-aa60-8114e98e1202": {
    "file": "2026-11/cb5a5f57-be04-5af2-aa60-8114e98e1202.json.gz",
@@ -322,7 +324,9 @@
    "length_s": 1694,
    "kb": 462,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 1,
+   "x_kb": 41
   },
   "faec428a-5b92-54d1-a28c-b79c7f27cfcf": {
    "file": "2026-11/faec428a-5b92-54d1-a28c-b79c7f27cfcf.json.gz",
@@ -7392,7 +7396,9 @@
    "length_s": 1537,
    "kb": 436,
    "summary": true,
-   "trim": 3
+   "trim": 3,
+   "x": 1,
+   "x_kb": 36
   },
   "7be03dbe-529d-5cf5-adbb-fb1f0043ca33": {
    "file": "2026-10/7be03dbe-529d-5cf5-adbb-fb1f0043ca33.json.gz",
@@ -9213,6 +9219,38 @@
    "kb": 57,
    "summary": true,
    "trim": 3
+  },
+  "0e935804-81b8-5698-aff8-cc830e25fa77": {
+   "file": "2026-11/0e935804-81b8-5698-aff8-cc830e25fa77.json.gz",
+   "date": "2026-11-24T03:12:31.354Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "chic",
+    "DUM"
+   ],
+   "winner": "chic",
+   "length_s": 367,
+   "kb": 88,
+   "summary": true,
+   "trim": 3,
+   "x": 1,
+   "x_kb": 12
+  },
+  "524ee2e7-d9a8-53fe-aa2f-2529db6eedce": {
+   "file": "2026-11/524ee2e7-d9a8-53fe-aa2f-2529db6eedce.json.gz",
+   "date": "2026-11-21T21:01:18.800Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "HC",
+    "hdm"
+   ],
+   "winner": "hdm",
+   "length_s": 1693,
+   "kb": 486,
+   "summary": true,
+   "trim": 3,
+   "x": 1,
+   "x_kb": 62
   }
  }
 }
