@@ -6,7 +6,8 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - The refetch finished in 98 minutes: all 660 stored matches have their file beside the replay (version 2, 13 MB in all), none missing, no stored replay or index entry changed apart from the new fields.
 - 34 matches were flagged because a Lord score did not rebuild from its events: gvg.report scores each Blind put on the enemy Lord at 30 for the team that put it there (events of kind `condition`, 176 in 53 matches). With it all 1,320 team scores rebuild within 5; the check in `replay_extras.mjs` counts it now and the flags are cleared.
 - R-663 carried out: chic v DUM and HC v hdm taken out of the `replays` branch (658 stored), `latest:2` out of `replays/requests.txt`.
-- Energy (R-664) set out for him in the chat, where it bears and what would be built first; nothing built.
+- Energy (R-664) set out for him in the chat, where it bears and what would be built first; nothing built. The files hold it for 593 of 658 matches (65 without, 19 of them from 1 September on); a monk's two bounds lie within 2 of one another 90% of the time (median energy 22; at 10 or less for certain 22% of the time), a necromancer's half the time.
+- The push of the request list started a Fetch run, as expected: nothing fetched, 658 stored, every file at version 2.
 
 ## 2026-11-23, late night (a new chat): his answers to the open items, R-656 to R-664; the new trim part built and its refetch started
 - The open items set out for him in the chat. No engine change and no play moved; the build is the new trim part, on main.

@@ -45,7 +45,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    sender's side: raise them when more matches are trained. The execution list (R-557).
 1. Energy (R-664): where it bears was set out for him on 2026-11-24 (pressure, the boost clock, the base res
    and danger zone, a player down early, execution and the death accounts, with what Claude would build first);
-   his word on it before anything is built.
+   his word on it before anything is built. What the files hold: energy in 593 of 658 matches (none before
+   27 August; 19 of the 65 without it are of 1 to 5 September and count); for monks the two bounds lie within 2
+   of one another 90% of the time, for necromancers half the time.
 2. Once degen counts: the danger zone's 250 again (R-649), and the NPC damage table read again (R-659).
 3. Not a question for him: one or two players sent from a level standing read worse than no split (-7.6 win
    points at 180 s). The record reads the split records of the plays, so a split there is a split as he has
