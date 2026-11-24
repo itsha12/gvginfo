@@ -14,6 +14,18 @@ const GREP = process.env.GREP ? new RegExp(process.env.GREP, "gi") : null; const
 // save only its key outline and these parts, not the whole response (replay payloads are several MB).
 const PICK = (process.env.PICK || "").split(",").map((x) => x.trim()).filter(Boolean);
 const dig = (o, p) => p.split(".").reduce((a, k) => (a == null ? a : a[k]), o);
+// A pick written "shape:<path>" saves the outline of that part in place of the part itself: every key down to ten levels,
+// the keys of up to 80 items of a list merged into one, and one example of each value. For parts too large to keep whole
+// (summary.players is 20 MB) whose layout has to be known before the trim can keep anything from them.
+const shapeOf = (vals, depth) => {
+  vals = vals.filter((v) => v !== undefined);
+  const objs = vals.filter((v) => v && typeof v === "object" && !Array.isArray(v)), arrs = vals.filter(Array.isArray);
+  if (arrs.length) { const n = arrs.map((a) => a.length); return { "[]": `${Math.min(...n)} to ${Math.max(...n)} items`, ...(depth < 10 ? { item: shapeOf(arrs.flatMap((a) => a.slice(0, 80)).slice(0, 400), depth + 1) } : {}) }; }
+  if (objs.length) { if (depth >= 10) return "{...}"; const keys = [...new Set(objs.flatMap((o) => Object.keys(o)))]; if (keys.length > 120) return { "{}": `${keys.length} keys, e.g. ${keys.slice(0, 6).join(", ")}`, value: shapeOf(objs.flatMap((o) => Object.values(o).slice(0, 40)).slice(0, 200), depth + 1) }; return Object.fromEntries(keys.map((k) => [k, shapeOf(objs.map((o) => o[k]), depth + 1)])); }
+  const ex = vals.find((v) => v !== null && v !== "" && v !== 0 && v !== false); const v = ex === undefined ? vals[0] : ex;
+  return v === undefined ? "absent" : `${v === null ? "null" : typeof v}: ${String(v).slice(0, 60)}`;
+};
+const pickOf = (j, p) => (p.startsWith("shape:") ? shapeOf([dig(j, p.slice(6))], 0) : dig(j, p) ?? null);
 fs.mkdirSync(out, { recursive: true });
 const get = async (u) => { const r = await fetch(u, { headers: { "User-Agent": UA } }); return { status: r.status, type: r.headers.get("content-type"), text: await r.text() }; };
 const found = new Set(); const seen = new Set();
@@ -45,7 +57,7 @@ for (const d of direct) {
   try {
     const r = await get(BASE + d);
     let keys = "", picked = null, sizes = "";
-    try { const j = JSON.parse(r.text); if (PICK.length) picked = Object.fromEntries(PICK.map((p) => [p, dig(j, p) ?? null])); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0);
+    try { const j = JSON.parse(r.text); if (PICK.length) picked = Object.fromEntries(PICK.map((p) => [p, pickOf(j, p)])); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0);
       // SIZES: where the bytes of a response are, every part of 100 KB or more down to four levels (a summary payload is over 100 MB)
       const big = []; const size = (o, name, depth) => { const n = JSON.stringify(o)?.length || 0; if (n >= 100000 || depth === 0) { big.push(`${name || "(all)"} ${n}`); if (depth < 4 && o && typeof o === "object" && !Array.isArray(o)) for (const [k, v] of Object.entries(o)) size(v, name ? name + "." + k : k, depth + 1); else if (Array.isArray(o)) big.push(`${name} [${o.length} items]`); } };
       size(j, "", 0); sizes = big.join("; "); } catch {}
