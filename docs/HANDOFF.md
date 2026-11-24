@@ -24,7 +24,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   - the Lord record (R-632 to R-635): every Lord damage figure gvg.report's, aggressiveness and gvg.report's Lord
     health on every position, the aggressiveness lead a seventh price;
   - `tools/golden/compare.py` (two runs' plays compared); a full run replaces its workers (memory).
-- Checks: see the top entry of the changelog for the development set and the checkpoint over every match.
+- Checkpoint (every counted match, branch at 9022ffe): 564 matches, 33,094 plays, no errors; fifteen truths hold;
+  323 Classic rows pass, none fail; self-check 6 in 4. One Visible row moved (Open, 2).
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. Stage E, step 2 goes on, the order he was given on 2026-11-24: degen in every damage figure (R-638, R-649,
