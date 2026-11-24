@@ -1,0 +1,6098 @@
+{
+ "decisions": {
+  "1. The answer to their flag run (their monks only, R-688)": {
+   "cases": 1910,
+   "with energy": 1833,
+   "calls": {
+    "no runner out yet": 1436,
+    "a runner out": 377,
+    "a double run started": 20
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      52.2,
+      63.0
+     ],
+     "bands": {
+      "under 52": {
+       "no runner out yet": {
+        "cases": 461,
+        "matches": 252,
+        "energy": 44.060954446854666,
+        "energy 60 s before": 50.70644444444445,
+        "started at": 65.22171885162116,
+        "the 60 s before": 1.375857480836265,
+        "flags": -0.315214446952596,
+        "net kills": 1.4772234273318872,
+        "net pit NPCs": 0.5900216919739696,
+        "win points": 1.518968800860888
+       },
+       "a runner out": {
+        "cases": 102,
+        "matches": 76,
+        "energy": 45.179411764705904,
+        "energy 60 s before": 54.02164948453608,
+        "started at": 57.02908124608413,
+        "the 60 s before": -0.2223890164778473,
+        "flags": 0.04069306930693068,
+        "net kills": 0.7254901960784313,
+        "net pit NPCs": 0.38235294117647056,
+        "win points": 1.3442124503033452
+       },
+       "a double run started": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 50.5,
+        "energy 60 s before": 38.5,
+        "started at": 77.25682207349051,
+        "the 60 s before": 2.1159478121939577,
+        "flags": -0.93,
+        "net kills": 0.0,
+        "net pit NPCs": 0.5,
+        "win points": -2.329242680505772
+       }
+      },
+      "52 to 63": {
+       "no runner out yet": {
+        "cases": 446,
+        "matches": 246,
+        "energy": 57.7804932735426,
+        "energy 60 s before": 58.41445497630332,
+        "started at": 53.88576283019513,
+        "the 60 s before": 1.368391719280349,
+        "flags": -0.4674885844748859,
+        "net kills": 0.4663677130044843,
+        "net pit NPCs": 0.08295964125560538,
+        "win points": -0.4244655986414725
+       },
+       "a runner out": {
+        "cases": 120,
+        "matches": 87,
+        "energy": 57.076666666666675,
+        "energy 60 s before": 58.54137931034483,
+        "started at": 54.016741801890745,
+        "the 60 s before": -0.02269375760861372,
+        "flags": 0.053220338983050834,
+        "net kills": 0.13333333333333333,
+        "net pit NPCs": 0.008333333333333333,
+        "win points": 1.297246116019715
+       },
+       "a double run started": {
+        "cases": 6,
+        "matches": 6,
+        "energy": 59.4,
+        "energy 60 s before": 62.06666666666666,
+        "started at": 64.29436327684996,
+        "the 60 s before": -1.9091961126212051,
+        "flags": -0.22166666666666668,
+        "net kills": 0.3333333333333333,
+        "net pit NPCs": -1.8333333333333333,
+        "win points": -2.8480441076296614
+       }
+      },
+      "63 or more": {
+       "no runner out yet": {
+        "cases": 441,
+        "matches": 219,
+        "energy": 68.81655328798186,
+        "energy 60 s before": 64.78848039215687,
+        "started at": 45.33154111218962,
+        "the 60 s before": 0.23227751083602488,
+        "flags": -0.45931034482758626,
+        "net kills": -0.6122448979591837,
+        "net pit NPCs": -0.2222222222222222,
+        "win points": -2.145955517465502
+       },
+       "a runner out": {
+        "cases": 129,
+        "matches": 87,
+        "energy": 68.4186046511628,
+        "energy 60 s before": 64.15299145299144,
+        "started at": 46.616156407799956,
+        "the 60 s before": -0.337108888176144,
+        "flags": -0.10632812499999998,
+        "net kills": -0.37209302325581395,
+        "net pit NPCs": -0.18604651162790697,
+        "win points": -0.605990882857409
+       },
+       "a double run started": {
+        "cases": 11,
+        "matches": 10,
+        "energy": 67.35454545454546,
+        "energy 60 s before": 68.27142857142857,
+        "started at": 61.44792650512212,
+        "the 60 s before": 3.228311472768295,
+        "flags": -0.6627272727272726,
+        "net kills": -0.09090909090909091,
+        "net pit NPCs": 0.09090909090909091,
+        "win points": -7.942140036649686
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 3.387571971305628,
+      "the 60 s before": 0.9514216681638792
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      46.0,
+      58.1
+     ],
+     "bands": {
+      "under 46": {
+       "no runner out yet": {
+        "cases": 457,
+        "matches": 243,
+        "energy": 35.20634573304157,
+        "energy 60 s before": 43.13783783783783,
+        "started at": 64.3731462623317,
+        "the 60 s before": 1.6971252687833407,
+        "flags": -0.36374149659863947,
+        "net kills": 1.4792122538293218,
+        "net pit NPCs": 0.5361050328227571,
+        "win points": 1.0238477863464486
+       },
+       "a runner out": {
+        "cases": 113,
+        "matches": 80,
+        "energy": 37.46106194690265,
+        "energy 60 s before": 47.29629629629629,
+        "started at": 58.70710403808288,
+        "the 60 s before": -0.39993405805774257,
+        "flags": 0.14151785714285714,
+        "net kills": 0.45132743362831856,
+        "net pit NPCs": 0.19469026548672566,
+        "win points": 0.9327806360005657
+       }
+      },
+      "46 to 58": {
+       "no runner out yet": {
+        "cases": 446,
+        "matches": 247,
+        "energy": 51.38251121076234,
+        "energy 60 s before": 52.62769953051644,
+        "started at": 55.0673209363182,
+        "the 60 s before": 0.9195913257529342,
+        "flags": -0.41693363844393594,
+        "net kills": 0.39461883408071746,
+        "net pit NPCs": -0.004484304932735426,
+        "win points": -0.06023325625069849
+       },
+       "a runner out": {
+        "cases": 119,
+        "matches": 80,
+        "energy": 51.588235294117645,
+        "energy 60 s before": 52.53421052631579,
+        "started at": 53.98144943269847,
+        "the 60 s before": 0.4339688200284747,
+        "flags": -0.031196581196581218,
+        "net kills": 0.48739495798319327,
+        "net pit NPCs": 0.11764705882352941,
+        "win points": 2.2570286837993874
+       },
+       "a double run started": {
+        "cases": 9,
+        "matches": 9,
+        "energy": 52.888888888888886,
+        "energy 60 s before": 47.5,
+        "started at": 66.43282364164858,
+        "the 60 s before": 1.2749468920544185,
+        "flags": -0.5411111111111111,
+        "net kills": 0.2222222222222222,
+        "net pit NPCs": -1.1111111111111112,
+        "win points": -4.490325206947682
+       }
+      },
+      "58 or more": {
+       "no runner out yet": {
+        "cases": 445,
+        "matches": 223,
+        "energy": 66.35168539325842,
+        "energy 60 s before": 61.110487804878055,
+        "started at": 45.197571379452775,
+        "the 60 s before": 0.3522331180218298,
+        "flags": -0.46025114155251134,
+        "net kills": -0.5235955056179775,
+        "net pit NPCs": -0.07191011235955057,
+        "win points": -1.9695906271281556
+       },
+       "a runner out": {
+        "cases": 119,
+        "matches": 87,
+        "energy": 66.47731092436975,
+        "energy 60 s before": 61.61944444444444,
+        "started at": 44.15768269864858,
+        "the 60 s before": -0.6548224487420978,
+        "flags": -0.13067796610169494,
+        "net kills": -0.5630252100840336,
+        "net pit NPCs": -0.16806722689075632,
+        "win points": -1.3393634056763841
+       },
+       "a double run started": {
+        "cases": 10,
+        "matches": 9,
+        "energy": 65.66,
+        "energy 60 s before": 66.43333333333334,
+        "started at": 61.83116025895868,
+        "the 60 s before": 2.2421343739293094,
+        "flags": -0.5609999999999999,
+        "net kills": -0.1,
+        "net pit NPCs": 0.1,
+        "win points": -6.869736354740692
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.9300962798190717,
+      "the 60 s before": 1.1275999850228304
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "no runner out yet": {
+       "cases": 246,
+       "matches": 150,
+       "energy": 59.3869918699187,
+       "energy 60 s before": 60.32956521739131,
+       "started at": 53.57792039820279,
+       "the 60 s before": 0.6624049746571028,
+       "flags": -0.4834166666666667,
+       "net kills": 0.13414634146341464,
+       "net pit NPCs": 0.3617886178861789,
+       "win points": 0.26229351882669105
+      },
+      "a runner out": {
+       "cases": 65,
+       "matches": 48,
+       "energy": 59.01538461538462,
+       "energy 60 s before": 61.699999999999996,
+       "started at": 51.36569522007824,
+       "the 60 s before": -1.0866357291176154,
+       "flags": -0.06999999999999997,
+       "net kills": 0.03076923076923077,
+       "net pit NPCs": 0.4307692307692308,
+       "win points": -0.07678037374221229
+      },
+      "a double run started": {
+       "cases": 3,
+       "matches": 3,
+       "energy": 68.66666666666667,
+       "energy 60 s before": 67.33333333333333,
+       "started at": 76.68058932633231,
+       "the 60 s before": 6.251568103277307,
+       "flags": -1.3266666666666664,
+       "net kills": 1.0,
+       "net pit NPCs": 0.0,
+       "win points": -11.879962666264781
+      }
+     },
+     "two monks": {
+      "no runner out yet": {
+       "cases": 457,
+       "matches": 227,
+       "energy": 58.57833698030635,
+       "energy 60 s before": 59.77390300230947,
+       "started at": 52.910572136656654,
+       "the 60 s before": 0.7002156645767222,
+       "flags": -0.41085011185682324,
+       "net kills": -0.0175054704595186,
+       "net pit NPCs": -0.06783369803063458,
+       "win points": -1.9833626734490089
+      },
+      "a runner out": {
+       "cases": 131,
+       "matches": 88,
+       "energy": 59.289312977099236,
+       "energy 60 s before": 61.51732283464566,
+       "started at": 48.13569345640495,
+       "the 60 s before": 0.12169859254432674,
+       "flags": -0.004263565891472866,
+       "net kills": -0.03816793893129771,
+       "net pit NPCs": -0.0916030534351145,
+       "win points": -0.5231886610046271
+      },
+      "a double run started": {
+       "cases": 7,
+       "matches": 7,
+       "energy": 62.98571428571428,
+       "energy 60 s before": 65.28,
+       "started at": 58.063952956950935,
+       "the 60 s before": -3.6539431807422447,
+       "flags": -0.24857142857142858,
+       "net kills": -0.8571428571428571,
+       "net pit NPCs": -0.2857142857142857,
+       "win points": -5.376713872182924
+      }
+     },
+     "three or more": {
+      "no runner out yet": {
+       "cases": 645,
+       "matches": 274,
+       "energy": 54.34232558139535,
+       "energy 60 s before": 55.33970826580228,
+       "started at": 56.947554044852744,
+       "the 60 s before": 1.3602729161869147,
+       "flags": -0.38875993640699524,
+       "net kills": 0.9209302325581395,
+       "net pit NPCs": 0.2372093023255814,
+       "win points": 0.6301381598997167
+      },
+      "a runner out": {
+       "cases": 155,
+       "matches": 99,
+       "energy": 56.00387096774194,
+       "energy 60 s before": 55.97857142857143,
+       "started at": 55.92202224412601,
+       "the 60 s before": -0.06420241787451283,
+       "flags": 0.012287581699346392,
+       "net kills": 0.2903225806451613,
+       "net pit NPCs": 0.0,
+       "win points": 1.8589343151583957
+      },
+      "a double run started": {
+       "cases": 9,
+       "matches": 9,
+       "energy": 61.26666666666668,
+       "energy 60 s before": 53.175000000000004,
+       "started at": 64.41306407630785,
+       "the 60 s before": 5.154374797445417,
+       "flags": -0.5288888888888889,
+       "net kills": 0.4444444444444444,
+       "net pit NPCs": -0.7777777777777778,
+       "win points": -3.981489478429028
+      }
+     }
+    }
+   }
+  },
+  "2. Our flag just in, their run still on its way: run again or not (from our cap)": {
+   "cases": 744,
+   "with energy": 720,
+   "calls": {
+    "no runner out yet": 525,
+    "a runner out": 175,
+    "a double run started": 20
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      56.2,
+      66.0
+     ],
+     "bands": {
+      "under 56": {
+       "no runner out yet": {
+        "cases": 167,
+        "matches": 115,
+        "energy": 48.86347305389222,
+        "energy 60 s before": 54.800625000000004,
+        "started at": 42.54331754776854,
+        "the 60 s before": -0.3747481427940299,
+        "flags": 0.1256707317073171,
+        "net kills": -0.9820359281437125,
+        "net pit NPCs": -0.2694610778443114,
+        "win points": -1.462652734087921
+       },
+       "a runner out": {
+        "cases": 56,
+        "matches": 36,
+        "energy": 48.75535714285714,
+        "energy 60 s before": 55.50961538461537,
+        "started at": 39.83218444285864,
+        "the 60 s before": -2.2548282775636252,
+        "flags": 0.21267857142857144,
+        "net kills": -0.6607142857142857,
+        "net pit NPCs": -0.2857142857142857,
+        "win points": 0.35451756980142946
+       },
+       "a double run started": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 52.25,
+        "energy 60 s before": 42.03333333333333,
+        "started at": 32.227426968580296,
+        "the 60 s before": -3.552997690832708,
+        "flags": 0.08749999999999997,
+        "net kills": 0.0,
+        "net pit NPCs": -0.5,
+        "win points": -5.071969745455204
+       }
+      },
+      "56 to 66": {
+       "no runner out yet": {
+        "cases": 166,
+        "matches": 111,
+        "energy": 61.26987951807229,
+        "energy 60 s before": 60.76666666666666,
+        "started at": 50.783996655590826,
+        "the 60 s before": -1.142070062130367,
+        "flags": 0.4103636363636363,
+        "net kills": 0.1566265060240964,
+        "net pit NPCs": 0.07228915662650602,
+        "win points": 1.7610416735746166
+       },
+       "a runner out": {
+        "cases": 57,
+        "matches": 44,
+        "energy": 61.29298245614034,
+        "energy 60 s before": 59.93018867924528,
+        "started at": 44.68692081586834,
+        "the 60 s before": -1.7200256668403993,
+        "flags": 0.34684210526315795,
+        "net kills": -0.21052631578947367,
+        "net pit NPCs": 0.19298245614035087,
+        "win points": 0.245554477012483
+       },
+       "a double run started": {
+        "cases": 5,
+        "matches": 5,
+        "energy": 62.36,
+        "energy 60 s before": 55.7,
+        "started at": 60.05395902978348,
+        "the 60 s before": -0.6336675995908025,
+        "flags": 0.8760000000000001,
+        "net kills": 0.2,
+        "net pit NPCs": 0.2,
+        "win points": 2.1666772872189033
+       }
+      },
+      "66 or more": {
+       "no runner out yet": {
+        "cases": 166,
+        "matches": 114,
+        "energy": 71.16265060240964,
+        "energy 60 s before": 66.98310810810811,
+        "started at": 54.1351008009602,
+        "the 60 s before": -0.3032096616984171,
+        "flags": 0.29274390243902443,
+        "net kills": 0.4939759036144578,
+        "net pit NPCs": 0.018072289156626505,
+        "win points": 2.115049040785482
+       },
+       "a runner out": {
+        "cases": 57,
+        "matches": 43,
+        "energy": 69.36315789473684,
+        "energy 60 s before": 64.866,
+        "started at": 54.86919540639656,
+        "the 60 s before": -1.1811041409862901,
+        "flags": 0.33614035087719296,
+        "net kills": 0.14035087719298245,
+        "net pit NPCs": -0.40350877192982454,
+        "win points": 1.9876533149506677
+       },
+       "a double run started": {
+        "cases": 10,
+        "matches": 10,
+        "energy": 71.36,
+        "energy 60 s before": 57.919999999999995,
+        "started at": 60.92718279863503,
+        "the 60 s before": 6.269593365013966,
+        "flags": 0.4,
+        "net kills": 0.1,
+        "net pit NPCs": 0.7,
+        "win points": 0.002470009066892054
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -3.071179259338968,
+      "the 60 s before": -0.5226583277769203
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      50.0,
+      63.0
+     ],
+     "bands": {
+      "under 50": {
+       "no runner out yet": {
+        "cases": 163,
+        "matches": 113,
+        "energy": 41.30368098159509,
+        "energy 60 s before": 48.63141025641025,
+        "started at": 45.15002040983176,
+        "the 60 s before": -0.3851258463276591,
+        "flags": 0.2152173913043478,
+        "net kills": -0.8650306748466258,
+        "net pit NPCs": -0.1656441717791411,
+        "win points": -0.9884678239022372
+       },
+       "a runner out": {
+        "cases": 56,
+        "matches": 39,
+        "energy": 40.40535714285714,
+        "energy 60 s before": 48.59444444444444,
+        "started at": 40.97455829802504,
+        "the 60 s before": -2.3714570880489663,
+        "flags": 0.14124999999999996,
+        "net kills": -0.9107142857142857,
+        "net pit NPCs": -0.17857142857142858,
+        "win points": -0.39161881193225917
+       },
+       "a double run started": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 43.1,
+        "energy 60 s before": 44.1,
+        "started at": 19.41795705532838,
+        "the 60 s before": -10.66912939502764,
+        "flags": 0.7,
+        "net kills": 0.0,
+        "net pit NPCs": 1.0,
+        "win points": 3.4376650716104766
+       }
+      },
+      "50 to 63": {
+       "no runner out yet": {
+        "cases": 162,
+        "matches": 112,
+        "energy": 55.76296296296295,
+        "energy 60 s before": 56.58145695364238,
+        "started at": 49.03300135542105,
+        "the 60 s before": -1.356908876552551,
+        "flags": 0.33462500000000006,
+        "net kills": 0.15432098765432098,
+        "net pit NPCs": 0.024691358024691357,
+        "win points": 2.0746038889933476
+       },
+       "a runner out": {
+        "cases": 59,
+        "matches": 52,
+        "energy": 56.30169491525423,
+        "energy 60 s before": 55.2826923076923,
+        "started at": 42.390852715712754,
+        "the 60 s before": -1.549771510926159,
+        "flags": 0.34661016949152545,
+        "net kills": -0.03389830508474576,
+        "net pit NPCs": -0.1016949152542373,
+        "win points": 1.1805962514823556
+       },
+       "a double run started": {
+        "cases": 7,
+        "matches": 6,
+        "energy": 56.15714285714285,
+        "energy 60 s before": 43.199999999999996,
+        "started at": 62.86465104351446,
+        "the 60 s before": 2.909186364109704,
+        "flags": 0.20142857142857143,
+        "net kills": 1.0,
+        "net pit NPCs": 0.0,
+        "win points": -1.224467409986471
+       }
+      },
+      "63 or more": {
+       "no runner out yet": {
+        "cases": 174,
+        "matches": 116,
+        "energy": 69.45862068965516,
+        "energy 60 s before": 63.7116883116883,
+        "started at": 52.9799118499082,
+        "the 60 s before": -0.09340091612587303,
+        "flags": 0.27988372093023256,
+        "net kills": 0.3448275862068966,
+        "net pit NPCs": -0.040229885057471264,
+        "win points": 1.2885199843117012
+       },
+       "a runner out": {
+        "cases": 55,
+        "matches": 40,
+        "energy": 67.77999999999999,
+        "energy 60 s before": 62.48571428571429,
+        "started at": 56.53937051914052,
+        "the 60 s before": -1.2182887229573762,
+        "flags": 0.4087272727272727,
+        "net kills": 0.21818181818181817,
+        "net pit NPCs": -0.21818181818181817,
+        "win points": 1.8076600487550394
+       },
+       "a double run started": {
+        "cases": 11,
+        "matches": 11,
+        "energy": 69.24545454545455,
+        "energy 60 s before": 58.949999999999996,
+        "started at": 52.63461969542358,
+        "the 60 s before": 1.789107827497853,
+        "flags": 0.6018181818181817,
+        "net kills": -0.45454545454545453,
+        "net pit NPCs": 0.45454545454545453,
+        "win points": -0.39056233243296
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -2.1469554778624755,
+      "the 60 s before": -0.639128095133909
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "no runner out yet": {
+       "cases": 117,
+       "matches": 77,
+       "energy": 64.75128205128206,
+       "energy 60 s before": 64.26542056074767,
+       "started at": 42.080286916794876,
+       "the 60 s before": -1.3508767845861134,
+       "flags": 0.2542241379310345,
+       "net kills": -0.1794871794871795,
+       "net pit NPCs": -0.39316239316239315,
+       "win points": 0.6274117513099726
+      },
+      "a runner out": {
+       "cases": 32,
+       "matches": 23,
+       "energy": 63.375,
+       "energy 60 s before": 59.06666666666666,
+       "started at": 46.8651661795076,
+       "the 60 s before": -2.1812544432754284,
+       "flags": 0.43437500000000007,
+       "net kills": 0.15625,
+       "net pit NPCs": -0.1875,
+       "win points": 1.7876375257751629
+      },
+      "a double run started": {
+       "cases": 6,
+       "matches": 6,
+       "energy": 66.45,
+       "energy 60 s before": 58.94,
+       "started at": 50.95321921148316,
+       "the 60 s before": -1.6783041601866049,
+       "flags": 0.3216666666666666,
+       "net kills": -1.8333333333333333,
+       "net pit NPCs": -0.5,
+       "win points": -7.399738860695622
+      }
+     },
+     "two monks": {
+      "no runner out yet": {
+       "cases": 202,
+       "matches": 128,
+       "energy": 61.572277227722786,
+       "energy 60 s before": 61.962631578947374,
+       "started at": 51.814583917063516,
+       "the 60 s before": -0.10534670149315134,
+       "flags": 0.2808457711442786,
+       "net kills": 0.12871287128712872,
+       "net pit NPCs": 0.04455445544554455,
+       "win points": 0.6109495514265045
+      },
+      "a runner out": {
+       "cases": 61,
+       "matches": 42,
+       "energy": 62.45737704918032,
+       "energy 60 s before": 62.25178571428571,
+       "started at": 43.264634549174424,
+       "the 60 s before": -1.4455915389040104,
+       "flags": 0.3827868852459016,
+       "net kills": -0.13114754098360656,
+       "net pit NPCs": 0.04918032786885246,
+       "win points": 2.7634849937680723
+      },
+      "a double run started": {
+       "cases": 5,
+       "matches": 5,
+       "energy": 69.1,
+       "energy 60 s before": 50.13333333333333,
+       "started at": 62.81831405926953,
+       "the 60 s before": 10.434739006048986,
+       "flags": 0.636,
+       "net kills": 2.2,
+       "net pit NPCs": 2.2,
+       "win points": 5.743020872733878
+      }
+     },
+     "three or more": {
+      "no runner out yet": {
+       "cases": 180,
+       "matches": 122,
+       "energy": 56.28055555555556,
+       "energy 60 s before": 56.88780487804878,
+       "started at": 50.72980382084993,
+       "the 60 s before": -0.7076127220157379,
+       "flags": 0.2863068181818182,
+       "net kills": -0.3388888888888889,
+       "net pit NPCs": 0.03888888888888889,
+       "win points": 1.1241614872204049
+      },
+      "a runner out": {
+       "cases": 77,
+       "matches": 56,
+       "energy": 56.361038961038965,
+       "energy 60 s before": 58.68333333333333,
+       "started at": 48.9152328340948,
+       "the 60 s before": -1.7671248157771693,
+       "flags": 0.17649350649350648,
+       "net kills": -0.4935064935064935,
+       "net pit NPCs": -0.3246753246753247,
+       "win points": -1.0211838622581557
+      },
+      "a double run started": {
+       "cases": 8,
+       "matches": 7,
+       "energy": 61.275,
+       "energy 60 s before": 49.82,
+       "started at": 52.3300556805428,
+       "the 60 s before": -1.0784120925192469,
+       "flags": 0.4525,
+       "net kills": 0.25,
+       "net pit NPCs": -0.25,
+       "win points": 0.7816920431808714
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      57.6,
+      66.0
+     ],
+     "bands": {
+      "under 58": {
+       "no runner out yet": {
+        "cases": 154,
+        "matches": 109,
+        "energy": 49.96363636363636,
+        "energy 60 s before": 54.920945945945945,
+        "started at": 56.45750068454141,
+        "the 60 s before": -0.23918122324889024,
+        "flags": 0.36133333333333334,
+        "net kills": 0.8181818181818182,
+        "net pit NPCs": 0.34415584415584416,
+        "win points": 2.629944940290612
+       },
+       "a runner out": {
+        "cases": 62,
+        "matches": 44,
+        "energy": 49.30322580645161,
+        "energy 60 s before": 54.343333333333334,
+        "started at": 47.43790084048503,
+        "the 60 s before": -2.69352731596411,
+        "flags": 0.29354838709677417,
+        "net kills": 0.06451612903225806,
+        "net pit NPCs": -0.3064516129032258,
+        "win points": 1.5314705339301298
+       },
+       "a double run started": {
+        "cases": 3,
+        "matches": 2,
+        "energy": 52.699999999999996,
+        "energy 60 s before": 57.9,
+        "started at": 58.15493195590145,
+        "the 60 s before": 3.3201791963933363,
+        "flags": 0.4033333333333333,
+        "net kills": 0.0,
+        "net pit NPCs": 0.0,
+        "win points": 4.103638733010155
+       }
+      },
+      "58 to 66": {
+       "no runner out yet": {
+        "cases": 158,
+        "matches": 113,
+        "energy": 61.68164556962026,
+        "energy 60 s before": 60.95104895104895,
+        "started at": 49.75408643275634,
+        "the 60 s before": -0.6010158680977747,
+        "flags": 0.3722292993630573,
+        "net kills": -0.22151898734177214,
+        "net pit NPCs": -0.3291139240506329,
+        "win points": 0.4823130545535713
+       },
+       "a runner out": {
+        "cases": 54,
+        "matches": 46,
+        "energy": 61.459259259259255,
+        "energy 60 s before": 59.91632653061224,
+        "started at": 49.310427905204364,
+        "the 60 s before": -0.7270278884562373,
+        "flags": 0.435,
+        "net kills": -0.37037037037037035,
+        "net pit NPCs": -0.07407407407407407,
+        "win points": -0.8280748812960729
+       },
+       "a double run started": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 64.89999999999999,
+        "energy 60 s before": 65.06666666666666,
+        "started at": 45.628403657027214,
+        "the 60 s before": -1.3028762043854003,
+        "flags": 1.2066666666666668,
+        "net kills": -0.3333333333333333,
+        "net pit NPCs": -0.3333333333333333,
+        "win points": 4.248154837785182
+       }
+      },
+      "66 or more": {
+       "no runner out yet": {
+        "cases": 173,
+        "matches": 109,
+        "energy": 70.87456647398844,
+        "energy 60 s before": 65.37290322580645,
+        "started at": 41.31122411603988,
+        "the 60 s before": -0.9100446613554771,
+        "flags": 0.16069364161849714,
+        "net kills": -0.9248554913294798,
+        "net pit NPCs": -0.2832369942196532,
+        "win points": -0.251874572385226
+       },
+       "a runner out": {
+        "cases": 45,
+        "matches": 36,
+        "energy": 69.43333333333334,
+        "energy 60 s before": 66.41749999999999,
+        "started at": 41.768620219674794,
+        "the 60 s before": -0.6701723198802046,
+        "flags": 0.12844444444444447,
+        "net kills": -0.8222222222222222,
+        "net pit NPCs": -0.24444444444444444,
+        "win points": 0.24890662043744902
+       },
+       "a double run started": {
+        "cases": 11,
+        "matches": 11,
+        "energy": 71.22727272727273,
+        "energy 60 s before": 69.64,
+        "started at": 63.06775252178475,
+        "the 60 s before": 3.578486240112487,
+        "flags": 0.3563636363636364,
+        "net kills": -0.2727272727272727,
+        "net pit NPCs": 0.6363636363636364,
+        "win points": -3.7221373785005123
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.6593105389516145,
+      "the 60 s before": -0.1335822475552918
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      50.0,
+      64.0
+     ],
+     "bands": {
+      "under 50": {
+       "no runner out yet": {
+        "cases": 153,
+        "matches": 103,
+        "energy": 41.6281045751634,
+        "energy 60 s before": 47.344966442953016,
+        "started at": 57.993248100478645,
+        "the 60 s before": -0.338916533287542,
+        "flags": 0.413758389261745,
+        "net kills": 0.803921568627451,
+        "net pit NPCs": 0.33986928104575165,
+        "win points": 2.307540614063074
+       },
+       "a runner out": {
+        "cases": 60,
+        "matches": 45,
+        "energy": 40.788333333333334,
+        "energy 60 s before": 46.60677966101695,
+        "started at": 46.10023202186474,
+        "the 60 s before": -2.9164122266053325,
+        "flags": 0.3861666666666667,
+        "net kills": 0.03333333333333333,
+        "net pit NPCs": -0.38333333333333336,
+        "win points": 1.8870679451242276
+       },
+       "a double run started": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 41.7,
+        "energy 60 s before": 49.6,
+        "started at": 55.07314099825661,
+        "the 60 s before": 4.75181325772705,
+        "flags": 0.8200000000000001,
+        "net kills": 0.0,
+        "net pit NPCs": 0.0,
+        "win points": 7.577961984823434
+       }
+      },
+      "50 to 64": {
+       "no runner out yet": {
+        "cases": 166,
+        "matches": 116,
+        "energy": 57.11144578313253,
+        "energy 60 s before": 57.07364864864864,
+        "started at": 46.9583593186061,
+        "the 60 s before": -0.5272758695242198,
+        "flags": 0.3161818181818182,
+        "net kills": -0.41566265060240964,
+        "net pit NPCs": -0.3493975903614458,
+        "win points": -0.04813809351584694
+       },
+       "a runner out": {
+        "cases": 58,
+        "matches": 49,
+        "energy": 56.37413793103448,
+        "energy 60 s before": 55.30192307692307,
+        "started at": 51.30999796846303,
+        "the 60 s before": -0.8365957875609982,
+        "flags": 0.2982758620689655,
+        "net kills": -0.3103448275862069,
+        "net pit NPCs": 0.0,
+        "win points": -0.7128394758029152
+       },
+       "a double run started": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 57.23333333333333,
+        "energy 60 s before": 51.666666666666664,
+        "started at": 51.52472887643894,
+        "the 60 s before": -0.5890335985954583,
+        "flags": 0.58,
+        "net kills": 0.0,
+        "net pit NPCs": 0.3333333333333333,
+        "win points": 2.9062685101795895
+       }
+      },
+      "64 or more": {
+       "no runner out yet": {
+        "cases": 166,
+        "matches": 103,
+        "energy": 69.19759036144578,
+        "energy 60 s before": 62.97986577181208,
+        "started at": 42.37583088920441,
+        "the 60 s before": -0.8969883616898416,
+        "flags": 0.16036144578313252,
+        "net kills": -0.7409638554216867,
+        "net pit NPCs": -0.25301204819277107,
+        "win points": 0.5577101926117748
+       },
+       "a runner out": {
+        "cases": 43,
+        "matches": 34,
+        "energy": 67.69302325581394,
+        "energy 60 s before": 62.73947368421051,
+        "started at": 40.500164311482166,
+        "the 60 s before": -0.2229367359085229,
+        "flags": 0.16279069767441862,
+        "net kills": -0.8604651162790697,
+        "net pit NPCs": -0.2558139534883721,
+        "win points": -0.24287115529114442
+       },
+       "a double run started": {
+        "cases": 12,
+        "matches": 12,
+        "energy": 69.625,
+        "energy 60 s before": 68.25,
+        "started at": 61.69790132938234,
+        "the 60 s before": 2.7013024094864195,
+        "flags": 0.44749999999999995,
+        "net kills": -0.3333333333333333,
+        "net pit NPCs": 0.4166666666666667,
+        "win points": -3.3135716626087715
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.0474909581992424,
+      "the 60 s before": -0.3621773723353038
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "no runner out yet": {
+       "cases": 92,
+       "matches": 60,
+       "energy": 63.38260869565218,
+       "energy 60 s before": 62.04096385542168,
+       "started at": 47.60361057624981,
+       "the 60 s before": -0.5511445408579887,
+       "flags": 0.20271739130434785,
+       "net kills": -0.05434782608695652,
+       "net pit NPCs": -0.22826086956521738,
+       "win points": 0.9668226529706725
+      },
+      "a runner out": {
+       "cases": 23,
+       "matches": 19,
+       "energy": 60.991304347826095,
+       "energy 60 s before": 61.66956521739131,
+       "started at": 48.212938715881585,
+       "the 60 s before": -0.9199838967892883,
+       "flags": 0.20826086956521744,
+       "net kills": -1.1304347826086956,
+       "net pit NPCs": 0.0,
+       "win points": -2.4695799694470404
+      },
+      "a double run started": {
+       "cases": 5,
+       "matches": 5,
+       "energy": 69.9,
+       "energy 60 s before": 70.16666666666667,
+       "started at": 72.71258165801369,
+       "the 60 s before": 7.11795086681692,
+       "flags": 0.502,
+       "net kills": 1.0,
+       "net pit NPCs": 1.0,
+       "win points": -5.9288744351513465
+      }
+     },
+     "two monks": {
+      "no runner out yet": {
+       "cases": 205,
+       "matches": 122,
+       "energy": 63.69024390243902,
+       "energy 60 s before": 62.71088082901555,
+       "started at": 47.27110819452018,
+       "the 60 s before": -0.7237161102794142,
+       "flags": 0.2751724137931034,
+       "net kills": -0.24878048780487805,
+       "net pit NPCs": -0.12195121951219512,
+       "win points": 1.337629327776392
+      },
+      "a runner out": {
+       "cases": 55,
+       "matches": 39,
+       "energy": 62.87090909090909,
+       "energy 60 s before": 64.31914893617021,
+       "started at": 46.09096393032702,
+       "the 60 s before": -1.1792514998860633,
+       "flags": 0.22872727272727267,
+       "net kills": -0.01818181818181818,
+       "net pit NPCs": -0.2,
+       "win points": 0.34863899459518394
+      },
+      "a double run started": {
+       "cases": 6,
+       "matches": 6,
+       "energy": 66.46666666666667,
+       "energy 60 s before": 67.625,
+       "started at": 71.5689900480117,
+       "the 60 s before": 2.2962892167879634,
+       "flags": 0.7233333333333333,
+       "net kills": -0.6666666666666666,
+       "net pit NPCs": 0.6666666666666666,
+       "win points": 4.022516189134584
+      }
+     },
+     "three or more": {
+      "no runner out yet": {
+       "cases": 188,
+       "matches": 126,
+       "energy": 57.51968085106383,
+       "energy 60 s before": 57.20294117647059,
+       "started at": 51.235814792437004,
+       "the 60 s before": -0.45127479131415976,
+       "flags": 0.35637837837837844,
+       "net kills": -0.06914893617021277,
+       "net pit NPCs": -0.010638297872340425,
+       "win points": 0.39617545816017136
+      },
+      "a runner out": {
+       "cases": 83,
+       "matches": 59,
+       "energy": 55.89638554216867,
+       "energy 60 s before": 55.84556962025318,
+       "started at": 46.26024412341217,
+       "the 60 s before": -1.8665626350204023,
+       "flags": 0.36265060240963853,
+       "net kills": -0.3132530120481928,
+       "net pit NPCs": -0.27710843373493976,
+       "win points": 1.1935074943121948
+      },
+      "a double run started": {
+       "cases": 6,
+       "matches": 5,
+       "energy": 64.66666666666667,
+       "energy 60 s before": 59.025000000000006,
+       "started at": 35.35307266671327,
+       "the 60 s before": -1.6486673227540938,
+       "flags": 0.31666666666666676,
+       "net kills": -0.8333333333333334,
+       "net pit NPCs": -0.5,
+       "win points": -1.7298092350283991
+      }
+     }
+    }
+   }
+  },
+  "3. Their boost is 30 s away": {
+   "cases": 1341,
+   "with energy": 1297,
+   "calls": {
+    "run a flag": 770,
+    "send no flag": 527
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      49.0,
+      59.5
+     ],
+     "bands": {
+      "under 49": {
+       "run a flag": {
+        "cases": 206,
+        "matches": 154,
+        "energy": 42.0247572815534,
+        "energy 60 s before": 49.81034482758621,
+        "started at": 26.185191623074278,
+        "the 60 s before": null,
+        "flags": 0.348768472906404,
+        "net kills": -2.3349514563106797,
+        "net pit NPCs": -0.8106796116504854,
+        "win points": -2.2968575924515964
+       },
+       "send no flag": {
+        "cases": 203,
+        "matches": 162,
+        "energy": 39.66945812807882,
+        "energy 60 s before": 50.6318407960199,
+        "started at": 15.98736931786966,
+        "the 60 s before": null,
+        "flags": 0.17043010752688173,
+        "net kills": -3.768472906403941,
+        "net pit NPCs": -1.8768472906403941,
+        "win points": -4.758192299769354
+       }
+      },
+      "49 to 60": {
+       "run a flag": {
+        "cases": 260,
+        "matches": 177,
+        "energy": 54.45,
+        "energy 60 s before": 55.07315175097276,
+        "started at": 35.91858695740133,
+        "the 60 s before": null,
+        "flags": 0.3858565737051793,
+        "net kills": -0.8769230769230769,
+        "net pit NPCs": -0.29615384615384616,
+        "win points": -0.8946690545729481
+       },
+       "send no flag": {
+        "cases": 151,
+        "matches": 113,
+        "energy": 53.9271523178808,
+        "energy 60 s before": 53.19205298013245,
+        "started at": 21.278835075513562,
+        "the 60 s before": null,
+        "flags": 0.1443478260869565,
+        "net kills": -2.1390728476821192,
+        "net pit NPCs": -1.1523178807947019,
+        "win points": -1.8582304996712056
+       }
+      },
+      "60 or more": {
+       "run a flag": {
+        "cases": 279,
+        "matches": 184,
+        "energy": 66.10609318996416,
+        "energy 60 s before": 60.07854545454545,
+        "started at": 43.25619659426013,
+        "the 60 s before": null,
+        "flags": 0.5591304347826087,
+        "net kills": -0.1003584229390681,
+        "net pit NPCs": -0.0967741935483871,
+        "win points": 0.41346913234038296
+       },
+       "send no flag": {
+        "cases": 137,
+        "matches": 98,
+        "energy": 65.72773722627738,
+        "energy 60 s before": 60.55255474452555,
+        "started at": 23.987783741406783,
+        "the 60 s before": null,
+        "flags": 0.18375999999999998,
+        "net kills": -1.510948905109489,
+        "net pit NPCs": -1.1386861313868613,
+        "win points": -4.828398512199112
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -2.205679035993599,
+      "the 60 s before": null
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      42.2,
+      54.2
+     ],
+     "bands": {
+      "under 42": {
+       "run a flag": {
+        "cases": 207,
+        "matches": 148,
+        "energy": 32.905314009661836,
+        "energy 60 s before": 41.47024390243902,
+        "started at": 28.223979465923303,
+        "the 60 s before": null,
+        "flags": 0.35000000000000003,
+        "net kills": -2.256038647342995,
+        "net pit NPCs": -0.6859903381642513,
+        "win points": -2.695891668689567
+       },
+       "send no flag": {
+        "cases": 202,
+        "matches": 155,
+        "energy": 30.44257425742574,
+        "energy 60 s before": 43.39950248756219,
+        "started at": 16.038472324442445,
+        "the 60 s before": null,
+        "flags": 0.1627807486631016,
+        "net kills": -3.712871287128713,
+        "net pit NPCs": -1.7178217821782178,
+        "win points": -4.438940231333737
+       }
+      },
+      "42 to 54": {
+       "run a flag": {
+        "cases": 260,
+        "matches": 178,
+        "energy": 47.925,
+        "energy 60 s before": 48.79844357976654,
+        "started at": 34.3789404767546,
+        "the 60 s before": null,
+        "flags": 0.36797619047619046,
+        "net kills": -1.0153846153846153,
+        "net pit NPCs": -0.4076923076923077,
+        "win points": -0.38124105644033307
+       },
+       "send no flag": {
+        "cases": 153,
+        "matches": 115,
+        "energy": 47.571241830065354,
+        "energy 60 s before": 46.590789473684204,
+        "started at": 20.974412451706073,
+        "the 60 s before": null,
+        "flags": 0.18654676258992808,
+        "net kills": -1.9281045751633987,
+        "net pit NPCs": -1.2418300653594772,
+        "win points": -1.567129811966299
+       }
+      },
+      "54 or more": {
+       "run a flag": {
+        "cases": 278,
+        "matches": 184,
+        "energy": 62.96654676258992,
+        "energy 60 s before": 56.38974358974358,
+        "started at": 43.239469998827,
+        "the 60 s before": null,
+        "flags": 0.5760583941605838,
+        "net kills": -0.02158273381294964,
+        "net pit NPCs": -0.08273381294964029,
+        "win points": 0.24015654597913144
+       },
+       "send no flag": {
+        "cases": 136,
+        "matches": 102,
+        "energy": 62.3860294117647,
+        "energy 60 s before": 56.60588235294117,
+        "started at": 24.235367101870697,
+        "the 60 s before": null,
+        "flags": 0.148130081300813,
+        "net kills": -1.838235294117647,
+        "net pit NPCs": -1.2794117647058822,
+        "win points": -5.673232724371697
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -1.854355506064067,
+      "the 60 s before": null
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "run a flag": {
+       "cases": 114,
+       "matches": 84,
+       "energy": 57.97456140350878,
+       "energy 60 s before": 58.96486486486487,
+       "started at": 37.65701977924978,
+       "the 60 s before": null,
+       "flags": 0.6061818181818184,
+       "net kills": -0.37719298245614036,
+       "net pit NPCs": -0.49122807017543857,
+       "win points": 0.09482048002229061
+      },
+      "send no flag": {
+       "cases": 89,
+       "matches": 80,
+       "energy": 50.51573033707865,
+       "energy 60 s before": 54.168965517241375,
+       "started at": 18.847020628060456,
+       "the 60 s before": null,
+       "flags": 0.2727027027027027,
+       "net kills": -2.5168539325842696,
+       "net pit NPCs": -2.134831460674157,
+       "win points": -4.567071328899048
+      }
+     },
+     "two monks": {
+      "run a flag": {
+       "cases": 280,
+       "matches": 183,
+       "energy": 57.7075,
+       "energy 60 s before": 56.356884057971016,
+       "started at": 36.16337127587704,
+       "the 60 s before": null,
+       "flags": 0.44777372262773724,
+       "net kills": -0.6964285714285714,
+       "net pit NPCs": -0.175,
+       "win points": 0.5989331789300406
+      },
+      "send no flag": {
+       "cases": 180,
+       "matches": 136,
+       "energy": 52.63111111111111,
+       "energy 60 s before": 56.330555555555556,
+       "started at": 23.780826194243808,
+       "the 60 s before": null,
+       "flags": 0.16968750000000002,
+       "net kills": -2.761111111111111,
+       "net pit NPCs": -1.3666666666666667,
+       "win points": -4.177483908060541
+      }
+     },
+     "three or more": {
+      "run a flag": {
+       "cases": 351,
+       "matches": 204,
+       "energy": 52.67948717948718,
+       "energy 60 s before": 53.69913793103448,
+       "started at": 35.27868011679821,
+       "the 60 s before": null,
+       "flags": 0.38323699421965324,
+       "net kills": -1.4216524216524216,
+       "net pit NPCs": -0.47293447293447294,
+       "win points": -2.190654003230715
+      },
+      "send no flag": {
+       "cases": 222,
+       "matches": 140,
+       "energy": 50.59054054054055,
+       "energy 60 s before": 52.48873873873874,
+       "started at": 17.058256259646637,
+       "the 60 s before": null,
+       "flags": 0.12679069767441858,
+       "net kills": -2.5855855855855854,
+       "net pit NPCs": -1.2387387387387387,
+       "win points": -3.3764864268103456
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      55.0,
+      66.0
+     ],
+     "bands": {
+      "under 55": {
+       "run a flag": {
+        "cases": 239,
+        "matches": 160,
+        "energy": 46.756485355648536,
+        "energy 60 s before": 51.679916317991626,
+        "started at": 42.21402101698508,
+        "the 60 s before": null,
+        "flags": 0.5675213675213676,
+        "net kills": -0.3891213389121339,
+        "net pit NPCs": -0.23430962343096234,
+        "win points": 0.48296807605926106
+       },
+       "send no flag": {
+        "cases": 157,
+        "matches": 124,
+        "energy": 46.76433121019108,
+        "energy 60 s before": 57.36129032258064,
+        "started at": 28.27354371369658,
+        "the 60 s before": null,
+        "flags": 0.2563888888888889,
+        "net kills": -2.3312101910828025,
+        "net pit NPCs": -1.3375796178343948,
+        "win points": -7.7879599238954045
+       }
+      },
+      "55 to 66": {
+       "run a flag": {
+        "cases": 221,
+        "matches": 152,
+        "energy": 60.13665158371041,
+        "energy 60 s before": 58.10180995475113,
+        "started at": 34.700672335479275,
+        "the 60 s before": null,
+        "flags": 0.373972602739726,
+        "net kills": -1.009049773755656,
+        "net pit NPCs": -0.5475113122171946,
+        "win points": -1.993108038967634
+       },
+       "send no flag": {
+        "cases": 169,
+        "matches": 137,
+        "energy": 60.81715976331361,
+        "energy 60 s before": 62.248520710059175,
+        "started at": 15.281628221822752,
+        "the 60 s before": null,
+        "flags": 0.10903225806451612,
+        "net kills": -3.094674556213018,
+        "net pit NPCs": -1.6923076923076923,
+        "win points": -3.3039285297342014
+       }
+      },
+      "66 or more": {
+       "run a flag": {
+        "cases": 242,
+        "matches": 159,
+        "energy": 71.38760330578513,
+        "energy 60 s before": 65.74421487603307,
+        "started at": 28.47707808999707,
+        "the 60 s before": null,
+        "flags": 0.3209442060085837,
+        "net kills": -1.5702479338842976,
+        "net pit NPCs": -0.6157024793388429,
+        "win points": -1.6263947415984057
+       },
+       "send no flag": {
+        "cases": 162,
+        "matches": 123,
+        "energy": 72.76296296296297,
+        "energy 60 s before": 65.30432098765432,
+        "started at": 14.438391767127476,
+        "the 60 s before": null,
+        "flags": 0.16889655172413795,
+        "net kills": -2.6358024691358026,
+        "net pit NPCs": -1.5432098765432098,
+        "win points": -1.5774778178785354
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -1.1893829298645953,
+      "the 60 s before": null
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      48.0,
+      62.7
+     ],
+     "bands": {
+      "under 48": {
+       "run a flag": {
+        "cases": 245,
+        "matches": 167,
+        "energy": 37.70326530612245,
+        "energy 60 s before": 42.986122448979586,
+        "started at": 40.83840131015577,
+        "the 60 s before": null,
+        "flags": 0.509875,
+        "net kills": -0.4448979591836735,
+        "net pit NPCs": -0.3510204081632653,
+        "win points": -0.07312397066604082
+       },
+       "send no flag": {
+        "cases": 149,
+        "matches": 116,
+        "energy": 37.165100671140934,
+        "energy 60 s before": 50.22721088435374,
+        "started at": 27.722325459567397,
+        "the 60 s before": null,
+        "flags": 0.21426470588235297,
+        "net kills": -2.4295302013422817,
+        "net pit NPCs": -1.4630872483221478,
+        "win points": -7.435999717603589
+       }
+      },
+      "48 to 63": {
+       "run a flag": {
+        "cases": 223,
+        "matches": 161,
+        "energy": 54.44125560538117,
+        "energy 60 s before": 52.399551569506734,
+        "started at": 34.48511215493605,
+        "the 60 s before": null,
+        "flags": 0.4581363636363636,
+        "net kills": -0.9282511210762332,
+        "net pit NPCs": -0.3991031390134529,
+        "win points": -1.0861636368165388
+       },
+       "send no flag": {
+        "cases": 176,
+        "matches": 134,
+        "energy": 54.749431818181826,
+        "energy 60 s before": 56.03409090909091,
+        "started at": 15.225243322404932,
+        "the 60 s before": null,
+        "flags": 0.1495031055900621,
+        "net kills": -3.022727272727273,
+        "net pit NPCs": -1.5113636363636365,
+        "win points": -4.423439884568112
+       }
+      },
+      "63 or more": {
+       "run a flag": {
+        "cases": 234,
+        "matches": 156,
+        "energy": 69.51965811965813,
+        "energy 60 s before": 62.4948717948718,
+        "started at": 29.71736827111431,
+        "the 60 s before": null,
+        "flags": 0.2934513274336283,
+        "net kills": -1.623931623931624,
+        "net pit NPCs": -0.6452991452991453,
+        "win points": -1.9594238037488447
+       },
+       "send no flag": {
+        "cases": 163,
+        "matches": 128,
+        "energy": 70.520245398773,
+        "energy 60 s before": 62.10674846625766,
+        "started at": 15.645961230639566,
+        "the 60 s before": null,
+        "flags": 0.17074829931972793,
+        "net kills": -2.588957055214724,
+        "net pit NPCs": -1.607361963190184,
+        "win points": -0.9210776593009746
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -1.3244614293507257,
+      "the 60 s before": null
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "run a flag": {
+       "cases": 139,
+       "matches": 107,
+       "energy": 62.40215827338128,
+       "energy 60 s before": 62.300719424460425,
+       "started at": 37.220378843072425,
+       "the 60 s before": null,
+       "flags": 0.4906818181818183,
+       "net kills": -1.0503597122302157,
+       "net pit NPCs": -0.12949640287769784,
+       "win points": -0.20474407154029373
+      },
+      "send no flag": {
+       "cases": 96,
+       "matches": 74,
+       "energy": 61.81666666666667,
+       "energy 60 s before": 64.34166666666668,
+       "started at": 17.409383961835786,
+       "the 60 s before": null,
+       "flags": 0.2912345679012346,
+       "net kills": -2.5833333333333335,
+       "net pit NPCs": -1.5729166666666667,
+       "win points": -4.235407822005366
+      }
+     },
+     "two monks": {
+      "run a flag": {
+       "cases": 222,
+       "matches": 156,
+       "energy": 62.27207207207208,
+       "energy 60 s before": 60.46531531531533,
+       "started at": 29.52228335119428,
+       "the 60 s before": null,
+       "flags": 0.45363636363636367,
+       "net kills": -1.1666666666666667,
+       "net pit NPCs": -0.5045045045045045,
+       "win points": -1.082505872056724
+      },
+      "send no flag": {
+       "cases": 171,
+       "matches": 127,
+       "energy": 61.68947368421051,
+       "energy 60 s before": 62.235502958579886,
+       "started at": 17.93700581170397,
+       "the 60 s before": null,
+       "flags": 0.19098039215686274,
+       "net kills": -2.543859649122807,
+       "net pit NPCs": -1.409356725146199,
+       "win points": -3.1386089152324663
+      }
+     },
+     "three or more": {
+      "run a flag": {
+       "cases": 341,
+       "matches": 182,
+       "energy": 56.429618768328446,
+       "energy 60 s before": 55.774193548387096,
+       "started at": 37.89405555374619,
+       "the 60 s before": null,
+       "flags": 0.3739820359281437,
+       "net kills": -0.8533724340175953,
+       "net pit NPCs": -0.5747800586510264,
+       "win points": -1.3192354966563178
+      },
+      "send no flag": {
+       "cases": 221,
+       "matches": 147,
+       "energy": 58.4814479638009,
+       "energy 60 s before": 60.16153846153846,
+       "started at": 20.91417260034138,
+       "the 60 s before": null,
+       "flags": 0.12142857142857143,
+       "net kills": -2.8642533936651584,
+       "net pit NPCs": -1.6018099547511313,
+       "win points": -4.947166337808661
+      }
+     }
+    }
+   }
+  },
+  "4. Down a player or more at the main fight (not a family, R-557: context)": {
+   "cases": 1203,
+   "with energy": 1156,
+   "calls": {
+    "stay and fight": 784,
+    "fall to footmen": 239,
+    "retreat to the pit": 118,
+    "trade with a split": 15
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      48.7,
+      60.0
+     ],
+     "bands": {
+      "under 49": {
+       "stay and fight": {
+        "cases": 226,
+        "matches": 168,
+        "energy": 40.157522123893806,
+        "energy 60 s before": 51.15733944954128,
+        "started at": 23.020790607066473,
+        "the 60 s before": -3.601663785298436,
+        "flags": -0.1269377990430622,
+        "net kills": -4.769911504424779,
+        "net pit NPCs": -2.172566371681416,
+        "win points": -7.477236773452453
+       },
+       "fall to footmen": {
+        "cases": 83,
+        "matches": 71,
+        "energy": 38.774698795180726,
+        "energy 60 s before": 51.36375,
+        "started at": 26.070580995015884,
+        "the 60 s before": -5.254107582932417,
+        "flags": -0.06689189189189187,
+        "net kills": -4.590361445783133,
+        "net pit NPCs": -2.819277108433735,
+        "win points": -7.776572337780252
+       },
+       "retreat to the pit": {
+        "cases": 59,
+        "matches": 58,
+        "energy": 39.40677966101694,
+        "energy 60 s before": 47.47090909090908,
+        "started at": 11.607046441388318,
+        "the 60 s before": -4.967625233921506,
+        "flags": 0.005000000000000012,
+        "net kills": -5.932203389830509,
+        "net pit NPCs": -3.135593220338983,
+        "win points": -7.183655578742722
+       },
+       "trade with a split": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 42.666666666666664,
+        "energy 60 s before": 53.76666666666667,
+        "started at": 14.780917210587031,
+        "the 60 s before": 1.7955285307219844,
+        "flags": 0.29333333333333333,
+        "net kills": -3.0,
+        "net pit NPCs": 0.0,
+        "win points": -7.204940695273116
+       }
+      },
+      "49 to 60": {
+       "stay and fight": {
+        "cases": 259,
+        "matches": 187,
+        "energy": 54.180308880308885,
+        "energy 60 s before": 56.015040650406505,
+        "started at": 34.030732825513226,
+        "the 60 s before": -3.9833382700319087,
+        "flags": -0.1463888888888889,
+        "net kills": -2.7065637065637067,
+        "net pit NPCs": -1.3667953667953667,
+        "win points": -5.4607827966020395
+       },
+       "fall to footmen": {
+        "cases": 78,
+        "matches": 67,
+        "energy": 53.960256410256406,
+        "energy 60 s before": 57.021333333333324,
+        "started at": 39.34282850633481,
+        "the 60 s before": -3.154184387880928,
+        "flags": -0.06657894736842106,
+        "net kills": -2.230769230769231,
+        "net pit NPCs": -0.9615384615384616,
+        "win points": -4.140414164569296
+       },
+       "retreat to the pit": {
+        "cases": 29,
+        "matches": 28,
+        "energy": 53.92068965517242,
+        "energy 60 s before": 55.58965517241379,
+        "started at": 12.418920679042044,
+        "the 60 s before": -5.058913940645103,
+        "flags": 0.1604,
+        "net kills": -5.310344827586207,
+        "net pit NPCs": -2.689655172413793,
+        "win points": -5.741484252977521
+       },
+       "trade with a split": {
+        "cases": 6,
+        "matches": 6,
+        "energy": 54.1,
+        "energy 60 s before": 57.96666666666667,
+        "started at": 9.42797082779317,
+        "the 60 s before": -3.184377095750444,
+        "flags": -0.12399999999999997,
+        "net kills": -5.333333333333333,
+        "net pit NPCs": -0.5,
+        "win points": -5.780390048637148
+       }
+      },
+      "60 or more": {
+       "stay and fight": {
+        "cases": 282,
+        "matches": 204,
+        "energy": 67.43794326241135,
+        "energy 60 s before": 62.043820224719106,
+        "started at": 46.92268502127227,
+        "the 60 s before": -2.3214174743727556,
+        "flags": -0.04473309608540926,
+        "net kills": -0.8794326241134752,
+        "net pit NPCs": -0.06028368794326241,
+        "win points": -0.9509326688316193
+       },
+       "fall to footmen": {
+        "cases": 67,
+        "matches": 59,
+        "energy": 67.3492537313433,
+        "energy 60 s before": 61.88275862068965,
+        "started at": 51.530227656534976,
+        "the 60 s before": -2.585390001694635,
+        "flags": -0.20184615384615387,
+        "net kills": -1.7313432835820894,
+        "net pit NPCs": -0.7014925373134329,
+        "win points": -5.506545975119123
+       },
+       "retreat to the pit": {
+        "cases": 24,
+        "matches": 23,
+        "energy": 65.86666666666667,
+        "energy 60 s before": 60.185714285714276,
+        "started at": 18.125171322061384,
+        "the 60 s before": -5.913489791188719,
+        "flags": 0.03875000000000001,
+        "net kills": -3.5416666666666665,
+        "net pit NPCs": -2.6666666666666665,
+        "win points": -9.428169727973662
+       },
+       "trade with a split": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 68.575,
+        "energy 60 s before": 66.1,
+        "started at": 55.764663781239335,
+        "the 60 s before": -0.07937942540393794,
+        "flags": -0.3275,
+        "net kills": -1.0,
+        "net pit NPCs": 1.0,
+        "win points": 1.2104062580285362
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -5.218030130084331,
+      "the 60 s before": -1.5085906376674751
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      42.0,
+      55.0
+     ],
+     "bands": {
+      "under 42": {
+       "stay and fight": {
+        "cases": 221,
+        "matches": 163,
+        "energy": 30.33529411764706,
+        "energy 60 s before": 44.04345794392523,
+        "started at": 23.872739946531098,
+        "the 60 s before": -4.049008108660228,
+        "flags": -0.12194174757281556,
+        "net kills": -4.701357466063349,
+        "net pit NPCs": -1.918552036199095,
+        "win points": -6.775600466691893
+       },
+       "fall to footmen": {
+        "cases": 88,
+        "matches": 76,
+        "energy": 29.675,
+        "energy 60 s before": 45.8035294117647,
+        "started at": 25.393989414148756,
+        "the 60 s before": -5.151965527950888,
+        "flags": -0.010125000000000018,
+        "net kills": -4.056818181818182,
+        "net pit NPCs": -2.409090909090909,
+        "win points": -6.068539464436108
+       },
+       "retreat to the pit": {
+        "cases": 58,
+        "matches": 57,
+        "energy": 31.01724137931035,
+        "energy 60 s before": 41.15,
+        "started at": 11.20076931653385,
+        "the 60 s before": -4.6732880976192614,
+        "flags": 0.05442307692307692,
+        "net kills": -5.948275862068965,
+        "net pit NPCs": -2.913793103448276,
+        "win points": -6.276267189634909
+       },
+       "trade with a split": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 31.65,
+        "energy 60 s before": 46.4,
+        "started at": 18.143801148122662,
+        "the 60 s before": -0.38373675465695123,
+        "flags": 0.22,
+        "net kills": -2.5,
+        "net pit NPCs": -0.25,
+        "win points": -8.21892096869576
+       }
+      },
+      "42 to 55": {
+       "stay and fight": {
+        "cases": 269,
+        "matches": 193,
+        "energy": 47.75873605947955,
+        "energy 60 s before": 50.229019607843135,
+        "started at": 34.4794936370148,
+        "the 60 s before": -3.5994433683170364,
+        "flags": -0.14542307692307693,
+        "net kills": -2.591078066914498,
+        "net pit NPCs": -1.4275092936802973,
+        "win points": -6.179734778124281
+       },
+       "fall to footmen": {
+        "cases": 71,
+        "matches": 66,
+        "energy": 48.050704225352106,
+        "energy 60 s before": 51.09855072463768,
+        "started at": 44.516570428578284,
+        "the 60 s before": -2.9973243976969366,
+        "flags": -0.14970588235294116,
+        "net kills": -2.704225352112676,
+        "net pit NPCs": -1.1408450704225352,
+        "win points": -6.05763864315502
+       },
+       "retreat to the pit": {
+        "cases": 27,
+        "matches": 25,
+        "energy": 46.24814814814815,
+        "energy 60 s before": 48.63703703703705,
+        "started at": 12.29228256194162,
+        "the 60 s before": -5.452695146878126,
+        "flags": 0.09434782608695653,
+        "net kills": -5.185185185185185,
+        "net pit NPCs": -3.3333333333333335,
+        "win points": -8.051822810261584
+       },
+       "trade with a split": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 47.6,
+        "energy 60 s before": 48.975,
+        "started at": 6.406705737170207,
+        "the 60 s before": -2.4801090697317507,
+        "flags": -0.15499999999999997,
+        "net kills": -6.25,
+        "net pit NPCs": -0.25,
+        "win points": -5.1782323613776375
+       }
+      },
+      "55 or more": {
+       "stay and fight": {
+        "cases": 277,
+        "matches": 207,
+        "energy": 64.47184115523464,
+        "energy 60 s before": 57.61907514450866,
+        "started at": 45.84114201611328,
+        "the 60 s before": -2.3080576092154304,
+        "flags": -0.04731884057971014,
+        "net kills": -1.0505415162454874,
+        "net pit NPCs": -0.19494584837545126,
+        "win points": -0.7675267482901061
+       },
+       "fall to footmen": {
+        "cases": 69,
+        "matches": 62,
+        "energy": 64.14057971014492,
+        "energy 60 s before": 58.37118644067796,
+        "started at": 47.67792072745116,
+        "the 60 s before": -2.7494024502037147,
+        "flags": -0.18119402985074626,
+        "net kills": -1.7681159420289856,
+        "net pit NPCs": -0.9130434782608695,
+        "win points": -5.409022792329904
+       },
+       "retreat to the pit": {
+        "cases": 27,
+        "matches": 26,
+        "energy": 60.770370370370365,
+        "energy 60 s before": 53.10833333333333,
+        "started at": 18.460455627119114,
+        "the 60 s before": -6.071175002808893,
+        "flags": 0.007692307692307682,
+        "net kills": -3.8518518518518516,
+        "net pit NPCs": -2.5185185185185186,
+        "win points": -8.710817891764782
+       },
+       "trade with a split": {
+        "cases": 5,
+        "matches": 5,
+        "energy": 63.839999999999996,
+        "energy 60 s before": 62.339999999999996,
+        "started at": 45.1534408364612,
+        "the 60 s before": -0.5163622772795312,
+        "flags": -0.3275,
+        "net kills": -2.0,
+        "net pit NPCs": 0.6,
+        "win points": 0.42661519495310174
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -4.379020033544271,
+      "the 60 s before": -1.6545919555617523
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and fight": {
+       "cases": 64,
+       "matches": 50,
+       "energy": 54.310937499999994,
+       "energy 60 s before": 59.41090909090908,
+       "started at": 33.73295980631291,
+       "the 60 s before": -1.8344175019254818,
+       "flags": -0.09984126984126984,
+       "net kills": -2.421875,
+       "net pit NPCs": -1.59375,
+       "win points": -2.1958411527758104
+      },
+      "fall to footmen": {
+       "cases": 30,
+       "matches": 28,
+       "energy": 55.88333333333334,
+       "energy 60 s before": 60.007407407407406,
+       "started at": 32.739408269980245,
+       "the 60 s before": -1.4387129610112273,
+       "flags": -0.24827586206896554,
+       "net kills": -2.7666666666666666,
+       "net pit NPCs": -1.9666666666666666,
+       "win points": -2.977237739313232
+      },
+      "retreat to the pit": {
+       "cases": 13,
+       "matches": 13,
+       "energy": 39.599999999999994,
+       "energy 60 s before": 45.63,
+       "started at": 11.933361198607683,
+       "the 60 s before": -8.74171225750857,
+       "flags": -0.3663636363636364,
+       "net kills": -5.076923076923077,
+       "net pit NPCs": -3.6153846153846154,
+       "win points": -7.6830234454475
+      },
+      "trade with a split": {
+       "cases": 3,
+       "matches": 3,
+       "energy": 62.0,
+       "energy 60 s before": 66.10000000000001,
+       "started at": 42.82695411965751,
+       "the 60 s before": -1.3201159937014726,
+       "flags": -0.19999999999999998,
+       "net kills": -1.3333333333333333,
+       "net pit NPCs": 0.6666666666666666,
+       "win points": 1.3691290558067817
+      }
+     },
+     "two monks": {
+      "stay and fight": {
+       "cases": 240,
+       "matches": 177,
+       "energy": 54.645833333333336,
+       "energy 60 s before": 56.307582938388634,
+       "started at": 33.62877794703525,
+       "the 60 s before": -3.9615402539533586,
+       "flags": -0.13701754385964912,
+       "net kills": -3.1333333333333333,
+       "net pit NPCs": -1.675,
+       "win points": -5.912058170652949
+      },
+      "fall to footmen": {
+       "cases": 97,
+       "matches": 86,
+       "energy": 50.21752577319588,
+       "energy 60 s before": 55.105376344086025,
+       "started at": 35.461881047751255,
+       "the 60 s before": -4.363171062888391,
+       "flags": -0.18181818181818182,
+       "net kills": -3.731958762886598,
+       "net pit NPCs": -2.11340206185567,
+       "win points": -7.466162244570829
+      },
+      "retreat to the pit": {
+       "cases": 51,
+       "matches": 47,
+       "energy": 50.82745098039214,
+       "energy 60 s before": 55.758333333333326,
+       "started at": 15.226500492429942,
+       "the 60 s before": -4.335866749568794,
+       "flags": 0.10543478260869564,
+       "net kills": -5.019607843137255,
+       "net pit NPCs": -3.156862745098039,
+       "win points": -8.22947985340401
+      },
+      "trade with a split": {
+       "cases": 7,
+       "matches": 7,
+       "energy": 53.97142857142857,
+       "energy 60 s before": 57.6,
+       "started at": 26.269487837319232,
+       "the 60 s before": -0.477659012889843,
+       "flags": 0.1842857142857143,
+       "net kills": -3.4285714285714284,
+       "net pit NPCs": 0.2857142857142857,
+       "win points": -6.7017558332666765
+      }
+     },
+     "three or more": {
+      "stay and fight": {
+       "cases": 463,
+       "matches": 253,
+       "energy": 55.15097192224622,
+       "energy 60 s before": 55.39175531914894,
+       "started at": 36.75818470866359,
+       "the 60 s before": -3.3306235306444276,
+       "flags": -0.08527716186252772,
+       "net kills": -2.4190064794816415,
+       "net pit NPCs": -0.7732181425485961,
+       "win points": -3.915623051827948
+      },
+      "fall to footmen": {
+       "cases": 101,
+       "matches": 84,
+       "energy": 53.3861386138614,
+       "energy 60 s before": 56.235483870967755,
+       "started at": 42.209300884524744,
+       "the 60 s before": -3.935917114515584,
+       "flags": 0.0007142857142857432,
+       "net kills": -2.237623762376238,
+       "net pit NPCs": -0.9108910891089109,
+       "win points": -5.186252666360199
+      },
+      "retreat to the pit": {
+       "cases": 48,
+       "matches": 48,
+       "energy": 49.21875,
+       "energy 60 s before": 50.089361702127654,
+       "started at": 11.42256939099534,
+       "the 60 s before": -5.061318055713994,
+       "flags": 0.09954545454545455,
+       "net kills": -5.5625,
+       "net pit NPCs": -2.4791666666666665,
+       "win points": -6.188167054981556
+      },
+      "trade with a split": {
+       "cases": 3,
+       "matches": 3,
+       "energy": 54.36666666666667,
+       "energy 60 s before": 57.333333333333336,
+       "started at": 3.867318167756774,
+       "the 60 s before": -2.2444112042063815,
+       "flags": -0.6466666666666666,
+       "net kills": -5.666666666666667,
+       "net pit NPCs": -1.0,
+       "win points": -2.88354456002723
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      52.7,
+      61.7
+     ],
+     "bands": {
+      "under 53": {
+       "stay and fight": {
+        "cases": 219,
+        "matches": 159,
+        "energy": 45.975799086757995,
+        "energy 60 s before": 55.871162790697674,
+        "started at": 37.302786490844866,
+        "the 60 s before": -3.132807778445221,
+        "flags": -0.1303864734299517,
+        "net kills": -3.2831050228310503,
+        "net pit NPCs": -1.6210045662100456,
+        "win points": -6.331351158482321
+       },
+       "fall to footmen": {
+        "cases": 93,
+        "matches": 77,
+        "energy": 44.78172043010753,
+        "energy 60 s before": 53.99101123595506,
+        "started at": 41.00643346760638,
+        "the 60 s before": -3.8214124882586127,
+        "flags": -0.054555555555555545,
+        "net kills": -2.7204301075268815,
+        "net pit NPCs": -1.4623655913978495,
+        "win points": -5.9655474087293285
+       },
+       "retreat to the pit": {
+        "cases": 29,
+        "matches": 27,
+        "energy": 46.84827586206896,
+        "energy 60 s before": 52.679310344827584,
+        "started at": 23.176862867449525,
+        "the 60 s before": -6.001050703627459,
+        "flags": 0.04624999999999999,
+        "net kills": -5.137931034482759,
+        "net pit NPCs": -3.7586206896551726,
+        "win points": -15.350953803930922
+       },
+       "trade with a split": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 47.974999999999994,
+        "energy 60 s before": 62.125,
+        "started at": 12.133514187399888,
+        "the 60 s before": 0.24426029504099445,
+        "flags": 0.3175,
+        "net kills": -3.0,
+        "net pit NPCs": 0.0,
+        "win points": -5.340980202609687
+       }
+      },
+      "53 to 62": {
+       "stay and fight": {
+        "cases": 232,
+        "matches": 173,
+        "energy": 57.00043103448276,
+        "energy 60 s before": 58.66990740740741,
+        "started at": 31.96306592390848,
+        "the 60 s before": -3.4548309537617747,
+        "flags": -0.11340707964601769,
+        "net kills": -3.1206896551724137,
+        "net pit NPCs": -1.3879310344827587,
+        "win points": -6.150629850054592
+       },
+       "fall to footmen": {
+        "cases": 73,
+        "matches": 67,
+        "energy": 56.65205479452055,
+        "energy 60 s before": 56.74225352112675,
+        "started at": 36.46851014993494,
+        "the 60 s before": -3.801165882536109,
+        "flags": -0.13939393939393938,
+        "net kills": -3.4794520547945207,
+        "net pit NPCs": -1.904109589041096,
+        "win points": -8.215434475373444
+       },
+       "retreat to the pit": {
+        "cases": 31,
+        "matches": 30,
+        "energy": 56.803225806451614,
+        "energy 60 s before": 58.306666666666665,
+        "started at": 9.143372414365826,
+        "the 60 s before": -3.960860432535449,
+        "flags": 0.017307692307692305,
+        "net kills": -6.612903225806452,
+        "net pit NPCs": -2.774193548387097,
+        "win points": -5.991092266946179
+       },
+       "trade with a split": {
+        "cases": 7,
+        "matches": 7,
+        "energy": 57.81428571428571,
+        "energy 60 s before": 64.57142857142857,
+        "started at": 44.96227354403805,
+        "the 60 s before": -0.22630423660151644,
+        "flags": -0.52,
+        "net kills": -2.7142857142857144,
+        "net pit NPCs": 0.14285714285714285,
+        "win points": -2.991529996920934
+       }
+      },
+      "62 or more": {
+       "stay and fight": {
+        "cases": 236,
+        "matches": 171,
+        "energy": 67.9063559322034,
+        "energy 60 s before": 63.54271356783919,
+        "started at": 31.490237886821415,
+        "the 60 s before": -3.8443413434079425,
+        "flags": -0.10314410480349344,
+        "net kills": -2.3220338983050848,
+        "net pit NPCs": -1.0635593220338984,
+        "win points": -2.1187665714490715
+       },
+       "fall to footmen": {
+        "cases": 61,
+        "matches": 58,
+        "energy": 68.06229508196722,
+        "energy 60 s before": 63.91320754716981,
+        "started at": 31.304190096994038,
+        "the 60 s before": -3.22989229644341,
+        "flags": -0.223448275862069,
+        "net kills": -2.7540983606557377,
+        "net pit NPCs": -1.4754098360655739,
+        "win points": -2.756635787191963
+       },
+       "retreat to the pit": {
+        "cases": 48,
+        "matches": 46,
+        "energy": 69.0625,
+        "energy 60 s before": 65.5446808510638,
+        "started at": 9.116044769971577,
+        "the 60 s before": -4.735798920735092,
+        "flags": 0.12413043478260867,
+        "net kills": -4.895833333333333,
+        "net pit NPCs": -2.7708333333333335,
+        "win points": -2.259945410511261
+       },
+       "trade with a split": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 70.77499999999999,
+        "energy 60 s before": 68.725,
+        "started at": 13.704389393207492,
+        "the 60 s before": -3.8904697452541526,
+        "flags": 0.2025,
+        "net kills": -4.5,
+        "net pit NPCs": 0.0,
+        "win points": -2.9258122987670383
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -4.720506566108673,
+      "the 60 s before": 0.3524850838183191
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      46.0,
+      56.2
+     ],
+     "bands": {
+      "under 46": {
+       "stay and fight": {
+        "cases": 213,
+        "matches": 154,
+        "energy": 36.94131455399061,
+        "energy 60 s before": 48.508490566037736,
+        "started at": 36.112895731851715,
+        "the 60 s before": -2.8783555402185135,
+        "flags": -0.13188118811881186,
+        "net kills": -3.023474178403756,
+        "net pit NPCs": -1.375586854460094,
+        "win points": -5.170914563080846
+       },
+       "fall to footmen": {
+        "cases": 88,
+        "matches": 77,
+        "energy": 36.11590909090909,
+        "energy 60 s before": 45.00470588235294,
+        "started at": 44.36936082300264,
+        "the 60 s before": -3.085669422420767,
+        "flags": -0.04604938271604941,
+        "net kills": -2.8636363636363638,
+        "net pit NPCs": -1.3636363636363635,
+        "win points": -7.024794346568469
+       },
+       "retreat to the pit": {
+        "cases": 31,
+        "matches": 30,
+        "energy": 39.94193548387098,
+        "energy 60 s before": 47.71612903225806,
+        "started at": 23.825551810441134,
+        "the 60 s before": -5.318788269676123,
+        "flags": 0.2811111111111111,
+        "net kills": -5.32258064516129,
+        "net pit NPCs": -3.3870967741935485,
+        "win points": -15.096431674511956
+       },
+       "trade with a split": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 39.1,
+        "energy 60 s before": 60.199999999999996,
+        "started at": 14.287896090275057,
+        "the 60 s before": 2.6546698486054128,
+        "flags": 0.2733333333333334,
+        "net kills": -2.6666666666666665,
+        "net pit NPCs": 0.0,
+        "win points": -5.385440824066785
+       }
+      },
+      "46 to 56": {
+       "stay and fight": {
+        "cases": 245,
+        "matches": 171,
+        "energy": 50.4661224489796,
+        "energy 60 s before": 54.41601731601731,
+        "started at": 32.82583252365185,
+        "the 60 s before": -3.623037308720728,
+        "flags": -0.04708860759493671,
+        "net kills": -3.2285714285714286,
+        "net pit NPCs": -1.6816326530612244,
+        "win points": -6.813994696677721
+       },
+       "fall to footmen": {
+        "cases": 73,
+        "matches": 65,
+        "energy": 49.60821917808219,
+        "energy 60 s before": 50.75774647887324,
+        "started at": 33.44118289701225,
+        "the 60 s before": -4.9305708862083835,
+        "flags": -0.11732394366197185,
+        "net kills": -2.8219178082191783,
+        "net pit NPCs": -1.8082191780821917,
+        "win points": -4.966397212166026
+       },
+       "retreat to the pit": {
+        "cases": 30,
+        "matches": 28,
+        "energy": 50.756666666666675,
+        "energy 60 s before": 50.95333333333334,
+        "started at": 5.950612564093146,
+        "the 60 s before": -4.629886925222323,
+        "flags": -0.07875,
+        "net kills": -6.433333333333334,
+        "net pit NPCs": -3.2,
+        "win points": -4.62164413479135
+       },
+       "trade with a split": {
+        "cases": 7,
+        "matches": 7,
+        "energy": 50.3,
+        "energy 60 s before": 57.199999999999996,
+        "started at": 31.96416537220127,
+        "the 60 s before": -1.4356041219578148,
+        "flags": -0.36000000000000004,
+        "net kills": -2.857142857142857,
+        "net pit NPCs": -0.14285714285714285,
+        "win points": -3.5104370641995404
+       }
+      },
+      "56 or more": {
+       "stay and fight": {
+        "cases": 229,
+        "matches": 168,
+        "energy": 65.3406113537118,
+        "energy 60 s before": 59.44919786096256,
+        "started at": 31.799397021626756,
+        "the 60 s before": -3.9422345633441602,
+        "flags": -0.1723766816143498,
+        "net kills": -2.427947598253275,
+        "net pit NPCs": -0.9737991266375546,
+        "win points": -2.3699014723144693
+       },
+       "fall to footmen": {
+        "cases": 66,
+        "matches": 63,
+        "energy": 64.66060606060606,
+        "energy 60 s before": 59.84912280701754,
+        "started at": 30.903712809744764,
+        "the 60 s before": -2.961732996288988,
+        "flags": -0.24209677419354841,
+        "net kills": -3.287878787878788,
+        "net pit NPCs": -1.7121212121212122,
+        "win points": -5.181038026464448
+       },
+       "retreat to the pit": {
+        "cases": 47,
+        "matches": 45,
+        "energy": 66.27446808510635,
+        "energy 60 s before": 60.84666666666666,
+        "started at": 10.128366679011554,
+        "the 60 s before": -4.703550856426213,
+        "flags": 0.0348888888888889,
+        "net kills": -4.914893617021277,
+        "net pit NPCs": -2.702127659574468,
+        "win points": -2.8242594540480357
+       },
+       "trade with a split": {
+        "cases": 5,
+        "matches": 5,
+        "energy": 67.4,
+        "energy 60 s before": 65.6,
+        "started at": 30.294936650892367,
+        "the 60 s before": -2.8167496298349564,
+        "flags": 0.06000000000000001,
+        "net kills": -4.2,
+        "net pit NPCs": 0.4,
+        "win points": -2.65569961247126
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -3.608061780641339,
+      "the 60 s before": 0.7335206910957917
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and fight": {
+       "cases": 86,
+       "matches": 71,
+       "energy": 62.951162790697666,
+       "energy 60 s before": 63.291044776119406,
+       "started at": 34.293652968314255,
+       "the 60 s before": -4.066389579751423,
+       "flags": -0.12976190476190477,
+       "net kills": -1.9767441860465116,
+       "net pit NPCs": -0.3953488372093023,
+       "win points": -1.4703598670502107
+      },
+      "fall to footmen": {
+       "cases": 27,
+       "matches": 22,
+       "energy": 59.22592592592593,
+       "energy 60 s before": 61.87619047619048,
+       "started at": 29.065773326920603,
+       "the 60 s before": -2.7506088975790504,
+       "flags": -0.2685185185185185,
+       "net kills": -2.4074074074074074,
+       "net pit NPCs": -1.2962962962962963,
+       "win points": -2.7362105403770633
+      },
+      "retreat to the pit": {
+       "cases": 19,
+       "matches": 18,
+       "energy": 60.56315789473685,
+       "energy 60 s before": 58.150000000000006,
+       "started at": 17.223211452087924,
+       "the 60 s before": -6.0588430676330365,
+       "flags": 0.07823529411764704,
+       "net kills": -4.105263157894737,
+       "net pit NPCs": -2.526315789473684,
+       "win points": -10.1372315457145
+      },
+      "trade with a split": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 59.6,
+       "energy 60 s before": 56.6,
+       "started at": 96.65712568163187,
+       "the 60 s before": 1.4781308318418285,
+       "flags": -0.51,
+       "net kills": -3.0,
+       "net pit NPCs": 2.0,
+       "win points": -1.5752488672881482
+      }
+     },
+     "two monks": {
+      "stay and fight": {
+       "cases": 197,
+       "matches": 140,
+       "energy": 57.99137055837563,
+       "energy 60 s before": 59.51325966850828,
+       "started at": 30.78898202826032,
+       "the 60 s before": -3.3981432574770998,
+       "flags": -0.15866310160427807,
+       "net kills": -3.431472081218274,
+       "net pit NPCs": -1.7766497461928934,
+       "win points": -6.5312344143008945
+      },
+      "fall to footmen": {
+       "cases": 73,
+       "matches": 66,
+       "energy": 55.92876712328767,
+       "energy 60 s before": 57.69999999999999,
+       "started at": 38.52646922810126,
+       "the 60 s before": -3.2794864227582834,
+       "flags": -0.1272058823529412,
+       "net kills": -3.1780821917808217,
+       "net pit NPCs": -1.9726027397260273,
+       "win points": -7.564223308561065
+      },
+      "retreat to the pit": {
+       "cases": 31,
+       "matches": 31,
+       "energy": 61.75161290322581,
+       "energy 60 s before": 59.741935483870975,
+       "started at": 11.965791560664691,
+       "the 60 s before": -4.863195767664179,
+       "flags": 0.04833333333333334,
+       "net kills": -6.709677419354839,
+       "net pit NPCs": -3.967741935483871,
+       "win points": -7.938884338397836
+      },
+      "trade with a split": {
+       "cases": 3,
+       "matches": 3,
+       "energy": 68.73333333333333,
+       "energy 60 s before": 71.06666666666666,
+       "started at": 34.86035895883069,
+       "the 60 s before": -0.3363417548505783,
+       "flags": 0.18000000000000002,
+       "net kills": -4.0,
+       "net pit NPCs": 0.3333333333333333,
+       "win points": -5.088200668200501
+      }
+     },
+     "three or more": {
+      "stay and fight": {
+       "cases": 404,
+       "matches": 224,
+       "energy": 55.64504950495049,
+       "energy 60 s before": 58.42303664921466,
+       "started at": 34.65780708487459,
+       "the 60 s before": -3.39365306928911,
+       "flags": -0.09122762148337596,
+       "net kills": -2.8341584158415842,
+       "net pit NPCs": -1.3465346534653466,
+       "win points": -4.70405151385812
+      },
+      "fall to footmen": {
+       "cases": 127,
+       "matches": 99,
+       "energy": 53.308661417322824,
+       "energy 60 s before": 56.437903225806444,
+       "started at": 37.70194500685852,
+       "the 60 s before": -4.056496461325474,
+       "flags": -0.09386554621848739,
+       "net kills": -2.9763779527559056,
+       "net pit NPCs": -1.4645669291338583,
+       "win points": -5.485129311950079
+      },
+      "retreat to the pit": {
+       "cases": 58,
+       "matches": 53,
+       "energy": 58.09482758620689,
+       "energy 60 s before": 60.68070175438596,
+       "started at": 11.982123465340285,
+       "the 60 s before": -4.484571730540788,
+       "flags": 0.08690909090909091,
+       "net kills": -5.224137931034483,
+       "net pit NPCs": -2.706896551724138,
+       "win points": -5.1838980419820775
+      },
+      "trade with a split": {
+       "cases": 11,
+       "matches": 11,
+       "energy": 55.80909090909092,
+       "energy 60 s before": 64.14545454545454,
+       "started at": 19.713575142961083,
+       "the 60 s before": -1.5125520931230312,
+       "flags": -0.10699999999999998,
+       "net kills": -3.090909090909091,
+       "net pit NPCs": -0.18181818181818182,
+       "win points": -3.378911737460344
+      }
+     }
+    }
+   }
+  },
+  "5. Up a player or more at the main fight (not a family, R-557: context)": {
+   "cases": 1311,
+   "with energy": 1263,
+   "calls": {
+    "stay and kill": 891,
+    "push into their base for NPCs": 203,
+    "push their flagger": 8,
+    "run a flag for a backup": 93,
+    "fall back and reset": 68
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      54.5,
+      63.5
+     ],
+     "bands": {
+      "under 54": {
+       "stay and kill": {
+        "cases": 299,
+        "matches": 205,
+        "energy": 47.346488294314376,
+        "energy 60 s before": 56.69897260273972,
+        "started at": 72.06362147453656,
+        "the 60 s before": 3.303339269752781,
+        "flags": -0.000830324909747294,
+        "net kills": 4.1438127090301,
+        "net pit NPCs": 1.9464882943143813,
+        "win points": 6.232985610087964
+       },
+       "push into their base for NPCs": {
+        "cases": 55,
+        "matches": 52,
+        "energy": 48.01636363636363,
+        "energy 60 s before": 55.83773584905661,
+        "started at": 76.7250822326924,
+        "the 60 s before": 5.173320308203951,
+        "flags": -0.30081632653061224,
+        "net kills": 3.8363636363636364,
+        "net pit NPCs": 2.6363636363636362,
+        "win points": 8.327425505822537
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 50.2,
+        "energy 60 s before": 54.0,
+        "started at": 86.39673463814337,
+        "the 60 s before": -0.4801993717109987,
+        "flags": 0.07,
+        "net kills": 5.0,
+        "net pit NPCs": 1.0,
+        "win points": 10.265522713620179
+       },
+       "run a flag for a backup": {
+        "cases": 35,
+        "matches": 32,
+        "energy": 47.64857142857143,
+        "energy 60 s before": 53.69428571428572,
+        "started at": 50.06254913941945,
+        "the 60 s before": 3.8104000286709305,
+        "flags": 0.8508823529411765,
+        "net kills": 2.4857142857142858,
+        "net pit NPCs": 1.4,
+        "win points": 12.520600675184223
+       },
+       "fall back and reset": {
+        "cases": 19,
+        "matches": 19,
+        "energy": 47.857894736842105,
+        "energy 60 s before": 59.1,
+        "started at": 70.44516483003372,
+        "the 60 s before": 2.9226945885299247,
+        "flags": 0.043888888888888894,
+        "net kills": 2.5789473684210527,
+        "net pit NPCs": 1.5789473684210527,
+        "win points": 6.678951139539535
+       }
+      },
+      "54 to 64": {
+       "stay and kill": {
+        "cases": 301,
+        "matches": 208,
+        "energy": 58.668770764119586,
+        "energy 60 s before": 59.14965034965034,
+        "started at": 76.34247759732136,
+        "the 60 s before": 3.4714600148294914,
+        "flags": 0.07147058823529413,
+        "net kills": 4.229235880398671,
+        "net pit NPCs": 2.0764119601328903,
+        "win points": 5.804705867524931
+       },
+       "push into their base for NPCs": {
+        "cases": 51,
+        "matches": 50,
+        "energy": 59.333333333333336,
+        "energy 60 s before": 59.183673469387756,
+        "started at": 83.88585173134561,
+        "the 60 s before": 3.5863782995046956,
+        "flags": 0.0735714285714286,
+        "net kills": 5.392156862745098,
+        "net pit NPCs": 2.6470588235294117,
+        "win points": 8.476426345879428
+       },
+       "push their flagger": {
+        "cases": 5,
+        "matches": 5,
+        "energy": 59.04,
+        "energy 60 s before": 64.05999999999999,
+        "started at": 61.81589210659575,
+        "the 60 s before": 5.571194644190164,
+        "flags": 0.7380000000000001,
+        "net kills": 1.0,
+        "net pit NPCs": 1.0,
+        "win points": 0.6981207313398654
+       },
+       "run a flag for a backup": {
+        "cases": 28,
+        "matches": 26,
+        "energy": 58.19285714285714,
+        "energy 60 s before": 62.03076923076924,
+        "started at": 65.9059710074659,
+        "the 60 s before": 4.663316510725237,
+        "flags": 0.5289285714285714,
+        "net kills": 1.8571428571428572,
+        "net pit NPCs": 0.2857142857142857,
+        "win points": 7.8046981671473485
+       },
+       "fall back and reset": {
+        "cases": 19,
+        "matches": 18,
+        "energy": 59.32631578947369,
+        "energy 60 s before": 62.33157894736842,
+        "started at": 76.51442115553955,
+        "the 60 s before": 0.7311769127774478,
+        "flags": -0.11105263157894732,
+        "net kills": 3.1578947368421053,
+        "net pit NPCs": 1.2105263157894737,
+        "win points": 1.1546943550537683
+       }
+      },
+      "64 or more": {
+       "stay and kill": {
+        "cases": 274,
+        "matches": 202,
+        "energy": 69.42664233576643,
+        "energy 60 s before": 65.30145631067963,
+        "started at": 70.37693439096152,
+        "the 60 s before": 3.74221506977968,
+        "flags": 0.056038461538461516,
+        "net kills": 2.7992700729927007,
+        "net pit NPCs": 0.8722627737226277,
+        "win points": 1.9798840115608334
+       },
+       "push into their base for NPCs": {
+        "cases": 91,
+        "matches": 77,
+        "energy": 69.97252747252747,
+        "energy 60 s before": 64.29294117647058,
+        "started at": 87.32148352991427,
+        "the 60 s before": 3.9171737773472395,
+        "flags": 0.11034482758620691,
+        "net kills": 4.362637362637362,
+        "net pit NPCs": 2.197802197802198,
+        "win points": 3.144311222968953
+       },
+       "push their flagger": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 67.25,
+        "energy 60 s before": 64.0,
+        "started at": 89.77772157408151,
+        "the 60 s before": 12.798354209155612,
+        "flags": 1.375,
+        "net kills": 7.5,
+        "net pit NPCs": 3.0,
+        "win points": 8.289662947856247
+       },
+       "run a flag for a backup": {
+        "cases": 26,
+        "matches": 24,
+        "energy": 68.03461538461539,
+        "energy 60 s before": 60.29,
+        "started at": 63.64519725020256,
+        "the 60 s before": 3.4053053747686604,
+        "flags": 0.3104,
+        "net kills": 1.7307692307692308,
+        "net pit NPCs": 1.2692307692307692,
+        "win points": 7.27775113078167
+       },
+       "fall back and reset": {
+        "cases": 27,
+        "matches": 27,
+        "energy": 69.15555555555557,
+        "energy 60 s before": 64.12608695652175,
+        "started at": 69.75002640234939,
+        "the 60 s before": 4.413629803670029,
+        "flags": -0.2403703703703704,
+        "net kills": 2.1481481481481484,
+        "net pit NPCs": 0.2222222222222222,
+        "win points": 1.6169863392691939
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 4.516413497787374,
+      "the 60 s before": -0.2990065835201352
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      47.0,
+      59.0
+     ],
+     "bands": {
+      "under 47": {
+       "stay and kill": {
+        "cases": 270,
+        "matches": 188,
+        "energy": 38.019259259259265,
+        "energy 60 s before": 49.46742424242425,
+        "started at": 72.03905122750076,
+        "the 60 s before": 3.302130564624715,
+        "flags": 0.000850202429149801,
+        "net kills": 4.174074074074074,
+        "net pit NPCs": 1.9222222222222223,
+        "win points": 6.176238761455303
+       },
+       "push into their base for NPCs": {
+        "cases": 51,
+        "matches": 50,
+        "energy": 39.235294117647065,
+        "energy 60 s before": 47.51599999999999,
+        "started at": 72.79717510875152,
+        "the 60 s before": 5.438017777582515,
+        "flags": -0.3315555555555555,
+        "net kills": 4.176470588235294,
+        "net pit NPCs": 2.3529411764705883,
+        "win points": 10.875174463287642
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 40.2,
+        "energy 60 s before": 63.2,
+        "started at": 99.19614383596378,
+        "the 60 s before": 0.40301649718185173,
+        "flags": 0.28,
+        "net kills": 1.0,
+        "net pit NPCs": 2.0,
+        "win points": 0.36812600464601886
+       },
+       "run a flag for a backup": {
+        "cases": 28,
+        "matches": 26,
+        "energy": 37.775,
+        "energy 60 s before": 45.38571428571429,
+        "started at": 46.43687590275959,
+        "the 60 s before": 1.9353300438677927,
+        "flags": 0.7422222222222222,
+        "net kills": 2.107142857142857,
+        "net pit NPCs": 1.2857142857142858,
+        "win points": 12.912495203158633
+       },
+       "fall back and reset": {
+        "cases": 18,
+        "matches": 18,
+        "energy": 40.71666666666667,
+        "energy 60 s before": 54.55555555555556,
+        "started at": 70.00152013186299,
+        "the 60 s before": 1.4379627802872745,
+        "flags": 0.0211764705882353,
+        "net kills": 2.7777777777777777,
+        "net pit NPCs": 1.2222222222222223,
+        "win points": 3.1926562886525502
+       }
+      },
+      "47 to 59": {
+       "stay and kill": {
+        "cases": 330,
+        "matches": 226,
+        "energy": 51.7490909090909,
+        "energy 60 s before": 54.0422712933754,
+        "started at": 76.6546443495535,
+        "the 60 s before": 3.367606073458243,
+        "flags": 0.031721854304635755,
+        "net kills": 4.16969696969697,
+        "net pit NPCs": 2.0606060606060606,
+        "win points": 5.639615281920911
+       },
+       "push into their base for NPCs": {
+        "cases": 60,
+        "matches": 59,
+        "energy": 52.42333333333333,
+        "energy 60 s before": 53.162068965517236,
+        "started at": 90.64536631893907,
+        "the 60 s before": 3.8226660401340293,
+        "flags": 0.03764705882352941,
+        "net kills": 5.116666666666666,
+        "net pit NPCs": 2.6666666666666665,
+        "win points": 4.831000957198092
+       },
+       "push their flagger": {
+        "cases": 5,
+        "matches": 5,
+        "energy": 51.44,
+        "energy 60 s before": 55.14,
+        "started at": 59.25601026703167,
+        "the 60 s before": 5.394551470411594,
+        "flags": 0.696,
+        "net kills": 1.8,
+        "net pit NPCs": 0.8,
+        "win points": 2.6776000731346974
+       },
+       "run a flag for a backup": {
+        "cases": 38,
+        "matches": 34,
+        "energy": 52.22631578947369,
+        "energy 60 s before": 55.84857142857143,
+        "started at": 63.93709768227565,
+        "the 60 s before": 5.943920026249483,
+        "flags": 0.3997368421052631,
+        "net kills": 1.8421052631578947,
+        "net pit NPCs": 0.7894736842105263,
+        "win points": 6.892891462219294
+       },
+       "fall back and reset": {
+        "cases": 20,
+        "matches": 20,
+        "energy": 50.800000000000004,
+        "energy 60 s before": 57.54,
+        "started at": 81.36346926806588,
+        "the 60 s before": 3.2265800783047283,
+        "flags": -0.07299999999999998,
+        "net kills": 3.85,
+        "net pit NPCs": 1.75,
+        "win points": 4.96021075253987
+       }
+      },
+      "59 or more": {
+       "stay and kill": {
+        "cases": 274,
+        "matches": 200,
+        "energy": 66.86715328467153,
+        "energy 60 s before": 61.08029556650247,
+        "started at": 69.57230705848818,
+        "the 60 s before": 3.8864584937574747,
+        "flags": 0.09226923076923077,
+        "net kills": 2.832116788321168,
+        "net pit NPCs": 0.9014598540145985,
+        "win points": 2.279963044095408
+       },
+       "push into their base for NPCs": {
+        "cases": 86,
+        "matches": 74,
+        "energy": 67.84767441860464,
+        "energy 60 s before": 60.498734177215184,
+        "started at": 84.80157037949112,
+        "the 60 s before": 3.6585630017408333,
+        "flags": 0.13353658536585364,
+        "net kills": 4.22093023255814,
+        "net pit NPCs": 2.3255813953488373,
+        "win points": 3.8598199150082535
+       },
+       "push their flagger": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 66.0,
+        "energy 60 s before": 61.0,
+        "started at": 89.77772157408151,
+        "the 60 s before": 12.798354209155612,
+        "flags": 1.375,
+        "net kills": 7.5,
+        "net pit NPCs": 3.0,
+        "win points": 8.289662947856247
+       },
+       "run a flag for a backup": {
+        "cases": 23,
+        "matches": 21,
+        "energy": 65.9608695652174,
+        "energy 60 s before": 55.82222222222222,
+        "started at": 66.1951869300108,
+        "the 60 s before": 3.360549757260099,
+        "flags": 0.7395454545454547,
+        "net kills": 2.391304347826087,
+        "net pit NPCs": 1.0434782608695652,
+        "win points": 9.673667846048788
+       },
+       "fall back and reset": {
+        "cases": 27,
+        "matches": 27,
+        "energy": 66.7925925925926,
+        "energy 60 s before": 59.821739130434786,
+        "started at": 66.22911477238793,
+        "the 60 s before": 3.5009614086080547,
+        "flags": -0.24851851851851856,
+        "net kills": 1.4814814814814814,
+        "net pit NPCs": 0.07407407407407407,
+        "win points": 1.3268839744813958
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 4.189063602651776,
+      "the 60 s before": -0.4385296000516261
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and kill": {
+       "cases": 69,
+       "matches": 55,
+       "energy": 61.82028985507245,
+       "energy 60 s before": 61.13492063492062,
+       "started at": 66.94822699772924,
+       "the 60 s before": 5.0052612413924455,
+       "flags": 0.11500000000000002,
+       "net kills": 2.7246376811594204,
+       "net pit NPCs": 0.6956521739130435,
+       "win points": 3.2497776113062375
+      },
+      "push into their base for NPCs": {
+       "cases": 31,
+       "matches": 28,
+       "energy": 66.69677419354838,
+       "energy 60 s before": 63.15555555555556,
+       "started at": 75.21655020070177,
+       "the 60 s before": 3.6518169959704174,
+       "flags": 0.23967741935483874,
+       "net kills": 3.225806451612903,
+       "net pit NPCs": 2.032258064516129,
+       "win points": 4.600882544394444
+      },
+      "push their flagger": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 65.0,
+       "energy 60 s before": 67.0,
+       "started at": 85.51842315655593,
+       "the 60 s before": 11.293490525491768,
+       "flags": 0.97,
+       "net kills": 4.0,
+       "net pit NPCs": -1.0,
+       "win points": 10.61634588731959
+      },
+      "run a flag for a backup": {
+       "cases": 13,
+       "matches": 11,
+       "energy": 58.65384615384615,
+       "energy 60 s before": 59.083333333333336,
+       "started at": 67.07050799455223,
+       "the 60 s before": 2.812551766875344,
+       "flags": 0.6523076923076924,
+       "net kills": 4.3076923076923075,
+       "net pit NPCs": 1.0,
+       "win points": 8.093745849651974
+      },
+      "fall back and reset": {
+       "cases": 9,
+       "matches": 9,
+       "energy": 58.333333333333336,
+       "energy 60 s before": 67.26666666666668,
+       "started at": 88.19779459602891,
+       "the 60 s before": 5.678255054420905,
+       "flags": -0.1933333333333333,
+       "net kills": 3.5555555555555554,
+       "net pit NPCs": 0.7777777777777778,
+       "win points": 4.105270238880225
+      }
+     },
+     "two monks": {
+      "stay and kill": {
+       "cases": 273,
+       "matches": 189,
+       "energy": 58.26117216117216,
+       "energy 60 s before": 60.49676113360324,
+       "started at": 74.1146579323091,
+       "the 60 s before": 2.847103608330333,
+       "flags": 0.06824701195219122,
+       "net kills": 4.1098901098901095,
+       "net pit NPCs": 2.0476190476190474,
+       "win points": 6.171748446943547
+      },
+      "push into their base for NPCs": {
+       "cases": 59,
+       "matches": 49,
+       "energy": 62.42881355932203,
+       "energy 60 s before": 60.76896551724137,
+       "started at": 84.30417945554258,
+       "the 60 s before": 3.7621746824539963,
+       "flags": -0.11039215686274512,
+       "net kills": 5.220338983050848,
+       "net pit NPCs": 2.9491525423728815,
+       "win points": 9.221582080215983
+      },
+      "push their flagger": {
+       "cases": 5,
+       "matches": 5,
+       "energy": 61.54,
+       "energy 60 s before": 62.67999999999999,
+       "started at": 60.78406733772441,
+       "the 60 s before": 8.351234923317685,
+       "flags": 1.0379999999999998,
+       "net kills": 3.0,
+       "net pit NPCs": 2.0,
+       "win points": 1.8170915320892427
+      },
+      "run a flag for a backup": {
+       "cases": 28,
+       "matches": 25,
+       "energy": 57.83571428571429,
+       "energy 60 s before": 58.824,
+       "started at": 62.05892518380759,
+       "the 60 s before": 6.775557494812855,
+       "flags": 0.5403846153846154,
+       "net kills": 1.8571428571428572,
+       "net pit NPCs": 1.3571428571428572,
+       "win points": 9.840247044363236
+      },
+      "fall back and reset": {
+       "cases": 20,
+       "matches": 20,
+       "energy": 64.375,
+       "energy 60 s before": 61.6888888888889,
+       "started at": 69.57523449731843,
+       "the 60 s before": 4.09191566844113,
+       "flags": -0.12799999999999997,
+       "net kills": 2.7,
+       "net pit NPCs": 1.0,
+       "win points": 5.091852867969023
+      }
+     },
+     "three or more": {
+      "stay and kill": {
+       "cases": 532,
+       "matches": 276,
+       "energy": 57.646428571428565,
+       "energy 60 s before": 59.34767932489452,
+       "started at": 73.22680323766902,
+       "the 60 s before": 3.608015024429888,
+       "flags": 0.019193548387096783,
+       "net kills": 3.7011278195488724,
+       "net pit NPCs": 1.5770676691729324,
+       "win points": 4.218506393821908
+      },
+      "push into their base for NPCs": {
+       "cases": 107,
+       "matches": 97,
+       "energy": 58.72429906542056,
+       "energy 60 s before": 59.75,
+       "started at": 85.40797493663682,
+       "the 60 s before": 4.568702499167215,
+       "flags": -0.040104166666666656,
+       "net kills": 4.4392523364485985,
+       "net pit NPCs": 2.2710280373831777,
+       "win points": 4.576988468610227
+      },
+      "push their flagger": {
+       "cases": 2,
+       "matches": 2,
+       "energy": 53.6,
+       "energy 60 s before": 60.95,
+       "started at": 92.79643923705358,
+       "the 60 s before": -0.03859143726457348,
+       "flags": 0.17500000000000002,
+       "net kills": 3.0,
+       "net pit NPCs": 1.5,
+       "win points": 5.316824359133099
+      },
+      "run a flag for a backup": {
+       "cases": 48,
+       "matches": 42,
+       "energy": 55.918749999999996,
+       "energy 60 s before": 57.2340909090909,
+       "started at": 55.05760473996252,
+       "the 60 s before": 2.717654072838328,
+       "flags": 0.6035416666666666,
+       "net kills": 1.5833333333333333,
+       "net pit NPCs": 0.8125,
+       "win points": 9.692260175505224
+      },
+      "fall back and reset": {
+       "cases": 36,
+       "matches": 34,
+       "energy": 58.088888888888896,
+       "energy 60 s before": 60.77352941176471,
+       "started at": 69.17216681329711,
+       "the 60 s before": 1.3581843084565366,
+       "flags": -0.10028571428571428,
+       "net kills": 2.25,
+       "net pit NPCs": 0.8888888888888888,
+       "win points": 1.4920390568955146
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      45.4,
+      56.0
+     ],
+     "bands": {
+      "under 45": {
+       "stay and kill": {
+        "cases": 286,
+        "matches": 195,
+        "energy": 36.58146853146853,
+        "energy 60 s before": 46.42545454545454,
+        "started at": 87.83737841987467,
+        "the 60 s before": 3.0750650844793865,
+        "flags": 0.012795275590551184,
+        "net kills": 6.2377622377622375,
+        "net pit NPCs": 2.6083916083916083,
+        "win points": 5.369958010866664
+       },
+       "push into their base for NPCs": {
+        "cases": 70,
+        "matches": 62,
+        "energy": 37.40142857142857,
+        "energy 60 s before": 50.79848484848485,
+        "started at": 87.18778558504854,
+        "the 60 s before": 3.746059666551531,
+        "flags": -0.11263157894736842,
+        "net kills": 5.328571428571428,
+        "net pit NPCs": 2.7,
+        "win points": 6.226764653823243
+       },
+       "push their flagger": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 37.6,
+        "energy 60 s before": 45.1,
+        "started at": 97.50120547125654,
+        "the 60 s before": 0.9793761222598951,
+        "flags": 0.645,
+        "net kills": 3.0,
+        "net pit NPCs": 2.5,
+        "win points": 2.1671435619979365
+       },
+       "run a flag for a backup": {
+        "cases": 13,
+        "matches": 13,
+        "energy": 35.74615384615385,
+        "energy 60 s before": 47.74615384615385,
+        "started at": 60.09325349579153,
+        "the 60 s before": 3.7949061818821193,
+        "flags": 1.02,
+        "net kills": 2.1538461538461537,
+        "net pit NPCs": 1.4615384615384615,
+        "win points": 11.990708976134142
+       },
+       "fall back and reset": {
+        "cases": 15,
+        "matches": 15,
+        "energy": 37.36666666666667,
+        "energy 60 s before": 47.53333333333333,
+        "started at": 87.46635125873394,
+        "the 60 s before": 2.9261011939699797,
+        "flags": -0.03000000000000001,
+        "net kills": 4.866666666666666,
+        "net pit NPCs": 1.9333333333333333,
+        "win points": 2.7746082555413443
+       }
+      },
+      "45 to 56": {
+       "stay and kill": {
+        "cases": 271,
+        "matches": 188,
+        "energy": 50.61070110701107,
+        "energy 60 s before": 53.99011406844107,
+        "started at": 73.02822321551614,
+        "the 60 s before": 4.164512775279936,
+        "flags": 0.06116935483870967,
+        "net kills": 3.782287822878229,
+        "net pit NPCs": 1.8376383763837638,
+        "win points": 6.766692359416768
+       },
+       "push into their base for NPCs": {
+        "cases": 65,
+        "matches": 61,
+        "energy": 50.519999999999996,
+        "energy 60 s before": 54.44666666666665,
+        "started at": 85.05775731471567,
+        "the 60 s before": 4.841702824501607,
+        "flags": 0.045238095238095265,
+        "net kills": 4.4,
+        "net pit NPCs": 2.523076923076923,
+        "win points": 5.948615090836106
+       },
+       "push their flagger": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 47.800000000000004,
+        "energy 60 s before": 46.23333333333333,
+        "started at": 63.97727427415215,
+        "the 60 s before": 5.3733536459348,
+        "flags": 1.2666666666666666,
+        "net kills": 5.333333333333333,
+        "net pit NPCs": 2.0,
+        "win points": 5.237859447842658
+       },
+       "run a flag for a backup": {
+        "cases": 24,
+        "matches": 22,
+        "energy": 51.987500000000004,
+        "energy 60 s before": 52.404545454545456,
+        "started at": 59.819705125875686,
+        "the 60 s before": 5.609815014739684,
+        "flags": 0.48727272727272714,
+        "net kills": 1.9583333333333333,
+        "net pit NPCs": 0.7916666666666666,
+        "win points": 11.393913367575585
+       },
+       "fall back and reset": {
+        "cases": 23,
+        "matches": 23,
+        "energy": 51.13478260869566,
+        "energy 60 s before": 53.68695652173913,
+        "started at": 80.94778352647668,
+        "the 60 s before": 3.7338936371676663,
+        "flags": -0.15086956521739128,
+        "net kills": 3.5217391304347827,
+        "net pit NPCs": 0.8260869565217391,
+        "win points": 4.999916953893228
+       }
+      },
+      "56 or more": {
+       "stay and kill": {
+        "cases": 262,
+        "matches": 186,
+        "energy": 63.6793893129771,
+        "energy 60 s before": 60.42227488151658,
+        "started at": 61.05677669890295,
+        "the 60 s before": 3.473166872342296,
+        "flags": 0.045849802371541494,
+        "net kills": 1.816793893129771,
+        "net pit NPCs": 0.7862595419847328,
+        "win points": 3.312194381889938
+       },
+       "push into their base for NPCs": {
+        "cases": 52,
+        "matches": 50,
+        "energy": 64.7326923076923,
+        "energy 60 s before": 59.67959183673469,
+        "started at": 75.56927263165646,
+        "the 60 s before": 3.599887775810055,
+        "flags": 0.017659574468085106,
+        "net kills": 3.8846153846153846,
+        "net pit NPCs": 2.1923076923076925,
+        "win points": 8.92059944507139
+       },
+       "push their flagger": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 63.1,
+        "energy 60 s before": 56.96666666666667,
+        "started at": 62.69913485143852,
+        "the 60 s before": 11.631223028408952,
+        "flags": 0.47333333333333333,
+        "net kills": 1.0,
+        "net pit NPCs": 0.3333333333333333,
+        "win points": 3.4291955995027177
+       },
+       "run a flag for a backup": {
+        "cases": 44,
+        "matches": 41,
+        "energy": 62.51136363636363,
+        "energy 60 s before": 60.78095238095237,
+        "started at": 57.67746677041367,
+        "the 60 s before": 3.6079846946125533,
+        "flags": 0.5713636363636363,
+        "net kills": 2.0,
+        "net pit NPCs": 0.9090909090909091,
+        "win points": 7.613199924723019
+       },
+       "fall back and reset": {
+        "cases": 25,
+        "matches": 25,
+        "energy": 63.916000000000004,
+        "energy 60 s before": 60.36086956521739,
+        "started at": 54.53392999252383,
+        "the 60 s before": 1.1289766226096278,
+        "flags": -0.0196,
+        "net kills": 0.48,
+        "net pit NPCs": 0.8,
+        "win points": 4.486291923476665
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.9959128594565767,
+      "the 60 s before": -0.21488679745544204
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      37.0,
+      49.5
+     ],
+     "bands": {
+      "under 37": {
+       "stay and kill": {
+        "cases": 286,
+        "matches": 196,
+        "energy": 26.338461538461537,
+        "energy 60 s before": 39.19202898550725,
+        "started at": 85.84986720483396,
+        "the 60 s before": 3.3598105961351656,
+        "flags": 0.02381889763779528,
+        "net kills": 5.839160839160839,
+        "net pit NPCs": 2.4825174825174825,
+        "win points": 5.29151823958188
+       },
+       "push into their base for NPCs": {
+        "cases": 61,
+        "matches": 58,
+        "energy": 26.295081967213118,
+        "energy 60 s before": 42.56315789473683,
+        "started at": 86.60922367321862,
+        "the 60 s before": 3.8478674143636606,
+        "flags": -0.16461538461538458,
+        "net kills": 5.360655737704918,
+        "net pit NPCs": 2.6065573770491803,
+        "win points": 6.180588536139337
+       },
+       "push their flagger": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 14.6,
+        "energy 60 s before": 21.6,
+        "started at": 97.50120547125654,
+        "the 60 s before": 0.9793761222598951,
+        "flags": 0.645,
+        "net kills": 3.0,
+        "net pit NPCs": 2.5,
+        "win points": 2.1671435619979365
+       },
+       "run a flag for a backup": {
+        "cases": 20,
+        "matches": 19,
+        "energy": 27.46,
+        "energy 60 s before": 40.735,
+        "started at": 65.80851142926561,
+        "the 60 s before": 4.2500863609409425,
+        "flags": 0.938,
+        "net kills": 2.35,
+        "net pit NPCs": 1.2,
+        "win points": 9.838949956387808
+       },
+       "fall back and reset": {
+        "cases": 15,
+        "matches": 15,
+        "energy": 26.913333333333334,
+        "energy 60 s before": 42.913333333333334,
+        "started at": 84.22593425573955,
+        "the 60 s before": 3.1214667877893545,
+        "flags": -0.03785714285714285,
+        "net kills": 5.266666666666667,
+        "net pit NPCs": 1.2666666666666666,
+        "win points": 0.8375640390773109
+       }
+      },
+      "37 to 50": {
+       "stay and kill": {
+        "cases": 274,
+        "matches": 204,
+        "energy": 43.68649635036496,
+        "energy 60 s before": 47.257894736842104,
+        "started at": 74.01281891580179,
+        "the 60 s before": 3.947668462327917,
+        "flags": 0.019920634920634925,
+        "net kills": 4.032846715328467,
+        "net pit NPCs": 1.9708029197080292,
+        "win points": 6.515092608496644
+       },
+       "push into their base for NPCs": {
+        "cases": 69,
+        "matches": 63,
+        "energy": 43.14782608695652,
+        "energy 60 s before": 48.01230769230769,
+        "started at": 86.6725136701536,
+        "the 60 s before": 4.353590987451279,
+        "flags": 0.07968750000000001,
+        "net kills": 4.927536231884058,
+        "net pit NPCs": 2.5652173913043477,
+        "win points": 5.631505881169832
+       },
+       "push their flagger": {
+        "cases": 4,
+        "matches": 4,
+        "energy": 39.775000000000006,
+        "energy 60 s before": 42.85,
+        "started at": 61.18621929711845,
+        "the 60 s before": 8.085573157888145,
+        "flags": 0.8375,
+        "net kills": 4.0,
+        "net pit NPCs": 1.75,
+        "win points": 3.2404392883451942
+       },
+       "run a flag for a backup": {
+        "cases": 19,
+        "matches": 18,
+        "energy": 44.22105263157895,
+        "energy 60 s before": 48.711764705882345,
+        "started at": 59.21478168216922,
+        "the 60 s before": 5.2829721111505314,
+        "flags": 0.2688235294117647,
+        "net kills": 2.1052631578947367,
+        "net pit NPCs": 1.3157894736842106,
+        "win points": 13.502000707331005
+       },
+       "fall back and reset": {
+        "cases": 21,
+        "matches": 21,
+        "energy": 42.00476190476191,
+        "energy 60 s before": 46.035,
+        "started at": 79.54357629861858,
+        "the 60 s before": 3.9523775931843472,
+        "flags": -0.2604761904761905,
+        "net kills": 3.0,
+        "net pit NPCs": 1.0,
+        "win points": 4.469435876248683
+       }
+      },
+      "50 or more": {
+       "stay and kill": {
+        "cases": 259,
+        "matches": 188,
+        "energy": 59.87181467181467,
+        "energy 60 s before": 55.43526570048309,
+        "started at": 62.07119618181238,
+        "the 60 s before": 3.354601738568633,
+        "flags": 0.07610441767068274,
+        "net kills": 1.9691119691119692,
+        "net pit NPCs": 0.7722007722007722,
+        "win points": 3.6249689471678597
+       },
+       "push into their base for NPCs": {
+        "cases": 57,
+        "matches": 55,
+        "energy": 60.514035087719286,
+        "energy 60 s before": 54.74339622641508,
+        "started at": 75.40237378858102,
+        "the 60 s before": 4.007429138810953,
+        "flags": 0.01411764705882354,
+        "net kills": 3.4035087719298245,
+        "net pit NPCs": 2.2982456140350878,
+        "win points": 9.137103005446813
+       },
+       "push their flagger": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 65.6,
+        "energy 60 s before": 51.6,
+        "started at": 67.64217509414911,
+        "the 60 s before": 9.335718695739335,
+        "flags": 0.935,
+        "net kills": 1.5,
+        "net pit NPCs": 0.0,
+        "win points": 6.519703994327674
+       },
+       "run a flag for a backup": {
+        "cases": 42,
+        "matches": 40,
+        "energy": 59.07857142857142,
+        "energy 60 s before": 54.817499999999995,
+        "started at": 55.08196847185667,
+        "the 60 s before": 3.73682036885225,
+        "flags": 0.6140476190476191,
+        "net kills": 1.8095238095238095,
+        "net pit NPCs": 0.6904761904761905,
+        "win points": 7.404688610293466
+       },
+       "fall back and reset": {
+        "cases": 27,
+        "matches": 27,
+        "energy": 58.951851851851856,
+        "energy 60 s before": 54.53461538461538,
+        "started at": 59.382904581332795,
+        "the 60 s before": 1.148768469380776,
+        "flags": 0.06000000000000001,
+        "net kills": 0.8888888888888888,
+        "net pit NPCs": 1.037037037037037,
+        "win points": 6.013070291562928
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.450733411674924,
+      "the 60 s before": 0.09465178462479606
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and kill": {
+       "cases": 81,
+       "matches": 74,
+       "energy": 55.41234567901234,
+       "energy 60 s before": 55.11578947368421,
+       "started at": 66.12992153826582,
+       "the 60 s before": 1.8126608012128176,
+       "flags": 0.12026315789473682,
+       "net kills": 2.691358024691358,
+       "net pit NPCs": 1.1358024691358024,
+       "win points": 3.9139921539096267
+      },
+      "push into their base for NPCs": {
+       "cases": 36,
+       "matches": 32,
+       "energy": 53.113888888888894,
+       "energy 60 s before": 57.79,
+       "started at": 80.5267179481992,
+       "the 60 s before": 4.655044785709421,
+       "flags": 0.20774193548387102,
+       "net kills": 4.138888888888889,
+       "net pit NPCs": 2.6944444444444446,
+       "win points": 5.853305788706971
+      },
+      "push their flagger": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 61.0,
+       "energy 60 s before": 44.0,
+       "started at": 85.51842315655593,
+       "the 60 s before": 11.293490525491768,
+       "flags": 0.97,
+       "net kills": 4.0,
+       "net pit NPCs": -1.0,
+       "win points": 10.61634588731959
+      },
+      "run a flag for a backup": {
+       "cases": 14,
+       "matches": 13,
+       "energy": 64.36428571428571,
+       "energy 60 s before": 61.925000000000004,
+       "started at": 67.0849544014337,
+       "the 60 s before": 3.5599585484600613,
+       "flags": 0.9271428571428572,
+       "net kills": 2.7857142857142856,
+       "net pit NPCs": 1.0714285714285714,
+       "win points": 8.864791572777301
+      },
+      "fall back and reset": {
+       "cases": 5,
+       "matches": 5,
+       "energy": 45.12,
+       "energy 60 s before": 59.42,
+       "started at": 78.17765839594804,
+       "the 60 s before": 0.35298798755479643,
+       "flags": -0.128,
+       "net kills": 3.8,
+       "net pit NPCs": 2.4,
+       "win points": 18.451012578930847
+      }
+     },
+     "two monks": {
+      "stay and kill": {
+       "cases": 272,
+       "matches": 196,
+       "energy": 49.41691176470589,
+       "energy 60 s before": 53.21526104417671,
+       "started at": 75.14947791478757,
+       "the 60 s before": 4.25461545716898,
+       "flags": 0.08979423868312757,
+       "net kills": 4.669117647058823,
+       "net pit NPCs": 2.4044117647058822,
+       "win points": 6.89867487238202
+      },
+      "push into their base for NPCs": {
+       "cases": 67,
+       "matches": 63,
+       "energy": 48.782089552238794,
+       "energy 60 s before": 54.24307692307692,
+       "started at": 80.98063676980829,
+       "the 60 s before": 3.973856005750603,
+       "flags": -0.0782142857142857,
+       "net kills": 4.835820895522388,
+       "net pit NPCs": 2.8656716417910446,
+       "win points": 9.506045958871184
+      },
+      "push their flagger": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 71.8,
+       "energy 60 s before": 67.8,
+       "started at": 49.76592703174229,
+       "the 60 s before": 7.3779468659869005,
+       "flags": 0.9,
+       "net kills": -1.0,
+       "net pit NPCs": 1.0,
+       "win points": 2.42306210133576
+      },
+      "run a flag for a backup": {
+       "cases": 25,
+       "matches": 24,
+       "energy": 50.35199999999999,
+       "energy 60 s before": 53.94166666666667,
+       "started at": 55.82443748903804,
+       "the 60 s before": 5.175908973984126,
+       "flags": 0.3504347826086956,
+       "net kills": 2.52,
+       "net pit NPCs": 1.88,
+       "win points": 14.14373385304217
+      },
+      "fall back and reset": {
+       "cases": 21,
+       "matches": 21,
+       "energy": 53.919047619047625,
+       "energy 60 s before": 55.10952380952382,
+       "started at": 66.75064763495467,
+       "the 60 s before": 1.802010778271308,
+       "flags": -0.13095238095238096,
+       "net kills": 1.1904761904761905,
+       "net pit NPCs": 1.1428571428571428,
+       "win points": 3.1591108444779623
+      }
+     },
+     "three or more": {
+      "stay and kill": {
+       "cases": 466,
+       "matches": 254,
+       "energy": 49.21030042918455,
+       "energy 60 s before": 52.648532731376974,
+       "started at": 75.34728020854044,
+       "the 60 s before": 3.417254778779255,
+       "flags": -0.0021559633027522884,
+       "net kills": 3.856223175965665,
+       "net pit NPCs": 1.5107296137339057,
+       "win points": 4.386059267833444
+      },
+      "push into their base for NPCs": {
+       "cases": 84,
+       "matches": 73,
+       "energy": 48.660714285714285,
+       "energy 60 s before": 53.55375,
+       "started at": 86.15282004218722,
+       "the 60 s before": 3.9379668107859613,
+       "flags": -0.06,
+       "net kills": 4.619047619047619,
+       "net pit NPCs": 2.119047619047619,
+       "win points": 5.223578454498403
+      },
+      "push their flagger": {
+       "cases": 6,
+       "matches": 6,
+       "energy": 45.85,
+       "energy 60 s before": 48.0,
+       "started at": 73.2912146884978,
+       "the 60 s before": 5.716840812678729,
+       "flags": 0.7733333333333334,
+       "net kills": 3.6666666666666665,
+       "net pit NPCs": 2.0,
+       "win points": 2.8826740462294413
+      },
+      "run a flag for a backup": {
+       "cases": 42,
+       "matches": 35,
+       "energy": 54.833333333333336,
+       "energy 60 s before": 55.821951219512194,
+       "started at": 57.61651089329727,
+       "the 60 s before": 3.8376524367153184,
+       "flags": 0.6685714285714285,
+       "net kills": 1.4523809523809523,
+       "net pit NPCs": 0.38095238095238093,
+       "win points": 6.824131091772244
+      },
+      "fall back and reset": {
+       "cases": 37,
+       "matches": 36,
+       "energy": 53.42162162162162,
+       "energy 60 s before": 53.76285714285714,
+       "started at": 74.17542290511568,
+       "the 60 s before": 3.3180105029416,
+       "flags": -0.027499999999999983,
+       "net kills": 3.2972972972972974,
+       "net pit NPCs": 0.8648648648648649,
+       "win points": 2.977787060294315
+      }
+     }
+    }
+   }
+  },
+  "7. The answer to their split (our own monks only, R-688: every living backline monk of the team, since the defenders are the call)": {
+   "cases": 1832,
+   "with energy": 1756,
+   "calls": {
+    "fewer defenders than the split, 20 s in": 898,
+    "as many as the split or more": 858
+   },
+   "our team's monks": {
+    "average": {
+     "cuts": [
+      59.0,
+      67.7
+     ],
+     "bands": {
+      "under 59": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 279,
+        "matches": 176,
+        "energy": 51.427240143369175,
+        "energy 60 s before": 55.19490909090909,
+        "started at": 42.49941039035631,
+        "the 60 s before": 0.3212453839527337,
+        "flags": -0.11530075187969924,
+        "net kills": -0.017921146953405017,
+        "net pit NPCs": -0.6523297491039427,
+        "win points": 2.2121861062651096
+       },
+       "as many as the split or more": {
+        "cases": 296,
+        "matches": 169,
+        "energy": 52.04189189189189,
+        "energy 60 s before": 55.36206896551724,
+        "started at": 37.86927967440493,
+        "the 60 s before": 0.5640131003114506,
+        "flags": -0.07027972027972028,
+        "net kills": -0.44594594594594594,
+        "net pit NPCs": -0.27702702702702703,
+        "win points": 0.8534536521219942
+       }
+      },
+      "59 to 68": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 298,
+        "matches": 192,
+        "energy": 63.442617449664425,
+        "energy 60 s before": 61.57727272727273,
+        "started at": 58.09583524044783,
+        "the 60 s before": 0.5570823130051341,
+        "flags": 0.015205479452054811,
+        "net kills": 1.6610738255033557,
+        "net pit NPCs": -0.12751677852348994,
+        "win points": 2.3369366358126635
+       },
+       "as many as the split or more": {
+        "cases": 277,
+        "matches": 170,
+        "energy": 63.51119133574008,
+        "energy 60 s before": 61.63798449612403,
+        "started at": 53.54051885193507,
+        "the 60 s before": 0.6041582009212028,
+        "flags": 0.03490842490842492,
+        "net kills": 0.5848375451263538,
+        "net pit NPCs": 0.1552346570397112,
+        "win points": 0.5846140804748717
+       }
+      },
+      "68 or more": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 316,
+        "matches": 228,
+        "energy": 71.53607594936709,
+        "energy 60 s before": 66.54736842105264,
+        "started at": 65.49887957384405,
+        "the 60 s before": 1.2802788417816122,
+        "flags": 0.0819281045751634,
+        "net kills": 1.75,
+        "net pit NPCs": -0.1550632911392405,
+        "win points": 1.318302039288118
+       },
+       "as many as the split or more": {
+        "cases": 282,
+        "matches": 194,
+        "energy": 71.02659574468085,
+        "energy 60 s before": 66.57251461988304,
+        "started at": 61.83755047161813,
+        "the 60 s before": 1.271478717207539,
+        "flags": 0.07219780219780218,
+        "net kills": 1.1631205673758864,
+        "net pit NPCs": -0.1099290780141844,
+        "win points": 0.14719687516008056
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.7466925245032285,
+      "the 60 s before": -0.8300490613793294
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      50.4,
+      64.0
+     ],
+     "bands": {
+      "under 50": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 281,
+        "matches": 173,
+        "energy": 41.43701067615658,
+        "energy 60 s before": 46.96523297491039,
+        "started at": 46.77562229843486,
+        "the 60 s before": 0.3266055446413096,
+        "flags": -0.07828996282527882,
+        "net kills": 0.21352313167259787,
+        "net pit NPCs": -0.6476868327402135,
+        "win points": 1.7205477295468596
+       },
+       "as many as the split or more": {
+        "cases": 292,
+        "matches": 167,
+        "energy": 42.384589041095886,
+        "energy 60 s before": 47.50210526315789,
+        "started at": 41.66762711021479,
+        "the 60 s before": 0.3089189953010803,
+        "flags": -0.06517730496453901,
+        "net kills": -0.3424657534246575,
+        "net pit NPCs": -0.09246575342465753,
+        "win points": 0.5195514930316191
+       }
+      },
+      "50 to 64": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 292,
+        "matches": 194,
+        "energy": 56.73253424657535,
+        "energy 60 s before": 54.02123552123552,
+        "started at": 56.740925766471165,
+        "the 60 s before": 0.8407110652538475,
+        "flags": 0.00428070175438597,
+        "net kills": 1.4246575342465753,
+        "net pit NPCs": -0.0684931506849315,
+        "win points": 2.759018301299308
+       },
+       "as many as the split or more": {
+        "cases": 285,
+        "matches": 169,
+        "energy": 56.708421052631586,
+        "energy 60 s before": 54.558888888888895,
+        "started at": 52.55044127858493,
+        "the 60 s before": 0.7778805350927154,
+        "flags": 0.025018050541516252,
+        "net kills": 0.624561403508772,
+        "net pit NPCs": 0.11578947368421053,
+        "win points": 1.087823347225503
+       }
+      },
+      "64 or more": {
+       "fewer defenders than the split, 20 s in": {
+        "cases": 320,
+        "matches": 222,
+        "energy": 69.17625000000001,
+        "energy 60 s before": 61.36963350785341,
+        "started at": 62.985125488211914,
+        "the 60 s before": 0.8862754587533529,
+        "flags": 0.060258064516129056,
+        "net kills": 1.771875,
+        "net pit NPCs": -0.209375,
+        "win points": 1.3783850923534977
+       },
+       "as many as the split or more": {
+        "cases": 278,
+        "matches": 196,
+        "energy": 68.83561151079137,
+        "energy 60 s before": 61.025609756097566,
+        "started at": 58.75682323031211,
+        "the 60 s before": 1.4621561208949676,
+        "flags": 0.07542124542124544,
+        "net kills": 1.0071942446043165,
+        "net pit NPCs": -0.2733812949640288,
+        "win points": -0.020391330250750458
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.38040393198920863,
+      "the 60 s before": -0.8346788259826573
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "fewer defenders than the split, 20 s in": {
+       "cases": 64,
+       "matches": 30,
+       "energy": 65.5875,
+       "energy 60 s before": 62.853846153846156,
+       "started at": 51.128360236721015,
+       "the 60 s before": -0.7312613884420043,
+       "flags": 0.0768253968253968,
+       "net kills": 1.921875,
+       "net pit NPCs": -0.296875,
+       "win points": 3.8935028915761194
+      },
+      "as many as the split or more": {
+       "cases": 49,
+       "matches": 22,
+       "energy": 64.15714285714286,
+       "energy 60 s before": 62.84666666666666,
+       "started at": 42.962717011993874,
+       "the 60 s before": 1.1291753943161122,
+       "flags": -0.04437499999999998,
+       "net kills": 1.653061224489796,
+       "net pit NPCs": -0.30612244897959184,
+       "win points": 4.140740324556787
+      }
+     },
+     "two monks": {
+      "fewer defenders than the split, 20 s in": {
+       "cases": 127,
+       "matches": 73,
+       "energy": 63.51496062992126,
+       "energy 60 s before": 61.82666666666667,
+       "started at": 53.88409617844694,
+       "the 60 s before": -0.39124146233068374,
+       "flags": -0.046581196581196575,
+       "net kills": 1.5590551181102361,
+       "net pit NPCs": -0.14173228346456693,
+       "win points": 2.4352187137110763
+      },
+      "as many as the split or more": {
+       "cases": 90,
+       "matches": 60,
+       "energy": 64.13,
+       "energy 60 s before": 62.75333333333333,
+       "started at": 55.308357848558146,
+       "the 60 s before": -0.12528790763918105,
+       "flags": -0.0571590909090909,
+       "net kills": 0.9444444444444444,
+       "net pit NPCs": -0.37777777777777777,
+       "win points": -0.448250769563861
+      }
+     },
+     "three or more": {
+      "fewer defenders than the split, 20 s in": {
+       "cases": 702,
+       "matches": 301,
+       "energy": 62.101851851851855,
+       "energy 60 s before": 59.997902097902106,
+       "started at": 56.62684483772746,
+       "the 60 s before": 0.9769644120191681,
+       "flags": -0.0008040935672514578,
+       "net kills": 1.0284900284900285,
+       "net pit NPCs": -0.33048433048433046,
+       "win points": 1.6691360738361916
+      },
+      "as many as the split or more": {
+       "cases": 716,
+       "matches": 260,
+       "energy": 61.607681564245816,
+       "energy 60 s before": 59.77779632721202,
+       "started at": 50.831416757888626,
+       "the 60 s before": 0.8264783784071682,
+       "flags": 0.02341954022988507,
+       "net kills": 0.2681564245810056,
+       "net pit NPCs": -0.029329608938547486,
+       "win points": 0.40993881769868357
+      }
+     }
+    }
+   }
+  },
+  "8. Our split: send one in the next 30 s or not (every 30 s, our main team's fight)": {
+   "cases": 17244,
+   "with energy": 16708,
+   "calls": {
+    "no split": 15724,
+    "one player": 485,
+    "two or more": 499
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      53.7,
+      64.0
+     ],
+     "bands": {
+      "under 54": {
+       "no split": {
+        "cases": 4997,
+        "matches": 489,
+        "energy": 46.36722033219932,
+        "energy 60 s before": 53.89172025723472,
+        "started at": 45.74670472464611,
+        "the 60 s before": -0.4326151608104943,
+        "flags": -0.058550724637681156,
+        "net kills": -0.3514108465079047,
+        "net pit NPCs": -0.24814888933360016,
+        "win points": -0.5961715608146048
+       },
+       "one player": {
+        "cases": 187,
+        "matches": 128,
+        "energy": 45.6764705882353,
+        "energy 60 s before": 51.59193548387097,
+        "started at": 38.72811333344489,
+        "the 60 s before": -1.1081847134209548,
+        "flags": -0.2378804347826087,
+        "net kills": -1.7700534759358288,
+        "net pit NPCs": -0.22994652406417113,
+        "win points": -4.607209776147073
+       },
+       "two or more": {
+        "cases": 145,
+        "matches": 116,
+        "energy": 45.72896551724138,
+        "energy 60 s before": 54.751724137931035,
+        "started at": 39.319520453771204,
+        "the 60 s before": -0.9123793251259009,
+        "flags": -0.10862318840579709,
+        "net kills": -1.5379310344827586,
+        "net pit NPCs": -0.2482758620689655,
+        "win points": -1.8743095004489019
+       }
+      },
+      "54 to 64": {
+       "no split": {
+        "cases": 5113,
+        "matches": 527,
+        "energy": 58.78617250146685,
+        "energy 60 s before": 59.80424111525623,
+        "started at": 57.05340259219681,
+        "the 60 s before": 0.6963226294479585,
+        "flags": -0.01569682151589242,
+        "net kills": 1.054566790533933,
+        "net pit NPCs": 0.37218853901818894,
+        "win points": 1.603362406701735
+       },
+       "one player": {
+        "cases": 184,
+        "matches": 137,
+        "energy": 58.56739130434782,
+        "energy 60 s before": 58.62989130434782,
+        "started at": 52.12469393269777,
+        "the 60 s before": 0.07136022488629573,
+        "flags": 0.0016574585635359155,
+        "net kills": -0.41304347826086957,
+        "net pit NPCs": 0.5652173913043478,
+        "win points": -1.4908276205103572
+       },
+       "two or more": {
+        "cases": 169,
+        "matches": 111,
+        "energy": 59.08757396449704,
+        "energy 60 s before": 59.395209580838326,
+        "started at": 49.66438691878909,
+        "the 60 s before": -0.6477646062820525,
+        "flags": -0.004181818181818168,
+        "net kills": -0.1893491124260355,
+        "net pit NPCs": 0.005917159763313609,
+        "win points": -0.43385539590878874
+       }
+      },
+      "64 or more": {
+       "no split": {
+        "cases": 5126,
+        "matches": 505,
+        "energy": 69.79375731564573,
+        "energy 60 s before": 64.89650527137837,
+        "started at": 67.75067262787753,
+        "the 60 s before": 1.7208319995029926,
+        "flags": 0.014797214256452276,
+        "net kills": 2.0243854857588763,
+        "net pit NPCs": 0.703082325399922,
+        "win points": 1.5255595970138973
+       },
+       "one player": {
+        "cases": 107,
+        "matches": 79,
+        "energy": 69.31588785046729,
+        "energy 60 s before": 64.9943925233645,
+        "started at": 55.548250294705895,
+        "the 60 s before": -0.07360481882939923,
+        "flags": -0.04672897196261681,
+        "net kills": -0.27102803738317754,
+        "net pit NPCs": 0.2616822429906542,
+        "win points": -1.7556501084067333
+       },
+       "two or more": {
+        "cases": 168,
+        "matches": 120,
+        "energy": 68.77678571428571,
+        "energy 60 s before": 64.64670658682634,
+        "started at": 63.985516587405286,
+        "the 60 s before": 0.4588453237590772,
+        "flags": 0.07154320987654321,
+        "net kills": 0.6845238095238095,
+        "net pit NPCs": 0.5178571428571429,
+        "win points": 0.42165227306217157
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -2.1979182283801326,
+      "the 60 s before": -2.1154033856903536
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      47.0,
+      59.2
+     ],
+     "bands": {
+      "under 47": {
+       "no split": {
+        "cases": 4650,
+        "matches": 481,
+        "energy": 37.62445161290322,
+        "energy 60 s before": 47.12693137678032,
+        "started at": 45.46205516985644,
+        "the 60 s before": -0.4043074907249136,
+        "flags": -0.05875225631768953,
+        "net kills": -0.3561290322580645,
+        "net pit NPCs": -0.2350537634408602,
+        "win points": -0.32995242494826
+       },
+       "one player": {
+        "cases": 180,
+        "matches": 124,
+        "energy": 35.62833333333333,
+        "energy 60 s before": 43.75,
+        "started at": 39.255941898211724,
+        "the 60 s before": -0.5387147719846986,
+        "flags": -0.2224719101123595,
+        "net kills": -1.7277777777777779,
+        "net pit NPCs": -0.2777777777777778,
+        "win points": -3.881904677992775
+       },
+       "two or more": {
+        "cases": 153,
+        "matches": 119,
+        "energy": 37.81372549019608,
+        "energy 60 s before": 49.00261437908497,
+        "started at": 40.8058694258679,
+        "the 60 s before": -1.1850569696241298,
+        "flags": -0.08337931034482758,
+        "net kills": -1.4052287581699345,
+        "net pit NPCs": -0.3137254901960784,
+        "win points": -2.1781342984889647
+       }
+      },
+      "47 to 59": {
+       "no split": {
+        "cases": 5416,
+        "matches": 528,
+        "energy": 52.19763663220089,
+        "energy 60 s before": 53.99453804850953,
+        "started at": 58.07713960690592,
+        "the 60 s before": 0.7307935331383503,
+        "flags": -0.01026574234546505,
+        "net kills": 1.0928729689807977,
+        "net pit NPCs": 0.3868168389955687,
+        "win points": 1.1673384249462362
+       },
+       "one player": {
+        "cases": 183,
+        "matches": 137,
+        "energy": 51.87759562841529,
+        "energy 60 s before": 51.60274725274725,
+        "started at": 50.22631478346838,
+        "the 60 s before": -0.585752852952909,
+        "flags": -0.045635359116022116,
+        "net kills": -0.5409836065573771,
+        "net pit NPCs": 0.6120218579234973,
+        "win points": -2.7159775606931422
+       },
+       "two or more": {
+        "cases": 162,
+        "matches": 118,
+        "energy": 52.6179012345679,
+        "energy 60 s before": 53.12857142857143,
+        "started at": 49.63099182247076,
+        "the 60 s before": -0.5137020171694311,
+        "flags": -0.010062893081760994,
+        "net kills": -0.2716049382716049,
+        "net pit NPCs": 0.012345679012345678,
+        "win points": -0.12596637617937956
+       }
+      },
+      "59 or more": {
+       "no split": {
+        "cases": 5170,
+        "matches": 510,
+        "energy": 67.40497098646034,
+        "energy 60 s before": 61.396353762606665,
+        "started at": 66.08431996182287,
+        "the 60 s before": 1.5747758225429296,
+        "flags": 0.006118554608201375,
+        "net kills": 1.885880077369439,
+        "net pit NPCs": 0.6315280464216635,
+        "win points": 1.59592167444279
+       },
+       "one player": {
+        "cases": 115,
+        "matches": 80,
+        "energy": 66.37304347826087,
+        "energy 60 s before": 60.837391304347825,
+        "started at": 56.689378360446,
+        "the 60 s before": 0.019003960019498393,
+        "flags": -0.005398230088495566,
+        "net kills": -0.22608695652173913,
+        "net pit NPCs": 0.23478260869565218,
+        "win points": -1.1125942284120383
+       },
+       "two or more": {
+        "cases": 167,
+        "matches": 117,
+        "energy": 66.27724550898203,
+        "energy 60 s before": 60.949696969696966,
+        "started at": 63.23748469675582,
+        "the 60 s before": 0.5979175863505517,
+        "flags": 0.05962732919254658,
+        "net kills": 0.7125748502994012,
+        "net pit NPCs": 0.5868263473053892,
+        "win points": 0.47546253299784336
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -2.0194759836109553,
+      "the 60 s before": -1.9451726456925087
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "no split": {
+       "cases": 2263,
+       "matches": 344,
+       "energy": 61.648077772867865,
+       "energy 60 s before": 62.56458240285842,
+       "started at": 57.01355038855122,
+       "the 60 s before": 0.7243065648412996,
+       "flags": -0.0035558646267964816,
+       "net kills": 1.1184268669907202,
+       "net pit NPCs": 0.12770658418029165,
+       "win points": 0.7952877763377943
+      },
+      "one player": {
+       "cases": 35,
+       "matches": 29,
+       "energy": 59.70285714285714,
+       "energy 60 s before": 59.7,
+       "started at": 45.877973411727424,
+       "the 60 s before": -1.4228069121541864,
+       "flags": -0.25735294117647056,
+       "net kills": -0.42857142857142855,
+       "net pit NPCs": -0.5142857142857142,
+       "win points": -3.2884756672715234
+      },
+      "two or more": {
+       "cases": 74,
+       "matches": 53,
+       "energy": 58.40135135135135,
+       "energy 60 s before": 60.28055555555555,
+       "started at": 51.85555894887697,
+       "the 60 s before": -1.3756644728986744,
+       "flags": -0.18042253521126764,
+       "net kills": 0.527027027027027,
+       "net pit NPCs": 0.28378378378378377,
+       "win points": 1.037843270543104
+      }
+     },
+     "two monks": {
+      "no split": {
+       "cases": 5178,
+       "matches": 490,
+       "energy": 60.183178833526455,
+       "energy 60 s before": 60.81095837366893,
+       "started at": 58.06442172657407,
+       "the 60 s before": 0.7357808504618718,
+       "flags": -0.041992724333063856,
+       "net kills": 1.0994592506759366,
+       "net pit NPCs": 0.26322904596369257,
+       "win points": 1.197827674483159
+      },
+      "one player": {
+       "cases": 131,
+       "matches": 101,
+       "energy": 59.31603053435114,
+       "energy 60 s before": 60.026923076923076,
+       "started at": 48.87933094989489,
+       "the 60 s before": -1.0100074580527334,
+       "flags": -0.01554687500000003,
+       "net kills": -0.8778625954198473,
+       "net pit NPCs": -0.04580152671755725,
+       "win points": -2.1604282150317284
+      },
+      "two or more": {
+       "cases": 176,
+       "matches": 112,
+       "energy": 60.74318181818182,
+       "energy 60 s before": 61.38057142857142,
+       "started at": 53.58324052373532,
+       "the 60 s before": -0.47774013612755845,
+       "flags": 0.09803468208092483,
+       "net kills": -0.03409090909090909,
+       "net pit NPCs": 0.20454545454545456,
+       "win points": 0.08314351116787747
+      }
+     },
+     "three or more": {
+      "no split": {
+       "cases": 7795,
+       "matches": 461,
+       "energy": 56.30473380372034,
+       "energy 60 s before": 57.914138949531264,
+       "started at": 56.17973555150317,
+       "the 60 s before": 0.6120031986585365,
+       "flags": -0.009147193123824874,
+       "net kills": 0.7426555484284798,
+       "net pit NPCs": 0.3354714560615779,
+       "win points": 0.6461646252780505
+      },
+      "one player": {
+       "cases": 312,
+       "matches": 179,
+       "energy": 54.08557692307693,
+       "energy 60 s before": 55.914743589743594,
+       "started at": 47.33282767518405,
+       "the 60 s before": -0.06367550229192698,
+       "flags": -0.12170967741935483,
+       "net kills": -0.9807692307692307,
+       "net pit NPCs": 0.36217948717948717,
+       "win points": -2.966674126247657
+      },
+      "two or more": {
+       "cases": 232,
+       "matches": 148,
+       "energy": 56.7176724137931,
+       "energy 60 s before": 58.50086206896552,
+       "started at": 49.89748684207741,
+       "the 60 s before": 0.09138029629118379,
+       "flags": -0.03728506787330316,
+       "net kills": -0.7456896551724138,
+       "net pit NPCs": -0.021551724137931036,
+       "win points": -1.5762608516593417
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      50.1,
+      60.0
+     ],
+     "bands": {
+      "under 50": {
+       "no split": {
+        "cases": 5073,
+        "matches": 501,
+        "energy": 42.42369406662724,
+        "energy 60 s before": 50.18613920285544,
+        "started at": 70.1899975105805,
+        "the 60 s before": 1.4721578249283047,
+        "flags": 0.025472490550188995,
+        "net kills": 2.4289375123201262,
+        "net pit NPCs": 0.9331756357185098,
+        "win points": 2.471385731989731
+       },
+       "one player": {
+        "cases": 100,
+        "matches": 76,
+        "energy": 43.77699999999999,
+        "energy 60 s before": 51.365656565656565,
+        "started at": 62.45303195012987,
+        "the 60 s before": -0.037347765172118734,
+        "flags": -0.14353535353535352,
+        "net kills": 0.22,
+        "net pit NPCs": 0.89,
+        "win points": -1.3164114678868082
+       },
+       "two or more": {
+        "cases": 91,
+        "matches": 80,
+        "energy": 43.06043956043956,
+        "energy 60 s before": 52.16923076923077,
+        "started at": 68.21332390124195,
+        "the 60 s before": 0.33349199645781247,
+        "flags": -0.016781609195402298,
+        "net kills": 0.38461538461538464,
+        "net pit NPCs": 0.27472527472527475,
+        "win points": -0.9392578926482772
+       }
+      },
+      "50 to 60": {
+       "no split": {
+        "cases": 4883,
+        "matches": 521,
+        "energy": 54.88165062461601,
+        "energy 60 s before": 57.19948601973685,
+        "started at": 55.68321251402203,
+        "the 60 s before": 0.7272802828590759,
+        "flags": -0.03268422170312168,
+        "net kills": 0.6854392791316813,
+        "net pit NPCs": 0.11140692197419619,
+        "win points": 0.44995155821654254
+       },
+       "one player": {
+        "cases": 153,
+        "matches": 117,
+        "energy": 55.064052287581696,
+        "energy 60 s before": 57.44736842105263,
+        "started at": 47.055234053877946,
+        "the 60 s before": -0.1598216397670702,
+        "flags": -0.0526143790849673,
+        "net kills": -0.8431372549019608,
+        "net pit NPCs": 0.1503267973856209,
+        "win points": -3.967967415909919
+       },
+       "two or more": {
+        "cases": 135,
+        "matches": 102,
+        "energy": 55.63185185185185,
+        "energy 60 s before": 58.794814814814806,
+        "started at": 54.616069013027236,
+        "the 60 s before": 0.9898287803983353,
+        "flags": 0.010229007633587778,
+        "net kills": 0.007407407407407408,
+        "net pit NPCs": 0.362962962962963,
+        "win points": -0.19384313346138768
+       }
+      },
+      "60 or more": {
+       "no split": {
+        "cases": 4921,
+        "matches": 494,
+        "energy": 66.58906726275147,
+        "energy 60 s before": 62.91072156543009,
+        "started at": 42.8465096535567,
+        "the 60 s before": -0.46830391058067794,
+        "flags": -0.0672489539748954,
+        "net kills": -0.4247104247104247,
+        "net pit NPCs": -0.35013208697419224,
+        "win points": -0.4327543563576272
+       },
+       "one player": {
+        "cases": 212,
+        "matches": 146,
+        "energy": 66.74103773584906,
+        "energy 60 s before": 63.44691943127962,
+        "started at": 39.85691085851137,
+        "the 60 s before": -1.085573269844375,
+        "flags": -0.15657004830917873,
+        "net kills": -1.5849056603773586,
+        "net pit NPCs": -0.1650943396226415,
+        "win points": -2.841789114162716
+       },
+       "two or more": {
+        "cases": 226,
+        "matches": 143,
+        "energy": 67.12743362831858,
+        "energy 60 s before": 64.17743362831858,
+        "started at": 42.008102443322144,
+        "the 60 s before": -1.1786270577973228,
+        "flags": -0.050772727272727254,
+        "net kills": -1.008849557522124,
+        "net pit NPCs": -0.2079646017699115,
+        "win points": -0.9320539841970626
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.8895798453966433,
+      "the 60 s before": 1.9464760568311352
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      43.0,
+      54.2
+     ],
+     "bands": {
+      "under 43": {
+       "no split": {
+        "cases": 5048,
+        "matches": 502,
+        "energy": 33.20168383518225,
+        "energy 60 s before": 42.96914342629481,
+        "started at": 69.9012001673351,
+        "the 60 s before": 1.3799673441541667,
+        "flags": 0.014892541087231355,
+        "net kills": 2.393026941362916,
+        "net pit NPCs": 0.9059033280507132,
+        "win points": 2.141210722019777
+       },
+       "one player": {
+        "cases": 117,
+        "matches": 85,
+        "energy": 35.25726495726496,
+        "energy 60 s before": 44.695689655172416,
+        "started at": 59.28019690256484,
+        "the 60 s before": -0.04647194266045473,
+        "flags": -0.06405172413793105,
+        "net kills": 0.5299145299145299,
+        "net pit NPCs": 0.8632478632478633,
+        "win points": -0.7067719568769913
+       },
+       "two or more": {
+        "cases": 90,
+        "matches": 77,
+        "energy": 34.05222222222222,
+        "energy 60 s before": 44.43222222222222,
+        "started at": 69.35605311066278,
+        "the 60 s before": 0.381855692474218,
+        "flags": -0.06869047619047622,
+        "net kills": 0.8,
+        "net pit NPCs": 0.4888888888888889,
+        "win points": -0.48946143456906294
+       }
+      },
+      "43 to 54": {
+       "no split": {
+        "cases": 4981,
+        "matches": 523,
+        "energy": 48.4271832965268,
+        "energy 60 s before": 51.0408615136876,
+        "started at": 54.6650163927613,
+        "the 60 s before": 0.6031475215145505,
+        "flags": -0.012417811069496467,
+        "net kills": 0.6057016663320618,
+        "net pit NPCs": 0.08472194338486248,
+        "win points": 0.8795855080865513
+       },
+       "one player": {
+        "cases": 154,
+        "matches": 117,
+        "energy": 48.05324675324675,
+        "energy 60 s before": 50.98246753246753,
+        "started at": 47.018542149873845,
+        "the 60 s before": -0.28086464147903734,
+        "flags": -0.1394771241830065,
+        "net kills": -1.2272727272727273,
+        "net pit NPCs": 0.07792207792207792,
+        "win points": -4.3657420867667165
+       },
+       "two or more": {
+        "cases": 135,
+        "matches": 106,
+        "energy": 48.974074074074075,
+        "energy 60 s before": 51.681481481481484,
+        "started at": 52.2715450304462,
+        "the 60 s before": 0.5348418508715999,
+        "flags": 0.056917293233082686,
+        "net kills": -0.1925925925925926,
+        "net pit NPCs": 0.1925925925925926,
+        "win points": 0.019229241809774034
+       }
+      },
+      "54 or more": {
+       "no split": {
+        "cases": 4848,
+        "matches": 499,
+        "energy": 63.42712458745875,
+        "energy 60 s before": 58.92744041450778,
+        "started at": 44.07486653986082,
+        "the 60 s before": -0.2589336293027159,
+        "flags": -0.07768886997233454,
+        "net kills": -0.3131188118811881,
+        "net pit NPCs": -0.297029702970297,
+        "win points": -0.5332462976517219
+       },
+       "one player": {
+        "cases": 194,
+        "matches": 139,
+        "energy": 63.95463917525774,
+        "energy 60 s before": 59.48541666666667,
+        "started at": 39.78237411639207,
+        "the 60 s before": -1.080611590358434,
+        "flags": -0.1363157894736842,
+        "net kills": -1.6288659793814433,
+        "net pit NPCs": -0.18556701030927836,
+        "win points": -3.0215610995294413
+       },
+       "two or more": {
+        "cases": 227,
+        "matches": 144,
+        "energy": 64.35066079295156,
+        "energy 60 s before": 60.99074889867842,
+        "started at": 43.064799933447624,
+        "the 60 s before": -0.9205538335731472,
+        "flags": -0.05923076923076922,
+        "net kills": -1.0484581497797356,
+        "net pit NPCs": -0.1894273127753304,
+        "win points": -1.2371361683256412
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.687936450103618,
+      "the 60 s before": 1.6488053046634672
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "no split": {
+       "cases": 1511,
+       "matches": 391,
+       "energy": 57.99119788219723,
+       "energy 60 s before": 58.796241610738264,
+       "started at": 56.512511507729016,
+       "the 60 s before": 1.3950154346815227,
+       "flags": 0.011435643564356442,
+       "net kills": 1.1508934480476505,
+       "net pit NPCs": 0.6201191264063534,
+       "win points": 1.266306769582156
+      },
+      "one player": {
+       "cases": 41,
+       "matches": 35,
+       "energy": 62.5609756097561,
+       "energy 60 s before": 61.547368421052624,
+       "started at": 48.532082572068525,
+       "the 60 s before": -0.3749353302797308,
+       "flags": -0.30724999999999997,
+       "net kills": -2.0,
+       "net pit NPCs": -0.2926829268292683,
+       "win points": -6.638439196748641
+      },
+      "two or more": {
+       "cases": 89,
+       "matches": 63,
+       "energy": 63.12921348314607,
+       "energy 60 s before": 63.566292134831464,
+       "started at": 42.24544530033941,
+       "the 60 s before": -1.2792274961106915,
+       "flags": 0.019999999999999987,
+       "net kills": -1.0786516853932584,
+       "net pit NPCs": 0.1348314606741573,
+       "win points": -2.3138960933136037
+      }
+     },
+     "two monks": {
+      "no split": {
+       "cases": 4344,
+       "matches": 498,
+       "energy": 55.85699815837937,
+       "energy 60 s before": 58.04114378328317,
+       "started at": 55.52875089305913,
+       "the 60 s before": 0.7069003346408298,
+       "flags": -0.04796260320543953,
+       "net kills": 0.8335635359116023,
+       "net pit NPCs": 0.30271639042357273,
+       "win points": 0.8600311647413466
+      },
+      "one player": {
+       "cases": 117,
+       "matches": 95,
+       "energy": 61.15384615384615,
+       "energy 60 s before": 61.518803418803415,
+       "started at": 39.30437653356466,
+       "the 60 s before": -0.9365636243533034,
+       "flags": -0.0957017543859649,
+       "net kills": -1.2820512820512822,
+       "net pit NPCs": -0.1623931623931624,
+       "win points": -3.1386136451244675
+      },
+      "two or more": {
+       "cases": 150,
+       "matches": 111,
+       "energy": 59.75666666666667,
+       "energy 60 s before": 60.87066666666666,
+       "started at": 49.39003522487275,
+       "the 60 s before": -0.36559115265065933,
+       "flags": 0.07924657534246576,
+       "net kills": -0.4533333333333333,
+       "net pit NPCs": 0.05333333333333334,
+       "win points": 1.4097287780633379
+      }
+     },
+     "three or more": {
+      "no split": {
+       "cases": 9022,
+       "matches": 488,
+       "energy": 53.271979605408994,
+       "energy 60 s before": 55.71533762772101,
+       "started at": 56.7740367229738,
+       "the 60 s before": 0.3919750994913652,
+       "flags": -0.01980961119394426,
+       "net kills": 0.910995344712924,
+       "net pit NPCs": 0.14442473952560408,
+       "win points": 0.7709492552698239
+      },
+      "one player": {
+       "cases": 307,
+       "matches": 169,
+       "energy": 56.12899022801302,
+       "energy 60 s before": 57.55048859934853,
+       "started at": 49.85665038234151,
+       "the 60 s before": -0.434458397452038,
+       "flags": -0.10318032786885246,
+       "net kills": -0.6872964169381107,
+       "net pit NPCs": 0.3517915309446254,
+       "win points": -2.28601188950859
+      },
+      "two or more": {
+       "cases": 213,
+       "matches": 141,
+       "energy": 56.420657276995314,
+       "energy 60 s before": 58.219718309859154,
+       "started at": 55.89700952348067,
+       "the 60 s before": 0.3112434836652188,
+       "flags": -0.12068627450980393,
+       "net kills": -0.13145539906103287,
+       "net pit NPCs": 0.03286384976525822,
+       "win points": -1.5390049581286693
+      }
+     }
+    }
+   }
+  },
+  "9. The base res in the danger zone (read 20 s before the res)": {
+   "cases": 166,
+   "with energy": 157,
+   "calls": {
+    "stayed through the res": 156,
+    "left before the res": 1
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      56.3,
+      65.3
+     ],
+     "bands": {
+      "under 56": {
+       "stayed through the res": {
+        "cases": 51,
+        "matches": 47,
+        "energy": 49.9313725490196,
+        "energy 60 s before": 58.09803921568628,
+        "started at": 92.56582298359895,
+        "the 60 s before": 3.6900673023768604,
+        "flags": -0.08600000000000001,
+        "net kills": 4.450980392156863,
+        "net pit NPCs": 2.235294117647059,
+        "win points": -0.20629297445106923
+       }
+      },
+      "56 to 65": {
+       "stayed through the res": {
+        "cases": 53,
+        "matches": 50,
+        "energy": 61.07735849056603,
+        "energy 60 s before": 62.26415094339622,
+        "started at": 90.86230792709584,
+        "the 60 s before": 3.9271122751029774,
+        "flags": -0.26125000000000004,
+        "net kills": 4.60377358490566,
+        "net pit NPCs": 1.9622641509433962,
+        "win points": -2.1771310314178987
+       }
+      },
+      "65 or more": {
+       "stayed through the res": {
+        "cases": 51,
+        "matches": 49,
+        "energy": 70.08823529411764,
+        "energy 60 s before": 65.9470588235294,
+        "started at": 90.5736965938926,
+        "the 60 s before": 3.1747259278293143,
+        "flags": -0.13173913043478255,
+        "net kills": 4.882352941176471,
+        "net pit NPCs": 2.215686274509804,
+        "win points": 2.8900506684987683
+       },
+       "left before the res": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 67.2,
+        "energy 60 s before": 58.0,
+        "started at": 93.72688733616306,
+        "the 60 s before": 22.556738386144236,
+        "flags": -1.66,
+        "net kills": 2.0,
+        "net pit NPCs": -1.0,
+        "win points": 0.29812924442876865
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -3.0464990001792605,
+      "the 60 s before": 0.14261036573379782
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      50.0,
+      61.2
+     ],
+     "bands": {
+      "under 50": {
+       "stayed through the res": {
+        "cases": 52,
+        "matches": 49,
+        "energy": 41.905769230769224,
+        "energy 60 s before": 51.2326923076923,
+        "started at": 92.9674212578931,
+        "the 60 s before": 3.146544659865716,
+        "flags": -0.15369565217391304,
+        "net kills": 3.8653846153846154,
+        "net pit NPCs": 1.9423076923076923,
+        "win points": -0.6181309571486739
+       }
+      },
+      "50 to 61": {
+       "stayed through the res": {
+        "cases": 50,
+        "matches": 49,
+        "energy": 53.98199999999999,
+        "energy 60 s before": 53.846,
+        "started at": 91.70760175430982,
+        "the 60 s before": 4.893485237896245,
+        "flags": -0.1491111111111111,
+        "net kills": 5.38,
+        "net pit NPCs": 2.5,
+        "win points": 2.0309715481492705
+       }
+      },
+      "61 or more": {
+       "stayed through the res": {
+        "cases": 53,
+        "matches": 50,
+        "energy": 67.27358490566036,
+        "energy 60 s before": 64.26037735849056,
+        "started at": 89.36097783890978,
+        "the 60 s before": 2.8291853040215695,
+        "flags": -0.18104166666666668,
+        "net kills": 4.716981132075472,
+        "net pit NPCs": 1.9811320754716981,
+        "win points": -0.9041899981971397
+       },
+       "left before the res": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 67.2,
+        "energy 60 s before": 58.0,
+        "started at": 93.72688733616306,
+        "the 60 s before": 22.556738386144236,
+        "flags": -1.66,
+        "net kills": 2.0,
+        "net pit NPCs": -1.0,
+        "win points": 0.29812924442876865
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.26379386988872766,
+      "the 60 s before": -0.04796570123219901
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stayed through the res": {
+       "cases": 27,
+       "matches": 25,
+       "energy": 62.58518518518519,
+       "energy 60 s before": 63.88148148148148,
+       "started at": 80.54050213390254,
+       "the 60 s before": 2.573370025094706,
+       "flags": -0.2532,
+       "net kills": 2.5185185185185186,
+       "net pit NPCs": 1.2962962962962963,
+       "win points": -4.173722819362666
+      },
+      "left before the res": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 67.2,
+       "energy 60 s before": 58.0,
+       "started at": 93.72688733616306,
+       "the 60 s before": 22.556738386144236,
+       "flags": -1.66,
+       "net kills": 2.0,
+       "net pit NPCs": -1.0,
+       "win points": 0.29812924442876865
+      }
+     },
+     "two monks": {
+      "stayed through the res": {
+       "cases": 54,
+       "matches": 49,
+       "energy": 61.94444444444442,
+       "energy 60 s before": 63.253703703703685,
+       "started at": 92.88394918299268,
+       "the 60 s before": 4.227053757685052,
+       "flags": -0.1408695652173913,
+       "net kills": 5.018518518518518,
+       "net pit NPCs": 2.240740740740741,
+       "win points": -1.0087966243895368
+      }
+     },
+     "three or more": {
+      "stayed through the res": {
+       "cases": 74,
+       "matches": 65,
+       "energy": 58.422972972972964,
+       "energy 60 s before": 60.61891891891892,
+       "started at": 94.1282568255564,
+       "the 60 s before": 3.5202636720057137,
+       "flags": -0.14205882352941177,
+       "net kills": 5.148648648648648,
+       "net pit NPCs": 2.364864864864865,
+       "win points": 2.549313940150149
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      40.8,
+      51.0
+     ],
+     "bands": {
+      "under 41": {
+       "stayed through the res": {
+        "cases": 49,
+        "matches": 44,
+        "energy": 33.75102040816326,
+        "energy 60 s before": 44.67916666666667,
+        "started at": 93.18134919837513,
+        "the 60 s before": 1.6820612062212632,
+        "flags": -0.06659574468085107,
+        "net kills": 4.142857142857143,
+        "net pit NPCs": 1.4489795918367347,
+        "win points": -1.4412760363037949
+       }
+      },
+      "41 to 51": {
+       "stayed through the res": {
+        "cases": 49,
+        "matches": 46,
+        "energy": 45.71428571428572,
+        "energy 60 s before": 48.802040816326524,
+        "started at": 89.74854556893163,
+        "the 60 s before": 4.5886853875152385,
+        "flags": -0.13595238095238096,
+        "net kills": 4.836734693877551,
+        "net pit NPCs": 2.36734693877551,
+        "win points": 1.6650409628751597
+       }
+      },
+      "51 or more": {
+       "stayed through the res": {
+        "cases": 51,
+        "matches": 50,
+        "energy": 58.056862745098044,
+        "energy 60 s before": 56.71372549019608,
+        "started at": 91.42968886346907,
+        "the 60 s before": 4.21497671196464,
+        "flags": -0.22577777777777777,
+        "net kills": 4.882352941176471,
+        "net pit NPCs": 2.372549019607843,
+        "win points": 0.46392384598305014
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -1.905199882286845,
+      "the 60 s before": -2.532915505743377
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      33.2,
+      43.2
+     ],
+     "bands": {
+      "under 33": {
+       "stayed through the res": {
+        "cases": 49,
+        "matches": 44,
+        "energy": 21.520408163265305,
+        "energy 60 s before": 35.39387755102041,
+        "started at": 92.9218270211794,
+        "the 60 s before": 1.8291129133750657,
+        "flags": -0.1453191489361702,
+        "net kills": 4.020408163265306,
+        "net pit NPCs": 1.4081632653061225,
+        "win points": -2.672442698485961
+       }
+      },
+      "33 to 43": {
+       "stayed through the res": {
+        "cases": 50,
+        "matches": 49,
+        "energy": 38.06999999999999,
+        "energy 60 s before": 41.369387755102046,
+        "started at": 89.83883805636908,
+        "the 60 s before": 2.8269838966794043,
+        "flags": -0.025909090909090902,
+        "net kills": 5.5,
+        "net pit NPCs": 2.58,
+        "win points": 1.8773336464028931
+       }
+      },
+      "43 or more": {
+       "stayed through the res": {
+        "cases": 50,
+        "matches": 48,
+        "energy": 52.27799999999999,
+        "energy 60 s before": 51.017999999999994,
+        "started at": 91.62735097557417,
+        "the 60 s before": 5.825093356278735,
+        "flags": -0.2565116279069767,
+        "net kills": 4.34,
+        "net pit NPCs": 2.2,
+        "win points": 1.434152149055997
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -4.106594847541958,
+      "the 60 s before": -3.9959804429036696
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stayed through the res": {
+       "cases": 16,
+       "matches": 15,
+       "energy": 49.9125,
+       "energy 60 s before": 56.2375,
+       "started at": 96.57080313731339,
+       "the 60 s before": 4.325478540272722,
+       "flags": -0.1476923076923077,
+       "net kills": 4.5625,
+       "net pit NPCs": 3.0,
+       "win points": 1.633381741331387
+      }
+     },
+     "two monks": {
+      "stayed through the res": {
+       "cases": 54,
+       "matches": 52,
+       "energy": 46.281481481481485,
+       "energy 60 s before": 50.998113207547156,
+       "started at": 87.27977558553381,
+       "the 60 s before": 4.2326520899493625,
+       "flags": -0.08489795918367347,
+       "net kills": 5.055555555555555,
+       "net pit NPCs": 2.5,
+       "win points": 3.7033936010682957
+      }
+     },
+     "three or more": {
+      "stayed through the res": {
+       "cases": 79,
+       "matches": 69,
+       "energy": 45.0240506329114,
+       "energy 60 s before": 48.42531645569621,
+       "started at": 93.26883852935588,
+       "the 60 s before": 2.8412598215399503,
+       "flags": -0.1794444444444444,
+       "net kills": 4.341772151898734,
+       "net pit NPCs": 1.5822784810126582,
+       "win points": -2.423959047745036
+      }
+     }
+    }
+   }
+  },
+  "10. After a wipe": {
+   "cases": 87,
+   "with energy": 83,
+   "calls": {
+    "stay and kill": 35,
+    "push into their base for NPCs": 41,
+    "push their flagger": 1,
+    "run a flag for a backup": 2,
+    "fall back and reset": 4
+   },
+   "our monks in the fight": {
+    "average": {
+     "cuts": [
+      63.9,
+      71.5
+     ],
+     "bands": {
+      "under 64": {
+       "stay and kill": {
+        "cases": 12,
+        "matches": 12,
+        "energy": 54.84166666666667,
+        "energy 60 s before": 57.83333333333334,
+        "started at": 89.00201739436191,
+        "the 60 s before": 6.3573588976905375,
+        "flags": 0.21600000000000003,
+        "net kills": 6.0,
+        "net pit NPCs": 3.3333333333333335,
+        "win points": 9.100190509067426
+       },
+       "push into their base for NPCs": {
+        "cases": 9,
+        "matches": 9,
+        "energy": 53.888888888888886,
+        "energy 60 s before": 63.24444444444444,
+        "started at": 94.83196503253447,
+        "the 60 s before": 4.738651588877049,
+        "flags": 0.029999999999999992,
+        "net kills": 5.777777777777778,
+        "net pit NPCs": 3.888888888888889,
+        "win points": 5.016382223725842
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 59.0,
+        "energy 60 s before": 52.9,
+        "started at": 90.62789119593391,
+        "the 60 s before": 20.759245123822378,
+        "flags": null,
+        "net kills": 4.0,
+        "net pit NPCs": 4.0,
+        "win points": 9.372108804066093
+       },
+       "fall back and reset": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 55.15,
+        "energy 60 s before": 61.6,
+        "started at": 85.688184560728,
+        "the 60 s before": 13.913619487034467,
+        "flags": 0.71,
+        "net kills": 2.5,
+        "net pit NPCs": 4.0,
+        "win points": 10.00478278854045
+       }
+      },
+      "64 to 72": {
+       "stay and kill": {
+        "cases": 10,
+        "matches": 10,
+        "energy": 67.41,
+        "energy 60 s before": 63.04,
+        "started at": 90.23917451845801,
+        "the 60 s before": 5.5771229788940175,
+        "flags": 0.2,
+        "net kills": 3.5,
+        "net pit NPCs": 3.6,
+        "win points": 1.7645164647025395
+       },
+       "push into their base for NPCs": {
+        "cases": 14,
+        "matches": 14,
+        "energy": 67.32142857142857,
+        "energy 60 s before": 59.60000000000001,
+        "started at": 74.326581815897,
+        "the 60 s before": 6.884174863879138,
+        "flags": 0.1776923076923077,
+        "net kills": 3.2857142857142856,
+        "net pit NPCs": 3.7857142857142856,
+        "win points": 4.281032591081969
+       },
+       "fall back and reset": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 68.9,
+        "energy 60 s before": 59.9,
+        "started at": 98.31582182052183,
+        "the 60 s before": 0.7307975742114059,
+        "flags": 0.12,
+        "net kills": 0.0,
+        "net pit NPCs": 4.0,
+        "win points": 1.6841781794781685
+       }
+      },
+      "72 or more": {
+       "stay and kill": {
+        "cases": 10,
+        "matches": 10,
+        "energy": 75.82000000000001,
+        "energy 60 s before": 69.28999999999999,
+        "started at": 96.2170273482856,
+        "the 60 s before": 8.766832013381762,
+        "flags": -0.512,
+        "net kills": 6.3,
+        "net pit NPCs": 3.3,
+        "win points": 3.428969062075891
+       },
+       "push into their base for NPCs": {
+        "cases": 13,
+        "matches": 13,
+        "energy": 75.52307692307694,
+        "energy 60 s before": 66.60000000000001,
+        "started at": 88.07064692886789,
+        "the 60 s before": 7.2288130156977894,
+        "flags": 0.23923076923076925,
+        "net kills": 3.3846153846153846,
+        "net pit NPCs": 2.230769230769231,
+        "win points": 6.0652747033755405
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 77.2,
+        "energy 60 s before": 74.7,
+        "started at": 93.19545190786633,
+        "the 60 s before": 4.569985860216786,
+        "flags": 0.52,
+        "net kills": 2.0,
+        "net pit NPCs": 1.0,
+        "win points": 2.996485352297995
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 77.7,
+        "energy 60 s before": 78.2,
+        "started at": 97.0273122597489,
+        "the 60 s before": 1.009998619704655,
+        "flags": 1.55,
+        "net kills": 8.0,
+        "net pit NPCs": 2.0,
+        "win points": 2.7246164434317377
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 2.90110047856387,
+      "the 60 s before": -0.5088043206261128
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      58.2,
+      69.2
+     ],
+     "bands": {
+      "under 58": {
+       "stay and kill": {
+        "cases": 14,
+        "matches": 14,
+        "energy": 49.15000000000001,
+        "energy 60 s before": 54.242857142857154,
+        "started at": 89.36899297410085,
+        "the 60 s before": 5.945692252677018,
+        "flags": 0.16749999999999998,
+        "net kills": 5.214285714285714,
+        "net pit NPCs": 3.2857142857142856,
+        "win points": 4.206353894837478
+       },
+       "push into their base for NPCs": {
+        "cases": 8,
+        "matches": 8,
+        "energy": 49.25,
+        "energy 60 s before": 61.125,
+        "started at": 94.64856763352734,
+        "the 60 s before": 4.367347626330352,
+        "flags": 0.0757142857142857,
+        "net kills": 6.625,
+        "net pit NPCs": 3.5,
+        "win points": 5.351432366472666
+       },
+       "fall back and reset": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 50.75,
+        "energy 60 s before": 54.5,
+        "started at": 85.688184560728,
+        "the 60 s before": 13.913619487034467,
+        "flags": 0.71,
+        "net kills": 2.5,
+        "net pit NPCs": 4.0,
+        "win points": 10.00478278854045
+       }
+      },
+      "58 to 69": {
+       "stay and kill": {
+        "cases": 8,
+        "matches": 8,
+        "energy": 64.8625,
+        "energy 60 s before": 56.550000000000004,
+        "started at": 88.60613719873602,
+        "the 60 s before": 10.293465528149326,
+        "flags": 0.28375,
+        "net kills": 4.25,
+        "net pit NPCs": 4.0,
+        "win points": 9.794931364716618
+       },
+       "push into their base for NPCs": {
+        "cases": 15,
+        "matches": 15,
+        "energy": 64.20666666666666,
+        "energy 60 s before": 52.96000000000001,
+        "started at": 75.68136633372006,
+        "the 60 s before": 7.01869004888247,
+        "flags": 0.10214285714285713,
+        "net kills": 3.466666666666667,
+        "net pit NPCs": 4.2,
+        "win points": 4.279893380342506
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 59.0,
+        "energy 60 s before": 52.9,
+        "started at": 90.62789119593391,
+        "the 60 s before": 20.759245123822378,
+        "flags": null,
+        "net kills": 4.0,
+        "net pit NPCs": 4.0,
+        "win points": 9.372108804066093
+       },
+       "fall back and reset": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 58.2,
+        "energy 60 s before": 52.2,
+        "started at": 98.31582182052183,
+        "the 60 s before": 0.7307975742114059,
+        "flags": 0.12,
+        "net kills": 0.0,
+        "net pit NPCs": 4.0,
+        "win points": 1.6841781794781685
+       }
+      },
+      "69 or more": {
+       "stay and kill": {
+        "cases": 10,
+        "matches": 10,
+        "energy": 75.23,
+        "energy 60 s before": 68.29,
+        "started at": 97.2571228172479,
+        "the 60 s before": 5.414044093237138,
+        "flags": -0.524,
+        "net kills": 6.3,
+        "net pit NPCs": 3.1,
+        "win points": 2.3888735931135807
+       },
+       "push into their base for NPCs": {
+        "cases": 13,
+        "matches": 13,
+        "energy": 74.36153846153847,
+        "energy 60 s before": 64.24615384615386,
+        "started at": 88.19763113204856,
+        "the 60 s before": 7.137057681107137,
+        "flags": 0.2846153846153846,
+        "net kills": 2.8461538461538463,
+        "net pit NPCs": 2.0,
+        "win points": 5.916969830434095
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 75.2,
+        "energy 60 s before": 74.2,
+        "started at": 93.19545190786633,
+        "the 60 s before": 4.569985860216786,
+        "flags": 0.52,
+        "net kills": 2.0,
+        "net pit NPCs": 1.0,
+        "win points": 2.996485352297995
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 76.2,
+        "energy 60 s before": 77.2,
+        "started at": 97.0273122597489,
+        "the 60 s before": 1.009998619704655,
+        "flags": 1.55,
+        "net kills": 8.0,
+        "net pit NPCs": 2.0,
+        "win points": 2.7246164434317377
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": 0.8100313056241042,
+      "the 60 s before": -0.0165156972428413
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and kill": {
+       "cases": 10,
+       "matches": 10,
+       "energy": 67.41000000000001,
+       "energy 60 s before": 64.78,
+       "started at": 88.35798909248787,
+       "the 60 s before": 8.09406105298496,
+       "flags": -0.12000000000000002,
+       "net kills": 6.0,
+       "net pit NPCs": 2.9,
+       "win points": 9.590449930150081
+      },
+      "push into their base for NPCs": {
+       "cases": 11,
+       "matches": 10,
+       "energy": 65.55454545454546,
+       "energy 60 s before": 66.2818181818182,
+       "started at": 81.14854213296499,
+       "the 60 s before": 4.040491231692271,
+       "flags": -0.082,
+       "net kills": 4.0,
+       "net pit NPCs": 2.0,
+       "win points": 9.722499563604787
+      },
+      "run a flag for a backup": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 59.0,
+       "energy 60 s before": 52.9,
+       "started at": 90.62789119593391,
+       "the 60 s before": 20.759245123822378,
+       "flags": null,
+       "net kills": 4.0,
+       "net pit NPCs": 4.0,
+       "win points": 9.372108804066093
+      }
+     },
+     "two monks": {
+      "stay and kill": {
+       "cases": 11,
+       "matches": 11,
+       "energy": 65.55454545454546,
+       "energy 60 s before": 62.50909090909092,
+       "started at": 97.8508990415809,
+       "the 60 s before": 1.9750857224340437,
+       "flags": -0.1844444444444444,
+       "net kills": 5.636363636363637,
+       "net pit NPCs": 3.272727272727273,
+       "win points": 1.894093484489115
+      },
+      "push into their base for NPCs": {
+       "cases": 18,
+       "matches": 18,
+       "energy": 69.06111111111112,
+       "energy 60 s before": 61.82777777777778,
+       "started at": 85.05709875069167,
+       "the 60 s before": 8.529185998074585,
+       "flags": 0.35705882352941176,
+       "net kills": 3.0555555555555554,
+       "net pit NPCs": 3.611111111111111,
+       "win points": 3.5869998847928213
+      },
+      "push their flagger": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 77.2,
+       "energy 60 s before": 74.7,
+       "started at": 93.19545190786633,
+       "the 60 s before": 4.569985860216786,
+       "flags": 0.52,
+       "net kills": 2.0,
+       "net pit NPCs": 1.0,
+       "win points": 2.996485352297995
+      },
+      "run a flag for a backup": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 77.7,
+       "energy 60 s before": 78.2,
+       "started at": 97.0273122597489,
+       "the 60 s before": 1.009998619704655,
+       "flags": 1.55,
+       "net kills": 8.0,
+       "net pit NPCs": 2.0,
+       "win points": 2.7246164434317377
+      },
+      "fall back and reset": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 52.5,
+       "energy 60 s before": 62.5,
+       "started at": 82.6938970310758,
+       "the 60 s before": 14.918383136588552,
+       "flags": 0.0,
+       "net kills": 2.0,
+       "net pit NPCs": 5.0,
+       "win points": 10.524552370173224
+      }
+     },
+     "three or more": {
+      "stay and kill": {
+       "cases": 11,
+       "matches": 11,
+       "energy": 63.19999999999998,
+       "energy 60 s before": 61.99090909090908,
+       "started at": 88.42240427431913,
+       "the 60 s before": 10.641936656220015,
+       "flags": 0.17272727272727273,
+       "net kills": 4.363636363636363,
+       "net pit NPCs": 4.0,
+       "win points": 4.0361467041556685
+      },
+      "push into their base for NPCs": {
+       "cases": 7,
+       "matches": 7,
+       "energy": 63.58571428571429,
+       "energy 60 s before": 61.05714285714286,
+       "started at": 87.90235711651226,
+       "the 60 s before": 5.004304297759305,
+       "flags": 0.058571428571428566,
+       "net kills": 6.142857142857143,
+       "net pit NPCs": 4.285714285714286,
+       "win points": 1.773853472376961
+      },
+      "fall back and reset": {
+       "cases": 2,
+       "matches": 2,
+       "energy": 63.35,
+       "energy 60 s before": 60.3,
+       "started at": 93.49914695545101,
+       "the 60 s before": 6.819826705845894,
+       "flags": 0.77,
+       "net kills": 1.5,
+       "net pit NPCs": 3.5,
+       "win points": 5.584595693192923
+      }
+     }
+    }
+   },
+   "their monks in the fight": {
+    "average": {
+     "cuts": [
+      50.5,
+      62.0
+     ],
+     "bands": {
+      "under 50": {
+       "stay and kill": {
+        "cases": 14,
+        "matches": 14,
+        "energy": 37.292857142857144,
+        "energy 60 s before": 45.86153846153847,
+        "started at": 98.32246646670401,
+        "the 60 s before": 2.8582763842431964,
+        "flags": -0.4076923076923077,
+        "net kills": 6.785714285714286,
+        "net pit NPCs": 3.2857142857142856,
+        "win points": 1.4533268860448803
+       },
+       "push into their base for NPCs": {
+        "cases": 6,
+        "matches": 6,
+        "energy": 40.36666666666667,
+        "energy 60 s before": 45.20000000000001,
+        "started at": 95.44626502205594,
+        "the 60 s before": 3.651665620265747,
+        "flags": 0.0,
+        "net kills": 6.666666666666667,
+        "net pit NPCs": 5.166666666666667,
+        "win points": 4.55373497794407
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 28.0,
+        "energy 60 s before": 34.0,
+        "started at": 97.0273122597489,
+        "the 60 s before": 1.009998619704655,
+        "flags": 1.55,
+        "net kills": 8.0,
+        "net pit NPCs": 2.0,
+        "win points": 2.7246164434317377
+       }
+      },
+      "50 to 62": {
+       "stay and kill": {
+        "cases": 8,
+        "matches": 8,
+        "energy": 56.9625,
+        "energy 60 s before": 52.55,
+        "started at": 94.30930951086356,
+        "the 60 s before": 10.993404304176734,
+        "flags": -0.03428571428571428,
+        "net kills": 4.5,
+        "net pit NPCs": 4.0,
+        "win points": 5.3512228101886805
+       },
+       "push into their base for NPCs": {
+        "cases": 9,
+        "matches": 8,
+        "energy": 57.300000000000004,
+        "energy 60 s before": 56.67777777777778,
+        "started at": 71.35552330309616,
+        "the 60 s before": 7.107594214923859,
+        "flags": 0.004999999999999977,
+        "net kills": 3.2222222222222223,
+        "net pit NPCs": 2.0,
+        "win points": -1.7851508639384939
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 55.0,
+        "energy 60 s before": 43.0,
+        "started at": 90.62789119593391,
+        "the 60 s before": 20.759245123822378,
+        "flags": null,
+        "net kills": 4.0,
+        "net pit NPCs": 4.0,
+        "win points": 9.372108804066093
+       },
+       "fall back and reset": {
+        "cases": 3,
+        "matches": 3,
+        "energy": 54.43333333333334,
+        "energy 60 s before": 59.900000000000006,
+        "started at": 92.397908115033,
+        "the 60 s before": 10.501463911511118,
+        "flags": 0.7933333333333333,
+        "net kills": 3.3333333333333335,
+        "net pit NPCs": 3.0,
+        "win points": 6.6301940730018645
+       }
+      },
+      "62 or more": {
+       "stay and kill": {
+        "cases": 8,
+        "matches": 8,
+        "energy": 69.625,
+        "energy 60 s before": 66.975,
+        "started at": 83.65612977237906,
+        "the 60 s before": 10.545215140686459,
+        "flags": 0.32125,
+        "net kills": 3.75,
+        "net pit NPCs": 2.75,
+        "win points": 5.168206449158044
+       },
+       "push into their base for NPCs": {
+        "cases": 13,
+        "matches": 13,
+        "energy": 68.1076923076923,
+        "energy 60 s before": 66.01538461538462,
+        "started at": 85.37220145026431,
+        "the 60 s before": 7.091212459866956,
+        "flags": 0.22916666666666666,
+        "net kills": 3.6153846153846154,
+        "net pit NPCs": 3.0,
+        "win points": 4.016855084220585
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 72.0,
+        "energy 60 s before": 47.0,
+        "started at": 93.19545190786633,
+        "the 60 s before": 4.569985860216786,
+        "flags": 0.52,
+        "net kills": 2.0,
+        "net pit NPCs": 1.0,
+        "win points": 2.996485352297995
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -1.9894524980586374,
+      "the 60 s before": -5.235666429411407
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      47.0,
+      57.2
+     ],
+     "bands": {
+      "under 47": {
+       "stay and kill": {
+        "cases": 12,
+        "matches": 12,
+        "energy": 25.700000000000003,
+        "energy 60 s before": 38.690909090909095,
+        "started at": 98.84378848076139,
+        "the 60 s before": 1.7722936895443595,
+        "flags": -0.4818181818181818,
+        "net kills": 6.25,
+        "net pit NPCs": 2.75,
+        "win points": 0.8946370974456331
+       },
+       "push into their base for NPCs": {
+        "cases": 7,
+        "matches": 7,
+        "energy": 36.48571428571429,
+        "energy 60 s before": 40.285714285714285,
+        "started at": 96.05097462272963,
+        "the 60 s before": 3.180656902227213,
+        "flags": 0.0,
+        "net kills": 7.0,
+        "net pit NPCs": 5.285714285714286,
+        "win points": 3.949025377270381
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 28.0,
+        "energy 60 s before": 34.0,
+        "started at": 97.0273122597489,
+        "the 60 s before": 1.009998619704655,
+        "flags": 1.55,
+        "net kills": 8.0,
+        "net pit NPCs": 2.0,
+        "win points": 2.7246164434317377
+       },
+       "fall back and reset": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 44.0,
+        "energy 60 s before": 60.5,
+        "started at": 98.31582182052183,
+        "the 60 s before": 0.7307975742114059,
+        "flags": 0.12,
+        "net kills": 0.0,
+        "net pit NPCs": 4.0,
+        "win points": 1.6841781794781685
+       }
+      },
+      "47 to 57": {
+       "stay and kill": {
+        "cases": 9,
+        "matches": 9,
+        "energy": 51.65555555555556,
+        "energy 60 s before": 50.12222222222223,
+        "started at": 95.14990614365608,
+        "the 60 s before": 10.87180851987146,
+        "flags": 0.17111111111111113,
+        "net kills": 6.111111111111111,
+        "net pit NPCs": 5.333333333333333,
+        "win points": 4.687270482656633
+       },
+       "push into their base for NPCs": {
+        "cases": 9,
+        "matches": 8,
+        "energy": 52.08888888888889,
+        "energy 60 s before": 53.31111111111111,
+        "started at": 69.63162709313008,
+        "the 60 s before": 7.69227596966238,
+        "flags": 0.005714285714285695,
+        "net kills": 2.6666666666666665,
+        "net pit NPCs": 2.0,
+        "win points": -0.06125465397239492
+       },
+       "run a flag for a backup": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 55.0,
+        "energy 60 s before": 43.0,
+        "started at": 90.62789119593391,
+        "the 60 s before": 20.759245123822378,
+        "flags": null,
+        "net kills": 4.0,
+        "net pit NPCs": 4.0,
+        "win points": 9.372108804066093
+       },
+       "fall back and reset": {
+        "cases": 2,
+        "matches": 2,
+        "energy": 53.5,
+        "energy 60 s before": 54.4,
+        "started at": 89.4389512622886,
+        "the 60 s before": 15.386797080160974,
+        "flags": 1.13,
+        "net kills": 5.0,
+        "net pit NPCs": 2.5,
+        "win points": 9.103202019763712
+       }
+      },
+      "57 or more": {
+       "stay and kill": {
+        "cases": 9,
+        "matches": 9,
+        "energy": 66.66666666666666,
+        "energy 60 s before": 61.611111111111114,
+        "started at": 84.19593641530618,
+        "the 60 s before": 10.356780442770537,
+        "flags": 0.09874999999999999,
+        "net kills": 3.4444444444444446,
+        "net pit NPCs": 2.111111111111111,
+        "win points": 5.731214551793871
+       },
+       "push into their base for NPCs": {
+        "cases": 12,
+        "matches": 12,
+        "energy": 66.79166666666667,
+        "energy 60 s before": 63.19166666666667,
+        "started at": 85.47287104302993,
+        "the 60 s before": 7.214085132635643,
+        "flags": 0.22916666666666666,
+        "net kills": 3.5833333333333335,
+        "net pit NPCs": 2.75,
+        "win points": 3.031940202662039
+       },
+       "push their flagger": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 72.0,
+        "energy 60 s before": 47.0,
+        "started at": 93.19545190786633,
+        "the 60 s before": 4.569985860216786,
+        "flags": 0.52,
+        "net kills": 2.0,
+        "net pit NPCs": 1.0,
+        "win points": 2.996485352297995
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -2.0970716238719245,
+      "the 60 s before": -6.223693608059548
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stay and kill": {
+       "cases": 11,
+       "matches": 11,
+       "energy": 54.95454545454545,
+       "energy 60 s before": 57.08,
+       "started at": 88.54008376658125,
+       "the 60 s before": 9.82057495417161,
+       "flags": -0.15699999999999997,
+       "net kills": 4.818181818181818,
+       "net pit NPCs": 3.6363636363636362,
+       "win points": 4.131824988351844
+      },
+      "push into their base for NPCs": {
+       "cases": 10,
+       "matches": 10,
+       "energy": 62.39000000000001,
+       "energy 60 s before": 59.94000000000001,
+       "started at": 73.04019219415808,
+       "the 60 s before": 7.591593735097765,
+       "flags": -0.003750000000000024,
+       "net kills": 3.2,
+       "net pit NPCs": 2.4,
+       "win points": 3.8499460218056902
+      },
+      "push their flagger": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 72.0,
+       "energy 60 s before": 47.0,
+       "started at": 93.19545190786633,
+       "the 60 s before": 4.569985860216786,
+       "flags": 0.52,
+       "net kills": 2.0,
+       "net pit NPCs": 1.0,
+       "win points": 2.996485352297995
+      },
+      "run a flag for a backup": {
+       "cases": 2,
+       "matches": 2,
+       "energy": 41.5,
+       "energy 60 s before": 38.5,
+       "started at": 93.8276017278414,
+       "the 60 s before": 10.884621871763517,
+       "flags": 1.55,
+       "net kills": 6.0,
+       "net pit NPCs": 3.0,
+       "win points": 6.048362623748915
+      },
+      "fall back and reset": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 54.0,
+       "energy 60 s before": 46.4,
+       "started at": 88.68247209038019,
+       "the 60 s before": 12.908855837480381,
+       "flags": 1.42,
+       "net kills": 3.0,
+       "net pit NPCs": 3.0,
+       "win points": 9.485013206907677
+      }
+     },
+     "two monks": {
+      "stay and kill": {
+       "cases": 11,
+       "matches": 11,
+       "energy": 51.718181818181826,
+       "energy 60 s before": 55.97272727272729,
+       "started at": 94.54570586830197,
+       "the 60 s before": 7.766375300136089,
+       "flags": 0.10500000000000002,
+       "net kills": 4.909090909090909,
+       "net pit NPCs": 3.3636363636363638,
+       "win points": 4.395713760362941
+      },
+      "push into their base for NPCs": {
+       "cases": 12,
+       "matches": 12,
+       "energy": 55.78333333333333,
+       "energy 60 s before": 55.616666666666674,
+       "started at": 87.1809782569537,
+       "the 60 s before": 7.951397108406635,
+       "flags": 0.22,
+       "net kills": 4.166666666666667,
+       "net pit NPCs": 3.0,
+       "win points": -1.1724089943646026
+      },
+      "fall back and reset": {
+       "cases": 2,
+       "matches": 2,
+       "energy": 54.65,
+       "energy 60 s before": 66.65,
+       "started at": 94.25562612735942,
+       "the 60 s before": 9.297767948526486,
+       "flags": 0.48,
+       "net kills": 3.5,
+       "net pit NPCs": 3.0,
+       "win points": 5.202784506048958
+      }
+     },
+     "three or more": {
+      "stay and kill": {
+       "cases": 8,
+       "matches": 8,
+       "energy": 45.175,
+       "energy 60 s before": 45.737500000000004,
+       "started at": 98.28679485201019,
+       "the 60 s before": 2.3585465176156966,
+       "flags": -0.30624999999999997,
+       "net kills": 6.75,
+       "net pit NPCs": 2.875,
+       "win points": 1.3373855304424338
+      },
+      "push into their base for NPCs": {
+       "cases": 6,
+       "matches": 6,
+       "energy": 58.333333333333336,
+       "energy 60 s before": 62.11666666666667,
+       "started at": 91.35704294810198,
+       "the 60 s before": 1.1219001637203945,
+       "flags": 0.036,
+       "net kills": 5.666666666666667,
+       "net pit NPCs": 4.666666666666667,
+       "win points": 6.507435983567319
+      }
+     }
+    }
+   }
+  }
+ },
+ "not read": {
+  "pressing the fight or allowing a stand-off": "no play tells this choice yet: a stand-off is read as no fight (R-405) and told as no row",
+  "the Mesmer and midline playing offensively or defensively, whom they drain included": "no play of the new engine tells it yet (R-279's reading is the old tier's); whom a Mesmer drains comes with energy denial, piece 3"
+ },
+ "danger zone both ways": {
+  "cases": 964,
+  "cuts": [
+   58.2,
+   66.7
+  ],
+  "cells": {
+   "in the zone, monks under 58": {
+    "cases": 62,
+    "stayed": 1.0,
+    "deaths": 0.3064516129032258,
+    "their deaths": 3.4838709677419355,
+    "win points of the stays": 0.16564337696973624
+   },
+   "in the zone, monks 58 to 67": {
+    "cases": 51,
+    "stayed": 1.0,
+    "deaths": 0.09803921568627451,
+    "their deaths": 3.2549019607843137,
+    "win points of the stays": -2.031357400484596
+   },
+   "in the zone, monks 67 or more": {
+    "cases": 43,
+    "stayed": 0.9767441860465116,
+    "deaths": 0.13953488372093023,
+    "their deaths": 2.953488372093023,
+    "win points of the stays": 2.733643709139875
+   },
+   "outside the zone, monks under 58": {
+    "cases": 255,
+    "stayed": 0.9215686274509803,
+    "deaths": 0.09411764705882353,
+    "their deaths": 2.023529411764706,
+    "win points of the stays": 4.091169201725494
+   },
+   "outside the zone, monks 58 to 67": {
+    "cases": 269,
+    "stayed": 0.9442379182156134,
+    "deaths": 0.07806691449814127,
+    "their deaths": 1.9070631970260223,
+    "win points of the stays": 3.5709864660099058
+   },
+   "outside the zone, monks 67 or more": {
+    "cases": 284,
+    "stayed": 0.8943661971830986,
+    "deaths": 0.04225352112676056,
+    "their deaths": 2.0246478873239435,
+    "win points of the stays": 3.1981539311406957
+   }
+  }
+ }
+}
