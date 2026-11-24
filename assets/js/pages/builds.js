@@ -121,6 +121,5 @@ export function attrGearLine(v, familyId) {
 
 function codeButtons(v, x) {
   return `<span class="code">${esc(v.code)}</span>
-    <button class="btn small primary" data-copy="${esc(v.code)}">Copy</button>
-    <button class="btn small" data-save="${esc(v.code)}" data-name="${esc(x.name)}" data-bonus='${esc(JSON.stringify(v.bonus))}'>Save</button>`;
+    <button class="btn small primary" data-copy="${esc(v.code)}">Copy</button>`;
 }

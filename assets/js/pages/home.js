@@ -146,10 +146,8 @@ export async function renderHome(view) {
       out.innerHTML = `<div class="meta" style="margin-bottom:8px"><span class="prof" data-p="${t.primary}">${t.primary}</span> / <span class="prof" data-p="${t.secondary}">${t.secondary}</span>
         <span class="attrs">${Object.entries(t.attributes).map(([a, r]) => `${esc(a)} ${r}`).join(", ")}</span></div>
         ${skillBar(t.skills, t)}
-        <div class="row" style="margin-top:8px"><span class="code">${esc(code)}</span><button class="btn small primary" id="c">Copy code</button>
-        <button class="btn small" id="s">Save to Templates</button></div>`;
+        <div class="row" style="margin-top:8px"><span class="code">${esc(code)}</span><button class="btn small primary" id="c">Copy code</button></div>`;
       out.querySelector("#c").onclick = () => copy(code);
-      out.querySelector("#s").onclick = async () => { const name = prompt("Name for this template?"); if (name) try { await saveToTemplates({ name, code }); } catch (err) { toast(err.message); } };
     } catch (err) {
       out.innerHTML = `<p class="note">${esc(err.message)}</p>`;
     }
@@ -163,7 +161,7 @@ function lineups(m) {
       const code = codeForPlayer(p);
       return `<div class="lineup-row"><span class="pos">${p.pos ?? "–"}</span><span class="prof" data-p="${esc(p.p)}">${esc(ABBR[p.p] || p.p)}/${esc(ABBR[p.s] || "")}</span><span class="pname" title="${esc(p.build || "")}">${esc(p.n)}</span>
         ${skillBar(p.bar, { attributes: p.attrs }, true)}
-        ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button><button class="btn small" data-save="${esc(code)}" data-name="${esc(p.n)} (${esc(m.date)})">Save</button>` : ""}
+        ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button>` : ""}
 </div>`;
     }).join("")}</div>`).join("")}</div>`;
 }

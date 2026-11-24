@@ -1,16 +1,14 @@
 import { loadData, installTooltips, state, canSave } from "./core.js";
 import { renderHome } from "./pages/home.js";
 import { renderSkills } from "./pages/skills.js";
-import { renderTemplates } from "./pages/templates.js";
 import { renderKnowledge, renderModel } from "./pages/knowledge.js";
 import { renderSettings } from "./pages/settings.js";
 import { renderBuilds } from "./pages/builds.js";
 import { renderPlayers } from "./pages/players.js";
-import { renderMeta } from "./pages/meta.js";
 import { renderSchedule } from "./pages/schedule.js";
 import { renderGuilds } from "./pages/guilds.js";
 
-const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings };
+const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, players: renderPlayers, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings };
 const view = document.getElementById("view");
 
 function route() {
