@@ -10,22 +10,14 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## State (2026-11-23, late night: his answers R-656 to R-660; the new trim part built and its refetch started)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
-  piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-660. The baseline (R-491): `baseline-2026-11-15`.
+  piece, then one rebuild (R-322). 660 replays stored (two added by the test fetch, his to keep or take out); 564 counted at the last
+  checkpoint (R-477); 506 matches trained. The refetch run is in progress (below). Rulings run to R-660. The baseline (R-491): `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. No family: numbers from kills (R-557), the push (R-597), a held team
   (R-621). No more matches until the engine is ready (R-570). His marks on the eight draft Lord rows (p4-9 to
   p4-16) and on the eleven flag cards are filed; no flag card waits.
-- Built this chat, on the branch:
-  - The Lord play (R-650 to R-654): `jobs.lord_plays` reads `Moments.end_play`. The play for 28:00 is one row a
-    match with both teams in it; a push before it (a Lord kill by a team that sent before 25:00) is a Lord line on
-    the row it grew out of (held rows, else the killers' split, else the fight won before); earlier visits are
-    not Lord rows. 191 Lord rows in 98 matches became 61 plays and Lord lines on 152 rows in 115 matches; the
-    other 32,989 plays are identical.
-  - The end record: a player who dies on his way into their base was sent; a send is read while the play is on
-    (a player who left less than 12 s before the end counts where he stood).
-  - Measurements: execution in words (`cases.py execution-say`); three more execution measures (`into_ready`,
-    `blind_attacks`, `off_shield`); the split's NPC damage in what like spots are matched on. With it the unseen
-    test reads clearer for one, two and four or more players at 60 s. Readings, not advice.
+- On the branch from the chat before (CHANGELOG, 2026-11-23, night): the Lord play read from the end record
+  (R-650 to R-654: the play for 28:00 one row a match; a push before it a Lord line on the row it grew out of),
+  execution in words, and the split's NPC damage in what like spots are matched on. Readings, not advice.
 - The new trim part (stage E, step 1), on main: `tools/gvgreport/replay_extras.mjs` writes `<id>.x.json.gz` beside
   each stored replay (flag objects, Lord record, prot, degen, attempts, recaps, energy); the stored replays are not
   written again. Tested on hdm v Men, RJT v RACK, Book v hook, Team v hook and BcS v Apes: the four known returns,
