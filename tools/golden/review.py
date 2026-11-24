@@ -233,6 +233,8 @@ def _reads(g):
     g.sort(key=lambda p: (bool(p.get("change")), p.get("at", 0) if p.get("change") else 0, FIRST.get(p["play"], ()).index(p["side"]) if p["side"] in FIRST.get(p["play"], ()) else 0, p["play"] != "push flagger"))
     if g[0].get("_row"): return g[0]["_row"] + (" (Shadow of Haste run: set aside)" if any(p.get("soh") for p in g) else "")      # a flag row: every run told once (R-521), the opening as one description (R-520)
     read = g[0]["scenario"] + ("; ".join([""] + [p["scenario"].split(": ", 1)[-1] for p in g[1:] if p["play"] == "split" and not p.get("change") and p["side"] == "defender" and p.get("call") in ("collapse", "full collapse", "part-run")]))
+    ll = next((p["lord_line"] for p in g if p.get("lord_line")), None)
+    if ll: read += ". " + ll                                   # a push on the Lord before the play for 28:00 is told with the row it grew out of (R-644, R-650)
     def move(p):                                          # "Ranger joins the split at 18:28"; "Hammer B, 8 Monk join the defence at 12:48"
         one, what = len(p["who"]) == 1, p.get("call") or p.get("answer")
         verb = {"join": "joins" if one else "join", "leave": "leaves" if one else "leave", "collapse": "collapses on it" if one else "collapse on it"}.get(what, what)
@@ -382,6 +384,8 @@ def lord_rows(out, picks, gvg=None):
     stored of it is each Lord's total for the match, so the row sets that total beside the engine's sum of the recorded
     hits, for the push and for the match; the two differ where gvg.report leaves hits out (life steal, on the one
     match probed). A pick is <report id or its start>:<m:ss>, the second the push begins."""
+    sys.exit("lord: retired. The Lord push is read from the end record now (jobs.lord_plays from Moments.end_play, R-650 to R-654): there is no attacker's and defender's play of a push to write a row from. "
+             "Rows of the play for 28:00 are written by tools/golden/endplay.py rows; the four rows this wrote stay on the page as he marked them.")
     import datetime, subprocess
     sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
     import common, jobs, moments

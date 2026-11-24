@@ -1979,8 +1979,8 @@ class Moments:
         return self.hall.past_turnoff(self.P[a][t], s)
 
     def end_play(self):
-        """The end of the match, one record (R-640 to R-646; R-362: the record is the work). A DRAFT: no play reads it and it moves none (R-647: nothing is
-        told from it until he has marked its rows). His description: late in the match each team decides whom it sends to the enemy's base (for the kill, or
+        """The end of the match, one record (R-640 to R-646, R-650 to R-654; R-362: the record is the work). `jobs.lord_plays` tells the Lord play from it
+        (his marks on its eight draft rows, 2026-11-23, and his word). His description: late in the match each team decides whom it sends to the enemy's base (for the kill, or
         for the most Lord damage) and whom it keeps to defend, and where both do so the two are one play. "28" is the end of the match, not the clock (R-642).
         Read from where the players stand, never from hits on a Lord: at the end of play (the Lord's death, or END_BACK_S before the match is over) every
         player's last place alive, sent, kept or neither (`_end_place`), and `since`, when his last unbroken stay there began (other places for JOIN_S or
@@ -1993,7 +1993,7 @@ class Moments:
         summed over the eight, players alive, Lord damage so far by the engine's sum of the recorded hits). `kind` tells a play for 28:00 from a push before
         it (R-641) by his three signs read together (R-646: early, one team already in the enemy's base, no push in return), kept apart as `killer_send`,
         `already` and `in_return`: a match run to its end always ends in a play for 28:00; a match ended by a Lord kill holds one only when the team that
-        killed him sent its players at PLAY28_FROM or later (a draft line, his to decide). Where the signs disagree the record says so and decides nothing."""
+        killed him sent its players at PLAY28_FROM or later (25:00, his line, R-653). Where the signs disagree the record keeps them apart; the line decides."""
         if self._ep is not None: return self._ep
         st, m = self.st, self.m
         dead = {tm: next((r[0] / 10 for r in m.o["ev"] if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "guild_lord" and m.A[r[2]].get("team") == tm), None) for tm in st.teams}
@@ -2002,10 +2002,11 @@ class Moments:
         out = {"end": E, "lord_killed": m.tag[ltm] if ltm else None, "teams": [m.tag[tm] for tm in st.teams], "tms": list(st.teams), "map": m.o["meta"].get("map"), "date": self.day, "players": {}}
         if self.hall is None or E < END_LOOK_FROM + 60:
             self._ep = dict(out, short=True); return self._ep
+        series = {}
         for tm in st.teams:
             rec = []
             for a in st.players[tm]:
-                s = [self._end_place(a, t, tm) for t in range(END_LOOK_FROM, E + 1)]
+                s = series[a] = [self._end_place(a, t, tm) for t in range(END_LOOK_FROM, E + 1)]
                 i, died = len(s) - 1, None
                 while i >= 0 and s[i] == "dead": i -= 1
                 if i < 0: rec.append({"id": a, "role": m.roles[a], "place": "dead", "since": None, "died": None}); continue
@@ -2032,13 +2033,34 @@ class Moments:
                         r.update(place="sent", since=END_LOOK_FROM + first, before=first == 0, on_way=True, reached=reached)
                 rec.append(r)
             out["players"][m.tag[tm]] = rec
+        # A team's send is read while the play is on, not at its last second (R-654, his answer on ohno v Book 25:04: Book's players stood in ohno's base
+        # until some 10 s before their own Lord died and read as in the field). A player away from his place for less than JOIN_S has not left it (R-579):
+        # one whose last place is the field, and who left a stay of JOIN_S or more in their base or at home less than JOIN_S before, is counted where he
+        # stood, sent or kept, from when that stay began, with `left`, the second he left it. One who left earlier went elsewhere and is in the field
+        # (Book v hook 24:19 and 24:54, his "NO corresponding push"; Crew v cope 24:24 and 24:34).
+        for rec in out["players"].values():
+            for r in rec:
+                if r["place"] != "field" or r.get("on_way") or r.get("died") is not None: continue      # a player who died out there stays where he died
+                sr = series[r["id"]]; i = len(sr) - 1
+                while i >= 0 and sr[i] == "dead": i -= 1
+                j = i
+                while j >= 0 and sr[j] == "field": j -= 1
+                if j < 0 or sr[j] not in ("sent", "kept") or i - j >= JOIN_S: continue
+                F, first, k = sr[j], j, j
+                while k >= 0:
+                    if sr[k] == F: first = k; k -= 1; continue
+                    q = k
+                    while q >= 0 and sr[q] != F: q -= 1
+                    if q < 0 or k - q > JOIN_S or "dead" in sr[q + 1:k + 1]: break
+                    k = q
+                if j - first + 1 >= JOIN_S: r.update(place=F, since=END_LOOK_FROM + first, before=first == 0, left=END_LOOK_FROM + j + 1)
         sends = {}
         for tg, rec in out["players"].items():
             xs = sorted(r["since"] for r in rec if r["place"] == "sent")
             sends[tg] = {"sent": len(xs), "kept": sum(1 for r in rec if r["place"] == "kept"), "send": statistics.median(xs) if xs else None, "first": xs[0] if xs else None}
-        out["sends"] = sends
         ss = [v["send"] for v in sends.values() if v["send"] is not None]
         out["set"] = max(ss) if ss else None
+        out["sends"] = sends
         out["shape"] = "both send" if len(ss) == 2 else "one sends" if ss else "neither sends"
         firsts = [v["first"] for v in sends.values() if v["first"] is not None]
         out["already"] = bool(ss) and min(firsts) <= out["set"] - END_ALREADY_S          # a team stood in the enemy's base well before the arrangement was set
@@ -3442,6 +3464,10 @@ def run_all(path, jobs=2, ids=None):
     for r in out:
         for k, v in ((extra[r] or {}).get("flag_moments") or {}).items(): fm[k] += v
     print("flag runs set off for, by how the moment is read (R-461):", dict(fm))
+    ep = [(extra[r] or {}).get("end_play") for r in out]; ep = [o for o in ep if o and not o.get("short")]
+    print(f"the end of the match (Moments.end_play): {sum(1 for o in ep if (o.get('told') or {}).get('play') is not None)} plays for 28:00; {sum(1 for o in ep if o.get('kind') == 'push before it')} pushes before it, "
+          f"{sum(1 for o in ep if o.get('kind') == 'push before it' and not (o.get('told') or {}).get('lines'))} of them with no row to be told on (R-460); "
+          f"{sum(1 for o in ep if o.get('kind') != 'push before it' and (o.get('told') or {}).get('lines'))} matches with a Lord line before their play for 28:00; {sum(1 for o in ep if o.get('kind') is None)} in which nobody is sent")
     sc = [(r, c) for r in sorted(out) for c in (extra[r] or {}).get("selfcheck") or []]
     print(f"self-check (R-488): {len(sc)} times a player is counted in two fights at once for {JOIN_S} s or longer, in {len({r for r, _ in sc})} matches")
     if blanks([x for r in sorted(out) for x in out[r]], [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])]): sys.exit(1)

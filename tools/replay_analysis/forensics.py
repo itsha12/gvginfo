@@ -177,7 +177,8 @@ class Forensics:
         return L[i - 1] if i else -99
 
     def casting_at(self, a, t):
-        return any(c[0] == a and c[2] <= t <= (c[3] or c[2] + 1) for c in self.casts())
+        self.casts()                                           # the same reading, asked of that player's own casts only (execution.py asks it for every hit)
+        return any(c[2] <= t <= (c[3] or c[2] + 1) for c in self._by_agent.get(a, ()))
 
     def damage_on(self, a, t0, t1):
         return [(e[0] / 10, e[2], e[4], e[5] or 0, e[6] if len(e) > 6 else None) for e in self.events(t0, t1, {"dm"})
@@ -403,8 +404,9 @@ class Forensics:
             for sid in (self.m.A[f].get("bar") or []):
                 sd = self.sdata(sid)
                 if sid and "Interrupt" in (sd.get("causes") or []): intr.setdefault(f, []).append((sid, sd))
-        for c in self.casts():
-            if c[0] != a or not (t0 <= c[2] <= t1): continue
+        self.casts()
+        for c in self._by_agent.get(a, ()):
+            if not (t0 <= c[2] <= t1): continue
             t = c[2]
             dazed = self.has(a, "c", "dazed", t)
             ready = []

@@ -1497,7 +1497,8 @@ def numbers_cards(path, which="f1", site=None):
 SPLIT_READS = (20, 40)                           # the seconds after a split is told at which the answer to it is read: the first answer, frozen at 20 s, and what it had become at 40 s (R-567, his: "Can we do 20s and 40s?"; 30 and 60 s were Claude's draft)
 SPLIT_VARS = ("flag lead", "seconds to the boost", "seconds to the base res", "own morale", "their morale", "strength gap", "own chance of winning at that second", "own main team's place (steps toward own pit)",
               "their main team's place (steps toward their pit)", "own pit NPCs already lost", "own dead", "their dead", "players on the split", "monks on the split", "self-defence skills on the split",
-              "the split's snares", "the split's speed", "the split's escapes")      # R-566 and his agreement of 2026-11-21: the list put to him, with each side's dead and what the split can do as properties (R-539). Its damage against NPCs is not measured yet (`Moments._props`)
+              "the split's snares", "the split's speed", "the split's escapes", "the split's damage a second on archers", "the split's damage a second on knights",
+              "the split's damage a second on the Bodyguard")      # R-566 and his agreement of 2026-11-21: the list put to him, with each side's dead and what the split can do as properties (R-539); its damage against the pit NPCs by rough class of bar (R-433, `npcpower.py`, `npc` on the split's properties), added 2026-11-23
 SPLIT_SIZES = ("one player", "two players", "three players", "four or more")
 SPLIT_ANSWERS = ("nobody coming", "a defender on his way", "one defender, a monk", "one defender, not a monk", "one defender", "two monks", "fewer than the split", "mirror", "add one", "two or more extra", "a collapse", "the whole team")
 
@@ -1552,7 +1553,7 @@ def split_cases(D, M, B):
         size0, call0 = _split_answer(s, SPLIT_READS[0])
         # what a like spot is matched on (SPLIT_VARS), from the side of the team the split is sent against; a split not on their ground at the first read has no case among the like spots
         x = [st["flag_lead"], st["boost_in"], s["res_in"], mor[0][0], mor[1][0], gap, 100 * p0, s["steps"][1], s["steps"][0], st["npcs_lost"][0][0], s["dead"][1], s["dead"][0],
-             nm[0] if nm else None, nm[3] if nm else None, pp.get("self_defence"), pp.get("snare"), pp.get("speed"), pp.get("escapes")]
+             nm[0] if nm else None, nm[3] if nm else None, pp.get("self_defence"), pp.get("snare"), pp.get("speed"), pp.get("escapes")] + [(pp.get("npc") or {}).get(k) for k in ("archer", "knight", "bodyguard")]
         out.append({"id": p["id"], "rid": rid, "team": p["team"], "t": s["told"], "sid": sid, "fold": m["fold"], "won": won, "p0": p0, "pre": pre, "x": x, "more": None, "held": False, "kind": "split",
                     "scenario": size0 and f"A split of {size0}", "call": call0, "home": s["home"], "runner_out": s["runner_out"], "own_split": s["own_split"], "pit_alive": s["pit_alive"], "lord": {h: sum(v_ for t_, v_ in s["lord_damage"] if 0 <= t_ <= h) for h in (90, 180)},
                     "by": {h: (lambda v_: None if v_ is None else [v_[0], v_[1]])(s["numbers"][s["at"].index(h)]) for h in s["at"]},
@@ -3159,7 +3160,8 @@ EXEC_SAY = {"dmg": "damage on their players", "dmg_v_usual": "damage against the
             "knockdowns": "knockdowns", "knockdowns_on_casting": "knockdowns on a casting player", "disable": "skills disabled", "castprev": "casts punished by Shame, Guilt or Diversion",
             "degen": "degen kept on them", "kite": "their melee kited", "baits": "their interrupts baited", "strips": "useful strips", "strips_wasted": "strips that removed nothing",
             "blind_secs": "Blind kept on their attackers", "hex_secs": "hexes kept on them", "hex_removed": "hexes taken off its own players", "npc_dmg": "damage on their NPCs",
-            "npc_heal": "healing of its own NPCs"}
+            "npc_heal": "healing of its own NPCs", "into_ready": "casts started into a ready interrupt", "blind_attacks": "attacks made while Blind",
+            "off_shield": "the share of the damage it took off its shield sets while not casting"}
 
 
 def exec_out(bench, kind, side, key, v):

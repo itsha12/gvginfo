@@ -33,7 +33,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
 from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
-                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
+                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, END_LOOK_FROM, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
 from common import line as _line, RETURN_R
 
@@ -1686,45 +1686,112 @@ def _pit_words(M, tm, t, t1):
 
 
 # ---- the Lord push, from LORD_PUSH_FROM (R-435)
-def lord_plays(M, K):
-    st, m, T, out = M.st, M.m, M.T, []
+def lord_plays(M, K, told=()):
+    """The end of the match as plays, read from where the players stand (`Moments.end_play`), never from hits on a Lord (R-640 to R-646, R-650 to R-654).
+
+    The play for 28:00 is one play of both teams, told once (R-640): a play a team with the same sentence, the same start (the second the first group
+    went) and the same end, so that the page reads them as one row; each carries whom that team sends and keeps, what its send played for (`aim`), what
+    each team had when the first group went and when the play was set, and the Lord figures. "28" is the end of the match, not the clock (R-642): a play
+    for 28:00 may end in a Lord kill, and a kill by a team that sent its players before PLAY28_FROM (25:00, R-653) is a push before it.
+
+    A push on the Lord before the play for 28:00 is no row of its own (R-644, R-650): it is told with the situation it grew out of, as a Lord line on
+    that situation's rows (`told`, the plays read so far; `lord` and `lord_line` on the play, the scenario left as it is). In a match ended by such a
+    push: every row of the losing team held in its base, from the killers' first send on, in which its Lord is hit, the last read on to the kill; where
+    the losing team is not held in (its players are out, or dead), the rows of the killers' split in its base (Dz v Crew 21:36: two of Crew's on Dz's
+    Lord while Dz's seven stand in Crew's base); and where there is neither, the killers' last numbers row, the fight they won before they walked in
+    (cope v hold 22:40: the stay after a wipe). In a match that goes on to a play for 28:00: every held row from LORD_PUSH_FROM on, begun before that
+    play, in which the Lord is hit. An earlier visit to a Lord with no held row over it is not told as a Lord row (R-652); a split's record carries
+    its own Lord damage.
+
+    What a send played for (`aim`), from where its hits in their base landed and what came of it: "killing the defenders" where more of its hits there
+    landed on players than on the Lord (his mark on Crew v cope 24:44); else "the kill" where it killed the Lord (his words on ohno v Book 25:04: "they
+    went for the kill rather than lord dmg"), else "Lord damage" (Team v hook 24:02). The kill is read from the result: intent is not in the replay.
+    Lord damage here is the engine's sum of the recorded hits until the rebuild reads gvg.report's record (R-632)."""
+    st, m, T = M.st, M.m, M.T
+    o = M.end_play() if M.hall is not None else None
+    if not o or o.get("short"): return []
+    tag, E = m.tag, int(o["end"])
     res = m.o["meta"].get("result") or {}
     won = res.get("winning_team_id")
-    dead = {tm: next((r[0] / 10 for r in m.o["ev"] if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "guild_lord" and m.A[r[2]].get("team") == tm), None) for tm in st.teams}
     taken = {l["team"]: l.get("taken") for l in m.o.get("lords", [])}          # gvg.report's own Lord damage total for the match
-    how = "a Lord kill" if any(v is not None for v in dead.values()) else ("Lord damage at 28:00" if T >= 1670 else "the match ending early")
-    for r in M.on_lord():
-        tm, foe = r["tm"], 3 - r["tm"]
-        t0, t1 = int(r["t"]), int(r["t1"])
-        if t1 < LORD_PUSH_FROM or t0 < LORD_PUSH_FROM - 30 or t1 - t0 < 6 or M.hall is None: continue
-        t0 = max(t0, 0); fs = st.side.get(foe)
-        lp = M.hall.lord[fs]
-        att, dfn = [], []                                # who is in their base: on their ground (not out in the field) within LORD_BASE_R of the Lord; the defenders in their own base or pit (R-446: he counts the players in the base, not only those next to the Lord)
-        for u in range(max(t0 - 6, 0) // SPLIT_STEP * SPLIT_STEP, min(t1, T) + 1, SPLIT_STEP):
-            att.append(frozenset(a for a in st.players[tm] if M.AL[a][u] and M.place_at(a, u)[1] == fs and M.place_at(a, u)[0] != "field" and d(M.P[a][u], lp) <= LORD_BASE_R))
-            dfn.append(frozenset(b for b in st.players[foe] if M.AL[b][u] and M.place_at(b, u)[1] == fs and M.place_at(b, u)[0] in ("pit", "base")))
-        def held(sets):                                  # the most that were there together for 8 s or more, who they were, and how many at the end
-            n = max((c for c in range(8, 0, -1) if sum(1 for g in sets if len(g) >= c) >= 4), default=max((len(g) for g in sets), default=0))
-            who = collections.Counter(a for g in sets if len(g) >= n for a in g)
-            return n, [a for a, _ in who.most_common(n)], len(sets[-1]) if sets else 0
-        (n, ids_a, n_end), (nd, ids_d, nd_end) = held(att), held(dfn)
-        monks, dmonks = M._mk(ids_a), M._mk(ids_d)
-        pit = sum(1 for a, v in st.geo.npcs.items() if v["team"] == foe and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(a, 1e9) > t0)
-        rel = "more attackers than pit NPCs" if n > pit else "as many attackers as pit NPCs" if n == pit else "fewer attackers than pit NPCs"
-        ids = set(r["ids"])
-        on_lord = sum(1 for u, a, _ in M.lord_hits.get(foe, ()) if t0 <= u <= t1)
-        on_players = sum(1 for u in range(t0, min(t1, T) + 1) for a, b in M.hits.get(u, ()) if a in st.players[tm] and d(M.P[a][u], lp) <= LORD_BASE_R)
-        aim = "Lord damage" if on_lord >= on_players else "killing the defenders"
-        dmg = round(sum(v for u, _, v in M.lord_hits.get(foe, ()) if t0 <= u <= t1))
-        own = round(sum(v for u, _, v in M.lord_hits.get(tm, ()) if t0 <= u <= t1))
-        bes = {"attackers": n, "attackers_at_the_end": n_end, "pit_npcs": pit, "monks_with_the_push": monks, "aim": aim, "lord_damage": dmg, "own_lord_damage_meanwhile": own, "defenders": nd, "defenders_at_the_end": nd_end, "defender_monks": dmonks,
-               "deaths": [K.died(tm, t0, t1 + 5), K.died(foe, t0, t1 + 5)], "match_decided_by": how, "match_lord_damage_gvg_report": [taken.get(foe), taken.get(tm)],
-               "lord_killed_in_it": dead[foe] is not None and t0 <= dead[foe] <= t1 + 5}
-        then = lambda a_, b_: "" if a_ == b_ else f", {b_} by the end"
-        out.append(_play(M, "lord", "attacker", tm, t0, t1, [m.roles[a] for a in ids_a], f"{M.m.tag[tm]} pushes {M.m.tag[foe]}'s Guild Lord with {n} in the base ({monks} monk{'s' if monks != 1 else ''}{then(n, n_end)}) against {pit} pit NPCs: {rel}; playing for {aim}",
-                         "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)", {"the match is won": won == tm}, beside=bes, relation=rel, monks=monks, aim=aim, attackers=n, pit=pit))
-        out.append(_play(M, "lord", "defender", foe, t0, t1, [m.roles[b] for b in ids_d], f"{M.m.tag[foe]} defends its Guild Lord with {nd} ({dmonks} monk{'s' if dmonks != 1 else ''}{then(nd, nd_end)}) against {n}{then(n, n_end)}",
-                         "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)", {"the match is won": won == foe}, beside=bes, defenders=nd, monks=dmonks))
+    how = "a Lord kill" if o["lord_killed"] else ("Lord damage at 28:00" if T >= 1670 else "the match ending early")
+    tm_of = {tag[tm]: tm for tm in st.teams}
+    hits_on = lambda tm, a, b: sum(v for u, _, v in M.lord_hits.get(tm, ()) if a <= u <= b)          # the recorded hits on tm's Guild Lord
+    n_on = lambda tm, a, b: sum(1 for u, _, _ in M.lord_hits.get(tm, ()) if a <= u <= b)
+    pit = lambda tm, t: sum(1 for z, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > t)
+
+    OL = M.on_lord()
+
+    def aim(tm, a, b):
+        """What tm's players in the enemy's base went for from a to b: (aim, hits on the Lord, hits on players there). Read over the stretches in which
+        the Lord is being hit (`Moments.on_lord`, as the Lord push was read before: hold v RACK 24:48 and Crew v cope 24:44, Classic), not over the
+        minutes before them in which the defenders are killed; where there is no such stretch, over the whole of a to b."""
+        xs = [(max(a, int(r["t"])), min(b, int(r["t1"]))) for r in OL if r["tm"] == tm and r["t1"] >= a and r["t"] <= b]
+        if xs: a, b = min(x for x, _ in xs), max(y for _, y in xs)
+        foe = 3 - tm; lp = M.hall.lord[st.side.get(foe)]
+        on_lord = n_on(foe, a, b)
+        on_players = sum(1 for u in range(int(a), min(int(b), T) + 1) for x, _ in M.hits.get(u, ()) if x in st.players[tm] and d(M.P[x][u], lp) <= LORD_BASE_R)
+        killed = o["lord_killed"] == tag[foe] and a <= E <= b + 5
+        return ("killing the defenders" if on_players > on_lord else "the kill" if killed else "Lord damage"), on_lord, on_players
+
+    S, out = o["sends"], []
+    o["told"] = {"play": None, "lines": []}                                # where the end of this match is told: kept on the record, so a push with no row to be told on is counted (R-460)
+    play28 = o.get("kind") == "play for 28:00" and o.get("set") is not None
+    t0 = int(min(v["send"] for v in S.values() if v["send"] is not None)) if play28 else None
+    if play28:
+        side = lambda tg: f"{tg} sends {S[tg]['sent'] or 'nobody'} and keeps {S[tg]['kept'] or 'nobody'}"
+        A, B = o["teams"]
+        aims = {tg: (aim(tm_of[tg], int(S[tg]["first"]), E) if S[tg]["sent"] else None) for tg in (A, B)}
+        went = "; ".join(f"{tg}'s send plays for {aims[tg][0]}" for tg in (A, B) if aims[tg])
+        end = f"{o['lord_killed']}'s Guild Lord is killed at {clock(E)}" if o["lord_killed"] else "the match runs to its end"
+        words = f"The play for 28:00: {side(A)}; {side(B)}; set at {clock(o['set'])}" + (f", the first group gone at {clock(t0)}" if o["set"] - t0 >= 20 else "") + f". {went}; {end}"
+        for tg in (A, B):
+            tm, foe = tm_of[tg], 3 - tm_of[tg]
+            rec = o["players"][tg]; other = next(x for x in (A, B) if x != tg)
+            grp = lambda place: [r for r in rec if r["place"] == place]
+            sent, kept = grp("sent"), grp("kept")
+            a0 = int(S[tg]["first"]) if sent else t0
+            bes = {"sent": len(sent), "kept": len(kept), "sent_roles": [r["role"] for r in sent], "kept_roles": [r["role"] for r in kept], "in_the_field": [r["role"] for r in grp("field")],
+                   "their_sent": S[other]["sent"], "their_kept": S[other]["kept"], "monks_sent": M._mk([r["id"] for r in sent]), "monks_kept": M._mk([r["id"] for r in kept]),
+                   "aim": aims[tg][0] if aims[tg] else None, "hits_on_their_lord": aims[tg][1] if aims[tg] else 0, "hits_on_their_players_in_the_base": aims[tg][2] if aims[tg] else 0,
+                   "send": S[tg]["send"], "set": o["set"], "shape": o["shape"], "pit_npcs": [pit(tm, t0), pit(foe, t0)], "at": o.get("at"),
+                   "lord_damage": round(hits_on(foe, a0, E + 6)), "own_lord_damage_meanwhile": round(hits_on(tm, a0, E + 6)), "deaths": [K.died(tm, t0, E + 5), K.died(foe, t0, E + 5)],
+                   "match_decided_by": how, "match_lord_damage_gvg_report": [taken.get(foe), taken.get(tm)], "lord_killed_in_it": o["lord_killed"] == tag[foe], "own_lord_killed_in_it": o["lord_killed"] == tg}
+            job = "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)" if sent else "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)"
+            out.append(_play(M, "lord", "own", tm, t0, E, [r["role"] for r in sent], words, job, {"the match is won": won == tm}, beside=bes, kind="play for 28:00", aim=bes["aim"],
+                             sent=len(sent), kept=len(kept), monks=bes["monks_sent"]))
+        o["told"]["play"] = t0
+    # the Lord line on the rows of a team held in its base
+    push = o.get("kind") == "push before it"
+    for L in st.teams:
+        Kt = 3 - L
+        if push:
+            if o["lord_killed"] != tag[L]: continue
+            first = S[tag[Kt]]["first"]
+            lo = first if first is not None else END_LOOK_FROM
+            mine = sorted((p for p in told if p["play"] == "pinned" and p["tm"] == L and p["t1"] >= lo), key=lambda p: p["t0"])
+            if not mine: mine = sorted((p for p in told if p["play"] == "split" and p["tm"] == Kt and p["side"] == "attacker" and not p.get("change") and p["t1"] >= lo), key=lambda p: p["t0"])
+            if not mine: mine = sorted((p for p in told if p["play"] == "numbers" and p["tm"] == Kt and p.get("numbers_side") == "up" and p["t0"] <= E), key=lambda p: p["t1"])[-1:]
+            if not mine: mine = sorted((p for p in told if p["play"] == "numbers" and p["tm"] == L and p.get("numbers_side") == "down" and p["t0"] <= E), key=lambda p: p["t1"])[-1:]      # that fight told from the losing side only (One v Team 22:30: down with a runner away)
+            rows = [p for i, p in enumerate(mine) if n_on(L, p["t0"], p["t1"]) > 0 or i == len(mine) - 1]      # the last row says the kill, whether the Lord is hit in it or after it
+        else:
+            rows = [p for p in told if p["play"] == "pinned" and p["tm"] == L and p["t1"] >= LORD_PUSH_FROM and (t0 is None or p["t0"] < t0) and n_on(L, p["t0"], p["t1"]) > 0]
+        for i, p in enumerate(sorted(rows, key=lambda p: p["t0"])):
+            last = push and i == len(rows) - 1
+            lp = M.hall.lord[st.side.get(L)]; a, b = p["t0"], (max(p["t1"], E) if last else p["t1"])      # the last row of a push that kills is read on to the kill
+            there = [frozenset(x for x in st.players[Kt] if M.AL[x][u] and M.place_at(x, u)[1] == st.side.get(L) and M.place_at(x, u)[0] != "field" and d(M.P[x][u], lp) <= LORD_BASE_R) for u in range(a - a % SPLIT_STEP, min(b, T) + 1, SPLIT_STEP)]
+            n = max((c for c in range(8, 0, -1) if sum(1 for g in there if len(g) >= c) >= 4), default=max((len(g) for g in there), default=0))      # the most that were in the base together for 8 s or more, as the Lord push counted them (R-446)
+            home = [frozenset(x for x in st.players[L] if M.AL[x][u] and M.place_at(x, u)[1] == st.side.get(L) and M.place_at(x, u)[0] in ("pit", "base")) for u in range(a - a % SPLIT_STEP, min(b, T) + 1, SPLIT_STEP)]
+            nd = max((c for c in range(8, 0, -1) if sum(1 for g in home if len(g) >= c) >= 4), default=max((len(g) for g in home), default=0))      # the defenders in their own base or pit, counted the same way
+            am, on_lord, on_players = aim(Kt, a, b)
+            line = {"by": tag[Kt], "attackers": n, "defenders": nd, "pit_npcs": pit(L, a), "aim": am, "lord_damage": round(hits_on(L, a, b)), "own_lord_damage_meanwhile": round(hits_on(Kt, a, b)), "hits_on_the_lord": on_lord,
+                    "hits_on_players_in_the_base": on_players, "kind": "a push before the play for 28:00" if push else "before the play for 28:00", "lord_killed_at": E if last else None,
+                    "in_return": S[tag[L]]["sent"] if push else None, "match_lord_damage_gvg_report": [taken.get(L), taken.get(Kt)]}
+            p["lord"] = line
+            p["lord_line"] = (f"On the Lord meanwhile ({'a push before the play for 28:00' if push else 'before the play for 28:00'}, told here, R-644): {tag[Kt]} has {n} in the base against {nd} defending and {line['pit_npcs']} pit NPC{'' if line['pit_npcs'] == 1 else 's'}, "
+                              f"playing for {am}; {line['lord_damage']:,} on {tag[L]}'s Guild Lord {'from ' + clock(a) + ' to the kill' if last else 'in this stretch'} by the engine's sum of the recorded hits"
+                              + (f"; {tag[L]}'s Guild Lord is killed at {clock(E)}" + ("" if E <= p["t1"] + 5 else ", after this row ends") + f"; {tag[L]} sent {line['in_return'] or 'nobody'} in return" if last else ""))
+            o["told"]["lines"].append(a)
     return out
 
 
@@ -1738,7 +1805,8 @@ def plays(M, recs=None):
     K = _K(M)
     P = pinned(M)
     pinned_at = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in P)
-    out = opening_plays(M, K) + flag_plays(M, K, pinned_at) + push_plays(M, K) + split_plays(M, K) + numbers_plays(M, K, M.triggers(), recs, pinned_at) + boost_plays(M, K, recs, pinned_at) + pinned_plays(M, K) + res_plays(M, K) + lord_plays(M, K)
+    out = opening_plays(M, K) + flag_plays(M, K, pinned_at) + push_plays(M, K) + split_plays(M, K) + numbers_plays(M, K, M.triggers(), recs, pinned_at) + boost_plays(M, K, recs, pinned_at) + pinned_plays(M, K) + res_plays(M, K)
+    out += lord_plays(M, K, out)
     fr = _flag_rows(M)
     for p in out:                                                          # on each split's record: a flag run of the split's team, and of the team it is sent against, under way when it is told
         s_ = p.get("split")
@@ -1814,7 +1882,7 @@ def summary(path):
         if p["play"] == "flag": return f"they {p['their']}, we {p['ours']}"
         if p["play"] == "split": return f"{p['side']}: {p.get('answer') or p.get('call')}".split(" (")[0]
         if p["play"] == "numbers": return f"{p['side']} ({p['source']}): {p['job']}"
-        if p["play"] == "lord": return f"{p['side']}: {p.get('relation', '')}" + (f", {min(p['monks'], 3)} monk(s)" if p["side"] == "attacker" else "")
+        if p["play"] == "lord": return f"the play for 28:00: {'sends ' + str(p['sent']) if p['sent'] else 'sends nobody'}, playing for {p.get('aim')}"
         if p["play"] == "push flagger": return "by its main team" if p["main"] else "by one player" if p["pushers"] == 1 else "by two or more"
         if p["play"] == "numbers" and p["side"] == "after a wipe": return "after a wipe: " + p.get("call2", "")
         if p["play"] == "flagger pushed": return "sent help" if p["helped"] else "flagged through it"

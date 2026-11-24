@@ -18,8 +18,10 @@ nothing to take a share of (a blank that means "no damage dealt", not a fault, R
 Sources: the replay's damage, heal and interrupt events; `pressure.py` (kiting, degen, baits, knockdowns, disables,
 cast prevention); the event layer (`eventlayer.py`: strips and wasted strips, time spent Blind, hexes kept up, hex
 removal); the usual damage of each role (`eventlayer.usual_dps`, the role's measured middle).
-Not read here: energy (not in the replays); casts into a ready interrupt and attacks while Blind (kept by the event
-layer for the old fights only); what a prot did (R-636, at the rebuild).
+The team's own care, read with `forensics.py` on the play's window (the measurements of a death, asked of a play):
+casts into a ready interrupt (`Forensics.casting`), attacks made while Blind, and damage taken off a shield set while
+not casting (`Forensics.sets_damage`).
+Not read here: energy (not in the replays); what a prot did (R-636, at the rebuild).
 
 Usage:  python3 execution.py <report id> [m:ss]     the execution record of a match's plays (from the second given)"""
 import bisect, collections, sys
@@ -51,6 +53,9 @@ MEASURES = (
     ("hex_removed", +1, "hexes removed from our own players, a 10 s"),
     ("npc_dmg", 0, "damage on their NPCs, a living player a 10 s"),
     ("npc_heal", 0, "healing on our own NPCs, a 10 s"),
+    ("into_ready", -1, "casts started with an enemy interrupt ready and in range, a 10 s"),
+    ("blind_attacks", -1, "attacks made while Blind, a 10 s"),
+    ("off_shield", -1, "share of the damage taken that landed on a player off his shield set and not casting (players who carry a shield set)"),
 )
 KEYS = tuple(k for k, _, _ in MEASURES)
 SIGN = {k: s for k, s, _ in MEASURES}
@@ -87,6 +92,15 @@ class Exec:
         for L in (self.dm, self.dm_npc, self.hl_npc): L.sort(key=lambda x: x[0])
         self._t = {id(L): [x[0] for x in L] for L in (self.dm, self.dm_npc, self.hl_npc)}
         self.intr = sorted((i[0] / 10, i[1], i[3]) for i in (m.o.get("interrupts") or []) if i[0] is not None and i[1] in pl and i[3] in pl)
+        import forensics
+        self.F = forensics.Forensics(rid, m)
+        self.blind = collections.defaultdict(list)             # player -> [(from, to)] Blind on him
+        for e in m.o.get("effects") or []:
+            if e[2] == "c" and e[7] == "blind" and e[0] is not None and e[5] in pl: self.blind[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
+        self.att = collections.defaultdict(list)               # player -> the seconds he attacked
+        for r in m.o["ev"]:
+            if r[0] is not None and r[1] == "at" and r[2] in pl: self.att[r[2]].append(r[0] / 10)
+        for a in self.att: self.att[a].sort()
 
     def _cut(self, L, t0, t1):
         T = self._t[id(L)]
@@ -120,6 +134,9 @@ class Exec:
         xr, yr = {m.roles[a] for a in X}, {m.roles[a] for a in Y}
         ov = lambda s0, s1: max(0.0, min(s1, t1) - max(s0, t0))
         R = self.R
+        F = self.F
+        sd = F.sets_damage(tm, t0, t1, who=sorted(X))["measures"]
+        blind_att = sum(1 for a in X for t in self.att[a][bisect.bisect_left(self.att[a], t0):bisect.bisect_left(self.att[a], t1)] if any(s0 <= t <= s1 for s0, s1 in self.blind.get(a, ())))
         out = {
             "dmg": p10(tot),
             "dmg_v_usual": round(tot / usual, 2) if usual > 0 else None,
@@ -142,6 +159,9 @@ class Exec:
             "hex_removed": g10(sum(1 for h in R.get("hex_removals", ()) if t0 <= h["t"] < t1 and h["team"] == tag and h["by"] in xr and h.get("removed"))),
             "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X)),
             "npc_heal": g10(sum(n for t, a, b, n in self._cut(self.hl_npc, t0, t1) if a in X)),
+            "into_ready": g10(sum(F.casting(a, t0, t1)["measures"]["into_ready_interrupt"] for a in X)),
+            "blind_attacks": g10(blind_att),
+            "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
         }
         return out
 

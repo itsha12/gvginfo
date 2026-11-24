@@ -1,5 +1,6 @@
-"""The play for 28:00, a DRAFT reading (R-640 to R-646). The record is in the engine, `Moments.end_play` (moments.py);
-no play reads it and it moves none (R-647). This tool says it, summarises it over every match and writes its rows.
+"""The play for 28:00 (R-640 to R-646, R-650 to R-654). The record is in the engine, `Moments.end_play` (moments.py), and
+`jobs.lord_plays` tells the Lord play from it. This tool says the record, summarises it over every match and writes
+rows of it for the Lord push page (the eight he marked on 2026-11-23 were written as its draft).
 
 His description: late in the match each team decides whom it sends to the enemy's base (for the kill, or for the most
 Lord damage) and whom it keeps to defend, and where both teams do so the two are one play. "28" is the end of the
@@ -15,10 +16,12 @@ died on his way into their base was sent (his mark on hold v Dz 26:15, Classic: 
 reaching base"): on the enemy's ground at their door, base or pit with no turn-off to mid left ahead, for JOIN_S or
 having stood within LORD_BASE_R on it; the row says where he died. A living player who stops short is not sent. Each
 player's "since" is when his last unbroken stay there began (other places for JOIN_S or less do not break it; a death
-does). A team's send is the middle of its sent players' "since", and the play is SET at the later team's send.
+does). A team's send is read while the play is on, not at its last second (R-654): a living player who left their base
+or his home less than JOIN_S before the end counts where he stood (R-579), and the row says when he left. A team's send
+is the middle of its sent players' "since", and the play is SET at the later team's send.
 
 A play for 28:00 against a push before it (R-641, R-646). His three signs of a push before it, which he reads together:
-it is early (CUT, 25:00, his "maybe"), one team is already in the enemy's base, and the other makes no push of its
+it is early (CUT, 25:00, his line, R-653), one team is already in the enemy's base, and the other makes no push of its
 own in return. As read here: a match run to its end always ends in a play for 28:00; a match ended by a Lord kill
 holds one only when the team that killed him sent its players at CUT or later. The summary sets the other two signs beside the clock.
 
@@ -35,7 +38,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
 import common
 
-LOOK_FROM, CUT, ALREADY_S = common.END_LOOK_FROM, common.PLAY28_FROM, common.END_ALREADY_S        # the settings are the engine's (common.py): CUT is a draft line, his to decide (R-647)
+LOOK_FROM, CUT, ALREADY_S = common.END_LOOK_FROM, common.PLAY28_FROM, common.END_ALREADY_S        # the settings are the engine's (common.py): CUT is his line (R-653)
 FROM = CUT                   # matches over before this are not summarised
 cl = lambda t: f"{int(t) // 60}:{int(t) % 60:02d}"
 
@@ -54,7 +57,7 @@ def end_play(M):
 
 def died(r):
     """How a player's death is said: where he died when he died on his way into their base (the record's `on_way`), or sent and dead outside their base."""
-    if not r.get("died"): return ""
+    if not r.get("died"): return f", left {cl(r['left'])}" if r.get("left") else ""
     return f", died {cl(r['died'])}" + (f" at {r['died_at']}" + ("" if r.get("reached") else ", never in their base") if r.get("on_way") else "")
 
 
