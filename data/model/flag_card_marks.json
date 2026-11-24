@@ -696,6 +696,34 @@
    "game": "Dz v Team, Druid's Isle",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "c19f13e3-7c93-5ea8-ae4c-16f2d75104da": {
+   "marks": {
+    "c19f13e3-flag-1-499-37": {
+     "facts": "correct",
+     "why": "",
+     "text": "NwAy's Hammer sets off for a flag (single run). Men holds the stand, boost in 7 s. | The spot: main fight Men 7 v NwAy 7 (even); Men's main team at NwAy's footmen, NwAy's at NwAy's footmen; morale Men +80, NwAy -60 (the eight summed; a death is -15); Men ahead on flags by 0.5; base res in 101 s; Men's chance of winning 72%. | The answer: Men sends nobody in the next three minutes. | What followed, 180 s on: NwAy's flag in at 8:42; flag lead -0.73 for Men; deaths Men 2, NwAy 5; boosts Men 1, NwAy 1; Men's chance of winning 72% to 60% (-12.7). | Similar spots, 180 s on, from the same position: a runner out by 15 s +10.0 (90 cases); holding off (no runner out at 15 s) +2.2 (90 cases): the data favours a runner out by 15 s by 7.8 win points (+4.4 to +11.1). Men held off: against what the data favours.",
+     "sense": "agree",
+     "own": "wait"
+    },
+    "c19f13e3-flag-2-731-52": {
+     "facts": "correct",
+     "why": "",
+     "text": "Men's Mes/A sets off for a flag (single run). NwAy holds the stand, boost in 32 s. | The spot: main fight NwAy 3 v Men 6 (Men up by 3); NwAy's main team at the stand, Men's at Men's door; morale NwAy -35, Men +54 (the eight summed; a death is -15); NwAy ahead on flags by 0.6; base res in 109 s; NwAy's chance of winning 35%. | The answer: NwAy sends a runner 78 s later. | What followed, 180 s on: Men's flag in at 12:43; NwAy's in at 14:04; flag lead -0.63 for NwAy; deaths NwAy 5, Men 0; boosts NwAy 1, Men 0; NwAy's chance of winning 35% to 25% (-10.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.2 (90 cases); a runner out by 15 s -0.4 (90 cases): no clear difference (0.3, -3.7 to +4.2). NwAy held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +1.9 (90 cases); holding off (no runner out at 30 s) -1.3 (90 cases): no clear difference (3.1, -0.7 to +6.9). NwAy held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "c19f13e3-flag-1-809-60": {
+     "facts": "correct",
+     "why": "",
+     "text": "NwAy's Hammer sets off for a flag (single run). Men holds the stand, boost in 75 s. | The spot: main fight Men 6 v NwAy 5 (Men up by 1); Men's main team in NwAy's pit, NwAy's in NwAy's pit; morale Men +54, NwAy +15 (the eight summed; a death is -15); Men ahead on flags by 0.7; base res in 31 s; Men's chance of winning 59%. | The answer: Men sends nobody in the next three minutes. | What followed, 180 s on: NwAy's flag in at 14:04; flag lead -1.10 for Men; deaths Men 0, NwAy 8; boosts Men 0, NwAy 0; Men's chance of winning 59% to 100% (+40.9). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.5 (90 cases); a runner out by 15 s -2.3 (90 cases): no clear difference (1.8, -1.6 to +5.1). Men held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -0.2 (90 cases); a runner out by 30 s -0.7 (90 cases): no clear difference (0.5, -2.5 to +3.5). Men held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "wait"
+    }
+   },
+   "game": "Men v NwAy, Corrupted Isle",
+   "at": "2026-11-24",
+   "engine": "e480706"
   }
  }
 }
