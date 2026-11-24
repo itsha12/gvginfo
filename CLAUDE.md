@@ -225,9 +225,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   Not read, at his word: pressing the fight or allowing a stand-off (no decision for now, R-691) and offensive or
   defensive play, which is execution (R-692). The danger zone says the monks' energy of the players in their base
   beside the 300 line, never in its place (R-690: `monk_energy` on `danger.calls`, in the sentence). Taken out at his word: our own monks at "our flag
-  just in" (R-693), energy at their boost (R-694), and the send-or-not table of our split (R-695: the decision is a
-  split already out staying to kill or falling back, read by its own monks; not built until its definition is
-  settled). Left of (2): energy among what like spots are matched on (2026-11-24, 546
+  just in" (R-693), energy at their boost (R-694), and the send-or-not table of our split (R-695). A split already out staying to kill or falling back is
+  `jobs.split_holds` (R-696; kept beside the plays as `flag_cost[rid].split_holds`, no play reads it): each stretch
+  of a split's own plays that opens with defenders, a collapse or the whole team, the call 20 s on ("died there" where
+  half or more died, else "fell back" where half or more of the living are off the enemy's ground by `_deep`, else
+  "stayed"; the halves are Claude's), the position and what followed; `cases.py energy` reads it as decision 8 by the
+  split's own monks (its energy is the play's own record). Left of (2): energy among what like spots are matched on (2026-11-24, 546
   matches: the average told a little more than the lowest monk at most decisions). To build, in his order (R-689):
   (3) the
   excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of

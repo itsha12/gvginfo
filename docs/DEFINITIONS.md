@@ -548,6 +548,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - At the base res, monk energy is said beside the danger zone's 300 damage line, never in its place (R-690).
 - Energy is not read at their boost (R-694); at "our flag just in" only the enemy's monks are read (R-693); at our split the
   call is stay and kill or fall back once on a split, read by the split's own monks only, where it has one (R-695).
+- A split already out stays or falls back each time defenders, a collapse or the whole team reach it; falling back is
+  leaving the enemy's ground (giving ground inside their base is staying; joining their own main team is falling back),
+  read 20 s after they reach it, a split that dies inside those 20 s told apart (R-696).
 - Out of energy, for the excuse: a monk under 20, a midline player under 15, on that scale (R-681, R-682, R-686).
 - A useful cast: healing landed plus damage prevented for the energy spent, Divine Favor counted, removals a
   count apart; a prot that prevented nothing bought nothing, the attacks a skill blocked excepted (Aegis, and any
