@@ -540,15 +540,25 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `PLAY28_FROM` in `common.py`), said by `tools/golden/endplay.py <report id>` or `all <out.json>` (report
   `data/model/end_play_draft.json`): each player's last place alive at the end of play, sent or kept, and since when,
   and what each team had when the groups went; no play reads it. Sent is within `LORD_BASE_R` of their Lord (R-446): a player who stops at their
-  footmen is not sent. What tells a push before it is his three signs together (R-646): early (25:00 is his "maybe",
+  footmen is not sent. A player who dies on his way into their base was sent (his mark on hold v Dz 26:15, Classic:
+  "hold sends 3 but they die before reaching base"): `_end_way`, on the enemy's ground at their door, base or pit
+  with no turn-off to mid left ahead (`Hall.past_turnoff`, R-562), for JOIN_S or having stood within the base on it;
+  the record keeps `on_way`, `reached` and `died_at`, and the tool says where he died. Change it against the eight
+  draft rows (p4-9 to p4-16), never by a wider "sent": every door zone of their base, and his labelled Base area,
+  each read Book as pushing in ohno v Book and Crew in Crew v cope (tried 2026-11-23 and left). Open, put to him:
+  the record takes each player's last place, and in ohno v Book three of Book's players stood in ohno's base until
+  10 s before their own Lord died and read as in the field. The record is kept beside the plays
+  (`flag_cost[rid].end_play`), and a check in the key may read it (`"record": "end_play"`, dotted names). What tells a push before it is his three signs together (R-646): early (25:00 is his "maybe",
   `CUT` in the tool, his to confirm), one team already in the enemy's base, no push in return; the tool reads a match
   ended by a Lord kill on the killing team's send. The signs disagree in about a third of the pushes before it. Eight
-  rows of the draft are on the page for his marks (R-647: `endplay.py rows <main>/data/model/lord_rows.json <report
-  id>=<why picked>`, ids `e:<report>-end`, added and never rewritten); he decides the 25:00 line later. `jobs.lord_plays`
-  still reads hits on a Lord: change it only with his marks on those rows and his word on the three Classic rows the
+  rows of the draft are on the page (R-647: `endplay.py rows <main>/data/model/lord_rows.json <report
+  id>=<why picked>`, ids `e:<report>-end`, added and never rewritten) and he has marked them (2026-11-23: seven Classic,
+  six of them correct, one Visible; filed as p4-9 to p4-16); all eight are consistent with the 25:00 line, which he has
+  still to set. `jobs.lord_plays` still reads hits on a Lord: change it only with his word on the three Classic rows the
   record reads as pushes before it (hold v RACK 24:48, Crew v cope 24:44, Team v hook 24:02) and on Men v Crew 27:03
-  and 27:20 becoming one play. Every push before it has a pinned row over it to be told with (R-644). The p4 games are
-  not in the development set: their checks are scored only on a run of every match.
+  and 27:20 becoming one play (asked 2026-11-23). When it is built the play says what each send played for: the kill,
+  Lord damage, or killing the defenders (his words on ohno v Book 25:04 and on Crew v cope 24:44). Every push before it
+  has a pinned row over it to be told with (R-644). The p4 games are in the development set (2026-11-23).
 - What each prot did, degen and interrupt attempts (R-636 to R-639). Not built: at the next rebuild, with R-481 and R-632, GvG Info keeps from gvg.report's
   summary, in its own file a match (filled from the summary; only summaries are fetched again, not replays): per skill
   blocks, knockdowns prevented, overhealing and Divine Favor apart; healing and prevented by target for healing and prot
@@ -565,6 +575,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   burning in them has no caster.
   Interrupt attempts too (R-639): every targeted interrupt attempt, hit or missed, with its target, and likely fake
   casts by player; until then only landed interrupts are kept, and forensics and `pressure.py` read the attempts once kept.
+  Degen in every damage figure (R-649): once R-638 is built, NPC damage accounts for degen and so does every other
+  place damage shows up; the list of places is in the ruling (NPC damage by kind of bar, the execution measures,
+  the danger zone's damage line of R-615, which is put to him again on the new figure, the aim of a Lord push, the
+  death accounts and nodes). Amounts take degen in; who is in which fight stays read from hits and casts (Claude's
+  reading, put to him). gvg.report's condition intervals name players only: degen on NPCs and on a Lord is in
+  nothing stored, so probe gvg.report's summary and Lord record for it before the rebuild.
 - The measurements of R-572, on the branch (built 2026-11-23; each is a record or a report and moves no play: after any
   change to them compare the plays with the run before, the key `npc` left out wherever it stands).
   Execution, both teams by the same measures (2.12, R-299): `execution.py`. For the first `EXEC_S` (20 s, Claude's
@@ -582,7 +598,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   hold against what the team then loses, only between holds alike in players down, the base res clock and pit NPCs
   already lost). The enemy's execution is scored and never offered as a fix (R-299); a measure that tells the minute
   before marks the situation, one against the expected direction is likely a reaction (SPEC 5, rules 4 and 4c); a
-  clear line is a place to look, never a finding or advice. Not carried yet: casts into a ready interrupt, attacks
+  clear line is a place to look, never a finding or advice. Execution said on a row in words: `cases.exec_sentence`
+  (`cases.py execution-say <plays file> <report id> [m:ss]`): for the team making the play and, apart, the enemy it
+  meets, the measures that stand out among plays of the same kind (`exec_out`: outside nine plays in ten, where
+  `exec_place` reads the outer quarters), each with its value and what the middle half of such plays had; what stood
+  out, never why, and no verdict. It is on no page yet. Not carried yet: casts into a ready interrupt, attacks
   while Blind and damage off shield sets (the event layer keeps them for the old fights only); a boost play (no 60 s
   record) and the later stretches of a split (no position) are not in the report.
   NPC damage by kind of bar (R-433): `npcpower.py`. `bar_class` is the rough class (a warrior by weapon, an

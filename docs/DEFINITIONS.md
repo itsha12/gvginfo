@@ -415,6 +415,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   when the match allows, often before the 26:00 base res; about 24:30 is his estimate of the earliest, not a line.
 - As built it is neither yet: a stretch of hits on a Lord from about 23:30, one row a team (R-435). The result is
   the match: the Lord killed first, or more aggressiveness at the end (R-142, R-632).
+- Sent, in the draft record of the play (`Moments.end_play`, which no play reads yet): a player whose last place
+  alive is in the enemy's base (R-446), or who died on his way into it (his mark on hold v Dz 26:15, Classic: "hold
+  sends 3 but they die before reaching base"); a living player who stops at their footmen or their door has not
+  been sent (R-646, Crew v cope). From his marks on the draft rows, not a ruling (R-452).
 - The attackers are the players in the enemy's base, not only those beside the Lord (R-446). They are counted against
   the pit NPCs alive: as many, more, or fewer. The pit NPCs are the Bodyguard, two knights and two archers, and on
   Isle of Solitude the archer by the bridge in each base (R-435, R-140). Taking pit NPCs earlier means fewer players
@@ -428,6 +432,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   rebuild the price of a position reads gvg.report's Lord health for the kill and the aggressiveness lead for 28:00
   (R-635). Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
   sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
+- Once degen is in the engine (R-638) every damage figure accounts for it, NPC damage first (R-649; not built).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one
