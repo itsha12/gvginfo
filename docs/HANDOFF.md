@@ -8,7 +8,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, late night: the Lord play rebuilt from the end record; his answers to the open items, R-656 to R-660)
+## State (2026-11-23, late night: his answers R-656 to R-660; the new trim part built and its refetch started)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
   progress. Rulings run to R-660. The baseline (R-491): `baseline-2026-11-15`.
@@ -26,13 +26,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   - Measurements: execution in words (`cases.py execution-say`); three more execution measures (`into_ready`,
     `blind_attacks`, `off_shield`); the split's NPC damage in what like spots are matched on. With it the unseen
     test reads clearer for one, two and four or more players at 60 s. Readings, not advice.
+- The new trim part (stage E, step 1), on main: `tools/gvgreport/replay_extras.mjs` writes `<id>.x.json.gz` beside
+  each stored replay (flag objects, Lord record, prot, degen, attempts, recaps, energy); the stored replays are not
+  written again. Tested on hdm v Men, RJT v RACK, Book v hook, Team v hook and BcS v Apes: the four known returns,
+  the stored Lord scores, 210 attempts and the degen figures of R-638 all come out. The refetch of every stored
+  match was started at 03:54 UTC on 24 November (run 45322644533, about two hours): check `x` = 2 on every entry of
+  the replays index; start "Fetch replays" again if any are left. The engine does not read the file yet.
 - Last checkpoint (every counted match): 564 matches, 33,111 plays, no errors; fifteen truths hold; 323 Classic
   rows pass, none fail; self-check 6 in 4. One change after it (One v Team 22:30, the last push with no row).
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. Stage E (REDESIGN.md); no Lord rows go on the page first (R-660). The order he agreed on 2026-11-23 ("2.
-   Yes."): the new trim first, then the engine on it, then the close. Claude starts the refetch workflow once
-   the trim is tested on a few matches ("3. You can start it."). The close: the new families
+   Yes."): the new trim first (built; verify the refetch), then the engine on it, then the close. The close: the new families
    beside the old kinds for one rebuild (R-323), the stand-in prices replaced by the win model, the replaced kinds
    retired, the causal map cleaned, SPEC and METHODS rewritten, the readability test, his list of R-398, the
    merge, then one Train batch on the same 506 matches (he starts it).
@@ -47,11 +52,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
    sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Once degen counts: the danger zone's 250 again (R-649), and the NPC damage table read again (R-659).
-2. Not a question for him: one or two players sent from a level standing read worse than no split (-7.6 win
+1. Put to him 2026-11-23, his to answer: gvg.report's summary credits degen on NPCs and Lords to the player, the
+   skill and the target (match totals: 11,613 in Team v hook), so R-657's estimate may not be needed; its energy
+   model is kept in the new file (R-177 and R-353 left energy out as too large a build): is either to be read by
+   the engine? The test run also stored two new matches (`latest:2` in requests.txt): chic v DUM, 24 November,
+   and HC v hdm, 21 November; 660 stored now. Keep them or take them out?
+   BcS v Apes: gvg.report's Lord score for team 1 is 3,390 and the events rebuild to 3,360 (`x_check` in the
+   index): look into it when the engine reads the record.
+2. Once degen counts: the danger zone's 250 again (R-649), and the NPC damage table read again (R-659).
+3. Not a question for him: one or two players sent from a level standing read worse than no split (-7.6 win
    points at 180 s). The record reads the split records of the plays, so a split there is a split as he has
    ruled it (R-562); it stays a stage 1 reading and waits for matches (R-570).
-3. R-576's reading and R-575 on Nomad's are Claude's: bring him what either tells wrongly. Tolkano: no build (his
+4. R-576's reading and R-575 on Nomad's are Claude's: bring him what either tells wrongly. Tolkano: no build (his
    word): date, guilds, hall and length with every example.
 
 ## Running it

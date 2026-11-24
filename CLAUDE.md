@@ -54,6 +54,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `YYYY-MM/<report id>.json.gz` holds one match, `maps/<map id>.json.gz` holds map outlines. Format and field meanings
   are documented at the top of `tools/gvgreport/replay_trim.mjs` (times in tenths of a second of match time). Fetched
   by the "Fetch replays" workflow from `replays/requests.txt` on main. Read them with a short script, never whole.
+  Beside each replay, `YYYY-MM/<report id>.x.json.gz` holds what the trim leaves out (format at the top of
+  `tools/gvgreport/replay_extras.mjs`; `x` in the index is its version): gvg.report's flag objects (R-481), Lord damage
+  record (R-632), what each prot did, degen, interrupt attempts and death and spike-save recaps (R-636 to R-639), and its
+  energy model. It uses the replay's agent numbers and clock. A new version of it fetches both payloads again and writes
+  only that file: a stored replay is never written again. The engine does not read it yet (stage E).
 - Replay analysis toolkit: `tools/replay_analysis/` (`replaylib.py` = Match class: positions, groups, sides, carries,
   build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
   tables). Start every match review from `report.py`, then dig into specific moments with `replaylib`. Improve these
