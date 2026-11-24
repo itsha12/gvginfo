@@ -161,9 +161,18 @@
      "own": "hold"
     },
     "51683de9-flag-2-293-10": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "hold",
+       "text": "Men's Ranger sets off for a flag (single run). Crew holds the stand, boost in 21 s. | The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew no death penalty or boost, Men -90 (the eight summed; a death is -15); flags level; base res in 67 s; Crew's chance of winning 41%. | The answer: Crew sends nobody in the next three minutes. | What followed, 180 s on: Men's flag does not get in (put down, 5:46); flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.7). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.2 (90 cases); a runner out by 15 s +1.9 (90 cases): the data favours holding off (no runner out at 15 s) by 4.3 win points (+0.8 to +7.8). Crew held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.4 (90 cases); holding off (no runner out at 30 s) +2.1 (90 cases): the data favours a runner out by 30 s by 9.4 win points (+5.8 to +12.9). Crew held off: against what the data favours."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "Men's Ranger sets off for a flag (single run). Crew holds the stand, boost in 21 s. | The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew no death penalty or boost, Men -90 (the eight summed; a death is -15); flags level; base res in 67 s; Crew's chance of winning 41%. | The answer: Crew sends nobody in the next three minutes. | What followed, 180 s on: Men's flag does not get in (put down, 5:46); flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.7). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.2 (90 cases); a runner out by 15 s +1.9 (90 cases): the data favours holding off (no runner out at 15 s) by 4.3 win points (+0.8 to +7.8). Crew held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.4 (90 cases); holding off (no runner out at 30 s) +2.1 (90 cases): the data favours a runner out by 30 s by 9.4 win points (+5.8 to +12.9). Crew held off: against what the data favours.",
+     "text": "Men's Ranger sets off for a flag (single run). Crew holds the stand, boost in 21 s. | The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew no death penalty or boost, Men -90 (the eight summed; a death is -15); flags level; base res in 67 s; Crew's chance of winning 41%. | The answer: Crew sends nobody in the next three minutes. | What followed, 180 s on: Men's flag in at 11:36; flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.8). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.1 (90 cases); a runner out by 15 s +2.2 (90 cases): the data favours holding off (no runner out at 15 s) by 3.9 win points (+0.3 to +7.5). Crew held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.2 (90 cases); holding off (no runner out at 30 s) +3.0 (90 cases): the data favours a runner out by 30 s by 8.2 win points (+4.7 to +11.7). Crew held off: against what the data favours.",
      "sense": "agree",
      "own": "hold"
     },
@@ -219,11 +228,18 @@
      "text": "Men's Warrior sets off for a flag (single run). Crew holds the stand, boost in 27 s. | The spot: main fight Crew 7 v Men 4 (Crew up by 3); Crew's main team at the stand, Men's at Men's door; morale Crew +80, Men -90 (the eight summed; a death is -15); Crew ahead on flags by 1.1; base res in 4 s; Crew's chance of winning 72%. | The answer: Crew sends nobody in the next three minutes. | What followed, 180 s on: Men's flag does not get in (not capped, 24:21); flag lead +0.09 for Crew; deaths Crew 0, Men 5; boosts Crew 2, Men 0; Crew's chance of winning 72% to 93% (+21.0). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.3 (90 cases); a runner out by 15 s -0.8 (90 cases): no clear difference (1.1, -2.3 to +4.5). Crew held off: no clear difference either way.",
      "sense": "agree",
      "own": "hold"
+    },
+    "51683de9-flag-2-743-17": {
+     "facts": "correct",
+     "why": "",
+     "text": "Crew's flag goes in while Men's Ranger is still on his way with theirs (he set off at 11:43). Run again, or not? | The spot: main fight Crew 8 v Men 8 (even); Crew's main team at the stand, Men's at Men's footmen; morale Crew +80, Men -90 (the eight summed; a death is -15); Men ahead on flags by 0.9; base res in 97 s; Crew's chance of winning 45%. | The answer: Crew sends its Water Ele 54 s later. | What followed, 180 s on: Men's flag does not get in (returned, 17:14); Crew's does not get in; flag lead +1.46 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 45% to 54% (+9.6). | Similar spots, 180 s on, from the same position: a runner out by 15 s +4.6 (90 cases); holding off (no runner out at 15 s) +2.1 (90 cases): no clear difference (2.5, -1.2 to +6.2). Crew held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.2 (34 cases); holding off (no runner out at 30 s) +0.6 (90 cases): no clear difference (1.6, -2.7 to +6.0). Crew held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "hold"
     }
    },
    "game": "Men v Crew, Isle of Jade",
-   "at": "2026-11-20",
-   "engine": "e60a56d"
+   "at": "2026-11-24",
+   "engine": "e480706"
   },
   "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
    "marks": {
