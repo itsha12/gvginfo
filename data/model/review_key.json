@@ -25719,9 +25719,9 @@
       ]
      },
      "want": {
-      "clear": false
+      "clear": null
      },
-     "why": "RACK v hdm, Meditation (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+     "why": "RACK v hdm, Meditation (R-676): 318 damage a player in the minute before, hits and degen, so inside the danger spot at 300: told with its call again, as he graded it Classic and correct before R-615"
     }
    ],
    "retired_checks": [
@@ -25745,6 +25745,28 @@
     "asked": "The danger zone at 150 damage a player is in a third of matches and no deadlier than a base res outside it: keep 150, return to 300, or read 200 and 250? Four more of the base res rows he graded Classic lie outside it at 250.",
     "said": "Let's go with 250.",
     "reading": "R-615, with R-614 (\"I don't really need the classic base res rows anymore. We can have them as context\"): told as context, with no call. Replaces his grade of Classic as a test of a decision; the row now checks that the base res is told as context."
+   },
+   "retired_checks_2": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
+      "clear": false
+     },
+     "why": "RACK v hdm, Meditation (R-614, R-615): a base res outside the danger spot at 250 damage a player, told as context with no call"
+    }
+   ],
+   "later_2": {
+    "on": "2026-11-24",
+    "asked": "The danger zone's damage line on hits and degen (R-649): 250 takes in 36 base res of the development set against 25 on hits alone, 300 takes in 30, 325 takes in 25.",
+    "said": "Let's amend to 300 with the degen.",
+    "reading": "R-676. This base res reads 243 of hits and 318 with degen, so it is in the danger spot again and is told with its call, which is what he graded Classic and correct on 2026-11-18; the check of R-615 (told as context) is retired."
    }
   },
   {

@@ -29,9 +29,11 @@ Amounts take degen in; who is in which fight, a stand-off, who killed a player a
 read from hits and casts (R-655): degen runs on after the player who put it there has left. So `rows` is never read
 to say who is where.
 
-A total with no second to lie on (the condition is nowhere on that target in the replay; the Miasma of Isle of
-Meditation, five pips on whoever stands on the outer path, which no interval records) is untimed: it is in `account`
-and in no timed figure. Over the 658 stored matches (2026-11-24): 10.2 million health of degen on players is laid on
+A total with no second to lie on (the condition is nowhere on that target in the replay) is untimed: it is in
+`account` and in no timed figure. The Miasma of Isle of Meditation, five pips on whoever stands on the outer path,
+is ignored at his word (R-677): counted in `account` as `untimed_map`, in no damage figure, and not to be read from
+where a player stands. The other readings here are his too (R-677): a weapon's upkeep left out, degen credited to
+nobody in what a team took. Over the 658 stored matches (2026-11-24): 10.2 million health of degen on players is laid on
 its seconds (the recorded hits of players on players come to 35.6 million), 1.3 million on NPCs (hits: 9.4 million)
 and 0.3 million on Lords; 1.3 million is weapon upkeep; 0.6 million is the Miasma, untimed; 35 thousand else is untimed. Lord damage stays gvg.report's Lord record
 (R-632): the degen on a Lord is kept here and read by nothing yet.

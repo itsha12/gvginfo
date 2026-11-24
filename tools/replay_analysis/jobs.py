@@ -106,7 +106,7 @@ RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a min
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "aggr", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
-RES_WORN = 250                         # heavy damage in the minute before: this much or more a player (R-615, his number: "Let's go with 250", when shown that at 150, R-612, the danger zone was in a third of matches and no deadlier than a base res outside it; 300, the upper third in the data, was Claude's draft)
+RES_WORN = 300                         # heavy damage in the minute before: this much or more a player, hits and degen (R-675, his number: "Let's amend to 300 with the degen", when shown the zone on the new figure; before it 250 on the recorded hits alone, R-615, after 150, R-612)
 RETURN_SOON_S = 15                     # a hand-off is returned when the enemy has the flag back within this long of the put-down (R-629, his words for the known truth: "gets returned more often in the next 15s")
 RETURN_FAR = 1.5                       # ... and far from the enemy is this many aggro bubbles or more from the nearest enemy player (R-629: "at least 1.5-2 aggro bubbles away from enemy"; the nearer end of his range, the report gives 2 beside it)
 RES_MORALE_BEHIND = 30                 # morale significantly lower than the enemy's (R-606, R-613: "If you have significantly lower morale than enemy, staying is probably more dangerous"): the eight's morale summed is this much or more under theirs, two deaths' worth of death penalty (Claude's draft, confirmed by him, R-616: "Yes, the draft of 30 or more under is fine")
@@ -1449,10 +1449,8 @@ def _res_stand(M, tm, ids, u):
     npc = [(a, x) for a in in_ for x in D.get(a, ()) if x[2] and u - RES_NPC_S < x[0] <= u]
     hit = [(a, x) for a, x in npc if not x[4]]                               # who is hitting whom is read from the hits (R-655): an NPC's bleeding runs on after he has turned away
     out["npc_dmg"] = round(sum(x[1] for _, x in hit)); out["npc_dmg_all"] = round(sum(x[1] for _, x in npc)); out["npc_on"] = len({a for a, _ in hit}); out["npcs_hitting"] = len({x[3] for _, x in hit})
-    # The damage a player in the minute before. `taken` is the recorded hits, the figure he set his 250 on (R-615) and the one the danger spot is still asked of;
-    # `taken_degen` is the degen beside it and `taken_all` the two together (R-649: degen counts in every damage figure, and the 250 "is put to him again on the
-    # new figure"). Until he has given the line on the new figure the mark below does not move: on the development set the zone at 250 of hits and degen takes
-    # in 36 base res against 25, two of his Classic rows outside it among them (RACK v hdm 7:40, Men v NwAy 3:40). When he has, read `taken_all` in `marks`.
+    # The damage a player in the minute before, hits and degen (R-649): `taken_all`, which the danger spot is asked of at RES_WORN (R-675: 300 on hits and
+    # degen, in place of 250 on the hits alone, R-615). `taken` is the recorded hits in it and `taken_degen` the degen (gvg.report's, degen.py).
     out["taken"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if not x[4] and u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
     out["taken_degen"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if x[4] and u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
     out["taken_all"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
@@ -1464,7 +1462,7 @@ def _res_stand(M, tm, ids, u):
     # this is the danger spot"): half or more of the players in their base past the shrine, two or more enemy NPCs hitting them, and RES_WORN or more damage a
     # player in the minute before (250, his number: R-615); for the main team, three or more of it (a res onto a split is another thing, R-595). One reading,
     # here: the base res plays and the reports ask for it.
-    out["marks"] = [bool(in_) and out.get("past_shrine") is not None and out["past_shrine"] * 2 >= len(in_), out["npcs_hitting"] >= 2, out["taken"] is not None and out["taken"] >= RES_WORN]
+    out["marks"] = [bool(in_) and out.get("past_shrine") is not None and out["past_shrine"] * 2 >= len(in_), out["npcs_hitting"] >= 2, out["taken_all"] is not None and out["taken_all"] >= RES_WORN]
     out["danger"] = len(in_) >= 3 and out["of_main"] * 2 > len(in_) and all(out["marks"])
     return out
 
@@ -1472,7 +1470,7 @@ def _res_stand(M, tm, ids, u):
 def _danger_words(e):
     """The danger spot said on a base res row (R-610, R-612): his three factors as the team stands RES_READ_S before the res. Nothing outside it."""
     if not e["danger"]: return ""
-    return f"; the danger spot: {e['past_shrine']} of {e['n']} past their res shrine, {e['npcs_hitting']} NPCs hitting them, {e['taken']} damage a player in the minute before"
+    return f"; the danger spot: {e['past_shrine']} of {e['n']} past their res shrine, {e['npcs_hitting']} NPCs hitting them, {e['taken_all']} damage a player in the minute before"
 
 
 def _res_context(e):

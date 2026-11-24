@@ -2229,7 +2229,7 @@ def res_cases(D, M, B):
         if "danger" not in e: raise ValueError(f"base res play {p['id']} carries no reading of the danger spot: run moments.py all again on this engine (R-460)")
         st, mo, m = p["at_told"]["state"], p["at_told"]["after"]["60"]["morale"], M[p["rid"]]
         c.update(early=e, at_res=r.get("at_res"), in_s=r.get("in_s"), deaths_60=r.get("deaths_60"), n=e["n"], e_health=e["health"], shrine=mid(e.get("shrine_walk")), past=e.get("past_shrine"),
-                 npc_on=e["npc_on"], npc_dmg=e["npc_dmg"], taken=e["taken"], main=bool(e["n"]) and e["of_main"] * 2 > e["n"], stayed=p["call"] == RES_CALLS[0],
+                 npc_on=e["npc_on"], npc_dmg=e["npc_dmg"], taken=e["taken_all"], main=bool(e["n"]) and e["of_main"] * 2 > e["n"], stayed=p["call"] == RES_CALLS[0],
                  marks=e["marks"], nmarks=sum(e["marks"]), danger=bool(e["danger"]), two_60=(r.get("deaths_60") or 0) >= 2, kills=c["hard"]["90"]["deaths"][1], npcs=c["hard"]["90"]["npcs"][1],
                  own_morale=mo[0][0], their_morale=mo[1][0], dm=mo[0][0] - mo[1][0], stand=st["stand"] == "own", their_alive=e["alive"][1], monks=e.get("monks") or 0, late=p["t0"] + RES_READ >= 720,
                  gap=m["gap"][p["team"]], fold=m["fold"], won=float(m["winner"] == p["team"]), chance=100 * c["p0"], more=None, held=False)
@@ -2248,7 +2248,7 @@ def res_cases(D, M, B):
 
 
 RES_READ = 20                                    # a base res play is told this long before the res (`jobs.RES_READ_S`): the danger spot is read then
-GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (250 damage or more a player in the minute before, R-615)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
+GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more enemy NPCs hitting them in the 20 s before)", "worn (300 damage or more a player in the minute before, hits and degen, R-676)")      # the three factors of the danger spot (R-610), read in the engine (`jobs._res_stand`: `marks`, `danger`)
 HIS_RES = (("3b7bfeac", 1440, "yM v hook 24:00", True), ("512d445f", 720, "Crew v One 12:00", True), ("33dab8e5", 360, "Men v BcS 6:00", True), ("19f38ea6", 600, "Book v hook 10:00", True),
            ("39e9d728", 480, "DUM v ohno 8:00", True), ("c19f13e3", 600, "Men v NwAy 10:00", True), ("328de049", 960, "Book v cope 16:00", False), ("5527465c", 360, "hook v Men 6:00", None))      # his words of 2026-11-22 on the stays where two or more died: the six that are the greedy stay, one that is a res onto a split, and hook v Men, left as it is read (R-595, R-607)
 DANGER_VARS = ("own chance of winning at that second", "strength gap", "their morale", "our morale", "health of our players in their base", "their players alive", "their dead to come back", "outnumbered in their base once they res",
@@ -2453,9 +2453,9 @@ def danger_report(D, M, C, res, pr):
         if c is None: pr(f"     {name}: not told as a stay"); g["his_games"].append({"game": name, "found": False}); continue
         e = c["early"]
         g["his_games"].append({"game": name, "his": his, "danger": c["danger"], "main": bool(c["main"] and c["n"] >= 3), "marks": c["marks"], "n": e["n"], "of_main": e["of_main"], "past_shrine": e.get("past_shrine"), "npcs_hitting": e["npcs_hitting"],
-                               "npc_dmg": e["npc_dmg"], "taken": e["taken"], "health": e["health"], "deaths": c["deaths"], "deaths_60": c["deaths_60"]})
+                               "npc_dmg": e["npc_dmg"], "taken": e["taken_all"], "health": e["health"], "deaths": c["deaths"], "deaths_60": c["deaths_60"]})
         pr(f"     {name:20} his: {'the greedy stay' if his else 'left as it is read' if his is None else 'a res onto a split':18} engine: {'IN THE DANGER SPOT' if c['danger'] else 'not in it         '} ({', '.join(m.split(' (')[0] for m, v in zip(GREEDY, c['marks']) if v) or 'no factor'}"
-           f"{'' if c['main'] and c['n'] >= 3 else '; not the main team'}); {e['n']} in their base, {e.get('past_shrine')} past the shrine, {e['npcs_hitting']} NPCs hitting them ({e['npc_dmg']} damage), {e['taken']} damage each in the minute, health {e['health']}%; {c['deaths']} die in 30 s, {c['deaths_60']} in 60 s")
+           f"{'' if c['main'] and c['n'] >= 3 else '; not the main team'}); {e['n']} in their base, {e.get('past_shrine')} past the shrine, {e['npcs_hitting']} NPCs hitting them ({e['npc_dmg']} damage), {e['taken_all']} damage each in the minute (hits and degen), health {e['health']}%; {c['deaths']} die in 30 s, {c['deaths_60']} in 60 s")
     ok = [x for x in g["his_games"] if x.get("found", True) and x["his"] is not None]
     g["agrees"] = sum(1 for x in ok if x["danger"] == x["his"]); g["of"] = len(ok)
     pr(f"   The danger spot takes in {sum(1 for x in ok if x['his'] and x['danger'])} of his {sum(1 for x in ok if x['his'])} greedy stays and none of the stays he set aside.")
