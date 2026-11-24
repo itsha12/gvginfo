@@ -53,8 +53,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 3. Claude's readings of degen, put to him: a Vampiric weapon's upkeep is no damage; degen gvg.report credits to
    nobody is taken but no player's; the Miasma of Isle of Meditation is untimed until read from where a player
    stands (his area "Miasma"). The NPC damage table with degen (R-659) was shown to him the same day.
-5. The early September matches (R-673): raise when energy is built into a reading, at the clean-up (R-398) and
-   before the next large pull (43 counted of 1 to 5 September, 18 with no energy; 52 stored before, none counted).
+5. The early September matches (R-673, with the counts): raise when energy is built, at R-398 and before a pull.
 4. 옷옷옷옷 v RACK 6:15 (Visible, one row, R-495): told at 6:27, the take-up of a flag lying at the door. His to say
    if a run for a flag left lying should start when its taker sets off.
 6. R-576 and R-575 on Nomad's are Claude's readings: bring him what either tells wrongly. Tolkano: no build.
