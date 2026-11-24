@@ -15,13 +15,13 @@ const GREP = process.env.GREP ? new RegExp(process.env.GREP, "gi") : null; const
 const PICK = (process.env.PICK || "").split(",").map((x) => x.trim()).filter(Boolean);
 const dig = (o, p) => p.split(".").reduce((a, k) => (a == null ? a : a[k]), o);
 // A pick written "shape:<path>" saves the outline of that part in place of the part itself: every key down to ten levels,
-// the keys of up to 80 items of a list merged into one, and one example of each value. For parts too large to keep whole
+// the keys of up to 80 items of a list merged into one, one example of each value, and a table keyed by ids as one entry. For parts too large to keep whole
 // (summary.players is 20 MB) whose layout has to be known before the trim can keep anything from them.
 const shapeOf = (vals, depth) => {
   vals = vals.filter((v) => v !== undefined);
   const objs = vals.filter((v) => v && typeof v === "object" && !Array.isArray(v)), arrs = vals.filter(Array.isArray);
   if (arrs.length) { const n = arrs.map((a) => a.length); return { "[]": `${Math.min(...n)} to ${Math.max(...n)} items`, ...(depth < 10 ? { item: shapeOf(arrs.flatMap((a) => a.slice(0, 80)).slice(0, 400), depth + 1) } : {}) }; }
-  if (objs.length) { if (depth >= 10) return "{...}"; const keys = [...new Set(objs.flatMap((o) => Object.keys(o)))]; if (keys.length > 120) return { "{}": `${keys.length} keys, e.g. ${keys.slice(0, 6).join(", ")}`, value: shapeOf(objs.flatMap((o) => Object.values(o).slice(0, 40)).slice(0, 200), depth + 1) }; return Object.fromEntries(keys.map((k) => [k, shapeOf(objs.map((o) => o[k]), depth + 1)])); }
+  if (objs.length) { if (depth >= 10) return "{...}"; const keys = [...new Set(objs.flatMap((o) => Object.keys(o)))]; if (keys.length > 40 && keys.filter((k) => /^\d+$|:/.test(k)).length > keys.length / 2) return { "{}": `${keys.length} keys, e.g. ${keys.slice(0, 6).join(", ")}`, value: shapeOf(objs.flatMap((o) => Object.values(o).slice(0, 40)).slice(0, 200), depth + 1) }; return Object.fromEntries(keys.map((k) => [k, shapeOf(objs.map((o) => o[k]), depth + 1)])); }
   const ex = vals.find((v) => v !== null && v !== "" && v !== 0 && v !== false); const v = ex === undefined ? vals[0] : ex;
   return v === undefined ? "absent" : `${v === null ? "null" : typeof v}: ${String(v).slice(0, 60)}`;
 };
