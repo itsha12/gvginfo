@@ -359,11 +359,20 @@
      "own": "hold"
     },
     "572c2f95-flag-2-378-40": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "Men's Ritualist 1 sets off for a flag (single run). Men holds the stand, boost in 119 s. | The spot: main fight hold 5 v Men 2 (hold up by 3); hold's main team at the stand, Men's in Men's pit; morale hold no death penalty or boost, Men +70 (the eight summed; a death is -15); Men ahead on flags by 1.2; base res in 102 s; hold's chance of winning 10%. | The answer: hold sends its Earth Ele 17 s later. | What followed, 180 s on: Men's flag in at 8:06; hold's in at 7:21; flag lead +1.07 for hold; deaths hold 1, Men 3; boosts hold 0, Men 0; hold's chance of winning 10% to 15% (+4.6). | Similar spots, 180 s on, from the same position: a runner out by 15 s +9.1 (90 cases); holding off (no runner out at 15 s) +5.1 (90 cases): the data favours a runner out by 15 s by 4.0 win points (+0.8 to +7.1). hold held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +22.2 (81 cases); holding off (no runner out at 30 s) +0.6 (90 cases): the data favours a runner out by 30 s by 21.6 win points (+18.4 to +24.8). hold had a runner out: the answer the data favours."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "Men's Ritualist 1 sets off for a flag (single run). Men holds the stand, boost in 119 s. | The spot: main fight hold 5 v Men 2 (hold up by 3); hold's main team at the stand, Men's in Men's pit; morale hold no death penalty or boost, Men +70 (the eight summed; a death is -15); Men ahead on flags by 1.2; base res in 102 s; hold's chance of winning 10%. | The answer: hold sends its Earth Ele 17 s later. | What followed, 180 s on: Men's flag in at 8:06; hold's in at 7:21; flag lead +1.07 for hold; deaths hold 1, Men 3; boosts hold 0, Men 0; hold's chance of winning 10% to 15% (+4.6). | Similar spots, 180 s on, from the same position: a runner out by 15 s +9.1 (90 cases); holding off (no runner out at 15 s) +5.1 (90 cases): the data favours a runner out by 15 s by 4.0 win points (+0.8 to +7.1). hold held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +22.2 (81 cases); holding off (no runner out at 30 s) +0.6 (90 cases): the data favours a runner out by 30 s by 21.6 win points (+18.4 to +24.8). hold had a runner out: the answer the data favours.",
+     "text": "Men's Ritualist 1 sets off for a flag (single run). Men holds the stand, boost in 119 s. | The spot: main fight hold 5 v Men 2 (hold up by 3); hold's main team at the stand, Men's in Men's pit; morale hold no death penalty or boost, Men +70 (the eight summed; a death is -15); Men ahead on flags by 1.2; base res in 102 s; hold's chance of winning 10%. | The answer: hold sends its Earth Ele 17 s later. | What followed, 180 s on: Men's flag in at 8:06; hold's in at 7:21; flag lead +1.07 for hold; deaths hold 1, Men 3; boosts hold 0, Men 0; hold's chance of winning 10% to 15% (+4.6). | Similar spots, 180 s on, from the same position: a runner out by 15 s +4.1 (90 cases); holding off (no runner out at 15 s) +4.1 (90 cases): no clear difference (0.0, -3.2 to +3.3). hold held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +13.2 (75 cases); holding off (no runner out at 30 s) +1.8 (90 cases): the data favours a runner out by 30 s by 11.5 win points (+8.5 to +14.4). hold had a runner out: the answer the data favours.",
      "sense": "agree",
-     "own": "send"
+     "own": "wait"
     },
     "572c2f95-flag-1-612-70": {
      "facts": "correct",
@@ -387,8 +396,8 @@
     }
    },
    "game": "Men v hold, Isle of Meditation",
-   "at": "2026-11-20",
-   "engine": "e60a56d",
+   "at": "2026-11-24",
+   "engine": "e480706",
    "notes": "men waits back for 1st flat with derv; hold earth ele goes for a flag at 0:39 but cannot cap successfully;"
   },
   "b870f84e-b838-5f2a-ae83-b1e25499d9ee": {
