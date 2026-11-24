@@ -224,7 +224,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   apart), the minute before beside every row, and the danger zone read both ways (damage line and monk energy).
   Not read, at his word: pressing the fight or allowing a stand-off (no decision for now, R-691) and offensive or
   defensive play, which is execution (R-692). The danger zone says the monks' energy of the players in their base
-  beside the 300 line, never in its place (R-690: `monk_energy` on `danger.calls`, in the sentence). Left of (2): energy among what like spots are matched on (2026-11-24, 546
+  beside the 300 line, never in its place (R-690: `monk_energy` on `danger.calls`, in the sentence). Taken out at his word: our own monks at "our flag
+  just in" (R-693), energy at their boost (R-694), and the send-or-not table of our split (R-695: the decision is a
+  split already out staying to kill or falling back, read by its own monks; not built until its definition is
+  settled). Left of (2): energy among what like spots are matched on (2026-11-24, 546
   matches: the average told a little more than the lowest monk at most decisions). To build, in his order (R-689):
   (3) the
   excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of

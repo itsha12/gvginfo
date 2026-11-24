@@ -546,6 +546,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   and the number of monks (R-683). Pressing the fight or allowing a stand-off is no decision for now (R-691); offensive or defensive Mesmer and midline
   play, and whom a Mesmer drains, are execution (R-692).
 - At the base res, monk energy is said beside the danger zone's 300 damage line, never in its place (R-690).
+- Energy is not read at their boost (R-694); at "our flag just in" only the enemy's monks are read (R-693); at our split the
+  call is stay and kill or fall back once on a split, read by the split's own monks only, where it has one (R-695).
 - Out of energy, for the excuse: a monk under 20, a midline player under 15, on that scale (R-681, R-682, R-686).
 - A useful cast: healing landed plus damage prevented for the energy spent, Divine Favor counted, removals a
   count apart; a prot that prevented nothing bought nothing, the attacks a skill blocked excepted (Aegis, and any
