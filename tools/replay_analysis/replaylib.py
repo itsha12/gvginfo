@@ -49,6 +49,13 @@ class Match:
             self._x = Extras.load(self._src[1]) if self._src[0] == "path" else Extras.from_branch(self._src[1], self._src[2], self._src[3])
         return self._x
 
+    def energy(self):
+        """Energy (energy.py; R-664 to R-689): gvg.report's estimate on the double high scale, read once. `ok` False where the match has none."""
+        if getattr(self, "_en", None) is None:
+            from energy import Energy
+            self._en = Energy(self)
+        return self._en
+
     def degen(self):
         """Degen as damage (degen.py; R-638, R-649): gvg.report's totals laid over the seconds the replay shows them, read once."""
         if getattr(self, "_dg", None) is None:
