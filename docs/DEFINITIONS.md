@@ -413,18 +413,24 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - "28" is the end of the match, not the clock at 28:00 (R-642): a replay may run to 28:14, and a play for 28:00
   may end in a Lord kill before it, so neither the length of the match nor how it ended tells the play. It is set
   when the match allows, often before the 26:00 base res; about 24:30 is his estimate of the earliest, not a line.
-- As built it is neither yet: a stretch of hits on a Lord from about 23:30, one row a team (R-435). The result is
-  the match: the Lord killed first, or more aggressiveness at the end (R-142, R-632).
-- Sent, in the draft record of the play (`Moments.end_play`, which no play reads yet): a player whose last place
-  alive is in the enemy's base (R-446), or who died on his way into it (his mark on hold v Dz 26:15, Classic: "hold
-  sends 3 but they die before reaching base"); a living player who stops at their footmen or their door has not
-  been sent (R-646, Crew v cope). From his marks on the draft rows, not a ruling (R-452).
+- As built (2026-11-23): the end of the match is read from where the players stand, never from hits on a Lord.
+  The play for 28:00 is one row a match, both teams in it (R-640, R-651). A push before it is a Lord line on the
+  row of the situation it grew out of: the held team's row, the killers' split, or the fight they won before they
+  walked in (R-644, R-650). An earlier visit to a Lord is not told as a Lord row (R-652). The line between the
+  two is 25:00: a Lord kill by a team that sent its players before 25:00 is a push before it (R-653). The result
+  is the match: the Lord killed first, or more aggressiveness at the end (R-142, R-632).
+- Sent: a player whose place while the play is on is in the enemy's base (R-446), read while the play is on and
+  not at its last second (R-654: a player who left less than 12 s before the end counts where he stood, R-579),
+  or who died on his way into it (his mark on hold v Dz 26:15, Classic: "hold sends 3 but they die before reaching
+  base"); a living player who stops at their footmen or their door has not been sent (R-646, Crew v cope).
 - The attackers are the players in the enemy's base, not only those beside the Lord (R-446). They are counted against
   the pit NPCs alive: as many, more, or fewer. The pit NPCs are the Bodyguard, two knights and two archers, and on
   Isle of Solitude the archer by the bridge in each base (R-435, R-140). Taking pit NPCs earlier means fewer players
   are needed at the end to break Entourage (R-148).
-- What is read beside it: one monk or two with the push (R-146); the aim, killing the defenders and the Lord before
-  28:00 or playing for Lord damage (*draft reading*); Lord damage, as a value, not per player (R-435, R-141).
+- What is read beside it: one monk or two with the push (R-146); what a send plays for: killing the defenders,
+  the kill, or Lord damage, from where its hits land and whether it kills (his marks on Crew v cope 24:44, ohno v
+  Book 25:04 and Team v hook 24:02; the kill is read from the result); Lord damage, as a value, not per player
+  (R-435, R-141).
 - Lord damage is gvg.report's to say, everywhere (R-632): what decides 28:00 is aggressiveness, and raw damage
   matters only for the kill. Aggressiveness (R-634): each point of damage to the enemy Lord, 30 for each attack on
   him missed through Blind, less 50 for each enchantment or weapon spell a team casts on its own Lord, or 300 while
@@ -433,6 +439,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   (R-635). Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
   sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
 - Once degen is in the engine (R-638) every damage figure accounts for it, NPC damage first (R-649; not built).
+  It is the amounts that take it in; who is in which fight stays read from hits and casts (R-655).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one
