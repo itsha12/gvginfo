@@ -649,11 +649,18 @@
      "text": "옷옷옷옷's Necromancer sets off for a flag (single run). hdm holds the stand, boost in 34 s. | The spot: main fight hdm 8 v 옷옷옷옷 6 (hdm up by 2); hdm's main team at 옷옷옷옷's door, 옷옷옷옷's at 옷옷옷옷's door; morale hdm +80, 옷옷옷옷 -214 (the eight summed; a death is -15); flags level; base res in 28 s; hdm's chance of winning 98%. | The answer: hdm sends its Air Ele 3 22 s later. | What followed, 180 s on: 옷옷옷옷's flag does not get in (returned, 12:07); hdm's in at 13:32; flag lead +0.94 for hdm; deaths hdm 0, 옷옷옷옷 11; boosts hdm 1, 옷옷옷옷 0; hdm's chance of winning 98% to 100% (+2.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +0.6 (90 cases): no clear difference (1.8, -1.1 to +4.7). hdm held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.7 (90 cases); holding off (no runner out at 30 s) +1.8 (90 cases): the data favours a runner out by 30 s by 5.9 win points (+3.3 to +8.6). hdm had a runner out: the answer the data favours.",
      "sense": "agree",
      "own": "hold"
+    },
+    "53175808-flag-2-201-8": {
+     "facts": "correct",
+     "why": "",
+     "text": "hdm's flag goes in while 옷옷옷옷's Warrior is still on his way with theirs (he set off at 3:15). Run again, or not? | The spot: main fight hdm 5 v 옷옷옷옷 7 (옷옷옷옷 up by 2); hdm's main team at the stand, 옷옷옷옷's at 옷옷옷옷's door; morale hdm -13, 옷옷옷옷 -69 (the eight summed; a death is -15); hdm ahead on flags by 0.4; base res in 39 s; hdm's chance of winning 63%. | The answer: hdm sends nobody in the next three minutes. | What followed, 180 s on: 옷옷옷옷's flag in at 4:23; flag lead -0.45 for hdm; deaths hdm 1, 옷옷옷옷 2; boosts hdm 0, 옷옷옷옷 0; hdm's chance of winning 63% to 65% (+2.5). | Similar spots, 180 s on, from the same position: a runner out by 15 s +2.7 (90 cases); holding off (no runner out at 15 s) -1.2 (90 cases): the data favours a runner out by 15 s by 3.9 win points (+0.3 to +7.6). hdm held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +3.2 (90 cases); a runner out by 30 s +2.2 (34 cases): no clear difference (1.0, -3.3 to +5.2). hdm held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
     }
    },
    "game": "옷옷옷옷 v hdm, Isle of Jade",
-   "at": "2026-11-20",
-   "engine": "cb7c78a"
+   "at": "2026-11-24",
+   "engine": "e480706"
   },
   "15a20f7a-0112-519a-a5f9-797a6822bf1b": {
    "marks": {
