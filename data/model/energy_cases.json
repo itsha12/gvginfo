@@ -26,7 +26,9 @@
         "flags": -0.315214446952596,
         "net kills": 1.4772234273318872,
         "net pit NPCs": 0.5900216919739696,
-        "win points": 1.518968800860888
+        "win points": 1.518968800860888,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 102,
@@ -38,7 +40,9 @@
         "flags": 0.04069306930693068,
         "net kills": 0.7254901960784313,
         "net pit NPCs": 0.38235294117647056,
-        "win points": 1.3442124503033452
+        "win points": 1.3442124503033452,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 2,
@@ -50,7 +54,9 @@
         "flags": -0.93,
         "net kills": 0.0,
         "net pit NPCs": 0.5,
-        "win points": -2.329242680505772
+        "win points": -2.329242680505772,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "52 to 63": {
@@ -64,7 +70,9 @@
         "flags": -0.4674885844748859,
         "net kills": 0.4663677130044843,
         "net pit NPCs": 0.08295964125560538,
-        "win points": -0.4244655986414725
+        "win points": -0.4244655986414725,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 120,
@@ -76,7 +84,9 @@
         "flags": 0.053220338983050834,
         "net kills": 0.13333333333333333,
         "net pit NPCs": 0.008333333333333333,
-        "win points": 1.297246116019715
+        "win points": 1.297246116019715,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 6,
@@ -88,7 +98,9 @@
         "flags": -0.22166666666666668,
         "net kills": 0.3333333333333333,
         "net pit NPCs": -1.8333333333333333,
-        "win points": -2.8480441076296614
+        "win points": -2.8480441076296614,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "63 or more": {
@@ -102,7 +114,9 @@
         "flags": -0.45931034482758626,
         "net kills": -0.6122448979591837,
         "net pit NPCs": -0.2222222222222222,
-        "win points": -2.145955517465502
+        "win points": -2.145955517465502,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 129,
@@ -114,7 +128,9 @@
         "flags": -0.10632812499999998,
         "net kills": -0.37209302325581395,
         "net pit NPCs": -0.18604651162790697,
-        "win points": -0.605990882857409
+        "win points": -0.605990882857409,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 11,
@@ -126,7 +142,9 @@
         "flags": -0.6627272727272726,
         "net kills": -0.09090909090909091,
         "net pit NPCs": 0.09090909090909091,
-        "win points": -7.942140036649686
+        "win points": -7.942140036649686,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -152,7 +170,9 @@
         "flags": -0.36374149659863947,
         "net kills": 1.4792122538293218,
         "net pit NPCs": 0.5361050328227571,
-        "win points": 1.0238477863464486
+        "win points": 1.0238477863464486,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 113,
@@ -164,7 +184,9 @@
         "flags": 0.14151785714285714,
         "net kills": 0.45132743362831856,
         "net pit NPCs": 0.19469026548672566,
-        "win points": 0.9327806360005657
+        "win points": 0.9327806360005657,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "46 to 58": {
@@ -178,7 +200,9 @@
         "flags": -0.41693363844393594,
         "net kills": 0.39461883408071746,
         "net pit NPCs": -0.004484304932735426,
-        "win points": -0.06023325625069849
+        "win points": -0.06023325625069849,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 119,
@@ -190,7 +214,9 @@
         "flags": -0.031196581196581218,
         "net kills": 0.48739495798319327,
         "net pit NPCs": 0.11764705882352941,
-        "win points": 2.2570286837993874
+        "win points": 2.2570286837993874,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 9,
@@ -202,7 +228,9 @@
         "flags": -0.5411111111111111,
         "net kills": 0.2222222222222222,
         "net pit NPCs": -1.1111111111111112,
-        "win points": -4.490325206947682
+        "win points": -4.490325206947682,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "58 or more": {
@@ -216,7 +244,9 @@
         "flags": -0.46025114155251134,
         "net kills": -0.5235955056179775,
         "net pit NPCs": -0.07191011235955057,
-        "win points": -1.9695906271281556
+        "win points": -1.9695906271281556,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 119,
@@ -228,7 +258,9 @@
         "flags": -0.13067796610169494,
         "net kills": -0.5630252100840336,
         "net pit NPCs": -0.16806722689075632,
-        "win points": -1.3393634056763841
+        "win points": -1.3393634056763841,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 10,
@@ -240,7 +272,9 @@
         "flags": -0.5609999999999999,
         "net kills": -0.1,
         "net pit NPCs": 0.1,
-        "win points": -6.869736354740692
+        "win points": -6.869736354740692,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -261,7 +295,9 @@
        "flags": -0.4834166666666667,
        "net kills": 0.13414634146341464,
        "net pit NPCs": 0.3617886178861789,
-       "win points": 0.26229351882669105
+       "win points": 0.26229351882669105,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 65,
@@ -273,7 +309,9 @@
        "flags": -0.06999999999999997,
        "net kills": 0.03076923076923077,
        "net pit NPCs": 0.4307692307692308,
-       "win points": -0.07678037374221229
+       "win points": -0.07678037374221229,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 3,
@@ -285,7 +323,9 @@
        "flags": -1.3266666666666664,
        "net kills": 1.0,
        "net pit NPCs": 0.0,
-       "win points": -11.879962666264781
+       "win points": -11.879962666264781,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -299,7 +339,9 @@
        "flags": -0.41085011185682324,
        "net kills": -0.0175054704595186,
        "net pit NPCs": -0.06783369803063458,
-       "win points": -1.9833626734490089
+       "win points": -1.9833626734490089,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 131,
@@ -311,7 +353,9 @@
        "flags": -0.004263565891472866,
        "net kills": -0.03816793893129771,
        "net pit NPCs": -0.0916030534351145,
-       "win points": -0.5231886610046271
+       "win points": -0.5231886610046271,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 7,
@@ -323,7 +367,9 @@
        "flags": -0.24857142857142858,
        "net kills": -0.8571428571428571,
        "net pit NPCs": -0.2857142857142857,
-       "win points": -5.376713872182924
+       "win points": -5.376713872182924,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -337,7 +383,9 @@
        "flags": -0.38875993640699524,
        "net kills": 0.9209302325581395,
        "net pit NPCs": 0.2372093023255814,
-       "win points": 0.6301381598997167
+       "win points": 0.6301381598997167,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 155,
@@ -349,7 +397,9 @@
        "flags": 0.012287581699346392,
        "net kills": 0.2903225806451613,
        "net pit NPCs": 0.0,
-       "win points": 1.8589343151583957
+       "win points": 1.8589343151583957,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 9,
@@ -361,7 +411,9 @@
        "flags": -0.5288888888888889,
        "net kills": 0.4444444444444444,
        "net pit NPCs": -0.7777777777777778,
-       "win points": -3.981489478429028
+       "win points": -3.981489478429028,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -393,7 +445,9 @@
         "flags": 0.36133333333333334,
         "net kills": 0.8181818181818182,
         "net pit NPCs": 0.34415584415584416,
-        "win points": 2.629944940290612
+        "win points": 2.629944940290612,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 62,
@@ -405,7 +459,9 @@
         "flags": 0.29354838709677417,
         "net kills": 0.06451612903225806,
         "net pit NPCs": -0.3064516129032258,
-        "win points": 1.5314705339301298
+        "win points": 1.5314705339301298,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 3,
@@ -417,7 +473,9 @@
         "flags": 0.4033333333333333,
         "net kills": 0.0,
         "net pit NPCs": 0.0,
-        "win points": 4.103638733010155
+        "win points": 4.103638733010155,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "58 to 66": {
@@ -431,7 +489,9 @@
         "flags": 0.3722292993630573,
         "net kills": -0.22151898734177214,
         "net pit NPCs": -0.3291139240506329,
-        "win points": 0.4823130545535713
+        "win points": 0.4823130545535713,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 54,
@@ -443,7 +503,9 @@
         "flags": 0.435,
         "net kills": -0.37037037037037035,
         "net pit NPCs": -0.07407407407407407,
-        "win points": -0.8280748812960729
+        "win points": -0.8280748812960729,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 3,
@@ -455,7 +517,9 @@
         "flags": 1.2066666666666668,
         "net kills": -0.3333333333333333,
         "net pit NPCs": -0.3333333333333333,
-        "win points": 4.248154837785182
+        "win points": 4.248154837785182,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "66 or more": {
@@ -469,7 +533,9 @@
         "flags": 0.16069364161849714,
         "net kills": -0.9248554913294798,
         "net pit NPCs": -0.2832369942196532,
-        "win points": -0.251874572385226
+        "win points": -0.251874572385226,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 45,
@@ -481,7 +547,9 @@
         "flags": 0.12844444444444447,
         "net kills": -0.8222222222222222,
         "net pit NPCs": -0.24444444444444444,
-        "win points": 0.24890662043744902
+        "win points": 0.24890662043744902,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 11,
@@ -493,7 +561,9 @@
         "flags": 0.3563636363636364,
         "net kills": -0.2727272727272727,
         "net pit NPCs": 0.6363636363636364,
-        "win points": -3.7221373785005123
+        "win points": -3.7221373785005123,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -519,7 +589,9 @@
         "flags": 0.413758389261745,
         "net kills": 0.803921568627451,
         "net pit NPCs": 0.33986928104575165,
-        "win points": 2.307540614063074
+        "win points": 2.307540614063074,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 60,
@@ -531,7 +603,9 @@
         "flags": 0.3861666666666667,
         "net kills": 0.03333333333333333,
         "net pit NPCs": -0.38333333333333336,
-        "win points": 1.8870679451242276
+        "win points": 1.8870679451242276,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 2,
@@ -543,7 +617,9 @@
         "flags": 0.8200000000000001,
         "net kills": 0.0,
         "net pit NPCs": 0.0,
-        "win points": 7.577961984823434
+        "win points": 7.577961984823434,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "50 to 64": {
@@ -557,7 +633,9 @@
         "flags": 0.3161818181818182,
         "net kills": -0.41566265060240964,
         "net pit NPCs": -0.3493975903614458,
-        "win points": -0.04813809351584694
+        "win points": -0.04813809351584694,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 58,
@@ -569,7 +647,9 @@
         "flags": 0.2982758620689655,
         "net kills": -0.3103448275862069,
         "net pit NPCs": 0.0,
-        "win points": -0.7128394758029152
+        "win points": -0.7128394758029152,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 3,
@@ -581,7 +661,9 @@
         "flags": 0.58,
         "net kills": 0.0,
         "net pit NPCs": 0.3333333333333333,
-        "win points": 2.9062685101795895
+        "win points": 2.9062685101795895,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "64 or more": {
@@ -595,7 +677,9 @@
         "flags": 0.16036144578313252,
         "net kills": -0.7409638554216867,
         "net pit NPCs": -0.25301204819277107,
-        "win points": 0.5577101926117748
+        "win points": 0.5577101926117748,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a runner out": {
         "cases": 43,
@@ -607,7 +691,9 @@
         "flags": 0.16279069767441862,
         "net kills": -0.8604651162790697,
         "net pit NPCs": -0.2558139534883721,
-        "win points": -0.24287115529114442
+        "win points": -0.24287115529114442,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "a double run started": {
         "cases": 12,
@@ -619,7 +705,9 @@
         "flags": 0.44749999999999995,
         "net kills": -0.3333333333333333,
         "net pit NPCs": 0.4166666666666667,
-        "win points": -3.3135716626087715
+        "win points": -3.3135716626087715,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -640,7 +728,9 @@
        "flags": 0.20271739130434785,
        "net kills": -0.05434782608695652,
        "net pit NPCs": -0.22826086956521738,
-       "win points": 0.9668226529706725
+       "win points": 0.9668226529706725,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 23,
@@ -652,7 +742,9 @@
        "flags": 0.20826086956521744,
        "net kills": -1.1304347826086956,
        "net pit NPCs": 0.0,
-       "win points": -2.4695799694470404
+       "win points": -2.4695799694470404,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 5,
@@ -664,7 +756,9 @@
        "flags": 0.502,
        "net kills": 1.0,
        "net pit NPCs": 1.0,
-       "win points": -5.9288744351513465
+       "win points": -5.9288744351513465,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -678,7 +772,9 @@
        "flags": 0.2751724137931034,
        "net kills": -0.24878048780487805,
        "net pit NPCs": -0.12195121951219512,
-       "win points": 1.337629327776392
+       "win points": 1.337629327776392,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 55,
@@ -690,7 +786,9 @@
        "flags": 0.22872727272727267,
        "net kills": -0.01818181818181818,
        "net pit NPCs": -0.2,
-       "win points": 0.34863899459518394
+       "win points": 0.34863899459518394,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 6,
@@ -702,7 +800,9 @@
        "flags": 0.7233333333333333,
        "net kills": -0.6666666666666666,
        "net pit NPCs": 0.6666666666666666,
-       "win points": 4.022516189134584
+       "win points": 4.022516189134584,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -716,7 +816,9 @@
        "flags": 0.35637837837837844,
        "net kills": -0.06914893617021277,
        "net pit NPCs": -0.010638297872340425,
-       "win points": 0.39617545816017136
+       "win points": 0.39617545816017136,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a runner out": {
        "cases": 83,
@@ -728,7 +830,9 @@
        "flags": 0.36265060240963853,
        "net kills": -0.3132530120481928,
        "net pit NPCs": -0.27710843373493976,
-       "win points": 1.1935074943121948
+       "win points": 1.1935074943121948,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "a double run started": {
        "cases": 6,
@@ -740,7 +844,9 @@
        "flags": 0.31666666666666676,
        "net kills": -0.8333333333333334,
        "net pit NPCs": -0.5,
-       "win points": -1.7298092350283991
+       "win points": -1.7298092350283991,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -773,7 +879,9 @@
         "flags": -0.1269377990430622,
         "net kills": -4.769911504424779,
         "net pit NPCs": -2.172566371681416,
-        "win points": -7.477236773452453
+        "win points": -7.477236773452453,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 83,
@@ -785,7 +893,9 @@
         "flags": -0.06689189189189187,
         "net kills": -4.590361445783133,
         "net pit NPCs": -2.819277108433735,
-        "win points": -7.776572337780252
+        "win points": -7.776572337780252,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 59,
@@ -797,7 +907,9 @@
         "flags": 0.005000000000000012,
         "net kills": -5.932203389830509,
         "net pit NPCs": -3.135593220338983,
-        "win points": -7.183655578742722
+        "win points": -7.183655578742722,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 3,
@@ -809,7 +921,9 @@
         "flags": 0.29333333333333333,
         "net kills": -3.0,
         "net pit NPCs": 0.0,
-        "win points": -7.204940695273116
+        "win points": -7.204940695273116,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "49 to 60": {
@@ -823,7 +937,9 @@
         "flags": -0.1463888888888889,
         "net kills": -2.7065637065637067,
         "net pit NPCs": -1.3667953667953667,
-        "win points": -5.4607827966020395
+        "win points": -5.4607827966020395,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 78,
@@ -835,7 +951,9 @@
         "flags": -0.06657894736842106,
         "net kills": -2.230769230769231,
         "net pit NPCs": -0.9615384615384616,
-        "win points": -4.140414164569296
+        "win points": -4.140414164569296,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 29,
@@ -847,7 +965,9 @@
         "flags": 0.1604,
         "net kills": -5.310344827586207,
         "net pit NPCs": -2.689655172413793,
-        "win points": -5.741484252977521
+        "win points": -5.741484252977521,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 6,
@@ -859,7 +979,9 @@
         "flags": -0.12399999999999997,
         "net kills": -5.333333333333333,
         "net pit NPCs": -0.5,
-        "win points": -5.780390048637148
+        "win points": -5.780390048637148,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "60 or more": {
@@ -873,7 +995,9 @@
         "flags": -0.04473309608540926,
         "net kills": -0.8794326241134752,
         "net pit NPCs": -0.06028368794326241,
-        "win points": -0.9509326688316193
+        "win points": -0.9509326688316193,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 67,
@@ -885,7 +1009,9 @@
         "flags": -0.20184615384615387,
         "net kills": -1.7313432835820894,
         "net pit NPCs": -0.7014925373134329,
-        "win points": -5.506545975119123
+        "win points": -5.506545975119123,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 24,
@@ -897,7 +1023,9 @@
         "flags": 0.03875000000000001,
         "net kills": -3.5416666666666665,
         "net pit NPCs": -2.6666666666666665,
-        "win points": -9.428169727973662
+        "win points": -9.428169727973662,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 4,
@@ -909,7 +1037,9 @@
         "flags": -0.3275,
         "net kills": -1.0,
         "net pit NPCs": 1.0,
-        "win points": 1.2104062580285362
+        "win points": 1.2104062580285362,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -935,7 +1065,9 @@
         "flags": -0.12194174757281556,
         "net kills": -4.701357466063349,
         "net pit NPCs": -1.918552036199095,
-        "win points": -6.775600466691893
+        "win points": -6.775600466691893,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 88,
@@ -947,7 +1079,9 @@
         "flags": -0.010125000000000018,
         "net kills": -4.056818181818182,
         "net pit NPCs": -2.409090909090909,
-        "win points": -6.068539464436108
+        "win points": -6.068539464436108,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 58,
@@ -959,7 +1093,9 @@
         "flags": 0.05442307692307692,
         "net kills": -5.948275862068965,
         "net pit NPCs": -2.913793103448276,
-        "win points": -6.276267189634909
+        "win points": -6.276267189634909,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 4,
@@ -971,7 +1107,9 @@
         "flags": 0.22,
         "net kills": -2.5,
         "net pit NPCs": -0.25,
-        "win points": -8.21892096869576
+        "win points": -8.21892096869576,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "42 to 55": {
@@ -985,7 +1123,9 @@
         "flags": -0.14542307692307693,
         "net kills": -2.591078066914498,
         "net pit NPCs": -1.4275092936802973,
-        "win points": -6.179734778124281
+        "win points": -6.179734778124281,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 71,
@@ -997,7 +1137,9 @@
         "flags": -0.14970588235294116,
         "net kills": -2.704225352112676,
         "net pit NPCs": -1.1408450704225352,
-        "win points": -6.05763864315502
+        "win points": -6.05763864315502,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 27,
@@ -1009,7 +1151,9 @@
         "flags": 0.09434782608695653,
         "net kills": -5.185185185185185,
         "net pit NPCs": -3.3333333333333335,
-        "win points": -8.051822810261584
+        "win points": -8.051822810261584,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 4,
@@ -1021,7 +1165,9 @@
         "flags": -0.15499999999999997,
         "net kills": -6.25,
         "net pit NPCs": -0.25,
-        "win points": -5.1782323613776375
+        "win points": -5.1782323613776375,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "55 or more": {
@@ -1035,7 +1181,9 @@
         "flags": -0.04731884057971014,
         "net kills": -1.0505415162454874,
         "net pit NPCs": -0.19494584837545126,
-        "win points": -0.7675267482901061
+        "win points": -0.7675267482901061,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 69,
@@ -1047,7 +1195,9 @@
         "flags": -0.18119402985074626,
         "net kills": -1.7681159420289856,
         "net pit NPCs": -0.9130434782608695,
-        "win points": -5.409022792329904
+        "win points": -5.409022792329904,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 27,
@@ -1059,7 +1209,9 @@
         "flags": 0.007692307692307682,
         "net kills": -3.8518518518518516,
         "net pit NPCs": -2.5185185185185186,
-        "win points": -8.710817891764782
+        "win points": -8.710817891764782,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 5,
@@ -1071,7 +1223,9 @@
         "flags": -0.3275,
         "net kills": -2.0,
         "net pit NPCs": 0.6,
-        "win points": 0.42661519495310174
+        "win points": 0.42661519495310174,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -1092,7 +1246,9 @@
        "flags": -0.09984126984126984,
        "net kills": -2.421875,
        "net pit NPCs": -1.59375,
-       "win points": -2.1958411527758104
+       "win points": -2.1958411527758104,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 30,
@@ -1104,7 +1260,9 @@
        "flags": -0.24827586206896554,
        "net kills": -2.7666666666666666,
        "net pit NPCs": -1.9666666666666666,
-       "win points": -2.977237739313232
+       "win points": -2.977237739313232,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 13,
@@ -1116,7 +1274,9 @@
        "flags": -0.3663636363636364,
        "net kills": -5.076923076923077,
        "net pit NPCs": -3.6153846153846154,
-       "win points": -7.6830234454475
+       "win points": -7.6830234454475,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 3,
@@ -1128,7 +1288,9 @@
        "flags": -0.19999999999999998,
        "net kills": -1.3333333333333333,
        "net pit NPCs": 0.6666666666666666,
-       "win points": 1.3691290558067817
+       "win points": 1.3691290558067817,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -1142,7 +1304,9 @@
        "flags": -0.13701754385964912,
        "net kills": -3.1333333333333333,
        "net pit NPCs": -1.675,
-       "win points": -5.912058170652949
+       "win points": -5.912058170652949,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 97,
@@ -1154,7 +1318,9 @@
        "flags": -0.18181818181818182,
        "net kills": -3.731958762886598,
        "net pit NPCs": -2.11340206185567,
-       "win points": -7.466162244570829
+       "win points": -7.466162244570829,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 51,
@@ -1166,7 +1332,9 @@
        "flags": 0.10543478260869564,
        "net kills": -5.019607843137255,
        "net pit NPCs": -3.156862745098039,
-       "win points": -8.22947985340401
+       "win points": -8.22947985340401,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 7,
@@ -1178,7 +1346,9 @@
        "flags": 0.1842857142857143,
        "net kills": -3.4285714285714284,
        "net pit NPCs": 0.2857142857142857,
-       "win points": -6.7017558332666765
+       "win points": -6.7017558332666765,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -1192,7 +1362,9 @@
        "flags": -0.08527716186252772,
        "net kills": -2.4190064794816415,
        "net pit NPCs": -0.7732181425485961,
-       "win points": -3.915623051827948
+       "win points": -3.915623051827948,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 101,
@@ -1204,7 +1376,9 @@
        "flags": 0.0007142857142857432,
        "net kills": -2.237623762376238,
        "net pit NPCs": -0.9108910891089109,
-       "win points": -5.186252666360199
+       "win points": -5.186252666360199,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 48,
@@ -1216,7 +1390,9 @@
        "flags": 0.09954545454545455,
        "net kills": -5.5625,
        "net pit NPCs": -2.4791666666666665,
-       "win points": -6.188167054981556
+       "win points": -6.188167054981556,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 3,
@@ -1228,7 +1404,9 @@
        "flags": -0.6466666666666666,
        "net kills": -5.666666666666667,
        "net pit NPCs": -1.0,
-       "win points": -2.88354456002723
+       "win points": -2.88354456002723,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -1251,7 +1429,9 @@
         "flags": -0.1303864734299517,
         "net kills": -3.2831050228310503,
         "net pit NPCs": -1.6210045662100456,
-        "win points": -6.331351158482321
+        "win points": -6.331351158482321,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 93,
@@ -1263,7 +1443,9 @@
         "flags": -0.054555555555555545,
         "net kills": -2.7204301075268815,
         "net pit NPCs": -1.4623655913978495,
-        "win points": -5.9655474087293285
+        "win points": -5.9655474087293285,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 29,
@@ -1275,7 +1457,9 @@
         "flags": 0.04624999999999999,
         "net kills": -5.137931034482759,
         "net pit NPCs": -3.7586206896551726,
-        "win points": -15.350953803930922
+        "win points": -15.350953803930922,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 4,
@@ -1287,7 +1471,9 @@
         "flags": 0.3175,
         "net kills": -3.0,
         "net pit NPCs": 0.0,
-        "win points": -5.340980202609687
+        "win points": -5.340980202609687,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "53 to 62": {
@@ -1301,7 +1487,9 @@
         "flags": -0.11340707964601769,
         "net kills": -3.1206896551724137,
         "net pit NPCs": -1.3879310344827587,
-        "win points": -6.150629850054592
+        "win points": -6.150629850054592,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 73,
@@ -1313,7 +1501,9 @@
         "flags": -0.13939393939393938,
         "net kills": -3.4794520547945207,
         "net pit NPCs": -1.904109589041096,
-        "win points": -8.215434475373444
+        "win points": -8.215434475373444,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 31,
@@ -1325,7 +1515,9 @@
         "flags": 0.017307692307692305,
         "net kills": -6.612903225806452,
         "net pit NPCs": -2.774193548387097,
-        "win points": -5.991092266946179
+        "win points": -5.991092266946179,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 7,
@@ -1337,7 +1529,9 @@
         "flags": -0.52,
         "net kills": -2.7142857142857144,
         "net pit NPCs": 0.14285714285714285,
-        "win points": -2.991529996920934
+        "win points": -2.991529996920934,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "62 or more": {
@@ -1351,7 +1545,9 @@
         "flags": -0.10314410480349344,
         "net kills": -2.3220338983050848,
         "net pit NPCs": -1.0635593220338984,
-        "win points": -2.1187665714490715
+        "win points": -2.1187665714490715,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 61,
@@ -1363,7 +1559,9 @@
         "flags": -0.223448275862069,
         "net kills": -2.7540983606557377,
         "net pit NPCs": -1.4754098360655739,
-        "win points": -2.756635787191963
+        "win points": -2.756635787191963,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 48,
@@ -1375,7 +1573,9 @@
         "flags": 0.12413043478260867,
         "net kills": -4.895833333333333,
         "net pit NPCs": -2.7708333333333335,
-        "win points": -2.259945410511261
+        "win points": -2.259945410511261,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 4,
@@ -1387,7 +1587,9 @@
         "flags": 0.2025,
         "net kills": -4.5,
         "net pit NPCs": 0.0,
-        "win points": -2.9258122987670383
+        "win points": -2.9258122987670383,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -1413,7 +1615,9 @@
         "flags": -0.13188118811881186,
         "net kills": -3.023474178403756,
         "net pit NPCs": -1.375586854460094,
-        "win points": -5.170914563080846
+        "win points": -5.170914563080846,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 88,
@@ -1425,7 +1629,9 @@
         "flags": -0.04604938271604941,
         "net kills": -2.8636363636363638,
         "net pit NPCs": -1.3636363636363635,
-        "win points": -7.024794346568469
+        "win points": -7.024794346568469,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 31,
@@ -1437,7 +1643,9 @@
         "flags": 0.2811111111111111,
         "net kills": -5.32258064516129,
         "net pit NPCs": -3.3870967741935485,
-        "win points": -15.096431674511956
+        "win points": -15.096431674511956,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 3,
@@ -1449,7 +1657,9 @@
         "flags": 0.2733333333333334,
         "net kills": -2.6666666666666665,
         "net pit NPCs": 0.0,
-        "win points": -5.385440824066785
+        "win points": -5.385440824066785,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "46 to 56": {
@@ -1463,7 +1673,9 @@
         "flags": -0.04708860759493671,
         "net kills": -3.2285714285714286,
         "net pit NPCs": -1.6816326530612244,
-        "win points": -6.813994696677721
+        "win points": -6.813994696677721,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 73,
@@ -1475,7 +1687,9 @@
         "flags": -0.11732394366197185,
         "net kills": -2.8219178082191783,
         "net pit NPCs": -1.8082191780821917,
-        "win points": -4.966397212166026
+        "win points": -4.966397212166026,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 30,
@@ -1487,7 +1701,9 @@
         "flags": -0.07875,
         "net kills": -6.433333333333334,
         "net pit NPCs": -3.2,
-        "win points": -4.62164413479135
+        "win points": -4.62164413479135,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 7,
@@ -1499,7 +1715,9 @@
         "flags": -0.36000000000000004,
         "net kills": -2.857142857142857,
         "net pit NPCs": -0.14285714285714285,
-        "win points": -3.5104370641995404
+        "win points": -3.5104370641995404,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "56 or more": {
@@ -1513,7 +1731,9 @@
         "flags": -0.1723766816143498,
         "net kills": -2.427947598253275,
         "net pit NPCs": -0.9737991266375546,
-        "win points": -2.3699014723144693
+        "win points": -2.3699014723144693,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall to footmen": {
         "cases": 66,
@@ -1525,7 +1745,9 @@
         "flags": -0.24209677419354841,
         "net kills": -3.287878787878788,
         "net pit NPCs": -1.7121212121212122,
-        "win points": -5.181038026464448
+        "win points": -5.181038026464448,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "retreat to the pit": {
         "cases": 47,
@@ -1537,7 +1759,9 @@
         "flags": 0.0348888888888889,
         "net kills": -4.914893617021277,
         "net pit NPCs": -2.702127659574468,
-        "win points": -2.8242594540480357
+        "win points": -2.8242594540480357,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "trade with a split": {
         "cases": 5,
@@ -1549,7 +1773,9 @@
         "flags": 0.06000000000000001,
         "net kills": -4.2,
         "net pit NPCs": 0.4,
-        "win points": -2.65569961247126
+        "win points": -2.65569961247126,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -1570,7 +1796,9 @@
        "flags": -0.12976190476190477,
        "net kills": -1.9767441860465116,
        "net pit NPCs": -0.3953488372093023,
-       "win points": -1.4703598670502107
+       "win points": -1.4703598670502107,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 27,
@@ -1582,7 +1810,9 @@
        "flags": -0.2685185185185185,
        "net kills": -2.4074074074074074,
        "net pit NPCs": -1.2962962962962963,
-       "win points": -2.7362105403770633
+       "win points": -2.7362105403770633,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 19,
@@ -1594,7 +1824,9 @@
        "flags": 0.07823529411764704,
        "net kills": -4.105263157894737,
        "net pit NPCs": -2.526315789473684,
-       "win points": -10.1372315457145
+       "win points": -10.1372315457145,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 1,
@@ -1606,7 +1838,9 @@
        "flags": -0.51,
        "net kills": -3.0,
        "net pit NPCs": 2.0,
-       "win points": -1.5752488672881482
+       "win points": -1.5752488672881482,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -1620,7 +1854,9 @@
        "flags": -0.15866310160427807,
        "net kills": -3.431472081218274,
        "net pit NPCs": -1.7766497461928934,
-       "win points": -6.5312344143008945
+       "win points": -6.5312344143008945,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 73,
@@ -1632,7 +1868,9 @@
        "flags": -0.1272058823529412,
        "net kills": -3.1780821917808217,
        "net pit NPCs": -1.9726027397260273,
-       "win points": -7.564223308561065
+       "win points": -7.564223308561065,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 31,
@@ -1644,7 +1882,9 @@
        "flags": 0.04833333333333334,
        "net kills": -6.709677419354839,
        "net pit NPCs": -3.967741935483871,
-       "win points": -7.938884338397836
+       "win points": -7.938884338397836,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 3,
@@ -1656,7 +1896,9 @@
        "flags": 0.18000000000000002,
        "net kills": -4.0,
        "net pit NPCs": 0.3333333333333333,
-       "win points": -5.088200668200501
+       "win points": -5.088200668200501,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -1670,7 +1912,9 @@
        "flags": -0.09122762148337596,
        "net kills": -2.8341584158415842,
        "net pit NPCs": -1.3465346534653466,
-       "win points": -4.70405151385812
+       "win points": -4.70405151385812,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall to footmen": {
        "cases": 127,
@@ -1682,7 +1926,9 @@
        "flags": -0.09386554621848739,
        "net kills": -2.9763779527559056,
        "net pit NPCs": -1.4645669291338583,
-       "win points": -5.485129311950079
+       "win points": -5.485129311950079,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "retreat to the pit": {
        "cases": 58,
@@ -1694,7 +1940,9 @@
        "flags": 0.08690909090909091,
        "net kills": -5.224137931034483,
        "net pit NPCs": -2.706896551724138,
-       "win points": -5.1838980419820775
+       "win points": -5.1838980419820775,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "trade with a split": {
        "cases": 11,
@@ -1706,7 +1954,9 @@
        "flags": -0.10699999999999998,
        "net kills": -3.090909090909091,
        "net pit NPCs": -0.18181818181818182,
-       "win points": -3.378911737460344
+       "win points": -3.378911737460344,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -1740,7 +1990,9 @@
         "flags": -0.000830324909747294,
         "net kills": 4.1438127090301,
         "net pit NPCs": 1.9464882943143813,
-        "win points": 6.232985610087964
+        "win points": 6.232985610087964,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 55,
@@ -1752,7 +2004,9 @@
         "flags": -0.30081632653061224,
         "net kills": 3.8363636363636364,
         "net pit NPCs": 2.6363636363636362,
-        "win points": 8.327425505822537
+        "win points": 8.327425505822537,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -1764,7 +2018,9 @@
         "flags": 0.07,
         "net kills": 5.0,
         "net pit NPCs": 1.0,
-        "win points": 10.265522713620179
+        "win points": 10.265522713620179,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 35,
@@ -1776,7 +2032,9 @@
         "flags": 0.8508823529411765,
         "net kills": 2.4857142857142858,
         "net pit NPCs": 1.4,
-        "win points": 12.520600675184223
+        "win points": 12.520600675184223,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 19,
@@ -1788,7 +2046,9 @@
         "flags": 0.043888888888888894,
         "net kills": 2.5789473684210527,
         "net pit NPCs": 1.5789473684210527,
-        "win points": 6.678951139539535
+        "win points": 6.678951139539535,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "54 to 64": {
@@ -1802,7 +2062,9 @@
         "flags": 0.07147058823529413,
         "net kills": 4.229235880398671,
         "net pit NPCs": 2.0764119601328903,
-        "win points": 5.804705867524931
+        "win points": 5.804705867524931,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 51,
@@ -1814,7 +2076,9 @@
         "flags": 0.0735714285714286,
         "net kills": 5.392156862745098,
         "net pit NPCs": 2.6470588235294117,
-        "win points": 8.476426345879428
+        "win points": 8.476426345879428,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 5,
@@ -1826,7 +2090,9 @@
         "flags": 0.7380000000000001,
         "net kills": 1.0,
         "net pit NPCs": 1.0,
-        "win points": 0.6981207313398654
+        "win points": 0.6981207313398654,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 28,
@@ -1838,7 +2104,9 @@
         "flags": 0.5289285714285714,
         "net kills": 1.8571428571428572,
         "net pit NPCs": 0.2857142857142857,
-        "win points": 7.8046981671473485
+        "win points": 7.8046981671473485,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 19,
@@ -1850,7 +2118,9 @@
         "flags": -0.11105263157894732,
         "net kills": 3.1578947368421053,
         "net pit NPCs": 1.2105263157894737,
-        "win points": 1.1546943550537683
+        "win points": 1.1546943550537683,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "64 or more": {
@@ -1864,7 +2134,9 @@
         "flags": 0.056038461538461516,
         "net kills": 2.7992700729927007,
         "net pit NPCs": 0.8722627737226277,
-        "win points": 1.9798840115608334
+        "win points": 1.9798840115608334,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 91,
@@ -1876,7 +2148,9 @@
         "flags": 0.11034482758620691,
         "net kills": 4.362637362637362,
         "net pit NPCs": 2.197802197802198,
-        "win points": 3.144311222968953
+        "win points": 3.144311222968953,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 2,
@@ -1888,7 +2162,9 @@
         "flags": 1.375,
         "net kills": 7.5,
         "net pit NPCs": 3.0,
-        "win points": 8.289662947856247
+        "win points": 8.289662947856247,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 26,
@@ -1900,7 +2176,9 @@
         "flags": 0.3104,
         "net kills": 1.7307692307692308,
         "net pit NPCs": 1.2692307692307692,
-        "win points": 7.27775113078167
+        "win points": 7.27775113078167,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 27,
@@ -1912,7 +2190,9 @@
         "flags": -0.2403703703703704,
         "net kills": 2.1481481481481484,
         "net pit NPCs": 0.2222222222222222,
-        "win points": 1.6169863392691939
+        "win points": 1.6169863392691939,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -1938,7 +2218,9 @@
         "flags": 0.000850202429149801,
         "net kills": 4.174074074074074,
         "net pit NPCs": 1.9222222222222223,
-        "win points": 6.176238761455303
+        "win points": 6.176238761455303,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 51,
@@ -1950,7 +2232,9 @@
         "flags": -0.3315555555555555,
         "net kills": 4.176470588235294,
         "net pit NPCs": 2.3529411764705883,
-        "win points": 10.875174463287642
+        "win points": 10.875174463287642,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -1962,7 +2246,9 @@
         "flags": 0.28,
         "net kills": 1.0,
         "net pit NPCs": 2.0,
-        "win points": 0.36812600464601886
+        "win points": 0.36812600464601886,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 28,
@@ -1974,7 +2260,9 @@
         "flags": 0.7422222222222222,
         "net kills": 2.107142857142857,
         "net pit NPCs": 1.2857142857142858,
-        "win points": 12.912495203158633
+        "win points": 12.912495203158633,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 18,
@@ -1986,7 +2274,9 @@
         "flags": 0.0211764705882353,
         "net kills": 2.7777777777777777,
         "net pit NPCs": 1.2222222222222223,
-        "win points": 3.1926562886525502
+        "win points": 3.1926562886525502,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "47 to 59": {
@@ -2000,7 +2290,9 @@
         "flags": 0.031721854304635755,
         "net kills": 4.16969696969697,
         "net pit NPCs": 2.0606060606060606,
-        "win points": 5.639615281920911
+        "win points": 5.639615281920911,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 60,
@@ -2012,7 +2304,9 @@
         "flags": 0.03764705882352941,
         "net kills": 5.116666666666666,
         "net pit NPCs": 2.6666666666666665,
-        "win points": 4.831000957198092
+        "win points": 4.831000957198092,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 5,
@@ -2024,7 +2318,9 @@
         "flags": 0.696,
         "net kills": 1.8,
         "net pit NPCs": 0.8,
-        "win points": 2.6776000731346974
+        "win points": 2.6776000731346974,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 38,
@@ -2036,7 +2332,9 @@
         "flags": 0.3997368421052631,
         "net kills": 1.8421052631578947,
         "net pit NPCs": 0.7894736842105263,
-        "win points": 6.892891462219294
+        "win points": 6.892891462219294,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 20,
@@ -2048,7 +2346,9 @@
         "flags": -0.07299999999999998,
         "net kills": 3.85,
         "net pit NPCs": 1.75,
-        "win points": 4.96021075253987
+        "win points": 4.96021075253987,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "59 or more": {
@@ -2062,7 +2362,9 @@
         "flags": 0.09226923076923077,
         "net kills": 2.832116788321168,
         "net pit NPCs": 0.9014598540145985,
-        "win points": 2.279963044095408
+        "win points": 2.279963044095408,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 86,
@@ -2074,7 +2376,9 @@
         "flags": 0.13353658536585364,
         "net kills": 4.22093023255814,
         "net pit NPCs": 2.3255813953488373,
-        "win points": 3.8598199150082535
+        "win points": 3.8598199150082535,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 2,
@@ -2086,7 +2390,9 @@
         "flags": 1.375,
         "net kills": 7.5,
         "net pit NPCs": 3.0,
-        "win points": 8.289662947856247
+        "win points": 8.289662947856247,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 23,
@@ -2098,7 +2404,9 @@
         "flags": 0.7395454545454547,
         "net kills": 2.391304347826087,
         "net pit NPCs": 1.0434782608695652,
-        "win points": 9.673667846048788
+        "win points": 9.673667846048788,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 27,
@@ -2110,7 +2418,9 @@
         "flags": -0.24851851851851856,
         "net kills": 1.4814814814814814,
         "net pit NPCs": 0.07407407407407407,
-        "win points": 1.3268839744813958
+        "win points": 1.3268839744813958,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -2131,7 +2441,9 @@
        "flags": 0.11500000000000002,
        "net kills": 2.7246376811594204,
        "net pit NPCs": 0.6956521739130435,
-       "win points": 3.2497776113062375
+       "win points": 3.2497776113062375,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 31,
@@ -2143,7 +2455,9 @@
        "flags": 0.23967741935483874,
        "net kills": 3.225806451612903,
        "net pit NPCs": 2.032258064516129,
-       "win points": 4.600882544394444
+       "win points": 4.600882544394444,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 1,
@@ -2155,7 +2469,9 @@
        "flags": 0.97,
        "net kills": 4.0,
        "net pit NPCs": -1.0,
-       "win points": 10.61634588731959
+       "win points": 10.61634588731959,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 13,
@@ -2167,7 +2483,9 @@
        "flags": 0.6523076923076924,
        "net kills": 4.3076923076923075,
        "net pit NPCs": 1.0,
-       "win points": 8.093745849651974
+       "win points": 8.093745849651974,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 9,
@@ -2179,7 +2497,9 @@
        "flags": -0.1933333333333333,
        "net kills": 3.5555555555555554,
        "net pit NPCs": 0.7777777777777778,
-       "win points": 4.105270238880225
+       "win points": 4.105270238880225,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -2193,7 +2513,9 @@
        "flags": 0.06824701195219122,
        "net kills": 4.1098901098901095,
        "net pit NPCs": 2.0476190476190474,
-       "win points": 6.171748446943547
+       "win points": 6.171748446943547,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 59,
@@ -2205,7 +2527,9 @@
        "flags": -0.11039215686274512,
        "net kills": 5.220338983050848,
        "net pit NPCs": 2.9491525423728815,
-       "win points": 9.221582080215983
+       "win points": 9.221582080215983,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 5,
@@ -2217,7 +2541,9 @@
        "flags": 1.0379999999999998,
        "net kills": 3.0,
        "net pit NPCs": 2.0,
-       "win points": 1.8170915320892427
+       "win points": 1.8170915320892427,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 28,
@@ -2229,7 +2555,9 @@
        "flags": 0.5403846153846154,
        "net kills": 1.8571428571428572,
        "net pit NPCs": 1.3571428571428572,
-       "win points": 9.840247044363236
+       "win points": 9.840247044363236,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 20,
@@ -2241,7 +2569,9 @@
        "flags": -0.12799999999999997,
        "net kills": 2.7,
        "net pit NPCs": 1.0,
-       "win points": 5.091852867969023
+       "win points": 5.091852867969023,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -2255,7 +2585,9 @@
        "flags": 0.019193548387096783,
        "net kills": 3.7011278195488724,
        "net pit NPCs": 1.5770676691729324,
-       "win points": 4.218506393821908
+       "win points": 4.218506393821908,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 107,
@@ -2267,7 +2599,9 @@
        "flags": -0.040104166666666656,
        "net kills": 4.4392523364485985,
        "net pit NPCs": 2.2710280373831777,
-       "win points": 4.576988468610227
+       "win points": 4.576988468610227,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 2,
@@ -2279,7 +2613,9 @@
        "flags": 0.17500000000000002,
        "net kills": 3.0,
        "net pit NPCs": 1.5,
-       "win points": 5.316824359133099
+       "win points": 5.316824359133099,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 48,
@@ -2291,7 +2627,9 @@
        "flags": 0.6035416666666666,
        "net kills": 1.5833333333333333,
        "net pit NPCs": 0.8125,
-       "win points": 9.692260175505224
+       "win points": 9.692260175505224,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 36,
@@ -2303,7 +2641,9 @@
        "flags": -0.10028571428571428,
        "net kills": 2.25,
        "net pit NPCs": 0.8888888888888888,
-       "win points": 1.4920390568955146
+       "win points": 1.4920390568955146,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -2326,7 +2666,9 @@
         "flags": 0.012795275590551184,
         "net kills": 6.2377622377622375,
         "net pit NPCs": 2.6083916083916083,
-        "win points": 5.369958010866664
+        "win points": 5.369958010866664,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 70,
@@ -2338,7 +2680,9 @@
         "flags": -0.11263157894736842,
         "net kills": 5.328571428571428,
         "net pit NPCs": 2.7,
-        "win points": 6.226764653823243
+        "win points": 6.226764653823243,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 2,
@@ -2350,7 +2694,9 @@
         "flags": 0.645,
         "net kills": 3.0,
         "net pit NPCs": 2.5,
-        "win points": 2.1671435619979365
+        "win points": 2.1671435619979365,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 13,
@@ -2362,7 +2708,9 @@
         "flags": 1.02,
         "net kills": 2.1538461538461537,
         "net pit NPCs": 1.4615384615384615,
-        "win points": 11.990708976134142
+        "win points": 11.990708976134142,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 15,
@@ -2374,7 +2722,9 @@
         "flags": -0.03000000000000001,
         "net kills": 4.866666666666666,
         "net pit NPCs": 1.9333333333333333,
-        "win points": 2.7746082555413443
+        "win points": 2.7746082555413443,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "45 to 56": {
@@ -2388,7 +2738,9 @@
         "flags": 0.06116935483870967,
         "net kills": 3.782287822878229,
         "net pit NPCs": 1.8376383763837638,
-        "win points": 6.766692359416768
+        "win points": 6.766692359416768,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 65,
@@ -2400,7 +2752,9 @@
         "flags": 0.045238095238095265,
         "net kills": 4.4,
         "net pit NPCs": 2.523076923076923,
-        "win points": 5.948615090836106
+        "win points": 5.948615090836106,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 3,
@@ -2412,7 +2766,9 @@
         "flags": 1.2666666666666666,
         "net kills": 5.333333333333333,
         "net pit NPCs": 2.0,
-        "win points": 5.237859447842658
+        "win points": 5.237859447842658,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 24,
@@ -2424,7 +2780,9 @@
         "flags": 0.48727272727272714,
         "net kills": 1.9583333333333333,
         "net pit NPCs": 0.7916666666666666,
-        "win points": 11.393913367575585
+        "win points": 11.393913367575585,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 23,
@@ -2436,7 +2794,9 @@
         "flags": -0.15086956521739128,
         "net kills": 3.5217391304347827,
         "net pit NPCs": 0.8260869565217391,
-        "win points": 4.999916953893228
+        "win points": 4.999916953893228,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "56 or more": {
@@ -2450,7 +2810,9 @@
         "flags": 0.045849802371541494,
         "net kills": 1.816793893129771,
         "net pit NPCs": 0.7862595419847328,
-        "win points": 3.312194381889938
+        "win points": 3.312194381889938,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 52,
@@ -2462,7 +2824,9 @@
         "flags": 0.017659574468085106,
         "net kills": 3.8846153846153846,
         "net pit NPCs": 2.1923076923076925,
-        "win points": 8.92059944507139
+        "win points": 8.92059944507139,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 3,
@@ -2474,7 +2838,9 @@
         "flags": 0.47333333333333333,
         "net kills": 1.0,
         "net pit NPCs": 0.3333333333333333,
-        "win points": 3.4291955995027177
+        "win points": 3.4291955995027177,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 44,
@@ -2486,7 +2852,9 @@
         "flags": 0.5713636363636363,
         "net kills": 2.0,
         "net pit NPCs": 0.9090909090909091,
-        "win points": 7.613199924723019
+        "win points": 7.613199924723019,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 25,
@@ -2498,7 +2866,9 @@
         "flags": -0.0196,
         "net kills": 0.48,
         "net pit NPCs": 0.8,
-        "win points": 4.486291923476665
+        "win points": 4.486291923476665,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -2524,7 +2894,9 @@
         "flags": 0.02381889763779528,
         "net kills": 5.839160839160839,
         "net pit NPCs": 2.4825174825174825,
-        "win points": 5.29151823958188
+        "win points": 5.29151823958188,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 61,
@@ -2536,7 +2908,9 @@
         "flags": -0.16461538461538458,
         "net kills": 5.360655737704918,
         "net pit NPCs": 2.6065573770491803,
-        "win points": 6.180588536139337
+        "win points": 6.180588536139337,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 2,
@@ -2548,7 +2922,9 @@
         "flags": 0.645,
         "net kills": 3.0,
         "net pit NPCs": 2.5,
-        "win points": 2.1671435619979365
+        "win points": 2.1671435619979365,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 20,
@@ -2560,7 +2936,9 @@
         "flags": 0.938,
         "net kills": 2.35,
         "net pit NPCs": 1.2,
-        "win points": 9.838949956387808
+        "win points": 9.838949956387808,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 15,
@@ -2572,7 +2950,9 @@
         "flags": -0.03785714285714285,
         "net kills": 5.266666666666667,
         "net pit NPCs": 1.2666666666666666,
-        "win points": 0.8375640390773109
+        "win points": 0.8375640390773109,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "37 to 50": {
@@ -2586,7 +2966,9 @@
         "flags": 0.019920634920634925,
         "net kills": 4.032846715328467,
         "net pit NPCs": 1.9708029197080292,
-        "win points": 6.515092608496644
+        "win points": 6.515092608496644,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 69,
@@ -2598,7 +2980,9 @@
         "flags": 0.07968750000000001,
         "net kills": 4.927536231884058,
         "net pit NPCs": 2.5652173913043477,
-        "win points": 5.631505881169832
+        "win points": 5.631505881169832,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 4,
@@ -2610,7 +2994,9 @@
         "flags": 0.8375,
         "net kills": 4.0,
         "net pit NPCs": 1.75,
-        "win points": 3.2404392883451942
+        "win points": 3.2404392883451942,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 19,
@@ -2622,7 +3008,9 @@
         "flags": 0.2688235294117647,
         "net kills": 2.1052631578947367,
         "net pit NPCs": 1.3157894736842106,
-        "win points": 13.502000707331005
+        "win points": 13.502000707331005,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 21,
@@ -2634,7 +3022,9 @@
         "flags": -0.2604761904761905,
         "net kills": 3.0,
         "net pit NPCs": 1.0,
-        "win points": 4.469435876248683
+        "win points": 4.469435876248683,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "50 or more": {
@@ -2648,7 +3038,9 @@
         "flags": 0.07610441767068274,
         "net kills": 1.9691119691119692,
         "net pit NPCs": 0.7722007722007722,
-        "win points": 3.6249689471678597
+        "win points": 3.6249689471678597,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 57,
@@ -2660,7 +3052,9 @@
         "flags": 0.01411764705882354,
         "net kills": 3.4035087719298245,
         "net pit NPCs": 2.2982456140350878,
-        "win points": 9.137103005446813
+        "win points": 9.137103005446813,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 2,
@@ -2672,7 +3066,9 @@
         "flags": 0.935,
         "net kills": 1.5,
         "net pit NPCs": 0.0,
-        "win points": 6.519703994327674
+        "win points": 6.519703994327674,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 42,
@@ -2684,7 +3080,9 @@
         "flags": 0.6140476190476191,
         "net kills": 1.8095238095238095,
         "net pit NPCs": 0.6904761904761905,
-        "win points": 7.404688610293466
+        "win points": 7.404688610293466,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 27,
@@ -2696,7 +3094,9 @@
         "flags": 0.06000000000000001,
         "net kills": 0.8888888888888888,
         "net pit NPCs": 1.037037037037037,
-        "win points": 6.013070291562928
+        "win points": 6.013070291562928,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -2717,7 +3117,9 @@
        "flags": 0.12026315789473682,
        "net kills": 2.691358024691358,
        "net pit NPCs": 1.1358024691358024,
-       "win points": 3.9139921539096267
+       "win points": 3.9139921539096267,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 36,
@@ -2729,7 +3131,9 @@
        "flags": 0.20774193548387102,
        "net kills": 4.138888888888889,
        "net pit NPCs": 2.6944444444444446,
-       "win points": 5.853305788706971
+       "win points": 5.853305788706971,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 1,
@@ -2741,7 +3145,9 @@
        "flags": 0.97,
        "net kills": 4.0,
        "net pit NPCs": -1.0,
-       "win points": 10.61634588731959
+       "win points": 10.61634588731959,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 14,
@@ -2753,7 +3159,9 @@
        "flags": 0.9271428571428572,
        "net kills": 2.7857142857142856,
        "net pit NPCs": 1.0714285714285714,
-       "win points": 8.864791572777301
+       "win points": 8.864791572777301,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 5,
@@ -2765,7 +3173,9 @@
        "flags": -0.128,
        "net kills": 3.8,
        "net pit NPCs": 2.4,
-       "win points": 18.451012578930847
+       "win points": 18.451012578930847,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -2779,7 +3189,9 @@
        "flags": 0.08979423868312757,
        "net kills": 4.669117647058823,
        "net pit NPCs": 2.4044117647058822,
-       "win points": 6.89867487238202
+       "win points": 6.89867487238202,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 67,
@@ -2791,7 +3203,9 @@
        "flags": -0.0782142857142857,
        "net kills": 4.835820895522388,
        "net pit NPCs": 2.8656716417910446,
-       "win points": 9.506045958871184
+       "win points": 9.506045958871184,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 1,
@@ -2803,7 +3217,9 @@
        "flags": 0.9,
        "net kills": -1.0,
        "net pit NPCs": 1.0,
-       "win points": 2.42306210133576
+       "win points": 2.42306210133576,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 25,
@@ -2815,7 +3231,9 @@
        "flags": 0.3504347826086956,
        "net kills": 2.52,
        "net pit NPCs": 1.88,
-       "win points": 14.14373385304217
+       "win points": 14.14373385304217,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 21,
@@ -2827,7 +3245,9 @@
        "flags": -0.13095238095238096,
        "net kills": 1.1904761904761905,
        "net pit NPCs": 1.1428571428571428,
-       "win points": 3.1591108444779623
+       "win points": 3.1591108444779623,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -2841,7 +3261,9 @@
        "flags": -0.0021559633027522884,
        "net kills": 3.856223175965665,
        "net pit NPCs": 1.5107296137339057,
-       "win points": 4.386059267833444
+       "win points": 4.386059267833444,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 84,
@@ -2853,7 +3275,9 @@
        "flags": -0.06,
        "net kills": 4.619047619047619,
        "net pit NPCs": 2.119047619047619,
-       "win points": 5.223578454498403
+       "win points": 5.223578454498403,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 6,
@@ -2865,7 +3289,9 @@
        "flags": 0.7733333333333334,
        "net kills": 3.6666666666666665,
        "net pit NPCs": 2.0,
-       "win points": 2.8826740462294413
+       "win points": 2.8826740462294413,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 42,
@@ -2877,7 +3303,9 @@
        "flags": 0.6685714285714285,
        "net kills": 1.4523809523809523,
        "net pit NPCs": 0.38095238095238093,
-       "win points": 6.824131091772244
+       "win points": 6.824131091772244,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 37,
@@ -2889,7 +3317,9 @@
        "flags": -0.027499999999999983,
        "net kills": 3.2972972972972974,
        "net pit NPCs": 0.8648648648648649,
-       "win points": 2.977787060294315
+       "win points": 2.977787060294315,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -2920,7 +3350,9 @@
         "flags": -0.11530075187969924,
         "net kills": -0.017921146953405017,
         "net pit NPCs": -0.6523297491039427,
-        "win points": 2.2121861062651096
+        "win points": 2.2121861062651096,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 296,
@@ -2932,7 +3364,9 @@
         "flags": -0.07027972027972028,
         "net kills": -0.44594594594594594,
         "net pit NPCs": -0.27702702702702703,
-        "win points": 0.8534536521219942
+        "win points": 0.8534536521219942,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "59 to 68": {
@@ -2946,7 +3380,9 @@
         "flags": 0.015205479452054811,
         "net kills": 1.6610738255033557,
         "net pit NPCs": -0.12751677852348994,
-        "win points": 2.3369366358126635
+        "win points": 2.3369366358126635,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 277,
@@ -2958,7 +3394,9 @@
         "flags": 0.03490842490842492,
         "net kills": 0.5848375451263538,
         "net pit NPCs": 0.1552346570397112,
-        "win points": 0.5846140804748717
+        "win points": 0.5846140804748717,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "68 or more": {
@@ -2972,7 +3410,9 @@
         "flags": 0.0819281045751634,
         "net kills": 1.75,
         "net pit NPCs": -0.1550632911392405,
-        "win points": 1.318302039288118
+        "win points": 1.318302039288118,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 282,
@@ -2984,7 +3424,9 @@
         "flags": 0.07219780219780218,
         "net kills": 1.1631205673758864,
         "net pit NPCs": -0.1099290780141844,
-        "win points": 0.14719687516008056
+        "win points": 0.14719687516008056,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3010,7 +3452,9 @@
         "flags": -0.07828996282527882,
         "net kills": 0.21352313167259787,
         "net pit NPCs": -0.6476868327402135,
-        "win points": 1.7205477295468596
+        "win points": 1.7205477295468596,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 292,
@@ -3022,7 +3466,9 @@
         "flags": -0.06517730496453901,
         "net kills": -0.3424657534246575,
         "net pit NPCs": -0.09246575342465753,
-        "win points": 0.5195514930316191
+        "win points": 0.5195514930316191,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "50 to 64": {
@@ -3036,7 +3482,9 @@
         "flags": 0.00428070175438597,
         "net kills": 1.4246575342465753,
         "net pit NPCs": -0.0684931506849315,
-        "win points": 2.759018301299308
+        "win points": 2.759018301299308,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 285,
@@ -3048,7 +3496,9 @@
         "flags": 0.025018050541516252,
         "net kills": 0.624561403508772,
         "net pit NPCs": 0.11578947368421053,
-        "win points": 1.087823347225503
+        "win points": 1.087823347225503,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "64 or more": {
@@ -3062,7 +3512,9 @@
         "flags": 0.060258064516129056,
         "net kills": 1.771875,
         "net pit NPCs": -0.209375,
-        "win points": 1.3783850923534977
+        "win points": 1.3783850923534977,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "as many as the split or more": {
         "cases": 278,
@@ -3074,7 +3526,9 @@
         "flags": 0.07542124542124544,
         "net kills": 1.0071942446043165,
         "net pit NPCs": -0.2733812949640288,
-        "win points": -0.020391330250750458
+        "win points": -0.020391330250750458,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3095,7 +3549,9 @@
        "flags": 0.0768253968253968,
        "net kills": 1.921875,
        "net pit NPCs": -0.296875,
-       "win points": 3.8935028915761194
+       "win points": 3.8935028915761194,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "as many as the split or more": {
        "cases": 49,
@@ -3107,7 +3563,9 @@
        "flags": -0.04437499999999998,
        "net kills": 1.653061224489796,
        "net pit NPCs": -0.30612244897959184,
-       "win points": 4.140740324556787
+       "win points": 4.140740324556787,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -3121,7 +3579,9 @@
        "flags": -0.046581196581196575,
        "net kills": 1.5590551181102361,
        "net pit NPCs": -0.14173228346456693,
-       "win points": 2.4352187137110763
+       "win points": 2.4352187137110763,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "as many as the split or more": {
        "cases": 90,
@@ -3133,7 +3593,9 @@
        "flags": -0.0571590909090909,
        "net kills": 0.9444444444444444,
        "net pit NPCs": -0.37777777777777777,
-       "win points": -0.448250769563861
+       "win points": -0.448250769563861,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -3147,7 +3609,9 @@
        "flags": -0.0008040935672514578,
        "net kills": 1.0284900284900285,
        "net pit NPCs": -0.33048433048433046,
-       "win points": 1.6691360738361916
+       "win points": 1.6691360738361916,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "as many as the split or more": {
        "cases": 716,
@@ -3159,7 +3623,386 @@
        "flags": 0.02341954022988507,
        "net kills": 0.2681564245810056,
        "net pit NPCs": -0.029329608938547486,
-       "win points": 0.40993881769868357
+       "win points": 0.40993881769868357,
+       "split deaths": null,
+       "NPCs taken": null
+      }
+     }
+    }
+   }
+  },
+  "8. Our split, once out: stay and kill or fall back when defenders come (the split's own monks only, R-695; read 20 s after they reach it, R-696)": {
+   "cases": 1825,
+   "with energy": 1719,
+   "calls": {
+    "stayed": 1289,
+    "fell back": 392,
+    "died there": 38
+   },
+   "the split's monks": {
+    "average": {
+     "cuts": [
+      57.6,
+      67.0
+     ],
+     "bands": {
+      "under 58": {
+       "stayed": {
+        "cases": 322,
+        "matches": 123,
+        "energy": 47.88726708074534,
+        "energy 60 s before": 53.981818181818184,
+        "started at": 44.374767863703966,
+        "the 60 s before": 0.021411605087513934,
+        "flags": 0.03933333333333334,
+        "net kills": -0.8416149068322981,
+        "net pit NPCs": 0.09006211180124224,
+        "win points": 0.3146246322169039,
+        "split deaths": 0.5714285714285714,
+        "NPCs taken": 0.3695652173913043
+       },
+       "fell back": {
+        "cases": 95,
+        "matches": 62,
+        "energy": 46.3621052631579,
+        "energy 60 s before": 51.55955056179776,
+        "started at": 32.490643874912585,
+        "the 60 s before": -0.20264250660593258,
+        "flags": 0.03715789473684211,
+        "net kills": -2.0526315789473686,
+        "net pit NPCs": -0.6105263157894737,
+        "win points": -3.6541607357653616,
+        "split deaths": 0.5684210526315789,
+        "NPCs taken": 0.18947368421052632
+       },
+       "died there": {
+        "cases": 13,
+        "matches": 12,
+        "energy": 40.353846153846156,
+        "energy 60 s before": 54.86153846153846,
+        "started at": 27.0896427117189,
+        "the 60 s before": -0.612576437528688,
+        "flags": -0.32769230769230767,
+        "net kills": -4.461538461538462,
+        "net pit NPCs": -1.6923076923076923,
+        "win points": -11.985400600825862,
+        "split deaths": 2.5384615384615383,
+        "NPCs taken": 0.0
+       }
+      },
+      "58 to 67": {
+       "stayed": {
+        "cases": 256,
+        "matches": 120,
+        "energy": 62.19179687500001,
+        "energy 60 s before": 59.89916666666667,
+        "started at": 60.53707339432918,
+        "the 60 s before": 0.7485711686630975,
+        "flags": -0.02162055335968379,
+        "net kills": 0.26171875,
+        "net pit NPCs": 0.55859375,
+        "win points": 0.06135480359134793,
+        "split deaths": 0.3359375,
+        "NPCs taken": 0.5234375
+       },
+       "fell back": {
+        "cases": 66,
+        "matches": 49,
+        "energy": 62.50757575757576,
+        "energy 60 s before": 60.04920634920635,
+        "started at": 47.379930720407046,
+        "the 60 s before": -1.5360648171440416,
+        "flags": 0.09393939393939393,
+        "net kills": 0.2878787878787879,
+        "net pit NPCs": 0.07575757575757576,
+        "win points": 2.157014245860833,
+        "split deaths": 0.3939393939393939,
+        "NPCs taken": 0.3939393939393939
+       },
+       "died there": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 58.0,
+        "energy 60 s before": 72.0,
+        "started at": 10.9531334482546,
+        "the 60 s before": -8.041558685325242,
+        "flags": 0.55,
+        "net kills": -4.0,
+        "net pit NPCs": -1.0,
+        "win points": -7.904456156258238,
+        "split deaths": 2.0,
+        "NPCs taken": 0.0
+       }
+      },
+      "67 or more": {
+       "stayed": {
+        "cases": 429,
+        "matches": 171,
+        "energy": 70.1981351981352,
+        "energy 60 s before": 64.48601823708208,
+        "started at": 59.8698248634944,
+        "the 60 s before": 0.5424863693884237,
+        "flags": 0.1266904761904762,
+        "net kills": 0.43356643356643354,
+        "net pit NPCs": 0.5361305361305362,
+        "win points": -0.4060070886416871,
+        "split deaths": 0.2913752913752914,
+        "NPCs taken": 0.7272727272727273
+       },
+       "fell back": {
+        "cases": 112,
+        "matches": 71,
+        "energy": 70.10535714285714,
+        "energy 60 s before": 64.52020202020202,
+        "started at": 53.50213053626901,
+        "the 60 s before": -0.3237294421563963,
+        "flags": -0.05833333333333329,
+        "net kills": 0.4375,
+        "net pit NPCs": 0.026785714285714284,
+        "win points": -0.0025343624987149227,
+        "split deaths": 0.13392857142857142,
+        "NPCs taken": 0.19642857142857142
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -0.6115827310284565,
+      "the 60 s before": -0.3896598342295464
+     }
+    },
+    "lowest monk": {
+     "cuts": [
+      56.9,
+      67.0
+     ],
+     "bands": {
+      "under 57": {
+       "stayed": {
+        "cases": 325,
+        "matches": 118,
+        "energy": 47.088,
+        "energy 60 s before": 52.95796178343949,
+        "started at": 44.76530680004472,
+        "the 60 s before": 0.049503860330997206,
+        "flags": 0.056687697160883274,
+        "net kills": -0.8615384615384616,
+        "net pit NPCs": 0.036923076923076927,
+        "win points": 0.13100043374940923,
+        "split deaths": 0.56,
+        "NPCs taken": 0.3630769230769231
+       },
+       "fell back": {
+        "cases": 92,
+        "matches": 59,
+        "energy": 45.56304347826087,
+        "energy 60 s before": 50.550000000000004,
+        "started at": 32.78051289598008,
+        "the 60 s before": -0.1965199988619037,
+        "flags": 0.03130434782608696,
+        "net kills": -1.9782608695652173,
+        "net pit NPCs": -0.5434782608695652,
+        "win points": -3.4175205186463815,
+        "split deaths": 0.5434782608695652,
+        "NPCs taken": 0.1956521739130435
+       },
+       "died there": {
+        "cases": 13,
+        "matches": 12,
+        "energy": 40.353846153846156,
+        "energy 60 s before": 54.86153846153846,
+        "started at": 27.0896427117189,
+        "the 60 s before": -0.612576437528688,
+        "flags": -0.32769230769230767,
+        "net kills": -4.461538461538462,
+        "net pit NPCs": -1.6923076923076923,
+        "win points": -11.985400600825862,
+        "split deaths": 2.5384615384615383,
+        "NPCs taken": 0.0
+       }
+      },
+      "57 to 67": {
+       "stayed": {
+        "cases": 265,
+        "matches": 122,
+        "energy": 61.87849056603775,
+        "energy 60 s before": 59.57714285714286,
+        "started at": 61.12493246741343,
+        "the 60 s before": 0.7080423443902405,
+        "flags": -0.035741444866920165,
+        "net kills": 0.41132075471698115,
+        "net pit NPCs": 0.6415094339622641,
+        "win points": 0.2839357788601825,
+        "split deaths": 0.33584905660377357,
+        "NPCs taken": 0.5245283018867924
+       },
+       "fell back": {
+        "cases": 70,
+        "matches": 52,
+        "energy": 62.01,
+        "energy 60 s before": 59.80298507462687,
+        "started at": 46.44804088136093,
+        "the 60 s before": -1.3536328228473544,
+        "flags": 0.08757142857142855,
+        "net kills": 0.08571428571428572,
+        "net pit NPCs": -0.02857142857142857,
+        "win points": 1.418440975358843,
+        "split deaths": 0.42857142857142855,
+        "NPCs taken": 0.37142857142857144
+       },
+       "died there": {
+        "cases": 1,
+        "matches": 1,
+        "energy": 58.0,
+        "energy 60 s before": 72.0,
+        "started at": 10.9531334482546,
+        "the 60 s before": -8.041558685325242,
+        "flags": 0.55,
+        "net kills": -4.0,
+        "net pit NPCs": -1.0,
+        "win points": -7.904456156258238,
+        "split deaths": 2.0,
+        "NPCs taken": 0.0
+       }
+      },
+      "67 or more": {
+       "stayed": {
+        "cases": 417,
+        "matches": 170,
+        "energy": 70.15491606714629,
+        "energy 60 s before": 64.28144654088051,
+        "started at": 59.28894267055386,
+        "the 60 s before": 0.5520627288544994,
+        "flags": 0.12637254901960784,
+        "net kills": 0.3669064748201439,
+        "net pit NPCs": 0.5275779376498801,
+        "win points": -0.41961439352652763,
+        "split deaths": 0.2973621103117506,
+        "NPCs taken": 0.7386091127098321
+       },
+       "fell back": {
+        "cases": 111,
+        "matches": 70,
+        "energy": 70.07927927927928,
+        "energy 60 s before": 64.32142857142857,
+        "started at": 53.502298807209534,
+        "the 60 s before": -0.40094872293172995,
+        "flags": -0.05214953271028033,
+        "net kills": 0.44144144144144143,
+        "net pit NPCs": 0.018018018018018018,
+        "win points": 0.0905841546810595,
+        "split deaths": 0.13513513513513514,
+        "NPCs taken": 0.1981981981981982
+       }
+      }
+     },
+     "lowest third against highest": {
+      "win points": -0.6821710571094172,
+      "the 60 s before": -0.3504700898273643
+     }
+    },
+    "how many monks": {
+     "one monk": {
+      "stayed": {
+       "cases": 906,
+       "matches": 222,
+       "energy": 60.91379690949228,
+       "energy 60 s before": 59.37034659820282,
+       "started at": 53.924249066087924,
+       "the 60 s before": 0.3776359013429428,
+       "flags": 0.06675280898876405,
+       "net kills": -0.09713024282560706,
+       "net pit NPCs": 0.4216335540838852,
+       "win points": 0.31507028366041806,
+       "split deaths": 0.40507726269315675,
+       "NPCs taken": 0.5849889624724062
+      },
+      "fell back": {
+       "cases": 251,
+       "matches": 123,
+       "energy": 59.787250996015935,
+       "energy 60 s before": 58.619480519480526,
+       "started at": 45.15905565243773,
+       "the 60 s before": -0.6483166020926908,
+       "flags": 0.033534136546184735,
+       "net kills": -0.43824701195219123,
+       "net pit NPCs": -0.12749003984063745,
+       "win points": -0.9168546051917063,
+       "split deaths": 0.3386454183266932,
+       "NPCs taken": 0.250996015936255
+      },
+      "died there": {
+       "cases": 14,
+       "matches": 12,
+       "energy": 41.614285714285714,
+       "energy 60 s before": 56.08571428571428,
+       "started at": 25.937034907185737,
+       "the 60 s before": -1.1432180266570133,
+       "flags": -0.265,
+       "net kills": -4.428571428571429,
+       "net pit NPCs": -1.6428571428571428,
+       "win points": -11.693904569071034,
+       "split deaths": 2.5,
+       "NPCs taken": 0.0
+      }
+     },
+     "two monks": {
+      "stayed": {
+       "cases": 96,
+       "matches": 53,
+       "energy": 62.28541666666667,
+       "energy 60 s before": 60.9258064516129,
+       "started at": 64.38547657512358,
+       "the 60 s before": 0.6775532712386042,
+       "flags": 0.012795698924731178,
+       "net kills": 0.6875,
+       "net pit NPCs": 0.15625,
+       "win points": -3.751328938565338,
+       "split deaths": 0.2916666666666667,
+       "NPCs taken": 0.34375
+      },
+      "fell back": {
+       "cases": 21,
+       "matches": 17,
+       "energy": 63.39523809523809,
+       "energy 60 s before": 61.305263157894736,
+       "started at": 41.33143422233851,
+       "the 60 s before": 0.311231502179606,
+       "flags": -0.22473684210526312,
+       "net kills": -0.47619047619047616,
+       "net pit NPCs": -0.6666666666666666,
+       "win points": 1.327940537740367,
+       "split deaths": 0.42857142857142855,
+       "NPCs taken": 0.14285714285714285
+      }
+     },
+     "three or more": {
+      "stayed": {
+       "cases": 5,
+       "matches": 3,
+       "energy": 57.7,
+       "energy 60 s before": 60.5,
+       "started at": 86.78910048250373,
+       "the 60 s before": 1.0179223685905447,
+       "flags": -0.094,
+       "net kills": 0.8,
+       "net pit NPCs": 1.0,
+       "win points": 3.502564274375608,
+       "split deaths": 0.0,
+       "NPCs taken": 0.4
+      },
+      "fell back": {
+       "cases": 1,
+       "matches": 1,
+       "energy": 43.8,
+       "energy 60 s before": 53.5,
+       "started at": 3.0421282947112687,
+       "the 60 s before": -0.7803743220530297,
+       "flags": -0.65,
+       "net kills": -7.0,
+       "net pit NPCs": -4.0,
+       "win points": -2.82242366017986,
+       "split deaths": 1.0,
+       "NPCs taken": 0.0
       }
      }
     }
@@ -3190,7 +4033,9 @@
         "flags": -0.08600000000000001,
         "net kills": 4.450980392156863,
         "net pit NPCs": 2.235294117647059,
-        "win points": -0.20629297445106923
+        "win points": -0.20629297445106923,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "56 to 65": {
@@ -3204,7 +4049,9 @@
         "flags": -0.26125000000000004,
         "net kills": 4.60377358490566,
         "net pit NPCs": 1.9622641509433962,
-        "win points": -2.1771310314178987
+        "win points": -2.1771310314178987,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "65 or more": {
@@ -3218,7 +4065,9 @@
         "flags": -0.13173913043478255,
         "net kills": 4.882352941176471,
         "net pit NPCs": 2.215686274509804,
-        "win points": 2.8900506684987683
+        "win points": 2.8900506684987683,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "left before the res": {
         "cases": 1,
@@ -3230,7 +4079,9 @@
         "flags": -1.66,
         "net kills": 2.0,
         "net pit NPCs": -1.0,
-        "win points": 0.29812924442876865
+        "win points": 0.29812924442876865,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3256,7 +4107,9 @@
         "flags": -0.15369565217391304,
         "net kills": 3.8653846153846154,
         "net pit NPCs": 1.9423076923076923,
-        "win points": -0.6181309571486739
+        "win points": -0.6181309571486739,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "50 to 61": {
@@ -3270,7 +4123,9 @@
         "flags": -0.1491111111111111,
         "net kills": 5.38,
         "net pit NPCs": 2.5,
-        "win points": 2.0309715481492705
+        "win points": 2.0309715481492705,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "61 or more": {
@@ -3284,7 +4139,9 @@
         "flags": -0.18104166666666668,
         "net kills": 4.716981132075472,
         "net pit NPCs": 1.9811320754716981,
-        "win points": -0.9041899981971397
+        "win points": -0.9041899981971397,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "left before the res": {
         "cases": 1,
@@ -3296,7 +4153,9 @@
         "flags": -1.66,
         "net kills": 2.0,
         "net pit NPCs": -1.0,
-        "win points": 0.29812924442876865
+        "win points": 0.29812924442876865,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3317,7 +4176,9 @@
        "flags": -0.2532,
        "net kills": 2.5185185185185186,
        "net pit NPCs": 1.2962962962962963,
-       "win points": -4.173722819362666
+       "win points": -4.173722819362666,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "left before the res": {
        "cases": 1,
@@ -3329,7 +4190,9 @@
        "flags": -1.66,
        "net kills": 2.0,
        "net pit NPCs": -1.0,
-       "win points": 0.29812924442876865
+       "win points": 0.29812924442876865,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -3343,7 +4206,9 @@
        "flags": -0.1408695652173913,
        "net kills": 5.018518518518518,
        "net pit NPCs": 2.240740740740741,
-       "win points": -1.0087966243895368
+       "win points": -1.0087966243895368,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -3357,7 +4222,9 @@
        "flags": -0.14205882352941177,
        "net kills": 5.148648648648648,
        "net pit NPCs": 2.364864864864865,
-       "win points": 2.549313940150149
+       "win points": 2.549313940150149,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -3380,7 +4247,9 @@
         "flags": -0.06659574468085107,
         "net kills": 4.142857142857143,
         "net pit NPCs": 1.4489795918367347,
-        "win points": -1.4412760363037949
+        "win points": -1.4412760363037949,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "41 to 51": {
@@ -3394,7 +4263,9 @@
         "flags": -0.13595238095238096,
         "net kills": 4.836734693877551,
         "net pit NPCs": 2.36734693877551,
-        "win points": 1.6650409628751597
+        "win points": 1.6650409628751597,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "51 or more": {
@@ -3408,7 +4279,9 @@
         "flags": -0.22577777777777777,
         "net kills": 4.882352941176471,
         "net pit NPCs": 2.372549019607843,
-        "win points": 0.46392384598305014
+        "win points": 0.46392384598305014,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3434,7 +4307,9 @@
         "flags": -0.1453191489361702,
         "net kills": 4.020408163265306,
         "net pit NPCs": 1.4081632653061225,
-        "win points": -2.672442698485961
+        "win points": -2.672442698485961,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "33 to 43": {
@@ -3448,7 +4323,9 @@
         "flags": -0.025909090909090902,
         "net kills": 5.5,
         "net pit NPCs": 2.58,
-        "win points": 1.8773336464028931
+        "win points": 1.8773336464028931,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "43 or more": {
@@ -3462,7 +4339,9 @@
         "flags": -0.2565116279069767,
         "net kills": 4.34,
         "net pit NPCs": 2.2,
-        "win points": 1.434152149055997
+        "win points": 1.434152149055997,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3483,7 +4362,9 @@
        "flags": -0.1476923076923077,
        "net kills": 4.5625,
        "net pit NPCs": 3.0,
-       "win points": 1.633381741331387
+       "win points": 1.633381741331387,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -3497,7 +4378,9 @@
        "flags": -0.08489795918367347,
        "net kills": 5.055555555555555,
        "net pit NPCs": 2.5,
-       "win points": 3.7033936010682957
+       "win points": 3.7033936010682957,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -3511,7 +4394,9 @@
        "flags": -0.1794444444444444,
        "net kills": 4.341772151898734,
        "net pit NPCs": 1.5822784810126582,
-       "win points": -2.423959047745036
+       "win points": -2.423959047745036,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -3545,7 +4430,9 @@
         "flags": 0.21600000000000003,
         "net kills": 6.0,
         "net pit NPCs": 3.3333333333333335,
-        "win points": 9.100190509067426
+        "win points": 9.100190509067426,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 9,
@@ -3557,7 +4444,9 @@
         "flags": 0.029999999999999992,
         "net kills": 5.777777777777778,
         "net pit NPCs": 3.888888888888889,
-        "win points": 5.016382223725842
+        "win points": 5.016382223725842,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -3569,7 +4458,9 @@
         "flags": null,
         "net kills": 4.0,
         "net pit NPCs": 4.0,
-        "win points": 9.372108804066093
+        "win points": 9.372108804066093,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 2,
@@ -3581,7 +4472,9 @@
         "flags": 0.71,
         "net kills": 2.5,
         "net pit NPCs": 4.0,
-        "win points": 10.00478278854045
+        "win points": 10.00478278854045,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "64 to 72": {
@@ -3595,7 +4488,9 @@
         "flags": 0.2,
         "net kills": 3.5,
         "net pit NPCs": 3.6,
-        "win points": 1.7645164647025395
+        "win points": 1.7645164647025395,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 14,
@@ -3607,7 +4502,9 @@
         "flags": 0.1776923076923077,
         "net kills": 3.2857142857142856,
         "net pit NPCs": 3.7857142857142856,
-        "win points": 4.281032591081969
+        "win points": 4.281032591081969,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 1,
@@ -3619,7 +4516,9 @@
         "flags": 0.12,
         "net kills": 0.0,
         "net pit NPCs": 4.0,
-        "win points": 1.6841781794781685
+        "win points": 1.6841781794781685,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "72 or more": {
@@ -3633,7 +4532,9 @@
         "flags": -0.512,
         "net kills": 6.3,
         "net pit NPCs": 3.3,
-        "win points": 3.428969062075891
+        "win points": 3.428969062075891,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 13,
@@ -3645,7 +4546,9 @@
         "flags": 0.23923076923076925,
         "net kills": 3.3846153846153846,
         "net pit NPCs": 2.230769230769231,
-        "win points": 6.0652747033755405
+        "win points": 6.0652747033755405,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -3657,7 +4560,9 @@
         "flags": 0.52,
         "net kills": 2.0,
         "net pit NPCs": 1.0,
-        "win points": 2.996485352297995
+        "win points": 2.996485352297995,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -3669,7 +4574,9 @@
         "flags": 1.55,
         "net kills": 8.0,
         "net pit NPCs": 2.0,
-        "win points": 2.7246164434317377
+        "win points": 2.7246164434317377,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3695,7 +4602,9 @@
         "flags": 0.16749999999999998,
         "net kills": 5.214285714285714,
         "net pit NPCs": 3.2857142857142856,
-        "win points": 4.206353894837478
+        "win points": 4.206353894837478,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 8,
@@ -3707,7 +4616,9 @@
         "flags": 0.0757142857142857,
         "net kills": 6.625,
         "net pit NPCs": 3.5,
-        "win points": 5.351432366472666
+        "win points": 5.351432366472666,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 2,
@@ -3719,7 +4630,9 @@
         "flags": 0.71,
         "net kills": 2.5,
         "net pit NPCs": 4.0,
-        "win points": 10.00478278854045
+        "win points": 10.00478278854045,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "58 to 69": {
@@ -3733,7 +4646,9 @@
         "flags": 0.28375,
         "net kills": 4.25,
         "net pit NPCs": 4.0,
-        "win points": 9.794931364716618
+        "win points": 9.794931364716618,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 15,
@@ -3745,7 +4660,9 @@
         "flags": 0.10214285714285713,
         "net kills": 3.466666666666667,
         "net pit NPCs": 4.2,
-        "win points": 4.279893380342506
+        "win points": 4.279893380342506,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -3757,7 +4674,9 @@
         "flags": null,
         "net kills": 4.0,
         "net pit NPCs": 4.0,
-        "win points": 9.372108804066093
+        "win points": 9.372108804066093,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 1,
@@ -3769,7 +4688,9 @@
         "flags": 0.12,
         "net kills": 0.0,
         "net pit NPCs": 4.0,
-        "win points": 1.6841781794781685
+        "win points": 1.6841781794781685,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "69 or more": {
@@ -3783,7 +4704,9 @@
         "flags": -0.524,
         "net kills": 6.3,
         "net pit NPCs": 3.1,
-        "win points": 2.3888735931135807
+        "win points": 2.3888735931135807,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 13,
@@ -3795,7 +4718,9 @@
         "flags": 0.2846153846153846,
         "net kills": 2.8461538461538463,
         "net pit NPCs": 2.0,
-        "win points": 5.916969830434095
+        "win points": 5.916969830434095,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -3807,7 +4732,9 @@
         "flags": 0.52,
         "net kills": 2.0,
         "net pit NPCs": 1.0,
-        "win points": 2.996485352297995
+        "win points": 2.996485352297995,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -3819,7 +4746,9 @@
         "flags": 1.55,
         "net kills": 8.0,
         "net pit NPCs": 2.0,
-        "win points": 2.7246164434317377
+        "win points": 2.7246164434317377,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -3840,7 +4769,9 @@
        "flags": -0.12000000000000002,
        "net kills": 6.0,
        "net pit NPCs": 2.9,
-       "win points": 9.590449930150081
+       "win points": 9.590449930150081,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 11,
@@ -3852,7 +4783,9 @@
        "flags": -0.082,
        "net kills": 4.0,
        "net pit NPCs": 2.0,
-       "win points": 9.722499563604787
+       "win points": 9.722499563604787,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 1,
@@ -3864,7 +4797,9 @@
        "flags": null,
        "net kills": 4.0,
        "net pit NPCs": 4.0,
-       "win points": 9.372108804066093
+       "win points": 9.372108804066093,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -3878,7 +4813,9 @@
        "flags": -0.1844444444444444,
        "net kills": 5.636363636363637,
        "net pit NPCs": 3.272727272727273,
-       "win points": 1.894093484489115
+       "win points": 1.894093484489115,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 18,
@@ -3890,7 +4827,9 @@
        "flags": 0.35705882352941176,
        "net kills": 3.0555555555555554,
        "net pit NPCs": 3.611111111111111,
-       "win points": 3.5869998847928213
+       "win points": 3.5869998847928213,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 1,
@@ -3902,7 +4841,9 @@
        "flags": 0.52,
        "net kills": 2.0,
        "net pit NPCs": 1.0,
-       "win points": 2.996485352297995
+       "win points": 2.996485352297995,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 1,
@@ -3914,7 +4855,9 @@
        "flags": 1.55,
        "net kills": 8.0,
        "net pit NPCs": 2.0,
-       "win points": 2.7246164434317377
+       "win points": 2.7246164434317377,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 1,
@@ -3926,7 +4869,9 @@
        "flags": 0.0,
        "net kills": 2.0,
        "net pit NPCs": 5.0,
-       "win points": 10.524552370173224
+       "win points": 10.524552370173224,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -3940,7 +4885,9 @@
        "flags": 0.17272727272727273,
        "net kills": 4.363636363636363,
        "net pit NPCs": 4.0,
-       "win points": 4.0361467041556685
+       "win points": 4.0361467041556685,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 7,
@@ -3952,7 +4899,9 @@
        "flags": 0.058571428571428566,
        "net kills": 6.142857142857143,
        "net pit NPCs": 4.285714285714286,
-       "win points": 1.773853472376961
+       "win points": 1.773853472376961,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 2,
@@ -3964,7 +4913,9 @@
        "flags": 0.77,
        "net kills": 1.5,
        "net pit NPCs": 3.5,
-       "win points": 5.584595693192923
+       "win points": 5.584595693192923,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
@@ -3987,7 +4938,9 @@
         "flags": -0.4076923076923077,
         "net kills": 6.785714285714286,
         "net pit NPCs": 3.2857142857142856,
-        "win points": 1.4533268860448803
+        "win points": 1.4533268860448803,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 6,
@@ -3999,7 +4952,9 @@
         "flags": 0.0,
         "net kills": 6.666666666666667,
         "net pit NPCs": 5.166666666666667,
-        "win points": 4.55373497794407
+        "win points": 4.55373497794407,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -4011,7 +4966,9 @@
         "flags": 1.55,
         "net kills": 8.0,
         "net pit NPCs": 2.0,
-        "win points": 2.7246164434317377
+        "win points": 2.7246164434317377,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "50 to 62": {
@@ -4025,7 +4982,9 @@
         "flags": -0.03428571428571428,
         "net kills": 4.5,
         "net pit NPCs": 4.0,
-        "win points": 5.3512228101886805
+        "win points": 5.3512228101886805,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 9,
@@ -4037,7 +4996,9 @@
         "flags": 0.004999999999999977,
         "net kills": 3.2222222222222223,
         "net pit NPCs": 2.0,
-        "win points": -1.7851508639384939
+        "win points": -1.7851508639384939,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -4049,7 +5010,9 @@
         "flags": null,
         "net kills": 4.0,
         "net pit NPCs": 4.0,
-        "win points": 9.372108804066093
+        "win points": 9.372108804066093,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 3,
@@ -4061,7 +5024,9 @@
         "flags": 0.7933333333333333,
         "net kills": 3.3333333333333335,
         "net pit NPCs": 3.0,
-        "win points": 6.6301940730018645
+        "win points": 6.6301940730018645,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "62 or more": {
@@ -4075,7 +5040,9 @@
         "flags": 0.32125,
         "net kills": 3.75,
         "net pit NPCs": 2.75,
-        "win points": 5.168206449158044
+        "win points": 5.168206449158044,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 13,
@@ -4087,7 +5054,9 @@
         "flags": 0.22916666666666666,
         "net kills": 3.6153846153846154,
         "net pit NPCs": 3.0,
-        "win points": 4.016855084220585
+        "win points": 4.016855084220585,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -4099,7 +5068,9 @@
         "flags": 0.52,
         "net kills": 2.0,
         "net pit NPCs": 1.0,
-        "win points": 2.996485352297995
+        "win points": 2.996485352297995,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -4125,7 +5096,9 @@
         "flags": -0.4818181818181818,
         "net kills": 6.25,
         "net pit NPCs": 2.75,
-        "win points": 0.8946370974456331
+        "win points": 0.8946370974456331,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 7,
@@ -4137,7 +5110,9 @@
         "flags": 0.0,
         "net kills": 7.0,
         "net pit NPCs": 5.285714285714286,
-        "win points": 3.949025377270381
+        "win points": 3.949025377270381,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -4149,7 +5124,9 @@
         "flags": 1.55,
         "net kills": 8.0,
         "net pit NPCs": 2.0,
-        "win points": 2.7246164434317377
+        "win points": 2.7246164434317377,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 1,
@@ -4161,7 +5138,9 @@
         "flags": 0.12,
         "net kills": 0.0,
         "net pit NPCs": 4.0,
-        "win points": 1.6841781794781685
+        "win points": 1.6841781794781685,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "47 to 57": {
@@ -4175,7 +5154,9 @@
         "flags": 0.17111111111111113,
         "net kills": 6.111111111111111,
         "net pit NPCs": 5.333333333333333,
-        "win points": 4.687270482656633
+        "win points": 4.687270482656633,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 9,
@@ -4187,7 +5168,9 @@
         "flags": 0.005714285714285695,
         "net kills": 2.6666666666666665,
         "net pit NPCs": 2.0,
-        "win points": -0.06125465397239492
+        "win points": -0.06125465397239492,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "run a flag for a backup": {
         "cases": 1,
@@ -4199,7 +5182,9 @@
         "flags": null,
         "net kills": 4.0,
         "net pit NPCs": 4.0,
-        "win points": 9.372108804066093
+        "win points": 9.372108804066093,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "fall back and reset": {
         "cases": 2,
@@ -4211,7 +5196,9 @@
         "flags": 1.13,
         "net kills": 5.0,
         "net pit NPCs": 2.5,
-        "win points": 9.103202019763712
+        "win points": 9.103202019763712,
+        "split deaths": null,
+        "NPCs taken": null
        }
       },
       "57 or more": {
@@ -4225,7 +5212,9 @@
         "flags": 0.09874999999999999,
         "net kills": 3.4444444444444446,
         "net pit NPCs": 2.111111111111111,
-        "win points": 5.731214551793871
+        "win points": 5.731214551793871,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push into their base for NPCs": {
         "cases": 12,
@@ -4237,7 +5226,9 @@
         "flags": 0.22916666666666666,
         "net kills": 3.5833333333333335,
         "net pit NPCs": 2.75,
-        "win points": 3.031940202662039
+        "win points": 3.031940202662039,
+        "split deaths": null,
+        "NPCs taken": null
        },
        "push their flagger": {
         "cases": 1,
@@ -4249,7 +5240,9 @@
         "flags": 0.52,
         "net kills": 2.0,
         "net pit NPCs": 1.0,
-        "win points": 2.996485352297995
+        "win points": 2.996485352297995,
+        "split deaths": null,
+        "NPCs taken": null
        }
       }
      },
@@ -4270,7 +5263,9 @@
        "flags": -0.15699999999999997,
        "net kills": 4.818181818181818,
        "net pit NPCs": 3.6363636363636362,
-       "win points": 4.131824988351844
+       "win points": 4.131824988351844,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 10,
@@ -4282,7 +5277,9 @@
        "flags": -0.003750000000000024,
        "net kills": 3.2,
        "net pit NPCs": 2.4,
-       "win points": 3.8499460218056902
+       "win points": 3.8499460218056902,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push their flagger": {
        "cases": 1,
@@ -4294,7 +5291,9 @@
        "flags": 0.52,
        "net kills": 2.0,
        "net pit NPCs": 1.0,
-       "win points": 2.996485352297995
+       "win points": 2.996485352297995,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "run a flag for a backup": {
        "cases": 2,
@@ -4306,7 +5305,9 @@
        "flags": 1.55,
        "net kills": 6.0,
        "net pit NPCs": 3.0,
-       "win points": 6.048362623748915
+       "win points": 6.048362623748915,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 1,
@@ -4318,7 +5319,9 @@
        "flags": 1.42,
        "net kills": 3.0,
        "net pit NPCs": 3.0,
-       "win points": 9.485013206907677
+       "win points": 9.485013206907677,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "two monks": {
@@ -4332,7 +5335,9 @@
        "flags": 0.10500000000000002,
        "net kills": 4.909090909090909,
        "net pit NPCs": 3.3636363636363638,
-       "win points": 4.395713760362941
+       "win points": 4.395713760362941,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 12,
@@ -4344,7 +5349,9 @@
        "flags": 0.22,
        "net kills": 4.166666666666667,
        "net pit NPCs": 3.0,
-       "win points": -1.1724089943646026
+       "win points": -1.1724089943646026,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "fall back and reset": {
        "cases": 2,
@@ -4356,7 +5363,9 @@
        "flags": 0.48,
        "net kills": 3.5,
        "net pit NPCs": 3.0,
-       "win points": 5.202784506048958
+       "win points": 5.202784506048958,
+       "split deaths": null,
+       "NPCs taken": null
       }
      },
      "three or more": {
@@ -4370,7 +5379,9 @@
        "flags": -0.30624999999999997,
        "net kills": 6.75,
        "net pit NPCs": 2.875,
-       "win points": 1.3373855304424338
+       "win points": 1.3373855304424338,
+       "split deaths": null,
+       "NPCs taken": null
       },
       "push into their base for NPCs": {
        "cases": 6,
@@ -4382,16 +5393,17 @@
        "flags": 0.036,
        "net kills": 5.666666666666667,
        "net pit NPCs": 4.666666666666667,
-       "win points": 6.507435983567319
+       "win points": 6.507435983567319,
+       "split deaths": null,
+       "NPCs taken": null
       }
      }
     }
    }
   }
  },
- "not read": {
-  "our split: once on a split, stay and kill or fall back, by the split's own monks only (R-695)": "the split's call to fall back is not yet read: its definition is put to him first"
- },
+ "not read": {},
+ "split holds with no monk on the split (no energy to read)": 3201,
  "danger zone both ways": {
   "cases": 964,
   "cuts": [

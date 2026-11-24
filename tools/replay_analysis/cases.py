@@ -3465,9 +3465,9 @@ def send_report(path, out_json=None):
 # ---- energy at the decisions (R-689, piece 2; R-666 the third aspect, R-683, R-684, R-688): what followed each call by the monk energy of the fight
 ENERGY_READS = (("average", "mean"), ("lowest monk", "low"))       # R-683: the average of the monks in the fight, the lowest of them, and (apart) how many there are
 ENERGY_N = (("one monk", lambda n: n == 1), ("two monks", lambda n: n == 2), ("three or more", lambda n: n >= 3))
-ENERGY_NOT_READ = (("our split: once on a split, stay and kill or fall back, by the split's own monks only (R-695)", "the split's call to fall back is not yet read: its definition is put to him first"),)
+ENERGY_NOT_READ = ()
 # taken out at his word, not to be read again without it: pressing the fight or allowing a stand-off (R-691), offensive or defensive play (execution, R-692),
-# our own monks at "our flag just in" (R-693), energy at their boost (R-694), and the send-or-not table of "our split" (R-695: the decision is another one)
+# our own monks at "our flag just in" (R-693), energy at their boost (R-694), and the send-or-not table of "our split" (R-695: the decision is a split already out, decision 8)
 
 
 def _energy_of(D, c, where="plays"):
@@ -3502,14 +3502,16 @@ def _erow(X, side, key):
     return {"cases": len(X), "matches": len({c["rid"] for c in X}), "energy": mean([c["_v"] for c in X]), "energy 60 s before": mean(b),
             "started at": 100 * float(np.mean([c["p0"] for c in X])), "the 60 s before": mean(pre),
             "flags": mean([x["lead_change"] for x in h if x["lead_change"] is not None]), "net kills": mean([x["deaths"][1] - x["deaths"][0] for x in h]),
-            "net pit NPCs": mean([x["npcs"][1] - x["npcs"][0] for x in h]), "win points": float(np.mean([c["v"]["180"] for c in X]))}
+            "net pit NPCs": mean([x["npcs"][1] - x["npcs"][0] for x in h]), "win points": float(np.mean([c["v"]["180"] for c in X])),
+            "split deaths": mean([c["split_deaths_90"] for c in X if "split_deaths_90" in c]), "NPCs taken": mean([c["npcs_90"] for c in X if "npcs_90" in c])}
 
 
 E_HEAD = f"{'':44} {'cases':>5} {'energy':>6} {'60 s before':>11} {'started at':>10} {'min before':>10} {'flags':>6} {'net kills':>9} {'win points':>10}"
 def _eprint(pr, label, r):
     f = lambda v, fmt: "" if v is None else format(v, fmt)
     pr(f"       {label:44} {r['cases']:5} {f(r['energy'], '6.1f')} {f(r['energy 60 s before'], '11.1f')} {r['started at']:9.0f}% {f(r['the 60 s before'], '+10.1f')} "
-       f"{f(r['flags'], '+6.2f')} {f(r['net kills'], '+9.2f')} {r['win points']:+10.1f}" + ("   (under the floor)" if r["cases"] < MIN_PLAYS else ""))
+       f"{f(r['flags'], '+6.2f')} {f(r['net kills'], '+9.2f')} {r['win points']:+10.1f}" + ("" if r.get("split deaths") is None else f"   split deaths {r['split deaths']:.2f}, NPCs taken {r['NPCs taken']:.2f} (90 s)")
+       + ("   (under the floor)" if r["cases"] < MIN_PLAYS else ""))
 
 
 def _energy_table(pr, X, calls, side, words):
@@ -3569,6 +3571,14 @@ def energy_report(path, out_json=None):
     SC, _ = split_cases(D, M, B)
     TC, _ = send_cases(D, M, B)
     RC, _ = res_cases(D, M, B)
+    H, no_monk = [], 0                                                     # our split, once out: stay and kill or fall back when defenders come (R-695, R-696; `jobs.split_holds`)
+    for rid in D["matches"]:
+        if "split_holds" not in D["flag_cost"][rid]: raise ValueError(f"the plays file carries no split holds for {rid}: run moments.py all again on this engine (R-460)")
+        for h in D["flag_cost"][rid]["split_holds"]:
+            if not h["monks"]: no_monk += 1; continue
+            c = _told(h, M, B)
+            if c is not None: H.append(dict(c, call=h["call"], split_deaths_90=h["split_deaths_90"], npcs_90=h["npcs_90"]))
+    res["split holds with no monk on the split (no energy to read)"] = no_monk
     W = []                                                                 # after a wipe: the numbers plays the numbers family leaves to the wipe's own job
     for p in D["plays"]:
         if p["play"] == "numbers" and p["side"] == "after a wipe" and "state" in p:
@@ -3586,6 +3596,8 @@ def energy_report(path, out_json=None):
         ("5. Up a player or more at the main fight (not a family, R-557: context)", [c for c in NC if c["side"] == "up"], "plays", (own, their), list(UP_CALLS)),
         ("7. The answer to their split (our own monks only, R-688: every living backline monk of the team, since the defenders are the call)", [dict(c, call=big(c)) for c in SC if big(c)], "plays", (("team", "our team's monks"),),
          ["fewer defenders than the split, 20 s in", "as many as the split or more"]),
+        ("8. Our split, once out: stay and kill or fall back when defenders come (the split's own monks only, R-695; read 20 s after they reach it, R-696)", H, "plays", (("own", "the split's monks"),),
+         ["stayed", "fell back", "died there"]),
         ("9. The base res in the danger zone (read 20 s before the res)", [c for c in RC if c["danger"]], "plays", (own, their), list(RES_CALLS)),
         ("10. After a wipe", W, "plays", (own, their), list(UP_CALLS)),
     )
@@ -3598,7 +3610,7 @@ def energy_report(path, out_json=None):
         o = res["decisions"][name] = {"cases": len(X), "with energy": len(Y), "calls": {k: sum(1 for c in Y if c["call"] == k) for k in calls}}
         pr("   calls: " + "; ".join(f"{k} {v}" for k, v in o["calls"].items()))
         for side, words in sides: o[words] = _energy_table(pr, Y, calls, side, words)
-    pr("\nNot read yet:")
+    if ENERGY_NOT_READ: pr("\nNot read yet:")
     for k, v in ENERGY_NOT_READ: pr(f"   {k}: {v}")
     # the danger zone both ways (R-615, R-676): his damage line stood in for monk energy; every base res play, by whether the line puts it in the zone and by
     # the monks' energy of the players in the base 20 s before the res, so that he can say whether energy replaces the line or sits beside it

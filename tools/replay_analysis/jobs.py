@@ -1538,6 +1538,44 @@ def split_ticks(M, plays):
     return out
 
 
+SPLIT_HOLD_READ = 20                   # a split's call when defenders come, stay and kill or fall back, is read this long after they reach it (R-696, his: "Agreed", as the answer to a split, R-567)
+SPLIT_HOLD_KINDS = ("defended", "collapse", "whole team")   # the stretches that open the decision: defenders, a collapse or the whole team reach the split (R-696: an undefended split has no reason to fall back)
+
+def split_holds(M, plays):
+    """A split already out, when defenders come: stay and kill, or fall back (R-695, R-696). One record a stretch of a split's own plays that opens
+    with defenders, a collapse or the whole team on it: the split's players at that second, and SPLIT_HOLD_READ later each of them dead, still on
+    the enemy's ground (`Moments._deep`, the one reading of it: giving ground inside their base is staying) or off it (fallen back, joining their own
+    main team included). The call: "died there" where half or more of them died, else "fell back" where half or more of the living are off the
+    enemy's ground, else "stayed" (Claude's drafts of the halves). With it the position at that second, the fixed 60, 90 and 180 s record and the 60 s
+    before, for what followed, and the split's own deaths and NPCs taken in the 90 s after (from its record). Kept beside the plays: it tells no play
+    and changes none; the energy of the split's own monks is the energy record of the same play id (energy.py, R-695)."""
+    if M.hall is None: return []
+    m, T, out = M.m, M.T, []
+    agent = {(m.tag[m.team(a)], m.roles[a]): a for a in m.PL}
+    for p in plays:
+        if p["play"] != "split" or p["side"] != "attacker" or not p.get("split"): continue
+        s, u = p["split"], int(p["t0"])
+        rel = u - s["told"]
+        st_ = next((x for x in s["stretches"] if x[0] <= rel <= x[1]), None)
+        if st_ is None or st_[4] not in SPLIT_HOLD_KINDS: continue
+        ids = [agent[(m.tag[p["tm"]], r)] for r in p["who"] if (m.tag[p["tm"]], r) in agent]
+        ids = [a for a in ids if u <= T and M.AL[a][u]]
+        r_ = u + SPLIT_HOLD_READ
+        if not ids or r_ > min(T, M.over): continue
+        dead = [a for a in ids if not M.AL[a][r_]]
+        live = [a for a in ids if M.AL[a][r_]]
+        off = [a for a in live if M._deep(a, r_) is None]
+        call = "died there" if 2 * len(dead) >= len(ids) else "fell back" if 2 * len(off) >= len(live) else "stayed"
+        b_ = u - FLAG_BEFORE_S
+        within = lambda L: sum(1 for x in L if rel < x <= rel + 90)
+        out.append({"id": p["id"], "rid": p["rid"], "tm": p["tm"], "team": p["team"], "t0": u, "kind": st_[4], "numbers": [st_[2], st_[3]], "size": len(ids), "monks": s.get("monks"),
+                    "call": call, "dead": len(dead), "off": len(off), "split_deaths_90": within(s["split_deaths"]), "defender_deaths_90": within(s["defender_deaths"]),
+                    "npcs_90": sum(1 for t_, _, _ in s["npcs"] if rel < t_ <= rel + 90), "pit_90": sum(1 for t_, _, pit in s["npcs"] if pit and rel < t_ <= rel + 90),
+                    "at_told": {"state": M._state(p["tm"], u), "after": M.consequence(p["tm"], u, FLAG_AFTER_S),
+                                "before": None if b_ < 0 else {"state": M._state(p["tm"], b_), "after": M.consequence(p["tm"], b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}})
+    return out
+
+
 def res_spots(M):
     """The gamble of the base res (R-601, his words: falling out removes the damage, the NPCs and the range of the players who base, "But this is a gamble, and
     we want to see which is better. There is a risk of taking deaths, but also in those crucial seconds before a base res you have a very significant chance of
