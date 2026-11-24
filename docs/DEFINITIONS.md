@@ -528,3 +528,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   NPCs, push their flagger, run a flag for a backup, fall back and reset. Team down: stay and fight, fall to
   footmen, retreat to the pit, trade with a split; with splits there are more (collapse, send more on the split).
 - A call is judged only against like spots (R-556): a team's call follows the spot it is in.
+
+## Energy (his thoughts so far; nothing is built until he says they are final, R-665)
+- The engine reads gvg.report's energy estimate, the least and the most energy a player can have every two seconds,
+  from the file beside each replay (R-664). It is an estimate with bounds, and every reading from it says so.
+- Whose energy: the monks' first; the midline's too, which for energy is the Ritualist, the Mesmer, the
+  Elementalist, the Necromancer and the smite monk; nobody else's (R-665, R-670).
+- What it is for (R-666): monk casting efficiency, an execution measure that needs no energy record, placed against
+  the same monk role across all matches (R-671); an excuse for execution (monks out of energy cannot save a target;
+  a midline out of energy, rarely, is why a team does not kill); and an input to decisions, as the energy of the
+  monks in that fight, a team's own and the enemy's each a factor.
+- A monk's energy is read on the double high scale, 72 at most: every monk carries a double high set (R-667, R-668).
+- Low is no set point: it is read from the data, decision by decision (R-669).
+- A match with no energy record keeps its place, energy blank (R-672).

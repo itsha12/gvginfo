@@ -193,10 +193,39 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Questions for Denning come from the catalogue and cluster mechanisms (name this cluster, approve this candidate),
   not a list of Claude's ideas after each batch.
 - The engine on the new trim (stage E, step 2), on the branch. Built 2026-11-24: the reader (`extras.py`); flag returns
-  (R-481); the Lord record (R-632 to R-635, described under "The Lord push and Lord damage"). To build, in this order:
-  degen in the damage figures (R-638, R-649, R-655, R-661), interrupt attempts (R-639), what each prot did and the
+  (R-481); the Lord record (R-632 to R-635, described under "The Lord push and Lord damage"); degen as damage, the
+  reading and the first figures that take it in (below). To build, in this order: the rest of the damage figures of
+  R-649 (the death accounts, the nodes and the older layers), interrupt attempts (R-639), what each prot did and the
   death and spike-save recaps (R-636), who stripped which enchantment from our own replays (R-637), a hold told with
-  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-667).
+  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-672).
+  Degen as damage (R-638, R-649, R-655, R-661) is one reading, `Match.degen()` (`degen.py`: read its top before
+  touching a damage figure). The amounts are gvg.report's totals for the match (what each player took from each
+  source, net of regen; what each player's degen did to each NPC and Lord); only the timing is ours: a total is laid
+  evenly over the seconds the replay shows that condition or hex on that target, and for an NPC or a Lord over the
+  stretches its caster, else his team, was hitting it. `rows[target]` is [(second, amount, source, kind)]; `taken`
+  and `dealt` sum it; `account` says what became of every point (R-460), `python3 degen.py cover` over every stored
+  match (run it after a fetch). Four things to hold to. A weapon's own upkeep (gvg.report's "Vampiric Weapon", 11%
+  of all degen it records) is no damage and is left out. Degen gvg.report credits to nobody (its "Observed
+  Burning", conditions drawn or passed on, its remainders: 12% of what players took) is in what a player or a team
+  took and in no figure of what a player dealt. The Miasma of Isle of Meditation (577 thousand health in the stored
+  matches, with no interval in the replay) is untimed: in the account, in no timed figure, until it is read from
+  where a player stands. And degen never says who is where: who is in which fight, who is hitting a player or an
+  NPC, a stand-off, a spike and who killed a player stay read from hits and casts (R-655). Against gvg.report's own
+  recaps (the degen in the window before 285 deaths and saves) the timing agrees at a correlation of 0.6: good for a
+  minute's damage, rough for the few seconds before a death, where the recap itself is the figure to read (R-636).
+  What takes it in so far: the damage a player took (`jobs._dmg_on`, rows marked degen): a base res carries
+  `taken` (hits, the figure his 250 was set on, R-615, and the one the danger spot is still asked of), `taken_degen`
+  and `taken_all`, and `npc_dmg_all` beside `npc_dmg`; NPC damage by kind of bar (`npcpower.py`, its benchmark
+  rebuilt: a ranger adds 10.5 a second on footmen against 4.4 on hits alone, and the damage to kill a knight is 657
+  against 561); the execution measures (`execution.py`: damage on their players, the shares on their monks and on
+  one player, damage on their NPCs, and `degen` itself in health; the damage against the roles' usual is still hits
+  against a usual of hits, until `eventlayer.py` takes degen in); and `pressure.py`, whose degen intervals are
+  gvg.report's amounts now (pip-seconds as landed), so the death accounts, the nodes and `lnrows` read them without
+  a change (their benchmarks are of the old figure until the rebuild). Not yet: the danger spot's line on the new
+  figure (his to give: `marks` in `jobs._res_stand` reads `taken`); `forensics.py`, `events.py`, `nodes.py`,
+  `eventlayer.py`, `fights.py`, `scoreboard.py`, `phases.py` and `episodes.py` wherever they sum damage from hits;
+  the story and the reports. The aim of a Lord push counts hits, not amounts, and stays as it is; Lord damage is
+  gvg.report's Lord record (R-632), and the degen on a Lord kept in `degen.py` is read by nothing.
   Flag returns as built: `Moments.flag_backs` reads every time a team's flag came back to its spawn from gvg.report's
   flag objects (an object on the spawn spot within `RETURN_CAP_S` of that team's capture is the capture, any other a
   return), and `flag_lives` is built on it: a pickup is the next flag only when the flag had gone back; any other
