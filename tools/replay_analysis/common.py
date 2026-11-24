@@ -243,6 +243,7 @@ MERGE_S = 20                    # triggers of one family for one team within thi
 BOOST_WARN_S = 30               # "a boost is coming": the enemy's boost is this far away (Denning, boost clock)
 DOOR_R = 700                    # at a door: this close to a labelled Front door or Back door route (its whole drawn length; Claude's draft)
 RETURN_R = 250                  # a returned flag: the enemy who came closest to where it lay, within this distance (returns are not recorded)
+RETURN_CAP_S = 2                # a flag object at a team's spawn within this many seconds of that team's capture is the flag coming back from the capture, not a return (measured over a quarter of the stored matches: 1,408 objects within 0.5 s of a capture, none between 0.5 and 1 s; R-481)
 DOOR_OUT = 1500                 # a door reaches this far along its route outside the base ("in front of their front door"); Claude's draft
 DOOR_CLEAR = 300                # a door is named only where its drawn route is this much nearer than the side's other door; where they run together it is the front door (Claude's draft)
 FOOT_ENGAGED_S = 10             # footmen are engaged when they dealt or took damage this recently (R-307)

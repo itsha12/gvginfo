@@ -8,7 +8,11 @@ among teams in a similar spot, and does a team that made the better call do bett
    and lose half a flag, so each result is priced by how much it moves the chance of winning the match: one small
    model of a position, fitted on every moment of every counted match, mirrored (a mirrored position gives the
    mirrored answer, no intercept):
-       chance of winning = logistic( strength gap, flag lead, death penalty, morale boost, pit NPCs lost, Lord health )
+       chance of winning = logistic( strength gap, flag lead, death penalty, morale boost, pit NPCs lost, Lord health,
+                                     aggressiveness lead )
+   (the Lord read twice, R-635: his health, gvg.report's own estimate, for whether he can be killed, and the lead in
+   aggressiveness, R-634, for 28:00; one price for the whole match, though the lead decides only at the end: a
+   stand-in until the win model takes the prices' place)
    each as own minus enemy (death penalty and morale boost are priced apart: a boost on a team with no death penalty
    is not a death undone). Footmen are not priced: on their own a footman is worth nothing to who wins, and beside
    the pit NPCs its price runs backwards (SPEC.md section 5, 4c: a reaction, never a price); each run prints the
@@ -77,8 +81,9 @@ LEVEL_MIN, RIDGE = 60, 10.0                      # setting the nearest cases lev
 K_TRY = (30, 45, 60, 90, 120)
 Z = 1.645                                        # a 90% range
 DRAWS = 300
-PRICE = ("strength gap (per 100 points of rating)", "a flag of lead", "death penalty (per 15%, one death's worth)", "morale boost (+10% on all eight)", "a pit NPC", "Lord health (per 10%)")
-SCALE = (100.0, 1.0, 15.0, 80.0, 1.0, 0.1)       # the unit each price is quoted in
+PRICE = ("strength gap (per 100 points of rating)", "a flag of lead", "death penalty (per 15%, one death's worth)", "morale boost (+10% on all eight)", "a pit NPC", "Lord health (per 10%)",
+         "aggressiveness lead (per 500)")
+SCALE = (100.0, 1.0, 15.0, 80.0, 1.0, 0.1, 500.0)       # the unit each price is quoted in
 VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "the hall's flag run, s",
         "own chance of winning at that second")       # the last one is the whole position as the prices read it (2026-11-19: teams that sent nobody were already winning, and the eight before it did not hold that level)
 MORE = ("seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)", "their runner is a backline monk", "their runner's speed",
@@ -130,8 +135,10 @@ def position(st, af, gap, now, footmen=False):
             lost[k][0] += sum(1 for n in af["npc_kinds"][k] if n in PIT); lost[k][1] += sum(1 for n in af["npc_kinds"][k] if n == "footman")
     lo = af["lord"]
     lord = (lo[0][i] - lo[1][i]) if lo[0][i] is not None and lo[1][i] is not None else 0.0      # a Lord whose damage was not observed: no difference read (a blank that means "not in the replay")
+    ag = af["aggr"]                                           # the Lord read twice (R-635): his health, gvg.report's estimate, for whether he can be killed; the aggressiveness lead for 28:00
+    aggr = (ag[0][i] - ag[1][i]) if ag[0][i] is not None and ag[1][i] is not None else 0.0
     mp = af["morale_parts"]
-    return [gap, lead, mp[0][i][0] - mp[1][i][0], mp[0][i][1] - mp[1][i][1], lost[1][0] - lost[0][0], lord] + ([lost[1][1] - lost[0][1]] if footmen else [])
+    return [gap, lead, mp[0][i][0] - mp[1][i][0], mp[0][i][1] - mp[1][i][1], lost[1][0] - lost[0][0], lord, aggr] + ([lost[1][1] - lost[0][1]] if footmen else [])
 
 
 def price_rows(D, M):
@@ -2976,11 +2983,11 @@ def handoff(path, out_json=None):
     for c in hand: c["fate"] = "returned within 15 s" if c["returned_soon"] else "returned later" if c["returned"] else "a team mate took it up" if c["then"] == "a team mate took it up" else "its carrier took it up again" if c["then"] == "its carrier took it up again" else "left lying"
     soon = [c for c in live if c["returned_soon"]]
     pr(f"\nB. A hand-off returned, against a flag that lay and was returned later (R-626: \"contested v uncontested\"). A hand-off = a living player puts the flag down with a team mate within an aggro bubble of it")
-    pr(f"   ({len(hand)} of the {len(live)} put-downs; his reading of the word, R-630). Returned within 15 s = returned, with an enemy player standing on the flag within 15 s of the put-down: the second of a return is an")
-    pr(f"   estimate until the rebuild (R-481); of {len(soon)} such returns {sum(1 for c in soon if c['returned_soon_sure'])} are certain on the latest second it can have gone back too. On RJT v RACK the estimate has all four known returns right.")
-    pr("   1. Every returned flag, by how long it lay before an enemy player first stood on it (flags = the change in the tally of R-408 from the put-down; the boost and the player sent back are in the tally):")
+    pr(f"   ({len(hand)} of the {len(live)} put-downs; his reading of the word, R-630). Returned within 15 s = back at its spawn within 15 s of the put-down: the second of a return is gvg.report's")
+    pr(f"   own flag object at the spawn (R-481), exact to the tenth; {len(soon)} such returns.")
+    pr("   1. Every returned flag, by how long it lay before it was returned (flags = the change in the tally of R-408 from the put-down; the boost and the player sent back are in the tally):")
     pr(f"     {'':44} {'returns':>7}  {'started at':>10}  {'flags 60 s':>10}  {'flags 90 s':>10}  {'flags 180 s':>11}  {'win pts 180 s':>13}")
-    lay = lambda c: c["first_enemy_s"] if c["first_enemy_s"] is not None else 1e9
+    lay = lambda c: c["return_by_s"] if c.get("return_by_s") is not None else 1e9
     fl_ = lambda V, H: float(np.mean([c["hard"][H]["lead_change"] for c in V if c["hard"][H]["lead_change"] is not None] or [0.0]))
     res["price"]["by_lay"] = {}
     for lab, f in (("a hand-off, returned within 15 s", lambda c: c["handoff"] and c["returned_soon"]), ("no team mate by it, returned within 15 s", lambda c: not c["handoff"] and c["returned_soon"]),

@@ -314,7 +314,7 @@ def _flag_events(M):
         elif L["how"] == "returned":
             who = L.get("returned")
             if who: out.append((who[0], f"{foe}'s {role(who[1])} returns {tag}'s flag: it goes back to the spawn"))
-            else: out.append((L["end"], f"{tag}'s flag is back at the spawn (the return was not seen)"))
+            else: out.append((L["end"], f"{tag}'s flag is back at the spawn (no {foe} player stands on it)"))
     return out
 
 

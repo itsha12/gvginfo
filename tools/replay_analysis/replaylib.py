@@ -6,6 +6,7 @@ Usage:
     m.f(t)            # tenths of a second -> "m:ss"
     m.snap(a, t)      # position, hp, state, weapon set of agent a at time t
     m.role(a)         # "RACK Prot", "MBP Hammer A", ... (build-based role name, see role_names)
+    m.extras()        # what the trim leaves out, from the file beside the replay (extras.py): gvg.report's flag objects, Lord record, energy ...
 Run report.py for the standard review tables. Terms follow knowledge/tactics.md (base, backside, push side, pit, ...).
 """
 import bisect, collections, gzip, json, math, os, statistics, subprocess
@@ -30,19 +31,32 @@ class Match:
             tab = (_spawn_table().get(self.o["meta"].get("map")) or {}).get("stand")
             if tab: self.stand = (float(tab[0]), float(tab[1]))
         self.roles = self._role_names()
+        self._src, self._x = None, None                       # where the replay was read from, for the file beside it (extras.py)
 
     @classmethod
     def load(cls, path):
         op = gzip.open if path.endswith(".gz") else open
         with op(path, "rt") as fh:
-            return cls(json.load(fh))
+            m = cls(json.load(fh))
+        m._src = ("path", path)
+        return m
+
+    def extras(self):
+        """What the trim leaves out (extras.py), read once. A match with no file beside it stops here (R-460)."""
+        if self._x is None:
+            from extras import Extras, ExtrasMissing
+            if self._src is None: raise ExtrasMissing("extras: this match was not read from a stored replay, so the file beside it is not known")
+            self._x = Extras.load(self._src[1]) if self._src[0] == "path" else Extras.from_branch(self._src[1], self._src[2], self._src[3])
+        return self._x
 
     @classmethod
     def from_branch(cls, report_id, repo=None):
         repo = repo or os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         idx = json.loads(subprocess.check_output(["git", "-C", repo, "show", "origin/replays:index.json"]))
         raw = subprocess.check_output(["git", "-C", repo, "show", "origin/replays:" + idx["matches"][report_id]["file"]])
-        return cls(json.loads(gzip.decompress(raw)))
+        m = cls(json.loads(gzip.decompress(raw)))
+        m._src = ("branch", report_id, repo, idx["matches"][report_id])
+        return m
 
     # ---- basics
     def team(self, a): return self.A[a].get("team") if isinstance(a, int) and a < len(self.A) else None

@@ -103,7 +103,7 @@ OPEN_KEYS = ("stand", "split", "back", "waits")
 OPEN_LATER_S = (300, 480)              # the opening is also read 5 and 8 minutes from the gates (R-590: "This plays out in a longer time period"; R-596, R-599: flags and kills at 3:00 and 5:00, the chance of winning at 5:00 and 8:00; 7:00 is "a bit too far out" and is not read)
 RES_SPOT_S = 40                        # the gamble of the base res (R-601: stay and risk it, or fall out) is read this long before the res, from a team in their base with enemy dead to come back (Claude's draft: twice LEAVE_RES_S, so that a team that falls out before the last 20 s is seen leaving)
 RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a minute after it and three minutes after it
-OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
+OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "aggr", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
 RES_WORN = 250                         # heavy damage in the minute before: this much or more a player (R-615, his number: "Let's go with 250", when shown that at 150, R-612, the danger zone was in a third of matches and no deadlier than a base res outside it; 300, the upper third in the data, was Claude's draft)
@@ -167,7 +167,11 @@ def _flag_rows(M):
             # by it, each fail a row he has marked). The opening names every player who carried the flag in the match, in order (R-587: "brought up by Mes/A,
             # handed to 8 Monk"), not only the one who took it up last
             left = f["pregame"] and r["chain"] is not None and r["out_by"] is not None and r["chain"] - max(r["first_end"], 0) > FLAG_LEFT_S
-            opening = f["pregame"] and f["how"] == "captured" and r["chain"] is not None and r["out_by"] is not None and not left
+            # ... nor while it was only brought up with the team before it was put down (R-505: "a flag brought up and later capped is a run from the pickup of
+            # the carry that takes it in"; 옷옷옷옷 v RACK 0:00, Classic: RACK's Hammer puts it down at his front door at 0:23 and comes back for it at 1:41, which
+            # gvg.report's flag objects show to be one flag, R-481)
+            brought = M.not_run_first(r)
+            opening = f["pregame"] and f["how"] == "captured" and r["chain"] is not None and r["out_by"] is not None and not left and not brought
             if opening:                                                  # in the order they first carried it in the match (who held it before the gates, or put it down as they opened, did not)
                 ids = list(dict.fromkeys(c[0] for c in sorted(r["carries"], key=lambda c: c[1]) if c[0] in r["serious"] and (c[2] is None or c[2] > HANDOFF_GAP_S))) or r["chain_ids"]
                 runner = m.roles[ids[0]]
@@ -178,9 +182,10 @@ def _flag_rows(M):
                 # where it was taken up, with that player (RJT v RACK 4:37)
                 first = [c for c in r["carries"] if c[2] is not None and c[2] <= r["first_end"]]
                 if left: first = [c for c in first if c[2] > HANDOFF_GAP_S]      # what was put down as the gates opened was not carried in the match
-                if (went or left) and M.travelled(f["tm"], first):
+                if (went or left) and M.travelled(f["tm"], first) and not brought:
                     out.append(dict(f, runner=runner, s0=min(int(r["moment"]) if went else s0, s0, int(r["first_end"])), pick=pick, e=int(r["first_end"]), how="put down", form=None, ids=[a for a in ids if a in r["first_ids"]] or r["first_ids"], held_s=0, other_stand=False, double=dbl, soh=soh))
                 if left: left_at, pre_row = int(r["first_end"]), False
+                if brought: pre_row = False
                 s0, runner, pick, ids, dbl = int(r["under_way"]), m.roles[r["out_by"]], int(r["chain"]), r["chain_ids"], False
                 carries = [c for c in r["carries"] if c[1] >= r["chain"] - 1]
             elif went and not opening: s0, off = min(int(r["moment"]), s0), int(r["set_off"])      # when he goes to run, by the hall (R-461); and when he set off
@@ -191,7 +196,7 @@ def _flag_rows(M):
                 s0, runner = int(r["under_way"]), m.roles[r["out_by"]]
         if r is not None and f["how"] != "captured" and not M.travelled(f["tm"], carries): continue      # picked up and put down at home: not a run
         e, other = int(f["end"]), False
-        if r is not None and f["how"] != "captured" and carries and carries[-1][2] is not None and carries[-1][2] < e:
+        if r is not None and f["how"] != "captured" and carries and carries[-1][2] is not None and int(carries[-1][2]) <= e:      # (a flag put on the hall's other flag stand is back at its spawn the same second, R-481)
             e = int(carries[-1][2])                                       # put down for good: the run ends there, not when the flag goes back to the spawn
             p = M.P[carries[-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
@@ -232,7 +237,7 @@ def opening(M):
         waits = list(dict.fromkeys(q["a"] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and went_back(q) is not None and went_back(q) <= t_o and q["a"] in back))
         rows = sorted((x for x in FR if x["tm"] == tm), key=lambda x: x["s0"])
         pre = next((x for x in rows if x["pregame"]), None)
-        up = next((q for q in M.run_starts() if q["tm"] == tm and q["pickup"] <= 2 and M.not_run(q)), None)      # brought up with the team and not run (R-505)
+        up = next((q for q in M.run_starts() if q["tm"] == tm and q["pickup"] <= 2 and (M.not_run(q) or M.not_run_first(q))), None)      # brought up with the team and not run (R-505)
         flag = {"brought": None, "by": [], "how": None, "at": None, "held_s": 0, "sent_back": None, "line": None}      # line: the line of the player the first flag came up on (his fourth point on the opening, R-590: a frontline, a midline or a monk tells what the team means to do with it)
         if pre is not None:
             flag["line"] = next((_line(m, a) for a in pre["ids"]), None)
@@ -242,7 +247,7 @@ def opening(M):
             nxt = rows[0]
             flag.update(brought=False, sent_back={"who": nxt["runner"], "at": int(nxt.get("off", nxt["s0"])), "how": nxt["how"], "end": int(nxt["e"])})
         elif up is not None:
-            ids_ = [c[0] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"]]
+            ids_ = [c[0] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"] and (up.get("chain") is None or not M.not_run_first(up) or c[1] < up["chain"])]
             flag.update(brought=True, by=list(dict.fromkeys(role[a] for a in ids_)), how="not run", line=_line(m, ids_[0]) if ids_ else None)
         else: flag["brought"] = False
         # the flag after the first one: who went back for it and when he turned for home (R-590, his first point: against seven with a player waiting back "we
@@ -382,8 +387,9 @@ def flag_plays(M, K, pinned_at):
         mine_ = f" ({both(g, carried(g))})" if g else ""
         # a flag of ours only brought up with the team meanwhile is said, since it is no run and no stay either (R-505; his words on 옷옷옷옷 v RACK 0:00: "RACK
         # brings flag up on Warrior, but DOES NOT run the flag")
-        bu = next((q for q in M.run_starts() if q["tm"] == A and M.not_run(q) and q["pickup"] <= w1 and any((c[2] is None or c[2] >= w0) and c[1] <= w1 for c in q["carries"] if c[0] in q["serious"])), None)
-        up = bu and f"brings a flag up with its team ({', '.join(dict.fromkeys(role[c[0]] for c in sorted(bu['carries'], key=lambda c: c[1]) if c[0] in bu['serious'] and (c[2] is None or c[2] >= w0) and c[1] <= w1))}) but does not run it"
+        bu = next((q for q in M.run_starts() if q["tm"] == A and (M.not_run(q) or M.not_run_first(q)) and q["pickup"] <= w1
+                   and any((c[2] is None or c[2] >= w0) and c[1] <= w1 for c in q["carries"] if c[0] in q["serious"] and (M.not_run(q) or c[1] < q["chain"]))), None)
+        up = bu and f"brings a flag up with its team ({', '.join(dict.fromkeys(role[c[0]] for c in sorted(bu['carries'], key=lambda c: c[1]) if c[0] in bu['serious'] and (c[2] is None or c[2] >= w0) and c[1] <= w1 and (M.not_run(bu) or c[1] < bu['chain'])))}) but does not run it"
         sent = "" if f.get("left_at") is None else ", sent for the flag left lying since " + (clock(f["left_at"]) if f["left_at"] > 0 else "before the gates opened")      # R-581
         said0 = f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{sent}{', to the Obelisk flag stand' if f['other_stand'] else ''})"
         said1 = f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} {up or 'stays'}" if not new else f"{M.m.tag[A]} {ours}{mine_}"
@@ -969,7 +975,7 @@ def split_plays(M, K):
                     # tried 2026-11-21, 30 flag plays of the development set moved)
                     "own_split": any(y is not x and y["tm"] == foe and y["t_in"] <= told0 <= y["t1"] for y in A),
                     # ... and the damage its players did to the Guild Lord while it was out (his word: a split that clears the pit later in the game does more of it), by the second
-                    "lord_damage": [[int(u) - told0, round(v)] for u, a, v in sorted(M.lord_hits.get(foe, ())) if a in frm and frm[a] <= u <= ext[a] + 4 and v],
+                    "lord_damage": [[int(u) - told0, round(v)] for u, a, v in M.lord_record().hits(foe) if a in frm and frm[a] <= u <= ext[a] + 4 and v],      # gvg.report's own (R-632)
                     "split_deaths": [int(td) - told0 for td, _ in dA], "defender_deaths": [int(td) - told0 for td, _ in dD], "npcs": [[int(td) - told0, kind, bool(pit)] for td, kind, pit in sorted(npc_ev)]}
             def _at_told(k_, u=min(told0, T)):
                 o = {"state": M._state(k_, u), "after": M.consequence(k_, u, FLAG_AFTER_S)}
@@ -1567,13 +1573,13 @@ def flag_hands(M):
                  became of the flag: a team mate took it up (and whether that is a hand-off, `Moments.handed_on`, R-580), its carrier took it up again, it
                  was returned, or it was left lying to the end. `handoff`: put down by a living player with a team mate within an aggro bubble of it (a hand-off
                  tried, whatever came of it; his reading of the word, R-630; read before the result). `first_enemy_s`: seconds until a living enemy player first
-                 stands on the flag (RETURN_R), the soonest it can have been returned; `return_by_s`: the latest (the last enemy on it before the next pickup
-                 at the spawn). `returned_soon`: returned, with an enemy on it within RETURN_SOON_S of the put-down (R-626, R-629: a contested return, a
-                 hand-off returned, against a flag that lay and was returned later); `returned_soon_sure` where the latest second is inside it too.
-    A flag put down goes back only when an enemy player picks it up, never by itself (R-622): a life that ends "returned" was returned by a player, and who
-    and when are read as `flag_lives` reads them (the last enemy to stand on it before the next pickup at the spawn; the second is inferred until the rebuild
-    keeps gvg.report's flag objects, R-481). On RJT v RACK the four returns of gvg.report's list come 3, 2, 1 and 9 s after the put-down; the first enemy on the
-    flag reads 3, 0, 0 and 0 s, the last enemy on it 19, 19, 4 and 78 s: the first is the estimate, and all four are returned soon by it, as they were."""
+                 stands on the flag (RETURN_R); `return_by_s`: seconds from the put-down to the return, from gvg.report's flag object (R-481: exact).
+                 `returned_soon`: returned within RETURN_SOON_S of the put-down (R-626, R-629: a contested return, a hand-off returned, against a flag
+                 that lay and was returned later); `returned_soon_sure` is the same reading now that the second is known, kept for the reports that ask it.
+    A flag put down goes back only when an enemy player picks it up, never by itself (R-622): a life that ends "returned" was returned by a player. When is
+    gvg.report's flag object at the spawn (`Moments.flag_backs`, R-481); who is the living enemy player nearest where the flag lay that second
+    (`returned_by`; None where nobody stands within RETURN_R of it, which the run counts). On RJT v RACK the four returns come 3, 2, 1 and 9 s after
+    the put-down."""
     if M.hall is None: return {"lives": [], "put_downs": []}
     st, m, T = M.st, M.m, M.T
     rid8, stand = m.o["meta"]["id"][:8], M.hall.stand
@@ -1613,7 +1619,7 @@ def flag_hands(M):
                    "carried_s": int(t1 - max(c[1], 0)), "dead": dead, "place": M.place_words(*M.place_at(a, u)), "at_stand": M.place_at(a, u)[0] == "stand", "stand_d": int(d(pos, stand)),
                    "own_half": None if w_own is None or w_their is None else bool(w_own < w_their), "before_stand": arrive is None or u < arrive["t"],
                    "enemy_near": sum(1 for x in near if x <= FIGHT_CLOSE), "nearest": int(near[0]) if near else None, "mates_near": mates,
-                   "then": None, "lay_s": None, "taker": None, "taker_line": None, "handed": False, "returned_by_inferred": None,
+                   "then": None, "lay_s": None, "taker": None, "taker_line": None, "handed": False, "returned_by": None,
                    "handoff": (not dead) and mates >= 1, "first_enemy_s": None, "return_by_s": None, "returned_soon": False, "returned_soon_sure": False}
             until = T                                                      # how long it lay: to the next take-up, to the next pickup at the spawn where it was returned, else to the end
             if i + 1 < len(cs):
@@ -1622,15 +1628,14 @@ def flag_hands(M):
                            handed=c2[0] != a and bool(M.handed_on(c, c2)))
                 until = sec(c2[1])
             elif L["how"] == "returned":
-                ret = L.get("returned")                                    # who returned it is `flag_lives`' inference; the second is not kept: on RJT v RACK the inferred returns are 3 to 69 s late (R-481)
-                rec.update(then="returned", returned_by_inferred=None if not ret else m.roles[ret[1]], return_by_s=round((ret[0] if ret else L["end"]) - t1, 1))
+                ret = L.get("returned")                                    # the second is gvg.report's flag object at the spawn (R-481); who, the enemy player nearest the flag then
+                rec.update(then="returned", returned_by=None if not ret else m.roles[ret[1]], return_by_s=round(max(L["end"] - t1, 0), 1))
                 until = sec(L["end"])
             else: rec["then"] = "left lying"
             on = next((x for x in range(u, until + 1) if any(M.AL[b][x] and M.P[b][x] and d(M.P[b][x], pos) < RETURN_R for b in st.players[foe])), None)
             if on is not None: rec["first_enemy_s"] = round(max(on - t1, 0), 1)
             if rec["then"] == "returned":
-                rec["returned_soon"] = rec["first_enemy_s"] is not None and rec["first_enemy_s"] <= RETURN_SOON_S
-                rec["returned_soon_sure"] = rec["returned_soon"] and rec["return_by_s"] <= RETURN_SOON_S
+                rec["returned_soon"] = rec["returned_soon_sure"] = rec["return_by_s"] <= RETURN_SOON_S
             rec["at_told"] = told(tm, u)
             puts.append(rec); n_put += 1
         run = next((c for c in played if c[0] in L.get("serious", ())), played[0])      # who ran it: the first who carried it for more than a moment
@@ -1713,11 +1718,13 @@ def lord_plays(M, K, told=()):
     tag, E = m.tag, int(o["end"])
     res = m.o["meta"].get("result") or {}
     won = res.get("winning_team_id")
-    taken = {l["team"]: l.get("taken") for l in m.o.get("lords", [])}          # gvg.report's own Lord damage total for the match
+    LR = M.lord_record()                                                    # gvg.report's own Lord damage record: every damage figure here is its (R-632)
+    taken = {tm: (LR.lords.get(tm) or {}).get("damage") for tm in st.teams}   # the damage each Lord took over the match
+    agg = lambda tm, t=None: None if tm in M.lord_unseen() else round(LR.aggressiveness(tm, t))      # aggressiveness, what decides 28:00 (R-634)
     how = "a Lord kill" if o["lord_killed"] else ("Lord damage at 28:00" if T >= 1670 else "the match ending early")
     tm_of = {tag[tm]: tm for tm in st.teams}
-    hits_on = lambda tm, a, b: sum(v for u, _, v in M.lord_hits.get(tm, ()) if a <= u <= b)          # the recorded hits on tm's Guild Lord
-    n_on = lambda tm, a, b: sum(1 for u, _, _ in M.lord_hits.get(tm, ()) if a <= u <= b)
+    hits_on = lambda tm, a, b: LR.damage(tm, a, b + 0.9)                     # gvg.report's Lord damage on tm's Guild Lord from a to the end of second b
+    n_on = lambda tm, a, b: sum(1 for u, _, _ in M.lord_hits.get(tm, ()) if a <= u <= b)             # the hits the replay records on him: who is on a Lord and when stays read from hits (R-655)
     pit = lambda tm, t: sum(1 for z, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > t)
 
     OL = M.on_lord()
@@ -1756,6 +1763,7 @@ def lord_plays(M, K, told=()):
                    "aim": aims[tg][0] if aims[tg] else None, "hits_on_their_lord": aims[tg][1] if aims[tg] else 0, "hits_on_their_players_in_the_base": aims[tg][2] if aims[tg] else 0,
                    "send": S[tg]["send"], "set": o["set"], "shape": o["shape"], "pit_npcs": [pit(tm, t0), pit(foe, t0)], "at": o.get("at"),
                    "lord_damage": round(hits_on(foe, a0, E + 6)), "own_lord_damage_meanwhile": round(hits_on(tm, a0, E + 6)), "deaths": [K.died(tm, t0, E + 5), K.died(foe, t0, E + 5)],
+                   "aggressiveness_at_send": [agg(tm, a0), agg(foe, a0)], "aggressiveness": [agg(tm), agg(foe)],
                    "match_decided_by": how, "match_lord_damage_gvg_report": [taken.get(foe), taken.get(tm)], "lord_killed_in_it": o["lord_killed"] == tag[foe], "own_lord_killed_in_it": o["lord_killed"] == tg}
             job = "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)" if sent else "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)"
             out.append(_play(M, "lord", "own", tm, t0, E, [r["role"] for r in sent], words, job, {"the match is won": won == tm}, beside=bes, kind="play for 28:00", aim=bes["aim"],
@@ -1786,10 +1794,11 @@ def lord_plays(M, K, told=()):
             am, on_lord, on_players = aim(Kt, a, b)
             line = {"by": tag[Kt], "attackers": n, "defenders": nd, "pit_npcs": pit(L, a), "aim": am, "lord_damage": round(hits_on(L, a, b)), "own_lord_damage_meanwhile": round(hits_on(Kt, a, b)), "hits_on_the_lord": on_lord,
                     "hits_on_players_in_the_base": on_players, "kind": "a push before the play for 28:00" if push else "before the play for 28:00", "lord_killed_at": E if last else None,
-                    "in_return": S[tag[L]]["sent"] if push else None, "match_lord_damage_gvg_report": [taken.get(L), taken.get(Kt)]}
+                    "in_return": S[tag[L]]["sent"] if push else None, "match_lord_damage_gvg_report": [taken.get(L), taken.get(Kt)],
+                    "aggressiveness_then": [agg(Kt, b), agg(L, b)]}
             p["lord"] = line
             p["lord_line"] = (f"On the Lord meanwhile ({'a push before the play for 28:00' if push else 'before the play for 28:00'}, told here, R-644): {tag[Kt]} has {n} in the base against {nd} defending and {line['pit_npcs']} pit NPC{'' if line['pit_npcs'] == 1 else 's'}, "
-                              f"playing for {am}; {line['lord_damage']:,} on {tag[L]}'s Guild Lord {'from ' + clock(a) + ' to the kill' if last else 'in this stretch'} by the engine's sum of the recorded hits"
+                              f"playing for {am}; {line['lord_damage']:,} on {tag[L]}'s Guild Lord {'from ' + clock(a) + ' to the kill' if last else 'in this stretch'} (gvg.report's Lord damage)"
                               + (f"; {tag[L]}'s Guild Lord is killed at {clock(E)}" + ("" if E <= p["t1"] + 5 else ", after this row ends") + f"; {tag[L]} sent {line['in_return'] or 'nobody'} in return" if last else ""))
             o["told"]["lines"].append(a)
     return out
