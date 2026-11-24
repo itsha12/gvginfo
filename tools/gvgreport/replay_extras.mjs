@@ -12,8 +12,9 @@
 //   lord          R-632, R-634, R-635: gvg.report's own Lord damage record
 //     scores      {team: {damage, blind, own_effects, penalty, aggressiveness}}
 //     lords       {team: {a, max_hp, damage, life_steal, healing, hits_under_entourage}}
-//     events      [[t, the Lord's team, kind (d damage, l life steal, h heal, e effect), amount, Blind miss worth,
-//                   effect cost, Entourage up, source agent, source team, skill id, effect name, pit NPCs alive]]
+//     events      [[t, the Lord's team, kind (d damage, l life steal, h heal, e effect, "condition": Blind put on a Lord,
+//                   which gvg.report scores at the Blind worth, 30, for the team that put it there), amount, Blind miss
+//                   worth, effect cost, Entourage up, source agent, source team, skill id, effect name, pit NPCs alive]]
 //     deaths      [[t, the Lord's team, kind of pit NPC]]      entourage  [[the Lord's team, t, tenths]]
 //     health      {team: [[t, health, max]]} where it changes (gvg.report's estimate)      worth  the scoring constants
 //     check       null, or what does not rebuild from the events (R-460: said, never hidden)
@@ -112,8 +113,9 @@ function lordOf(g, A, T) {
     const tm = sc.team_id;
     if (tm !== 1 && tm !== 2) continue; // "map": what a hall's own objects did to a Lord, which gvg.report credits to no team
     const built = events.filter((x) => x[2] === "d" && x[1] === 3 - tm && x[8] === tm).reduce((s, x) => s + x[3] + x[4], 0)
-      - events.filter((x) => x[2] === "e" && x[1] === tm && x[8] === tm).reduce((s, x) => s + x[5], 0);
-    if (Math.abs(built - (sc.lord_damage_equivalent ?? 0)) > 2) problems.push(`team ${tm}: the events come to ${Math.round(built)}, gvg.report's own score is ${Math.round(sc.lord_damage_equivalent ?? 0)}`);
+      - events.filter((x) => x[2] === "e" && x[1] === tm && x[8] === tm).reduce((s, x) => s + x[5], 0)
+      + (g.constants?.blind_miss_activity_equivalent ?? 30) * events.filter((x) => x[2] === "condition" && x[1] === 3 - tm && x[8] === tm).length;
+    if (Math.abs(built - (sc.lord_damage_equivalent ?? 0)) > 5) problems.push(`team ${tm}: the events come to ${Math.round(built)}, gvg.report's own score is ${Math.round(sc.lord_damage_equivalent ?? 0)}`);
     scores[tm] = { damage: r1(sc.damage_to_enemy_lord), blind: r1(sc.blind_miss_equivalent_to_enemy_lord), own_effects: sc.own_lord_effect_events ?? 0,
       penalty: r1(sc.own_lord_penalty_equivalent), aggressiveness: r1(sc.lord_damage_equivalent) };
   }

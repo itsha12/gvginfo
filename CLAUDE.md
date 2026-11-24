@@ -521,7 +521,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   out, and the engine's sum of the recorded hits (`Moments.lord_hits`) does not. Aggressiveness (R-634) is each point
   of damage to the enemy Lord, 30 for an attack missed through Blind, less 50 for an enchantment or weapon spell on a
   team's own Lord, 300 with Entourage up; it rebuilds exactly from the record's event list, a hit counted for the team
-  that dealt it (source "map" is the flux, nobody's). Not built: at the rebuild one new trim version keeps that record
+  that dealt it (source "map" is the flux, nobody's). gvg.report's record also scores each Blind put on the enemy Lord at
+  30 for the team that put it there (events of kind `condition`; 176 of them in 53 of the 658 matches): with it every
+  team score rebuilds. Not built: at the rebuild one new trim version keeps that record
   together with the flag objects (R-481), and the engine reads Lord damage, the aggressiveness lead and gvg.report's
   Lord health from it (R-635: health for the kill, the lead for 28:00, in the price of a position). Until then the
   record is kept for single matches in `data/model/lord_gvg.json` (`tools/golden/review.py lord-record <that file>

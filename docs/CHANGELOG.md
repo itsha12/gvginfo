@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-24, early morning (the same chat, the reminder he asked for): the refetch verified, R-663 carried out, energy set out
+- The refetch finished in 98 minutes: all 660 stored matches have their file beside the replay (version 2, 13 MB in all), none missing, no stored replay or index entry changed apart from the new fields.
+- 34 matches were flagged because a Lord score did not rebuild from its events: gvg.report scores each Blind put on the enemy Lord at 30 for the team that put it there (events of kind `condition`, 176 in 53 matches). With it all 1,320 team scores rebuild within 5; the check in `replay_extras.mjs` counts it now and the flags are cleared.
+- R-663 carried out: chic v DUM and HC v hdm taken out of the `replays` branch (658 stored), `latest:2` out of `replays/requests.txt`.
+- Energy (R-664) set out for him in the chat, where it bears and what would be built first; nothing built.
+
 ## 2026-11-23, late night (a new chat): his answers to the open items, R-656 to R-664; the new trim part built and its refetch started
 - The open items set out for him in the chat. No engine change and no play moved; the build is the new trim part, on main.
 - R-656: a Lord kill before 21:00 is left told nowhere as a Lord row; ohno v Book at 5 against 3 and "the kill" read from the result stand.

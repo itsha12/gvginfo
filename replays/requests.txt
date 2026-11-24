@@ -1,7 +1,7 @@
 # One per line: a gvg.report report id or link, latest:N for the N newest matches, or list:N for a listing only (listing.json). Stored matches are skipped unless the trim format changed.
 list:400
 eea5ba87-ac20-5ba3-a6c9-965f11ca8a65
-latest:2
+# latest:2 taken out on 2026-11-24 (R-663, R-570: no new matches into the store until the engine is ready); put it back to store the newest matches again
 # 2026-10-17 monthly, RACK with Denning on 8 monk
 d06ef3c7-521d-5de4-a453-5fdb82c7c467
 a8ba43a8-7703-5131-a6ce-9e274fbd3ac4
