@@ -20,7 +20,7 @@ async function api(q) {
   throw new Error("Wiki API unavailable");
 }
 
-// ---------- wikitext helpers (same logic as tools/wiki_scraper.js) ----------
+// ---------- wikitext helpers ----------
 function tpl(w, nameRe) {
   const re = new RegExp("\\{\\{\\s*(" + nameRe + ")\\s*(?=[|\\n}])", "ig"); let m; const outs = [];
   while ((m = re.exec(w))) {

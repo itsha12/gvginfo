@@ -921,6 +921,6 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - `data/` — skills, template id map, templates, skill notes.
 - `knowledge/` — markdown pages shown on the portal's "Mechanics and rules" page (`index.json` lists them; Misc last).
 - `tools/` — calculator (`gw_calc.py`), template codec (`gwtemplate.py`), `gvgreport/` (sync + aggregate, Node),
-  `wiki/sync.mjs` (skill refresh, Node), `wiki_scraper.js` (browser version of the scraper), `replay_analysis/` (the
+  `wiki/sync.mjs` (skill refresh, Node), `replay_analysis/` (the
   engine), `maps/` (map data for the site).
 - `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Recent matches page.
