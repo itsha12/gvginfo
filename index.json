@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-24T05:31:30.498Z",
+ "updated": "2026-11-24T06:23:25.684Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -512,8 +512,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 15,
-   "x_check": "team 2: the events come to 3762, gvg.report's own score is 3822"
+   "x_kb": 15
   },
   "c0f32eca-f1c2-58f3-af33-26573c782b3d": {
    "file": "2026-09/c0f32eca-f1c2-58f3-af33-26573c782b3d.json.gz",
@@ -817,8 +816,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 9,
-   "x_check": "team 2: the events come to 6996, gvg.report's own score is 6998"
+   "x_kb": 9
   },
   "6c7dfcaa-1141-592f-a625-d5109b087b35": {
    "file": "2026-09/6c7dfcaa-1141-592f-a625-d5109b087b35.json.gz",
@@ -866,8 +864,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 26,
-   "x_check": "team 1: the events come to 3360, gvg.report's own score is 3390"
+   "x_kb": 26
   },
   "ad75813a-2393-56f4-aee1-975ff4c85196": {
    "file": "2026-11/ad75813a-2393-56f4-aee1-975ff4c85196.json.gz",
@@ -883,8 +880,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 21,
-   "x_check": "team 1: the events come to 3103, gvg.report's own score is 3163"
+   "x_kb": 21
   },
   "77206c78-5eb2-5a36-aa45-8e0168e624df": {
    "file": "2026-09/77206c78-5eb2-5a36-aa45-8e0168e624df.json.gz",
@@ -1300,8 +1296,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 25,
-   "x_check": "team 2: the events come to 1641, gvg.report's own score is 1671"
+   "x_kb": 25
   },
   "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d": {
    "file": "2026-10/c8e26dc9-8cfb-5a36-aa1a-38f8c416753d.json.gz",
@@ -1637,8 +1632,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 30,
-   "x_check": "team 2: the events come to 4710, gvg.report's own score is 4740"
+   "x_kb": 30
   },
   "3bab5ee7-c0b2-524e-a626-d816c1e2198d": {
    "file": "2026-11/3bab5ee7-c0b2-524e-a626-d816c1e2198d.json.gz",
@@ -2182,8 +2176,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 18,
-   "x_check": "team 2: the events come to 3979, gvg.report's own score is 4009"
+   "x_kb": 18
   },
   "21459385-888c-5151-aacd-349d9608b7f6": {
    "file": "2026-11/21459385-888c-5151-aacd-349d9608b7f6.json.gz",
@@ -2295,8 +2288,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 41,
-   "x_check": "team 2: the events come to 3721, gvg.report's own score is 3723"
+   "x_kb": 41
   },
   "8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f": {
    "file": "2026-09/8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f.json.gz",
@@ -2504,8 +2496,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 13,
-   "x_check": "team 1: the events come to 1889, gvg.report's own score is 1920"
+   "x_kb": 13
   },
   "e646a336-4356-5731-a7a3-226440f798a1": {
    "file": "2026-08/e646a336-4356-5731-a7a3-226440f798a1.json.gz",
@@ -3273,8 +3264,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 15,
-   "x_check": "team 1: the events come to 4667, gvg.report's own score is 4728"
+   "x_kb": 15
   },
   "e31372a7-d1cb-58d3-a483-b305f96786e4": {
    "file": "2026-07/e31372a7-d1cb-58d3-a483-b305f96786e4.json.gz",
@@ -4074,8 +4064,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 39,
-   "x_check": "team 1: the events come to 1662, gvg.report's own score is 1692"
+   "x_kb": 39
   },
   "9eb315c2-bb0f-54aa-ae59-20db911cdbed": {
    "file": "2026-09/9eb315c2-bb0f-54aa-ae59-20db911cdbed.json.gz",
@@ -4107,8 +4096,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 18,
-   "x_check": "team 1: the events come to 1845, gvg.report's own score is 1905"
+   "x_kb": 18
   },
   "bfef12ce-6ed9-53e9-a306-44349c368add": {
    "file": "2026-10/bfef12ce-6ed9-53e9-a306-44349c368add.json.gz",
@@ -4428,8 +4416,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 27,
-   "x_check": "team 2: the events come to 2323, gvg.report's own score is 2383"
+   "x_kb": 27
   },
   "3a2d3d65-d3d3-51c6-a041-b3dcee70fb13": {
    "file": "2026-11/3a2d3d65-d3d3-51c6-a041-b3dcee70fb13.json.gz",
@@ -4733,8 +4720,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 36,
-   "x_check": "team 2: the events come to 1835, gvg.report's own score is 1864"
+   "x_kb": 36
   },
   "7208fa8f-5b39-59d9-a432-ffd4c254743d": {
    "file": "2026-09/7208fa8f-5b39-59d9-a432-ffd4c254743d.json.gz",
@@ -4910,8 +4896,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 10,
-   "x_check": "team 2: the events come to 4101, gvg.report's own score is 4104"
+   "x_kb": 10
   },
   "f65cbc1c-aa43-5409-a55f-cd3b4bd2a570": {
    "file": "2026-09/f65cbc1c-aa43-5409-a55f-cd3b4bd2a570.json.gz",
@@ -5119,8 +5104,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 31,
-   "x_check": "team 2: the events come to 8899, gvg.report's own score is 8901"
+   "x_kb": 31
   },
   "8aad2895-62a2-5696-a186-c71b2d325bf4": {
    "file": "2026-09/8aad2895-62a2-5696-a186-c71b2d325bf4.json.gz",
@@ -5168,8 +5152,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 40,
-   "x_check": "team 2: the events come to 8406, gvg.report's own score is 8404"
+   "x_kb": 40
   },
   "bf1a87a1-b267-57fc-a9f6-fb42ef9d4c53": {
    "file": "2026-10/bf1a87a1-b267-57fc-a9f6-fb42ef9d4c53.json.gz",
@@ -5313,8 +5296,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 13,
-   "x_check": "team 1: the events come to 2729, gvg.report's own score is 2789"
+   "x_kb": 13
   },
   "8b6395d7-90c9-5aa3-a368-704ee72e96d8": {
    "file": "2026-09/8b6395d7-90c9-5aa3-a368-704ee72e96d8.json.gz",
@@ -5794,8 +5776,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 35,
-   "x_check": "team 2: the events come to 11862, gvg.report's own score is 12792"
+   "x_kb": 35
   },
   "4158d234-8598-59ec-a745-5f6a17686242": {
    "file": "2026-09/4158d234-8598-59ec-a745-5f6a17686242.json.gz",
@@ -5843,8 +5824,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 38,
-   "x_check": "team 2: the events come to 9926, gvg.report's own score is 9930"
+   "x_kb": 38
   },
   "fba78a16-96c7-5d36-af15-1783bb95f17f": {
    "file": "2026-10/fba78a16-96c7-5d36-af15-1783bb95f17f.json.gz",
@@ -6196,8 +6176,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 22,
-   "x_check": "team 1: the events come to 1445, gvg.report's own score is 1475"
+   "x_kb": 22
   },
   "ad3f2125-a7f7-5a8b-af13-584abfc4384c": {
    "file": "2026-09/ad3f2125-a7f7-5a8b-af13-584abfc4384c.json.gz",
@@ -6309,8 +6288,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 36,
-   "x_check": "team 1: the events come to 5868, gvg.report's own score is 5898; team 2: the events come to 11771, gvg.report's own score is 11799"
+   "x_kb": 36
   },
   "af831111-a724-5a33-ad1d-e01bebeaac6e": {
    "file": "2026-10/af831111-a724-5a33-ad1d-e01bebeaac6e.json.gz",
@@ -6518,8 +6496,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 36,
-   "x_check": "team 2: the events come to 6646, gvg.report's own score is 6649"
+   "x_kb": 36
   },
   "b3ff0009-86da-5781-a933-e99445b8a0b8": {
    "file": "2026-09/b3ff0009-86da-5781-a933-e99445b8a0b8.json.gz",
@@ -7207,8 +7184,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 35,
-   "x_check": "team 1: the events come to 807, gvg.report's own score is 837"
+   "x_kb": 35
   },
   "1fe6edba-2925-5045-a0b6-7e0c8cbf12b4": {
    "file": "2026-09/1fe6edba-2925-5045-a0b6-7e0c8cbf12b4.json.gz",
@@ -7592,8 +7568,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 14,
-   "x_check": "team 2: the events come to 2630, gvg.report's own score is 2632"
+   "x_kb": 14
   },
   "720c8e30-3bd9-5306-ad8f-20587e6456d5": {
    "file": "2026-09/720c8e30-3bd9-5306-ad8f-20587e6456d5.json.gz",
@@ -7977,8 +7952,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 33,
-   "x_check": "team 1: the events come to 2254, gvg.report's own score is 2284"
+   "x_kb": 33
   },
   "8bb5f247-8c7e-5677-a6cd-c838e72a6a46": {
    "file": "2026-09/8bb5f247-8c7e-5677-a6cd-c838e72a6a46.json.gz",
@@ -8218,8 +8192,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 9,
-   "x_check": "team 1: the events come to 6645, gvg.report's own score is 6675"
+   "x_kb": 9
   },
   "e4bd9c29-b8fe-54bd-a9c0-04de76ac13ac": {
    "file": "2026-09/e4bd9c29-b8fe-54bd-a9c0-04de76ac13ac.json.gz",
@@ -9003,8 +8976,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 16,
-   "x_check": "team 2: the events come to 5158, gvg.report's own score is 5160"
+   "x_kb": 16
   },
   "d70f3684-8f70-5513-a327-83e1a45013f1": {
    "file": "2026-09/d70f3684-8f70-5513-a327-83e1a45013f1.json.gz",
@@ -9308,8 +9280,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 36,
-   "x_check": "team 2: the events come to 1135, gvg.report's own score is 1165"
+   "x_kb": 36
   },
   "6aaa0f6d-da4e-5666-a036-7527fc7bd9d4": {
    "file": "2026-10/6aaa0f6d-da4e-5666-a036-7527fc7bd9d4.json.gz",
@@ -9645,8 +9616,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 16,
-   "x_check": "team 1: the events come to 2530, gvg.report's own score is 2650"
+   "x_kb": 16
   },
   "cf9ff564-86ad-57e9-a37d-7c55019a5c85": {
    "file": "2026-10/cf9ff564-86ad-57e9-a37d-7c55019a5c85.json.gz",
@@ -9726,8 +9696,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 14,
-   "x_check": "team 1: the events come to 3763, gvg.report's own score is 3765"
+   "x_kb": 14
   },
   "af5a8ef0-770f-58b0-a208-c175cf576a15": {
    "file": "2026-09/af5a8ef0-770f-58b0-a208-c175cf576a15.json.gz",
@@ -9855,8 +9824,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 15,
-   "x_check": "team 2: the events come to 7226, gvg.report's own score is 7466"
+   "x_kb": 15
   },
   "7255f1cf-9de8-5fc2-aa0d-6b012cc80fee": {
    "file": "2026-10/7255f1cf-9de8-5fc2-aa0d-6b012cc80fee.json.gz",
@@ -9984,8 +9952,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 33,
-   "x_check": "team 1: the events come to 13072, gvg.report's own score is 13068"
+   "x_kb": 33
   },
   "1bfe590c-110e-5a8b-a7e2-aa4ac1b00abe": {
    "file": "2026-09/1bfe590c-110e-5a8b-a7e2-aa4ac1b00abe.json.gz",
@@ -10001,8 +9968,7 @@
    "summary": true,
    "trim": 3,
    "x": 2,
-   "x_kb": 41,
-   "x_check": "team 1: the events come to 3221, gvg.report's own score is 3343"
+   "x_kb": 41
   },
   "d58b97e0-a184-59be-abfd-c401e3570b70": {
    "file": "2026-09/d58b97e0-a184-59be-abfd-c401e3570b70.json.gz",
@@ -10563,38 +10529,6 @@
    "trim": 3,
    "x": 2,
    "x_kb": 10
-  },
-  "0e935804-81b8-5698-aff8-cc830e25fa77": {
-   "file": "2026-11/0e935804-81b8-5698-aff8-cc830e25fa77.json.gz",
-   "date": "2026-11-24T03:12:31.354Z",
-   "map": "Corrupted Isle",
-   "teams": [
-    "chic",
-    "DUM"
-   ],
-   "winner": "chic",
-   "length_s": 367,
-   "kb": 88,
-   "summary": true,
-   "trim": 3,
-   "x": 2,
-   "x_kb": 12
-  },
-  "524ee2e7-d9a8-53fe-aa2f-2529db6eedce": {
-   "file": "2026-11/524ee2e7-d9a8-53fe-aa2f-2529db6eedce.json.gz",
-   "date": "2026-11-21T21:01:18.800Z",
-   "map": "Isle of Meditation",
-   "teams": [
-    "HC",
-    "hdm"
-   ],
-   "winner": "hdm",
-   "length_s": 1693,
-   "kb": 486,
-   "summary": true,
-   "trim": 3,
-   "x": 2,
-   "x_kb": 61
   }
  }
 }
