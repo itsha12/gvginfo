@@ -134,8 +134,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   team mate took it up, its carrier took it up again, returned, left lying) and one a flag life. A hand-off is a
   living player putting the flag down with a team mate within an aggro bubble of it (R-630). A returned hand-off
   costs about a third of a flag for a minute and is made up within three: the cost of one run (R-631). Returned in
-  the next 15 s (R-629) is returned with an enemy player standing on the flag within 15 s of the put-down: an
-  estimate until the rebuild keeps the second of a return (R-481). Up on flags, for the frontliner's run, is the
+  the next 15 s (R-629) is back at its spawn within 15 s of the put-down. When a flag went back is gvg.report's own
+  flag object at the spawn (R-481; *as built* on `bundle-4`, `Moments.flag_backs`): a pickup is the next flag only
+  when the flag had gone back, and any other pickup takes the same flag up from where it lay, however near the
+  spawn; who returned it is the living enemy player nearest where it lay that second. A flag put on the hall's
+  other flag stand (the Obelisk flag stand) goes back at once. A flag brought up with the team, put down and taken
+  up again later is no run until the carry that takes it up (R-505, `Moments.not_run_first`). Up on flags, for the frontliner's run, is the
   held stand (R-627). Which builds are the primary defender or flag runner is left to the data (R-628).
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
   a half from 1.3, two flags from 1.7 (R-408, in his units of R-375). Flag position is never judged from who holds the
@@ -439,13 +443,23 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   him missed through Blind, less 50 for each enchantment or weapon spell a team casts on its own Lord, or 300 while
   he has Entourage up; life steal, and what the month's flux does to a Lord, are no team's Lord damage. At the
   rebuild the price of a position reads gvg.report's Lord health for the kill and the aggressiveness lead for 28:00
-  (R-635). Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
-  sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
+  (R-635). *As built* on `bundle-4` (`Moments.lord_record`): every Lord damage figure is gvg.report's, each position
+  carries both teams' aggressiveness and each Lord's health as gvg.report estimates it, and the price of a position
+  reads both. Who is on a Lord and when stays read from the replay's own hits (R-655).
 - Once degen is in the engine (R-638) every damage figure accounts for it, NPC damage first (R-649; not built).
   It is the amounts that take it in; who is in which fight stays read from hits and casts (R-655). Degen on
   players is gvg.report's (R-638), and so is degen on NPCs and on a Lord: its summary credits it to the player, the
   condition, the skill and the target, as match totals (R-661, in place of the estimate of R-657). The engine
   reads gvg.report's energy estimate, each player's least and most energy every two seconds (R-664; not built).
+- Energy (his thoughts of 2026-11-24, to be worked through with him before anything is built): the monks' matters
+  most, the midline's is read too, the frontline's is not (R-665). It is for three things (R-666): monk casting
+  efficiency, an execution measure by character that needs no energy record (healing and prevention for the energy
+  spent, against overhealing and prots on targets that did not need them); an excuse for execution, by character
+  (monks out of energy cannot save the target however good they are; a midline out of energy may be why a team
+  does not kill); and an input to decisions with an aggressive and a safe option, as the collective energy of the
+  monks in that fight, a team's own and the enemy's. A monk has 40 energy on a staff, 42 on a 40/40 set, 62 in
+  single high and 72 in double high, and is read as always having 72 available; single high takes 1 off his
+  regeneration and double high 2; his first guess for low is about 15 left in single high (R-667).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one

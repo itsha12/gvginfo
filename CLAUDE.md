@@ -58,7 +58,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `tools/gvgreport/replay_extras.mjs`; `x` in the index is its version): gvg.report's flag objects (R-481), Lord damage
   record (R-632), what each prot did, degen, interrupt attempts and death and spike-save recaps (R-636 to R-639), and its
   energy model (each player's least and most energy every two seconds; the engine is to read it, R-664). It uses the replay's agent numbers and clock. A new version of it fetches both payloads again and writes
-  only that file: a stored replay is never written again. The engine does not read it yet (stage E).
+  only that file: a stored replay is never written again. On the branch the engine reads it through `Match.extras()`
+  (`tools/replay_analysis/extras.py`: an `Extras`, with `lord_record()` for gvg.report's Lord record by the second;
+  `python3 extras.py cover` counts what every stored match holds). A match with no file stops the reading (R-460):
+  fetch the `replays` branch again. Read so far: the flag objects and the Lord record; the rest is listed under
+  "The engine on the new trim" below.
 - Replay analysis toolkit: `tools/replay_analysis/` (`replaylib.py` = Match class: positions, groups, sides, carries,
   build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
   tables). Start every match review from `report.py`, then dig into specific moments with `replaylib`. Improve these
@@ -188,8 +192,34 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the execution tier), kept apart, each with its evidence. Enemy response is described beside them.
 - Questions for Denning come from the catalogue and cluster mechanisms (name this cluster, approve this candidate),
   not a list of Claude's ideas after each batch.
+- The engine on the new trim (stage E, step 2), on the branch. Built 2026-11-24: the reader (`extras.py`); flag returns
+  (R-481); the Lord record (R-632 to R-635, described under "The Lord push and Lord damage"). To build, in this order:
+  degen in the damage figures (R-638, R-649, R-655, R-661), interrupt attempts (R-639), what each prot did and the
+  death and spike-save recaps (R-636), who stripped which enchantment from our own replays (R-637), a hold told with
+  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-667).
+  Flag returns as built: `Moments.flag_backs` reads every time a team's flag came back to its spawn from gvg.report's
+  flag objects (an object on the spawn spot within `RETURN_CAP_S` of that team's capture is the capture, any other a
+  return), and `flag_lives` is built on it: a pickup is the next flag only when the flag had gone back; any other
+  pickup takes the same flag up from where it lay, however near the spawn (the inference from the next pickup read
+  a return that never happened about one time in seven, and read real ones a median 6 s and up to 7 minutes late).
+  A life that ends returned ends the second it went back, so the flag tally (R-408) no longer counts a returned flag
+  as lying on the ground until the next pickup (Crew v cope 5:47 to 9:23: Crew read level, a flag down in truth).
+  Who returned it is the living enemy player nearest where the object lay that second (`returned`; None where nobody
+  stands within `RETURN_R`). A capture the observer recorded on no carry of the life (the capper took it up again
+  unseen, or the capture was named on the player taking the next flag) ends the life captured (`cap_unseen`), and a
+  flag put on the hall's other flag stand (the Obelisk flag stand, Isle of Meditation) goes back at once with nobody
+  near (`other_stand`). Every run prints the count of each ending (`Moments.flag_ends`). With true lives one reading
+  had to follow, `Moments.not_run_first` (R-505 on the carries before a put-down: a flag brought up with the team, put
+  down and taken up again later is no run until that carry; 옷옷옷옷 v RACK 0:00 and 3:03, Classic, where the inferred
+  return had made two lives of one flag): it is asked by `_flag_rows`, the opening, the other side's row, the moments
+  and the runners. Change it against those rows and hold v Men 0:00 (Classic: a flag put down as the gates open was
+  not brought anywhere), never by a count of seconds. Left: a flag lying on the field is told from its take-up, not
+  from when its taker set off for it (옷옷옷옷 v RACK 6:15, Visible, now told at 6:27).
+  `tools/golden/compare.py <before> <after> [--skip key,key]` compares the plays of two runs (what "compare the plays
+  with the run before" means everywhere in this file). A full run needs the machine to itself: a second run beside
+  it gets a worker killed for memory and the run then hangs without a word.
 - Check the reading after every change (R-453), on the branch: `moments.py all <file> --dev` (the development
-  set, `data/model/dev_set.json`, about a minute) then `tools/golden/review.py score <file> --key <main>/data/model/review_key.json`
+  set, `data/model/dev_set.json`, about six minutes on two cores) then `tools/golden/review.py score <file> --key <main>/data/model/review_key.json`
   (the review key: every row Denning has marked, his words, and the checks read from them). Only a row he graded
   Classic is binding (R-494): a failing Classic row is fixed before anything else. Everything else is a report which
   Claude reads and tells him of only where it matters: the rows marked before 2026-11-15 (history, R-491), the Visible,
@@ -451,10 +481,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   start of a hold), and `put_downs`, one a carry that ended on the ground (who and of which line, dead or not, where, the
   living enemy players within an aggro bubble of it, `enemy_near`, R-623, and what became of it: a team mate took it up,
   its carrier took it up again, returned, left lying). A flag goes back only when an enemy player picks it up (R-622).
-  The second of a return is an estimate until the rebuild (R-481): `flag_lives` infers it from the last enemy on the
-  flag, 3 to 69 s late on RJT v RACK; the put-down carries `first_enemy_s`, the first enemy to stand on it, which has
-  those four known returns right, and `returned_soon` (returned with an enemy on it within 15 s, `RETURN_SOON_S`, his
-  window, R-629). A hand-off (`handoff`) is a living player putting the flag down with a team mate within an aggro
+  The second of a return is gvg.report's flag object at the spawn (R-481, `Moments.flag_backs`): the put-down carries
+  `return_by_s`, the seconds from the put-down to the return, `returned_by`, and `returned_soon` (back within 15 s,
+  `RETURN_SOON_S`, his window, R-629); `first_enemy_s`, the first enemy to stand on it, is kept beside them. A hand-off (`handoff`) is a living player putting the flag down with a team mate within an aggro
   bubble of it (his reading of the word, R-630), read before the result. `cases.py handoff <plays file>` (report
   `data/model/handoff_cases.json`): A, the record, with X1 and X2 (in range a flag is returned more often: both hold);
   B, a hand-off returned against a flag that lay and was returned later (R-626, "contested v uncontested"), and what
@@ -523,15 +552,17 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   team's own Lord, 300 with Entourage up; it rebuilds exactly from the record's event list, a hit counted for the team
   that dealt it (source "map" is the flux, nobody's). gvg.report's record also scores each Blind put on the enemy Lord at
   30 for the team that put it there (events of kind `condition`; 176 of them in 53 of the 658 matches): with it every
-  team score rebuilds. Not built: at the rebuild one new trim version keeps that record
-  together with the flag objects (R-481), and the engine reads Lord damage, the aggressiveness lead and gvg.report's
-  Lord health from it (R-635: health for the kill, the lead for 28:00, in the price of a position). Until then the
-  record is kept for single matches in `data/model/lord_gvg.json` (`tools/golden/review.py lord-record <that file>
-  <probe files>`, from a probe run with the pick `summary.objectives.guild_lord_damage`; about 3 KB a match), and
-  every Lord damage figure put to him is gvg.report's where that file has the match, else its match total set beside
-  the engine's sum, each named for what it is; never give him the sum, or the health rebuilt by `lord.py`, as
-  gvg.report's. The engine's own push window stops at the whole second of its last hit and drops what lands later in
-  that second (hdm v Men 26:42: 344 for 374): left, since the record replaces it. A fetch downloads about 180 MB of
+  team score rebuilds. Built on the branch (2026-11-24): the record is in the file beside each replay and the engine
+  reads it, `Moments.lord_record()` (`extras.LordRecord`: `hits`, `damage`, `aggressiveness`, `health`). Every Lord
+  damage figure is gvg.report's (`on_lord`, the split's `lord_damage`, the Lord play and the Lord line, the end
+  record's `lord_damage_by`); each position carries both teams' aggressiveness (`aggr` in `consequence`, R-634) and each
+  Lord's health as gvg.report estimates it (`lord`, in place of the health rebuilt by `lord.py`), and the price of a
+  position reads both (R-635: `cases.position`, the seventh price "aggressiveness lead (per 500)"; one price for the
+  whole match though the lead decides only at the end, a stand-in until the win model takes the prices' place). Who is
+  on a Lord and when stays read from the replay's own hits (`Moments.lord_hits`, the count of hits behind `aim`), as
+  who is in which fight is (R-655). A team whose Lord damage the observer did not see keeps its blank
+  (`Moments.lord_unseen`). `data/model/lord_gvg.json` and `review.py lord-record` are no longer needed (for the
+  clean-up, R-398). Never give him the health rebuilt by `lord.py` as gvg.report's. A fetch downloads about 180 MB of
   replay and 65 to 110 MB of summary a match, and gvg.report serves no smaller Lord damage payload. Picked Lord pushes
   are marked on the site, Model > Game review, the view "Lord push" (`review.js`; rows `data/model/lord_rows.json`,
   written on the branch by `tools/golden/review.py lord <main>/data/model/lord_rows.json <report id>:<m:ss> ... --gvg
