@@ -21,8 +21,9 @@
 //                   knockdowns prevented, healing, overhealing, Divine Favor healing, Divine Favor overhealing,
 //                   damage prevented, degen dealt, regen given]]}    rows with none of those figures are left out
 //   targets       [[caster, skill id, list (c cast on, h healed, d damaged), target, casts, damage, healing, overhealing,
-//                   Divine Favor healing, damage prevented, degen, regen]]   c and h rows with healing or prevention,
-//                   d rows with degen (the target may be an NPC or a Lord)
+//                   Divine Favor healing, damage prevented, degen, regen, condition, source skill id]]   c and h rows with
+//                   healing or prevention, d rows with degen (the target may be an NPC or a Lord: gvg.report's summary
+//                   credits degen on them to the player and, for a condition, to the skill that put it there)
 //   received      [[player, source, skill id, condition, source skill id, casts, healing, overhealing, Divine Favor
 //                   healing, damage prevented, attacks blocked, degen taken, regen received]]
 //   lord_effects  [[start, end, family (e enchantment, h hex, w weapon spell, ...), skill id, caster, the Lord, how it ended]]
@@ -43,9 +44,11 @@
 //                   ms after the cast began]]      fakes  [[agent, likely fake casts]]      attempt_totals {...}
 //   energy        gvg.report's energy model, its own estimate with bounds: {step, start, model, players: {agent: {lo, hi, cap}}}
 //                   lo and hi = the least and most energy a player can have, one value every `step` tenths from `start`
-//                   (null where unread); cap = [[t, maximum energy]] where it changes
+//                   (null where unread; the model's lower bound is kept at 0 or more and never above hi);
+//                   cap = [[t, maximum energy]] where it changes
 
-export const EXTRAS_VERSION = 1;
+// Bump when this file's format changes: stored matches with an older version have their payloads fetched again.
+export const EXTRAS_VERSION = 2;
 const r1 = (x) => (x == null || !isFinite(x) ? 0 : Math.round(x * 10) / 10);
 const LORD_KIND = { damage: "d", life_steal: "l", heal: "h", healing: "h", effect: "e" };
 
@@ -149,7 +152,7 @@ function playersOf(players, A) {
           if (code === "d" ? !dg : !heal) continue;
           targets.push([a, s.skill_id ?? null, code, A(x.target_agent_key, { n: x.target_label, team: x.target_team_id, npc: x.target_static_npc_kind }), x.targeted_casts ?? 0,
             r1(x.damage_estimate), r1(x.healing_estimate), r1(x.overhealing_estimate), r1(x.divine_favor_healing_estimate), r1(x.damage_prevented_estimate),
-            r1(x.degeneration_effective_damage_estimate), r1(x.regeneration_effective_healing_estimate)]);
+            r1(x.degeneration_effective_damage_estimate), r1(x.regeneration_effective_healing_estimate), s.condition_name || null, s.source_skill_id ?? null]);
         }
       }
     }
@@ -216,7 +219,8 @@ function energyOf(es, A, T) {
       const t = start + k * STEP;
       while (j < iv.length && at(iv[j].from_ms) <= t) cur = iv[j++];
       if (!cur) continue;
-      lo[k] = cur.current_min == null ? null : Math.round(cur.current_min); hi[k] = cur.current_max == null ? null : Math.round(cur.current_max);
+      hi[k] = cur.current_max == null ? null : Math.max(0, Math.round(cur.current_max));
+      lo[k] = cur.current_min == null ? null : Math.max(0, Math.round(cur.current_min)); if (lo[k] != null && hi[k] != null && lo[k] > hi[k]) lo[k] = hi[k];
       const m = cur.maximum_max == null ? null : Math.round(cur.maximum_max);
       if (m != null && (!cap.length || cap[cap.length - 1][1] !== m)) cap.push([t, m]);
     }
