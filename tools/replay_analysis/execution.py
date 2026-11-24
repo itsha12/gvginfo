@@ -22,7 +22,10 @@ removal); the usual damage of each role (`eventlayer.usual_dps`, the role's meas
 The team's own care, read with `forensics.py` on the play's window (the measurements of a death, asked of a play):
 casts into a ready interrupt (`Forensics.casting`), attacks made while Blind, and damage taken off a shield set while
 not casting (`Forensics.sets_damage`).
-Not read here: energy (not in the replays); what a prot did (R-636, at the rebuild).
+Energy taken from their players (R-685, R-692: whom a Mesmer drains, their monks or their midline, is execution and no
+decision): `energy.denial`, the points taken by Energy Surge, Energy Burn, Mind Wrack, Power Leak, Shame, Guilt and
+Malaise, and the share of them taken from their backline monks.
+Not read here: what a prot did (R-636, at the rebuild); how well a monk spends his energy (R-678, piece 4).
 
 Usage:  python3 execution.py <report id> [m:ss]     the execution record of a match's plays (from the second given)"""
 import bisect, collections, sys
@@ -57,6 +60,8 @@ MEASURES = (
     ("into_ready", -1, "casts started with an enemy interrupt ready and in range, a 10 s"),
     ("blind_attacks", -1, "attacks made while Blind, a 10 s"),
     ("off_shield", -1, "share of the damage taken that landed on a player off his shield set and not casting (players who carry a shield set)"),
+    ("drain", +1, "energy taken from their players (Energy Surge, Energy Burn, Mind Wrack, Power Leak, Shame, Guilt, Malaise), points a 10 s"),
+    ("drain_on_monks", 0, "share of that energy taken from their backline monks (offence or defence: no direction, R-692)"),
 )
 KEYS = tuple(k for k, _, _ in MEASURES)
 SIGN = {k: s for k, s, _ in MEASURES}
@@ -101,8 +106,9 @@ class Exec:
         for L in (self.dm, self.dm_npc, self.hl_npc, self.dg, self.dg_npc): L.sort(key=lambda x: x[0])
         self._t = {id(L): [x[0] for x in L] for L in (self.dm, self.dm_npc, self.hl_npc, self.dg, self.dg_npc)}
         self.intr = sorted((i[0] / 10, i[1], i[3]) for i in (m.o.get("interrupts") or []) if i[0] is not None and i[1] in pl and i[3] in pl)
-        import forensics
+        import forensics, energy
         self.F = forensics.Forensics(rid, m)
+        self.den = [(t, a, b, e) for t, a, b, _, e, _ in energy.denial(m) if e]      # energy taken by an enemy skill (R-685): (second, by, on, points)
         self.blind = collections.defaultdict(list)             # player -> [(from, to)] Blind on him
         for e in m.o.get("effects") or []:
             if e[2] == "c" and e[7] == "blind" and e[0] is not None and e[5] in pl: self.blind[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
@@ -151,6 +157,8 @@ class Exec:
         F = self.F
         sd = F.sets_damage(tm, t0, t1, who=sorted(X))["measures"]
         blind_att = sum(1 for a in X for t in self.att[a][bisect.bisect_left(self.att[a], t0):bisect.bisect_left(self.att[a], t1)] if any(s0 <= t <= s1 for s0, s1 in self.blind.get(a, ())))
+        dn = [(b, e) for t, a, b, e in self.den if t0 <= t < t1 and a in X and b in Y]
+        dn_tot = sum(e for _, e in dn)
         out = {
             "dmg": p10(tot),
             "dmg_v_usual": round(hit_tot / usual, 2) if usual > 0 else None,
@@ -176,6 +184,8 @@ class Exec:
             "into_ready": g10(sum(F.casting(a, t0, t1)["measures"]["into_ready_interrupt"] for a in X)),
             "blind_attacks": g10(blind_att),
             "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
+            "drain": g10(dn_tot),
+            "drain_on_monks": round(sum(e for b, e in dn if b in self.healer) / dn_tot, 2) if dn_tot else None,
         }
         return out
 

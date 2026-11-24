@@ -1175,12 +1175,12 @@
     "reads": "not clear"
    },
    "T1 the stays read worst are worse off three minutes on": {
-    "first": -2.938910519564024,
-    "second": 1.8721328332930154,
-    "difference": -4.811043352857039,
+    "first": -2.7906733119232854,
+    "second": 1.7980142294726469,
+    "difference": -4.588687541395933,
     "range": [
-     -8.958978641280895,
-     -0.7388030895536706
+     -8.927027184315106,
+     -0.4799960952851826
     ],
     "n": [
      55,
@@ -1193,8 +1193,8 @@
     "second": 0.10909090909090909,
     "difference": 0.03636363636363636,
     "range": [
-     -0.056576441605713144,
-     0.13910459517628848
+     -0.05205185657285878,
+     0.14190519772375496
     ],
     "n": [
      55,
@@ -1207,8 +1207,8 @@
     "second": 0.07272727272727272,
     "difference": 0.018181818181818188,
     "range": [
-     -0.05744862417276209,
-     0.11298390222959537
+     -0.05604208606373963,
+     0.11005565260329911
     ],
     "n": [
      55,
@@ -1712,39 +1712,39 @@
   "reading": {
    "K": 30,
    "read": {
-    "the stay costs": 40,
-    "the stay pays": 79,
-    "no clear reading": 46
+    "the stay costs": 38,
+    "no clear reading": 52,
+    "the stay pays": 75
    },
    "stays": 165,
    "the stay pays": {
-    "stays": 79,
-    "one dies": 10.126582278481013,
-    "two or more within 60 s": 6.329113924050633,
-    "win points": 1.0722631390473973,
-    "started at": 95.00773615907565
+    "stays": 75,
+    "one dies": 12.0,
+    "two or more within 60 s": 8.0,
+    "win points": 1.0087358154833153,
+    "started at": 95.12702847526329
    },
    "no clear reading": {
-    "stays": 46,
-    "one dies": 10.869565217391305,
-    "two or more within 60 s": 8.695652173913043,
-    "win points": 4.19383927487457,
-    "started at": 84.40014824553195
+    "stays": 52,
+    "one dies": 7.6923076923076925,
+    "two or more within 60 s": 5.769230769230769,
+    "win points": 3.2996404982466347,
+    "started at": 86.13149889177853
    },
    "the stay costs": {
-    "stays": 40,
-    "one dies": 17.5,
-    "two or more within 60 s": 10.0,
-    "win points": -5.833271538569105,
-    "started at": 89.71891122786135
+    "stays": 38,
+    "one dies": 18.421052631578945,
+    "two or more within 60 s": 10.526315789473683,
+    "win points": -5.340577867996401,
+    "started at": 88.51077228838605
    },
-   "worst_third_under": -0.3351939771731186,
+   "worst_third_under": -0.3411934561425864,
    "read_worst": [
     {
      "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
      "team": "One",
      "t": 720,
-     "worth": -26.114151031997064,
+     "worth": -25.4229082799208,
      "deaths": 4,
      "deaths_60": 4,
      "then": -5.858032691325009
@@ -1753,7 +1753,7 @@
      "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
      "team": "Men",
      "t": 600,
-     "worth": -19.186320014151033,
+     "worth": -18.492959500675347,
      "deaths": 2,
      "deaths_60": 2,
      "then": -20.297317958999827
@@ -1762,7 +1762,7 @@
      "rid": "e7a93c30-8c9d-527f-a080-465c38c75136",
      "team": "Team",
      "t": 720,
-     "worth": -17.043445677327874,
+     "worth": -16.277078325713198,
      "deaths": 0,
      "deaths_60": 0,
      "then": 1.0988127707387774
@@ -1771,7 +1771,7 @@
      "rid": "ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816",
      "team": "cope",
      "t": 840,
-     "worth": -16.717917225483646,
+     "worth": -16.212189539095508,
      "deaths": 0,
      "deaths_60": 1,
      "then": -0.011138760029372197
@@ -1780,7 +1780,7 @@
      "rid": "17662751-a293-59b0-a656-6e1f3c2bad73",
      "team": "hold",
      "t": 720,
-     "worth": -12.59495226946922,
+     "worth": -12.276729522617842,
      "deaths": 0,
      "deaths_60": 0,
      "then": 0.21409122724415086
@@ -1789,7 +1789,7 @@
      "rid": "7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e",
      "team": "Fun",
      "t": 840,
-     "worth": -11.951465620444427,
+     "worth": -11.80996082133596,
      "deaths": 3,
      "deaths_60": 3,
      "then": -75.20118645887977
@@ -1798,7 +1798,7 @@
      "rid": "418cf874-f817-523d-a810-56c7498bb69e",
      "team": "cope",
      "t": 1080,
-     "worth": -11.484373469618482,
+     "worth": -11.048492912370032,
      "deaths": 0,
      "deaths_60": 0,
      "then": 3.6510580982243357
@@ -1807,7 +1807,7 @@
      "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
      "team": "hook",
      "t": 600,
-     "worth": -11.105400476550782,
+     "worth": -10.411544204204827,
      "deaths": 2,
      "deaths_60": 5,
      "then": -17.15860168091314
@@ -1816,7 +1816,7 @@
      "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
      "team": "Apes",
      "t": 1440,
-     "worth": -10.78269223856363,
+     "worth": -10.308084242769977,
      "deaths": 0,
      "deaths_60": 0,
      "then": 0.18774327461845708
@@ -1825,7 +1825,7 @@
      "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
      "team": "Apes",
      "t": 1560,
-     "worth": -10.68820989994588,
+     "worth": -10.163320123684246,
      "deaths": 0,
      "deaths_60": 0,
      "then": -95.27035023396076
@@ -1834,7 +1834,7 @@
      "rid": "c63abf8c-fada-5522-a0ee-60a14882b18a",
      "team": "MBP",
      "t": 240,
-     "worth": -9.139560964453427,
+     "worth": -9.116324707460231,
      "deaths": 0,
      "deaths_60": 0,
      "then": 6.819573090516173
@@ -1843,7 +1843,7 @@
      "rid": "8684826a-4ce8-59cb-a5f9-d7bf81307491",
      "team": "Dz",
      "t": 1560,
-     "worth": -8.911218250432617,
+     "worth": -9.02986296872979,
      "deaths": 0,
      "deaths_60": 0,
      "then": 1.0195831181105786
@@ -1969,11 +1969,11 @@
     "started_at": 89.90276069812258,
     "win_points_180": -0.902487804687746,
     "monk_energy": {
-     "mean": 72.7,
-     "low": 71.2,
+     "mean": 67.5,
+     "low": 66.0,
      "n": 2
     },
-    "sentence": "NwAy had a 90% chance of winning and stayed through xxx's base res of 14:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 524 damage a player in the minute before, its monks at 73 on average, the lowest at 71), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
+    "sentence": "NwAy had a 90% chance of winning and stayed through xxx's base res of 14:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 524 damage a player in the minute before, its monks at 68 on average, the lowest at 66), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
    },
    {
     "rid": "a0ff75fb-4523-5e2b-a8cf-77ea558c1c7a",
@@ -2089,11 +2089,11 @@
     "started_at": 79.93393767220547,
     "win_points_180": -1.2730924934721166,
     "monk_energy": {
-     "mean": 63.2,
-     "low": 55.2,
+     "mean": 58.0,
+     "low": 50.0,
      "n": 2
     },
-    "sentence": "Book had an 80% chance of winning and stayed through Crew's base res of 6:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 624 damage a player in the minute before, its monks at 63 on average, the lowest at 55), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
+    "sentence": "Book had an 80% chance of winning and stayed through Crew's base res of 6:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 624 damage a player in the minute before, its monks at 58 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
    },
    {
     "rid": "2b13eea5-2968-5421-a481-60215131765d",
@@ -2209,11 +2209,11 @@
     "started_at": 98.47925267591164,
     "win_points_180": 1.2195097967140578,
     "monk_energy": {
-     "mean": 64.2,
-     "low": 64.2,
+     "mean": 59.0,
+     "low": 59.0,
      "n": 1
     },
-    "sentence": "cope had a 98% chance of winning and stayed through Book's base res of 22:00 in the danger zone (4 of 5 past their res shrine, 5 NPCs on them, 357 damage a player in the minute before, its monks at 64 on average, the lowest at 64), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "cope had a 98% chance of winning and stayed through Book's base res of 22:00 in the danger zone (4 of 5 past their res shrine, 5 NPCs on them, 357 damage a player in the minute before, its monks at 59 on average, the lowest at 59), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "8b6395d7-90c9-5aa3-a368-704ee72e96d8",
@@ -2242,11 +2242,11 @@
     "started_at": 99.71662682457396,
     "win_points_180": 0.28337317542603824,
     "monk_energy": {
-     "mean": 52.7,
-     "low": 44.2,
+     "mean": 47.5,
+     "low": 39.0,
      "n": 2
     },
-    "sentence": "yM had a 100% chance of winning and stayed through dR's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 460 damage a player in the minute before, its monks at 53 on average, the lowest at 44), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "yM had a 100% chance of winning and stayed through dR's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 460 damage a player in the minute before, its monks at 48 on average, the lowest at 39), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "d9099718-a6ea-56f2-a176-17e30b378dc3",
@@ -2275,11 +2275,11 @@
     "started_at": 92.94176112882107,
     "win_points_180": 6.757021209522163,
     "monk_energy": {
-     "mean": 68.2,
-     "low": 63.2,
+     "mean": 63.0,
+     "low": 58.0,
      "n": 3
     },
-    "sentence": "Crew had a 93% chance of winning and stayed through Rudi's base res of 10:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 321 damage a player in the minute before, its monks at 68 on average, the lowest at 63), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
+    "sentence": "Crew had a 93% chance of winning and stayed through Rudi's base res of 10:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 321 damage a player in the minute before, its monks at 63 on average, the lowest at 58), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
    },
    {
     "rid": "d9099718-a6ea-56f2-a176-17e30b378dc3",
@@ -2308,11 +2308,11 @@
     "started_at": 98.26484196534771,
     "win_points_180": 1.7351580346522844,
     "monk_energy": {
-     "mean": 70.2,
-     "low": 63.2,
+     "mean": 65.0,
+     "low": 58.0,
      "n": 3
     },
-    "sentence": "Crew had a 98% chance of winning and stayed through Rudi's base res of 12:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 462 damage a player in the minute before, its monks at 70 on average, the lowest at 63), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Crew had a 98% chance of winning and stayed through Rudi's base res of 12:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 462 damage a player in the minute before, its monks at 65 on average, the lowest at 58), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "37158a80-cd95-5ab2-afbc-04fa6f7cefa3",
@@ -2341,11 +2341,11 @@
     "started_at": 98.76842331876547,
     "win_points_180": 1.2315766812345252,
     "monk_energy": {
-     "mean": 43.5,
-     "low": 25.2,
+     "mean": 39.7,
+     "low": 24.0,
      "n": 3
     },
-    "sentence": "Men had a 99% chance of winning and stayed through Book's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 543 damage a player in the minute before, its monks at 44 on average, the lowest at 25), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Men had a 99% chance of winning and stayed through Book's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 543 damage a player in the minute before, its monks at 40 on average, the lowest at 24), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "e14d826d-1c32-5bea-a5fc-d8a72142447e",
@@ -2374,11 +2374,11 @@
     "started_at": 48.27174840992589,
     "win_points_180": -14.947780468002708,
     "monk_energy": {
-     "mean": 65.2,
-     "low": 65.2,
+     "mean": 60.0,
+     "low": 60.0,
      "n": 1
     },
-    "sentence": "Dz had a 48% chance of winning and stayed through xxx's base res of 8:00 in the danger zone (5 of 5 past their res shrine, 7 NPCs on them, 584 damage a player in the minute before, its monks at 65 on average, the lowest at 65), with the stand not held against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on lost 15 points of its chance of winning."
+    "sentence": "Dz had a 48% chance of winning and stayed through xxx's base res of 8:00 in the danger zone (5 of 5 past their res shrine, 7 NPCs on them, 584 damage a player in the minute before, its monks at 60 on average, the lowest at 60), with the stand not held against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on lost 15 points of its chance of winning."
    },
    {
     "rid": "e906615a-ad2c-5e55-a65a-bbe6020cce4d",
@@ -2440,11 +2440,11 @@
     "started_at": 99.85653253945651,
     "win_points_180": 0.14346746054348936,
     "monk_energy": {
-     "mean": 66.7,
-     "low": 61.7,
+     "mean": 61.5,
+     "low": 56.5,
      "n": 3
     },
-    "sentence": "chic had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 457 damage a player in the minute before, its monks at 67 on average, the lowest at 62), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "chic had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 457 damage a player in the minute before, its monks at 62 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "ccd78801-c6e8-549b-add2-ca9c98926d1c",
@@ -2473,11 +2473,11 @@
     "started_at": 0.964536751925139,
     "win_points_180": -0.964536751925139,
     "monk_energy": {
-     "mean": 74.2,
-     "low": 74.2,
+     "mean": 69.0,
+     "low": 69.0,
      "n": 1
     },
-    "sentence": "Free had a 1% chance of winning and stayed through Book's base res of 26:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 322 damage a player in the minute before, its monks at 74 on average, the lowest at 74), with nothing against the stay; it took 5 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
+    "sentence": "Free had a 1% chance of winning and stayed through Book's base res of 26:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 322 damage a player in the minute before, its monks at 69 on average, the lowest at 69), with nothing against the stay; it took 5 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on lost 1 point of its chance of winning."
    },
    {
     "rid": "7e05bf53-770b-5a23-ab72-26babc78f1ff",
@@ -2506,11 +2506,11 @@
     "started_at": 86.63797282760139,
     "win_points_180": 13.362027172398616,
     "monk_energy": {
-     "mean": 66.5,
-     "low": 55.2,
+     "mean": 61.3,
+     "low": 50.0,
      "n": 3
     },
-    "sentence": "hook had an 87% chance of winning and stayed through Apes's base res of 26:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 488 damage a player in the minute before, its monks at 66 on average, the lowest at 55), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 13 points of its chance of winning."
+    "sentence": "hook had an 87% chance of winning and stayed through Apes's base res of 26:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 488 damage a player in the minute before, its monks at 61 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 13 points of its chance of winning."
    },
    {
     "rid": "82c41cb9-ad64-5e28-a069-e533f94e0d6b",
@@ -2539,11 +2539,11 @@
     "started_at": 96.26883316088052,
     "win_points_180": 3.731166839119482,
     "monk_energy": {
-     "mean": 66.2,
-     "low": 55.2,
+     "mean": 61.0,
+     "low": 50.0,
      "n": 2
     },
-    "sentence": "Men had a 96% chance of winning and stayed through One's base res of 16:00 in the danger zone (4 of 8 past their res shrine, 3 NPCs on them, 643 damage a player in the minute before, its monks at 66 on average, the lowest at 55), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "Men had a 96% chance of winning and stayed through One's base res of 16:00 in the danger zone (4 of 8 past their res shrine, 3 NPCs on them, 643 damage a player in the minute before, its monks at 61 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "276f8d04-5c9e-57e1-afaa-422d5f4bcbfa",
@@ -2572,11 +2572,11 @@
     "started_at": 97.4378095750278,
     "win_points_180": 2.5621904249721994,
     "monk_energy": {
-     "mean": 66.7,
-     "low": 61.2,
+     "mean": 61.5,
+     "low": 56.0,
      "n": 2
     },
-    "sentence": "Crew had a 97% chance of winning and stayed through EDGE's base res of 4:00 in the danger zone (4 of 6 past their res shrine, 2 NPCs on them, 451 damage a player in the minute before, its monks at 67 on average, the lowest at 61), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "Crew had a 97% chance of winning and stayed through EDGE's base res of 4:00 in the danger zone (4 of 6 past their res shrine, 2 NPCs on them, 451 damage a player in the minute before, its monks at 62 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "43b3f8cd-15c5-5400-ad8f-5e57b2336a01",
@@ -2638,11 +2638,11 @@
     "started_at": 56.84402188348299,
     "win_points_180": 3.1806039314788648,
     "monk_energy": {
-     "mean": 64.2,
-     "low": 64.2,
+     "mean": 59.0,
+     "low": 59.0,
      "n": 1
     },
-    "sentence": "TFS had a 57% chance of winning and stayed through Book's base res of 12:00 in the danger zone (3 of 6 past their res shrine, 2 NPCs on them, 354 damage a player in the minute before, its monks at 64 on average, the lowest at 64), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "TFS had a 57% chance of winning and stayed through Book's base res of 12:00 in the danger zone (3 of 6 past their res shrine, 2 NPCs on them, 354 damage a player in the minute before, its monks at 59 on average, the lowest at 59), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "b2611ae9-afb9-5829-a97a-a9b81a7afc56",
@@ -2671,11 +2671,11 @@
     "started_at": 95.38105209313416,
     "win_points_180": -1.80732311381111,
     "monk_energy": {
-     "mean": 49.4,
-     "low": 42.2,
+     "mean": 44.2,
+     "low": 37.0,
      "n": 3
     },
-    "sentence": "MBP had a 95% chance of winning and stayed through Crew's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 520 damage a player in the minute before, its monks at 49 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on lost 2 points of its chance of winning."
+    "sentence": "MBP had a 95% chance of winning and stayed through Crew's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 520 damage a player in the minute before, its monks at 44 on average, the lowest at 37), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on lost 2 points of its chance of winning."
    },
    {
     "rid": "e4bd9c29-b8fe-54bd-a9c0-04de76ac13ac",
@@ -2704,11 +2704,11 @@
     "started_at": 99.90235266478193,
     "win_points_180": 0.09764733521806512,
     "monk_energy": {
-     "mean": 51.7,
-     "low": 42.2,
+     "mean": 46.5,
+     "low": 37.0,
      "n": 2
     },
-    "sentence": "ohno had a 100% chance of winning and stayed through hook's base res of 12:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 546 damage a player in the minute before, its monks at 52 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "ohno had a 100% chance of winning and stayed through hook's base res of 12:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 546 damage a player in the minute before, its monks at 46 on average, the lowest at 37), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "cb614966-9d75-5630-abae-69f1562e96dc",
@@ -2737,11 +2737,11 @@
     "started_at": 99.172485531537,
     "win_points_180": 0.8275144684629865,
     "monk_energy": {
-     "mean": 67.9,
-     "low": 54.2,
+     "mean": 62.7,
+     "low": 49.0,
      "n": 3
     },
-    "sentence": "Dz had a 99% chance of winning and stayed through Rum's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 509 damage a player in the minute before, its monks at 68 on average, the lowest at 54), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Dz had a 99% chance of winning and stayed through Rum's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 509 damage a player in the minute before, its monks at 63 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "090b0068-ebf2-584d-a34d-3f46307aaefd",
@@ -2770,11 +2770,11 @@
     "started_at": 91.61229811217937,
     "win_points_180": 4.044501573413251,
     "monk_energy": {
-     "mean": 67.9,
-     "low": 58.2,
+     "mean": 62.7,
+     "low": 53.0,
      "n": 3
     },
-    "sentence": "Dz had a 92% chance of winning and stayed through Book's base res of 10:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 386 damage a player in the minute before, its monks at 68 on average, the lowest at 58), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "Dz had a 92% chance of winning and stayed through Book's base res of 10:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 386 damage a player in the minute before, its monks at 63 on average, the lowest at 53), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "090b0068-ebf2-584d-a34d-3f46307aaefd",
@@ -2803,11 +2803,11 @@
     "started_at": 94.49904216711127,
     "win_points_180": 2.590277474796132,
     "monk_energy": {
-     "mean": 64.9,
-     "low": 62.2,
+     "mean": 59.7,
+     "low": 57.0,
      "n": 3
     },
-    "sentence": "Dz had a 94% chance of winning and stayed through Book's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 891 damage a player in the minute before, its monks at 65 on average, the lowest at 62), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "Dz had a 94% chance of winning and stayed through Book's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 891 damage a player in the minute before, its monks at 60 on average, the lowest at 57), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "c0f32eca-f1c2-58f3-af33-26573c782b3d",
@@ -2836,11 +2836,11 @@
     "started_at": 94.9145508948798,
     "win_points_180": 1.9549588360669778,
     "monk_energy": {
-     "mean": 66.5,
-     "low": 54.2,
+     "mean": 61.3,
+     "low": 49.0,
      "n": 3
     },
-    "sentence": "Dz had a 95% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 326 damage a player in the minute before, its monks at 66 on average, the lowest at 54), with nothing against the stay; it took 2 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Dz had a 95% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 326 damage a player in the minute before, its monks at 61 on average, the lowest at 49), with nothing against the stay; it took 2 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "08ae81ba-1d16-5e2b-a676-2773109991f3",
@@ -2869,11 +2869,11 @@
     "started_at": 99.91817363990695,
     "win_points_180": 0.08182636009305133,
     "monk_energy": {
-     "mean": 48.3,
-     "low": 38.4,
+     "mean": 45.2,
+     "low": 37.4,
      "n": 2
     },
-    "sentence": "One had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 483 damage a player in the minute before, its monks at 48 on average, the lowest at 38), with nothing against the stay; it took one death within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "One had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 483 damage a player in the minute before, its monks at 45 on average, the lowest at 37), with nothing against the stay; it took one death within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "6cbf1a47-6197-5827-ab7f-155ed99ecbc7",
@@ -2935,11 +2935,11 @@
     "started_at": 98.66456736802748,
     "win_points_180": 1.1476105189058616,
     "monk_energy": {
-     "mean": 47.1,
-     "low": 42.0,
+     "mean": 42.5,
+     "low": 38.4,
      "n": 3
     },
-    "sentence": "Team had a 99% chance of winning and stayed through hook's base res of 8:00 in the danger zone (3 of 3 past their res shrine, 2 NPCs on them, 442 damage a player in the minute before, its monks at 47 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Team had a 99% chance of winning and stayed through hook's base res of 8:00 in the danger zone (3 of 3 past their res shrine, 2 NPCs on them, 442 damage a player in the minute before, its monks at 42 on average, the lowest at 38), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "7208fa8f-5b39-59d9-a432-ffd4c254743d",
@@ -2968,11 +2968,11 @@
     "started_at": 99.44896685650055,
     "win_points_180": 0.5510331434994575,
     "monk_energy": {
-     "mean": 70.5,
-     "low": 67.2,
+     "mean": 65.8,
+     "low": 62.0,
      "n": 3
     },
-    "sentence": "Team had a 99% chance of winning and stayed through hook's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 347 damage a player in the minute before, its monks at 70 on average, the lowest at 67), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Team had a 99% chance of winning and stayed through hook's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 347 damage a player in the minute before, its monks at 66 on average, the lowest at 62), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "94c556ce-100d-519c-a311-5e83b186c92c",
@@ -3001,11 +3001,11 @@
     "started_at": 89.38025295986608,
     "win_points_180": 10.61974704013392,
     "monk_energy": {
-     "mean": 47.9,
-     "low": 47.5,
+     "mean": 42.9,
+     "low": 42.8,
      "n": 2
     },
-    "sentence": "ohno had an 89% chance of winning and stayed through DMG's base res of 24:00 in the danger zone (7 of 8 past their res shrine, 3 NPCs on them, 416 damage a player in the minute before, its monks at 48 on average, the lowest at 48), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 11 points of its chance of winning."
+    "sentence": "ohno had an 89% chance of winning and stayed through DMG's base res of 24:00 in the danger zone (7 of 8 past their res shrine, 3 NPCs on them, 416 damage a player in the minute before, its monks at 43 on average, the lowest at 43), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 11 points of its chance of winning."
    },
    {
     "rid": "fb87a310-bc8d-5370-a7c6-1c4b1f141b81",
@@ -3034,11 +3034,11 @@
     "started_at": 99.76132272938668,
     "win_points_180": 0.23867727061333,
     "monk_energy": {
-     "mean": 51.2,
-     "low": 46.2,
+     "mean": 46.0,
+     "low": 41.0,
      "n": 3
     },
-    "sentence": "MBP had a 100% chance of winning and stayed through DRKN's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 501 damage a player in the minute before, its monks at 51 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "MBP had a 100% chance of winning and stayed through DRKN's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 501 damage a player in the minute before, its monks at 46 on average, the lowest at 41), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "03a87923-8d19-5c72-abc9-2a035df04b81",
@@ -3100,11 +3100,11 @@
     "started_at": 98.63216098444282,
     "win_points_180": 1.3678390155571818,
     "monk_energy": {
-     "mean": 66.2,
-     "low": 66.2,
+     "mean": 61.0,
+     "low": 61.0,
      "n": 1
     },
-    "sentence": "ohno had a 99% chance of winning and stayed through DMG's base res of 4:00 in the danger zone (7 of 8 past their res shrine, 6 NPCs on them, 390 damage a player in the minute before, its monks at 66 on average, the lowest at 66), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "ohno had a 99% chance of winning and stayed through DMG's base res of 4:00 in the danger zone (7 of 8 past their res shrine, 6 NPCs on them, 390 damage a player in the minute before, its monks at 61 on average, the lowest at 61), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "457b3a21-b67f-5164-a70d-adfd73423fcf",
@@ -3166,11 +3166,11 @@
     "started_at": 99.55046716114718,
     "win_points_180": 0.37527026321695356,
     "monk_energy": {
-     "mean": 76.7,
-     "low": 74.2,
+     "mean": 71.5,
+     "low": 69.0,
      "n": 2
     },
-    "sentence": "Crew had a 100% chance of winning and stayed through EDGE's base res of 6:00 in the danger zone (5 of 8 past their res shrine, 5 NPCs on them, 409 damage a player in the minute before, its monks at 77 on average, the lowest at 74), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Crew had a 100% chance of winning and stayed through EDGE's base res of 6:00 in the danger zone (5 of 8 past their res shrine, 5 NPCs on them, 409 damage a player in the minute before, its monks at 72 on average, the lowest at 69), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "933638bc-02b4-5e63-a2d8-76b87f611018",
@@ -3232,11 +3232,11 @@
     "started_at": 62.413719232163245,
     "win_points_180": 37.586280767836755,
     "monk_energy": {
-     "mean": 69.1,
-     "low": 65.0,
+     "mean": 65.7,
+     "low": 63.0,
      "n": 3
     },
-    "sentence": "\u3052\u3048\u3048\u3048 had a 62% chance of winning and stayed through chic's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 3 NPCs on them, 409 damage a player in the minute before, its monks at 69 on average, the lowest at 65), with the stand not held against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 38 points of its chance of winning."
+    "sentence": "\u3052\u3048\u3048\u3048 had a 62% chance of winning and stayed through chic's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 3 NPCs on them, 409 damage a player in the minute before, its monks at 66 on average, the lowest at 63), with the stand not held against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 38 points of its chance of winning."
    },
    {
     "rid": "3b3bb49b-1ff2-533d-a5a7-55cd86c48afb",
@@ -3364,11 +3364,11 @@
     "started_at": 91.23649494500643,
     "win_points_180": 8.76350505499357,
     "monk_energy": {
-     "mean": 57.4,
-     "low": 40.2,
+     "mean": 52.2,
+     "low": 35.0,
      "n": 3
     },
-    "sentence": "Men had a 91% chance of winning and stayed through xxx's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 788 damage a player in the minute before, its monks at 57 on average, the lowest at 40), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 9 points of its chance of winning."
+    "sentence": "Men had a 91% chance of winning and stayed through xxx's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 788 damage a player in the minute before, its monks at 52 on average, the lowest at 35), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 9 points of its chance of winning."
    },
    {
     "rid": "8684826a-4ce8-59cb-a5f9-d7bf81307491",
@@ -3397,11 +3397,11 @@
     "started_at": 98.98041688188943,
     "win_points_180": 1.0195831181105786,
     "monk_energy": {
-     "mean": 51.2,
-     "low": 51.2,
+     "mean": 46.0,
+     "low": 46.0,
      "n": 1
     },
-    "sentence": "Dz had a 99% chance of winning and stayed through cope's base res of 26:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 644 damage a player in the minute before, its monks at 51 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Dz had a 99% chance of winning and stayed through cope's base res of 26:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 644 damage a player in the minute before, its monks at 46 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "892d580f-2720-5766-a93d-ec462f126bad",
@@ -3430,11 +3430,11 @@
     "started_at": 89.16283204019356,
     "win_points_180": 1.752169174552698,
     "monk_energy": {
-     "mean": 50.1,
-     "low": 38.1,
+     "mean": 53.9,
+     "low": 43.8,
      "n": 3
     },
-    "sentence": "Dz had an 89% chance of winning and stayed through MBP's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 388 damage a player in the minute before, its monks at 50 on average, the lowest at 38), with nothing against the stay; it took 2 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Dz had an 89% chance of winning and stayed through MBP's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 388 damage a player in the minute before, its monks at 54 on average, the lowest at 44), with nothing against the stay; it took 2 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
@@ -3463,11 +3463,11 @@
     "started_at": 72.2001917374164,
     "win_points_180": -20.297317958999827,
     "monk_energy": {
-     "mean": 52.2,
-     "low": 52.2,
+     "mean": 47.0,
+     "low": 47.0,
      "n": 1
     },
-    "sentence": "Men had a 72% chance of winning and stayed through NwAy's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 366 damage a player in the minute before, its monks at 52 on average, the lowest at 52), with the stand not held against the stay; it took 2 deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 20 points of its chance of winning."
+    "sentence": "Men had a 72% chance of winning and stayed through NwAy's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 366 damage a player in the minute before, its monks at 47 on average, the lowest at 47), with the stand not held against the stay; it took 2 deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 20 points of its chance of winning."
    },
    {
     "rid": "c63abf8c-fada-5522-a0ee-60a14882b18a",
@@ -3496,11 +3496,11 @@
     "started_at": 93.18042690948383,
     "win_points_180": 6.819573090516173,
     "monk_energy": {
-     "mean": 48.2,
-     "low": 39.2,
+     "mean": 43.0,
+     "low": 34.0,
      "n": 3
     },
-    "sentence": "MBP had a 93% chance of winning and stayed through DMG's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 872 damage a player in the minute before, its monks at 48 on average, the lowest at 39), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
+    "sentence": "MBP had a 93% chance of winning and stayed through DMG's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 872 damage a player in the minute before, its monks at 43 on average, the lowest at 34), with nothing against the stay; it took no deaths within 60 s of the res, got 9 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
    },
    {
     "rid": "dae60f33-00a0-5b98-ae10-69a8b5424269",
@@ -3562,11 +3562,11 @@
     "started_at": 96.9601774894175,
     "win_points_180": 3.0398225105824905,
     "monk_energy": {
-     "mean": 66.9,
-     "low": 65.2,
+     "mean": 61.7,
+     "low": 60.0,
      "n": 3
     },
-    "sentence": "Crew had a 97% chance of winning and stayed through push's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 540 damage a player in the minute before, its monks at 67 on average, the lowest at 65), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "Crew had a 97% chance of winning and stayed through push's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 540 damage a player in the minute before, its monks at 62 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "f221e39f-faa4-5772-a498-b87e532515a6",
@@ -3595,11 +3595,11 @@
     "started_at": 99.57856231481443,
     "win_points_180": 0.4214376851855661,
     "monk_energy": {
-     "mean": 69.5,
-     "low": 67.2,
+     "mean": 64.3,
+     "low": 62.0,
      "n": 3
     },
-    "sentence": "chic had a 100% chance of winning and stayed through \u6226\u6226\u6226\u6226's base res of 6:00 in the danger zone (7 of 8 past their res shrine, 3 NPCs on them, 421 damage a player in the minute before, its monks at 70 on average, the lowest at 67), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "chic had a 100% chance of winning and stayed through \u6226\u6226\u6226\u6226's base res of 6:00 in the danger zone (7 of 8 past their res shrine, 3 NPCs on them, 421 damage a player in the minute before, its monks at 64 on average, the lowest at 62), with nothing against the stay; it took no deaths within 60 s of the res, got 11 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "349561f3-e4e3-5107-a161-0fdcd4f4dc55",
@@ -3628,11 +3628,11 @@
     "started_at": 78.93724501299492,
     "win_points_180": 4.387736236885342,
     "monk_energy": {
-     "mean": 74.2,
-     "low": 74.2,
+     "mean": 69.0,
+     "low": 69.0,
      "n": 1
     },
-    "sentence": "BcS had a 79% chance of winning and stayed through Book's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 381 damage a player in the minute before, its monks at 74 on average, the lowest at 74), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "BcS had a 79% chance of winning and stayed through Book's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 381 damage a player in the minute before, its monks at 69 on average, the lowest at 69), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "349561f3-e4e3-5107-a161-0fdcd4f4dc55",
@@ -3661,11 +3661,11 @@
     "started_at": 86.9629683138443,
     "win_points_180": -31.346090248870397,
     "monk_energy": {
-     "mean": 61.7,
-     "low": 45.2,
+     "mean": 56.5,
+     "low": 40.0,
      "n": 2
     },
-    "sentence": "BcS had an 87% chance of winning and stayed through Book's base res of 16:00 in the danger zone (4 of 6 past their res shrine, 2 NPCs on them, 351 damage a player in the minute before, its monks at 62 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on lost 31 points of its chance of winning."
+    "sentence": "BcS had an 87% chance of winning and stayed through Book's base res of 16:00 in the danger zone (4 of 6 past their res shrine, 2 NPCs on them, 351 damage a player in the minute before, its monks at 56 on average, the lowest at 40), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on lost 31 points of its chance of winning."
    },
    {
     "rid": "2afda98e-f6a9-5d8f-a6c4-f4a859e4946b",
@@ -3694,11 +3694,11 @@
     "started_at": 99.89534447726501,
     "win_points_180": 0.10465552273498657,
     "monk_energy": {
-     "mean": 61.2,
-     "low": 57.2,
+     "mean": 56.0,
+     "low": 52.0,
      "n": 2
     },
-    "sentence": "One had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 626 damage a player in the minute before, its monks at 61 on average, the lowest at 57), with nothing against the stay; it took no deaths within 60 s of the res, got 12 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "One had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 626 damage a player in the minute before, its monks at 56 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 12 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "5bd96957-db9d-5c5c-abda-12cf557644ca",
@@ -3727,11 +3727,11 @@
     "started_at": 79.05982386832258,
     "win_points_180": 4.296491564380977,
     "monk_energy": {
-     "mean": 65.2,
-     "low": 55.2,
+     "mean": 60.0,
+     "low": 50.0,
      "n": 3
     },
-    "sentence": "push had a 79% chance of winning and stayed through chic's base res of 24:00 in the danger zone (5 of 8 past their res shrine, 4 NPCs on them, 491 damage a player in the minute before, its monks at 65 on average, the lowest at 55), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "push had a 79% chance of winning and stayed through chic's base res of 24:00 in the danger zone (5 of 8 past their res shrine, 4 NPCs on them, 491 damage a player in the minute before, its monks at 60 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "be542964-037e-51ee-a2c4-ae67c25b5626",
@@ -3760,11 +3760,11 @@
     "started_at": 97.38753661158464,
     "win_points_180": 0.9151154077159829,
     "monk_energy": {
-     "mean": 69.5,
-     "low": 62.2,
+     "mean": 64.3,
+     "low": 57.0,
      "n": 3
     },
-    "sentence": "Book had a 97% chance of winning and stayed through TFS's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 359 damage a player in the minute before, its monks at 70 on average, the lowest at 62), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Book had a 97% chance of winning and stayed through TFS's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 359 damage a player in the minute before, its monks at 64 on average, the lowest at 57), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "e7a93c30-8c9d-527f-a080-465c38c75136",
@@ -3793,11 +3793,11 @@
     "started_at": 96.2775461314466,
     "win_points_180": 3.513380382010478,
     "monk_energy": {
-     "mean": 59.2,
-     "low": 56.2,
+     "mean": 54.0,
+     "low": 51.0,
      "n": 2
     },
-    "sentence": "Team had a 96% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (6 of 8 past their res shrine, 4 NPCs on them, 381 damage a player in the minute before, its monks at 59 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "Team had a 96% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (6 of 8 past their res shrine, 4 NPCs on them, 381 damage a player in the minute before, its monks at 54 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "e7a93c30-8c9d-527f-a080-465c38c75136",
@@ -3826,11 +3826,11 @@
     "started_at": 98.90118722926123,
     "win_points_180": 1.0988127707387774,
     "monk_energy": {
-     "mean": 48.7,
-     "low": 45.2,
+     "mean": 43.5,
+     "low": 40.0,
      "n": 2
     },
-    "sentence": "Team had a 99% chance of winning and stayed through Crew's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 572 damage a player in the minute before, its monks at 49 on average, the lowest at 45), with the stand not held against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Team had a 99% chance of winning and stayed through Crew's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 572 damage a player in the minute before, its monks at 44 on average, the lowest at 40), with the stand not held against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "51f68aeb-2d67-5fd0-a352-68d4ec72b2ad",
@@ -3859,11 +3859,11 @@
     "started_at": 99.66751575290621,
     "win_points_180": 0.33248424709378943,
     "monk_energy": {
-     "mean": 64.9,
-     "low": 58.2,
+     "mean": 59.7,
+     "low": 53.0,
      "n": 3
     },
-    "sentence": "One had a 100% chance of winning and stayed through DRKN's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 366 damage a player in the minute before, its monks at 65 on average, the lowest at 58), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "One had a 100% chance of winning and stayed through DRKN's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 366 damage a player in the minute before, its monks at 60 on average, the lowest at 53), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "58e62f93-4622-5ee6-a405-f4c123b11874",
@@ -3892,11 +3892,11 @@
     "started_at": 96.79026625070483,
     "win_points_180": 3.2097337492951628,
     "monk_energy": {
-     "mean": 67.5,
+     "mean": 64.0,
      "low": 49.0,
      "n": 3
     },
-    "sentence": "Men had a 97% chance of winning and stayed through Book's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 316 damage a player in the minute before, its monks at 68 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "Men had a 97% chance of winning and stayed through Book's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 316 damage a player in the minute before, its monks at 64 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "85fa697c-20a1-5851-a092-9aa5077e2232",
@@ -3925,8 +3925,8 @@
     "started_at": 98.9171131673509,
     "win_points_180": 1.0828868326490992,
     "monk_energy": {
-     "mean": 57.2,
-     "low": 53.2,
+     "mean": 56.7,
+     "low": 52.7,
      "n": 3
     },
     "sentence": "Team had a 99% chance of winning and stayed through Fun's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 371 damage a player in the minute before, its monks at 57 on average, the lowest at 53), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
@@ -3991,11 +3991,11 @@
     "started_at": 99.48564290447153,
     "win_points_180": 0.5143570955284615,
     "monk_energy": {
-     "mean": 55.0,
-     "low": 54.2,
+     "mean": 49.8,
+     "low": 49.0,
      "n": 2
     },
-    "sentence": "Dz had a 99% chance of winning and stayed through EDGE's base res of 6:00 in the danger zone (7 of 7 past their res shrine, 3 NPCs on them, 530 damage a player in the minute before, its monks at 55 on average, the lowest at 54), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Dz had a 99% chance of winning and stayed through EDGE's base res of 6:00 in the danger zone (7 of 7 past their res shrine, 3 NPCs on them, 530 damage a player in the minute before, its monks at 50 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "4732d15c-e062-5794-a8e1-0ad75f3009e5",
@@ -4057,11 +4057,11 @@
     "started_at": 97.90383978723305,
     "win_points_180": 1.685818251779514,
     "monk_energy": {
-     "mean": 74.4,
-     "low": 65.7,
+     "mean": 69.2,
+     "low": 60.5,
      "n": 3
     },
-    "sentence": "One had a 98% chance of winning and stayed through Book's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 378 damage a player in the minute before, its monks at 74 on average, the lowest at 66), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "One had a 98% chance of winning and stayed through Book's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 378 damage a player in the minute before, its monks at 69 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "7761aa5f-0ff1-5724-a537-f257af86b9a5",
@@ -4090,11 +4090,11 @@
     "started_at": 99.05910816828893,
     "win_points_180": 0.940891831711077,
     "monk_energy": {
-     "mean": 60.0,
-     "low": 47.7,
+     "mean": 54.8,
+     "low": 42.5,
      "n": 3
     },
-    "sentence": "One had a 99% chance of winning and stayed through Book's base res of 18:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 418 damage a player in the minute before, its monks at 60 on average, the lowest at 48), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "One had a 99% chance of winning and stayed through Book's base res of 18:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 418 damage a player in the minute before, its monks at 55 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "8d3f3d56-d666-56e4-ad16-7a6f3c2042c0",
@@ -4123,11 +4123,11 @@
     "started_at": 93.75328407208463,
     "win_points_180": 2.3714909916765836,
     "monk_energy": {
-     "mean": 76.2,
-     "low": 73.2,
+     "mean": 71.0,
+     "low": 68.0,
      "n": 2
     },
-    "sentence": "\uc637\uc637\uc637\uc637 had a 94% chance of winning and stayed through OG's base res of 6:00 in the danger zone (6 of 8 past their res shrine, 4 NPCs on them, 510 damage a player in the minute before, its monks at 76 on average, the lowest at 73), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "\uc637\uc637\uc637\uc637 had a 94% chance of winning and stayed through OG's base res of 6:00 in the danger zone (6 of 8 past their res shrine, 4 NPCs on them, 510 damage a player in the minute before, its monks at 71 on average, the lowest at 68), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "ab2c7e42-bd7b-5312-a699-3ee39fb07c97",
@@ -4156,11 +4156,11 @@
     "started_at": 90.14017768916283,
     "win_points_180": 8.613276552661064,
     "monk_energy": {
-     "mean": 74.2,
-     "low": 74.2,
+     "mean": 69.0,
+     "low": 69.0,
      "n": 2
     },
-    "sentence": "Book had a 90% chance of winning and stayed through True's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 368 damage a player in the minute before, its monks at 74 on average, the lowest at 74), with the stand not held against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 9 points of its chance of winning."
+    "sentence": "Book had a 90% chance of winning and stayed through True's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 368 damage a player in the minute before, its monks at 69 on average, the lowest at 69), with the stand not held against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 9 points of its chance of winning."
    },
    {
     "rid": "ab2c7e42-bd7b-5312-a699-3ee39fb07c97",
@@ -4189,11 +4189,11 @@
     "started_at": 97.61262176486429,
     "win_points_180": 2.3873782351357065,
     "monk_energy": {
-     "mean": 69.2,
-     "low": 64.2,
+     "mean": 64.0,
+     "low": 59.0,
      "n": 2
     },
-    "sentence": "Book had a 98% chance of winning and stayed through True's base res of 10:00 in the danger zone (6 of 8 past their res shrine, 3 NPCs on them, 382 damage a player in the minute before, its monks at 69 on average, the lowest at 64), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Book had a 98% chance of winning and stayed through True's base res of 10:00 in the danger zone (6 of 8 past their res shrine, 3 NPCs on them, 382 damage a player in the minute before, its monks at 64 on average, the lowest at 59), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "e96a75b6-1fe4-5fe9-acda-5baaf44a5116",
@@ -4222,11 +4222,11 @@
     "started_at": 98.4344425619314,
     "win_points_180": 0.8995260406685079,
     "monk_energy": {
-     "mean": 53.2,
-     "low": 51.2,
+     "mean": 48.0,
+     "low": 46.0,
      "n": 2
     },
-    "sentence": "Dz had a 98% chance of winning and stayed through hook's base res of 14:00 in the danger zone (5 of 5 past their res shrine, 4 NPCs on them, 675 damage a player in the minute before, its monks at 53 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Dz had a 98% chance of winning and stayed through hook's base res of 14:00 in the danger zone (5 of 5 past their res shrine, 4 NPCs on them, 675 damage a player in the minute before, its monks at 48 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "e96a75b6-1fe4-5fe9-acda-5baaf44a5116",
@@ -4255,11 +4255,11 @@
     "started_at": 99.30706742622067,
     "win_points_180": 0.25720241438913494,
     "monk_energy": {
-     "mean": 60.5,
-     "low": 47.2,
+     "mean": 55.3,
+     "low": 42.0,
      "n": 3
     },
-    "sentence": "Dz had a 99% chance of winning and stayed through hook's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 560 damage a player in the minute before, its monks at 60 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Dz had a 99% chance of winning and stayed through hook's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 560 damage a player in the minute before, its monks at 55 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "5527465c-2adf-5c1c-a22f-1dac53eebcce",
@@ -4288,11 +4288,11 @@
     "started_at": 99.04304996132977,
     "win_points_180": -0.17520330924363225,
     "monk_energy": {
-     "mean": 39.3,
-     "low": 39.3,
+     "mean": 52.8,
+     "low": 52.8,
      "n": 1
     },
-    "sentence": "Men had a 99% chance of winning and stayed through hook's base res of 6:00 in the danger zone (4 of 4 past their res shrine, 4 NPCs on them, 353 damage a player in the minute before, its monks at 39 on average, the lowest at 39), with nothing against the stay; it took 4 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Men had a 99% chance of winning and stayed through hook's base res of 6:00 in the danger zone (4 of 4 past their res shrine, 4 NPCs on them, 353 damage a player in the minute before, its monks at 53 on average, the lowest at 53), with nothing against the stay; it took 4 deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "65be200c-cb5c-59e5-ab98-915440357362",
@@ -4321,11 +4321,11 @@
     "started_at": 91.91153250098313,
     "win_points_180": 8.088467499016872,
     "monk_energy": {
-     "mean": 56.9,
-     "low": 51.2,
+     "mean": 51.7,
+     "low": 46.0,
      "n": 3
     },
-    "sentence": "chic had a 92% chance of winning and stayed through push's base res of 22:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 721 damage a player in the minute before, its monks at 57 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 8 points of its chance of winning."
+    "sentence": "chic had a 92% chance of winning and stayed through push's base res of 22:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 721 damage a player in the minute before, its monks at 52 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 8 points of its chance of winning."
    },
    {
     "rid": "2ee3795b-7444-5189-a7f4-12cb2b6ce483",
@@ -4354,11 +4354,11 @@
     "started_at": 98.4785918574939,
     "win_points_180": 1.5214081425060977,
     "monk_energy": {
-     "mean": 69.5,
-     "low": 60.2,
+     "mean": 64.3,
+     "low": 55.0,
      "n": 3
     },
-    "sentence": "BcS had a 98% chance of winning and stayed through Free's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 323 damage a player in the minute before, its monks at 70 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "BcS had a 98% chance of winning and stayed through Free's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 323 damage a player in the minute before, its monks at 64 on average, the lowest at 55), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "bda542c7-57d7-565c-a061-56f8ba84df74",
@@ -4387,11 +4387,11 @@
     "started_at": 99.42501879658836,
     "win_points_180": 0.5749812034116397,
     "monk_energy": {
-     "mean": 55.6,
-     "low": 46.3,
+     "mean": 52.3,
+     "low": 46.8,
      "n": 3
     },
-    "sentence": "Team had a 99% chance of winning and stayed through TFS's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 587 damage a player in the minute before, its monks at 56 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Team had a 99% chance of winning and stayed through TFS's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 587 damage a player in the minute before, its monks at 52 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 10 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "73462719-af75-516a-a249-bcb95b4f2bde",
@@ -4420,11 +4420,11 @@
     "started_at": 96.94366685165755,
     "win_points_180": 0.848696671395166,
     "monk_energy": {
-     "mean": 48.2,
-     "low": 33.2,
+     "mean": 43.0,
+     "low": 28.0,
      "n": 3
     },
-    "sentence": "Book had a 97% chance of winning and stayed through Apes's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 743 damage a player in the minute before, its monks at 48 on average, the lowest at 33), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Book had a 97% chance of winning and stayed through Apes's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 743 damage a player in the minute before, its monks at 43 on average, the lowest at 28), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "73462719-af75-516a-a249-bcb95b4f2bde",
@@ -4453,11 +4453,11 @@
     "started_at": 98.0025813599933,
     "win_points_180": -0.4548453376848727,
     "monk_energy": {
-     "mean": 45.5,
-     "low": 20.2,
+     "mean": 40.3,
+     "low": 15.0,
      "n": 3
     },
-    "sentence": "Book had a 98% chance of winning and stayed through Apes's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 763 damage a player in the minute before, its monks at 46 on average, the lowest at 20), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Book had a 98% chance of winning and stayed through Apes's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 763 damage a player in the minute before, its monks at 40 on average, the lowest at 15), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "73462719-af75-516a-a249-bcb95b4f2bde",
@@ -4486,11 +4486,11 @@
     "started_at": 98.90051610998611,
     "win_points_180": 1.099483890013886,
     "monk_energy": {
-     "mean": 50.7,
-     "low": 45.2,
+     "mean": 45.5,
+     "low": 40.0,
      "n": 2
     },
-    "sentence": "Book had a 99% chance of winning and stayed through Apes's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 403 damage a player in the minute before, its monks at 51 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Book had a 99% chance of winning and stayed through Apes's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 403 damage a player in the minute before, its monks at 46 on average, the lowest at 40), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "8589ea21-a396-52ce-a9b1-168aa69e55e8",
@@ -4552,11 +4552,11 @@
     "started_at": 94.03889953750425,
     "win_points_180": 2.9525806277318933,
     "monk_energy": {
-     "mean": 60.2,
-     "low": 49.2,
+     "mean": 55.0,
+     "low": 44.0,
      "n": 2
     },
-    "sentence": "meow had a 94% chance of winning and stayed through One's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 317 damage a player in the minute before, its monks at 60 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "meow had a 94% chance of winning and stayed through One's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 317 damage a player in the minute before, its monks at 55 on average, the lowest at 44), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "df4b3126-a073-5a2b-a5a7-a25b92fec2e3",
@@ -4585,11 +4585,11 @@
     "started_at": 98.43710778083214,
     "win_points_180": 1.1928678789737468,
     "monk_energy": {
-     "mean": 61.5,
-     "low": 53.2,
+     "mean": 56.3,
+     "low": 48.0,
      "n": 3
     },
-    "sentence": "meow had a 98% chance of winning and stayed through One's base res of 18:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 341 damage a player in the minute before, its monks at 62 on average, the lowest at 53), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "meow had a 98% chance of winning and stayed through One's base res of 18:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 341 damage a player in the minute before, its monks at 56 on average, the lowest at 48), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "76b61497-96ee-5a39-a277-b7be16c608a0",
@@ -4618,11 +4618,11 @@
     "started_at": 99.22184769024089,
     "win_points_180": 0.7781523097591059,
     "monk_energy": {
-     "mean": 62.5,
-     "low": 54.2,
+     "mean": 57.3,
+     "low": 49.0,
      "n": 3
     },
-    "sentence": "OG had a 99% chance of winning and stayed through Book's base res of 20:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 328 damage a player in the minute before, its monks at 62 on average, the lowest at 54), with the stand not held against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "OG had a 99% chance of winning and stayed through Book's base res of 20:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 328 damage a player in the minute before, its monks at 57 on average, the lowest at 49), with the stand not held against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "996e36a3-0191-516c-ae13-2fc9651534ae",
@@ -4651,11 +4651,11 @@
     "started_at": 75.21587970411386,
     "win_points_180": -27.340619806973365,
     "monk_energy": {
-     "mean": 67.2,
-     "low": 67.2,
+     "mean": 62.0,
+     "low": 62.0,
      "n": 1
     },
-    "sentence": "Book had a 75% chance of winning and stayed through One's base res of 24:00 in the danger zone (5 of 7 past their res shrine, 4 NPCs on them, 519 damage a player in the minute before, its monks at 67 on average, the lowest at 67), with the stand not held against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 27 points of its chance of winning."
+    "sentence": "Book had a 75% chance of winning and stayed through One's base res of 24:00 in the danger zone (5 of 7 past their res shrine, 4 NPCs on them, 519 damage a player in the minute before, its monks at 62 on average, the lowest at 62), with the stand not held against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 27 points of its chance of winning."
    },
    {
     "rid": "fca07aa2-6a37-577f-a277-b61243f85e42",
@@ -4684,11 +4684,11 @@
     "started_at": 98.98574865787111,
     "win_points_180": 0.9380877289054568,
     "monk_energy": {
-     "mean": 70.7,
-     "low": 70.2,
+     "mean": 65.5,
+     "low": 65.0,
      "n": 2
     },
-    "sentence": "One had a 99% chance of winning and stayed through push's base res of 6:00 in the danger zone (4 of 7 past their res shrine, 7 NPCs on them, 433 damage a player in the minute before, its monks at 71 on average, the lowest at 70), with the stand not held against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "One had a 99% chance of winning and stayed through push's base res of 6:00 in the danger zone (4 of 7 past their res shrine, 7 NPCs on them, 433 damage a player in the minute before, its monks at 66 on average, the lowest at 65), with the stand not held against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "380bb3ea-89f3-5c07-a0be-234bfa4e6ee9",
@@ -4717,11 +4717,11 @@
     "started_at": 99.78608988336866,
     "win_points_180": 0.21391011663134396,
     "monk_energy": {
-     "mean": 65.2,
-     "low": 52.2,
+     "mean": 60.0,
+     "low": 47.0,
      "n": 3
     },
-    "sentence": "\uc637\uc637\uc637\uc637 had a 100% chance of winning and stayed through hook's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 687 damage a player in the minute before, its monks at 65 on average, the lowest at 52), with the stand not held against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "\uc637\uc637\uc637\uc637 had a 100% chance of winning and stayed through hook's base res of 4:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 687 damage a player in the minute before, its monks at 60 on average, the lowest at 47), with the stand not held against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
@@ -4750,11 +4750,11 @@
     "started_at": 95.47335829354277,
     "win_points_180": 0.18774327461845708,
     "monk_energy": {
-     "mean": 73.7,
-     "low": 73.2,
+     "mean": 68.5,
+     "low": 68.0,
      "n": 2
     },
-    "sentence": "Apes had a 95% chance of winning and stayed through True's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 346 damage a player in the minute before, its monks at 74 on average, the lowest at 73), with the stand not held against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Apes had a 95% chance of winning and stayed through True's base res of 24:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 346 damage a player in the minute before, its monks at 68 on average, the lowest at 68), with the stand not held against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
@@ -4783,11 +4783,11 @@
     "started_at": 95.27035023396076,
     "win_points_180": -95.27035023396076,
     "monk_energy": {
-     "mean": 65.2,
-     "low": 65.2,
+     "mean": 60.0,
+     "low": 60.0,
      "n": 2
     },
-    "sentence": "Apes had a 95% chance of winning and stayed through True's base res of 26:00 in the danger zone (5 of 6 past their res shrine, 3 NPCs on them, 332 damage a player in the minute before, its monks at 65 on average, the lowest at 65), with the stand not held against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 95 points of its chance of winning."
+    "sentence": "Apes had a 95% chance of winning and stayed through True's base res of 26:00 in the danger zone (5 of 6 past their res shrine, 3 NPCs on them, 332 damage a player in the minute before, its monks at 60 on average, the lowest at 60), with the stand not held against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 95 points of its chance of winning."
    },
    {
     "rid": "023475ba-4e0c-5ce0-a1d6-f9c660a5d16d",
@@ -4816,11 +4816,11 @@
     "started_at": 99.54922730921649,
     "win_points_180": 0.29264957893555543,
     "monk_energy": {
-     "mean": 60.5,
-     "low": 49.2,
+     "mean": 55.3,
+     "low": 44.0,
      "n": 3
     },
-    "sentence": "meow had a 100% chance of winning and stayed through chic's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 527 damage a player in the minute before, its monks at 60 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "meow had a 100% chance of winning and stayed through chic's base res of 16:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 527 damage a player in the minute before, its monks at 55 on average, the lowest at 44), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "1e05a7ca-78ac-5340-a3a3-1ca8870a8165",
@@ -4849,11 +4849,11 @@
     "started_at": 99.67448879379045,
     "win_points_180": 0.32551120620955,
     "monk_energy": {
-     "mean": 64.7,
-     "low": 63.2,
+     "mean": 59.5,
+     "low": 58.0,
      "n": 2
     },
-    "sentence": "meow had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 6:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 487 damage a player in the minute before, its monks at 65 on average, the lowest at 63), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "meow had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 6:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 487 damage a player in the minute before, its monks at 60 on average, the lowest at 58), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "617aa3df-f264-553b-afe2-b9f5cb7068c2",
@@ -4882,11 +4882,11 @@
     "started_at": 97.70690720795412,
     "win_points_180": 0.3180634852405051,
     "monk_energy": {
-     "mean": 59.2,
-     "low": 46.2,
+     "mean": 54.0,
+     "low": 41.0,
      "n": 2
     },
-    "sentence": "BcS had a 98% chance of winning and stayed through Apes's base res of 20:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 421 damage a player in the minute before, its monks at 59 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "BcS had a 98% chance of winning and stayed through Apes's base res of 20:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 421 damage a player in the minute before, its monks at 54 on average, the lowest at 41), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "617aa3df-f264-553b-afe2-b9f5cb7068c2",
@@ -4915,11 +4915,11 @@
     "started_at": 97.38804410881876,
     "win_points_180": 2.611955891181239,
     "monk_energy": {
-     "mean": 67.7,
-     "low": 61.2,
+     "mean": 62.5,
+     "low": 56.0,
      "n": 2
     },
-    "sentence": "BcS had a 97% chance of winning and stayed through Apes's base res of 26:00 in the danger zone (6 of 6 past their res shrine, 6 NPCs on them, 325 damage a player in the minute before, its monks at 68 on average, the lowest at 61), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "BcS had a 97% chance of winning and stayed through Apes's base res of 26:00 in the danger zone (6 of 6 past their res shrine, 6 NPCs on them, 325 damage a player in the minute before, its monks at 62 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 8 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
@@ -4948,11 +4948,11 @@
     "started_at": 97.60216016221904,
     "win_points_180": 1.4790607111866416,
     "monk_energy": {
-     "mean": 61.2,
-     "low": 61.2,
+     "mean": 56.0,
+     "low": 56.0,
      "n": 1
     },
-    "sentence": "hdm had a 98% chance of winning and stayed through hook's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 516 damage a player in the minute before, its monks at 61 on average, the lowest at 61), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "hdm had a 98% chance of winning and stayed through hook's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 516 damage a player in the minute before, its monks at 56 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
@@ -4981,11 +4981,11 @@
     "started_at": 99.26315355618853,
     "win_points_180": 0.7368464438114786,
     "monk_energy": {
-     "mean": 60.9,
-     "low": 52.2,
+     "mean": 55.7,
+     "low": 47.0,
      "n": 3
     },
-    "sentence": "hdm had a 99% chance of winning and stayed through hook's base res of 16:00 in the danger zone (5 of 6 past their res shrine, 2 NPCs on them, 627 damage a player in the minute before, its monks at 61 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "hdm had a 99% chance of winning and stayed through hook's base res of 16:00 in the danger zone (5 of 6 past their res shrine, 2 NPCs on them, 627 damage a player in the minute before, its monks at 56 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "9a1e7105-3f77-51fe-a869-3a895947cd17",
@@ -5047,11 +5047,11 @@
     "started_at": 73.74540772052084,
     "win_points_180": 26.254592279479162,
     "monk_energy": {
-     "mean": 72.7,
-     "low": 71.2,
+     "mean": 67.5,
+     "low": 66.0,
      "n": 2
     },
-    "sentence": "RACK had a 74% chance of winning and stayed through OG's base res of 20:00 in the danger zone (7 of 8 past their res shrine, 5 NPCs on them, 330 damage a player in the minute before, its monks at 73 on average, the lowest at 71), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 26 points of its chance of winning."
+    "sentence": "RACK had a 74% chance of winning and stayed through OG's base res of 20:00 in the danger zone (7 of 8 past their res shrine, 5 NPCs on them, 330 damage a player in the minute before, its monks at 68 on average, the lowest at 66), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 26 points of its chance of winning."
    },
    {
     "rid": "516b2bd8-7333-5d2b-acd4-af6dee2be3ef",
@@ -5080,11 +5080,11 @@
     "started_at": 99.51529208776255,
     "win_points_180": 0.4472958109983938,
     "monk_energy": {
-     "mean": 55.9,
-     "low": 41.2,
+     "mean": 50.7,
+     "low": 36.0,
      "n": 3
     },
-    "sentence": "OG had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 364 damage a player in the minute before, its monks at 56 on average, the lowest at 41), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "OG had a 100% chance of winning and stayed through \u3052\u3048\u3048\u3048's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 364 damage a player in the minute before, its monks at 51 on average, the lowest at 36), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "76afed45-e9fe-5428-a22f-4f19341d08d8",
@@ -5113,11 +5113,11 @@
     "started_at": 99.50891303005164,
     "win_points_180": 0.4910869699483622,
     "monk_energy": {
-     "mean": 61.2,
-     "low": 49.2,
+     "mean": 56.0,
+     "low": 44.0,
      "n": 3
     },
-    "sentence": "BcS had a 100% chance of winning and stayed through TFS's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 362 damage a player in the minute before, its monks at 61 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "BcS had a 100% chance of winning and stayed through TFS's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 362 damage a player in the minute before, its monks at 56 on average, the lowest at 44), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "86640677-2c61-5061-a1d5-f9d48bfc0526",
@@ -5146,11 +5146,11 @@
     "started_at": 97.26912064115616,
     "win_points_180": 2.7308793588438296,
     "monk_energy": {
-     "mean": 56.2,
-     "low": 48.2,
+     "mean": 51.0,
+     "low": 43.0,
      "n": 3
     },
-    "sentence": "\uc637\uc637\uc637\uc637 had a 97% chance of winning and stayed through True's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 5 NPCs on them, 489 damage a player in the minute before, its monks at 56 on average, the lowest at 48), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "\uc637\uc637\uc637\uc637 had a 97% chance of winning and stayed through True's base res of 12:00 in the danger zone (7 of 7 past their res shrine, 5 NPCs on them, 489 damage a player in the minute before, its monks at 51 on average, the lowest at 43), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "9d84b1e6-6aef-5d0c-a417-fb87875add27",
@@ -5179,11 +5179,11 @@
     "started_at": 99.53449554351515,
     "win_points_180": 0.2511845786671407,
     "monk_energy": {
-     "mean": 55.2,
-     "low": 41.2,
+     "mean": 50.0,
+     "low": 36.0,
      "n": 2
     },
-    "sentence": "BcS had a 100% chance of winning and stayed through hook's base res of 20:00 in the danger zone (7 of 7 past their res shrine, 6 NPCs on them, 351 damage a player in the minute before, its monks at 55 on average, the lowest at 41), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "BcS had a 100% chance of winning and stayed through hook's base res of 20:00 in the danger zone (7 of 7 past their res shrine, 6 NPCs on them, 351 damage a player in the minute before, its monks at 50 on average, the lowest at 36), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "d85fc71e-22f4-5f30-a45c-b54e8fdde29b",
@@ -5212,11 +5212,11 @@
     "started_at": 98.58557888222164,
     "win_points_180": 1.4144211177783639,
     "monk_energy": {
-     "mean": 56.5,
-     "low": 43.2,
+     "mean": 51.3,
+     "low": 38.0,
      "n": 3
     },
-    "sentence": "Team had a 99% chance of winning and stayed through TFS's base res of 26:00 in the danger zone (5 of 8 past their res shrine, 3 NPCs on them, 325 damage a player in the minute before, its monks at 56 on average, the lowest at 43), with the stand not held against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Team had a 99% chance of winning and stayed through TFS's base res of 26:00 in the danger zone (5 of 8 past their res shrine, 3 NPCs on them, 325 damage a player in the minute before, its monks at 51 on average, the lowest at 38), with the stand not held against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "e9b8486c-7ef2-5f6c-a4a4-01cc729c9afd",
@@ -5245,11 +5245,11 @@
     "started_at": 90.55416876390116,
     "win_points_180": 4.131481679785775,
     "monk_energy": {
-     "mean": 69.3,
-     "low": 65.2,
+     "mean": 64.6,
+     "low": 60.0,
      "n": 3
     },
-    "sentence": "Men had a 91% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (4 of 8 past their res shrine, 3 NPCs on them, 321 damage a player in the minute before, its monks at 69 on average, the lowest at 65), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "Men had a 91% chance of winning and stayed through Crew's base res of 10:00 in the danger zone (4 of 8 past their res shrine, 3 NPCs on them, 321 damage a player in the minute before, its monks at 65 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
@@ -5311,11 +5311,11 @@
     "started_at": 96.45725040766618,
     "win_points_180": 2.4330930368308135,
     "monk_energy": {
-     "mean": 73.2,
-     "low": 67.2,
+     "mean": 68.0,
+     "low": 62.0,
      "n": 2
     },
-    "sentence": "\uc637\uc637\uc637\uc637 had a 96% chance of winning and stayed through cope's base res of 4:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 304 damage a player in the minute before, its monks at 73 on average, the lowest at 67), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "\uc637\uc637\uc637\uc637 had a 96% chance of winning and stayed through cope's base res of 4:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 304 damage a player in the minute before, its monks at 68 on average, the lowest at 62), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "78f14e00-1504-5e40-a270-c73133f78cd3",
@@ -5344,11 +5344,11 @@
     "started_at": 97.39923825209408,
     "win_points_180": 1.1683766425450437,
     "monk_energy": {
-     "mean": 44.9,
+     "mean": 42.2,
      "low": 37.5,
      "n": 2
     },
-    "sentence": "hold had a 97% chance of winning and stayed through BcS's base res of 24:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 409 damage a player in the minute before, its monks at 45 on average, the lowest at 38), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "hold had a 97% chance of winning and stayed through BcS's base res of 24:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 409 damage a player in the minute before, its monks at 42 on average, the lowest at 38), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e",
@@ -5377,11 +5377,11 @@
     "started_at": 93.72688733616306,
     "win_points_180": 0.29812924442876865,
     "monk_energy": {
-     "mean": 67.2,
-     "low": 67.2,
+     "mean": 62.0,
+     "low": 62.0,
      "n": 1
     },
-    "sentence": "Fun had a 94% chance of winning and left hold's base before the base res of 4:00, out of the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 380 damage a player in the minute before, its monks at 67 on average, the lowest at 67), with nothing against a stay; it took no deaths in the minute after the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Fun had a 94% chance of winning and left hold's base before the base res of 4:00, out of the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 380 damage a player in the minute before, its monks at 62 on average, the lowest at 62), with nothing against a stay; it took no deaths in the minute after the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e",
@@ -5410,11 +5410,11 @@
     "started_at": 75.20118645887977,
     "win_points_180": -75.20118645887977,
     "monk_energy": {
-     "mean": 49.2,
-     "low": 41.2,
+     "mean": 44.0,
+     "low": 36.0,
      "n": 2
     },
-    "sentence": "Fun had a 75% chance of winning and stayed through hold's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 823 damage a player in the minute before, its monks at 49 on average, the lowest at 41), with the stand not held against the stay; it took 3 deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 75 points of its chance of winning."
+    "sentence": "Fun had a 75% chance of winning and stayed through hold's base res of 14:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 823 damage a player in the minute before, its monks at 44 on average, the lowest at 36), with the stand not held against the stay; it took 3 deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on lost 75 points of its chance of winning."
    },
    {
     "rid": "a7f806a4-2905-5851-a82c-b306ca3dac97",
@@ -5476,11 +5476,11 @@
     "started_at": 99.7598746677712,
     "win_points_180": 0.24012533222880217,
     "monk_energy": {
-     "mean": 59.4,
-     "low": 55.7,
+     "mean": 54.2,
+     "low": 50.5,
      "n": 3
     },
-    "sentence": "One had a 100% chance of winning and stayed through TFS's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 373 damage a player in the minute before, its monks at 59 on average, the lowest at 56), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "One had a 100% chance of winning and stayed through TFS's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 373 damage a player in the minute before, its monks at 54 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "597fe160-569e-5180-ae19-0f1b1ce79e10",
@@ -5509,11 +5509,11 @@
     "started_at": 89.74885544950565,
     "win_points_180": 7.8610569306894025,
     "monk_energy": {
-     "mean": 74.2,
-     "low": 74.2,
+     "mean": 69.0,
+     "low": 69.0,
      "n": 1
     },
-    "sentence": "push had a 90% chance of winning and stayed through True's base res of 24:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 503 damage a player in the minute before, its monks at 74 on average, the lowest at 74), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 8 points of its chance of winning."
+    "sentence": "push had a 90% chance of winning and stayed through True's base res of 24:00 in the danger zone (4 of 4 past their res shrine, 3 NPCs on them, 503 damage a player in the minute before, its monks at 69 on average, the lowest at 69), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 8 points of its chance of winning."
    },
    {
     "rid": "77b64e5c-caf6-5b64-a52a-1e6b422108d5",
@@ -5542,11 +5542,11 @@
     "started_at": 99.51721409893732,
     "win_points_180": -0.23499815072225427,
     "monk_energy": {
-     "mean": 74.9,
-     "low": 71.2,
+     "mean": 69.7,
+     "low": 66.0,
      "n": 3
     },
-    "sentence": "\uc637\uc637\uc637\uc637 had a 100% chance of winning and stayed through Book's base res of 20:00 in the danger zone (5 of 6 past their res shrine, 5 NPCs on them, 372 damage a player in the minute before, its monks at 75 on average, the lowest at 71), with nothing against the stay; it took 4 deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "\uc637\uc637\uc637\uc637 had a 100% chance of winning and stayed through Book's base res of 20:00 in the danger zone (5 of 6 past their res shrine, 5 NPCs on them, 372 damage a player in the minute before, its monks at 70 on average, the lowest at 66), with nothing against the stay; it took 4 deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "95a5c543-e80b-5b28-ab81-2ed391a374c0",
@@ -5608,11 +5608,11 @@
     "started_at": 99.35883633043714,
     "win_points_180": 0.6411636695628609,
     "monk_energy": {
-     "mean": 57.7,
-     "low": 52.2,
+     "mean": 52.5,
+     "low": 47.0,
      "n": 2
     },
-    "sentence": "cope had a 99% chance of winning and stayed through Crew's base res of 24:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 445 damage a player in the minute before, its monks at 58 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "cope had a 99% chance of winning and stayed through Crew's base res of 24:00 in the danger zone (8 of 8 past their res shrine, 5 NPCs on them, 445 damage a player in the minute before, its monks at 52 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "541e0951-a43d-5678-ac46-a9d5ae29299a",
@@ -5674,11 +5674,11 @@
     "started_at": 74.00833960608904,
     "win_points_180": 16.3750611176388,
     "monk_energy": {
-     "mean": 63.5,
-     "low": 60.5,
+     "mean": 65.1,
+     "low": 61.0,
      "n": 3
     },
-    "sentence": "Crew had a 74% chance of winning and stayed through hook's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 7 NPCs on them, 362 damage a player in the minute before, its monks at 64 on average, the lowest at 60), with morale 52 under theirs against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 16 points of its chance of winning."
+    "sentence": "Crew had a 74% chance of winning and stayed through hook's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 7 NPCs on them, 362 damage a player in the minute before, its monks at 65 on average, the lowest at 61), with morale 52 under theirs against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 16 points of its chance of winning."
    },
    {
     "rid": "bd18e63f-1f72-5f8e-a8f2-cde995859916",
@@ -5707,11 +5707,11 @@
     "started_at": 98.31509473193283,
     "win_points_180": 0.7943133503960143,
     "monk_energy": {
-     "mean": 54.2,
-     "low": 48.2,
+     "mean": 49.0,
+     "low": 43.0,
      "n": 3
     },
-    "sentence": "Men had a 98% chance of winning and stayed through Crew's base res of 16:00 in the danger zone (6 of 7 past their res shrine, 2 NPCs on them, 730 damage a player in the minute before, its monks at 54 on average, the lowest at 48), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "Men had a 98% chance of winning and stayed through Crew's base res of 16:00 in the danger zone (6 of 7 past their res shrine, 2 NPCs on them, 730 damage a player in the minute before, its monks at 49 on average, the lowest at 43), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "bd18e63f-1f72-5f8e-a8f2-cde995859916",
@@ -5740,11 +5740,11 @@
     "started_at": 99.2098917978049,
     "win_points_180": -0.31545024182694226,
     "monk_energy": {
-     "mean": 52.9,
-     "low": 47.2,
+     "mean": 47.7,
+     "low": 42.0,
      "n": 3
     },
-    "sentence": "Men had a 99% chance of winning and stayed through Crew's base res of 18:00 in the danger zone (6 of 8 past their res shrine, 2 NPCs on them, 755 damage a player in the minute before, its monks at 53 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Men had a 99% chance of winning and stayed through Crew's base res of 18:00 in the danger zone (6 of 8 past their res shrine, 2 NPCs on them, 755 damage a player in the minute before, its monks at 48 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "da57e314-d9f6-5293-a578-496d5b139f05",
@@ -5773,11 +5773,11 @@
     "started_at": 85.15169294022041,
     "win_points_180": 5.818840516456891,
     "monk_energy": {
-     "mean": 58.2,
-     "low": 50.2,
+     "mean": 53.0,
+     "low": 45.0,
      "n": 2
     },
-    "sentence": "BcS had an 85% chance of winning and stayed through hook's base res of 4:00 in the danger zone (7 of 7 past their res shrine, 6 NPCs on them, 418 damage a player in the minute before, its monks at 58 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 6 points of its chance of winning."
+    "sentence": "BcS had an 85% chance of winning and stayed through hook's base res of 4:00 in the danger zone (7 of 7 past their res shrine, 6 NPCs on them, 418 damage a player in the minute before, its monks at 53 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 6 points of its chance of winning."
    },
    {
     "rid": "f6a15931-e0ab-55cf-a72d-25ca64d8fe30",
@@ -5806,11 +5806,11 @@
     "started_at": 98.65708669662746,
     "win_points_180": 1.3429133033725393,
     "monk_energy": {
-     "mean": 61.7,
-     "low": 50.2,
+     "mean": 56.5,
+     "low": 45.0,
      "n": 2
     },
-    "sentence": "OG had a 99% chance of winning and stayed through push's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 827 damage a player in the minute before, its monks at 62 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "OG had a 99% chance of winning and stayed through push's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 6 NPCs on them, 827 damage a player in the minute before, its monks at 56 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "cf9ff564-86ad-57e9-a37d-7c55019a5c85",
@@ -5839,11 +5839,11 @@
     "started_at": 96.79902953868468,
     "win_points_180": 3.2009704613153223,
     "monk_energy": {
-     "mean": 47.2,
-     "low": 37.2,
+     "mean": 42.0,
+     "low": 32.0,
      "n": 3
     },
-    "sentence": "cope had a 97% chance of winning and stayed through One's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 498 damage a player in the minute before, its monks at 47 on average, the lowest at 37), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "cope had a 97% chance of winning and stayed through One's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 498 damage a player in the minute before, its monks at 42 on average, the lowest at 32), with nothing against the stay; it took no deaths within 60 s of the res, got 7 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "17662751-a293-59b0-a656-6e1f3c2bad73",
@@ -5872,11 +5872,11 @@
     "started_at": 99.74114452340444,
     "win_points_180": 0.21409122724415086,
     "monk_energy": {
-     "mean": 65.9,
-     "low": 61.2,
+     "mean": 60.7,
+     "low": 56.0,
      "n": 3
     },
-    "sentence": "hold had a 100% chance of winning and stayed through hook's base res of 12:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 661 damage a player in the minute before, its monks at 66 on average, the lowest at 61), with the stand not held against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "hold had a 100% chance of winning and stayed through hook's base res of 12:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 661 damage a player in the minute before, its monks at 61 on average, the lowest at 56), with the stand not held against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
@@ -5905,11 +5905,11 @@
     "started_at": 97.32952547265118,
     "win_points_180": 1.8114036276508982,
     "monk_energy": {
-     "mean": 55.8,
+     "mean": 52.3,
      "low": 42.0,
      "n": 3
     },
-    "sentence": "Team had a 97% chance of winning and stayed through BcS's base res of 10:00 in the danger zone (4 of 8 past their res shrine, 2 NPCs on them, 479 damage a player in the minute before, its monks at 56 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Team had a 97% chance of winning and stayed through BcS's base res of 10:00 in the danger zone (4 of 8 past their res shrine, 2 NPCs on them, 479 damage a player in the minute before, its monks at 52 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "34ab1ac3-cd5d-578e-a457-bccff232274a",
@@ -5938,11 +5938,11 @@
     "started_at": 98.84289079906509,
     "win_points_180": 0.11947733806122462,
     "monk_energy": {
-     "mean": 61.5,
-     "low": 52.2,
+     "mean": 56.3,
+     "low": 47.0,
      "n": 3
     },
-    "sentence": "RACK had a 99% chance of winning and stayed through hold's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 3 NPCs on them, 779 damage a player in the minute before, its monks at 62 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "RACK had a 99% chance of winning and stayed through hold's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 3 NPCs on them, 779 damage a player in the minute before, its monks at 56 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "34ab1ac3-cd5d-578e-a457-bccff232274a",
@@ -5971,11 +5971,11 @@
     "started_at": 99.74210631411279,
     "win_points_180": 0.2578936858872116,
     "monk_energy": {
-     "mean": 54.9,
-     "low": 47.2,
+     "mean": 49.7,
+     "low": 42.0,
      "n": 3
     },
-    "sentence": "RACK had a 100% chance of winning and stayed through hold's base res of 14:00 in the danger zone (7 of 8 past their res shrine, 6 NPCs on them, 454 damage a player in the minute before, its monks at 55 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "RACK had a 100% chance of winning and stayed through hold's base res of 14:00 in the danger zone (7 of 8 past their res shrine, 6 NPCs on them, 454 damage a player in the minute before, its monks at 50 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
@@ -6004,11 +6004,11 @@
     "started_at": 97.1721609799517,
     "win_points_180": 2.373629181189907,
     "monk_energy": {
-     "mean": 51.2,
-     "low": 51.2,
+     "mean": 46.0,
+     "low": 46.0,
      "n": 1
     },
-    "sentence": "OG had a 97% chance of winning and stayed through chic's base res of 8:00 in the danger zone (5 of 7 past their res shrine, 3 NPCs on them, 388 damage a player in the minute before, its monks at 51 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "OG had a 97% chance of winning and stayed through chic's base res of 8:00 in the danger zone (5 of 7 past their res shrine, 3 NPCs on them, 388 damage a player in the minute before, its monks at 46 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
@@ -6037,11 +6037,11 @@
     "started_at": 98.82607065749396,
     "win_points_180": 1.1739293425060415,
     "monk_energy": {
-     "mean": 78.2,
-     "low": 78.2,
+     "mean": 73.0,
+     "low": 73.0,
      "n": 1
     },
-    "sentence": "OG had a 99% chance of winning and stayed through chic's base res of 10:00 in the danger zone (5 of 5 past their res shrine, 2 NPCs on them, 327 damage a player in the minute before, its monks at 78 on average, the lowest at 78), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "OG had a 99% chance of winning and stayed through chic's base res of 10:00 in the danger zone (5 of 5 past their res shrine, 2 NPCs on them, 327 damage a player in the minute before, its monks at 73 on average, the lowest at 73), with nothing against the stay; it took no deaths within 60 s of the res, got 3 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "83991db3-8df8-5d70-a6ee-15aef06f3a8f",
@@ -6070,11 +6070,11 @@
     "started_at": 96.73761370784288,
     "win_points_180": 1.7799072035352692,
     "monk_energy": {
-     "mean": 74.5,
-     "low": 74.5,
+     "mean": 69.8,
+     "low": 69.8,
      "n": 1
     },
-    "sentence": "Team had a 97% chance of winning and stayed through Crew's base res of 20:00 in the danger zone (3 of 6 past their res shrine, 4 NPCs on them, 469 damage a player in the minute before, its monks at 74 on average, the lowest at 74), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Team had a 97% chance of winning and stayed through Crew's base res of 20:00 in the danger zone (3 of 6 past their res shrine, 4 NPCs on them, 469 damage a player in the minute before, its monks at 70 on average, the lowest at 70), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "83991db3-8df8-5d70-a6ee-15aef06f3a8f",
@@ -6103,11 +6103,11 @@
     "started_at": 96.64203920266628,
     "win_points_180": 3.258748623260277,
     "monk_energy": {
-     "mean": 54.2,
-     "low": 54.2,
+     "mean": 49.0,
+     "low": 49.0,
      "n": 1
     },
-    "sentence": "Team had a 97% chance of winning and stayed through Crew's base res of 22:00 in the danger zone (5 of 5 past their res shrine, 5 NPCs on them, 333 damage a player in the minute before, its monks at 54 on average, the lowest at 54), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "Team had a 97% chance of winning and stayed through Crew's base res of 22:00 in the danger zone (5 of 5 past their res shrine, 5 NPCs on them, 333 damage a player in the minute before, its monks at 49 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "90ad5f3b-3457-5258-a098-0cd177e841cc",
@@ -6136,11 +6136,11 @@
     "started_at": 94.82049685490954,
     "win_points_180": 5.17950314509047,
     "monk_energy": {
-     "mean": 59.6,
-     "low": 59.6,
+     "mean": 57.0,
+     "low": 57.0,
      "n": 1
     },
-    "sentence": "Team had a 95% chance of winning and stayed through hook's base res of 10:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 373 damage a player in the minute before, its monks at 60 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 5 points of its chance of winning."
+    "sentence": "Team had a 95% chance of winning and stayed through hook's base res of 10:00 in the danger zone (5 of 6 past their res shrine, 4 NPCs on them, 373 damage a player in the minute before, its monks at 57 on average, the lowest at 57), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 5 points of its chance of winning."
    },
    {
     "rid": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
@@ -6169,11 +6169,11 @@
     "started_at": 98.75307255768439,
     "win_points_180": -3.7798204227359133,
     "monk_energy": {
-     "mean": 46.9,
-     "low": 43.2,
+     "mean": 41.7,
+     "low": 38.0,
      "n": 3
     },
-    "sentence": "cope had a 99% chance of winning and stayed through Apes's base res of 6:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 565 damage a player in the minute before, its monks at 47 on average, the lowest at 43), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 4 points of its chance of winning."
+    "sentence": "cope had a 99% chance of winning and stayed through Apes's base res of 6:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 565 damage a player in the minute before, its monks at 42 on average, the lowest at 38), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 4 points of its chance of winning."
    },
    {
     "rid": "a44589cc-6a77-54f1-a3fc-4df044769e09",
@@ -6235,11 +6235,11 @@
     "started_at": 95.02949270455751,
     "win_points_180": 4.970507295442483,
     "monk_energy": {
-     "mean": 71.2,
-     "low": 71.2,
+     "mean": 66.0,
+     "low": 66.0,
      "n": 1
     },
-    "sentence": "hdm had a 95% chance of winning and stayed through RACK's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 318 damage a player in the minute before, its monks at 71 on average, the lowest at 71), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 5 points of its chance of winning."
+    "sentence": "hdm had a 95% chance of winning and stayed through RACK's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 318 damage a player in the minute before, its monks at 66 on average, the lowest at 66), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 5 points of its chance of winning."
    },
    {
     "rid": "d38af3a4-3e6c-59bc-aaab-40c39ab3d2fc",
@@ -6268,11 +6268,11 @@
     "started_at": 97.4096526748401,
     "win_points_180": 2.590347325159892,
     "monk_energy": {
-     "mean": 63.2,
-     "low": 51.2,
+     "mean": 58.0,
+     "low": 46.0,
      "n": 2
     },
-    "sentence": "BcS had a 97% chance of winning and stayed through chic's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 725 damage a player in the minute before, its monks at 63 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 13 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "BcS had a 97% chance of winning and stayed through chic's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 725 damage a player in the minute before, its monks at 58 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 13 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "d566775e-f665-5107-afcc-fb7289582f95",
@@ -6301,11 +6301,11 @@
     "started_at": 99.36286816405256,
     "win_points_180": 0.6371318359474465,
     "monk_energy": {
-     "mean": 56.2,
-     "low": 52.2,
+     "mean": 51.0,
+     "low": 47.0,
      "n": 2
     },
-    "sentence": "hold had a 99% chance of winning and stayed through Book's base res of 26:00 in the danger zone (4 of 4 past their res shrine, 2 NPCs on them, 973 damage a player in the minute before, its monks at 56 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "hold had a 99% chance of winning and stayed through Book's base res of 26:00 in the danger zone (4 of 4 past their res shrine, 2 NPCs on them, 973 damage a player in the minute before, its monks at 51 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "da8868e6-09eb-5df0-a211-441a872b6434",
@@ -6334,11 +6334,11 @@
     "started_at": 93.64321322620835,
     "win_points_180": -2.6755391573160203,
     "monk_energy": {
-     "mean": 68.2,
-     "low": 68.2,
+     "mean": 63.0,
+     "low": 63.0,
      "n": 1
     },
-    "sentence": "Book had a 94% chance of winning and stayed through Apes's base res of 14:00 in the danger zone (5 of 5 past their res shrine, 3 NPCs on them, 374 damage a player in the minute before, its monks at 68 on average, the lowest at 68), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 3 points of its chance of winning."
+    "sentence": "Book had a 94% chance of winning and stayed through Apes's base res of 14:00 in the danger zone (5 of 5 past their res shrine, 3 NPCs on them, 374 damage a player in the minute before, its monks at 63 on average, the lowest at 63), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 3 points of its chance of winning."
    },
    {
     "rid": "fbe7d90d-532c-5e2e-aeff-82db1c3bd509",
@@ -6367,11 +6367,11 @@
     "started_at": 98.47919361849345,
     "win_points_180": 1.5208063815065453,
     "monk_energy": {
-     "mean": 70.2,
-     "low": 65.2,
+     "mean": 65.0,
+     "low": 60.0,
      "n": 2
     },
-    "sentence": "Crew had a 98% chance of winning and stayed through hook's base res of 22:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 444 damage a player in the minute before, its monks at 70 on average, the lowest at 65), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Crew had a 98% chance of winning and stayed through hook's base res of 22:00 in the danger zone (6 of 6 past their res shrine, 2 NPCs on them, 444 damage a player in the minute before, its monks at 65 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "366b75bc-9286-522b-a3a0-b9c199291d1a",
@@ -6400,11 +6400,11 @@
     "started_at": 98.76540885475723,
     "win_points_180": 1.2345911452427805,
     "monk_energy": {
-     "mean": 57.5,
-     "low": 45.2,
+     "mean": 52.3,
+     "low": 40.0,
      "n": 3
     },
-    "sentence": "True had a 99% chance of winning and stayed through Apes's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 537 damage a player in the minute before, its monks at 58 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "True had a 99% chance of winning and stayed through Apes's base res of 10:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 537 damage a player in the minute before, its monks at 52 on average, the lowest at 40), with nothing against the stay; it took no deaths within 60 s of the res, got 5 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "0ab1d6cd-09aa-503b-ad34-cdfc570a52b0",
@@ -6433,11 +6433,11 @@
     "started_at": 98.07058723487194,
     "win_points_180": 0.5057167975297427,
     "monk_energy": {
-     "mean": 72.2,
-     "low": 71.2,
+     "mean": 67.0,
+     "low": 66.0,
      "n": 2
     },
-    "sentence": "hold had a 98% chance of winning and stayed through cope's base res of 20:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 302 damage a player in the minute before, its monks at 72 on average, the lowest at 71), with the stand not held against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
+    "sentence": "hold had a 98% chance of winning and stayed through cope's base res of 20:00 in the danger zone (7 of 7 past their res shrine, 4 NPCs on them, 302 damage a player in the minute before, its monks at 67 on average, the lowest at 66), with the stand not held against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 1 point of its chance of winning."
    },
    {
     "rid": "480337e8-5e25-5320-a7ff-45522d1bb4b2",
@@ -6466,11 +6466,11 @@
     "started_at": 55.21791874929202,
     "win_points_180": 44.78208125070798,
     "monk_energy": {
-     "mean": 47.6,
-     "low": 27.7,
+     "mean": 52.9,
+     "low": 43.8,
      "n": 3
     },
-    "sentence": "hold had a 55% chance of winning and stayed through BcS's base res of 26:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 398 damage a player in the minute before, its monks at 48 on average, the lowest at 28), with morale 105 under theirs against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 45 points of its chance of winning."
+    "sentence": "hold had a 55% chance of winning and stayed through BcS's base res of 26:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 398 damage a player in the minute before, its monks at 53 on average, the lowest at 44), with morale 105 under theirs against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 45 points of its chance of winning."
    },
    {
     "rid": "5781d01c-1806-5b96-a0e7-877214a8328b",
@@ -6499,11 +6499,11 @@
     "started_at": 98.18368703026145,
     "win_points_180": 1.576976396514096,
     "monk_energy": {
-     "mean": 60.2,
-     "low": 60.2,
+     "mean": 55.0,
+     "low": 55.0,
      "n": 1
     },
-    "sentence": "RACK had a 98% chance of winning and stayed through chic's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 319 damage a player in the minute before, its monks at 60 on average, the lowest at 60), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "RACK had a 98% chance of winning and stayed through chic's base res of 10:00 in the danger zone (6 of 6 past their res shrine, 4 NPCs on them, 319 damage a player in the minute before, its monks at 55 on average, the lowest at 55), with nothing against the stay; it took one death within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "d94f50d4-6e95-5d74-abe4-b4532ba504ea",
@@ -6565,11 +6565,11 @@
     "started_at": 95.07062624262707,
     "win_points_180": -3.5195810863221655,
     "monk_energy": {
-     "mean": 44.2,
-     "low": 41.2,
+     "mean": 39.0,
+     "low": 36.0,
      "n": 2
     },
-    "sentence": "Team had a 95% chance of winning and stayed through Crew's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 396 damage a player in the minute before, its monks at 44 on average, the lowest at 41), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 4 points of its chance of winning."
+    "sentence": "Team had a 95% chance of winning and stayed through Crew's base res of 8:00 in the danger zone (6 of 6 past their res shrine, 5 NPCs on them, 396 damage a player in the minute before, its monks at 39 on average, the lowest at 36), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 4 points of its chance of winning."
    },
    {
     "rid": "feed4411-9c81-54af-ab77-10efe031659c",
@@ -6598,11 +6598,11 @@
     "started_at": 92.99687922339093,
     "win_points_180": 7.003120776609062,
     "monk_energy": {
-     "mean": 52.5,
-     "low": 52.2,
+     "mean": 47.3,
+     "low": 47.0,
      "n": 3
     },
-    "sentence": "Team had a 93% chance of winning and stayed through Book's base res of 24:00 in the danger zone (7 of 7 past their res shrine, 8 NPCs on them, 501 damage a player in the minute before, its monks at 52 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
+    "sentence": "Team had a 93% chance of winning and stayed through Book's base res of 24:00 in the danger zone (7 of 7 past their res shrine, 8 NPCs on them, 501 damage a player in the minute before, its monks at 47 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on gained 7 points of its chance of winning."
    },
    {
     "rid": "5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa",
@@ -6697,11 +6697,11 @@
     "started_at": 95.05384041526781,
     "win_points_180": 4.278559937937709,
     "monk_energy": {
-     "mean": 72.2,
-     "low": 68.2,
+     "mean": 67.0,
+     "low": 63.0,
      "n": 2
     },
-    "sentence": "Men had a 95% chance of winning and stayed through Team's base res of 6:00 in the danger zone (7 of 7 past their res shrine, 7 NPCs on them, 661 damage a player in the minute before, its monks at 72 on average, the lowest at 68), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
+    "sentence": "Men had a 95% chance of winning and stayed through Team's base res of 6:00 in the danger zone (7 of 7 past their res shrine, 7 NPCs on them, 661 damage a player in the minute before, its monks at 67 on average, the lowest at 63), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 4 points of its chance of winning."
    },
    {
     "rid": "336d3897-3c0b-5213-a44b-4a84419cc9e1",
@@ -6858,11 +6858,11 @@
     "started_at": 40.93234828273417,
     "win_points_180": -17.15860168091314,
     "monk_energy": {
-     "mean": 41.7,
-     "low": 39.2,
+     "mean": 36.5,
+     "low": 34.0,
      "n": 3
     },
-    "sentence": "hook had a 41% chance of winning and stayed through Book's base res of 10:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 597 damage a player in the minute before, its monks at 42 on average, the lowest at 39), with the stand not held against the stay; it took 5 deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 17 points of its chance of winning."
+    "sentence": "hook had a 41% chance of winning and stayed through Book's base res of 10:00 in the danger zone (7 of 7 past their res shrine, 2 NPCs on them, 597 damage a player in the minute before, its monks at 36 on average, the lowest at 34), with the stand not held against the stay; it took 5 deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on lost 17 points of its chance of winning."
    },
    {
     "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
@@ -6957,11 +6957,11 @@
     "started_at": 95.09467333302494,
     "win_points_180": 2.131949726047555,
     "monk_energy": {
-     "mean": 65.3,
-     "low": 65.0,
+     "mean": 61.0,
+     "low": 60.5,
      "n": 2
     },
-    "sentence": "Men had a 95% chance of winning and stayed through hold's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 358 damage a player in the minute before, its monks at 65 on average, the lowest at 65), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "Men had a 95% chance of winning and stayed through hold's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 3 NPCs on them, 358 damage a player in the minute before, its monks at 61 on average, the lowest at 60), with nothing against the stay; it took no deaths within 60 s of the res, got 1 kill in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
@@ -6990,11 +6990,11 @@
     "started_at": 98.01444846527482,
     "win_points_180": -0.2820368587545974,
     "monk_energy": {
-     "mean": 52.2,
-     "low": 49.2,
+     "mean": 47.0,
+     "low": 44.0,
      "n": 2
     },
-    "sentence": "Men had a 98% chance of winning and stayed through hold's base res of 16:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 429 damage a player in the minute before, its monks at 52 on average, the lowest at 49), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "Men had a 98% chance of winning and stayed through hold's base res of 16:00 in the danger zone (7 of 8 past their res shrine, 2 NPCs on them, 429 damage a player in the minute before, its monks at 47 on average, the lowest at 44), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "a899db48-1dba-52c1-a532-4930d4dc52e5",
@@ -7056,11 +7056,11 @@
     "started_at": 97.65520729441141,
     "win_points_180": 2.344792705588594,
     "monk_energy": {
-     "mean": 57.7,
-     "low": 51.2,
+     "mean": 52.5,
+     "low": 46.0,
      "n": 3
     },
-    "sentence": "MBP had a 98% chance of winning and stayed through RV's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 652 damage a player in the minute before, its monks at 58 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 6 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
+    "sentence": "MBP had a 98% chance of winning and stayed through RV's base res of 6:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 652 damage a player in the minute before, its monks at 52 on average, the lowest at 46), with nothing against the stay; it took no deaths within 60 s of the res, got 6 kills in 90 s, and three minutes on gained 2 points of its chance of winning."
    },
    {
     "rid": "10bc4cdc-245a-54f2-a51b-b4312437bf06",
@@ -7089,11 +7089,11 @@
     "started_at": 99.60574378073244,
     "win_points_180": 0.3942562192675636,
     "monk_energy": {
-     "mean": 51.4,
-     "low": 51.0,
+     "mean": 47.3,
+     "low": 47.0,
      "n": 3
     },
-    "sentence": "hold had a 100% chance of winning and stayed through mddl's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 685 damage a player in the minute before, its monks at 51 on average, the lowest at 51), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "hold had a 100% chance of winning and stayed through mddl's base res of 12:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 685 damage a player in the minute before, its monks at 47 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
@@ -7122,11 +7122,11 @@
     "started_at": 95.61564123485002,
     "win_points_180": 2.960867767386155,
     "monk_energy": {
-     "mean": 48.5,
-     "low": 38.5,
+     "mean": 49.7,
+     "low": 42.1,
      "n": 3
     },
-    "sentence": "HC had a 96% chance of winning and stayed through Team's base res of 16:00 in the danger zone (7 of 8 past their res shrine, 4 NPCs on them, 401 damage a player in the minute before, its monks at 48 on average, the lowest at 38), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
+    "sentence": "HC had a 96% chance of winning and stayed through Team's base res of 16:00 in the danger zone (7 of 8 past their res shrine, 4 NPCs on them, 401 damage a player in the minute before, its monks at 50 on average, the lowest at 42), with nothing against the stay; it took no deaths within 60 s of the res, got 0 kills in 90 s, and three minutes on gained 3 points of its chance of winning."
    },
    {
     "rid": "4f3405ed-8f44-5eec-a64a-1d2e16d7a748",
@@ -7188,11 +7188,11 @@
     "started_at": 99.70434893804924,
     "win_points_180": 0.2956510619507635,
     "monk_energy": {
-     "mean": 57.4,
-     "low": 45.7,
+     "mean": 52.2,
+     "low": 40.5,
      "n": 3
     },
-    "sentence": "hold had a 100% chance of winning and stayed through Apes's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 545 damage a player in the minute before, its monks at 57 on average, the lowest at 46), with nothing against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "hold had a 100% chance of winning and stayed through Apes's base res of 8:00 in the danger zone (5 of 8 past their res shrine, 2 NPCs on them, 545 damage a player in the minute before, its monks at 52 on average, the lowest at 40), with nothing against the stay; it took one death within 60 s of the res, got 3 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
@@ -7221,11 +7221,11 @@
     "started_at": 99.7289987267226,
     "win_points_180": 0.20922825517885046,
     "monk_energy": {
-     "mean": 46.9,
-     "low": 40.2,
+     "mean": 41.7,
+     "low": 35.0,
      "n": 3
     },
-    "sentence": "meow had a 100% chance of winning and stayed through RV's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 545 damage a player in the minute before, its monks at 47 on average, the lowest at 40), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "meow had a 100% chance of winning and stayed through RV's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 545 damage a player in the minute before, its monks at 42 on average, the lowest at 35), with nothing against the stay; it took no deaths within 60 s of the res, got 2 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
@@ -7254,11 +7254,11 @@
     "started_at": 99.83383152127512,
     "win_points_180": 0.16616847872488183,
     "monk_energy": {
-     "mean": 53.9,
-     "low": 50.2,
+     "mean": 48.7,
+     "low": 45.0,
      "n": 3
     },
-    "sentence": "meow had a 100% chance of winning and stayed through RV's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 702 damage a player in the minute before, its monks at 54 on average, the lowest at 50), with nothing against the stay; it took no deaths within 60 s of the res, got 6 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "meow had a 100% chance of winning and stayed through RV's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 702 damage a player in the minute before, its monks at 49 on average, the lowest at 45), with nothing against the stay; it took no deaths within 60 s of the res, got 6 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "d1e4b578-92f2-5cc0-ad44-419ab8658768",
@@ -7287,11 +7287,11 @@
     "started_at": 64.74465444406354,
     "win_points_180": 35.25534555593646,
     "monk_energy": {
-     "mean": 65.2,
-     "low": 52.2,
+     "mean": 60.0,
+     "low": 47.0,
      "n": 2
     },
-    "sentence": "chic had a 65% chance of winning and stayed through \u6226\u6226\u6226\u6226's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 505 damage a player in the minute before, its monks at 65 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 35 points of its chance of winning."
+    "sentence": "chic had a 65% chance of winning and stayed through \u6226\u6226\u6226\u6226's base res of 10:00 in the danger zone (8 of 8 past their res shrine, 4 NPCs on them, 505 damage a player in the minute before, its monks at 60 on average, the lowest at 47), with nothing against the stay; it took no deaths within 60 s of the res, got 4 kills in 90 s, and three minutes on gained 35 points of its chance of winning."
    }
   ]
  }

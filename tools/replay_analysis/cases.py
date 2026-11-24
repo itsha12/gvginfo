@@ -72,6 +72,7 @@ Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.js
         python3 cases.py res <plays file> [--json <out.json>]                            the base res, stage 1: a team in the enemy's base when their dead come back
         python3 cases.py opening <plays file> [--json <out.json>]                        the opening, stage 1: the first flag and where the players went
         python3 cases.py energy <plays file> [--json <out.json>]                         energy at the decisions (R-689): what followed each call by the fight's monk energy
+        python3 cases.py excuse <plays file> [--json <out.json>]                         the energy excuse (R-689, piece 3): the monks out at a death, where the minute's energy went, the midline at a failure to kill
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, re, sys
 import numpy as np
@@ -3654,6 +3655,119 @@ def energy_report(path, out_json=None):
     return res
 
 
+# ---- the excuse (R-689, piece 3; R-666 the second aspect; R-681, R-682, R-685): what was so at each death and each failure to kill
+def excuse_report(path, out_json=None):
+    """The energy excuse over every match (energy.py: `excuse`, kept beside the plays as `flag_cost[rid].excuse`). A description: how often the monks of a
+    dead player's fight were out of energy, where the energy of their minute before went, what the enemy took and with which skills, and how often the
+    midline of a team that had the job to kill was out. It says what was so and never why a player died; nothing here is advice or a fix."""
+    import energy, common
+    D = json.load(open(path)); idx = common.replay_index()
+    lines, res = [], {}
+    pr = lambda x="": (lines.append(x), print(x))
+    X = {}
+    for rid in D["matches"]:
+        e = D["flag_cost"][rid].get("excuse")
+        if e is None: raise ValueError(f"the plays file carries no excuse record for {rid}: run moments.py all again on this engine (R-460)")
+        if e["ok"]: X[rid] = e
+    mean = lambda v: float(np.mean(v)) if len(v) else None
+    f = lambda v, fmt=".1f": "" if v is None else format(v, fmt)
+    Dt = [dict(d, rid=rid) for rid, e in X.items() for d in e["deaths"]]
+    pr(f"The energy excuse (R-666, the second aspect), on {len(D['matches'])} matches, {len(X)} with gvg.report's energy ({len(D['matches']) - len(X)} without: left out, R-672).")
+    pr("A monk is out under 20 and a midline player under 15, on the double high scale (R-681, R-682, R-686). 'Out' is out for certain: even the most he can have")
+    pr("is under the line. What was so at a death or a failure to kill, never why: a team that is losing a fight both spends its energy and dies.")
+    # A. deaths
+    with_m = [d for d in Dt if d["n"]]
+    res["deaths"] = {"read": len(Dt), "with a monk in the fight": len(with_m), "no monk in the fight": len(Dt) - len(with_m)}
+    pr(f"\nA. Deaths: {len(Dt)} read; {len(with_m)} with a backline monk of the dead player's team in his fight a second before, {len(Dt) - len(with_m)} with none.")
+    rows = (("every monk in the fight out", lambda d: d["all_out"]), ("some of them out, not all", lambda d: d["out"] and not d["all_out"]),
+            ("none out, one or more possibly out", lambda d: not d["out"] and d["maybe"]), ("none out", lambda d: not d["out"] and not d["maybe"]))
+    for name, fn in rows:
+        Z = [d for d in with_m if fn(d)]
+        res["deaths"][name] = {"deaths": len(Z), "share": len(Z) / max(len(with_m), 1), "matches": len({d["rid"] for d in Z})}
+        pr(f"   {name:38} {len(Z):6}  {100 * len(Z) / max(len(with_m), 1):5.1f}%   in {len({d['rid'] for d in Z})} matches")
+    pr("   by how many monks stood in the fight (deaths; share with every monk out; with one or more out):")
+    for n in (1, 2, 3):
+        Z = [d for d in with_m if (d["n"] == n if n < 3 else d["n"] >= 3)]
+        if Z: pr(f"      {'one monk' if n == 1 else 'two monks' if n == 2 else 'three or more'}: {len(Z)}; {100 * sum(d['all_out'] for d in Z) / len(Z):.1f}%; {100 * sum(bool(d['out']) for d in Z) / len(Z):.1f}%")
+    pr("   by who died (deaths with a monk in the fight; share with one or more monks out):")
+    for k, name in (("monk", "a backline monk"), ("midline", "a midline player"), (None, "anybody else")):
+        Z = [d for d in with_m if d["kind"] == k]
+        if Z: pr(f"      {name}: {len(Z)}; {100 * sum(bool(d['out']) for d in Z) / len(Z):.1f}%")
+    mk = [r for d in with_m for r in d["monks"]]
+    share_out = sum(r["out"] == "yes" for r in mk) / max(len(mk), 1)
+    res["deaths"]["monks read at a death"] = len(mk); res["deaths"]["of them out"] = share_out
+    pr(f"   Of the {len(mk):,} monk readings a second before a death in their fight, {100 * share_out:.1f}% are out for certain and {100 * sum(r['out'] == 'maybe' for r in mk) / max(len(mk), 1):.1f}% possibly;")
+    pr("   a monk is out for certain 0.5% of all his time alive (`energy.py cover`): being out goes with a death in the fight, as it must, and says nothing of cause.")
+    # B. where the minute's energy went
+    pr("\nB. Where the energy of the minute before a death went, a monk in that fight (means, on the double high scale; 'came back' is the balance: regeneration,")
+    pr("   energy skills and the error of the estimate; 'not sure' is the part of what was taken that is a bound, not a count)")
+    pr(f"   {'':34} {'monks':>6} {'had':>5} {'left':>5} {'spent':>6} {'taken':>6} {'not sure':>8} {'came back':>9}")
+    res["accounts"] = {}
+    for name, fn in (("out at the death", lambda r: r["out"] == "yes"), ("possibly out", lambda r: r["out"] == "maybe"), ("not out", lambda r: r["out"] == "no")):
+        Z = [r["account"] for r in mk if fn(r) and r.get("account") and r["account"]["s"] >= 50]
+        if not Z: continue
+        o = res["accounts"][name] = {"monks": len(Z), **{k: mean([c[k] for c in Z]) for k in ("from", "to", "spent", "taken", "unsure", "came_back")}}
+        pr(f"   {name:34} {len(Z):6} {o['from']:5.0f} {o['to']:5.0f} {o['spent']:6.0f} {o['taken']:6.1f} {o['unsure']:8.1f} {o['came_back']:9.0f}")
+    out_m = [r["account"] for r in mk if r["out"] == "yes" and r.get("account") and r["account"]["s"] >= 50]
+    if out_m:
+        big = sum(c["taken"] >= 20 for c in out_m) / len(out_m)
+        res["accounts"]["out monks with 20 or more taken in the minute"] = big
+        pr(f"   Of the monks out at a death, {100 * big:.0f}% had 20 or more taken by the enemy in the minute before, and {100 * sum(c['taken'] < 5 for c in out_m) / len(out_m):.0f}% under 5:")
+        pr("   his word (R-685), a monk low because he is drained is not at fault; the account says which it was, death by death.")
+    # C. energy denial by skill
+    by, tot = collections.Counter(), 0.0
+    for r in mk:
+        for k, v in ((r.get("account") or {}).get("by") or {}).items(): by[k] += v; tot += v
+    res["denial in those minutes"] = {k: v / tot for k, v in by.items()} if tot else {}
+    if tot: pr("\nC. What took it, of all the energy taken from those monks in those minutes: " + "; ".join(f"{k} {100 * v / tot:.0f}%" for k, v in by.most_common()) + ".")
+    # D. the job to kill
+    K = [dict(r, rid=rid) for rid, e in X.items() for r in e["kill_jobs"]]
+    pr(f"\nD. The job to kill ({len(K)} plays with it and energy: up on numbers, the strong side while a split is out, the main fight against no monk). The midline of")
+    pr("   the team with the job, in that fight; a player counts as out where he was out for half the stretch or more.")
+    pr(f"   {'':30} {'plays':>6} {'with midline read':>17} {'one or more out':>15} {'out a second or more':>20} {'lowest midline player, mean':>27}")
+    res["kill jobs"] = {}
+    for name, fn in (("did not kill", lambda r: not r["met"]), ("killed", lambda r: r["met"])):
+        Z = [r for r in K if fn(r)]; R = [r for r in Z if r["n"]]
+        if not Z: continue
+        o = res["kill jobs"][name] = {"plays": len(Z), "with midline read": len(R), "one or more out": sum(bool(r["out"]) for r in R) / max(len(R), 1),
+                                      "out a second or more": sum(any(x["out_s"] for x in r["midline"]) for r in R) / max(len(R), 1),
+                                      "lowest midline player": mean([min(x["low"] for x in r["midline"]) for r in R])}
+        pr(f"   {name:30} {len(Z):6} {len(R):17} {100 * o['one or more out']:14.1f}% {100 * o['out a second or more']:19.1f}% {f(o['lowest midline player'], '27.1f')}")
+    pr("   His word: a team's midline out of energy is, rarely, why it does not kill. The table says how rarely, and whether it is rarer where the team killed.")
+    # E. moments to look at
+    cl = lambda t: f"{int(t) // 60}:{int(t) % 60:02d}"
+    link = lambda rid, t: f"{' v '.join(idx[rid]['teams'])}, {idx[rid]['map']}, {str(idx[rid]['date'])[:10]}, {cl(t)}: https://gvg.report/report/{rid}#map"
+    pr("\nE. Moments to look at (the time is the death, or the start of the stretch)")
+    pick = sorted([d for d in with_m if d["all_out"] and d["n"] >= 2], key=lambda d: (d["rid"], d["t"]))
+    seen, shown = set(), []
+    for d in sorted(pick, key=lambda d: -d["n"]):
+        if d["rid"] in seen: continue
+        seen.add(d["rid"]); shown.append(d)
+        if len(shown) >= 6: break
+    res["moments"] = {"every monk out": [], "drained": [], "midline out": []}
+    pr("   every monk in the fight out (two or more monks):")
+    for d in shown:
+        pr(f"     {link(d['rid'], d['t'])}\n        {energy.say_death(d)}"); res["moments"]["every monk out"].append({"rid": d["rid"], "t": d["t"], "sentence": energy.say_death(d)})
+    drained = sorted([(max((r["account"]["taken"] for r in d["monks"] if r["out"] == "yes" and r.get("account")), default=0), d) for d in with_m if d["out"]], key=lambda x: -x[0])
+    seen, k = set(), 0
+    pr("   a monk out at a death who had the most taken from him in the minute before:")
+    for v, d in drained:
+        if d["rid"] in seen or v < 20: continue
+        seen.add(d["rid"]); k += 1
+        pr(f"     {link(d['rid'], d['t'])}\n        {energy.say_death(d)}"); res["moments"]["drained"].append({"rid": d["rid"], "t": d["t"], "sentence": energy.say_death(d)})
+        if k >= 5: break
+    nk = sorted([r for r in K if not r["met"] and r["out"]], key=lambda r: -max(x["out_s"] for x in r["midline"]))
+    seen, k = set(), 0
+    pr("   a team with the job to kill that did not, a midline player of it out for half the stretch or more:")
+    for r in nk:
+        if r["rid"] in seen: continue
+        seen.add(r["rid"]); k += 1
+        pr(f"     {link(r['rid'], r['t0'])}\n        {energy.say_no_kill(r)}"); res["moments"]["midline out"].append({"rid": r["rid"], "t": r["t0"], "sentence": energy.say_no_kill(r)})
+        if k >= 5: break
+    if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -3672,5 +3786,6 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "res": base_res(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "opening": opening_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "energy": energy_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "excuse": excuse_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers-cards": numbers_cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--site") + 1] if "--site" in a else None)
     else: print(__doc__)

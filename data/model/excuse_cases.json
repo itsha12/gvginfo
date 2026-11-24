@@ -1,0 +1,157 @@
+{
+ "deaths": {
+  "read": 9833,
+  "with a monk in the fight": 7432,
+  "no monk in the fight": 2401,
+  "every monk in the fight out": {
+   "deaths": 79,
+   "share": 0.010629709364908504,
+   "matches": 62
+  },
+  "some of them out, not all": {
+   "deaths": 287,
+   "share": 0.03861679224973089,
+   "matches": 140
+  },
+  "none out, one or more possibly out": {
+   "deaths": 156,
+   "share": 0.02099031216361679,
+   "matches": 86
+  },
+  "none out": {
+   "deaths": 6910,
+   "share": 0.9297631862217438,
+   "matches": 544
+  },
+  "monks read at a death": 15006,
+  "of them out": 0.025589764094362255
+ },
+ "accounts": {
+  "out at the death": {
+   "monks": 381,
+   "from": 43.49632545931758,
+   "to": 10.622572178477691,
+   "spent": 88.1758530183727,
+   "taken": 3.533595800524935,
+   "unsure": 1.6070866141732283,
+   "came_back": 58.83569553805775
+  },
+  "possibly out": {
+   "monks": 170,
+   "from": 43.93588235294118,
+   "to": 26.243529411764705,
+   "spent": 82.1470588235294,
+   "taken": 4.537058823529412,
+   "unsure": 1.8899999999999997,
+   "came_back": 68.99176470588236
+  },
+  "not out": {
+   "monks": 14034,
+   "from": 55.11659541114436,
+   "to": 50.15183839247542,
+   "spent": 70.99365825851504,
+   "taken": 3.314379364400741,
+   "unsure": 1.437152629328773,
+   "came_back": 69.34328060424683
+  },
+  "out monks with 20 or more taken in the minute": 0.04461942257217848
+ },
+ "denial in those minutes": {
+  "Energy Surge": 0.32127038605862507,
+  "Mind Wrack": 0.10713444073163216,
+  "Energy Burn": 0.21057285403813664,
+  "Shame": 0.15054010340820054,
+  "Power Leak": 0.19211285875132683,
+  "Malaise": 0.01732198139296929,
+  "Guilt": 0.001047375619109771
+ },
+ "kill jobs": {
+  "did not kill": {
+   "plays": 2393,
+   "with midline read": 2213,
+   "one or more out": 0.0013556258472661546,
+   "out a second or more": 0.011296882060551287,
+   "lowest midline player": 46.040804338002715
+  },
+  "killed": {
+   "plays": 972,
+   "with midline read": 933,
+   "one or more out": 0.004287245444801715,
+   "out a second or more": 0.04180064308681672,
+   "lowest midline player": 37.23665594855306
+  }
+ },
+ "moments": {
+  "every monk out": [
+   {
+    "rid": "36a65ac6-e25a-5d66-a8ed-2bf1032f243a",
+    "t": 72,
+    "sentence": "1:12 \uc637\uc637\uc637\uc637 Mes/A dies: every monk in his fight was out of energy (Prot at 13 (out); 7 Monk at 19 (out)). Prot, over the 60 s before he went from 72 to 13: spent 135 on casts, had 0 taken, and 76 came back. 7 Monk, over the 60 s before he went from 66 to 19: spent 125 on casts, had 0 taken, and 78 came back."
+   },
+   {
+    "rid": "8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f",
+    "t": 1295,
+    "sentence": "21:35 Book Ritualist dies: every monk in his fight was out of energy (7 Monk at 6 (out); 8 Monk at 6 (out)). 7 Monk, over the 60 s before he went from 2 to 6: spent 50 on casts, had 0 taken, and 54 came back. 8 Monk, over the 60 s before he went from 12 to 6: spent 70 on casts, had 0 taken, and 64 came back."
+   },
+   {
+    "rid": "b264d21f-8b86-51a7-ae6a-65db0e814dcd",
+    "t": 209,
+    "sentence": "3:29 Fun 7 Monk dies: every monk in his fight was out of energy (7 Monk at 0 (out); 8 Monk at 8 (out)). 7 Monk, over the 60 s before he went from 52 to 0: spent 125 on casts, had 13 taken (Guilt 13; 13 of it not sure), and 86 came back. 8 Monk, over the 60 s before he went from 49 to 8: spent 115 on casts, had 0 taken, and 74 came back."
+   },
+   {
+    "rid": "ee3a719f-bd1a-561d-a5b5-57cae6999c1f",
+    "t": 1589,
+    "sentence": "26:29 Book Dervish dies: every monk in his fight was out of energy (Prot at 14 (out); 7 Monk at 17 (out)). Prot, over the 60 s before he went from 68 to 14: spent 110 on casts, had 5 taken (Shame 5; 5 of it not sure), and 61 came back. 7 Monk, over the 60 s before he went from 57 to 17: spent 85 on casts, had 7 taken (Energy Burn 7; 7 of it not sure), and 52 came back."
+   },
+   {
+    "rid": "f221e39f-faa4-5772-a498-b87e532515a6",
+    "t": 196,
+    "sentence": "3:16 \u6226\u6226\u6226\u6226 Air Ele 1 dies: every monk in his fight was out of energy (Prot at 8 (out); 8 Monk at 6 (out)). Prot, over the 60 s before he went from 12 to 8: spent 50 on casts, had 0 taken, and 46 came back. 8 Monk, over the 60 s before he went from 33 to 6: spent 90 on casts, had 0 taken, and 63 came back."
+   }
+  ],
+  "drained": [
+   {
+    "rid": "99494912-895b-5094-a0a0-0d82dd969946",
+    "t": 679,
+    "sentence": "11:19 push 7 Monk dies: every monk in his fight was out of energy (7 Monk at 5 (out)). 7 Monk, over the 60 s before he went from 72 to 5: spent 75 on casts, had 36 taken (Energy Burn 18, Energy Surge 13, Mind Wrack 5), and 44 came back."
+   },
+   {
+    "rid": "e9bbb5bf-e3f6-5d36-a168-fec153561605",
+    "t": 600,
+    "sentence": "10:00 chic Warrior dies: 1 of the 3 monks in his fight was out of energy (Prot at 53; 7 Monk at 7 (out); 8 Monk at 18 (possibly out)). 7 Monk, over the 60 s before he went from 56 to 7: spent 110 on casts, had 35 taken (Power Leak 34, Mind Wrack 1; 34 of it not sure), and 96 came back. 8 Monk, over the 60 s before he went from 29 to 18: spent 90 on casts, had 16 taken (Power Leak 16; 16 of it not sure), and 96 came back."
+   },
+   {
+    "rid": "77b64e5c-caf6-5b64-a52a-1e6b422108d5",
+    "t": 1228,
+    "sentence": "20:28 \uc637\uc637\uc637\uc637 Mes/A dies: 1 of the 2 monks in his fight was out of energy (Prot at 26; 7 Monk at 0 (out)). 7 Monk, over the 60 s before he went from 59 to 0: spent 95 on casts, had 33 taken (Power Leak 23, Energy Surge 9, Mind Wrack 1; 23 of it not sure), and 69 came back."
+   },
+   {
+    "rid": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
+    "t": 75,
+    "sentence": "1:15 Apes 7 Monk dies: 1 of the 2 monks in his fight was out of energy (Prot at 15 (out); 7 Monk at 58). Prot, over the 60 s before he went from 72 to 15: spent 65 on casts, had 31 taken (Power Leak 17, Energy Burn 10, Mind Wrack 4; 17 of it not sure), and 39 came back."
+   },
+   {
+    "rid": "ab2c7e42-bd7b-5312-a699-3ee39fb07c97",
+    "t": 704,
+    "sentence": "11:44 True 7 Monk dies: 1 of the 2 monks in his fight was out of energy (Prot at 47; 7 Monk at 13 (out)). 7 Monk, over the 60 s before he went from 57 to 13: spent 95 on casts, had 31 taken (Shame 26, Energy Burn 5; 31 of it not sure), and 82 came back."
+   }
+  ],
+  "midline out": [
+   {
+    "rid": "70134991-57bc-5b1d-a499-e6d242bb35af",
+    "t": 1346,
+    "sentence": "22:26 to 23:11 DUM does not kill: Necromancer was out for 28 of 46 s (lowest 2; over the 60 s before he went from 49 to 2: spent 100 on casts, had 0 taken, and 53 came back); the other 2 midline were not out."
+   },
+   {
+    "rid": "d26a7f5c-428f-5b34-a25c-11b4dcb407be",
+    "t": 402,
+    "sentence": "6:42 to 7:04 DMG does not kill: Necromancer 1 was out for 12 of 24 s (lowest 5; over the 60 s before he went from 66 to 12: spent 55 on casts, had 0 taken, and 1 came back); the other 3 midline were not out."
+   },
+   {
+    "rid": "0dfb1709-db25-5df3-a48d-fd3a8117b14a",
+    "t": 256,
+    "sentence": "4:16 to 5:01 Apes does not kill: Monk 5 was out for 2 of 2 s (lowest 0; the minute before is not read); the other 2 midline were not out."
+   }
+  ]
+ }
+}

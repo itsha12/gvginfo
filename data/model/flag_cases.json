@@ -91,11 +91,11 @@
  },
  "K": 120,
  "k_error": {
-  "30": 220.07280226824372,
-  "45": 219.13778823098997,
-  "60": 217.97456367020908,
-  "90": 218.16168405841816,
-  "120": 217.41761706667347
+  "30": 220.50115601289897,
+  "45": 218.89726830856392,
+  "60": 218.47262042326787,
+  "90": 217.99933436804534,
+  "120": 217.4273289033352
  },
  "scenarios": {
   "Their boost is 30 s away": {
@@ -241,9 +241,9 @@
      48
     ],
     "the 60 s before, same position": [
-     0.6165507283339111,
-     -1.5875122395054433,
-     2.446831153075613,
+     0.619754844614236,
+     -1.648723042585476,
+     2.4808585849358757,
      80,
      48
     ],
@@ -255,22 +255,22 @@
      48
     ],
     "180 s on, same position": [
-     3.493477707273583,
-     -0.9178927493961728,
-     7.847479971060209,
+     3.5193459454079923,
+     -0.8921981439880154,
+     7.890109343187341,
      80,
      48
     ]
    },
    "verdicts": {
     "an unusual spot: no like cases round it": 20,
-    "no clear difference": 48,
+    "no clear difference": 47,
     "wrong": 27,
-    "right": 27,
+    "right": 28,
     "too few cases of this call": 6
    },
    "clear_advice": {
-    "no runner yet": 37,
+    "no runner yet": 38,
     "a runner sent by now": 19
    }
   },
@@ -374,9 +374,9 @@
      179
     ],
     "the 60 s before, same position": [
-     -0.4938109709643334,
-     -1.4437558365468381,
-     0.6248741354067711,
+     -0.49846209709622724,
+     -1.4384013504640816,
+     0.6159372344761755,
      342,
      179
     ],
@@ -388,23 +388,23 @@
      179
     ],
     "180 s on, same position": [
-     -1.3797694919375052,
-     -3.2693033104314493,
-     0.5647882409238693,
+     -1.3737894896740468,
+     -3.240743353901094,
+     0.5616153442434049,
      342,
      179
     ]
    },
    "verdicts": {
     "no clear difference": 219,
-    "wrong": 132,
+    "wrong": 130,
     "too few cases of this call": 5,
     "right": 87,
-    "an unusual spot: no like cases round it": 78
+    "an unusual spot: no like cases round it": 80
    },
    "clear_advice": {
-    "a runner sent by now": 190,
-    "no runner yet": 31
+    "a runner sent by now": 183,
+    "no runner yet": 36
    }
   },
   "Their single run; they hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
@@ -480,9 +480,9 @@
      81
     ],
     "the 60 s before, same position": [
-     0.13005013926465356,
-     -1.259863682376808,
-     1.4576541474860523,
+     0.14073049397380633,
+     -1.3332311644644725,
+     1.491237205234917,
      230,
      81
     ],
@@ -494,23 +494,23 @@
      81
     ],
     "180 s on, same position": [
-     -0.34899972972094423,
-     -3.185347391154113,
-     2.352577909154623,
+     -0.35903996680800077,
+     -3.216283943338168,
+     2.3583879579249487,
      230,
      81
     ]
    },
    "verdicts": {
     "wrong": 69,
-    "no clear difference": 72,
+    "no clear difference": 71,
     "an unusual spot: no like cases round it": 61,
-    "right": 103,
+    "right": 104,
     "too few cases of this call": 6
    },
    "clear_advice": {
-    "a runner sent by now": 80,
-    "no runner yet": 97
+    "a runner sent by now": 82,
+    "no runner yet": 96
    }
   },
   "Their single run; we hold the stand; 15 s after their runner set off": {
@@ -586,9 +586,9 @@
      174
     ],
     "the 60 s before, same position": [
-     0.11377526981364526,
-     -0.7760874004945755,
-     0.9376324757504846,
+     0.1329519859358855,
+     -0.7530994277573283,
+     0.9503122136592799,
      1058,
      174
     ],
@@ -600,23 +600,23 @@
      174
     ],
     "180 s on, same position": [
-     0.5751759788450762,
-     -1.2195758125396177,
-     2.081813987166274,
+     0.5428233785190143,
+     -1.2285673751489246,
+     2.057009799830253,
      1058,
      174
     ]
    },
    "verdicts": {
-    "wrong": 269,
-    "right": 339,
-    "no clear difference": 469,
-    "an unusual spot: no like cases round it": 147,
+    "wrong": 241,
+    "right": 312,
+    "no clear difference": 528,
+    "an unusual spot: no like cases round it": 143,
     "too few cases of this call": 8
    },
    "clear_advice": {
-    "a runner sent by now": 239,
-    "no runner yet": 374
+    "a runner sent by now": 205,
+    "no runner yet": 353
    }
   },
   "Their single run; we hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
@@ -691,9 +691,9 @@
      102
     ],
     "the 60 s before, same position": [
-     -0.4590469274232655,
-     -1.6580648784374583,
-     0.7421586627119996,
+     -0.4429335188496445,
+     -1.6618986314052107,
+     0.7425533886633002,
      747,
      102
     ],
@@ -705,22 +705,22 @@
      102
     ],
     "180 s on, same position": [
-     -1.4638880189611307,
-     -3.5590690823899966,
-     0.5561815536592167,
+     -1.4747114284957261,
+     -3.5803712730708046,
+     0.5261083384832191,
      747,
      102
     ]
    },
    "verdicts": {
-    "right": 200,
-    "wrong": 248,
-    "an unusual spot: no like cases round it": 93,
-    "no clear difference": 308
+    "right": 209,
+    "wrong": 252,
+    "no clear difference": 295,
+    "an unusual spot: no like cases round it": 93
    },
    "clear_advice": {
-    "no runner yet": 185,
-    "a runner sent by now": 263
+    "no runner yet": 195,
+    "a runner sent by now": 266
    }
   },
   "Our flag just in, their double run still on its way; 15 s after our cap": {
@@ -796,9 +796,9 @@
      60
     ],
     "the 60 s before, same position": [
-     0.24625286811038663,
-     -1.1204005194618336,
-     1.7554018737263717,
+     0.25084997366294504,
+     -1.0794847094672155,
+     1.7902238349766453,
      121,
      60
     ],
@@ -810,23 +810,23 @@
      60
     ],
     "180 s on, same position": [
-     -0.31705941786145975,
-     -5.22650090864423,
-     3.3461984750083396,
+     -0.3359694003923214,
+     -5.4222736311724695,
+     3.2564849727810916,
      121,
      60
     ]
    },
    "verdicts": {
-    "right": 52,
-    "no clear difference": 62,
+    "right": 54,
+    "no clear difference": 61,
     "an unusual spot: no like cases round it": 27,
-    "wrong": 31,
+    "wrong": 30,
     "too few cases of this call": 9
    },
    "clear_advice": {
     "no runner yet": 48,
-    "a runner sent by now": 40
+    "a runner sent by now": 41
    }
   },
   "Our flag just in, their double run still on its way; 30 s after our cap, nobody sent by 15 s": {
@@ -929,9 +929,9 @@
      140
     ],
     "the 60 s before, same position": [
-     0.22653383681093878,
-     -0.6074067157978136,
-     1.1873774773038552,
+     0.24678484417096183,
+     -0.5959372591196732,
+     1.1878085514666146,
      423,
      140
     ],
@@ -943,23 +943,23 @@
      140
     ],
     "180 s on, same position": [
-     -0.8055583030192844,
-     -3.166551035295656,
-     1.6219105957252293,
+     -0.8417277875250347,
+     -3.1345176241731374,
+     1.6124247411650825,
      423,
      140
     ]
    },
    "verdicts": {
-    "right": 170,
-    "wrong": 133,
-    "no clear difference": 162,
-    "an unusual spot: no like cases round it": 89,
+    "right": 161,
+    "wrong": 137,
+    "no clear difference": 166,
+    "an unusual spot: no like cases round it": 90,
     "too few cases of this call": 9
    },
    "clear_advice": {
-    "no runner yet": 153,
-    "a runner sent by now": 156
+    "no runner yet": 146,
+    "a runner sent by now": 157
    }
   },
   "Our flag just in, their single run still on its way; 30 s after our cap, nobody sent by 15 s": {
@@ -1035,9 +1035,9 @@
      39
     ],
     "the 60 s before, same position": [
-     -0.6966936746432988,
-     -2.5258440420515478,
-     1.1602689826464498,
+     -0.6797901423857329,
+     -2.525568823674951,
+     1.2090642202850437,
      234,
      39
     ],
@@ -1049,23 +1049,23 @@
      39
     ],
     "180 s on, same position": [
-     -0.7900690622306566,
-     -4.4862943474688315,
-     2.296623689520011,
+     -0.8174137505181568,
+     -4.487319697565517,
+     2.329025868959838,
      234,
      39
     ]
    },
    "verdicts": {
-    "no clear difference": 155,
+    "no clear difference": 150,
     "an unusual spot: no like cases round it": 48,
-    "right": 22,
+    "right": 23,
     "too few cases of this call": 3,
-    "wrong": 45
+    "wrong": 49
    },
    "clear_advice": {
-    "a runner sent by now": 47,
-    "no runner yet": 20
+    "a runner sent by now": 51,
+    "no runner yet": 21
    }
   },
   "Their double run; our flag already in hand": {
@@ -1251,315 +1251,315 @@
    "tally": {
     "cases": 1910,
     "too few cases": 29,
-    "no clear advice": 844,
-    "clear advice": 1037
+    "no clear advice": 842,
+    "clear advice": 1039
    },
-   "rows": 1037,
-   "matched": 366,
+   "rows": 1039,
+   "matched": 369,
    "advice": {
-    "a runner sent by now": 762,
-    "no runner yet": 275
+    "a runner sent by now": 751,
+    "no runner yet": 288
    },
    "v": {
-    "effect": 1.4865126074686394,
+    "effect": 1.578856970280652,
     "range": [
-     0.76866962733114,
-     2.331618839038361
+     0.7607732056652063,
+     2.3761712430770117
     ],
-    "matched_mean": 0.15817232243749074,
-    "unmatched_mean": -2.8707527023810906,
+    "matched_mean": 0.31036070874189614,
+    "unmatched_mean": -2.8845551831318836,
     "verdict": "better"
    },
    "end": {
-    "effect": 1.5201564309597926,
+    "effect": -0.8478273898191396,
     "range": [
-     -2.495782908415777,
-     6.382160850816171
+     -5.4571735836677036,
+     4.337692639729092
     ],
-    "matched_mean": 2.709156698142015,
-    "unmatched_mean": -2.638048818274512,
+    "matched_mean": 1.3456487672654478,
+    "unmatched_mean": -2.433688807027071,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": 0.30214880774334246,
+    "effect": 0.21008997761599485,
     "range": [
-     -0.42800003866257985,
-     0.9939659191629688
+     -0.5119054294545928,
+     0.9695098987716737
     ],
-    "matched_mean": 1.6951588711614471,
-    "unmatched_mean": -0.03276510362880245,
+    "matched_mean": 1.8488106056210336,
+    "unmatched_mean": -0.06036480084063038,
     "verdict": "no clear difference"
    },
-   "matches": 342
+   "matches": 341
   },
   "their run, our answer read at 15 s, 90 s on": {
    "tally": {
     "cases": 1910,
     "too few cases": 29,
-    "no clear advice": 937,
-    "clear advice": 944
+    "no clear advice": 915,
+    "clear advice": 966
    },
-   "rows": 944,
-   "matched": 402,
+   "rows": 966,
+   "matched": 399,
    "advice": {
-    "a runner sent by now": 601,
-    "no runner yet": 343
+    "a runner sent by now": 617,
+    "no runner yet": 349
    },
    "v": {
-    "effect": 1.486704501282162,
+    "effect": 1.5813481201256112,
     "range": [
-     0.47642484430537224,
-     2.452510240530383
+     0.496669105046039,
+     2.5438769535167842
     ],
-    "matched_mean": -0.5812623929722652,
-    "unmatched_mean": -2.77528926287489,
+    "matched_mean": -0.4004843887628149,
+    "unmatched_mean": -2.6510504423912895,
     "verdict": "better"
    },
    "end": {
-    "effect": -0.2532404208592244,
+    "effect": -1.2198173400124832,
     "range": [
-     -5.111917624952032,
-     4.564240088482999
+     -5.483631323362282,
+     4.142073433395761
     ],
-    "matched_mean": -0.38930847660937834,
-    "unmatched_mean": -4.115355095442687,
+    "matched_mean": 0.5473762683399214,
+    "unmatched_mean": -2.6713846141830104,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": 0.03917039171757267,
+    "effect": -0.23969967553933813,
     "range": [
-     -0.7625015949867352,
-     0.899472053744424
+     -1.1168206638282026,
+     0.4612487395793606
     ],
-    "matched_mean": 1.427229302470495,
-    "unmatched_mean": -0.19682884869218703,
+    "matched_mean": 1.1120852584867194,
+    "unmatched_mean": -0.190385097499228,
     "verdict": "no clear difference"
    },
-   "matches": 326
+   "matches": 328
   },
   "their run, our answer read at 15 s, 180 s on": {
    "tally": {
     "cases": 1910,
     "too few cases": 29,
-    "no clear advice": 980,
-    "clear advice": 901
+    "no clear advice": 1036,
+    "clear advice": 845
    },
-   "rows": 901,
-   "matched": 453,
+   "rows": 845,
+   "matched": 431,
    "advice": {
-    "no runner yet": 438,
-    "a runner sent by now": 463
+    "no runner yet": 424,
+    "a runner sent by now": 421
    },
    "v": {
-    "effect": 0.8849030701494138,
+    "effect": 0.5382946382428039,
     "range": [
-     -1.1112894602786774,
-     2.849631805505312
+     -1.2067014081736838,
+     2.269585257968879
     ],
-    "matched_mean": 0.9852542006558205,
-    "unmatched_mean": -1.9281359615833502,
+    "matched_mean": 0.9393901420156313,
+    "unmatched_mean": -1.6706271051906532,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": -3.1013048823052203,
+    "effect": -4.195682214615677,
     "range": [
-     -7.81304896541541,
-     1.48695273761578
+     -8.428760531069061,
+     0.6381064035553123
     ],
-    "matched_mean": -0.2983053735189459,
-    "unmatched_mean": -1.6392731474135194,
+    "matched_mean": -0.29270396382775077,
+    "unmatched_mean": -0.744466576745352,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": 0.9800556566340531,
+    "effect": 0.852256633869595,
     "range": [
-     0.10909776587203719,
-     1.8559080416500666
+     -0.13847162817231015,
+     1.8236878877843454
     ],
-    "matched_mean": 2.66372153587565,
-    "unmatched_mean": -0.6127225039103776,
-    "verdict": "better"
+    "matched_mean": 2.6646947129600846,
+    "unmatched_mean": -0.5686802672641896,
+    "verdict": "no clear difference"
    },
-   "matches": 321
+   "matches": 310
   },
   "their run, our answer read at 30 s, 60 s on": {
    "tally": {
     "cases": 1251,
     "too few cases": 91,
-    "clear advice": 675,
-    "no clear advice": 485
+    "clear advice": 659,
+    "no clear advice": 501
    },
-   "rows": 675,
-   "matched": 220,
+   "rows": 659,
+   "matched": 214,
    "advice": {
-    "a runner sent by now": 496,
-    "no runner yet": 179
+    "a runner sent by now": 488,
+    "no runner yet": 171
    },
    "v": {
-    "effect": 0.08209066994786192,
+    "effect": 0.3877914447140137,
     "range": [
-     -1.0825155590128723,
-     1.268456750735859
+     -0.6547992302148096,
+     1.5497901099559532
     ],
-    "matched_mean": -0.7299969587196203,
-    "unmatched_mean": -2.6840661505386825,
+    "matched_mean": -0.6981556011562663,
+    "unmatched_mean": -2.6745693994774555,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": 0.8768987776097686,
+    "effect": -0.8408888632929977,
     "range": [
-     -5.946760419544415,
-     8.54242801097871
+     -7.300064153705157,
+     6.536824922781845
     ],
-    "matched_mean": 1.6254453725674098,
-    "unmatched_mean": -2.6295706757909603,
+    "matched_mean": 0.9391592929805448,
+    "unmatched_mean": -1.8884819072306966,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": 0.19673189205084823,
+    "effect": 0.27836321204614795,
     "range": [
-     -0.8467635199895404,
-     1.0848832724561464
+     -0.7991345082024385,
+     1.5211647110946402
     ],
-    "matched_mean": 0.6351614044288942,
-    "unmatched_mean": 1.4649667678639995,
+    "matched_mean": 0.6705544567984126,
+    "unmatched_mean": 1.2977449243260173,
     "verdict": "no clear difference"
    },
-   "matches": 296
+   "matches": 287
   },
   "their run, our answer read at 30 s, 90 s on": {
    "tally": {
     "cases": 1251,
     "too few cases": 91,
-    "no clear advice": 466,
-    "clear advice": 694
+    "no clear advice": 489,
+    "clear advice": 671
    },
-   "rows": 694,
-   "matched": 256,
+   "rows": 671,
+   "matched": 238,
    "advice": {
-    "a runner sent by now": 470,
-    "no runner yet": 224
+    "a runner sent by now": 468,
+    "no runner yet": 203
    },
    "v": {
-    "effect": 0.6229184543343376,
+    "effect": 0.42367918410958977,
     "range": [
-     -0.7426179788133539,
-     1.9120954061789794
+     -1.321418763978992,
+     1.8121543320553013
     ],
-    "matched_mean": -0.9046520971132894,
-    "unmatched_mean": -3.2966050500814004,
+    "matched_mean": -1.0827511220091468,
+    "unmatched_mean": -3.3238504446831802,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": -4.405473704824717,
+    "effect": -3.221324317550449,
     "range": [
-     -10.786447807650685,
-     1.9782416900634743
+     -8.830119544626985,
+     2.953277925258857
     ],
-    "matched_mean": -0.23410010050868946,
-    "unmatched_mean": -1.6048435008424193,
+    "matched_mean": 0.5097343960565538,
+    "unmatched_mean": -1.601833645136155,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": -0.18047124391975816,
+    "effect": 0.10687486175911694,
     "range": [
-     -1.2176254870411234,
-     0.8652232955462204
+     -0.8328635357148577,
+     1.0964384898124755
     ],
-    "matched_mean": 0.9037707850904166,
-    "unmatched_mean": 1.5721291887965236,
+    "matched_mean": 0.9495011131522245,
+    "unmatched_mean": 1.4204800492817142,
     "verdict": "no clear difference"
    },
-   "matches": 302
+   "matches": 291
   },
   "their run, our answer read at 30 s, 180 s on": {
    "tally": {
     "cases": 1251,
     "too few cases": 91,
-    "clear advice": 624,
-    "no clear advice": 536
+    "clear advice": 645,
+    "no clear advice": 515
    },
-   "rows": 624,
-   "matched": 294,
+   "rows": 645,
+   "matched": 307,
    "advice": {
-    "a runner sent by now": 350,
-    "no runner yet": 274
+    "a runner sent by now": 363,
+    "no runner yet": 282
    },
    "v": {
-    "effect": -0.67939344888481,
+    "effect": -1.162047512527526,
     "range": [
-     -2.8621209247307013,
-     1.5645278284601571
+     -3.0775033598779236,
+     0.7710901116790478
     ],
-    "matched_mean": -0.42379448333133574,
-    "unmatched_mean": -1.5003488955467208,
+    "matched_mean": -0.6148740110401893,
+    "unmatched_mean": -1.2357595983385916,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": -6.47608062673511,
+    "effect": -6.552084303649102,
     "range": [
-     -12.073893811212567,
-     -0.11553348841510293
+     -12.068711433060425,
+     -0.08917103417352475
     ],
-    "matched_mean": -2.4748458859774507,
-    "unmatched_mean": 2.3031934604677033,
+    "matched_mean": -3.341751658553544,
+    "unmatched_mean": 1.4051028731552404,
     "verdict": "worse"
    },
    "pre": {
-    "effect": -0.5270068790433697,
+    "effect": -0.14016119396527615,
     "range": [
-     -1.5851752783168442,
-     0.7033830597010117
+     -1.3433579019810382,
+     0.8102587125901773
     ],
-    "matched_mean": 1.088485120824489,
-    "unmatched_mean": 1.0339790586745576,
+    "matched_mean": 1.268423565427761,
+    "unmatched_mean": 0.8961710062475489,
     "verdict": "no clear difference"
    },
-   "matches": 283
+   "matches": 290
   },
   "our flag just in, theirs still coming: run again, read 15 s after our cap, 60 s on": {
    "tally": {
     "cases": 744,
-    "clear advice": 385,
-    "no clear advice": 359
+    "clear advice": 386,
+    "no clear advice": 358
    },
-   "rows": 385,
-   "matched": 187,
+   "rows": 386,
+   "matched": 189,
    "advice": {
-    "no runner yet": 167,
+    "no runner yet": 168,
     "a runner sent by now": 218
    },
    "v": {
-    "effect": -0.10246702524864937,
+    "effect": -0.346357134176293,
     "range": [
-     -0.9922218989206951,
-     1.0581472029089567
+     -1.179350111688033,
+     0.7046100769304171
     ],
-    "matched_mean": 1.1987208881667435,
-    "unmatched_mean": 0.38878136568655225,
+    "matched_mean": 1.17070415668356,
+    "unmatched_mean": 0.4557420659772641,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": 8.522515893030752,
+    "effect": 7.3712947569714515,
     "range": [
-     -0.35811327171631574,
-     18.094854448557985
+     -2.2571017681823737,
+     16.783440069506206
     ],
-    "matched_mean": 5.255813571658188,
-    "unmatched_mean": -1.5331958302210273,
+    "matched_mean": 5.120228050276103,
+    "unmatched_mean": -1.2879584356633096,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": -0.20537494891548652,
+    "effect": -0.4983709210106177,
     "range": [
-     -1.368896272744402,
-     0.7859670594207713
+     -1.6615905381673237,
+     0.6426622471284957
     ],
-    "matched_mean": -1.33396398309722,
-    "unmatched_mean": -0.7582823738639042,
+    "matched_mean": -1.5344214096250643,
+    "unmatched_mean": -0.6671138374031657,
     "verdict": "no clear difference"
    },
-   "matches": 189
+   "matches": 185
   },
   "our flag just in, theirs still coming: run again, read 15 s after our cap, 90 s on": {
    "tally": {
@@ -1570,81 +1570,81 @@
    "rows": 398,
    "matched": 174,
    "advice": {
-    "no runner yet": 135,
-    "a runner sent by now": 263
+    "no runner yet": 132,
+    "a runner sent by now": 266
    },
    "v": {
-    "effect": 0.3487867301657725,
+    "effect": 0.5232626311331924,
     "range": [
-     -0.9454426061786663,
-     1.8295133726260067
+     -0.819967729313427,
+     1.8990724016518452
     ],
-    "matched_mean": 1.7730855590692618,
-    "unmatched_mean": 0.6339581772609467,
+    "matched_mean": 1.889662390340132,
+    "unmatched_mean": 0.7335610305402052,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": 3.556916333662479,
+    "effect": 3.0211215823875035,
     "range": [
-     -3.84365883046924,
-     10.398281544019289
+     -3.9140693985691795,
+     10.261622302041566
     ],
-    "matched_mean": 3.736082070305236,
-    "unmatched_mean": 0.3518532182977075,
+    "matched_mean": 4.272703564184289,
+    "unmatched_mean": 1.410617627731311,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": -0.1343039301224953,
+    "effect": -0.11109124089626161,
     "range": [
-     -1.0254708098187466,
-     0.7628631434140454
+     -1.0206507873609125,
+     0.6924771083202366
     ],
-    "matched_mean": -1.6883101094434199,
-    "unmatched_mean": -0.8311946169044078,
+    "matched_mean": -1.6041183620138952,
+    "unmatched_mean": -0.8180249003930086,
     "verdict": "no clear difference"
    },
-   "matches": 189
+   "matches": 188
   },
   "our flag just in, theirs still coming: run again, read 15 s after our cap, 180 s on": {
    "tally": {
     "cases": 744,
-    "clear advice": 406,
-    "no clear advice": 338
+    "clear advice": 402,
+    "no clear advice": 342
    },
-   "rows": 406,
-   "matched": 228,
+   "rows": 402,
+   "matched": 224,
    "advice": {
-    "no runner yet": 213,
-    "a runner sent by now": 193
+    "no runner yet": 203,
+    "a runner sent by now": 199
    },
    "v": {
-    "effect": 0.2738502521922559,
+    "effect": 0.15388056157960744,
     "range": [
-     -2.323424918796259,
-     2.916273061171096
+     -2.1705345071494153,
+     2.5383254512132094
     ],
-    "matched_mean": 1.0826083575082477,
-    "unmatched_mean": 1.174018411668055,
+    "matched_mean": 0.8655274446521034,
+    "unmatched_mean": 0.8778727531896645,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": -1.206017958463518,
+    "effect": 0.19354188671844266,
     "range": [
-     -8.474208707406083,
-     6.649421921749455
+     -6.721574513731454,
+     7.7646071866637625
     ],
-    "matched_mean": 2.7421912401376884,
-    "unmatched_mean": 4.4818542454208785,
+    "matched_mean": 2.6283916944562713,
+    "unmatched_mean": 2.7593850948142666,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": -0.6128765746700526,
+    "effect": -0.43120565008472433,
     "range": [
-     -1.467067278380205,
-     0.03158496389374426
+     -1.3643133025247494,
+     0.5647296828164934
     ],
-    "matched_mean": -0.6364497063355035,
-    "unmatched_mean": -0.7332858409059485,
+    "matched_mean": -0.6290714173975248,
+    "unmatched_mean": -0.6416958163007993,
     "verdict": "no clear difference"
    },
    "matches": 190
@@ -1653,14 +1653,14 @@
    "tally": {
     "cases": 329,
     "too few cases": 93,
-    "no clear advice": 145,
-    "clear advice": 91
+    "no clear advice": 149,
+    "clear advice": 87
    },
-   "rows": 91,
-   "matched": 67,
+   "rows": 87,
+   "matched": 63,
    "advice": {
-    "a runner sent by now": 16,
-    "no runner yet": 75
+    "no runner yet": 71,
+    "a runner sent by now": 16
    },
    "verdict": "too few to call"
   },
@@ -1668,59 +1668,59 @@
    "tally": {
     "cases": 329,
     "too few cases": 93,
-    "clear advice": 80,
-    "no clear advice": 156
+    "clear advice": 81,
+    "no clear advice": 155
    },
-   "rows": 80,
+   "rows": 81,
    "matched": 42,
    "advice": {
-    "no runner yet": 44,
-    "a runner sent by now": 36
+    "no runner yet": 43,
+    "a runner sent by now": 38
    },
    "v": {
-    "effect": -5.267983378705415,
+    "effect": -5.427967185663572,
     "range": [
-     -10.510271680700205,
-     -0.6708952565655293
+     -11.056238460673034,
+     0.10145651359465917
     ],
-    "matched_mean": 0.6326562671510761,
-    "unmatched_mean": -0.6214524213953972,
-    "verdict": "worse"
+    "matched_mean": 0.8665744719730814,
+    "unmatched_mean": -0.6448035993729667,
+    "verdict": "no clear difference"
    },
    "end": {
-    "effect": 10.558256659521561,
+    "effect": 11.911393265145534,
     "range": [
-     -13.735919700755868,
-     45.43809185706877
+     -8.95760767661107,
+     45.55097579958051
     ],
-    "matched_mean": -3.123886183670287,
-    "unmatched_mean": -14.18517456099468,
+    "matched_mean": -4.427076771731685,
+    "unmatched_mean": -16.411187730207523,
     "verdict": "no clear difference"
    },
    "pre": {
-    "effect": -8.402944214823941,
+    "effect": -5.88892913586384,
     "range": [
-     -12.532032795340603,
-     -2.81088157874309
+     -9.450869332435252,
+     -1.3905782551091574
     ],
-    "matched_mean": -0.8473798525891707,
-    "unmatched_mean": 2.989496724750964,
+    "matched_mean": -0.8109045547137712,
+    "unmatched_mean": 1.6649794203104038,
     "verdict": "worse"
    },
-   "matches": 64
+   "matches": 66
   },
   "our flag just in, theirs still coming: run again, read 30 s after our cap, 180 s on": {
    "tally": {
     "cases": 329,
     "too few cases": 93,
-    "no clear advice": 183,
-    "clear advice": 53
+    "no clear advice": 181,
+    "clear advice": 55
    },
-   "rows": 53,
-   "matched": 23,
+   "rows": 55,
+   "matched": 22,
    "advice": {
-    "no runner yet": 22,
-    "a runner sent by now": 31
+    "no runner yet": 20,
+    "a runner sent by now": 35
    },
    "verdict": "too few to call"
   }
@@ -1910,29 +1910,29 @@
  "advice_was": {
   "Their single run; they hold the stand; 15 s after their runner set off": {
    "hold off": {
-    "cases": 42,
-    "we are up on numbers at the main fight": 0.3333333333333333,
-    "we are down on numbers there": 0.35714285714285715,
-    "we stand on their side of the stand": 0.07142857142857142,
-    "we stand on our own side of it": 0.2619047619047619,
-    "they stand on their own side of it": 0.23809523809523808,
-    "their runner is a backline monk": 0.16666666666666666,
-    "the flag can beat the boost": 0.8571428571428571,
-    "the base res is under 40 s away": 0.11904761904761904,
-    "we are the stronger team (by 100 points or more)": 0.3333333333333333,
-    "we are the weaker team (by 100 or more)": 0.5476190476190477,
-    "flag lead, in flags": -0.5707142857142858,
-    "seconds to the boost": 95.33333333333333,
-    "seconds their flag should take": 55.595238095238095,
-    "own morale (the eight summed)": 18.785714285714285,
-    "their morale": -16.261904761904763,
-    "their team's snares": 33.25476190476191,
+    "cases": 41,
+    "we are up on numbers at the main fight": 0.3170731707317073,
+    "we are down on numbers there": 0.3170731707317073,
+    "we stand on their side of the stand": 0.07317073170731707,
+    "we stand on our own side of it": 0.24390243902439024,
+    "they stand on their own side of it": 0.21951219512195122,
+    "their runner is a backline monk": 0.17073170731707318,
+    "the flag can beat the boost": 0.8536585365853658,
+    "the base res is under 40 s away": 0.0975609756097561,
+    "we are the stronger team (by 100 points or more)": 0.36585365853658536,
+    "we are the weaker team (by 100 or more)": 0.4878048780487805,
+    "flag lead, in flags": -0.5580487804878049,
+    "seconds to the boost": 96.4390243902439,
+    "seconds their flag should take": 56.4390243902439,
+    "own morale (the eight summed)": 18.902439024390244,
+    "their morale": -22.073170731707318,
+    "their team's snares": 31.509756097560977,
     "did as advised": {
-     "cases": 26,
+     "cases": 24,
      "win points 180 s": null
     },
     "did otherwise": {
-     "cases": 16,
+     "cases": 17,
      "win points 180 s": null
     },
     "look at": [
@@ -1943,53 +1943,53 @@
       "call": "no runner yet"
      },
      {
+      "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+      "their_runner_sets_off": 769,
+      "said": "Team single run (Monk 5 (WoC)); HC single run (AoB Derv)",
+      "call": "a runner sent by now"
+     },
+     {
       "rid": "113190c3-1390-5291-a67c-ed7b58bf77c1",
       "their_runner_sets_off": 746,
       "said": "hook single run (Stand Mes 2); Crew single run (Necromancer)",
       "call": "a runner sent by now"
-     },
-     {
-      "rid": "86640677-2c61-5061-a1d5-f9d48bfc0526",
-      "their_runner_sets_off": 393,
-      "said": "True single run (Mes/A, handing it to Dervish and Hammer); 옷옷옷옷 single run (Mes/A)",
-      "call": "no runner yet"
      }
     ]
    },
    "send a runner": {
-    "cases": 194,
-    "we are up on numbers at the main fight": 0.28865979381443296,
-    "we are down on numbers there": 0.3247422680412371,
-    "we stand on their side of the stand": 0.07216494845360824,
-    "we stand on our own side of it": 0.2268041237113402,
-    "they stand on their own side of it": 0.10362694300518134,
-    "their runner is a backline monk": 0.12371134020618557,
-    "the flag can beat the boost": 0.8814432989690721,
-    "the base res is under 40 s away": 0.3917525773195876,
-    "we are the stronger team (by 100 points or more)": 0.3711340206185567,
-    "we are the weaker team (by 100 or more)": 0.4690721649484536,
-    "flag lead, in flags": -0.48211340206185566,
-    "seconds to the boost": 92.5360824742268,
-    "seconds their flag should take": 52.855670103092784,
-    "own morale (the eight summed)": -25.015463917525775,
-    "their morale": 2.3917525773195876,
-    "their team's snares": 40.534536082474226,
+    "cases": 180,
+    "we are up on numbers at the main fight": 0.29444444444444445,
+    "we are down on numbers there": 0.3055555555555556,
+    "we stand on their side of the stand": 0.07777777777777778,
+    "we stand on our own side of it": 0.22777777777777777,
+    "they stand on their own side of it": 0.1005586592178771,
+    "their runner is a backline monk": 0.11666666666666667,
+    "the flag can beat the boost": 0.8777777777777778,
+    "the base res is under 40 s away": 0.39444444444444443,
+    "we are the stronger team (by 100 points or more)": 0.37222222222222223,
+    "we are the weaker team (by 100 or more)": 0.4666666666666667,
+    "flag lead, in flags": -0.47272222222222227,
+    "seconds to the boost": 92.12222222222222,
+    "seconds their flag should take": 52.583333333333336,
+    "own morale (the eight summed)": -24.77777777777778,
+    "their morale": 2.85,
+    "their team's snares": 41.35055555555556,
     "did as advised": {
-     "cases": 71,
+     "cases": 66,
      "win points 180 s": [
-      -0.09330724988788164,
-      -2.0546937348227075,
-      1.868079235046944,
-      71
+      -0.6751878695694079,
+      -2.6893069811414807,
+      1.3389312420026651,
+      66
      ]
     },
     "did otherwise": {
-     "cases": 123,
+     "cases": 114,
      "win points 180 s": [
-      0.1254861271857654,
-      -1.7758029771119077,
-      2.0267752314834384,
-      123
+      0.8239488148916244,
+      -1.1426428083784792,
+      2.7905404381617283,
+      114
      ]
     },
     "look at": [
@@ -2000,73 +2000,73 @@
       "call": "a runner sent by now"
      },
      {
-      "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
-      "their_runner_sets_off": 777,
-      "said": "hdm single run (Water Ele); HC single run (Monk 4 (WoC))",
-      "call": "no runner yet"
-     },
-     {
       "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
       "their_runner_sets_off": 1003,
       "said": "RACK single run (Air Ele 2); hold single run (Air Ele)",
+      "call": "no runner yet"
+     },
+     {
+      "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+      "their_runner_sets_off": 777,
+      "said": "hdm single run (Water Ele); HC single run (Monk 4 (WoC))",
       "call": "no runner yet"
      }
     ]
    },
    "nothing clear": {
-    "cases": 285,
-    "we are up on numbers at the main fight": 0.38596491228070173,
-    "we are down on numbers there": 0.2982456140350877,
-    "we stand on their side of the stand": 0.03180212014134275,
-    "we stand on our own side of it": 0.28975265017667845,
-    "they stand on their own side of it": 0.16140350877192983,
-    "their runner is a backline monk": 0.15087719298245614,
-    "the flag can beat the boost": 0.9298245614035088,
-    "the base res is under 40 s away": 0.30526315789473685,
-    "we are the stronger team (by 100 points or more)": 0.38596491228070173,
-    "we are the weaker team (by 100 or more)": 0.4280701754385965,
-    "flag lead, in flags": -0.473719298245614,
-    "seconds to the boost": 97.3438596491228,
-    "seconds their flag should take": 55.18245614035088,
-    "own morale (the eight summed)": -13.621052631578948,
-    "their morale": -4.5964912280701755,
-    "their team's snares": 36.968771929824555
+    "cases": 300,
+    "we are up on numbers at the main fight": 0.38,
+    "we are down on numbers there": 0.31666666666666665,
+    "we stand on their side of the stand": 0.030201342281879196,
+    "we stand on our own side of it": 0.28859060402684567,
+    "they stand on their own side of it": 0.16333333333333333,
+    "their runner is a backline monk": 0.15333333333333332,
+    "the flag can beat the boost": 0.93,
+    "the base res is under 40 s away": 0.31,
+    "we are the stronger team (by 100 points or more)": 0.38,
+    "we are the weaker team (by 100 or more)": 0.44,
+    "flag lead, in flags": -0.48180000000000006,
+    "seconds to the boost": 97.21,
+    "seconds their flag should take": 55.123333333333335,
+    "own morale (the eight summed)": -14.203333333333333,
+    "their morale": -3.79,
+    "their team's snares": 36.87166666666666
    }
   },
   "Their single run; we hold the stand; 15 s after their runner set off": {
    "hold off": {
-    "cases": 357,
-    "we are up on numbers at the main fight": 0.4677871148459384,
-    "we are down on numbers there": 0.19887955182072828,
-    "we stand on their side of the stand": 0.30337078651685395,
-    "we stand on our own side of it": 0.10112359550561797,
-    "they stand on their own side of it": 0.5380281690140845,
-    "their runner is a backline monk": 0.05322128851540616,
-    "the flag can beat the boost": 0.8487394957983193,
-    "the base res is under 40 s away": 0.16526610644257703,
-    "we are the stronger team (by 100 points or more)": 0.5014005602240896,
-    "we are the weaker team (by 100 or more)": 0.2857142857142857,
-    "flag lead, in flags": 0.731764705882353,
-    "seconds to the boost": 86.12885154061625,
-    "seconds their flag should take": 49.88795518207283,
-    "own morale (the eight summed)": -5.324929971988795,
-    "their morale": -35.61904761904762,
-    "their team's snares": 36.29467787114846,
+    "cases": 344,
+    "we are up on numbers at the main fight": 0.4476744186046512,
+    "we are down on numbers there": 0.19767441860465115,
+    "we stand on their side of the stand": 0.3032069970845481,
+    "we stand on our own side of it": 0.09329446064139942,
+    "they stand on their own side of it": 0.5350877192982456,
+    "their runner is a backline monk": 0.0436046511627907,
+    "the flag can beat the boost": 0.8546511627906976,
+    "the base res is under 40 s away": 0.16279069767441862,
+    "we are the stronger team (by 100 points or more)": 0.5087209302325582,
+    "we are the weaker team (by 100 or more)": 0.27325581395348836,
+    "flag lead, in flags": 0.7471220930232558,
+    "seconds to the boost": 87.14825581395348,
+    "seconds their flag should take": 50.43023255813954,
+    "own morale (the eight summed)": -5.65406976744186,
+    "their morale": -35.0406976744186,
+    "their team's snares": 36.38866279069768,
     "did as advised": {
-     "cases": 301,
+     "cases": 288,
      "win points 180 s": [
-      1.8844112827917716,
-      0.22876473110419626,
-      3.540057834479347,
-      301
+      1.844129567729832,
+      0.18924103778558354,
+      3.4990180976740803,
+      288
      ]
     },
     "did otherwise": {
      "cases": 56,
      "win points 180 s": [
-      -2.2859126524005142,
-      -5.714911104734331,
-      1.1430857999333028,
+      -2.0283413827264787,
+      -5.342941742922619,
+      1.2862589774696622,
       56
      ]
     },
@@ -2092,34 +2092,34 @@
     ]
    },
    "send a runner": {
-    "cases": 249,
-    "we are up on numbers at the main fight": 0.25301204819277107,
-    "we are down on numbers there": 0.44176706827309237,
-    "we stand on their side of the stand": 0.2903225806451613,
-    "we stand on our own side of it": 0.25,
-    "they stand on their own side of it": 0.41767068273092367,
-    "their runner is a backline monk": 0.23694779116465864,
-    "the flag can beat the boost": 0.8192771084337349,
-    "the base res is under 40 s away": 0.41767068273092367,
-    "we are the stronger team (by 100 points or more)": 0.44176706827309237,
-    "we are the weaker team (by 100 or more)": 0.3815261044176707,
-    "flag lead, in flags": 0.7021285140562248,
-    "seconds to the boost": 74.11646586345381,
-    "seconds their flag should take": 41.72289156626506,
-    "own morale (the eight summed)": 17.879518072289155,
-    "their morale": -6.738955823293173,
-    "their team's snares": 42.252208835341364,
+    "cases": 221,
+    "we are up on numbers at the main fight": 0.2579185520361991,
+    "we are down on numbers there": 0.42081447963800905,
+    "we stand on their side of the stand": 0.2727272727272727,
+    "we stand on our own side of it": 0.2727272727272727,
+    "they stand on their own side of it": 0.39819004524886875,
+    "their runner is a backline monk": 0.25339366515837103,
+    "the flag can beat the boost": 0.8280542986425339,
+    "the base res is under 40 s away": 0.4434389140271493,
+    "we are the stronger team (by 100 points or more)": 0.4253393665158371,
+    "we are the weaker team (by 100 or more)": 0.3891402714932127,
+    "flag lead, in flags": 0.692398190045249,
+    "seconds to the boost": 73.93212669683258,
+    "seconds their flag should take": 40.660633484162894,
+    "own morale (the eight summed)": 19.108597285067873,
+    "their morale": -7.932126696832579,
+    "their team's snares": 43.861085972850674,
     "did as advised": {
-     "cases": 25,
+     "cases": 23,
      "win points 180 s": null
     },
     "did otherwise": {
-     "cases": 224,
+     "cases": 198,
      "win points 180 s": [
-      -4.543262638738847,
-      -6.225035417412704,
-      -2.8614898600649905,
-      224
+      -4.694604481242251,
+      -6.592432622536694,
+      -2.796776339947809,
+      198
      ]
     },
     "look at": [
@@ -2136,31 +2136,31 @@
       "call": "no runner yet"
      },
      {
-      "rid": "53175808-daeb-5e11-a57e-f5b96124d398",
-      "their_runner_sets_off": 692,
-      "said": "옷옷옷옷 single run (Necromancer); hdm single run (Air Ele 3)",
+      "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+      "their_runner_sets_off": 1436,
+      "said": "Men single run (Warrior); Crew stays",
       "call": "no runner yet"
      }
     ]
    },
    "nothing clear": {
-    "cases": 626,
-    "we are up on numbers at the main fight": 0.3514376996805112,
-    "we are down on numbers there": 0.33865814696485624,
-    "we stand on their side of the stand": 0.30128205128205127,
-    "we stand on our own side of it": 0.14743589743589744,
-    "they stand on their own side of it": 0.4440894568690096,
-    "their runner is a backline monk": 0.1134185303514377,
-    "the flag can beat the boost": 0.865814696485623,
-    "the base res is under 40 s away": 0.28753993610223644,
-    "we are the stronger team (by 100 points or more)": 0.5015974440894568,
-    "we are the weaker team (by 100 or more)": 0.36900958466453676,
-    "flag lead, in flags": 0.7424281150159744,
-    "seconds to the boost": 84.65654952076677,
-    "seconds their flag should take": 45.37699680511182,
-    "own morale (the eight summed)": 1.7779552715654952,
-    "their morale": -25.150159744408946,
-    "their team's snares": 39.808785942492015
+    "cases": 667,
+    "we are up on numbers at the main fight": 0.3583208395802099,
+    "we are down on numbers there": 0.34782608695652173,
+    "we stand on their side of the stand": 0.3067669172932331,
+    "we stand on our own side of it": 0.14736842105263157,
+    "they stand on their own side of it": 0.4527736131934033,
+    "their runner is a backline monk": 0.11694152923538231,
+    "the flag can beat the boost": 0.8575712143928036,
+    "the base res is under 40 s away": 0.28335832083958024,
+    "we are the stronger team (by 100 points or more)": 0.5007496251874063,
+    "we are the weaker team (by 100 or more)": 0.37181409295352325,
+    "flag lead, in flags": 0.7358320839580209,
+    "seconds to the boost": 83.77811094452774,
+    "seconds their flag should take": 45.38380809595203,
+    "own morale (the eight summed)": 2.077961019490255,
+    "their morale": -24.484257871064468,
+    "their team's snares": 39.261319340329834
    }
   }
  },
@@ -2239,8 +2239,8 @@
     ]
    },
    "hold off advised, every such case": {
-    "held off": 26,
-    "sent": 16,
+    "held off": 24,
+    "sent": 17,
     "held off less sent": null
    },
    "hold off advised, their flag got in": {
@@ -2249,8 +2249,8 @@
     "held off less sent": null
    },
    "hold off advised, their flag did not get in": {
-    "held off": 13,
-    "sent": 6,
+    "held off": 11,
+    "sent": 7,
     "held off less sent": null
    }
   },
@@ -2328,29 +2328,29 @@
     ]
    },
    "hold off advised, every such case": {
-    "held off": 301,
+    "held off": 288,
     "sent": 56,
     "held off less sent": [
-     4.170323935192286,
-     0.362542968510684,
-     7.978104901873888,
-     301,
+     3.872470950456311,
+     0.167712983415357,
+     7.577228917497265,
+     288,
      56
     ]
    },
    "hold off advised, their flag got in": {
-    "held off": 216,
+    "held off": 206,
     "sent": 49,
     "held off less sent": [
-     3.081809726812994,
-     -1.1625012830722343,
-     7.326120736698222,
-     216,
+     2.5881493504002124,
+     -1.4916772562801963,
+     6.667975957080621,
+     206,
      49
     ]
    },
    "hold off advised, their flag did not get in": {
-    "held off": 85,
+    "held off": 82,
     "sent": 7,
     "held off less sent": null
    }
@@ -3372,36 +3372,36 @@
    "Numbers at the main fight": {
     "matters": null,
     "gap": [
-     3.9165527347949642,
-     -0.5872974334062394,
-     9.118151870258899
+     3.859345388686719,
+     -0.6307376541447159,
+     9.140076439654578
     ],
     "groups": {
      "we are up": {
       "held off": 125,
       "sent": 55,
       "worth": [
-       -1.948020372722198,
-       -4.359795461001167,
-       0.3112094265871216
+       -1.969770032981698,
+       -4.378498947207596,
+       0.2699389145971134
       ]
      },
      "even": {
       "held off": 105,
       "sent": 73,
       "worth": [
-       0.8653117121913251,
-       -1.980919029504624,
-       3.673448322010039
+       0.8646543797554015,
+       -1.9601187973801477,
+       3.6520453672576343
       ]
      },
      "we are down": {
       "held off": 112,
       "sent": 51,
       "worth": [
-       -3.051241022603639,
-       -7.194680985827522,
-       0.6925865869172074
+       -2.9946910089313175,
+       -7.245479690858094,
+       0.8557494543079041
       ]
      }
     }
@@ -3409,27 +3409,27 @@
    "Their morale": {
     "matters": null,
     "gap": [
-     2.4137389397502687,
-     -2.874077014734821,
-     7.258419255902307
+     2.387607337014442,
+     -2.8615306869530945,
+     7.348761203272714
     ],
     "groups": {
      "little or none": {
       "held off": 288,
       "sent": 139,
       "worth": [
-       -1.8400216666015976,
-       -3.9443734088529157,
-       0.34086224218052197
+       -1.8287367848542457,
+       -3.876095970470147,
+       0.3591627329093496
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 54,
       "sent": 40,
       "worth": [
-       0.5737172731486709,
-       -4.183689076929879,
-       5.130249893388926
+       0.5588705521601965,
+       -4.169214720436426,
+       5.116644421290527
       ]
      }
     }
@@ -3437,27 +3437,27 @@
    "Our morale": {
     "matters": null,
     "gap": [
-     2.4250548261342493,
-     -1.889572978924565,
-     6.1156490471681755
+     2.39871133541408,
+     -1.945659202300711,
+     6.087947818745974
     ],
     "groups": {
      "little or none": {
       "held off": 235,
       "sent": 141,
       "worth": [
-       -0.7874095413017534,
-       -3.0505138333725648,
-       1.4818864489481112
+       -0.7879127659983325,
+       -3.0717594939402755,
+       1.450509055317492
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 107,
       "sent": 38,
       "worth": [
-       -3.2124643674360027,
-       -6.215132527312991,
-       0.19027274890305634
+       -3.186624101412413,
+       -6.209007180939831,
+       0.24527052398312207
       ]
      }
     }
@@ -3465,36 +3465,36 @@
    "Their runner": {
     "matters": null,
     "gap": [
-     1.1113100882025675,
-     -5.8458051776714575,
-     7.752712119431707
+     1.0865108787050044,
+     -6.0147875411020575,
+     7.69357964553313
     ],
     "groups": {
      "a midline player": {
       "held off": 180,
       "sent": 85,
       "worth": [
-       -1.5882725802242734,
-       -4.656599781851631,
-       0.8054431788361697
+       -1.5946371855235135,
+       -4.711363546969922,
+       0.7914135010352166
       ]
      },
      "a frontline player": {
       "held off": 113,
       "sent": 69,
       "worth": [
-       -1.2341937336325872,
-       -3.781741927952112,
-       1.842097493848988
+       -1.1960176962912832,
+       -3.7496137731310686,
+       1.8718096633453076
       ]
      },
      "a backline monk": {
       "held off": 49,
       "sent": 25,
       "worth": [
-       -0.4769624920217058,
-       -6.847456139105905,
-       5.700189892528544
+       -0.5081263068185092,
+       -6.849234566741366,
+       5.59997058866691
       ]
      }
     }
@@ -3502,27 +3502,27 @@
    "Where our main team stands": {
     "matters": null,
     "gap": [
-     0.15802416379473483,
-     -3.6009631216905187,
-     4.223277426109926
+     0.09880284352024105,
+     -3.627459408545895,
+     4.176954839053726
     ],
     "groups": {
      "at the stand": {
       "held off": 230,
       "sent": 126,
       "worth": [
-       -1.2891955451208386,
-       -3.735589655297596,
-       0.864082120076208
+       -1.2720316040151662,
+       -3.7074286157011125,
+       0.8510796824471211
       ]
      },
      "on our own side": {
       "held off": 97,
       "sent": 40,
       "worth": [
-       -1.1311713813261037,
-       -4.906347769332948,
-       2.0859291372805515
+       -1.1732287604949252,
+       -4.95549048690209,
+       2.077791331308456
       ]
      }
     }
@@ -3530,27 +3530,27 @@
    "Seconds to their boost": {
     "matters": null,
     "gap": [
-     0.9308526496581476,
-     -5.5193879714603895,
-     7.141273719069168
+     0.9566771510155778,
+     -5.613636584926041,
+     6.996875977440968
     ],
     "groups": {
      "60 s or more": {
       "held off": 294,
       "sent": 165,
       "worth": [
-       -1.4927208713266198,
-       -3.670450381998181,
-       0.5283673515278322
+       -1.48910715915294,
+       -3.6709644680789766,
+       0.5608377576577559
       ]
      },
      "under 60 s": {
       "held off": 48,
       "sent": 14,
       "worth": [
-       -0.5618682216684722,
-       -6.644312547661961,
-       5.123041201262958
+       -0.5324300081373621,
+       -6.59339465762785,
+       5.174259705132161
       ]
      }
     }
@@ -3558,27 +3558,27 @@
    "The flag can beat the boost": {
     "matters": null,
     "gap": [
-     0.4706903896463934,
-     -5.942547548195078,
-     7.130769005817209
+     0.4831092094464886,
+     -5.93025990502339,
+     7.10513785484333
     ],
     "groups": {
      "yes": {
       "held off": 305,
       "sent": 167,
       "worth": [
-       -1.3447256757867647,
-       -3.4646497122236317,
-       0.6564605312796534
+       -1.3378213470019065,
+       -3.4659398353076876,
+       0.7059494096916215
       ]
      },
      "no": {
       "held off": 37,
       "sent": 12,
       "worth": [
-       -1.8154160654331581,
-       -8.00295177409933,
-       4.549812182579376
+       -1.820930556448395,
+       -8.022021408403804,
+       4.564111405976433
       ]
      }
     }
@@ -3586,27 +3586,27 @@
    "The base res": {
     "matters": null,
     "gap": [
-     0.35641794482337996,
-     -2.9047960229292995,
-     4.228335005622861
+     0.43241489672914946,
+     -2.7953860461940283,
+     4.353101848764405
     ],
     "groups": {
      "later": {
       "held off": 233,
       "sent": 120,
       "worth": [
-       -1.4966932629548226,
-       -4.076337516731678,
-       0.7876075293732191
+       -1.5165530881126903,
+       -4.084365922245888,
+       0.7902520759171812
       ]
      },
      "within 40 s": {
       "held off": 109,
       "sent": 59,
       "worth": [
-       -1.1402753181314427,
-       -3.7940885306452996,
-       1.3722198186205732
+       -1.0841381913835408,
+       -3.7801673563184206,
+       1.3764110726225847
       ]
      }
     }
@@ -3614,27 +3614,27 @@
    "Flag lead before their run": {
     "matters": null,
     "gap": [
-     2.1918609046739204,
-     -1.6770552220535018,
-     6.543333325959882
+     2.1622411983071093,
+     -1.712730519789139,
+     6.44928646098225
     ],
     "groups": {
      "we are behind (half a flag or more)": {
       "held off": 187,
       "sent": 93,
       "worth": [
-       -2.2902600059032934,
-       -5.792298724975623,
-       0.8884077761957841
+       -2.2913282376065376,
+       -5.717322789355431,
+       0.9120605274662867
       ]
      },
      "level": {
       "held off": 141,
       "sent": 71,
       "worth": [
-       -0.09839910122937297,
-       -2.1589508979413163,
-       2.167147538153144
+       -0.12908703929942855,
+       -2.2086361466317728,
+       2.125427106201701
       ]
      }
     }
@@ -3642,36 +3642,36 @@
    "Strength": {
     "matters": null,
     "gap": [
-     1.8180907135500062,
-     -4.524513672898127,
-     8.646910334661406
+     1.897331745116725,
+     -4.437136111474048,
+     8.758563832224128
     ],
     "groups": {
      "we are the weaker team": {
       "held off": 167,
       "sent": 69,
       "worth": [
-       -0.7971975495980181,
-       -4.2232316772291085,
-       2.2348525903495715
+       -0.7792072580810566,
+       -4.1651511683698015,
+       2.22690531009658
       ]
      },
      "we are the stronger team": {
       "held off": 120,
       "sent": 76,
       "worth": [
-       -1.439114267625557,
-       -4.311873269017769,
-       0.988050418335348
+       -1.4141207052454425,
+       -4.27490067170111,
+       0.9969915372062711
       ]
      },
      "close": {
       "held off": 55,
       "sent": 34,
       "worth": [
-       -2.6152882631480243,
-       -8.678972373863628,
-       2.9541716162259983
+       -2.6765390031977816,
+       -8.685926292480207,
+       2.86790212065263
       ]
      }
     }
@@ -3679,36 +3679,36 @@
    "Our snares, to slow their flag": {
     "matters": "matters",
     "gap": [
-     6.009851175825803,
-     2.23514634075316,
-     9.834465412669715
+     6.04780252251487,
+     2.2543644032228514,
+     9.90173822000379
     ],
     "groups": {
      "the fewest third": {
       "held off": 140,
       "sent": 73,
       "worth": [
-       1.4674118688775601,
-       -1.155010523761626,
-       3.9553846422326506
+       1.4822902491579841,
+       -1.1000428133971707,
+       4.024767910698731
       ]
      },
      "the middle third": {
       "held off": 105,
       "sent": 54,
       "worth": [
-       -2.531593439271912,
-       -6.892319919920833,
-       1.8146442172986794
+       -2.4988532287580485,
+       -6.839458128416072,
+       1.8489939543621963
       ]
      },
      "the most third": {
       "held off": 97,
       "sent": 52,
       "worth": [
-       -4.542439306948243,
-       -7.427445021647116,
-       -1.9392905037979262
+       -4.5655122733568865,
+       -7.49549461650724,
+       -1.8569379469990586
       ]
      }
     }
@@ -3716,27 +3716,27 @@
    "How long their flag should take": {
     "matters": null,
     "gap": [
-     3.0012792245146525,
-     -1.7544296575021525,
-     7.285785435879821
+     2.9825096064570094,
+     -1.664986770610921,
+     7.198976123527003
     ],
     "groups": {
      "45 s or more": {
       "held off": 272,
       "sent": 131,
       "worth": [
-       -0.7046077926123602,
-       -3.0197026243245366,
-       1.4402607543373431
+       -0.7025909820652323,
+       -3.0262784200728112,
+       1.4157210612094004
       ]
      },
      "under 45 s": {
       "held off": 70,
       "sent": 48,
       "worth": [
-       -3.705887017127013,
-       -7.4175724589734635,
-       -0.022817927330606842
+       -3.6851005885222414,
+       -7.356873150754787,
+       -0.001871085997913254
       ]
      }
     }
@@ -3746,36 +3746,36 @@
    "Numbers at the main fight": {
     "matters": null,
     "gap": [
-     1.8236458708292735,
-     -3.2518283821554976,
-     6.5735491516041336
+     1.8139684520280184,
+     -3.2395399560021483,
+     6.655731226802823
     ],
     "groups": {
      "we are up": {
       "held off": 385,
       "sent": 65,
       "worth": [
-       1.3590148361592433,
-       -1.8790138858988006,
-       4.201442612406621
+       1.324488944650833,
+       -1.8363846930701633,
+       4.179848640501469
       ]
      },
      "we are down": {
       "held off": 330,
       "sent": 63,
       "worth": [
-       0.33499132275790233,
-       -2.929350300696476,
-       3.0819495673569532
+       0.298599721916878,
+       -2.9688758118200185,
+       3.0136178756861374
       ]
      },
      "even": {
       "held off": 343,
       "sent": 46,
       "worth": [
-       -0.4646310346700301,
-       -3.8505213411743946,
-       2.7652654343491068
+       -0.48947950737718543,
+       -3.8887427174839857,
+       2.7972870899847826
       ]
      }
     }
@@ -3783,27 +3783,27 @@
    "Their morale": {
     "matters": null,
     "gap": [
-     2.6682527073620217,
-     -2.5732118188789266,
-     7.73296470228087
+     2.570665002977047,
+     -2.6296645596053794,
+     7.722520203188116
     ],
     "groups": {
      "little or none": {
       "held off": 649,
       "sent": 130,
       "worth": [
-       -0.2004707396340351,
-       -2.1812404948833697,
-       1.614158214668957
+       -0.20671093755036316,
+       -2.1713782875097385,
+       1.6008090710789706
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 409,
       "sent": 44,
       "worth": [
-       2.4677819677279866,
-       -1.894853264921586,
-       6.332221620957711
+       2.3639540654266837,
+       -1.9911326693917628,
+       6.143994986208282
       ]
      }
     }
@@ -3811,27 +3811,27 @@
    "Our morale": {
     "matters": null,
     "gap": [
-     3.9947505334279496,
-     -0.5285469767761715,
-     8.585805821483188
+     3.995980431323286,
+     -0.4906313828663995,
+     8.506299975739653
     ],
     "groups": {
      "little or none": {
       "held off": 810,
       "sent": 140,
       "worth": [
-       -0.2644912429927113,
-       -2.3553992721735924,
-       1.7149970139734756
+       -0.297600355642848,
+       -2.3050800059388163,
+       1.7227508674695002
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 248,
       "sent": 34,
       "worth": [
-       3.7302592904352383,
-       0.30218215684204947,
-       7.5664962757389995
+       3.6983800756804377,
+       0.3370846308972865,
+       7.566383382215133
       ]
      }
     }
@@ -3839,36 +3839,36 @@
    "Their runner": {
     "matters": null,
     "gap": [
-     3.0646612048358985,
-     -2.1513709738383797,
-     8.275173805096147
+     3.1231220477792565,
+     -1.8474312758114957,
+     8.374600512594203
     ],
     "groups": {
      "a midline player": {
       "held off": 477,
       "sent": 86,
       "worth": [
-       0.2951725610064734,
-       -2.3772670652595242,
-       2.4632426487911245
+       0.29320508711024434,
+       -2.410993387726678,
+       2.4312239107145928
       ]
      },
      "a frontline player": {
       "held off": 445,
       "sent": 75,
       "worth": [
-       1.3139335475849525,
-       -1.6193453241989857,
-       4.323996400214377
+       1.2590193984462994,
+       -1.6464243943912877,
+       4.283016977132247
       ]
      },
      "a backline monk": {
       "held off": 136,
       "sent": 13,
       "worth": [
-       -1.750727657250946,
-       -6.188531226201787,
-       2.3073185104239475
+       -1.8641026493329573,
+       -6.211791582471587,
+       2.221669095898272
       ]
      }
     }
@@ -3876,36 +3876,36 @@
    "Where our main team stands": {
     "matters": null,
     "gap": [
-     1.2719904488441276,
-     -6.181751582468495,
-     8.802415484972478
+     1.2009847575143084,
+     -6.195022938309113,
+     8.688090888002092
     ],
     "groups": {
      "at the stand": {
       "held off": 542,
       "sent": 128,
       "worth": [
-       0.2284382571717248,
-       -1.6833117622520157,
-       2.141855315047999
+       0.19725981904620563,
+       -1.7809275618945992,
+       2.077866783775177
       ]
      },
      "on their side of the stand": {
       "held off": 354,
       "sent": 14,
       "worth": [
-       1.5004287060158523,
-       -5.886430072474175,
-       8.99693090281778
+       1.398244576560514,
+       -5.952987024694838,
+       8.318859154632001
       ]
      },
      "on our own side": {
       "held off": 158,
       "sent": 32,
       "worth": [
-       0.6333538095007876,
-       -3.55128493612811,
-       4.708140002287437
+       0.6182930375517712,
+       -3.547214479308511,
+       4.655986064319748
       ]
      }
     }
@@ -3913,27 +3913,27 @@
    "Seconds to our boost": {
     "matters": null,
     "gap": [
-     2.5987269915768625,
-     -2.0446967359421833,
-     7.050399110043852
+     2.562729103008863,
+     -1.9868022616879846,
+     7.0055311557405195
     ],
     "groups": {
      "60 s or more": {
       "held off": 797,
       "sent": 149,
       "worth": [
-       1.0006811356505485,
-       -1.0861184626103484,
-       2.650675486636723
+       0.9620566314450195,
+       -1.1027990444437348,
+       2.6228265171924123
       ]
      },
      "under 60 s": {
       "held off": 261,
       "sent": 25,
       "worth": [
-       -1.5980458559263138,
-       -6.012508501892342,
-       2.402500640442773
+       -1.6006724715638434,
+       -5.935019460474638,
+       2.356265781753001
       ]
      }
     }
@@ -3941,27 +3941,27 @@
    "The flag can beat the boost": {
     "matters": null,
     "gap": [
-     1.6059810502661296,
-     -4.5259754146375375,
-     7.548542812132929
+     1.6066064886168503,
+     -4.393495645387983,
+     7.395550432166615
     ],
     "groups": {
      "yes": {
       "held off": 893,
       "sent": 156,
       "worth": [
-       0.7557007043138377,
-       -1.2144940291405182,
-       2.399756173412773
+       0.7232048896293466,
+       -1.2184441653835598,
+       2.3668284086146043
       ]
      },
      "no": {
       "held off": 165,
       "sent": 18,
       "worth": [
-       -0.8502803459522918,
-       -6.31319296477864,
-       4.211098198373541
+       -0.8834015989875037,
+       -6.288884187756668,
+       4.156051858539839
       ]
      }
     }
@@ -3969,27 +3969,27 @@
    "The base res": {
     "matters": null,
     "gap": [
-     2.163497826366547,
-     -1.9193240871385602,
-     5.953937727985145
+     2.1586258681765087,
+     -1.9317604669408923,
+     5.991112466976816
     ],
     "groups": {
      "later": {
       "held off": 761,
       "sent": 128,
       "worth": [
-       1.1431430934862825,
-       -0.9470800332641939,
-       3.15936632585113
+       1.1096177632034039,
+       -0.9796290995710253,
+       3.140708535908228
       ]
      },
      "within 40 s": {
       "held off": 297,
       "sent": 46,
       "worth": [
-       -1.020354732880265,
-       -4.23811389668213,
-       2.278857762503051
+       -1.0490081049731048,
+       -4.210252866656782,
+       2.2502000961777773
       ]
      }
     }
@@ -3997,27 +3997,27 @@
    "Flag lead before their run": {
     "matters": null,
     "gap": [
-     1.0715440432314443,
-     -2.281219305246629,
-     4.559765882497944
+     1.0236185761956103,
+     -2.2947805759324864,
+     4.542660669597659
     ],
     "groups": {
      "we are ahead (half a flag or more)": {
       "held off": 850,
       "sent": 120,
       "worth": [
-       0.23999827961782638,
-       -1.940039321796049,
-       2.1904314559212597
+       0.22548693785265705,
+       -1.9507316400679302,
+       2.1730280787452583
       ]
      },
      "level": {
       "held off": 196,
       "sent": 51,
       "worth": [
-       1.3115423228492706,
-       -1.6861718063980387,
-       3.9725801633091113
+       1.2491055140482672,
+       -1.7195346324027467,
+       3.9311286568185735
       ]
      }
     }
@@ -4025,36 +4025,36 @@
    "Strength": {
     "matters": null,
     "gap": [
-     3.871921314869528,
-     -0.0696987824821361,
-     7.160266358809791
+     3.7833664657356927,
+     -0.09714840953589919,
+     7.076778583022252
     ],
     "groups": {
      "we are the stronger team": {
       "held off": 518,
       "sent": 85,
       "worth": [
-       -0.8369145092941492,
-       -2.702614922655318,
-       1.1294128098905458
+       -0.8243524393407919,
+       -2.686437184486912,
+       1.149322532920202
       ]
      },
      "we are the weaker team": {
       "held off": 368,
       "sent": 60,
       "worth": [
-       3.035006805575379,
-       -0.5782208993041842,
-       6.249773800803866
+       2.9590140263949007,
+       -0.6276905853478699,
+       6.073977932728154
       ]
      },
      "close": {
       "held off": 172,
       "sent": 29,
       "worth": [
-       -0.5067984542838776,
-       -5.419543764695931,
-       3.9623441624968687
+       -0.5759326114444749,
+       -5.464165383971521,
+       3.945975745854979
       ]
      }
     }
@@ -4062,36 +4062,36 @@
    "Our snares, to slow their flag": {
     "matters": null,
     "gap": [
-     2.535321628982153,
-     -1.9078154444992672,
-     6.78561749890202
+     2.479822887974106,
+     -1.9163430249943343,
+     6.821083198301453
     ],
     "groups": {
      "the middle third": {
       "held off": 400,
       "sent": 70,
       "worth": [
-       0.017604611601884465,
-       -2.7221654981035166,
-       2.288684341127499
+       -0.0005381640742501361,
+       -2.6987245149395784,
+       2.255057387246131
       ]
      },
      "the fewest third": {
       "held off": 355,
       "sent": 60,
       "worth": [
-       -0.04021514028965186,
-       -2.665298002854451,
-       2.231699165959649
+       -0.05700702561935151,
+       -2.6578024132608693,
+       2.142897431746683
       ]
      },
      "the most third": {
       "held off": 303,
       "sent": 44,
       "worth": [
-       2.4951064886925014,
-       -1.5627986007058725,
-       6.578932056461527
+       2.4228158623547547,
+       -1.5949452980584236,
+       6.491702496176668
       ]
      }
     }
@@ -4099,27 +4099,27 @@
    "How long their flag should take": {
     "matters": "may matter",
     "gap": [
-     3.4018384785954336,
-     0.3368177745158248,
-     6.673500026374987
+     3.4187936043043745,
+     0.4161846889996946,
+     6.536534337058
     ],
     "groups": {
      "45 s or more": {
       "held off": 513,
       "sent": 105,
       "worth": [
-       1.9130025799703079,
-       -0.276054024596154,
-       4.174742793987804
+       1.888274682068609,
+       -0.27110655414739016,
+       4.1139350813342785
       ]
      },
      "under 45 s": {
       "held off": 545,
       "sent": 69,
       "worth": [
-       -1.4888358986251258,
-       -4.1527192887280915,
-       0.9362816245664054
+       -1.5305189222357658,
+       -4.11107590819919,
+       0.9158900319461096
       ]
      }
     }
@@ -4129,36 +4129,36 @@
    "Numbers at the main fight": {
     "matters": null,
     "gap": [
-     4.77626327001264,
-     -0.8470941423668251,
-     10.372937338670923
+     4.758573406713354,
+     -0.9233241728294457,
+     10.326715399711414
     ],
     "groups": {
      "we are up": {
       "held off": 169,
       "sent": 53,
       "worth": [
-       -0.410853907870821,
-       -3.938023314469747,
-       2.9946815587431654
+       -0.4796286565633191,
+       -3.9645517600682383,
+       2.873956690494126
       ]
      },
      "we are down": {
       "held off": 145,
       "sent": 39,
       "worth": [
-       -2.8177824613832123,
-       -7.257962870193275,
-       0.9301061391678229
+       -2.830026772445944,
+       -7.358937885449633,
+       0.9627803772049776
       ]
      },
      "even": {
       "held off": 109,
       "sent": 48,
       "worth": [
-       1.9584808086294279,
-       -1.9897099016296649,
-       6.1294734324720155
+       1.92854663426741,
+       -2.0110044474222777,
+       6.165600287960409
       ]
      }
     }
@@ -4166,27 +4166,27 @@
    "Their morale": {
     "matters": null,
     "gap": [
-     0.27622075830397996,
-     -5.385266143976222,
-     5.254386945181585
+     0.32292058767635534,
+     -5.394143930302763,
+     5.260215293123015
     ],
     "groups": {
      "little or none": {
       "held off": 318,
       "sent": 118,
       "worth": [
-       -0.9006514311297915,
-       -3.3758039069373713,
-       1.9081006671899239
+       -0.9430810020002286,
+       -3.406904350288848,
+       1.8940626760477701
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 105,
       "sent": 22,
       "worth": [
-       -0.6244306728258116,
-       -5.652609014499929,
-       3.7080170521285725
+       -0.6201604143238733,
+       -5.536568733818519,
+       3.6978895740229323
       ]
      }
     }
@@ -4194,27 +4194,27 @@
    "Our morale": {
     "matters": null,
     "gap": [
-     2.725734043988833,
-     -3.5518492803800465,
-     9.528018640312455
+     2.7579013637504337,
+     -3.566759502475352,
+     9.607638966907636
     ],
     "groups": {
      "little or none": {
       "held off": 342,
       "sent": 117,
       "worth": [
-       -1.2573634454829419,
-       -3.707122733601969,
-       1.3030802901381886
+       -1.2964487746633284,
+       -3.670942791096092,
+       1.3001885708605376
       ]
      },
      "two deaths' worth of penalty or more": {
       "held off": 81,
       "sent": 23,
       "worth": [
-       1.468370598505891,
-       -4.591043717081338,
-       7.4612823959329635
+       1.4614525890871055,
+       -4.580284327858375,
+       7.532398199141122
       ]
      }
     }
@@ -4222,27 +4222,27 @@
    "Their runner": {
     "matters": null,
     "gap": [
-     0.032110918501428,
-     -4.338388893035365,
-     3.9745540200472718
+     0.0020753260055470513,
+     -4.4183053622365644,
+     3.952168801011574
     ],
     "groups": {
      "a midline player": {
       "held off": 238,
       "sent": 60,
       "worth": [
-       -0.7745349498635351,
-       -4.440591735310615,
-       2.9103418683552835
+       -0.7864884114442923,
+       -4.531597487747956,
+       2.925039915156626
       ]
      },
      "a frontline player": {
       "held off": 158,
       "sent": 71,
       "worth": [
-       -0.7424240313621071,
-       -3.5493065068956233,
-       2.319498193164167
+       -0.7844130854387452,
+       -3.6305730032214454,
+       2.30541328536749
       ]
      }
     }
@@ -4250,36 +4250,36 @@
    "Where our main team stands": {
     "matters": "matters",
     "gap": [
-     11.868697365306296,
-     1.9216647791646513,
-     21.21815876747649
+     11.885356027793307,
+     1.9361876295040834,
+     21.34835412757234
     ],
     "groups": {
      "at the stand": {
       "held off": 306,
       "sent": 106,
       "worth": [
-       -0.2654963898827995,
-       -3.065962850868183,
-       2.595318249675838
+       -0.29904566394547866,
+       -3.0962743409969873,
+       2.509482112108088
       ]
      },
      "on our own side": {
       "held off": 71,
       "sent": 24,
       "worth": [
-       -5.993104695309588,
-       -11.42627045339465,
-       -0.473562767476533
+       -6.0437157754548805,
+       -11.496749385508163,
+       -0.6061840080546852
       ]
      },
      "on their side of the stand": {
       "held off": 45,
       "sent": 10,
       "worth": [
-       5.875592669996707,
-       -2.288567279817851,
-       15.742294625245643
+       5.8416402523384265,
+       -2.339752949327171,
+       15.737153913633325
       ]
      }
     }
@@ -4287,27 +4287,27 @@
    "The base res": {
     "matters": "may matter",
     "gap": [
-     5.645848274058749,
-     0.41404663689369525,
-     10.661732298004642
+     5.676421027765928,
+     0.37111293442043775,
+     10.658077517995498
     ],
     "groups": {
      "later": {
       "held off": 288,
       "sent": 110,
       "worth": [
-       0.48690340219874456,
-       -2.1826273935942693,
-       3.10497626856773
+       0.45704891713210405,
+       -2.2501210077407294,
+       3.043310206589688
       ]
      },
      "within 40 s": {
       "held off": 135,
       "sent": 30,
       "worth": [
-       -5.158944871860005,
-       -9.088029535308733,
-       -1.0129201269951285
+       -5.219372110633824,
+       -9.123319854069251,
+       -0.9897597210935251
       ]
      }
     }
@@ -4315,27 +4315,27 @@
    "Flag lead before their run": {
     "matters": null,
     "gap": [
-     1.7045083972050536,
-     -2.097747454363527,
-     5.530035793759655
+     1.6527247008830255,
+     -2.2685499891158405,
+     5.493371893957393
     ],
     "groups": {
      "we are behind (half a flag or more)": {
       "held off": 242,
       "sent": 84,
       "worth": [
-       -2.183157652966081,
-       -5.25097760647415,
-       0.8532323374790807
+       -2.2036095583478237,
+       -5.213037978697816,
+       0.7949050874304742
       ]
      },
      "level": {
       "held off": 144,
       "sent": 47,
       "worth": [
-       -0.4786492557610275,
-       -3.6280508572892844,
-       3.0257437970716707
+       -0.5508848574647983,
+       -3.738836246186909,
+       2.8641272172602985
       ]
      }
     }
@@ -4343,36 +4343,36 @@
    "Strength": {
     "matters": null,
     "gap": [
-     3.6853926289711776,
-     -3.283247462058597,
-     11.359968745023927
+     3.6878369769617683,
+     -3.2849919345827074,
+     11.384051918052482
     ],
     "groups": {
      "we are the stronger team": {
       "held off": 175,
       "sent": 56,
       "worth": [
-       1.0747784722820652,
-       -2.843510841531941,
-       4.751985339118865
+       1.0446771970918454,
+       -2.870893818093154,
+       4.760856074907588
       ]
      },
      "we are the weaker team": {
       "held off": 174,
       "sent": 55,
       "worth": [
-       -1.8183245288436747,
-       -4.719006088772607,
-       1.3771592606194185
+       -1.859463633872698,
+       -4.744260313486131,
+       1.3572890213791051
       ]
      },
      "close": {
       "held off": 74,
       "sent": 29,
       "worth": [
-       -2.6106141566891123,
-       -9.209940157049084,
-       3.3854345870290734
+       -2.643159779869923,
+       -9.286734187862232,
+       3.406896457156549
       ]
      }
     }
@@ -4380,36 +4380,36 @@
    "Our snares, to slow their flag": {
     "matters": null,
     "gap": [
-     5.15618154834517,
-     -0.7386277068395044,
-     11.440105752356667
+     5.162123982332586,
+     -0.6919870796281786,
+     11.376808091058653
     ],
     "groups": {
      "the fewest third": {
       "held off": 156,
       "sent": 66,
       "worth": [
-       -2.694508001179177,
-       -6.586142046318059,
-       1.0240349483174838
+       -2.7313841663445944,
+       -6.593160111773872,
+       0.9736561007556958
       ]
      },
      "the most third": {
       "held off": 136,
       "sent": 35,
       "worth": [
-       2.461673547165993,
-       -2.4200676311764764,
-       7.759025159542069
+       2.430739815987992,
+       -2.4569351709696496,
+       7.728293471582982
       ]
      },
      "the middle third": {
       "held off": 131,
       "sent": 39,
       "worth": [
-       -1.0704195507622365,
-       -4.27353511806946,
-       2.244210051107807
+       -1.1018969405934615,
+       -4.305123804490334,
+       2.177957614284692
       ]
      }
     }
@@ -4417,27 +4417,27 @@
    "How long their flag should take": {
     "matters": null,
     "gap": [
-     0.11843046473755725,
-     -4.682379664246677,
-     4.844749248050697
+     0.17271440802021543,
+     -4.505996902463698,
+     4.89269773002057
     ],
     "groups": {
      "under 45 s": {
       "held off": 325,
       "sent": 100,
       "worth": [
-       -0.7841872382630269,
-       -4.231830520849359,
-       2.381073021188611
+       -0.8052811724776853,
+       -4.232916076937958,
+       2.3681818764601004
       ]
      },
      "45 s or more": {
       "held off": 98,
       "sent": 40,
       "worth": [
-       -0.9026177030005842,
-       -3.88097351828939,
-       1.8811171955163737
+       -0.9779955804979007,
+       -4.0008940559602095,
+       1.8759940427165316
       ]
      }
     }

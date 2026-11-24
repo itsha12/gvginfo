@@ -714,6 +714,20 @@ def death(rid, tag, role, t, F=None):
     ans["pressure"] = {"q": "Pressure beyond damage?", "placed": {k: v[0] for k, v in placed_.items()}, "bands": {k: v[1] for k, v in placed_.items()},
                        "measures": {"kited_s": kite, "prekited_s": pre, "degen_pip_secs": degen_ps, "degen_pips_at_death": on["degen_pips_now"],
                                     "healers_disabled_skill_secs": dis, "healers_castprev_secs": cp, "window_s": WINDOW}}
+    # energy (R-666, the second aspect: "if the monks in a fight are all out of energy, there is no micro play ... to save the target"): energy.py. The backline
+    # monks of his team within reach of him in the seconds before, each one's energy a second before the death (out under 20, R-681) and where the energy of
+    # his minute before went (spent, taken by the enemy, came back). What was so, never why he died.
+    from common import FIGHT_LINK
+    En = F.m.energy()
+    if not En.ok: ans["energy"] = {"q": "Were the monks within reach out of energy?", "answer": "not in gvg.report's record of this match (R-672)", "measures": None}
+    else:
+        u = t - 1
+        near = [b for b in F.players(tm) if En.kind(b) == "monk" and any(F.alive(b, v) and (b == a or (F.dist(a, b, v) or 1e9) < FIGHT_LINK) for v in (t - 1, t - 3, t - 5))]
+        rows = [dict(who=F.name(b), account=En.account(b, u - 60, u), **{k: v for k, v in x.items() if k in ("lo", "hi", "mid", "out")}) for b in near for x in [En.at(b, u)] if x]
+        n, o = len(rows), sum(r["out"] == "yes" for r in rows)
+        ans["energy"] = {"q": "Were the monks within reach out of energy?",
+                         "answer": "no monk within reach" if not n else "yes, every one" if o == n else f"partly: {o} of {n}" if o else "no",
+                         "measures": {"monks": n, "out": o, "possibly_out": sum(r["out"] == "maybe" for r in rows), "line": 20, "scale": "double high (R-668)"}, "rows": rows}
     ans["victim"] = {"name": F.name(a), "group": g, "set_now": (F.weapon_set(a, t - 1) or {}).get("label")}
     return ans
 
@@ -723,7 +737,7 @@ def lines(ans):
     L = []
     v = ans.get("victim", {})
     L.append(f"**{v.get('name')}** ({v.get('group')}), set at death: {v.get('set_now')}")
-    for k in ("position", "prots", "monk_pressure", "sets", "own_output", "enemy_output", "peel", "casting", "conditions", "pressure"):
+    for k in ("position", "prots", "monk_pressure", "energy", "sets", "own_output", "enemy_output", "peel", "casting", "conditions", "pressure"):
         if k not in ans: continue
         x = ans[k]
         L.append(f"- **{x['q']}** {x.get('answer', '')}" + (f" ({x['placed']})" if isinstance(x.get('placed'), str) else ""))
