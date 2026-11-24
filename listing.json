@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-24T03:54:24.090Z",
+ "updated": "2026-11-24T06:24:20.660Z",
  "matches": [
   {
-   "id": "0e935804-81b8-5698-aff8-cc830e25fa77",
+   "id": "d337174b-ad35-5942-a119-7d0eea38398c",
    "date": "2026-11-24",
-   "map": "Corrupted Isle",
+   "map": "Nomad's Isle",
    "teams": [
     "chic",
-    "DUM"
+    "meow"
    ],
    "winner": 1,
    "occasion": "automated",
@@ -47,6 +47,28 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "0e935804-81b8-5698-aff8-cc830e25fa77",
+   "date": "2026-11-24",
+   "map": "Corrupted Isle",
+   "teams": [
+    "chic",
+    "DUM"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "2a0aafd3-7b0d-5a8b-a625-bcd0afb5e0bd",
+   "date": "2026-11-21",
+   "map": "Nomad's Isle",
+   "teams": [
+    "戦戦戦戦",
+    "True"
+   ],
+   "winner": 1,
+   "occasion": "automated"
   },
   {
    "id": "524ee2e7-d9a8-53fe-aa2f-2529db6eedce",
@@ -385,17 +407,6 @@
    "teams": [
     "Team",
     "戦戦戦戦"
-   ],
-   "winner": 1,
-   "occasion": "monthly"
-  },
-  {
-   "id": "2a0aafd3-7b0d-5a8b-a625-bcd0afb5e0bd",
-   "date": "2026-11-21",
-   "map": "Nomad's Isle",
-   "teams": [
-    "戦戦戦戦",
-    "True"
    ],
    "winner": 1,
    "occasion": "monthly"
@@ -4422,17 +4433,6 @@
    "teams": [
     "Team",
     "BcS"
-   ],
-   "winner": 1,
-   "occasion": "monthly"
-  },
-  {
-   "id": "78c5bf08-c63a-50cd-a41e-ef7311995938",
-   "date": "2026-10-17",
-   "map": "Isle of Solitude",
-   "teams": [
-    "cope",
-    "One"
    ],
    "winner": 1,
    "occasion": "monthly"
