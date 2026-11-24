@@ -76,5 +76,4 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   change here, he reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to
   the branch before reading a hall (the export refuses otherwise).
 - Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the
-  replays. Refresh the branch's `golden_moments.json` first.
-- The branch's own `CLAUDE.md` and `docs/` are old copies: main's are the ones kept up to date.
+  replays. The branch's own `CLAUDE.md` and `docs/` are old copies: main's are the ones kept up to date.
