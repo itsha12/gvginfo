@@ -444,8 +444,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Once degen is in the engine (R-638) every damage figure accounts for it, NPC damage first (R-649; not built).
   It is the amounts that take it in; who is in which fight stays read from hits and casts (R-655). Degen on
   players is gvg.report's (R-638), and so is degen on NPCs and on a Lord: its summary credits it to the player, the
-  condition, the skill and the target, as match totals (R-661, in place of the estimate of R-657). The engine does
-  not read gvg.report's energy estimate (R-662).
+  condition, the skill and the target, as match totals (R-661, in place of the estimate of R-657). The engine
+  reads gvg.report's energy estimate, each player's least and most energy every two seconds (R-664; not built).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one

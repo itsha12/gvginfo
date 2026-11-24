@@ -8,10 +8,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-23, late night: his answers R-656 to R-663; the new trim part built and its refetch started)
+## State (2026-11-23, late night: his answers R-656 to R-664; the new trim part built and its refetch started)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 660 replays stored (two added by the test fetch, his to keep or take out); 564 counted at the last
-  checkpoint (R-477); 506 matches trained. The refetch run is in progress (below). Rulings run to R-663. The baseline (R-491): `baseline-2026-11-15`.
+  checkpoint (R-477); 506 matches trained. The refetch run is in progress (below). Rulings run to R-664. The baseline (R-491): `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. No family: numbers from kills (R-557), the push (R-597), a held team
   (R-621). No more matches until the engine is ready (R-570). His marks on the eight draft Lord rows (p4-9 to
   p4-16) and on the eleven flag cards are filed; no flag card waits.
@@ -35,7 +35,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    merge, then one Train batch on the same 506 matches (he starts it).
    The new trim keeps gvg.report's flag objects (R-481), Lord damage record (R-632) and prot, degen, interrupt
    and death items (R-636 to R-639); who stripped which enchantment is read from our replays (R-637); every
-   damage figure then takes degen in (R-649, R-655), gvg.report's own on players, NPCs and Lords (R-661).
+   damage figure then takes degen in (R-649, R-655), gvg.report's own on players, NPCs and Lords (R-661); energy read from the same file (R-664).
    To build with it: a hold told with what the holders went for, NPCs or players; the held team's healing is a
    reaction, never a call or a fix (R-658).
 2. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags.
@@ -46,7 +46,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 1. To do when the refetch run has saved its work (never before: its push to `replays` would fail): check `x` = 2
    on every entry of the replays index; take chic v DUM (0e935804) and HC v hdm (524ee2e7) out of the store and
    the `latest:2` line out of `replays/requests.txt` (R-663; a push of that file starts a Fetch run, which then
-   does any extras left). His to answer: does the energy estimate stay in the files, unread (R-662), or come out?
+   does any extras left). Then remind him, as he asked, to add energy to the build (R-664: the engine reads
+   gvg.report's estimate; set out for him where it bears, the list in the ruling, before building).
    BcS v Apes: gvg.report's Lord score for team 1 is 3,390 and its events rebuild to 3,360 (`x_check`).
 2. Once degen counts: the danger zone's 250 again (R-649), and the NPC damage table read again (R-659).
 3. Not a question for him: one or two players sent from a level standing read worse than no split (-7.6 win
