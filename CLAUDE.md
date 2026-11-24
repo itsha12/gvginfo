@@ -197,8 +197,33 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   reading and the first figures that take it in (below). To build, in this order: the rest of the damage figures of
   R-649 (the death accounts, the nodes and the older layers), interrupt attempts (R-639), what each prot did and the
   death and spike-save recaps (R-636), who stripped which enchantment from our own replays (R-637), a hold told with
-  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-675: it is being worked through with him
-  first, R-674, on the plan put to him 2026-11-24 and kept in HANDOFF.md).
+  what the holders went for (R-658); and energy, which he has settled (R-664 to R-689) and which is built beside these in the order of R-689 (below).
+  Energy is one reading, `Match.energy()` (`energy.py`: read its top before using energy anywhere). gvg.report's
+  estimate, the least and the most energy a player can have every two seconds, carried as `lo`, `hi` and `mid`; `ok`
+  False and every figure blank where a match has none (18 counted matches, R-672). Whose: the backline monks
+  (`kind` "monk"), the midline for energy (Ritualist, Mesmer, Elementalist, Necromancer, smite monk: "midline"),
+  nobody else (R-665, R-670, R-675). The scale is what a player would have on his double high set now (R-668,
+  R-686): shown + (top - the maximum of the set held), top 72 with death penalty or morale on it (an Elementalist's
+  top is his own highest maximum in the match). `at(a, t)`, `group(ids, t)` (the average, the lowest player and how
+  many, R-683), `out` (a monk under 20, a midline player under 15, R-681 and R-682: "yes" where even the most he can
+  have is under it, "maybe" where only the least is). Those two lines are for the excuse only: at a decision no
+  line is set and what followed is read across the range of energy there (R-669). `python3 energy.py cover` prints
+  the checks of the record (2026-11-24, 546 matches: a team's monks lose 0.7 in 10 s under fire and regain 1.3 at
+  rest; a death follows within 20 s 78% of the time where they average under 20 and 7% at 60 or more; a monk is out
+  for certain 0.8% of his time alive). Built: the reading only; nothing reads it and no play moves. To build, in his
+  order (R-689): (2) each fight's monk energy, own and enemy, on every play at the second the decision arises and
+  60 s before (only the monks in that fight: a split's own, R-666), in the like spots, and one table a decision of
+  what followed each call by energy, for the decisions of R-688 at once (not the Lord push, not a held team; the
+  answer to their run by the enemy's monks only, the answer to their split by our own only); the directions Claude
+  expected are in the chat of 2026-11-24 and are expectations, never advice, and the danger zone is shown by its
+  damage line and by monk energy beside it, his to say which stays (the line stood in for energy, R-615); (3) the
+  excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of
+  the minute before went (spent, taken by the enemy, regained), energy denial read (R-685: Energy Surge and Energy
+  Burn deal 7 and 9 damage a point of energy taken, so the energy taken is their damage over that; Mind Wrack to
+  confirm), and whom a Mesmer drains read with offensive or defensive play (R-279); (4) monk casting efficiency
+  (R-678 to R-680, R-687), with what each prot did (R-636) and the interrupt attempts (R-639), by monk role
+  (R-671): healing landed plus damage prevented for the energy spent, blocks credited to any blocking skill,
+  removals a count apart, cancelled casts apart as a bait that worked or energy burned.
   Degen as damage (R-638, R-649, R-655, R-661) is one reading, `Match.degen()` (`degen.py`: read its top before
   touching a damage figure). The amounts are gvg.report's totals for the match (what each player took from each
   source, net of regen; what each player's degen did to each NPC and Lord); only the timing is ours: a total is laid

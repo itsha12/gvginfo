@@ -529,7 +529,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   footmen, retreat to the pit, trade with a split; with splits there are more (collapse, send more on the split).
 - A call is judged only against like spots (R-556): a team's call follows the spot it is in.
 
-## Energy (his thoughts so far; nothing is built until he says they are final, R-665)
+## Energy (R-664 to R-689; built in the order of R-689, the reading first)
 - The engine reads gvg.report's energy estimate, the least and the most energy a player can have every two seconds,
   from the file beside each replay (R-664). It is an estimate with bounds, and every reading from it says so.
 - Whose energy: the monks' first; the midline's too, which for energy is the Ritualist, the Mesmer, the
@@ -539,14 +539,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   the same monk role across all matches (R-671); an excuse for execution (monks out of energy cannot save a target;
   a midline out of energy, rarely, is why a team does not kill); and an input to decisions, as the energy of the
   monks in that fight, a team's own and the enemy's each a factor.
-- A monk's energy is read on the double high scale, 72 at most: every monk carries a double high set (R-667, R-668).
+- Energy is read on the double high scale, what the player would have on his double high set, 72 at most for a
+  monk: every monk carries one (R-667, R-668); the midline is read on it too (R-686).
 - Low is no set point where energy is an input to a decision: it is read from the data, decision by decision
-  (R-669), at every decision at once (R-684), with the fight's monk energy kept as the average, the lowest monk
+  (R-669), at every decision of R-688 at once (R-684; not the Lord push or a held team), with the fight's monk energy kept as the average, the lowest monk
   and the number of monks (R-683).
-- Out of energy, for the excuse: a monk under 20, a midline player under 15 (R-681, R-682).
+- Out of energy, for the excuse: a monk under 20, a midline player under 15, on that scale (R-681, R-682, R-686).
 - A useful cast: healing landed plus damage prevented for the energy spent, Divine Favor counted, removals a
-  count apart; a prot that prevented nothing bought nothing, blocks excepted (Aegis); no "not needed" measure
-  (R-678, R-679). A cancelled cast costs its energy and is shown apart, as a bait that worked or energy burned
+  count apart; a prot that prevented nothing bought nothing, the attacks a skill blocked excepted (Aegis, and any
+  skill that blocks); no "not needed" measure (R-678, R-679, R-687). A cancelled cast costs its energy and is shown apart, as a bait that worked or energy burned
   (R-680).
 - Energy denial is read: energy the enemy took is no fault of the monk's, and whom a Mesmer drains belongs to
   playing offensively or defensively (R-685).
