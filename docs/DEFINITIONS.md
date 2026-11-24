@@ -358,10 +358,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The base res as a decision (R-592, R-609, R-610, R-614): only in the danger spot. It is the main team's (a res onto
   a split is another thing, R-595), and in it teams are not pushed out. The danger spot is his three factors
   together: half of the team past their res shrine, two or more NPCs attacking them, and heavy damage taken in the
-  minute before, which is 250 damage a player (R-615, after 150, R-612); low health is not one ("they are already
+  minute before, which is 300 damage a player, hits and degen (R-676; 250 on hits alone before it, R-615); low health is not one ("they are already
   likely to die", R-602). *As built* (one reading, `jobs._res_stand`): three or more of the main team in their base
   20 s before the res, half or more of those past the shrine by the walk, two or more enemy NPCs hitting them in the
-  20 s before, 250 or more damage a player in the minute before. A base res in the danger spot is told with its call
+  20 s before, 300 or more damage a player in the minute before (hits and degen). A base res in the danger spot is told with its call
   (stayed through the res, or left before it); every other base res is told as context with no call, saying which
   part of the danger spot is missing (R-614). Men v BcS 6:00 and DUM v ohno 8:00 are outside it and stay out: "they
   look distinct (low NPCs in particular)" (R-618).
@@ -533,7 +533,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The engine reads gvg.report's energy estimate, the least and the most energy a player can have every two seconds,
   from the file beside each replay (R-664). It is an estimate with bounds, and every reading from it says so.
 - Whose energy: the monks' first; the midline's too, which for energy is the Ritualist, the Mesmer, the
-  Elementalist, the Necromancer and the smite monk; nobody else's (R-665, R-670).
+  Elementalist, the Necromancer and the smite monk; nobody else's, the Ranger and the Paragon included (R-665,
+  R-670, R-675).
 - What it is for (R-666): monk casting efficiency, an execution measure that needs no energy record, placed against
   the same monk role across all matches (R-671); an excuse for execution (monks out of energy cannot save a target;
   a midline out of energy, rarely, is why a team does not kill); and an input to decisions, as the energy of the
@@ -541,3 +542,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A monk's energy is read on the double high scale, 72 at most: every monk carries a double high set (R-667, R-668).
 - Low is no set point: it is read from the data, decision by decision (R-669).
 - A match with no energy record keeps its place, energy blank (R-672).
+
+## Degen as damage
+- Degen counts in every damage amount; who is in which fight, a stand-off, who is hitting whom and who killed a
+  player stay read from hits and casts (R-649, R-655). The amounts are gvg.report's (R-638, R-661).
+- A Vampiric weapon's upkeep is no damage. Degen credited to nobody is in what a team took and in no player's
+  damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
+- The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).

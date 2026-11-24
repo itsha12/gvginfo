@@ -197,7 +197,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   reading and the first figures that take it in (below). To build, in this order: the rest of the damage figures of
   R-649 (the death accounts, the nodes and the older layers), interrupt attempts (R-639), what each prot did and the
   death and spike-save recaps (R-636), who stripped which enchantment from our own replays (R-637), a hold told with
-  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-672).
+  what the holders went for (R-658); energy only when he says his thoughts on it are final (R-664 to R-675: it is being worked through with him
+  first, R-674, on the plan put to him 2026-11-24 and kept in HANDOFF.md).
   Degen as damage (R-638, R-649, R-655, R-661) is one reading, `Match.degen()` (`degen.py`: read its top before
   touching a damage figure). The amounts are gvg.report's totals for the match (what each player took from each
   source, net of regen; what each player's degen did to each NPC and Lord); only the timing is ours: a total is laid
@@ -208,21 +209,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   of all degen it records) is no damage and is left out. Degen gvg.report credits to nobody (its "Observed
   Burning", conditions drawn or passed on, its remainders: 12% of what players took) is in what a player or a team
   took and in no figure of what a player dealt. The Miasma of Isle of Meditation (577 thousand health in the stored
-  matches, with no interval in the replay) is untimed: in the account, in no timed figure, until it is read from
-  where a player stands. And degen never says who is where: who is in which fight, who is hitting a player or an
+  matches) is ignored at his word: in the account, in no damage figure, never read from where a player stands
+  (R-677, which confirms the two readings before it too). And degen never says who is where: who is in which fight, who is hitting a player or an
   NPC, a stand-off, a spike and who killed a player stay read from hits and casts (R-655). Against gvg.report's own
   recaps (the degen in the window before 285 deaths and saves) the timing agrees at a correlation of 0.6: good for a
   minute's damage, rough for the few seconds before a death, where the recap itself is the figure to read (R-636).
   What takes it in so far: the damage a player took (`jobs._dmg_on`, rows marked degen): a base res carries
-  `taken` (hits, the figure his 250 was set on, R-615, and the one the danger spot is still asked of), `taken_degen`
-  and `taken_all`, and `npc_dmg_all` beside `npc_dmg`; NPC damage by kind of bar (`npcpower.py`, its benchmark
+  `taken_all` (hits and degen, the figure the danger spot is asked of at 300, R-676), `taken` (the hits in it),
+  `taken_degen`, and `npc_dmg_all` beside `npc_dmg`; NPC damage by kind of bar (`npcpower.py`, its benchmark
   rebuilt: a ranger adds 10.5 a second on footmen against 4.4 on hits alone, and the damage to kill a knight is 657
   against 561); the execution measures (`execution.py`: damage on their players, the shares on their monks and on
   one player, damage on their NPCs, and `degen` itself in health; the damage against the roles' usual is still hits
   against a usual of hits, until `eventlayer.py` takes degen in); and `pressure.py`, whose degen intervals are
   gvg.report's amounts now (pip-seconds as landed), so the death accounts, the nodes and `lnrows` read them without
-  a change (their benchmarks are of the old figure until the rebuild). Not yet: the danger spot's line on the new
-  figure (his to give: `marks` in `jobs._res_stand` reads `taken`); `forensics.py`, `events.py`, `nodes.py`,
+  a change (their benchmarks are of the old figure until the rebuild). Not yet: `forensics.py`, `events.py`, `nodes.py`,
   `eventlayer.py`, `fights.py`, `scoreboard.py`, `phases.py` and `episodes.py` wherever they sum damage from hits;
   the story and the reports. The aim of a Lord push counts hits, not amounts, and stays as it is; Lord damage is
   gvg.report's Lord record (R-632), and the degen on a Lord kept in `degen.py` is read by nothing.
@@ -533,7 +533,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   From his answers of 2026-11-22 and 23 (R-591 to R-614), as built now.
   The base res is a call only in the danger zone (R-592, R-609, R-610, R-614): the main team, three or more of it in their
   base, with his three factors on 20 s before the res: half or more of them past their res shrine, two or more enemy NPCs
-  hitting them, and 250 or more damage a player in the minute before (`RES_WORN`, his number, R-615, after 150, R-612). One
+  hitting them, and 300 or more damage a player in the minute before, hits and degen (`RES_WORN`, his number, R-676; 250 on hits alone before it, R-615). One
   reading, in the engine: `jobs._res_stand` (`marks`, `danger`), on every base res play as `res.early` (20 s before, when
   staying or leaving is still the team's) and `res.at_res`, and on the res spots. Low health is not a factor (R-602). Every
   other base res is context with no call (`jobs._res_context`: `clear` false, `unclear` saying which part of the danger spot

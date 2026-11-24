@@ -8,54 +8,53 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-24, midday: his answers on energy, R-668 to R-673; degen as damage begun)
+## State (2026-11-24, afternoon: R-668 to R-677; degen as damage begun; the energy plan with him)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 matches
-  trained. No workflow run in progress. Rulings run to R-673. The baseline (R-491): `baseline-2026-11-15`.
+  trained. No workflow run in progress. Rulings run to R-677. The baseline (R-491): `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. No family: numbers from kills (R-557), the push (R-597), a held team
   (R-621). No more matches until the engine is ready (R-570). Nothing waits for his marks.
-- On the branch (stage E, step 2; CLAUDE.md "The engine on the new trim"), at dba9744: the reader, flag returns
+- On the branch (stage E, step 2; CLAUDE.md "The engine on the new trim"), at f865fa3: the reader, flag returns
   (R-481), the Lord record (R-632 to R-635), and degen as damage (R-638, R-649, R-655, R-661): `degen.py`,
   `Match.degen()`, gvg.report's totals laid over the seconds the replay shows them. Taken in so far by the damage a
-  player took, NPC damage by kind of bar (benchmark rebuilt), the execution measures and `pressure.py`.
-- Development set: 6,933 plays, none moved; 323 Classic rows pass. Last full run: 9022ffe. Energy: his five
-  answers filed (R-668 to R-672; DEFINITIONS.md "Energy"); nothing built, his thoughts not final (R-665).
+  player took, NPC damage by kind of bar (benchmark rebuilt), the execution measures and `pressure.py`; the
+  danger zone's line is 300 a player, hits and degen (R-676).
+- Development set: 6,933 plays, none gone or new (30 base res in the danger zone against 25); 323 Classic rows
+  pass. Last full run: 9022ffe. Energy: R-668 to R-675 filed (DEFINITIONS.md "Energy"); nothing built (R-674).
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. Stage E, step 2 goes on. First the rest of degen (R-649): the death accounts read gvg.report's recaps for the
-   degen before a death or a save (R-636, R-638: the laid-out timing is rough at a few seconds); then
-   `eventlayer.py` (the roles' usual damage, so `dmg_v_usual` takes degen on both sides), `forensics.py`,
-   `events.py`, `nodes.py`, `fights.py`, `scoreboard.py`, `phases.py`, `episodes.py` wherever damage is summed
-   from hits; the story and the reports. The danger spot's line when he has given it (`marks` in
-   `jobs._res_stand` then reads `taken_all`). Then, as ordered: interrupt attempts (R-639), what each prot did and
-   the recaps (R-636), who stripped which enchantment from our own replays (R-637), a hold told with what the
-   holders went for (R-658). Each piece: the development set, the key, `compare.py` against the run before
-   (`--skip props,npc,taken_degen,taken_all,npc_dmg_all` for the degen keys); a full run at the end, with
-   `npcpower.py bench` and the truths.
-2. On the new prices and the new flag tally, before anything is read from them: `cases.py ladder`, then `cases.py
+1. Energy, worked through with him (R-674): his answers to the plan put to him on 2026-11-24, filed as rulings,
+   then the plan settled. The plan's five pieces: (a) the reading, `Match.energy()` (double high scale, bounds,
+   the monks and midline of each fight; moves no play) with checks of the record; (b) aspect 3: each fight's monk
+   energy, own and enemy, on every play and in the like spots, then tables by decision, the line read from the
+   data each time (R-669); (c) aspect 2: in the death accounts and where a numbers advantage does not kill, who
+   could afford a cast and where the energy went; (d) aspect 1: monk casting efficiency, built with R-636 (what
+   each prot did), placed by monk role (R-671); (e) what stays out. Nothing is built before his word.
+2. Stage E, step 2 goes on: the rest of degen (R-649): the death accounts read gvg.report's recaps (R-636, R-638);
+   `eventlayer.py` (the roles' usual, so `dmg_v_usual` takes degen on both sides), `forensics.py`, `events.py`,
+   `nodes.py`, `fights.py`, `scoreboard.py`, `phases.py`, `episodes.py` wherever damage is summed from hits; the
+   story and the reports. Then interrupt attempts (R-639), what each prot did and the recaps (R-636), who
+   stripped which enchantment (R-637), a hold told with what the holders went for (R-658). Each piece: the
+   development set, the key, `compare.py` (`--skip props,npc,taken_degen,taken_all,npc_dmg_all` for the degen
+   keys); a full run at the end, with `npcpower.py bench` and the truths.
+3. On the new prices and the new flag tally, before anything is read from them: `cases.py ladder`, then `cases.py
    test` (R-545), and the flag readings he has seen shown to him again (R-635). Not run yet.
-3. Energy, when he says his thoughts are final (R-664 to R-672): first a reading only (each fight's monk energy,
-   own and enemy, on every play; it moves no play), then tables for him, then anything that changes the engine.
-   Then the close: the new families beside the old kinds for one rebuild (R-323), the stand-in prices replaced by
-   the win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten, the readability
-   test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts it).
-4. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags.
+4. The close: the new families beside the old kinds for one rebuild (R-323), the stand-in prices replaced by the
+   win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten, the readability
+   test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts it). With matches
+   in: the split family again; the danger zone's two factors; the opening hand-off and held flags.
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
    sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Energy: are his thoughts final (R-665)? And the Ranger and the Paragon, not on his midline list: not read
-   (Claude's reading of R-670).
-2. The danger spot's damage line on hits and degen (R-615, R-649), put to him 2026-11-24. Development set, 184
-   base res with three or more in their base: 250 on hits takes in 25; 250 on hits and degen 36 (his Classic "no
-   call" rows RACK v hdm 7:40, 318, and Men v NwAy 3:40, 287, among them); 300, 30; 325, 25 (23 the same rows);
-   350, 23. Claude's recommendation: 325. Until he says, the line is 250 on hits.
-3. Claude's readings of degen, put to him: a Vampiric weapon's upkeep is no damage; degen gvg.report credits to
-   nobody is taken but no player's; the Miasma of Isle of Meditation is untimed until read from where a player
-   stands (his area "Miasma"). The NPC damage table with degen (R-659) was shown to him the same day.
-5. The early September matches (R-673, with the counts): raise when energy is built, at R-398 and before a pull.
+1. The energy plan's questions, put to him 2026-11-24 (Q1 to Q8): what a useful cast is; when a prot or heal was
+   not needed; whether a cancelled cast costs its energy and how baiting counts; "out of energy" for the excuse;
+   the midline's out; collective monk energy (average, lowest, total); which decisions first; energy denial.
+2. RACK v hdm 7:40 is told with its call again at 300 with degen (as he first graded it): told to him.
+3. The NPC damage table with degen (R-659) was shown to him 2026-11-24; no word on it yet.
 4. 옷옷옷옷 v RACK 6:15 (Visible, one row, R-495): told at 6:27, the take-up of a flag lying at the door. His to say
    if a run for a flag left lying should start when its taker sets off.
+5. The early September matches (R-673, with the counts): raise when energy is built, at R-398 and before a pull.
 6. R-576 and R-575 on Nomad's are Claude's readings: bring him what either tells wrongly. Tolkano: no build.
 
 ## Running it

@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-24, afternoon (the same chat): R-674 to R-677; the danger zone's line at 300 with degen; the energy plan put to him
+- R-674: energy is not final and is worked through with him next. R-675: the Ranger and the Paragon are not read for energy. R-676: the danger zone's damage line is 300 a player in the minute before, hits and degen (amends R-615). R-677: a Vampiric weapon's upkeep left out, degen credited to nobody counts in what a team took, the Miasma ignored.
+- Built on `bundle-4` at f865fa3: `jobs.RES_WORN` 300, asked of `taken_all`. Development set: 30 base res in the danger zone against 25 (joined: 옷옷옷옷 v cope 3:40, RACK v hdm 7:40, meow v One 13:40, 17:40 and 19:40; none left); 129 base res rows reworded, no play gone or new.
+- The key: RACK v hdm 7:40 (243 of hits, 318 with degen) is in the zone again and is told with its call, as he graded it Classic and correct before R-615; its check of R-615 is retired (`later_2` on the row). 323 Classic rows pass.
+- The energy plan put to him in the chat (the three aspects of R-666 as five pieces of building, with the rulings each needs); gvg.report's bounds lie within 2 of one another 92% of the time for a backline monk, 97% a smite monk, 88% a Mesmer, 87% an Elementalist, 82% a Ritualist, 47% a Necromancer (36 matches).
+
 ## 2026-11-24, midday (a new chat): his answers on energy, R-668 to R-673; degen as damage, the reading and the first figures
 - His five answers on energy filed (R-668 to R-672): every monk carries a double high; low is read from the data, decision by decision; the midline for energy is Rit, Mesmer, Ele, Necro and smite monk; monk casting efficiency against the same monk role across all matches; matches with no energy record keep their place, energy blank. Nothing of energy is built: he has not said his thoughts are final.
 - R-673: whether the matches before 5 September, or the stored ones before 1 September, are removed is to be raised when it is appropriate. Counted: 52 stored before 1 September (none counts); 43 counted of 1 to 5 September, 18 of them with no energy record; a line at 6 September leaves 521, all with energy.
