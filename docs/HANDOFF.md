@@ -25,9 +25,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
 1. Energy, in his order (R-689; CLAUDE.md "The engine on the new trim" has each piece in full). Built: the
-   reading; (2) the record and the tables. Next: his word on the tables (Open 1); energy among what like spots are
-   matched on (the average); (3) the excuse with energy denial (R-681, R-682, R-685); (4) casting efficiency with
-   R-636 and R-639 (R-678 to R-680, R-687). Each piece: the development set, the key, `compare.py`.
+   reading; (2) the record, the tables, the split holds (R-696) and energy in the like spots. He wants no further
+   nuance on the decisions (2026-11-24). Next: (3) the excuse with energy denial (R-681, R-682, R-685, R-692);
+   (4) casting efficiency with R-636 and R-639 (R-678 to R-680, R-687). Each piece: the development set, the key,
+   `compare.py`.
 2. Stage E, step 2 goes on: the rest of degen (R-649): the death accounts read gvg.report's recaps (R-636, R-638);
    `eventlayer.py` (the roles' usual, so `dmg_v_usual` takes degen on both sides), `forensics.py`, `events.py`,
    `nodes.py`, `fights.py`, `scoreboard.py`, `phases.py`, `episodes.py` wherever damage is summed from hits; the
@@ -35,8 +36,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    stripped which enchantment (R-637), a hold told with what the holders went for (R-658). Each piece: the
    development set, the key, `compare.py` (`--skip props,npc,taken_degen,taken_all,npc_dmg_all` for the degen
    keys); a full run at the end, with `npcpower.py bench` and the truths.
-3. On the new prices and the new flag tally, before anything is read from them: `cases.py ladder`, then `cases.py
-   test` (R-545), and the flag readings he has seen shown to him again (R-635). Not run yet.
+3. Run on the new prices and flag tally with energy in the like spots (2026-11-24): `cases.py ladder`, `test`,
+   numbers, main fight, splits, res. Still to do: the flag readings he has seen shown to him again (R-635).
 4. The close: the new families beside the old kinds for one rebuild (R-323), the stand-in prices replaced by the
    win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten, the readability
    test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts it). With matches
@@ -45,10 +46,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
    sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Energy: his answers on the tables are R-690 to R-696 (energy beside the 300 line; no stand-off decision;
-   offensive or defensive play is execution; their monks only at "our flag just in"; no energy at their boost; a
-   split already out stays or falls back, by its own monks, built as `jobs.split_holds`). The split table was put
-   to him 2026-11-24. Open: his nuances on the remaining decisions.
+1. Energy: R-690 to R-696 filed; no further nuance wanted. Nothing open.
 2. RACK v hdm 7:40 is told with its call again at 300 with degen (as he first graded it): told to him.
 3. The NPC damage table with degen (R-659) was shown to him 2026-11-24; no word on it yet.
 4. 옷옷옷옷 v RACK 6:15 (Visible, one row, R-495): told at 6:27, the take-up of a flag lying at the door. His to say

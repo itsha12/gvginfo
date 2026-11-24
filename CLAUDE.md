@@ -230,8 +230,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   of a split's own plays that opens with defenders, a collapse or the whole team, the call 20 s on ("died there" where
   half or more died, else "fell back" where half or more of the living are off the enemy's ground by `_deep`, else
   "stayed"; the halves are Claude's), the position and what followed; `cases.py energy` reads it as decision 8 by the
-  split's own monks (its energy is the play's own record). Left of (2): energy among what like spots are matched on (2026-11-24, 546
-  matches: the average told a little more than the lowest monk at most decisions). To build, in his order (R-689):
+  split's own monks (its energy is the play's own record). Energy is among what like spots are matched on (`cases._e_mean`, the average, R-683: it told a little more
+  than the lowest monk at most decisions): their monks' energy in MORE for every flag play (the answer to their run and
+  our flag just in, R-693), both teams' at the numbers and main fight like spots, our team's (`team`) in SPLIT_VARS,
+  both teams' in DANGER_VARS; none at their boost (R-694); a match with no energy takes the scenario's middle. (2) is
+  done. To build, in his order (R-689):
   (3) the
   excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of
   the minute before went (spent, taken by the enemy, regained), energy denial read (R-685: Energy Surge and Energy
