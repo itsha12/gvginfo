@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, late night (a new chat, docs only): his answers to the open items, R-656 to R-660
+- The open items set out for him in the chat; no build, no play moved, nothing run.
+- R-656: a Lord kill before 21:00 is left told nowhere as a Lord row; ohno v Book at 5 against 3 and "the kill" read from the result stand.
+- R-657: the probe of gvg.report for degen on NPCs and Lords is saved for later and is no condition of the rebuild: degen on players is gvg.report's, on a Lord not needed, on NPCs estimated (it moves the NPC damage of some kinds of bar). Amends R-649.
+- R-658: what a held team heals mostly follows what the holders hit (a reaction, never a call or a fix); a hold is to be told with what the holders went for, NPCs or players. Not built.
+- R-659: the NPC damage table passes for now. R-660: no Lord rows on the page before stage E; on to stage E.
+- His question on the lone player ("Don't we already have a reading on what is a split?"): yes. The split-at-all record reads the split records of the plays (R-562), so the item is withdrawn; the reading waits for matches (R-570).
+- The stage E plan put to him and agreed: the new trim first, then the engine on it, then the close; Claude starts the refetch once the trim is tested.
+
 ## 2026-11-23, night (a new chat): his marks filed; his word R-649 to R-655; the Lord play rebuilt from the end record; what was left of the measurements
 - His marks on the eight draft rows of the play for 28:00 filed as p4-9 to p4-16 (seven Classic, six correct; one Visible), and the eleven flag cards (all told correctly and agreed with; his calls wait 5, send 4, hold 2). His question on Dz v Crew answered: Dz's three pit NPCs at 21:52 are its pit archers.
 - The Classic fault (hold v Dz: "hold sends 3 but they die before reaching base"), fixed at the root in `Moments.end_play`: a player who dies on his way into their base was sent (`_end_way`, past the last turn-off to mid, R-562). Tried and left: every door zone, and his labelled Base area, as "sent".

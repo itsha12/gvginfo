@@ -279,7 +279,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Held in its base (pinned): a break-out meets the job only if no player and no pit NPC was lost before it (R-478).
   It is no decision family: "the only thing they can do is to try to kill and keep up NPCs"; what a team already
   losing does there that gains or loses win points is read as execution, with the execution measurements (R-619,
-  R-621; not built).
+  R-621; not built). What the held team heals, its NPCs or its players, mostly follows what the holders hit: it is
+  a reaction, never a call or a fix, and a hold is told with what the holders went for, NPCs or players (R-658; not
+  built).
   *As built:* held in is the main team on its own ground no further out than its doors with the enemy's main team on
   that ground; a break-out is half the living players, four at least, out past the doors where being held in ends.
 - Which games count: from 1 September 2026, and never a game in which a team fields a henchman (R-476, R-477); a team
@@ -416,7 +418,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - As built (2026-11-23): the end of the match is read from where the players stand, never from hits on a Lord.
   The play for 28:00 is one row a match, both teams in it (R-640, R-651). A push before it is a Lord line on the
   row of the situation it grew out of: the held team's row, the killers' split, or the fight they won before they
-  walked in (R-644, R-650). An earlier visit to a Lord is not told as a Lord row (R-652). The line between the
+  walked in (R-644, R-650). An earlier visit to a Lord is not told as a Lord row (R-652), and a Lord kill before
+  21:00 is left told nowhere as a Lord row (R-656). The line between the
   two is 25:00: a Lord kill by a team that sent its players before 25:00 is a push before it (R-653). The result
   is the match: the Lord killed first, or more aggressiveness at the end (R-142, R-632).
 - Sent: a player whose place while the play is on is in the enemy's base (R-446), read while the play is on and
@@ -439,7 +442,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   (R-635). Until the rebuild the engine still sums the recorded hits, life steal among them, and every figure put to him
   sets gvg.report's own match total beside that sum; from the rebuild it reads gvg.report's record (not built).
 - Once degen is in the engine (R-638) every damage figure accounts for it, NPC damage first (R-649; not built).
-  It is the amounts that take it in; who is in which fight stays read from hits and casts (R-655).
+  It is the amounts that take it in; who is in which fight stays read from hits and casts (R-655). Degen on
+  players is gvg.report's (R-638); degen on a Lord is not needed; degen on NPCs is estimated, and the probe of
+  gvg.report for it is saved for later (R-657).
 - Lord push rows are marked on the page, never in the chat (R-633).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one

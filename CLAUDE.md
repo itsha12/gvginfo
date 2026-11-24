@@ -462,7 +462,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   flag, the holder named by build (R-624; the groups are Claude's, and which builds are the primary defender or the flag
   runner is left to the data, R-628: do not ask him again); F, moments to look at. How a flag is carried follows the spot a team is in:
   none of it is advice. D and E are under the floor at 564 matches. A team held in its base is no decision family and
-  is read as execution with the measurements of R-572 (R-619, R-621): no stage 3 for it.
+  is read as execution with the measurements of R-572 (R-619, R-621): no stage 3 for it. What the held team heals, its
+  NPCs or its players, mostly follows what the holders hit (R-658): a reaction, never a call or a fix; a hold is to be
+  told with what the holders went for, NPCs or players (not built).
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
   out: nothing may differ (`flag_hands` is in `flag_cost`, not in the plays).
   From his answers of 2026-11-22 and 23 (R-591 to R-614), as built now.
@@ -583,7 +585,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the danger zone's damage line of R-615, which is put to him again on the new figure, the aim of a Lord push, the
   death accounts and nodes). Amounts take degen in; who is in which fight, a stand-off and who killed a player
   stay read from hits and casts (R-655). gvg.report's condition intervals name players only: degen on NPCs and on a Lord is in
-  nothing stored, so probe gvg.report's summary and Lord record for it before the rebuild.
+  nothing stored. Degen on a Lord is not needed and degen on NPCs is estimated (it moves the NPC damage of some kinds of
+  bar, R-433); the probe of gvg.report for it is saved for later and is no condition of the rebuild (R-657).
 - The measurements of R-572, on the branch (built 2026-11-23; each is a record or a report and moves no play: after any
   change to them compare the plays with the run before, the key `npc` left out wherever it stands).
   Execution, both teams by the same measures (2.12, R-299): `execution.py`. For the first `EXEC_S` (20 s, Claude's
