@@ -222,14 +222,15 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   fight, the answer to their split, our split, the danger zone base res, after a wipe) what followed each call by
   the fight's monk energy (average and lowest monk in thirds of that decision's own cases, R-669; how many monks
   apart), the minute before beside every row, and the danger zone read both ways (damage line and monk energy).
-  Not readable yet: pressing the fight or allowing a stand-off (no play tells it) and offensive or defensive
-  play (no play of the new engine). Left of (2): energy among what like spots are matched on (2026-11-24, 546
+  Not read, at his word: pressing the fight or allowing a stand-off (no decision for now, R-691) and offensive or
+  defensive play, which is execution (R-692). The danger zone says the monks' energy of the players in their base
+  beside the 300 line, never in its place (R-690: `monk_energy` on `danger.calls`, in the sentence). Left of (2): energy among what like spots are matched on (2026-11-24, 546
   matches: the average told a little more than the lowest monk at most decisions). To build, in his order (R-689):
   (3) the
   excuse, in the death accounts and where a numbers advantage does not kill: who was out, and where the energy of
   the minute before went (spent, taken by the enemy, regained), energy denial read (R-685: Energy Surge and Energy
   Burn deal 7 and 9 damage a point of energy taken, so the energy taken is their damage over that; Mind Wrack to
-  confirm), and whom a Mesmer drains read with offensive or defensive play (R-279); (4) monk casting efficiency
+  confirm), and whom a Mesmer drains read with offensive or defensive play, as execution (R-692); (4) monk casting efficiency
   (R-678 to R-680, R-687), with what each prot did (R-636) and the interrupt attempts (R-639), by monk role
   (R-671): healing landed plus damage prevented for the energy spent, blocks credited to any blocking skill,
   removals a count apart, cancelled casts apart as a bait that worked or energy burned.
