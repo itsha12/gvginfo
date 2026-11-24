@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks. Later on 2026-11-22 his four answers (R-584 to R-587) were filed on the rows they were put to him with. Set p4 is the picked Lord push rows of Model > Game review > Lord push (R-633; eight rows of seven games, written against engine 50d656d with gvg.report's own Lord figures, his marks in data/model/lord_row_marks.json). Filed 2026-11-23: the four he had marked (three Classic and correct, one Visible and partly: when), each with his words and a check on the play the row is written from. The two rows of hdm v Men (rows 2 and 3) he cannot review (his observer platform) and they stay unmarked; rows 6 and 7 (BcS v hold 25:25, Apes v Crew 23:26) he will not mark and they are off the page (R-643). With the marks he described the play for 28:00 as one play of both teams and told it apart from a push earlier than 28:00 out of a situation (R-640 to R-642; rows 2, 3 and 5 are plays for 28:00, rows 1, 4 and 8 pushes before it, his 'Yes!'): the Classic checks here hold the rows as he saw them and are written again with that reading when it is built.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks. Later on 2026-11-22 his four answers (R-584 to R-587) were filed on the rows they were put to him with. Set p4 is the picked Lord push rows of Model > Game review > Lord push (R-633; eight rows of seven games, written against engine 50d656d with gvg.report's own Lord figures, his marks in data/model/lord_row_marks.json). Filed 2026-11-23: the four he had marked (three Classic and correct, one Visible and partly: when), each with his words and a check on the play the row is written from. The two rows of hdm v Men (rows 2 and 3) he cannot review (his observer platform) and they stay unmarked; rows 6 and 7 (BcS v hold 25:25, Apes v Crew 23:26) he will not mark and they are off the page (R-643). With the marks he described the play for 28:00 as one play of both teams and told it apart from a push earlier than 28:00 out of a situation (R-640 to R-642; rows 2, 3 and 5 are plays for 28:00, rows 1, 4 and 8 pushes before it, his 'Yes!'): the Classic checks here hold the rows as he saw them and are written again with that reading when it is built. Rows p4-9 to p4-16, filed 2026-11-23, are the eight rows of the draft reading of the play for 28:00 (R-647; ids `e:<report>-end` on the page): seven Classic (six correct; hold v Dz incorrect, numbers: 'hold sends 3 but they die before reaching base') and one Visible and correct (Apes v BcS, small). Their checks read the end record kept beside the plays (`flag_cost[rid].end_play`, a `record` check), not a play, until `jobs.lord_plays` is read from it. The 25:00 line is not ruled by them: all eight are consistent with it. Flag advice, marked 2026-11-23: the eleven cards that waited (six asked again, five new, engine e480706) are all told correctly and the reading makes sense to him on each; his own calls: wait 5, send 4, hold 2 (three of the six asked again moved to wait, the option offered from 2026-11-20). No card was corrected, so set c1 gains no row.",
  "version": 1,
  "rows": [
   {
@@ -36385,6 +36385,301 @@
       "aim": "Lord damage"
      },
      "why": "Team v hook 24:02 (picked row, Classic, correct): 'good call, I also thing they are playing for Lord damage.'"
+    }
+   ]
+  },
+  {
+   "id": "p4-9",
+   "set": "p4",
+   "scheme": 2,
+   "row": 9,
+   "rid": "1729daac-175f-50db-a0ee-ea543f3a22e0",
+   "match": "Dz v Crew, Solitude",
+   "window": [
+    1312,
+    1513
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A push before the play for 28:00, as the draft reads it: Crew has 2 in Dz's base, sent at 21:52, and keeps 6; Dz sends 7 in return at 21:59 and keeps 1. | Dz sent to the enemy's base: Mesmer (from 21:55), Paragon 1 (from 21:57), Prot (from 21:57), Paragon 2 (from 21:59), 7 Monk (from 22:02), Warrior (from 23:54), Monk 5 (WoC) (from 24:25). | Dz kept at home: 8 Monk (before 20:00, died 25:06). | Crew sent to the enemy's base: Monk 1 (from 21:49), Ritualist (from 21:56). | Crew kept at home: Necromancer (from 20:07), Prot (from 21:41), Mesmer (from 21:42), 8 Monk (from 21:42), Warrior (from 21:43), 7 Monk (from 21:46). | What each team had when the first group went (21:52): pit NPCs alive, Dz 3 and Crew 6; morale summed over the eight, Dz -114 and Crew +52; players alive, Dz 8 and Crew 8; Lord damage so far by the engine's sum of the recorded hits, 0 by Dz and 8,211 by Crew; the next base res at 22:00. | Dz's Guild Lord is killed at 25:13; Crew wins. Deaths from 21:52: Dz 3, Crew 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 21:52, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Dz, 7. | Picked for: your three signs do not agree. | Lord damage. From 21:52, by the engine's sum of the recorded hits: 5,203 on Dz's Lord, 628 on Crew's. Whole match, gvg.report's own total: 12,587 on Dz's Lord, 628 on Crew's (the engine's summed hits: 13,414 and 628).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "please confirm which pit npcs were alive, I am assuming 2 knights and 1 archer (the solitude specific one).",
+   "play": null,
+   "page_id": "e:1729daac-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "push before it",
+      "sends.Crew.sent": 2,
+      "sends.Crew.kept": 6,
+      "sends.Dz.sent": 7,
+      "sends.Dz.kept": 1
+     },
+     "why": "Dz v Crew 21:52 (draft row of the play for 28:00, Classic, correct): 'please confirm which pit npcs were alive, I am assuming 2 knights and 1 archer (the solitude specific one).'"
+    }
+   ],
+   "answered": {
+    "asked": "please confirm which pit npcs were alive, I am assuming 2 knights and 1 archer (the solitude specific one).",
+    "reading": "Read from the replay (2026-11-23): at 21:52 Dz's three living pit NPCs are its three pit archers, not two knights and an archer. Dz's knights die at 6:57 and 9:53 and its Bodyguard at 9:53; two of the pit archers are seen in the replay and stand until the Lord dies at 25:13, the third is never seen in it and is added from Solitude's standard roster (integrity: roster_added), so it counts as alive only because no death is recorded. Crew's six are its two knights, its Bodyguard and three pit archers (one from the roster); Crew then loses a knight at 22:51, an archer at 23:01, the Bodyguard at 23:59 and an archer at 24:46. Put to him."
+   }
+  },
+  {
+   "id": "p4-10",
+   "set": "p4",
+   "scheme": 2,
+   "row": 10,
+   "rid": "a0fae334-fc73-546f-aefc-9b8b16607862",
+   "match": "cope v Men, Druid's",
+   "window": [
+    1477,
+    1659
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A push before the play for 28:00, as the draft reads it: Men has 4 in cope's base, sent at 24:37, and keeps 2; cope sends 4 in return at 26:38 and keeps 3. | cope sent to the enemy's base: Paragon 1 (from 26:34, died 27:06), 8 Monk (from 26:34, died 26:59), Paragon 2 (from 26:43, died 27:04), Warrior (from 26:54, died 27:15). | cope kept at home: 7 Monk (from 21:52, died 27:26), Mesmer (from 24:25, died 27:09), Prot (from 25:23, died 27:33). | cope in the field or at the enemy's footmen: Monk 5 (WoC) (from 26:24, died 26:27). | Men sent to the enemy's base: Warrior (from 24:26), Paragon 2 (from 24:34), 7 Monk (from 24:40), Paragon 1 (from 25:37). | Men kept at home: 8 Monk (from 25:47), Mesmer (from 26:25). | Men in the field or at the enemy's footmen: Prot (from 27:25), Monk 4 (WoC) (from 27:34). | What each team had when the first group went (24:37): pit NPCs alive, cope 1 and Men 5; morale summed over the eight, cope -163 and Men +70; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 0 by Men; the next base res at 26:00. | What each team had when it was set (26:38): pit NPCs alive, cope 0 and Men 5; morale summed over the eight, cope -193 and Men +80; players alive, cope 7 and Men 8; Lord damage so far by the engine's sum of the recorded hits, 0 by cope and 2,663 by Men; the next base res at 28:00. | cope's Guild Lord is killed at 27:39; Men wins. Deaths from 24:37: cope 9, Men 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:37, before 25:00; a team already in the enemy's base two minutes or more before it was set, yes; sent in return by cope, 4. | Picked for: your three signs do not agree. | Lord damage. From 24:37, by the engine's sum of the recorded hits: 5,599 on cope's Lord, 0 on Men's. Whole match, gvg.report's own total: 5,599 on cope's Lord, 0 on Men's (the engine's summed hits: 5,599 and 0).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "",
+   "play": null,
+   "page_id": "e:a0fae334-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "push before it",
+      "sends.Men.sent": 4,
+      "sends.Men.kept": 2,
+      "sends.cope.sent": 4,
+      "sends.cope.kept": 3
+     },
+     "why": "cope v Men 24:37 (draft row of the play for 28:00, Classic, correct), no words"
+    }
+   ]
+  },
+  {
+   "id": "p4-11",
+   "set": "p4",
+   "scheme": 2,
+   "row": 11,
+   "rid": "9d84b1e6-6aef-5d0c-a417-fb87875add27",
+   "match": "BcS v hook, Meditation",
+   "window": [
+    1471,
+    1652
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A push before the play for 28:00, as the draft reads it: BcS has 6 in hook's base, sent at 24:31, and keeps 2; hook sends 3 in return at 26:12 and keeps 5. | BcS sent to the enemy's base: Monk 3 (WoC) (from 24:27), Warrior 1 (from 24:30), Mesmer (from 24:31), 7 Monk (from 24:31), Monk 4 (WoC) (from 24:58), Warrior 2 (from 24:59). | BcS kept at home: 8 Monk (from 21:47), Prot (from 26:25). | hook sent to the enemy's base: Ranger (from 26:06, died 27:06), AoB Derv (from 26:12, died 27:16), Ritualist (from 26:13, died 27:25). | hook kept at home: Prot (from 23:45, died 27:03), Hammer (from 23:46, died 26:53), 7 Monk (from 25:27, died 26:36), Mesmer (from 25:59, died 26:36), 8 Monk (from 25:59, died 27:23). | What each team had when the first group went (24:31): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -268; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 50 by BcS and 0 by hook; the next base res at 26:00. | What each team had when it was set (26:12): pit NPCs alive, BcS 5 and hook 1; morale summed over the eight, BcS +80 and hook -313; players alive, BcS 8 and hook 8; Lord damage so far by the engine's sum of the recorded hits, 361 by BcS and 0 by hook; the next base res at 28:00. | hook's Guild Lord is killed at 27:32; BcS wins. Deaths from 24:31: BcS 0, hook 13. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:31, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by hook, 3. | Picked for: your three signs do not agree. | Lord damage. From 24:31, by the engine's sum of the recorded hits: 165 on BcS's Lord, 4,714 on hook's. Whole match, gvg.report's own total: 115 on BcS's Lord, 4,728 on hook's (the engine's summed hits: 165 and 4,764).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "",
+   "play": null,
+   "page_id": "e:9d84b1e6-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "push before it",
+      "sends.BcS.sent": 6,
+      "sends.BcS.kept": 2,
+      "sends.hook.sent": 3,
+      "sends.hook.kept": 5
+     },
+     "why": "BcS v hook 24:31 (draft row of the play for 28:00, Classic, correct), no words"
+    }
+   ]
+  },
+  {
+   "id": "p4-12",
+   "set": "p4",
+   "scheme": 2,
+   "row": 12,
+   "rid": "617aa3df-f264-553b-afe2-b9f5cb7068c2",
+   "match": "Apes v BcS, Uncharted",
+   "window": [
+    1499,
+    1613
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A push before the play for 28:00, as the draft reads it: BcS has 6 in Apes's base, sent at 24:59, and keeps 2; Apes sends 4 in return at 25:56 and keeps 4. | Apes sent to the enemy's base: Ritualist (from 25:54), Hammer (from 25:56), Necromancer (from 25:56), Warrior (from 26:37). | Apes kept at home: Prot (from 24:04, died 26:38), 8 Monk (from 24:04, died 26:22), Mesmer (from 24:06, died 25:10), 7 Monk (from 25:59, died 26:24). | BcS sent to the enemy's base: Monk 5 (WoC) (from 24:47), Ritualist (from 24:52), Warrior (from 24:55), Mesmer (from 25:03), 7 Monk (from 25:05), Monk 4 (WoC) (from 25:10). | BcS kept at home: 8 Monk (from 25:24), Prot (from 25:49). | What each team had when the first group went (24:59): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 7 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 159 by BcS; the next base res at 26:00. | What each team had when it was set (25:56): pit NPCs alive, Apes 3 and BcS 1; morale summed over the eight, Apes -213 and BcS +75; players alive, Apes 6 and BcS 8; Lord damage so far by the engine's sum of the recorded hits, 3,753 by Apes and 452 by BcS; the next base res at 26:00. | Apes's Guild Lord is killed at 26:53; BcS wins. Deaths from 24:59: Apes 5, BcS 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 24:59, before 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Apes, 4. | Picked for: just before 25:00. | Lord damage. From 24:59, by the engine's sum of the recorded hits: 2,162 on Apes's Lord, 2,177 on BcS's. Whole match, gvg.report's own total: 2,321 on Apes's Lord, 6,037 on BcS's (the engine's summed hits: 2,321 and 5,960).",
+   "grade": "visible",
+   "mark": "correct",
+   "off": [],
+   "said": "",
+   "play": null,
+   "page_id": "e:617aa3df-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "push before it",
+      "sends.BcS.sent": 6,
+      "sends.BcS.kept": 2,
+      "sends.Apes.sent": 4,
+      "sends.Apes.kept": 4
+     },
+     "why": "Apes v BcS 24:59 (draft row of the play for 28:00, Visible, correct), no words"
+    }
+   ],
+   "reason": [
+    "small"
+   ]
+  },
+  {
+   "id": "p4-13",
+   "set": "p4",
+   "scheme": 2,
+   "row": 13,
+   "rid": "9eb315c2-bb0f-54aa-ae59-20db911cdbed",
+   "match": "ohno v Book, Corrupted",
+   "window": [
+    1504,
+    1547
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A play for 28:00, as the draft reads it: ohno sends 5 and keeps 3; Book sends nobody and keeps 4; set at 25:04. | ohno sent to the enemy's base: Hammer A (from 24:56), Monk 4 (WoC) (from 25:04), Mesmer (from 25:04), Hammer B (from 25:05), 7 Monk (from 25:11). | ohno kept at home: 8 Monk (from 21:45), Air Ele (from 21:48), Prot (from 24:42). | Book kept at home: Mesmer (from 24:03), Prot (from 24:07, died 25:11), 7 Monk (from 24:10, died 25:22), Dervish (from 25:26). | Book in the field or at the enemy's footmen: 8 Monk (from 25:30), Ritualist (from 25:34, died 25:39), Air Ele (from 25:38), Fire Ele (from 25:41). | What each team had when the first group went (25:04): pit NPCs alive, ohno 2 and Book 5; morale summed over the eight, ohno +75 and Book -104; players alive, ohno 8 and Book 8; Lord damage so far by the engine's sum of the recorded hits, 0 by ohno and 0 by Book; the next base res at 26:00. | Book's Guild Lord is killed at 25:47; ohno wins. Deaths from 25:04: ohno 0, Book 3. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 25:04, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by Book, nobody. | Picked for: just after 25:00. | Lord damage. From 25:04, by the engine's sum of the recorded hits: 23 on ohno's Lord, 1,818 on Book's. Whole match, gvg.report's own total: 23 on ohno's Lord, 1,818 on Book's (the engine's summed hits: 23 and 1,818).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "correct, this is a lord push where they went for the kill rather than lord dmg",
+   "play": null,
+   "page_id": "e:9eb315c2-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "play for 28:00",
+      "sends.ohno.sent": 5,
+      "sends.ohno.kept": 3,
+      "sends.Book.kept": 4
+     },
+     "why": "ohno v Book 25:04 (draft row of the play for 28:00, Classic, correct): 'correct, this is a lord push where they went for the kill rather than lord dmg'"
+    },
+    {
+     "record": "end_play",
+     "want": {
+      "sends.Book.sent": 0
+     },
+     "why": "ohno v Book 25:04 (draft row of the play for 28:00, Classic, correct): 'correct, this is a lord push where they went for the kill rather than lord dmg'",
+     "open": true,
+     "note": "As the row told it, Book sends nobody. With the fix for hold v Dz (a player who dies on his way into their base was sent) the record reads Book's Ritualist as sent: he stood in ohno's base from 21:40 and died at 25:39 leaving it. And three more of Book's players stood in ohno's base until some 10 s before their own Lord died at 25:47 (Fire Ele and 8 Monk from before 24:00, Air Ele from 24:42), read as in the field because the record takes each player's last place. Put to him 2026-11-23: did Book send nobody?"
+    }
+   ],
+   "reading": "His words name what ohno played for: the kill, not Lord damage. The end record carries no aim yet; when `jobs.lord_plays` is read from it the play for 28:00 says what each team's send played for (the kill, Lord damage, killing the defenders), and this row checks ohno's as the kill."
+  },
+  {
+   "id": "p4-14",
+   "set": "p4",
+   "scheme": 2,
+   "row": 14,
+   "rid": "efb56ec6-4ef7-57bd-a53b-cc0ba78e84a6",
+   "match": "hold v Dz, Uncharted",
+   "window": [
+    1575,
+    1674
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 5; Dz sends 4 and keeps 4; set at 26:15. | hold kept at home: Prot (from 21:15), Stand Mes (from 21:28), 7 Monk (from 25:26), 8 Monk (from 25:29), AoB Derv (from 25:59). | hold in the field or at the enemy's footmen: Ritualist (from 26:16, died 27:26), Hammer (from 27:19, died 27:38), Mes/A (from 27:36, died 27:46). | Dz sent to the enemy's base: AoB Derv (from 24:36), Hammer (from 26:15), Stand Mes (from 26:16, died 27:52), 7 Monk (from 26:17, died 27:38). | Dz kept at home: 8 Monk (from 25:30), Dervish (from 26:08), Mes/A (from 26:20), Prot (from 26:46). | What each team had when the first group went (26:15): pit NPCs alive, hold 0 and Dz 5; morale summed over the eight, hold -108 and Dz +80; players alive, hold 8 and Dz 8; Lord damage so far by the engine's sum of the recorded hits, 0 by hold and 1,634 by Dz; the next base res at 28:00. | The match runs to its end and is decided by Lord damage; Dz wins. Deaths from 26:15: hold 3, Dz 2. | Picked for: a shape not yet seen: one team sends nobody. | Lord damage. From 26:15, by the engine's sum of the recorded hits: 3,250 on hold's Lord, 0 on Dz's. Whole match, gvg.report's own total: 4,364 on hold's Lord, 0 on Dz's (the engine's summed hits: 4,884 and 0).",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "said": "hold sends 3 but they die before reaching base",
+   "play": null,
+   "page_id": "e:efb56ec6-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "play for 28:00",
+      "shape": "both send",
+      "sends.hold.sent": 3,
+      "sends.hold.kept": 5,
+      "sends.Dz.sent": 4,
+      "sends.Dz.kept": 4
+     },
+     "why": "hold v Dz 26:15 (draft row of the play for 28:00, Classic, incorrect: numbers): 'hold sends 3 but they die before reaching base'"
+    }
+   ],
+   "reading": "The fault: the record took each player's last place alive, and hold's three (Hammer, Ritualist, Mes/A) died at Dz's back door, 2,300 to 4,200 from Dz's Lord, outside the base as the record draws it (within LORD_BASE_R), so they read as 'in the field' and hold as sending nobody. They had left home at 26:13 to 26:30 for Dz's back door and died there at 27:26 to 27:46. Rebuilt at the root (Moments.end_play, 2026-11-23): a player who dies on his way into their base (on the enemy's ground at their door, base or pit, past the last turn-off to mid, R-562's committed player) was sent, from when that way in began; a living player who stops short is not sent, as before (Crew v cope 24:29). The record now reads hold sends 3 and keeps 5, Dz sends 4 and keeps 4, set at 26:26. By the replay hold's Hammer does stand in Dz's pit from 27:01 to 27:18 and its Mes/A comes within the base; the Ritualist never does."
+  },
+  {
+   "id": "p4-15",
+   "set": "p4",
+   "scheme": 2,
+   "row": 15,
+   "rid": "5f9df5bb-014e-5494-a552-e66a2dc9794d",
+   "match": "hold v OG, Corrupted",
+   "window": [
+    1595,
+    1674
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A play for 28:00, as the draft reads it: hold sends nobody and keeps 8; OG sends 8 and keeps nobody; set at 26:35. | hold kept at home: 8 Monk (before 20:00), Prot (from 21:03), Warrior (from 25:14), 7 Monk (from 25:18), Monk 4 (WoC) (from 25:20), Mesmer (from 25:20), Paragon 1 (from 25:59), Paragon 2 (from 25:59). | OG sent to the enemy's base: Ritualist (from 25:44), Hammer (from 25:52), Ranger (from 25:54), Mesmer (from 26:16), 7 Monk (from 26:55), 8 Monk (from 26:59), AoB Derv (from 27:05), Prot (from 27:19). | What each team had when the first group went (26:35): pit NPCs alive, hold 0 and OG 2; morale summed over the eight, hold +20 and OG -37; players alive, hold 8 and OG 8; Lord damage so far by the engine's sum of the recorded hits, 1,253 by hold and 9,632 by OG; the next base res at 28:00. | The match runs to its end and is decided by Lord damage; OG wins. Deaths from 26:35: hold 0, OG 0. | Picked for: a shape not yet seen: eight against none. | Lord damage. From 26:35, by the engine's sum of the recorded hits: 3,092 on hold's Lord, 0 on OG's. Whole match, gvg.report's own total: 12,724 on hold's Lord, 1,253 on OG's (the engine's summed hits: 12,724 and 1,253).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "this is indeed a lord push where hold sent no one. It was probably a mistake by hold.",
+   "play": null,
+   "page_id": "e:5f9df5bb-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "play for 28:00",
+      "shape": "one sends",
+      "sends.hold.sent": 0,
+      "sends.hold.kept": 8,
+      "sends.OG.sent": 8,
+      "sends.OG.kept": 0
+     },
+     "why": "hold v OG 26:35 (draft row of the play for 28:00, Classic, correct): 'this is indeed a lord push where hold sent no one. It was probably a mistake by hold.'"
+    }
+   ],
+   "reading": "His 'probably a mistake by hold' is his view of the call (to send nobody in return), kept here in his words; no verdict is built from it."
+  },
+  {
+   "id": "p4-16",
+   "set": "p4",
+   "scheme": 2,
+   "row": 16,
+   "rid": "84586253-61c8-5848-ad75-1bfda24302ba",
+   "match": "OG v cope, Uncharted",
+   "window": [
+    1570,
+    1646
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "A play for 28:00, as the draft reads it: OG sends 4 and keeps 4; cope sends 5 and keeps 3; set at 26:34. | OG sent to the enemy's base: AoB Derv (from 26:30), Hammer (from 26:34, died 27:23), 8 Monk (from 26:35, died 27:12), Mesmer (from 26:36). | OG kept at home: 7 Monk (from 25:12, died 26:29), Ritualist (from 25:59, died 26:30), Ranger (from 26:08), Prot (from 26:31, died 27:24). | cope sent to the enemy's base: AoB Derv (from 26:02), Stand Mes (from 26:04), 7 Monk (from 26:10), Hammer (from 26:18), Prot (from 26:34). | cope kept at home: Ritualist (from 25:54), 8 Monk (from 25:59), Mes/A (from 26:05). | What each team had when the first group went (26:10): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -75 and cope +57; players alive, OG 8 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00. | What each team had when it was set (26:34): pit NPCs alive, OG 5 and cope 4; morale summed over the eight, OG -105 and cope +60; players alive, OG 6 and cope 8; Lord damage so far by the engine's sum of the recorded hits, 0 by OG and 0 by cope; the next base res at 28:00. | OG's Guild Lord is killed at 27:26; cope wins. Deaths from 26:10: OG 5, cope 0. | Your three signs of a push before it (R-646): the team that kills the Lord sent at 26:10, after 25:00; a team already in the enemy's base two minutes or more before it was set, no; sent in return by OG, 4. | Picked for: a shape not yet seen: a play for 28:00 that ends in a Lord kill. | Lord damage. From 26:10, by the engine's sum of the recorded hits: 2,152 on OG's Lord, 121 on cope's. Whole match, gvg.report's own total: 1,907 on OG's Lord, 96 on cope's (the engine's summed hits: 2,152 and 121).",
+   "grade": "classic",
+   "mark": "correct",
+   "off": [],
+   "said": "",
+   "play": null,
+   "page_id": "e:84586253-end",
+   "checks": [
+    {
+     "record": "end_play",
+     "want": {
+      "kind": "play for 28:00",
+      "shape": "both send",
+      "sends.OG.sent": 4,
+      "sends.OG.kept": 4,
+      "sends.cope.sent": 5,
+      "sends.cope.kept": 3
+     },
+     "why": "OG v cope 26:10 (draft row of the play for 28:00, Classic, correct), no words"
     }
    ]
   }

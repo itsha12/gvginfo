@@ -10,9 +10,12 @@ or 6 s before the match is over, the base res of 28:00 being recorded a few seco
 alive: SENT, on the enemy's ground within LORD_BASE_R of their Guild Lord (R-446: in the base, not only beside him; a
 player who stops at their footmen or their door has not been sent: Crew v cope 24:29, three of Crew's four never came
 within 4,000 of cope's Lord, his "NO corresponding push"); KEPT, on his own ground; or neither (out in the field, at
-their footmen or door, or dead since before LOOK_FROM). A player dead at the end counts where he died. Each player's "since" is
-when his last unbroken stay there began (other places for JOIN_S or less do not break it; a death does). A team's send
-is the middle of its sent players' "since", and the play is SET at the later team's send.
+their footmen or door, or dead since before LOOK_FROM). A player dead at the end counts where he died, and one who
+died on his way into their base was sent (his mark on hold v Dz 26:15, Classic: "hold sends 3 but they die before
+reaching base"): on the enemy's ground at their door, base or pit with no turn-off to mid left ahead, for JOIN_S or
+having stood within LORD_BASE_R on it; the row says where he died. A living player who stops short is not sent. Each
+player's "since" is when his last unbroken stay there began (other places for JOIN_S or less do not break it; a death
+does). A team's send is the middle of its sent players' "since", and the play is SET at the later team's send.
 
 A play for 28:00 against a push before it (R-641, R-646). His three signs of a push before it, which he reads together:
 it is early (CUT, 25:00, his "maybe"), one team is already in the enemy's base, and the other makes no push of its
@@ -49,6 +52,12 @@ def end_play(M):
     return M.end_play()
 
 
+def died(r):
+    """How a player's death is said: where he died when he died on his way into their base (the record's `on_way`), or sent and dead outside their base."""
+    if not r.get("died"): return ""
+    return f", died {cl(r['died'])}" + (f" at {r['died_at']}" + ("" if r.get("reached") else ", never in their base") if r.get("on_way") else "")
+
+
 def say(rid, o):
     print(f"{' v '.join(o['teams'])}, {o['date']}: https://gvg.report/report/{rid}#map")
     if o.get("short"): print(f"  over at {cl(o['end'])}: too early to read"); return
@@ -56,7 +65,7 @@ def say(rid, o):
     for tg, rec in o["players"].items():
         for place, word in (("sent", "sends"), ("kept", "keeps"), ("field", "in the field"), ("dead", "dead throughout")):
             xs = sorted((r for r in rec if r["place"] == place), key=lambda r: r["since"] or 0)
-            if xs: print(f"    {tg} {word} {len(xs)}: " + ", ".join(f"{r['role']} ({'before ' if r.get('before') else ''}{cl(r['since']) if r['since'] is not None else ''}{', died ' + cl(r['died']) if r['died'] else ''})" for r in xs))
+            if xs: print(f"    {tg} {word} {len(xs)}: " + ", ".join(f"{r['role']} ({'before ' if r.get('before') else ''}{cl(r['since']) if r['since'] is not None else ''}{died(r)})" for r in xs))
 
 
 def row(rid, why):
@@ -69,7 +78,7 @@ def row(rid, why):
     won = m.tag.get((m.o["meta"].get("result") or {}).get("winning_team_id"))
     def grp(tg, place):
         xs = sorted((r for r in o["players"][tg] if r["place"] == place), key=lambda r: r["since"] or 0)
-        return ", ".join(f"{r['role']} ({'before ' if r.get('before') else 'from '}{cl(r['since'])}{', died ' + cl(r['died']) if r['died'] else ''})" for r in xs)
+        return ", ".join(f"{r['role']} ({'before ' if r.get('before') else 'from '}{cl(r['since'])}{died(r)})" for r in xs)
     side = lambda tg: f"{tg} sends {S[tg]['sent'] or 'nobody'} and keeps {S[tg]['kept'] or 'nobody'}"
     if o["kind"] == "play for 28:00":
         reads = f"A play for 28:00, as the draft reads it: {side(A)}; {side(B)}; set at {cl(tset)}."

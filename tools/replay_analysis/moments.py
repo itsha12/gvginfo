@@ -1970,13 +1970,25 @@ class Moments:
         if s == self.st.side.get(tm): return "kept"
         return "sent" if math.dist(self.P[a][t], self.hall.lord[s]) <= END_BASE_R else "field"
 
+    def _end_way(self, a, t, tm):
+        """On his way into their base at a second: alive on the enemy's ground at their door, in their base or their pit, with no turn-off to mid left ahead
+        of him (`Hall.past_turnoff`, the committed player of R-562). At their footmen he is not (R-646: Crew v cope 24:29, the three who stopped there)."""
+        if not self.AL[a][t]: return False
+        k, s = self.place_at(a, t)
+        if s is None or s == self.st.side.get(tm) or k in ("stand", "greater stand", "field") or k.endswith("footies"): return False
+        return self.hall.past_turnoff(self.P[a][t], s)
+
     def end_play(self):
         """The end of the match, one record (R-640 to R-646; R-362: the record is the work). A DRAFT: no play reads it and it moves none (R-647: nothing is
         told from it until he has marked its rows). His description: late in the match each team decides whom it sends to the enemy's base (for the kill, or
         for the most Lord damage) and whom it keeps to defend, and where both do so the two are one play. "28" is the end of the match, not the clock (R-642).
         Read from where the players stand, never from hits on a Lord: at the end of play (the Lord's death, or END_BACK_S before the match is over) every
-        player's last place alive, sent, kept or neither (`_end_place`; a player dead at the end counts where he died), and `since`, when his last unbroken
-        stay there began (other places for JOIN_S or less do not break it; a death does). A team's send is the middle of its sent players' `since`; the
+        player's last place alive, sent, kept or neither (`_end_place`), and `since`, when his last unbroken stay there began (other places for JOIN_S or
+        less do not break it; a death does). A player dead at the end counts where he died, and one who died on his way into their base was sent (his mark
+        on hold v Dz, Classic: "hold sends 3 but they die before reaching base"; three players who left home at 26:13 to 26:30, stood at Dz's back door and
+        died there at 27:26 to 27:46, one of them never within END_BASE_R of the Lord): a player who dies outside END_BASE_R but on his way in (`_end_way`)
+        is sent from when that way in began, where it lasted JOIN_S or he had stood within END_BASE_R on it (`reached`), with `died_at`, the place he died. A living player
+        who stops short of their base has not been sent, as before (Crew v cope 24:29). A team's send is the middle of its sent players' `since`; the
         arrangement is `set` at the later team's send. `at` is what each team had when the first group went and when it was set (pit NPCs alive, morale
         summed over the eight, players alive, Lord damage so far by the engine's sum of the recorded hits). `kind` tells a play for 28:00 from a push before
         it (R-641) by his three signs read together (R-646: early, one team already in the enemy's base, no push in return), kept apart as `killer_send`,
@@ -2005,7 +2017,20 @@ class Moments:
                     while k >= 0 and s[k] != F: k -= 1
                     if k < 0 or j - k > JOIN_S or "dead" in s[k + 1:j + 1]: break
                     j = k
-                rec.append({"id": a, "role": m.roles[a], "place": F, "since": END_LOOK_FROM + first, "before": first == 0, "died": died})
+                r = {"id": a, "role": m.roles[a], "place": F, "since": END_LOOK_FROM + first, "before": first == 0, "died": died}
+                if died is not None and F in ("field", "sent"):
+                    r["died_at"] = " ".join(x for x in (lambda k, sd: (m.tag.get(next((t for t, d in st.side.items() if d == sd), None)) + "'s" if sd else None, k))(*self.place_at(a, END_LOOK_FROM + i)) if x)
+                if died is not None and F == "field" and self._end_way(a, END_LOOK_FROM + i, tm):      # died on his way into their base: sent, from when the way in began
+                    j = first = i; reached = False
+                    while j >= 0:
+                        if s[j] == "sent" or self._end_way(a, END_LOOK_FROM + j, tm): reached = reached or s[j] == "sent"; first = j; j -= 1; continue
+                        k = j
+                        while k >= 0 and not (s[k] == "sent" or self._end_way(a, END_LOOK_FROM + k, tm)): k -= 1
+                        if k < 0 or j - k > JOIN_S or "dead" in s[k + 1:j + 1]: break
+                        j = k
+                    if i - first >= JOIN_S or reached:      # a step onto their door in the second he died is no way in (Crew v cope 25:08, the AoB Derv)
+                        r.update(place="sent", since=END_LOOK_FROM + first, before=first == 0, on_way=True, reached=reached)
+                rec.append(r)
             out["players"][m.tag[tm]] = rec
         sends = {}
         for tg, rec in out["players"].items():
@@ -3367,7 +3392,7 @@ def match_records(rid):
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
     P = jobs.plays(M, recs)
     import execution                                     # how each play was carried out in its first seconds, both teams by the same measures (2.12; kept beside the plays, no play reads it)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P), "split_ticks": jobs.split_ticks(M, P), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M), "flag_hands": jobs.flag_hands(M),
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P), "split_ticks": jobs.split_ticks(M, P), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M), "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 

@@ -91,7 +91,10 @@ def _get(p, k):
     return p
 
 
-def check(plays, c):
+def check(plays, c, extra=None):
+    if "record" in c:                                        # a record kept beside the plays (`flag_cost[rid]`: the end record, R-648), its fields by dotted name
+        rec = (extra or {}).get(c["record"])
+        return rec is not None and all((_get(rec, k) in v) if isinstance(v, list) else _get(rec, k) == v for k, v in c["want"].items())
     kind = "has" if "has" in c else "none"
     sel = c[kind]
     hit = [p for p in plays if fits(p, sel, c.get("want") if kind == "has" else sel.get("want"))]
@@ -114,8 +117,9 @@ def score(path, key=KEY):
         if not r.get("checks"): res["no check (not marked, or nothing to test)"] += 1; continue
         if r["rid"] not in by: missing.append(r["id"]); continue
         firm = [c for c in r["checks"] if not c.get("open")]; opn = [c for c in r["checks"] if c.get("open")]
-        bad = [c for c in firm if not check(by[r["rid"]], c)]
-        still = [c for c in opn if not check(by[r["rid"]], c)]
+        X = D.get("flag_cost", {}).get(r["rid"])
+        bad = [c for c in firm if not check(by[r["rid"]], c, X)]
+        still = [c for c in opn if not check(by[r["rid"]], c, X)]
         opened[r.get("set")][0] += len(opn) - len(still); opened[r.get("set")][1] += len(opn)
         ok = not bad
         what = "classic" if binding(r) else (r.get("grade") or "history")
@@ -578,13 +582,13 @@ def numbers(steps=(0.5, 0.75, 1.25, 2.0), names=NUMBERS, jobs=1, key=KEY, work="
     os.makedirs(work, exist_ok=True); K = json.load(open(key))
 
     def read(path):
-        by = collections.defaultdict(list)
-        for p in json.load(open(path))["plays"]: by[p["rid"]].append(p)
+        by = collections.defaultdict(list); D = json.load(open(path)); X = D.get("flag_cost", {})
+        for p in D["plays"]: by[p["rid"]].append(p)
         bad, held = [], []
         for r in K["rows"]:
             if not r.get("checks") or r["rid"] not in by: continue
-            if r.get("tier") != "borderline" and any(not check(by[r["rid"]], c) for c in r["checks"] if not c.get("open")): bad.append(r["id"])
-            held += [r["id"] for c in r["checks"] if c.get("open") and check(by[r["rid"]], c)]
+            if r.get("tier") != "borderline" and any(not check(by[r["rid"]], c, X.get(r["rid"])) for c in r["checks"] if not c.get("open")): bad.append(r["id"])
+            held += [r["id"] for c in r["checks"] if c.get("open") and check(by[r["rid"]], c, X.get(r["rid"]))]
         return bad, held
 
     def run(name, v):

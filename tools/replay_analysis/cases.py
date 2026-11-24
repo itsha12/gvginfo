@@ -3154,6 +3154,65 @@ def exec_place(bench, kind, side, key, v):
     return "low" if v < q[1] else "high" if v > q[3] else "usual"
 
 
+EXEC_SAY = {"dmg": "damage on their players", "dmg_v_usual": "damage against the usual of the players alive", "healer_share": "the share of its damage on their backline monks",
+            "focus": "the share of its damage on one player", "spikes": "spikes", "interrupts": "interrupts landed", "interrupts_on_healers": "interrupts on their backline monks",
+            "knockdowns": "knockdowns", "knockdowns_on_casting": "knockdowns on a casting player", "disable": "skills disabled", "castprev": "casts punished by Shame, Guilt or Diversion",
+            "degen": "degen kept on them", "kite": "their melee kited", "baits": "their interrupts baited", "strips": "useful strips", "strips_wasted": "strips that removed nothing",
+            "blind_secs": "Blind kept on their attackers", "hex_secs": "hexes kept on them", "hex_removed": "hexes taken off its own players", "npc_dmg": "damage on their NPCs",
+            "npc_heal": "healing of its own NPCs"}
+
+
+def exec_out(bench, kind, side, key, v):
+    """Does a value stand out among plays of the same kind: "high" above nine tenths of them, "low" under nine tenths of them, else None. The outer tenths, where
+    `exec_place` reads the outer quarters: of 21 measures a play has about ten in an outer quarter by chance alone, too many to say on a row."""
+    q = ((bench.get(kind) or {}).get(side) or {}).get(key)
+    if q is None or v is None or q[0] == q[4]: return None
+    return "low" if v < q[0] else "high" if v > q[4] else None
+
+
+def exec_sentence(bench, kind, x, team, foe):
+    """Execution said on a row in words (2.12; the sentence beside `exec_place`): for the team making the play and, apart, for the enemy players it meets (R-299:
+    scored by the same measures, never offered as a fix), the measures of the play's first seconds that stand out among plays of the same kind (`exec_out`), each
+    with its value and what the middle half of such plays had. What stood out, never why, and no verdict: a measure that tells the minute before marks the
+    situation (SPEC 5, rule 4), so the sentence is description until a measure passes that test for the kind of play. None where the kind has no benchmark."""
+    import execution as EX
+    if kind not in bench or x is None: return None
+    f = lambda v: "0" if not v else f"{v:.0f}" if abs(v) >= 10 else f"{v:.1f}" if abs(v) >= 1 else f"{v:.2f}"
+    rng = lambda q: "none" if not q[1] and not q[3] else f"{f(q[1])} to {f(q[3])}"
+    def side(sd, name):
+        if x.get(sd) is None: return None
+        hi, lo = [], []
+        for k in EX.KEYS:
+            v = x[sd].get(k); o = exec_out(bench, kind, sd, k, v)
+            if o is None: continue
+            q = bench[kind][sd][k]
+            (hi if o == "high" else lo).append(f"{EXEC_SAY[k]} ({f(v)}; such plays mostly {rng(q)})")
+        if not hi and not lo: return f"{name}: nothing stands out"
+        return f"{name}: " + "; ".join(([("high on " + ", ".join(hi))] if hi else []) + ([("low on " + ", ".join(lo))] if lo else []))
+    own, their = side("own", team), (side("their", foe + ", the players it met") if x["n"][1] else f"{foe}: its players met nobody")
+    return f"Execution in the first {x['s']} s, against the {bench[kind]['plays']:,} plays of this kind ({kind}). {own}. {their}."
+
+
+EXEC_LEGEND = ("What stands out is a measure outside nine plays in ten of the same kind; beside it, its value and what the middle half of such plays had. Amounts are a living player a 10 s, "
+               "counts the group's a 10 s, shares 0 to 1. The enemy is read by the same measures and is never a fix (R-299); the sentence says what stood out, not why, and is no verdict.")
+
+
+def exec_say(path, pre, at=None, bench_file=None):
+    """The execution sentence of every play of a match that has one (from the second given): `cases.py execution-say <plays file> <report id> [m:ss]`. The benchmark is
+    the kept report's (`data/model/execution_cases.json`, from `cases.py execution --json`), so the plays file may be a development set run."""
+    D = json.load(open(path))
+    bench = json.load(open(bench_file or os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data", "model", "execution_cases.json")))["bench"]
+    rid = next((r for r in D["matches"] if r.startswith(pre)), None)
+    if rid is None: sys.exit(f"execution-say: {pre} is not in {path}")
+    teams = D["matches"][rid]["teams"]; t_from = (lambda a: int(a[0]) * 60 + int(a[1]))(at.split(":")) if at else 0
+    print(f"{' v '.join(teams)}, {D['matches'][rid]['date']}, {D['matches'][rid]['map']}: https://gvg.report/report/{rid}#map\n{EXEC_LEGEND}")
+    for p in sorted((p for p in D["plays"] if p["rid"] == rid and p["t0"] >= t_from), key=lambda p: p["t0"]):
+        kind = next((k for k, fn in EXEC_KINDS if fn(p)), None)
+        x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
+        sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
+        if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}")
+
+
 def _exec_split(X, side, key):
     """The plays in the upper and the lower third of a measure (those where it is blank left out); None where it does not vary enough to divide."""
     V = [(c["x"][side][key], c) for c in X if c["x"][side].get(key) is not None]
@@ -3400,6 +3459,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "pushes": pushes(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "split-at-all": send_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "execution": exec_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 3 and a[0] == "execution-say": exec_say(a[1], a[2], next((x for x in a[3:] if ":" in x and not x.startswith("-")), None), a[a.index("--bench") + 1] if "--bench" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "res": base_res(a[1], a[a.index("--json") + 1] if "--json" in a else None)
