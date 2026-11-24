@@ -71,6 +71,7 @@ Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.js
         python3 cases.py held <plays file> [--json <out.json>]                           a team held in its base, stage 1: its readings checked and what followed each hold
         python3 cases.py res <plays file> [--json <out.json>]                            the base res, stage 1: a team in the enemy's base when their dead come back
         python3 cases.py opening <plays file> [--json <out.json>]                        the opening, stage 1: the first flag and where the players went
+        python3 cases.py energy <plays file> [--json <out.json>]                         energy at the decisions (R-689): what followed each call by the fight's monk energy
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, re, sys
 import numpy as np
@@ -3456,6 +3457,169 @@ def send_report(path, out_json=None):
     return res
 
 
+# ---- energy at the decisions (R-689, piece 2; R-666 the third aspect, R-683, R-684, R-688): what followed each call by the monk energy of the fight
+ENERGY_READS = (("average", "mean"), ("lowest monk", "low"))       # R-683: the average of the monks in the fight, the lowest of them, and (apart) how many there are
+ENERGY_N = (("one monk", lambda n: n == 1), ("two monks", lambda n: n == 2), ("three or more", lambda n: n >= 3))
+ENERGY_NOT_READ = (("pressing the fight or allowing a stand-off", "no play tells this choice yet: a stand-off is read as no fight (R-405) and told as no row"),
+                   ("the Mesmer and midline playing offensively or defensively, whom they drain included", "no play of the new engine tells it yet (R-279's reading is the old tier's); whom a Mesmer drains comes with energy denial, piece 3"))
+
+
+def _energy_of(D, c, where="plays"):
+    """A case's energy reading: the record kept beside the plays (`flag_cost[rid].energy`, energy.py). None where the match has no energy (R-672); a
+    match with energy but no reading for this play stops the run (R-460)."""
+    E = D["flag_cost"][c["rid"]].get("energy")
+    if E is None: raise ValueError(f"the plays file carries no energy record for {c['rid']}: run moments.py all again on this engine (R-460)")
+    if not E["ok"]: return None
+    r = E[where].get(c["id"])
+    if r is None: raise ValueError(f"no energy reading for {c['id']} (R-460)")
+    return r
+
+
+def _energy_side(r, side, when="at"):
+    """The monks of one side of a reading: "own", "their" (the fight), or "team" (every living backline monk of the team, for the answer to their split)."""
+    x = r if when == "at" else r.get("before")
+    if x is None: return None
+    return x["team"][0] if side == "team" else x[side]["monks"]
+
+
+def _cuts(vals):
+    v = sorted(vals)
+    return (v[len(v) // 3], v[2 * len(v) // 3]) if len(v) >= 3 else None
+
+
+def _erow(X, side, key):
+    """What followed a group of cases, 180 s on, as it fell, with the energy at the decision and 60 s before beside it."""
+    h = [c["hard"]["180"] for c in X]
+    mean = lambda v: float(np.mean(v)) if v else None
+    pre = [c["pre"] for c in X if c.get("pre") is not None]
+    b = [x[key] for x in (_energy_side(c["_e"], side, "before") for c in X) if x and x["n"] and x[key] is not None]
+    return {"cases": len(X), "matches": len({c["rid"] for c in X}), "energy": mean([c["_v"] for c in X]), "energy 60 s before": mean(b),
+            "started at": 100 * float(np.mean([c["p0"] for c in X])), "the 60 s before": mean(pre),
+            "flags": mean([x["lead_change"] for x in h if x["lead_change"] is not None]), "net kills": mean([x["deaths"][1] - x["deaths"][0] for x in h]),
+            "net pit NPCs": mean([x["npcs"][1] - x["npcs"][0] for x in h]), "win points": float(np.mean([c["v"]["180"] for c in X]))}
+
+
+E_HEAD = f"{'':44} {'cases':>5} {'energy':>6} {'60 s before':>11} {'started at':>10} {'min before':>10} {'flags':>6} {'net kills':>9} {'win points':>10}"
+def _eprint(pr, label, r):
+    f = lambda v, fmt: "" if v is None else format(v, fmt)
+    pr(f"       {label:44} {r['cases']:5} {f(r['energy'], '6.1f')} {f(r['energy 60 s before'], '11.1f')} {r['started at']:9.0f}% {f(r['the 60 s before'], '+10.1f')} "
+       f"{f(r['flags'], '+6.2f')} {f(r['net kills'], '+9.2f')} {r['win points']:+10.1f}" + ("   (under the floor)" if r["cases"] < MIN_PLAYS else ""))
+
+
+def _energy_table(pr, X, calls, side, words):
+    """One side's monk energy at one decision: for each reading (the average, the lowest monk), the cases cut in thirds of that decision's own range
+    (R-669: no line is set; the cuts are where the data falls), and the number of monks apart; under each band, every call. Then where the reading tells,
+    pooled over the calls: the lowest third against the highest, in win points 180 s on, beside the same for the minute before (a reading that already
+    stood so a minute before marks the situation, SPEC 5 rule 4)."""
+    out = {}
+    for name, key in ENERGY_READS:
+        Y = []
+        for c in X:
+            g = _energy_side(c["_e"], side)
+            if g and g["n"] and g[key] is not None: Y.append(dict(c, _v=g[key]))
+        cut = _cuts([c["_v"] for c in Y])
+        if cut is None: pr(f"     {words}, {name}: too few cases read"); continue
+        bands = ((f"under {cut[0]:.0f}", lambda v: v < cut[0]), (f"{cut[0]:.0f} to {cut[1]:.0f}", lambda v: cut[0] <= v < cut[1]), (f"{cut[1]:.0f} or more", lambda v: v >= cut[1]))
+        o = out[name] = {"cuts": list(cut), "bands": {}}
+        pr(f"\n     {words}, {name} ({len(Y)} cases read; thirds at {cut[0]:.0f} and {cut[1]:.0f} on the double high scale)"); pr("       " + E_HEAD.strip() if False else E_HEAD)
+        for bl, bf in bands:
+            ob = o["bands"][bl] = {}
+            for k in calls:
+                Z = [c for c in Y if bf(c["_v"]) and c["call"] == k]
+                if Z: ob[k] = r = _erow(Z, side, key); _eprint(pr, f"{bl}: {k}", r)
+        lo_, hi_ = [c for c in Y if c["_v"] < cut[0]], [c for c in Y if c["_v"] >= cut[1]]
+        if lo_ and hi_:
+            d = float(np.mean([c["v"]["180"] for c in lo_]) - np.mean([c["v"]["180"] for c in hi_]))
+            pl, ph = [c["pre"] for c in lo_ if c.get("pre") is not None], [c["pre"] for c in hi_ if c.get("pre") is not None]
+            dp = float(np.mean(pl) - np.mean(ph)) if pl and ph else None
+            o["lowest third against highest"] = {"win points": d, "the 60 s before": dp}
+            pr(f"       where it tells, every call together: the lowest third against the highest, {d:+.1f} win points 180 s on" + ("" if dp is None else f"; the minute before, {dp:+.1f}"))
+    Y = [dict(c, _v=None) for c in X if (_energy_side(c["_e"], side) or {}).get("n")]
+    o = out["how many monks"] = {}
+    pr(f"\n     {words}, how many monks in the fight ({len(Y)} cases with one or more)"); pr(E_HEAD)
+    for bl, bf in ENERGY_N:
+        for k in calls:
+            Z = [dict(c, _v=_energy_side(c["_e"], side)["mean"]) for c in Y if bf(_energy_side(c["_e"], side)["n"]) and c["call"] == k]
+            if Z: o.setdefault(bl, {})[k] = r = _erow(Z, side, "mean"); _eprint(pr, f"{bl}: {k}", r)
+    return out
+
+
+def energy_report(path, out_json=None):
+    """Energy at the decisions (R-689, piece 2): for each decision of R-688, what followed each call by the monk energy of the fight, own and enemy, as it
+    fell. A description, set against no like spot: it says where energy goes with what followed, never why, and is no advice. The directions Claude
+    expected (2026-11-24) are expectations: the table says whether the data agrees."""
+    D, M = load(path); B, P = prices(D, M)
+    lines, res = [], {"decisions": {}, "not read": dict(ENERGY_NOT_READ)}
+    pr = lambda x="": (lines.append(x), print(x))
+    blank = [r for r in M if not D["flag_cost"][r].get("energy", {}).get("ok")]
+    pr(f"Energy at the decisions (R-689), on {len(M)} matches, {len(M) - len(blank)} with gvg.report's energy ({len(blank)} without: their cases are left out, R-672).")
+    pr("The fight's backline monks on the double high scale (R-668), at the second the decision arises and 60 s before. Bands are thirds of each decision's own")
+    pr("cases (R-669: no line is set). Columns: energy = the reading's middle in that row; 60 s before = the same monks then; started at = own chance of winning;")
+    pr("min before = what the minute before had done to it, in win points; flags = change in flag lead, net kills = their deaths less ours, win points = change in")
+    pr("the chance of winning, all 180 s on. As it fell: who was already winning shows in 'started at' and 'min before'. No row is advice.")
+    C, _ = cases(D, M, B)
+    R = read_cases(C)
+    NC, _ = numbers_cases(D, M, B)
+    SC, _ = split_cases(D, M, B)
+    TC, _ = send_cases(D, M, B)
+    RC, _ = res_cases(D, M, B)
+    W = []                                                                 # after a wipe: the numbers plays the numbers family leaves to the wipe's own job
+    for p in D["plays"]:
+        if p["play"] == "numbers" and p["side"] == "after a wipe" and "state" in p:
+            c = _told(dict(p, at_told={"state": p["state"], "after": p["after"], "before": p.get("before")}), M, B)
+            k = _num_call(p)
+            if c is not None and k is not None: W.append(dict(c, call=k))
+    big = lambda c: "fewer defenders than the split, 20 s in" if c["call"] in SPLIT_FEWER else "as many as the split or more" if c["call"] in SPLIT_MATCHED else None
+    send = lambda c: "no split" if c["call"] == SEND_CALLS[0] else "one player" if c["call"] == SEND_CALLS[1] else "two or more"
+    run_call = {NONE: "no runner out yet", SENT: "a runner out", DOUBLE: "a double run started"}
+    own, their = ("own", "our monks in the fight"), ("their", "their monks in the fight")
+    DEC = (
+        ("1. The answer to their flag run (their monks only, R-688)", [dict(c, call=run_call[c["call"]]) for c in R if c["read"] == READS[0] and not c["from_cap"]], "plays", (their,), list(run_call.values())),
+        ("2. Our flag just in, their run still on its way: run again or not (from our cap)", [dict(c, call=run_call[c["call"]]) for c in R if c["read"] == READS[0] and c["from_cap"]], "plays", (own, their), list(run_call.values())),
+        ("3. Their boost is 30 s away", [c for c in C if c["kind"] == "boost"], "plays", (own, their), ["run a flag", "send no flag"]),
+        ("4. Down a player or more at the main fight (not a family, R-557: context)", [c for c in NC if c["side"] == "down"], "plays", (own, their), list(DOWN_CALLS)),
+        ("5. Up a player or more at the main fight (not a family, R-557: context)", [c for c in NC if c["side"] == "up"], "plays", (own, their), list(UP_CALLS)),
+        ("7. The answer to their split (our own monks only, R-688: every living backline monk of the team, since the defenders are the call)", [dict(c, call=big(c)) for c in SC if big(c)], "plays", (("team", "our team's monks"),),
+         ["fewer defenders than the split, 20 s in", "as many as the split or more"]),
+        ("8. Our split: send one in the next 30 s or not (every 30 s, our main team's fight)", [dict(c, call=send(c)) for c in TC], "split_ticks", (own, their), ["no split", "one player", "two or more"]),
+        ("9. The base res in the danger zone (read 20 s before the res)", [c for c in RC if c["danger"]], "plays", (own, their), list(RES_CALLS)),
+        ("10. After a wipe", W, "plays", (own, their), list(UP_CALLS)),
+    )
+    for name, X, where, sides, calls in DEC:
+        Y = []
+        for c in X:
+            e = _energy_of(D, c, where)
+            if e is not None: Y.append(dict(c, _e=e))
+        pr(f"\n{name}: {len(X)} cases, {len(Y)} with energy")
+        o = res["decisions"][name] = {"cases": len(X), "with energy": len(Y), "calls": {k: sum(1 for c in Y if c["call"] == k) for k in calls}}
+        pr("   calls: " + "; ".join(f"{k} {v}" for k, v in o["calls"].items()))
+        for side, words in sides: o[words] = _energy_table(pr, Y, calls, side, words)
+    pr("\nNot read yet:")
+    for k, v in ENERGY_NOT_READ: pr(f"   6/11. {k}: {v}")
+    # the danger zone both ways (R-615, R-676): his damage line stood in for monk energy; every base res play, by whether the line puts it in the zone and by
+    # the monks' energy of the players in the base 20 s before the res, so that he can say whether energy replaces the line or sits beside it
+    Y = [dict(c, _e=e) for c in RC for e in [_energy_of(D, c)] if e is not None and (e["own"]["monks"] or {}).get("n")]
+    cut = _cuts([c["_e"]["own"]["monks"]["mean"] for c in Y])
+    o = res["danger zone both ways"] = {"cases": len(Y), "cuts": cut and list(cut), "cells": {}}
+    pr(f"\nThe danger zone read both ways (every base res with a monk among the players in their base, {len(Y)}; monks' average 20 s before the res, thirds at "
+       f"{cut[0]:.0f} and {cut[1]:.0f})" if cut else "\nThe danger zone read both ways: too few cases")
+    if cut:
+        pr(f"   {'':52} {'cases':>5} {'stayed':>6} {'deaths after the res':>20} {'their deaths':>12} {'win points (stays)':>18}")
+        for dz in (True, False):
+            for bl, bf in ((f"monks under {cut[0]:.0f}", lambda v: v < cut[0]), (f"monks {cut[0]:.0f} to {cut[1]:.0f}", lambda v: cut[0] <= v < cut[1]), (f"monks {cut[1]:.0f} or more", lambda v: v >= cut[1])):
+                Z = [c for c in Y if c["danger"] == dz and bf(c["_e"]["own"]["monks"]["mean"])]
+                if not Z: continue
+                st_ = [c for c in Z if c["stayed"]]
+                cell = {"cases": len(Z), "stayed": float(np.mean([c["stayed"] for c in Z])), "deaths": float(np.mean([c["deaths"] for c in Z])),
+                        "their deaths": float(np.mean([c["kills"] for c in Z])), "win points of the stays": float(np.mean([c["v"]["180"] for c in st_])) if st_ else None}
+                o["cells"][f"{'in' if dz else 'outside'} the zone, {bl}"] = cell
+                pr(f"   {('in the zone (300 a player)' if dz else 'outside it') + ', ' + bl:52} {len(Z):5} {cell['stayed']:6.0%} {cell['deaths']:20.2f} {cell['their deaths']:12.2f} "
+                   + ("" if cell["win points of the stays"] is None else f"{cell['win points of the stays']:+18.1f}"))
+    if out_json:
+        json.dump(res, open(out_json, "w"), indent=1, default=float)
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -3473,5 +3637,6 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "res": base_res(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "opening": opening_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "energy": energy_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers-cards": numbers_cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--site") + 1] if "--site" in a else None)
     else: print(__doc__)

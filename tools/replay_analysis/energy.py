@@ -110,6 +110,78 @@ class Energy:
                 "mean_hi": round(sum(x["hi"] for x in r) / n, 1), "out": sum(x["out"] == "yes" for x in r), "maybe": sum(x["out"] == "maybe" for x in r)}
 
 
+# ---- each fight's energy on every play (R-689, piece 2; R-666 the third aspect, R-683): a record kept beside the plays, `flag_cost[rid].energy`.
+# It tells no play and changes none. For every play: the second its decision arises (`decision_second`), and at that second and BEFORE_S before it, the
+# energy of the backline monks and of the midline in that fight, the team's own and the enemy's, each as `Energy.group` (the average, the lowest player
+# and how many: the data to say which tells, R-683). Whose (R-666: "on a split, only split monk energy matters"): on a split play (a split or its
+# defence) our side is the players it names (`who`); on every other play our main team at that second, the fight the decision is about (a flag, a boost or
+# a push play names its runners or pushers, who are not that fight; a runner away is the reason the fight is 8 v 7); their side is every enemy player in
+# the same fight as one of ours in the FIGHT_WIN seconds to the decision (`Moments.linked`, the one reading of who is in which fight, R-464), else, where
+# nobody of theirs is in a fight with ours (a run answered from a stand-off), their main team (`their_from` says which). The minute before reads the same
+# players, those of them alive then: whether the energy at the decision was already so a minute before (SPEC 5, rule 4). Beside it, `team`: every living
+# backline monk of each team, wherever he stands. It is what the answer to their split reads (R-688: by our own monks): on the defending side the
+# defenders are the call itself, so their monks alone would read the energy of the answer chosen, not of the team choosing it. The like spots of the base res
+# and of the decision to split at all (`res_spots`, `split_ticks`, records beside the plays too) carry the same reading.
+BEFORE_S = 60                   # the minute before, as for every other factor of a decision (`jobs.FLAG_BEFORE_S`)
+FIGHT_WIN = 4                   # who is in the fight is read over the 4 s to the decision, every other second as execution reads it (Claude's draft: one reading alone misses a player between casts)
+FIGHT_STEP = 2
+RES_READ_S = 20                 # a base res is a decision this long before the res (`jobs.RES_READ_S`, R-592)
+
+
+def decision_second(p):
+    """The second a play's decision arises: a flag play's one clock (`clock.anchor`, R-546: their runner's set-off, or our cap where we run again);
+    a base res 20 s before the res (R-592, `res.early`); every other play its own start."""
+    if p["play"] == "flag" and (p.get("clock") or {}).get("anchor") is not None: return int(p["clock"]["anchor"])
+    if p["play"] == "base res": return int(p["t0"]) - RES_READ_S
+    return int(p["t0"])
+
+
+def _fight(M, X, foe, u):
+    Y = set()
+    for v in range(max(u - FIGHT_WIN, 0), u + 1, FIGHT_STEP):
+        live = [a for a in X if M.AL[a][v]]
+        for b in M.st.players[foe]:
+            if b not in Y and M.AL[b][v] and any(M.linked(a, b, v) for a in live): Y.add(b)
+    if Y: return sorted(Y), "fight"
+    return [b for b in M.main_team(foe, u) if M.AL[b][u]], "main team"
+
+
+def _read(E, M, tm, X, Y, u, how):
+    side = lambda ids, v: {"monks": E.group(E.monks(ids), v), "midline": E.group(E.midline(ids), v)}
+    team = lambda k, v: E.group(E.monks(M.st.players[k]), v)
+    b = u - BEFORE_S
+    return {"u": u, "own": side(X, u), "their": side(Y, u), "their_from": how, "ids": [E.monks(X), E.monks(Y)], "team": [team(tm, u), team(3 - tm, u)],
+            "before": None if b < 0 else {"own": side(X, b), "their": side(Y, b), "team": [team(tm, b), team(3 - tm, b)]}}
+
+
+def record(M, plays, ticks=(), spots=()):
+    """{"ok", "plays": {play id: reading}, "split_ticks": {tick id: reading}, "res_spots": [reading, in the order of the spots]} for one match.
+    `ok` False and nothing else where gvg.report has no energy for the match (R-672): every reading of it is blank, and the reports count such matches."""
+    E = M.m.energy()
+    if not E.ok: return {"ok": False}
+    m, T = M.m, M.T
+    agent = {(m.tag[m.team(a)], m.roles[a]): a for a in m.PL}
+    out = {"ok": True, "plays": {}, "split_ticks": {}, "res_spots": []}
+    for p in plays:
+        tm, u = p["tm"], min(max(decision_second(p), 0), T)
+        X = [agent[(m.tag[tm], r)] for r in (p.get("who") or ()) if (m.tag[tm], r) in agent] if p.get("split") is not None else []
+        X = [a for a in X if M.AL[a][u]] or [a for a in M.main_team(tm, u) if M.AL[a][u]] or [a for a in M.st.players[tm] if M.AL[a][u]]
+        Y, how = _fight(M, X, 3 - tm, u)
+        out["plays"][p["id"]] = _read(E, M, tm, X, Y, u, how)
+    for k in ticks:
+        tm, u = k["tm"], min(int(k["t0"]), T)
+        X = [a for a in M.main_team(tm, u) if M.AL[a][u]] or [a for a in M.st.players[tm] if M.AL[a][u]]
+        Y, how = _fight(M, X, 3 - tm, u)
+        out["split_ticks"][k["id"]] = _read(E, M, tm, X, Y, u, how)
+    inb = M.base_zones() if spots else None
+    for s in spots:                                       # the players in their base at the spot (as `jobs.res_spots` counts them), and the enemy players they fight
+        tm, u = s["tm"], min(int(s["t"]), T)
+        X = [a for a in M.st.players[tm] if M.AL[a][u] and M.P[a][u] and M._deep(a, u) in inb]
+        Y, how = _fight(M, X, 3 - tm, u)
+        out["res_spots"].append(_read(E, M, tm, X, Y, u, how))
+    return out
+
+
 # ---- the checks of the record: does it read as any player knows (a report; nothing is fitted and nothing reads it)
 FIRE = 150                      # a team that took this much in hits in 10 s is under fire; one that took nothing is at rest (for the checks only)
 

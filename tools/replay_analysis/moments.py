@@ -3545,7 +3545,10 @@ def match_records(rid):
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
     P = jobs.plays(M, recs)
     import execution                                     # how each play was carried out in its first seconds, both teams by the same measures (2.12; kept beside the plays, no play reads it)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P), "split_ticks": jobs.split_ticks(M, P), "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M), "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
+    import energy                                        # each fight's monk and midline energy at the decision and a minute before (R-689; kept beside the plays, no play reads it)
+    ticks, spots = jobs.split_ticks(M, P), jobs.res_spots(M)
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P), "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
+                  "energy": energy.record(M, P, ticks, spots),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 
