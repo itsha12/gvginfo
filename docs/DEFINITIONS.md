@@ -237,8 +237,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   2 minutes has been left (R-586): lying for less it is still the opening's flag; lying for more, or held before the
   gates and carried by nobody for as long, the opening says what was brought up and put down, or that no flag was,
   and the take-up is a run of its own ("sent for the flag left lying since ..."). A later flag left lying is a run
-  from where it is taken up. Either run starts when its taker sets off for the flag, going for good (R-706, R-548;
-  not built yet: as built it starts at the take-up).
+  from where it is taken up. Either run starts when its taker sets off for the flag, going for good (R-706, R-548):
+  *as built*, when a team mate came for a flag another put down, from when he left his main group and drew nearer it
+  (a carrier taking up his own flag again is no one sent for it, R-581, and starts at the take-up).
 - The opening names every player who carried the first flag in the match, in the order they first carried it
   (R-587: "brought up by Mes/A, handed to 8 Monk").
 - What a team reads at the opening (R-590), in his order: how many players the other team has at its main team

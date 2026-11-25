@@ -956,6 +956,37 @@ index pointing here. Read the section for a reading before changing it, and keep
   than none possible (29% against 50%): both mark the situation (strips come on protted targets; no interrupt
   possible means interrupters dead or away), so X3 compares only like with like. Busy at every moment: 0 times.
   Development set: plays identical, only `execution` and the new `attempts` moved; key as before.
+- Stage X2, the rest, built 2026-11-24 (the stage is complete):
+  Each attempt carries `state` at the first big hit, what the old kill conversion node read (health %, maximum against
+  normal from death penalty or morale, his healers in range, hexes on him, distance from his main group): context.
+  One reading of a monk's chance (R-703, R-711, R-713): `forensics.Forensics.ready`, `busy`, `chances` (`CHANCE_S`,
+  `PRESSED` live there), used by the attempts and the death accounts. `is_prot` and `is_heal` there too: a heal is no
+  prot (Shielding Hands) and does not heal only on a removal (Dismiss Condition out, Blessed Light in, by which comes
+  first in its text). The death account gains `healed` (healing landed from the start of the killing burst, and the
+  heal or prot chances missed), `recap` (gvg.report's recap beside our reading: its healing by source, prots up,
+  interrupts, knockdowns) and `monk_casting` (each of his team's backline monks' whole-game casting efficiency,
+  placed as R-704; context, never why he died). `flag_cost[rid].casting` keeps every monk's row beside the plays.
+  `execution.py` gains: `intr_tried`, `intr_missed_share`, `intr_slow_share` (gvg.report's attempts, R-639); on an
+  attempt, an interrupt thrown at a spike skill that missed is told with gvg.report's read of why; target choice
+  against the play's objective (R-702, R-709): `objective(p)` from the job's words (to kill, offence; to hold,
+  survive, delay, keep busy, reach cover, or a team held in its base, defence; anything else none), `disrupt_right`
+  (knockdowns and interrupts on their backline monks when killing, on their non-healers when holding) and
+  `dmg_on_front` (damage on their frontline when killing); the record keeps `objective`. R-712: `spike_kill_share`
+  (conversion), `res_tried`, `res_first_s`, `res_stopped_share` (a res cast is any cast on a dead team mate: the
+  replays record no resurrection), `ground_back` (the group's walk towards its own pit over the first 20 s, no
+  direction), `water_share` (of the time in a labelled flag stand area, the share in labelled Water; Druid's Isle,
+  median 0.71 to 0.79 a match on the development set, R-314).
+  Checked against the raw record (R-707, 40 matches): 2,006 of gvg.report's 2,011 interrupt hits are interrupts in
+  the replays (its 1,309 misses are new); 680 of 821 deaths have a recap, every one on a replay death, 92% of its
+  prots on him in the replay; 79% of its strip links match an enchantment ending in the replay (ours stay the source).
+  The flag left lying (R-706): `run_starts` gives `sent_off`, and `jobs` starts the run there: walked back from the
+  take-up while the taker drew nearer the flag (as `nearer`) and was apart from his main group; only where a team mate
+  takes up a flag another put down (R-581, "sent for"); under `SENT_MIN` (600) walked, at the take-up. Built so after
+  five Classic rows failed on a first reading that walked back through his team's own movement (hold v Men 5:15, Men v
+  NwAy 8:19, hold v RACK 16:43 and 24:45, 옷옷옷옷 v hdm 7:29); the carrier taking up his own flag is Claude's reading of
+  "sent for", his to correct. 옷옷옷옷 v RACK: RACK's run now starts 6:14 (his Visible row holds). Development set: 323
+  Classic rows pass; 51 flag runs start earlier (median a few seconds), one history row no longer holds (cope v Team
+  2:43, marked wrong before the fresh start).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

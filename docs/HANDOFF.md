@@ -9,7 +9,7 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-24, late night: rulings to R-713; execution stage X1 built, X2 begun; casting efficiency on his answers)
+## State (2026-11-24, late night: rulings to R-713; execution stages X1 and X2 built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 matches
   trained. No workflow run in progress. The baseline (R-491): `baseline-2026-11-15`. Thirteen games graded and filed
@@ -23,26 +23,23 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
   play (R-710) with ten measures carried from the old nodes (spike spread, Dazed casts, Blind split, the right strip
   and hex, strip worth, Cripple, escapes ready); `tq.py` no longer under `lnrows.py`, `eventlayer.py`,
   `causalchain.py`. Development set: 6,934 plays identical, only the execution record moved; 323 Classic rows pass.
-- Stage X2 begun: every spike of both teams is a kill attempt read to its own outcome, with its package and the chances
-  each side missed (`execution.attempts`, `cases.py attempts`; section 44, with the first look on the development set).
+- Stage X2 complete (section 44): kill attempts with their package, target state and missed chances; one reading of a
+  monk's chance (`forensics.chances`) in attempts and deaths; death accounts with healed, gvg.report's recap and monk
+  casting; execution measures for interrupt attempts, target choice by objective, res, ground, conversion, water; the
+  flag left lying from its taker's set-off (R-706). Development set: 323 Classic rows pass.
 - Last full run: 2bebbc6 (33,062 plays). Not rebuilt since: `npcpower.py bench` (moved with R-698), the forensics
   benchmark, and `cases.py execution` (its window changed with R-710): all at X5's full run.
 
 ## Next (in order): execution before the close (REDESIGN.md "Execution"; R-571, R-572)
-1. Stage X2, the rest (the kill attempt record and its missed chances are built: section 44): add to each attempt
-   the old kill conversion inputs (health ceiling, hexes, distance from his group, healers in range); target choice
-   against the play's job (R-702, R-709: knockdowns, interrupts, damage, strips); healing available at a death
-   (R-703, R-711); the res, giving ground, converting an advantage, the healing water (R-712); gvg.report's
-   attempts, prot records, recaps and strips read, each checked on a sample first (R-707; sections 8 and 26: this
-   takes in the rest of degen, R-649, and R-636 to R-639); casting efficiency into the measures and the death
-   accounts (R-704). Build the flag lying run start beside it (R-706, sections 15 and 18; one Visible row, f1-a8ba-16).
-2. Stage X3: each kind of missed chance tested on unseen matches against its outcome (kill attempt, death, numbers
-   advantage converted, split holding, run, a held team's losses); the kinds that pass become faults (R-713, R-285).
-3. Stage X4: the faults said on each play and death, the enemy's apart; an Execution view on the Game review.
-4. Stage X5: he marks execution on two or three graded games (R-713); full run, truths, `npcpower.py bench`,
+1. Stage X3: each kind of missed chance and each measure tested on unseen matches against its outcome (kill attempt,
+   death, numbers advantage converted, split holding, run, a held team's losses), like with like (strips and an
+   interrupt possible mark the situation in the first look: section 44); the kinds that pass become faults (R-713,
+   R-285). The together window of the spike package measured (R-708). `cases.py attempts` and `execution` reports.
+2. Stage X4: the faults said on each play and death, the enemy's apart; an Execution view on the Game review.
+3. Stage X5: he marks execution on two or three graded games (R-713); full run, truths, `npcpower.py bench`,
    forensics benchmark, every `cases.py` report.
-5. The flag readings he has seen, shown again on the new prices and flag tally: ENGINE_NOTES sections 15 and 22.
-6. The close (sections 37 and 38; documents 34, readability 35, the causal map 41): the new families beside the old
+4. The flag readings he has seen, shown again on the new prices and flag tally: ENGINE_NOTES sections 15 and 22.
+5. The close (sections 37 and 38; documents 34, readability 35, the causal map 41): the new families beside the old
    kinds for one rebuild (R-323), stand-in prices replaced by the win model, replaced kinds retired (`ask.py` and
    `learning.py` still import `tq.py`), the causal map cleaned, SPEC and METHODS rewritten, the readability test, his
    list of R-398 (left: items 1, 2, 3's remainder, 6, 7, 8 and 10), the merge, then one Train batch on the same 506
