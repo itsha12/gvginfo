@@ -1,0 +1,1081 @@
+{
+ "about": "The rows of Model > Game review > Execution (R-713 to R-715): every death of a player in the games picked, with the checked chances his team missed (a prot, a heal, an interrupt on a spike skill: the kinds that passed on unseen matches), none priced or ranked, written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
+ "generated": "2026-11-25",
+ "engine": "d7aacfe",
+ "kinds": [
+  "prot",
+  "heal",
+  "interrupt"
+ ],
+ "games": [
+  {
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "teams": [
+    "Men",
+    "Crew"
+   ],
+   "map": "Isle of Jade",
+   "date": "2026-10-02",
+   "deaths": 15,
+   "with_faults": 11,
+   "groups": [
+    {
+     "n": 1,
+     "t0": 0,
+     "t1": 193,
+     "reads": "The opening. Men: 8 to the stand; its first flag brought up by AoB Derv, handed to 8 Monk, held at the stand for 24 s and capped at 1:47. Crew: 8 to the stand; its first flag brought up by Water Ele and capped at 3:13. Nobody caps for the first 1:47. Men caps first at 1:47; Crew caps over it at 3:13",
+     "context": "Men made no spike, 82 damage a living player a 10 s; Crew killed with 0% of its spikes, 17 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:42.3:Men:7 Monk",
+       "t": 42.3,
+       "first": 40.7,
+       "team": "Men",
+       "who": "7 Monk",
+       "spike": true,
+       "faults": 9,
+       "lines": [
+        "0:42 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 412 in 3 s, the first big hit at 0:40, the big hits over 0.9 s.",
+        "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning, Lightning Strike 4 times, Enervating Charge, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished).",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [],
+       "text": "0:42 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 412 in 3 s, the first big hit at 0:40, the big hits over 0.9 s. Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning, Lightning Strike 4 times, Enervating Charge, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished). Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:124.7:Men:Ranger",
+       "t": 124.7,
+       "first": 118.7,
+       "team": "Men",
+       "who": "Ranger",
+       "spike": false,
+       "faults": 2,
+       "lines": [
+        "2:04 Men's Ranger dies with no spike on him (under 400 inside 3 s): 589 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 1:58, the start of the heaviest 2 s on him, and his death.",
+        "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [],
+       "text": "2:04 Men's Ranger dies with no spike on him (under 400 inside 3 s): 589 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 1:58, the start of the heaviest 2 s on him, and his death. Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:140.9:Men:Mesmer",
+       "t": 140.9,
+       "first": 140.6,
+       "team": "Men",
+       "who": "Mesmer",
+       "spike": true,
+       "faults": 5,
+       "lines": [
+        "2:20 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 544 in 3 s, the first big hit at 2:20, the big hits over 0.3 s.",
+        "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Rust) with 2 interrupts ready and in range: Mesmer had Complicate, Power Spike."
+       ],
+       "also": [],
+       "text": "2:20 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 544 in 3 s, the first big hit at 2:20, the big hits over 0.3 s. Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Rust) with 2 interrupts ready and in range: Mesmer had Complicate, Power Spike."
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "t0": 218,
+     "t1": 272,
+     "reads": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+     "context": "Men made no spike, 72 damage a living player a 10 s; Crew killed with 100% of its spikes, 54 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:221.3:Men:Mesmer",
+       "t": 221.3,
+       "first": 220.2,
+       "team": "Men",
+       "who": "Mesmer",
+       "spike": true,
+       "faults": 6,
+       "lines": [
+        "3:41 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3): 547 in 3 s, the first big hit at 3:40, the big hits over 1.1 s.",
+        "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [],
+       "text": "3:41 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3): 547 in 3 s, the first big hit at 3:40, the big hits over 1.1 s. Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; not cast on him. Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:221.3:Men:AoB Derv",
+       "t": 221.3,
+       "first": 212.5,
+       "team": "Men",
+       "who": "AoB Derv",
+       "spike": false,
+       "faults": 5,
+       "lines": [
+        "3:41 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 100 from Crew (Air Ele 4) between 3:32, the start of the heaviest 2 s on him, and his death.",
+        "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, a heal: Prot had Blessed Light ready, in reach, his hands free; 7 Monk had Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; 8 Monk had Blessed Light, Spirit Bond ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [],
+       "text": "3:41 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 100 from Crew (Air Ele 4) between 3:32, the start of the heaviest 2 s on him, and his death. Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by Men, a heal: Prot had Blessed Light ready, in reach, his hands free; 7 Monk had Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; 8 Monk had Blessed Light, Spirit Bond ready, in reach, his hands free; not cast on him."
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "t0": 241,
+     "t1": 258,
+     "reads": "Men single run (AoB Derv); Crew stays",
+     "context": "Crew killed with 100% of its spikes, 94 damage a living player a 10 s; Men made no spike, 48 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:245.7:Men:Prot",
+       "t": 245.7,
+       "first": 244.4,
+       "team": "Men",
+       "who": "Prot",
+       "spike": true,
+       "faults": 6,
+       "lines": [
+        "4:05 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 542 in 3 s, the first big hit at 4:04, the big hits over 1.3 s.",
+        "Missed by Men, a prot: 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 4 times, Mind Freeze) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "3:38 to 4:32: Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50..."
+       ],
+       "text": "4:05 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 542 in 3 s, the first big hit at 4:04, the big hits over 1.3 s. Missed by Men, a prot: 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 4 times, Mind Freeze) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:253.9:Men:Paragon",
+       "t": 253.9,
+       "first": 253.7,
+       "team": "Men",
+       "who": "Paragon",
+       "spike": true,
+       "faults": 5,
+       "lines": [
+        "4:13 Men's Paragon dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 476 in 3 s, the first big hit at 4:13, the big hits over 0.2 s.",
+        "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 3 times, Mind Freeze, Shell Shock) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot."
+       ],
+       "also": [
+        "3:38 to 4:32: Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50..."
+       ],
+       "text": "4:13 Men's Paragon dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 476 in 3 s, the first big hit at 4:13, the big hits over 0.2 s. Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 3 times, Mind Freeze, Shell Shock) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot."
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "t0": 1436,
+     "t1": 1461,
+     "reads": "Men single run (Warrior); Crew stays",
+     "context": "Crew killed with 100% of its spikes, 19 damage a living player a 10 s; Men made no spike, 11 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:1440.2:Men:AoB Derv",
+       "t": 1440.2,
+       "first": 1439.4,
+       "team": "Men",
+       "who": "AoB Derv",
+       "spike": true,
+       "faults": 0,
+       "lines": [
+        "24:00 Men's AoB Derv dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4): 430 in 3 s, the first big hit at 23:59, the big hits over 0.8 s.",
+        "No checked chance missed by Men (a prot, a heal or an interrupt on a spike skill)."
+       ],
+       "also": [],
+       "text": "24:00 Men's AoB Derv dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4): 430 in 3 s, the first big hit at 23:59, the big hits over 0.8 s. No checked chance missed by Men (a prot, a heal or an interrupt on a spike skill)."
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "t0": 1488,
+     "t1": 1552,
+     "reads": "Men is held in its own base or pit by Crew's main team (pit NPCs alive at 24:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 24:57, a knight at 25:40; base res in 72 s)",
+     "context": "Men made no spike, 118 damage a living player a 10 s; Crew killed with 67% of its spikes, 50 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:1490.6:Men:7 Monk",
+       "t": 1490.6,
+       "first": 1488.8,
+       "team": "Men",
+       "who": "7 Monk",
+       "spike": true,
+       "faults": 9,
+       "lines": [
+        "24:50 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 472 in 3 s, the first big hit at 24:48, the big hits over 0.1 s.",
+        "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning 3 times, Lightning Strike 2 times, Mind Freeze, Steam) with 4 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot, Savage Shot.",
+        "Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+       ],
+       "also": [
+        "24:26 to 26:00: Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), fro..."
+       ],
+       "text": "24:50 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 472 in 3 s, the first big hit at 24:48, the big hits over 0.1 s. Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning 3 times, Lightning Strike 2 times, Mind Freeze, Steam) with 4 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot, Savage Shot. Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+      },
+      {
+       "id": "x:1519.6:Men:Paragon",
+       "t": 1519.6,
+       "first": 1518.7,
+       "team": "Men",
+       "who": "Paragon",
+       "spike": true,
+       "faults": 6,
+       "lines": [
+        "25:19 Men's Paragon dies to a spike by Crew (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 451 in 3 s, the first big hit at 25:18, the big hits over 0.9 s.",
+        "Missed by Men, an interrupt on a spike skill: 6 of the spike's skills went off (Shatter Enchantment, Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot."
+       ],
+       "also": [
+        "24:26 to 26:00: Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), fro..."
+       ],
+       "text": "25:19 Men's Paragon dies to a spike by Crew (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 451 in 3 s, the first big hit at 25:18, the big hits over 0.9 s. Missed by Men, an interrupt on a spike skill: 6 of the spike's skills went off (Shatter Enchantment, Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot."
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "t0": 1586,
+     "t1": 1644,
+     "reads": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2); it crosses at 26:30 and reaches their base, their footmen or a defender at 26:42",
+     "context": "Men made no spike, 0 damage a living player a 10 s; Crew made no spike, 49 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:1608.0:Men:Prot",
+       "t": 1608.0,
+       "first": 1607.5,
+       "team": "Men",
+       "who": "Prot",
+       "spike": true,
+       "faults": 5,
+       "lines": [
+        "26:48 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4): 520 in 3 s, the first big hit at 26:47, the big hits over 0.5 s.",
+        "Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit ready, in reach, his hands free; not cast on him.",
+        "Missed by Men, an interrupt on a spike skill: 4 of the spike's skills went off (Invoke Lightning 4 times) with 3 interrupts ready and in range: Mesmer had Complicate; Ranger had Distracting Shot, Savage Shot."
+       ],
+       "also": [],
+       "text": "26:48 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4): 520 in 3 s, the first big hit at 26:47, the big hits over 0.5 s. Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit ready, in reach, his hands free; not cast on him. Missed by Men, an interrupt on a spike skill: 4 of the spike's skills went off (Invoke Lightning 4 times) with 3 interrupts ready and in range: Mesmer had Complicate; Ranger had Distracting Shot, Savage Shot."
+      },
+      {
+       "id": "x:1611.9:Men:Ranger",
+       "t": 1611.9,
+       "first": 1608.0,
+       "team": "Men",
+       "who": "Ranger",
+       "spike": false,
+       "faults": 1,
+       "lines": [
+        "26:51 Men's Ranger dies with no spike on him (under 400 inside 3 s): 418 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 26:48, the start of the heaviest 2 s on him, and his death.",
+        "Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
+        "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
+       ],
+       "text": "26:51 Men's Ranger dies with no spike on him (under 400 inside 3 s): 418 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 26:48, the start of the heaviest 2 s on him, and his death. Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; not cast on him."
+      },
+      {
+       "id": "x:1626.0:Men:AoB Derv",
+       "t": 1626.0,
+       "first": 1622.6,
+       "team": "Men",
+       "who": "AoB Derv",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "27:06 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 151 from Crew (Water Ele) between 27:02, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [
+        "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
+        "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
+       ],
+       "text": "27:06 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 151 from Crew (Water Ele) between 27:02, the start of the heaviest 2 s on him, and his death. No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      },
+      {
+       "id": "x:1632.4:Men:Paragon",
+       "t": 1632.4,
+       "first": 1632.4,
+       "team": "Men",
+       "who": "Paragon",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "27:12 Men's Paragon dies with no spike on him (under 400 inside 3 s): 74 from Crew (Water Ele) between 27:12, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [
+        "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
+        "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
+       ],
+       "text": "27:12 Men's Paragon dies with no spike on him (under 400 inside 3 s): 74 from Crew (Water Ele) between 27:12, the start of the heaviest 2 s on him, and his death. No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      },
+      {
+       "id": "x:1640.6:Men:8 Monk",
+       "t": 1640.6,
+       "first": 1637.9,
+       "team": "Men",
+       "who": "8 Monk",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "27:20 Men's 8 Monk dies with no spike on him (under 400 inside 3 s): 275 from Crew (Air Ele 2, Water Ele) between 27:17, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [
+        "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
+        "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
+       ],
+       "text": "27:20 Men's 8 Monk dies with no spike on him (under 400 inside 3 s): 275 from Crew (Air Ele 2, Water Ele) between 27:17, the start of the heaviest 2 s on him, and his death. No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "teams": [
+    "RACK",
+    "hdm"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-10-17",
+   "deaths": 10,
+   "with_faults": 9,
+   "groups": [
+    {
+     "n": 3,
+     "t0": 52,
+     "t1": 208,
+     "reads": "RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 0:52: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 2:33, a knight at 2:59; base res in 68 s)",
+     "context": "RACK made no spike, 56 damage a living player a 10 s; hdm made no spike, 40 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:131.5:RACK:Hammer",
+       "t": 131.5,
+       "first": 130.0,
+       "team": "RACK",
+       "who": "Hammer",
+       "spike": false,
+       "faults": 4,
+       "lines": [
+        "2:11 RACK's Hammer dies with no spike on him (under 400 inside 3 s): 200 from hdm (Warrior) between 2:10, the start of the heaviest 2 s on him, and his death.",
+        "Missed by RACK, a prot: Prot had Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by RACK, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Healing Burst, Infuse Health ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "0:56 to 4:42: hdm up on numbers in the main fight (5 v 4, RACK's front door; then 5 v 3 from 2:14; then ..."
+       ],
+       "text": "2:11 RACK's Hammer dies with no spike on him (under 400 inside 3 s): 200 from hdm (Warrior) between 2:10, the start of the heaviest 2 s on him, and his death. Missed by RACK, a prot: Prot had Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by RACK, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Healing Burst, Infuse Health ready, in reach, his hands free; not cast on him."
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "t0": 22,
+     "t1": 488,
+     "reads": "RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Monk, Prot); numbers along the way: 4 v 2 from 0:38, 4 v 3 from 1:12, 4 v 2 from 3:14, 1 v 1 from 3:42, 3 v 1 from 3:54, 2 v 2 from 4:16; 2 damage against 2 monks. Who came and went, each a decision of its own: Prot (hdm) joins the defence at 1:12; Monk 4 (WoC) (hdm) leaves the defence at 3:14; AoB Derv, 8 Monk, Ritualist (RACK) leave the split at 3:42; Prot (hdm) leaves the defence at 3:42; Ritualist, AoB Derv (RACK) join the split at 3:54; AoB Derv (RACK) leaves the split at 4:16; Prot (hdm) joins the defence at 4:16",
+     "context": "RACK made no spike, 20 damage a living player a 10 s; hdm made no spike, 4 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:320.1:RACK:8 Monk",
+       "t": 320.1,
+       "first": 318.3,
+       "team": "RACK",
+       "who": "8 Monk",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "5:20 RACK's 8 Monk dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC)): 519 in 3 s, the first big hit at 5:18, the big hits over 1.5 s.",
+        "Missed by RACK, a prot: Prot had Shielding Hands, Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by RACK, an interrupt on a spike skill: 1 of the spike's skills went off (Word of Censure) with 3 interrupts ready and in range: Mesmer had Power Spike, Power Leak, Complicate.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [],
+       "text": "5:20 RACK's 8 Monk dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC)): 519 in 3 s, the first big hit at 5:18, the big hits over 1.5 s. Missed by RACK, a prot: Prot had Shielding Hands, Guardian ready, in reach, his hands free; not cast on him. Missed by RACK, an interrupt on a spike skill: 1 of the spike's skills went off (Word of Censure) with 3 interrupts ready and in range: Mesmer had Power Spike, Power Leak, Complicate. Done in time by a team mate, so no fault (R-715): a heal."
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "t0": 340,
+     "t1": 390,
+     "reads": "hdm has 6 in RACK's base at the base res (5 defending, 1 coming back): 6 stay",
+     "context": "hdm killed with 100% of its spikes, 106 damage a living player a 10 s; RACK made no spike, 47 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:375.7:RACK:Mesmer",
+       "t": 375.7,
+       "first": 374.1,
+       "team": "RACK",
+       "who": "Mesmer",
+       "spike": true,
+       "faults": 5,
+       "lines": [
+        "6:15 RACK's Mesmer dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 437 in 3 s, the first big hit at 6:14, the big hits over 1.6 s.",
+        "Missed by RACK, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Healing Burst, Infuse Health ready, in reach, his hands free; 8 Monk had Spirit Bond ready, in reach, his hands free; not cast on him.",
+        "Missed by RACK, an interrupt on a spike skill: 2 of the spike's skills went off (Word of Censure, Shatter Enchantment) with 3 interrupts ready and in range: Mesmer had Complicate, Power Spike, Power Leak. Thrown and missed: Mesmer with Complicate at Word of Censure (gvg.report's read: finished).",
+        "Done in time by a team mate, so no fault (R-715): a prot."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "6:15 RACK's Mesmer dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 437 in 3 s, the first big hit at 6:14, the big hits over 1.6 s. Missed by RACK, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Healing Burst, Infuse Health ready, in reach, his hands free; 8 Monk had Spirit Bond ready, in reach, his hands free; not cast on him. Missed by RACK, an interrupt on a spike skill: 2 of the spike's skills went off (Word of Censure, Shatter Enchantment) with 3 interrupts ready and in range: Mesmer had Complicate, Power Spike, Power Leak. Thrown and missed: Mesmer with Complicate at Word of Censure (gvg.report's read: finished). Done in time by a team mate, so no fault (R-715): a prot."
+      },
+      {
+       "id": "x:388.6:RACK:Hammer",
+       "t": 388.6,
+       "first": 386.6,
+       "team": "RACK",
+       "who": "Hammer",
+       "spike": false,
+       "faults": 1,
+       "lines": [
+        "6:28 RACK's Hammer dies with no spike on him (under 400 inside 3 s): 341 from hdm (Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2) between 6:26, the start of the heaviest 2 s on him, and his death.",
+        "Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "6:28 RACK's Hammer dies with no spike on him (under 400 inside 3 s): 341 from hdm (Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2) between 6:26, the start of the heaviest 2 s on him, and his death. Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him."
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "t0": 390,
+     "t1": 466,
+     "reads": "hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from players split elsewhere; hdm: push up (push up to their base)",
+     "context": "hdm killed with 80% of its spikes, 146 damage a living player a 10 s; RACK made no spike, 62 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:427.4:RACK:Prot",
+       "t": 427.4,
+       "first": 423.8,
+       "team": "RACK",
+       "who": "Prot",
+       "spike": true,
+       "faults": 3,
+       "lines": [
+        "7:07 RACK's Prot dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC)): 434 in 3 s, the first big hit at 7:03, the big hits over 2.4 s.",
+        "Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by RACK, an interrupt on a spike skill: 2 of the spike's skills went off (Word of Censure, Castigation Signet) with 2 interrupts ready and in range: Mesmer had Power Spike, Power Leak. Thrown and missed: Mesmer with Power Leak at Castigation Signet (gvg.report's read: ineligible).",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "7:07 RACK's Prot dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC)): 434 in 3 s, the first big hit at 7:03, the big hits over 2.4 s. Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by RACK, an interrupt on a spike skill: 2 of the spike's skills went off (Word of Censure, Castigation Signet) with 2 interrupts ready and in range: Mesmer had Power Spike, Power Leak. Thrown and missed: Mesmer with Power Leak at Castigation Signet (gvg.report's read: ineligible). Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:446.1:RACK:Mesmer",
+       "t": 446.1,
+       "first": 444.7,
+       "team": "RACK",
+       "who": "Mesmer",
+       "spike": false,
+       "faults": 4,
+       "lines": [
+        "7:26 RACK's Mesmer dies with no spike on him (under 400 inside 3 s): 257 from hdm (Monk 4 (WoC), Paragon 1, Paragon 2) between 7:24, the start of the heaviest 2 s on him, and his death.",
+        "Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him.",
+        "Missed by RACK, a heal: 7 Monk had Patient Spirit, Healing Burst, Infuse Health ready, in reach, his hands free; 8 Monk had Spirit Bond ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "7:26 RACK's Mesmer dies with no spike on him (under 400 inside 3 s): 257 from hdm (Monk 4 (WoC), Paragon 1, Paragon 2) between 7:24, the start of the heaviest 2 s on him, and his death. Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him. Missed by RACK, a heal: 7 Monk had Patient Spirit, Healing Burst, Infuse Health ready, in reach, his hands free; 8 Monk had Spirit Bond ready, in reach, his hands free; not cast on him."
+      },
+      {
+       "id": "x:446.1:RACK:AoB Derv",
+       "t": 446.1,
+       "first": 437.2,
+       "team": "RACK",
+       "who": "AoB Derv",
+       "spike": false,
+       "faults": 3,
+       "lines": [
+        "7:26 RACK's AoB Derv dies with no spike on him (under 400 inside 3 s): 315 from hdm (Monk 4 (WoC), Paragon 1, Paragon 2) between 7:17, the start of the heaviest 2 s on him, and his death.",
+        "Missed by RACK, a prot: Prot had Shielding Hands, Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni...",
+        "0:22 to 8:08: RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Mon..."
+       ],
+       "text": "7:26 RACK's AoB Derv dies with no spike on him (under 400 inside 3 s): 315 from hdm (Monk 4 (WoC), Paragon 1, Paragon 2) between 7:17, the start of the heaviest 2 s on him, and his death. Missed by RACK, a prot: Prot had Shielding Hands, Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:453.2:RACK:Prot",
+       "t": 453.2,
+       "first": 451.8,
+       "team": "RACK",
+       "who": "Prot",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "7:33 RACK's Prot dies to a spike by hdm (Warrior, Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 618 in 3 s, the first big hit at 7:31, the big hits over 1.0 s.",
+        "Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "7:33 RACK's Prot dies to a spike by hdm (Warrior, Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 618 in 3 s, the first big hit at 7:31, the big hits over 1.0 s. Missed by RACK, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "t0": 460,
+     "t1": 497,
+     "reads": "hdm has 6 in RACK's base at the base res (0 defending, 6 coming back): 6 stay; the danger spot: 6 of 6 past their res shrine, 2 NPCs hitting them, 318 damage a player in the minute before; nothing of his two factors against the stay (morale 185 over theirs, the stand held)",
+     "context": "hdm killed with 100% of its spikes, 46 damage a living player a 10 s; RACK made no spike, 0 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:464.8:RACK:8 Monk",
+       "t": 464.8,
+       "first": 459.2,
+       "team": "RACK",
+       "who": "8 Monk",
+       "spike": true,
+       "faults": 0,
+       "lines": [
+        "7:44 RACK's 8 Monk dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 694 in 3 s, the first big hit at 7:39, the big hits over 3.0 s.",
+        "No checked chance missed by RACK (a prot, a heal or an interrupt on a spike skill).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "6:30 to 7:46: hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from player...",
+        "0:22 to 8:08: RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Mon..."
+       ],
+       "text": "7:44 RACK's 8 Monk dies to a spike by hdm (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer): 694 in 3 s, the first big hit at 7:39, the big hits over 3.0 s. No checked chance missed by RACK (a prot, a heal or an interrupt on a spike skill). Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      },
+      {
+       "id": "x:464.9:RACK:7 Monk",
+       "t": 464.9,
+       "first": 463.5,
+       "team": "RACK",
+       "who": "7 Monk",
+       "spike": true,
+       "faults": 1,
+       "lines": [
+        "7:44 RACK's 7 Monk dies to a spike by hdm (Warrior, Paragon 1, Paragon 2, Mesmer): 476 in 3 s, the first big hit at 7:43, the big hits over 1.4 s.",
+        "Missed by RACK, a prot: 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "6:30 to 7:46: hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from player...",
+        "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
+       ],
+       "text": "7:44 RACK's 7 Monk dies to a spike by hdm (Warrior, Paragon 1, Paragon 2, Mesmer): 476 in 3 s, the first big hit at 7:43, the big hits over 1.4 s. Missed by RACK, a prot: 8 Monk had Shielding Hands, Guardian, Reversal of Fortune ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "teams": [
+    "Men",
+    "NwAy"
+   ],
+   "map": "Corrupted Isle",
+   "date": "2026-09-19",
+   "deaths": 21,
+   "with_faults": 11,
+   "groups": [
+    {
+     "n": 5,
+     "t0": 68,
+     "t1": 128,
+     "reads": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 1:08: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 52 s)",
+     "context": "NwAy made no spike, 80 damage a living player a 10 s; Men killed with 0% of its spikes, 37 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:124.5:Men:Hammer",
+       "t": 124.5,
+       "first": 122.9,
+       "team": "Men",
+       "who": "Hammer",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "2:04 Men's Hammer dies with no spike on him (under 400 inside 3 s): 125 from NwAy (7 Monk, AoB Derv, Prot, Stand Mes) between 2:02, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [
+        "0:24 to 2:06: Men up on numbers in the main fight (5 v 4, NwAy's front door), from players split elsewhe..."
+       ],
+       "text": "2:04 Men's Hammer dies with no spike on him (under 400 inside 3 s): 125 from NwAy (7 Monk, AoB Derv, Prot, Stand Mes) between 2:02, the start of the heaviest 2 s on him, and his death. No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "t0": 236,
+     "t1": 281,
+     "reads": "Men's boost is 30 s away; NwAy: no runner; the rest stay on the enemy's side",
+     "context": "NwAy made no spike, 50 damage a living player a 10 s; Men killed with 0% of its spikes, 111 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:254.8:NwAy:7 Monk",
+       "t": 254.8,
+       "first": 249.6,
+       "team": "NwAy",
+       "who": "7 Monk",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "4:14 NwAy's 7 Monk dies with no spike on him (under 400 inside 3 s): 546 from Men (AoB Derv, Mes/A, Stand Mes 1, Stand Mes 2) between 4:09, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "3:40 to 4:30: NwAy has 8 in Men's base at the base res (6 defending, 1 coming back): 8 stay"
+       ],
+       "text": "4:14 NwAy's 7 Monk dies with no spike on him (under 400 inside 3 s): 546 from Men (AoB Derv, Mes/A, Stand Mes 1, Stand Mes 2) between 4:09, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      },
+      {
+       "id": "x:275.9:NwAy:Stand Mes",
+       "t": 275.9,
+       "first": 274.0,
+       "team": "NwAy",
+       "who": "Stand Mes",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "4:35 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 322 from Men (AoB Derv, Stand Mes 1) between 4:34, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "4:32 to 6:12: Men up on numbers in the main fight (5 v 3, the greater stand area; then 7 v 6 from 4:50; ...",
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "4:35 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 322 from Men (AoB Derv, Stand Mes 1) between 4:34, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "t0": 272,
+     "t1": 372,
+     "reads": "Men up on numbers in the main fight (5 v 3, the greater stand area; then 7 v 6 from 4:50; then 7 v 5 from 5:16; then 6 v 4 from 5:40), from players split elsewhere; Men: push up (push up to their front door) | NwAy: retreat down the ladder (fall back into the base)",
+     "context": "Men killed with 100% of its spikes, 59 damage a living player a 10 s; NwAy made no spike, 14 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:315.2:NwAy:Mes/A",
+       "t": 315.2,
+       "first": 312.3,
+       "team": "NwAy",
+       "who": "Mes/A",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "5:15 NwAy's Mes/A dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2): 452 in 3 s, the first big hit at 5:12, the big hits over 0.0 s.",
+        "Missed by NwAy, an interrupt on a spike skill: 2 of the spike's skills went off (Bull's Strike, Wastrel's Demise) with 2 interrupts ready and in range: Mes/A had Complicate, Power Spike.",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "5:15 NwAy's Mes/A dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2): 452 in 3 s, the first big hit at 5:12, the big hits over 0.0 s. Missed by NwAy, an interrupt on a spike skill: 2 of the spike's skills went off (Bull's Strike, Wastrel's Demise) with 2 interrupts ready and in range: Mes/A had Complicate, Power Spike. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "t0": 262,
+     "t1": 676,
+     "reads": "NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers along the way: 4 v 3 from 4:22, 1 v 1 from 4:54, 2 v 1 from 5:50, 4 v 3 from 6:10, 4 v 4 from 6:46, 1 v 1 from 8:00, 2 v 1 from 8:54, 2 v 2 from 9:34. Who came and went, each a decision of its own: Mes/A, Hammer, 8 Monk (NwAy) leave the split at 4:54; Prot, Hammer (Men) leave the defence at 4:54; Hammer (NwAy) joins the split at 5:50; 8 Monk, Mes/A (NwAy) join the split at 6:10; Hammer, Mes/A (Men) join the defence at 6:10; Prot (Men) joins the defence at 6:46; Hammer, Mes/A, 8 Monk (NwAy) leave the split at 8:00; Hammer, Mes/A, Prot (Men) leave the defence at 8:00; Hammer (NwAy) joins the split at 8:54; Prot (Men) joins the defence at 9:34",
+     "context": "NwAy made no spike, 21 damage a living player a 10 s; Men made no spike, 3 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:480.5:NwAy:Stand Mes",
+       "t": 480.5,
+       "first": 479.0,
+       "team": "NwAy",
+       "who": "Stand Mes",
+       "spike": true,
+       "faults": 5,
+       "lines": [
+        "8:00 NwAy's Stand Mes dies to a spike by Men (AoB Derv, Stand Mes 1, Stand Mes 2): 428 in 3 s, the first big hit at 7:59, the big hits over 1.0 s.",
+        "Missed by NwAy, an interrupt on a spike skill: 5 of the spike's skills went off (Wearying Strike, Soul Barbs, Defile Flesh, Air of Disenchantment, Fragility) with 1 interrupt ready and in range: Stand Mes had Complicate.",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [],
+       "text": "8:00 NwAy's Stand Mes dies to a spike by Men (AoB Derv, Stand Mes 1, Stand Mes 2): 428 in 3 s, the first big hit at 7:59, the big hits over 1.0 s. Missed by NwAy, an interrupt on a spike skill: 5 of the spike's skills went off (Wearying Strike, Soul Barbs, Defile Flesh, Air of Disenchantment, Fragility) with 1 interrupt ready and in range: Stand Mes had Complicate. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "t0": 498,
+     "t1": 522,
+     "reads": "NwAy single run (Hammer); Men stays",
+     "context": "Men killed with 50% of its spikes, 120 damage a living player a 10 s; NwAy made no spike, 41 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:518.0:NwAy:Stand Mes",
+       "t": 518.0,
+       "first": 518.0,
+       "team": "NwAy",
+       "who": "Stand Mes",
+       "spike": true,
+       "faults": 4,
+       "lines": [
+        "8:38 NwAy's Stand Mes dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A): 402 in 3 s, the first big hit at 8:38, the big hits over 0.0 s.",
+        "Missed by NwAy, an interrupt on a spike skill: 4 of the spike's skills went off (Hammer Bash, Wearying Strike, Defile Flesh, Wastrel's Demise) with 3 interrupts ready and in range: Stand Mes had Complicate; Mes/A had Complicate, Power Spike.",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "8:38 NwAy's Stand Mes dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A): 402 in 3 s, the first big hit at 8:38, the big hits over 0.0 s. Missed by NwAy, an interrupt on a spike skill: 4 of the spike's skills went off (Hammer Bash, Wearying Strike, Defile Flesh, Wastrel's Demise) with 3 interrupts ready and in range: Stand Mes had Complicate; Mes/A had Complicate, Power Spike. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      },
+      {
+       "id": "x:518.0:NwAy:AoB Derv",
+       "t": 518.0,
+       "first": 514.4,
+       "team": "NwAy",
+       "who": "AoB Derv",
+       "spike": false,
+       "faults": 5,
+       "lines": [
+        "8:38 NwAy's AoB Derv dies with no spike on him (under 400 inside 3 s): 78 from Men (AoB Derv) between 8:34, the start of the heaviest 2 s on him, and his death.",
+        "Missed by NwAy, a prot: Prot had Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Reversal of Fortune ready, in reach, his hands free; not cast on him.",
+        "Missed by NwAy, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Signet of Rejuvenation, Vigorous Spirit, Patient Spirit, Healing Burst ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "8:38 NwAy's AoB Derv dies with no spike on him (under 400 inside 3 s): 78 from Men (AoB Derv) between 8:34, the start of the heaviest 2 s on him, and his death. Missed by NwAy, a prot: Prot had Guardian ready, in reach, his hands free; 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Reversal of Fortune ready, in reach, his hands free; not cast on him. Missed by NwAy, a heal: Prot had Spirit Bond ready, in reach, his hands free; 7 Monk had Signet of Rejuvenation, Vigorous Spirit, Patient Spirit, Healing Burst ready, in reach, his hands free; not cast on him."
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "t0": 520,
+     "t1": 600,
+     "reads": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 8:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: the Bodyguard at 9:53; base res in 80 s)",
+     "context": "NwAy made no spike, 43 damage a living player a 10 s; Men killed with 100% of its spikes, 72 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:560.0:NwAy:7 Monk",
+       "t": 560.0,
+       "first": 553.8,
+       "team": "NwAy",
+       "who": "7 Monk",
+       "spike": true,
+       "faults": 1,
+       "lines": [
+        "9:20 NwAy's 7 Monk dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2): 402 in 3 s, the first big hit at 9:13, the big hits over 3.0 s.",
+        "Missed by NwAy, an interrupt on a spike skill: 1 of the spike's skills went off (Fragility) with 1 interrupt ready and in range: Mes/A had Power Spike.",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "9:20 NwAy's 7 Monk dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2): 402 in 3 s, the first big hit at 9:13, the big hits over 3.0 s. Missed by NwAy, an interrupt on a spike skill: 1 of the spike's skills went off (Fragility) with 1 interrupt ready and in range: Mes/A had Power Spike. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      },
+      {
+       "id": "x:573.1:NwAy:Prot",
+       "t": 573.1,
+       "first": 569.1,
+       "team": "NwAy",
+       "who": "Prot",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "9:33 NwAy's Prot dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A): 452 in 3 s, the first big hit at 9:29, the big hits over 1.4 s.",
+        "Missed by NwAy, an interrupt on a spike skill: 2 of the spike's skills went off (Wastrel's Demise, Shatter Enchantment) with 1 interrupt ready and in range: Mes/A had Power Spike.",
+        "Done in time by a team mate, so no fault (R-715): a prot.",
+        "Not a chance (a heal): 8 Monk was out of energy (R-681)."
+       ],
+       "also": [
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "9:33 NwAy's Prot dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Mes/A): 452 in 3 s, the first big hit at 9:29, the big hits over 1.4 s. Missed by NwAy, an interrupt on a spike skill: 2 of the spike's skills went off (Wastrel's Demise, Shatter Enchantment) with 1 interrupt ready and in range: Mes/A had Power Spike. Done in time by a team mate, so no fault (R-715): a prot. Not a chance (a heal): 8 Monk was out of energy (R-681)."
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "t0": 580,
+     "t1": 630,
+     "reads": "Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay; the danger spot: 6 of 6 past their res shrine, 5 NPCs hitting them, 366 damage a player in the minute before; against the stay: the stand not held; for it: morale 185 over theirs",
+     "context": "Men made no spike, 49 damage a living player a 10 s; NwAy made no spike, 75 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:583.3:NwAy:8 Monk",
+       "t": 583.3,
+       "first": 581.0,
+       "team": "NwAy",
+       "who": "8 Monk",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "9:43 NwAy's 8 Monk dies with no spike on him (under 400 inside 3 s): 234 from Men (AoB Derv, Mes/A) between 9:41, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a prot."
+       ],
+       "also": [
+        "8:40 to 10:00: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 8:40: 2 of 2 kni...",
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "9:43 NwAy's 8 Monk dies with no spike on him (under 400 inside 3 s): 234 from Men (AoB Derv, Mes/A) between 9:41, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a prot."
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "t0": 600,
+     "t1": 636,
+     "reads": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 10:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "context": "NwAy made no spike, 75 damage a living player a 10 s; Men made no spike, 58 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:614.1:Men:Stand Mes 1",
+       "t": 614.1,
+       "first": 609.9,
+       "team": "Men",
+       "who": "Stand Mes 1",
+       "spike": false,
+       "faults": 1,
+       "lines": [
+        "10:14 Men's Stand Mes 1 dies with no spike on him (under 400 inside 3 s): 282 from NwAy (AoB Derv, Mes/A, Prot) between 10:09, the start of the heaviest 2 s on him, and his death.",
+        "Missed by Men, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "10:12 to 10:57: NwAy's boost is 30 s away; Men: no runner; the rest fall out",
+        "9:40 to 10:30: Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay; the danger ...",
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "10:14 Men's Stand Mes 1 dies with no spike on him (under 400 inside 3 s): 282 from NwAy (AoB Derv, Mes/A, Prot) between 10:09, the start of the heaviest 2 s on him, and his death. Missed by Men, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:620.0:Men:Mes/A",
+       "t": 620.0,
+       "first": 618.8,
+       "team": "Men",
+       "who": "Mes/A",
+       "spike": false,
+       "faults": 1,
+       "lines": [
+        "10:20 Men's Mes/A dies with no spike on him (under 400 inside 3 s): 201 from NwAy (AoB Derv, Stand Mes) between 10:18, the start of the heaviest 2 s on him, and his death.",
+        "Missed by Men, a heal: 7 Monk had Vigorous Spirit, Blessed Light, Patient Spirit, Infuse Health ready, in reach, his hands free; not cast on him."
+       ],
+       "also": [
+        "10:12 to 10:57: NwAy's boost is 30 s away; Men: no runner; the rest fall out",
+        "9:40 to 10:30: Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay; the danger ...",
+        "10:14 to 11:56: Men down on numbers in the main fight (4 v 6, NwAy's pit; then 4 v 5 from 10:48; then 6 v ...",
+        "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
+       ],
+       "text": "10:20 Men's Mes/A dies with no spike on him (under 400 inside 3 s): 201 from NwAy (AoB Derv, Stand Mes) between 10:18, the start of the heaviest 2 s on him, and his death. Missed by Men, a heal: 7 Monk had Vigorous Spirit, Blessed Light, Patient Spirit, Infuse Health ready, in reach, his hands free; not cast on him."
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "t0": 716,
+     "t1": 750,
+     "reads": "Men up on numbers in the main fight (6 v 5, Men's back door; then 6 v 4 from 12:08), from players split elsewhere; Men: push in | NwAy: retreat down the ladder (fall back into the base)",
+     "context": "Men made no spike, 60 damage a living player a 10 s; NwAy made no spike, 26 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:726.0:NwAy:Stand Mes",
+       "t": 726.0,
+       "first": 724.0,
+       "team": "NwAy",
+       "who": "Stand Mes",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "12:06 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 261 from Men (AoB Derv, Hammer) between 12:04, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "11:40 to 12:30: NwAy has 8 in Men's base at the base res (3 defending, 2 coming back): 5 stay, 3 leave as ..."
+       ],
+       "text": "12:06 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 261 from Men (AoB Derv, Hammer) between 12:04, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "t0": 840,
+     "t1": 924,
+     "reads": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "context": "NwAy made no spike, 4 damage a living player a 10 s; Men killed with 100% of its spikes, 108 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:863.9:NwAy:Mes/A",
+       "t": 863.9,
+       "first": 856.4,
+       "team": "NwAy",
+       "who": "Mes/A",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "14:23 NwAy's Mes/A dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2): 476 in 3 s, the first big hit at 14:16, the big hits over 0.0 s.",
+        "Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by NwAy, an interrupt on a spike skill: 1 of the spike's skills went off (Bull's Strike) with 1 interrupt ready and in range: Mes/A had Complicate.",
+        "Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+       ],
+       "also": [
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "14:23 NwAy's Mes/A dies to a spike by Men (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2): 476 in 3 s, the first big hit at 14:16, the big hits over 0.0 s. Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by NwAy, an interrupt on a spike skill: 1 of the spike's skills went off (Bull's Strike) with 1 interrupt ready and in range: Mes/A had Complicate. Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "t0": 866,
+     "t1": 924,
+     "reads": "Men up on numbers in the main fight (6 v 5, NwAy's pit; then 5 v 3 from 14:42; then 5 v 2 from 14:56; then 6 v 1 from 15:12), from players split elsewhere; Men: stay (stay on the enemy's side); 4 damage against 3 monks",
+     "context": "Men killed with 100% of its spikes, 102 damage a living player a 10 s; NwAy made no spike, 0 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:875.4:NwAy:Stand Mes",
+       "t": 875.4,
+       "first": 873.5,
+       "team": "NwAy",
+       "who": "Stand Mes",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "14:35 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 284 from Men (AoB Derv, Hammer, Stand Mes 1, Stand Mes 2) between 14:33, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot.",
+        "Not a chance (a prot): Prot was out of energy (R-681).",
+        "Not a chance (a heal): Prot was out of energy (R-681)."
+       ],
+       "also": [
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "14:35 NwAy's Stand Mes dies with no spike on him (under 400 inside 3 s): 284 from Men (AoB Derv, Hammer, Stand Mes 1, Stand Mes 2) between 14:33, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a heal, a prot. Not a chance (a prot): Prot was out of energy (R-681). Not a chance (a heal): Prot was out of energy (R-681)."
+      },
+      {
+       "id": "x:875.4:NwAy:AoB Derv",
+       "t": 875.4,
+       "first": 873.4,
+       "team": "NwAy",
+       "who": "AoB Derv",
+       "spike": false,
+       "faults": 4,
+       "lines": [
+        "14:35 NwAy's AoB Derv dies with no spike on him (under 400 inside 3 s): 0 from Men (nobody recorded) between 14:33, the start of the heaviest 2 s on him, and his death.",
+        "Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+        "Missed by NwAy, a heal: 7 Monk had Signet of Rejuvenation, Vigorous Spirit, Patient Spirit ready, in reach, his hands free; 8 Monk had Healing Burst ready, in reach, his hands free; not cast on him.",
+        "Not a chance (a prot): Prot was out of energy (R-681).",
+        "Not a chance (a heal): Prot was out of energy (R-681)."
+       ],
+       "also": [
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "14:35 NwAy's AoB Derv dies with no spike on him (under 400 inside 3 s): 0 from Men (nobody recorded) between 14:33, the start of the heaviest 2 s on him, and his death. Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him. Missed by NwAy, a heal: 7 Monk had Signet of Rejuvenation, Vigorous Spirit, Patient Spirit ready, in reach, his hands free; 8 Monk had Healing Burst ready, in reach, his hands free; not cast on him. Not a chance (a prot): Prot was out of energy (R-681). Not a chance (a heal): Prot was out of energy (R-681)."
+      },
+      {
+       "id": "x:895.2:NwAy:Prot",
+       "t": 895.2,
+       "first": 893.1,
+       "team": "NwAy",
+       "who": "Prot",
+       "spike": true,
+       "faults": 2,
+       "lines": [
+        "14:55 NwAy's Prot dies to a spike by Men (Hammer, AoB Derv, Stand Mes 2): 422 in 3 s, the first big hit at 14:53, the big hits over 0.0 s.",
+        "Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Reversal of Fortune, Guardian ready, in reach, his hands free; not cast on him.",
+        "Done in time by a team mate, so no fault (R-715): a heal."
+       ],
+       "also": [
+        "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "14:55 NwAy's Prot dies to a spike by Men (Hammer, AoB Derv, Stand Mes 2): 422 in 3 s, the first big hit at 14:53, the big hits over 0.0 s. Missed by NwAy, a prot: 7 Monk had Guardian ready, in reach, his hands free; 8 Monk had Reversal of Fortune, Guardian ready, in reach, his hands free; not cast on him. Done in time by a team mate, so no fault (R-715): a heal."
+      },
+      {
+       "id": "x:909.0:NwAy:7 Monk",
+       "t": 909.0,
+       "first": 902.4,
+       "team": "NwAy",
+       "who": "7 Monk",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "15:09 NwAy's 7 Monk dies with no spike on him (under 400 inside 3 s): 691 from Men (AoB Derv, Hammer, Stand Mes 1, Stand Mes 2) between 15:02, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       ],
+       "also": [
+        "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "15:09 NwAy's 7 Monk dies with no spike on him (under 400 inside 3 s): 691 from Men (AoB Derv, Hammer, Stand Mes 1, Stand Mes 2) between 15:02, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a heal, a prot."
+      },
+      {
+       "id": "x:923.1:NwAy:8 Monk",
+       "t": 923.1,
+       "first": 919.1,
+       "team": "NwAy",
+       "who": "8 Monk",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "15:23 NwAy's 8 Monk dies with no spike on him (under 400 inside 3 s): 351 from Men (AoB Derv, Hammer, Stand Mes 1) between 15:19, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt).",
+        "Done in time by a team mate, so no fault (R-715): a prot."
+       ],
+       "also": [
+        "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
+        "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
+       ],
+       "text": "15:23 NwAy's 8 Monk dies with no spike on him (under 400 inside 3 s): 351 from Men (AoB Derv, Hammer, Stand Mes 1) between 15:19, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt). Done in time by a team mate, so no fault (R-715): a prot."
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "t0": 856,
+     "t1": 950,
+     "reads": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58; 2 (Mes/A, 8 Monk) against one player; numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58: 8 Monk carries his flag for 22 s while defending. Who came and went, each a decision of its own: Hammer (NwAy) leaves the split at 14:58",
+     "context": "NwAy made no spike, 60 damage a living player a 10 s; Men made no spike, 26 damage a living player a 10 s",
+     "deaths": [
+      {
+       "id": "x:946.0:NwAy:Hammer",
+       "t": 946.0,
+       "first": 944.0,
+       "team": "NwAy",
+       "who": "Hammer",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "15:46 NwAy's Hammer dies with no spike on him (under 400 inside 3 s): 0 from Men (nobody recorded) between 15:44, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [],
+       "text": "15:46 NwAy's Hammer dies with no spike on him (under 400 inside 3 s): 0 from Men (nobody recorded) between 15:44, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      },
+      {
+       "id": "x:946.0:NwAy:Dervish",
+       "t": 946.0,
+       "first": 927.0,
+       "team": "NwAy",
+       "who": "Dervish",
+       "spike": false,
+       "faults": 0,
+       "lines": [
+        "15:46 NwAy's Dervish dies with no spike on him (under 400 inside 3 s): 155 from Men (Mes/A) between 15:27, the start of the heaviest 2 s on him, and his death.",
+        "No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt)."
+       ],
+       "also": [],
+       "text": "15:46 NwAy's Dervish dies with no spike on him (under 400 inside 3 s): 155 from Men (Mes/A) between 15:27, the start of the heaviest 2 s on him, and his death. No checked chance missed by NwAy (a prot or a heal; with no spike there is no spike skill to interrupt)."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

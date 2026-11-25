@@ -182,10 +182,11 @@ The full rules, with how each reading is built and the games it is tested agains
   reading in `docs/ENGINE_NOTES.md`, the same session; a new reading gets the next section number and a line in the
   index below. Never in this file, and in HANDOFF.md only as state.
 - The review key, `dev_set.json` and `game_reviews.json` are written on main only: pass `--key
-  <main>/data/model/review_key.json` and copy a changed file to the branch. Files the site saves whole (hall labels,
-  golden and review marks) are his: after a change to one here he reloads the page first, and changed
-  `data/maps/labels/*.json` are copied to the branch before a hall is read. Party slots are in `data/matches/`, not
-  in the replays. Never queue two Train batch runs.
+  <main>/data/model/review_key.json` and copy a changed file to the branch. The rows of the Game review's other views
+  (`lord_rows.json`, `execution_rows.json`) are written to main the same way; his marks on them are the site's files.
+  Files the site saves whole (hall labels, golden and review marks) are his: after a change to one here he reloads the
+  page first, and changed `data/maps/labels/*.json` are copied to the branch before a hall is read. Party slots are in
+  `data/matches/`, not in the replays. Never queue two Train batch runs.
 - A backline monk is told by his bar (`common.monk_kind`, R-698), never by his party slot or his role name.
 - A reading built on a gvg.report field is first checked against the raw record on a sample of matches before
   it is used (R-707; e.g. `casting.py cover`).

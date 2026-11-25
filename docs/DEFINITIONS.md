@@ -605,6 +605,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   chance taken in time by a team mate is no fault for the team, and is not listed against the one who held back (R-715).
 - The kinds checked (stage X3, 2026-11-25, on unseen matches): a prot, a heal and an interrupt on a spike skill missed by the defence may be told
   as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so neither is ever told as a fault (R-713, R-285).
+- Where a fault is said (stage X4): at a death. The three checked kinds are all the defence's, so a fault is listed
+  only where a player died (R-714): on the spike that killed him, a prot, a heal, or an interrupt on one of the
+  spike's skills, each in the 1.5 s from the first big hit (an interrupt from 3 s before it); on a death with no spike
+  (under 400 on him inside 3 s), a prot or a heal from the start of the heaviest 2 s on him. On a play: the deaths of
+  its own players inside it, then the enemy's apart (R-299). The losing team recorded dying as the match ends is no
+  death. How many of a side's spikes killed and its damage are context, never a fault.
+- A play's own outcome (stage X3): a split holds when nobody on it dies (R-517, R-523), and for its defence the same
+  seconds are a split player killed; a push on a flagger stops their flag, and the flagger's team gets it in. Checked
+  on unseen matches: a split holding goes with what the defence does to it and, of its own doing, only with not
+  casting into a ready interrupt; the split's own damage and control read backwards and are never faults (R-285).
 - Monk casting efficiency places a monk by his bar and against monks whose team was hit as hard; Aegis, Protective
   Spirit and Aura of Stability are counted apart, their energy out of the points (R-704).
 - Also execution: how soon a res is tried and what stops it, giving ground a player down, converting an advantage,

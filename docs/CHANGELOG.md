@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-25, morning (a new chat): execution stage X3's remainder and stage X4; the Execution view
+- `bundle-4` (7d1f0ab, d7aacfe): a play's own outcome tested on unseen matches (`cases.exec_own`, `cases.py execution` C2): a split holding, the defence killing a split player, a push stopping their flag, the flagger's team getting it in. 30 readings pass against 5, 2 and 3 on shuffled records; the two general outcomes as before (132).
+- A split holds in 86% of 1,707 plays: of its own doing only not casting into a ready interrupt passes; its own damage and control read backwards (never faults); what the defence does to it passes (damage, interrupts on its healers, knockdowns on casting, Cripple).
+- `bundle-4`: stage X4. `execution.deaths` keeps every death of a player with the checked chances his team missed (a prot, a heal, an interrupt on a spike skill; taken by a team mate is no fault; busy and out of energy are no chance); each play's record names the deaths inside it, own and the enemy's apart; `say_death`, `say_faults`; `chance_tests` the one reading of taken and missed; the death account follows R-715.
+- Found: the losing team recorded dying as the match ends was read as deaths and a spike in the last 8 s as a kill; both left out (2 of 1,836 kills; X3's verdicts unchanged).
+- Full run: 33,089 plays identical, execution records identical but for `deaths`; 323 Classic rows pass. 10,218 deaths, 4,978 with a missed chance (1,397 of 1,834 spike deaths). `attempts_cases.json` and `execution_cases.json` rebuilt.
+- Main: Model > Game review > Execution (`review.js`, `data/model/execution_rows.json`): Men v Crew, RACK v hdm, Men v NwAy, 46 deaths for his marks (stage X5). ENGINE_NOTES section 44, DEFINITIONS "Execution", CLAUDE.md (the views' rows are written on main), handoff.
+- Put to him: interrupts on quarter-second casts and attack skills; a monk himself being killed; the chance on a death with no spike (untested on its own).
+
 ## 2026-11-24 to 25, late night (a new chat): R-714, R-715; execution stage X3
 - R-714 (defence misses listed only on a spike that killed and in death accounts; attack misses only on a spike that failed) and R-715 (a chance taken by a team mate is no fault) filed; DEFINITIONS "Execution" updated.
 - `bundle-4`: the kill attempt record keeps each strip's, interrupt's and knockdown's time, so taken and missed are read over the same 1.5 s (a spike that fails was read 8 s, one that kills to the death). Full run twice: plays identical (33,089), only `attempts` moved; 323 Classic rows pass.

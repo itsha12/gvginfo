@@ -21,6 +21,12 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // (the same boxes as a situation of a game). Lord damage is gvg.report's to say (R-632): each row sets gvg.report's own
 // total for the match beside the engine's sum of the recorded hits. The rows come from data/model/lord_rows.json
 // (tools/golden/review.py lord, on the engine branch); his marks are saved to data/model/lord_row_marks.json.
+//
+// A fourth view, Execution (2026-11-25, R-713 to R-715): for two or three of the games he graded, every death of a
+// player, told once under the situation it fell in, with the checked chances his team missed (a prot, a heal, an
+// interrupt on a spike skill), each with what was there and its replay time, none ranked. He marks each death Correct,
+// Partly or Incorrect and says what the engine does not read at all. The rows come from data/model/execution_rows.json
+// (tools/golden/review.py execution, on the engine branch); his marks are saved to data/model/execution_row_marks.json.
 
 const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_marks.json", DRAFT = "gvginfo.review.draft2";
 const GRADE = [["classic", "Classic"], ["visible", "Visible"], ["weak", "Weak"], ["none", "No decision"]];
@@ -56,7 +62,7 @@ const ADVICE = {
     about: "own (what he would have done; team up: stay = stay and kill, base = push into their base for NPCs, flagger = push their flagger, backup = run a flag for a backup, reset = fall back and reset; team down: fight = stay and fight, footmen = fall to footmen, pit = retreat to the pit, trade = trade with a split; nodiff = it makes no difference here, unknown = he does not know)" } };
 const setKind = (k) => { if (ckind === k) return; ckind = k; CARDS = ADVICE[k].cards; CARD_MARKS = ADVICE[k].marks; CDRAFT = ADVICE[k].draft; cards = null; cmarks = null; ccur = null; cdraft = {}; };
 let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
-try { const v0 = localStorage.getItem("gvginfo.review.view"); view = ["flags", "lord"].includes(v0) ? v0 : "games"; } catch { /* the games view */ }
+try { const v0 = localStorage.getItem("gvginfo.review.view"); view = ["flags", "lord", "exec"].includes(v0) ? v0 : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
 try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
@@ -458,11 +464,95 @@ async function renderLord(out, keep = false) {
   });
 }
 
-// The page: the three views and the switch between them.
+// ---- Execution: every death of a picked game with the checked chances his team missed (R-713 to R-715)
+const XROWS = "data/model/execution_rows.json", XMARKS = "data/model/execution_row_marks.json", XDRAFT = "gvginfo.review.exec1";
+const XOFFS = [["extra", "A chance listed was not there"], ["missing", "A missed chance is not listed"], ["who", "Who"], ["when", "When"], ["death", "How he died"]];
+let xrows = null, xmarks = null, xcur = null, xdraft = {};
+const xSaved = (g) => xmarks.games?.[g.rid]?.marks || {};
+const xNow = (g) => ({ ...xSaved(g), ...(xdraft[g.rid]?.marks || {}) });
+const xDeaths = (g) => g.groups.flatMap((x) => x.deaths);
+const xOffBoxes = (m) => `<div class="rv-offs"><span class="muted small">What is off:</span> ${XOFFS.map(([v, t]) => `<label><input type="checkbox" data-off value="${v}"${(m?.off || []).includes(v) ? " checked" : ""}> ${t}</label>`).join("")}</div>`;
+
+function execHtml(g) {
+  const M = xNow(g), D = xDeaths(g), done = D.filter((d) => M[d.id]?.mark).length, n = Object.keys(xdraft[g.rid]?.marks || {}).length + (xdraft[g.rid]?.notes !== undefined ? 1 : 0);
+  const notes = xdraft[g.rid]?.notes ?? xmarks.games?.[g.rid]?.notes ?? "";
+  const line = (x, i) => i === 0 ? `<div><b>${esc(x)}</b></div>` : `<div${x.startsWith("Missed by") ? ' class="rv-not"' : x.startsWith("No checked chance") ? ' class="rv-met"' : ' class="muted"'}>${esc(x)}</div>`;
+  const body = g.groups.map((x) => `<tr class="rv-sit"><td class="rv-n">${x.n ?? ""}</td><td class="rv-t">${clock(x.t0)}${x.t1 > x.t0 ? `–${clock(x.t1)}` : ""}</td>
+      <td colspan="2"><div>${esc(x.reads)}</div>${x.context ? `<div class="muted small">Context, not a fault: ${esc(x.context)}.</div>` : ""}</td></tr>` +
+    x.deaths.map((d) => { const m = M[d.id];
+      return `<tr class="rv-call ${m?.mark ? "rv-done" : "rv-todo"}"><td></td><td class="rv-t">${clock(Math.floor(d.t))}</td>
+      <td>${d.lines.map(line).join("")}${d.also.length ? `<div class="muted small">Also inside: ${d.also.map(esc).join("; ")}.</div>` : ""}</td>
+      <td class="rv-mark" data-id="${esc(d.id)}">${readBoxes(d.id, m)}${["partly", "incorrect"].includes(m?.mark) ? xOffBoxes(m) : ""}${words(m, "your words: what was there to be done, and was it")}</td></tr>`; }).join("")).join("");
+  return `<h3 style="margin:.4rem 0 .2rem">${esc(g.teams.join(" v "))}</h3>
+    <p class="muted small" style="margin:.1rem 0">${esc(g.date)}, ${esc(g.map)}. <a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>; the time beside each death is the death, and its first line gives the first big hit.</p>
+    <p style="margin:.2rem 0">${g.deaths} deaths, ${g.with_faults} with a missed chance read; <b>${done} of ${D.length} marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
+    <div class="row rv-bar"><button class="btn small primary" data-xsave>Save your marks</button>
+      <button class="btn small ${showTodo ? "primary" : "ghost"}" data-todo>${showTodo ? "Hide" : "Show"} the rows not marked yet (${D.length - done})</button></div>
+    <div class="tablewrap"><table class="data rv-rows rv-exec${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The death as the engine reads it</th><th>Your mark</th></tr></thead><tbody>${body}</tbody></table></div>
+    <h4 style="margin:.9rem 0 .3rem">Faults the engine does not read</h4>
+    <textarea data-xnotes placeholder="Anything in this game's execution that has no row or no line: a spike off-timed, a wrong target, a strip or an interrupt that should have come, a death that was nobody's fault. Give the time." style="min-height:90px">${esc(notes)}</textarea>
+    <div class="row rv-bar"><button class="btn small primary" data-xsave>Save your marks</button></div>`;
+}
+
+async function renderExec(out, keep = false) {
+  if (!keep || !xrows) {
+    xrows = await readJson(XROWS, null);
+    xmarks = (await readJson(XMARKS, null)) || { about: "", games: {} };
+    try { xdraft = JSON.parse(localStorage.getItem(XDRAFT) || "{}"); } catch { xdraft = {}; }
+  }
+  if (!xrows || !(xrows.games || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No game has been set out for execution yet.</div>`; return; }
+  const G = xrows.games, g = G.find((x) => x.rid === xcur) || G[0]; xcur = g.rid;
+  const keepX = () => { try { localStorage.setItem(XDRAFT, JSON.stringify(xdraft)); } catch { /* the marks stay on the page until saved */ } };
+  const button = (x) => { const M = xNow(x), D = xDeaths(x);
+    return `<button class="btn small ${x.rid === xcur ? "primary" : "ghost"}" data-xgame="${esc(x.rid)}">${esc(x.teams.join(" v "))} <span class="small">(${D.filter((d) => M[d.id]?.mark).length} of ${D.length})</span></button>`; };
+  out.innerHTML = `<h1>Game review</h1>
+  <p>Execution: every death in these games, with the chances the dead player's team had to stop it and did not take. Watch each death and say whether the engine has it right. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
+  <details class="rv-terms"><summary>How to read and mark a row</summary><ul class="small">
+    <li><b>A fault is a missed chance</b>: something that was there to be done and was not done. Three kinds are listed, the three that held up when tested on matches the engine had not seen (teams that take the chance lose the player less often): <b>a prot</b> (a monk in reach with a prot off recharge, his hands free, who did not cast it on the player), <b>a heal</b> (the same, with energy), and <b>an interrupt on a spike skill</b> (a skill of the spike went off while an interrupt able to stop it was ready and in range). None is priced or ranked above another: every one is listed.</li>
+    <li><b>Only at a death.</b> All three are the defence's chances, so they are listed only where the player died. A chance missed on a spike that failed changed nothing and is not listed.</li>
+    <li><b>Done in time by a team mate</b> is no fault: where one monk held back and another cast the prot, the team took the chance, and the monk who held back is not listed.</li>
+    <li><b>Not a chance</b>: a monk who was casting on another player under pressure at that moment, or who was out of energy.</li>
+    <li><b>Never listed as a fault</b>: a strip that did not come and no pressure on the target's monks, by the attacking team. Tested the same way, a missed strip read backwards and pressure on the monks showed no difference.</li>
+    <li><b>A spike</b> is 400 or more on one player inside 3 seconds. A death with no spike is read for a prot and a heal only, from the start of the heaviest 2 seconds on the player.</li>
+    <li><b>The shaded row</b> is the situation the death fell in, as on the Decisions view, with each side's share of spikes that killed and its damage beside it: context, never a fault. A death that fell inside more than one situation is told once, under the shortest.</li>
+    <li>Mark each death: <b>Correct</b> (what is listed was there to be done, and nothing is missing), <b>Partly</b> or <b>Incorrect</b>; tick what is off and say what you see. Under the table, say what the engine does not read at all.</li>
+    <li>Marks are kept in this browser as you go and reach the engine when you press Save.</li>
+  </ul></details>
+  <div class="row rv-games">${G.map(button).join("")}</div>
+  <p class="muted small">Rows written ${esc(xrows.generated)} from engine ${esc(xrows.engine)}.</p>
+  <section class="rv">${execHtml(g)}</section>
+  ${RV_STYLE}<style>.rv-exec td>div{margin-top:.2rem}.rv-exec .rv-call td:nth-child(3){padding-left:1.4rem}</style>`;
+
+  const redraw = async (focus) => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); if (focus) out.querySelector(`.rv-mark[data-id="${CSS.escape(focus)}"] [data-why]`)?.focus({ preventScroll: true }); };
+  out.querySelectorAll("[data-xgame]").forEach((b) => b.onclick = () => { xcur = b.dataset.xgame; redraw(); });
+  const text = Object.fromEntries(xDeaths(g).map((d) => [d.id, d.text]));
+  const put = (id, patch) => { const d = (xdraft[g.rid] ||= { marks: {} }); d.marks ||= {}; d.marks[id] = { ...(xSaved(g)[id] || {}), ...(d.marks[id] || {}), ...patch, text: text[id] }; keepX(); };
+  out.querySelectorAll(".rv-exec .rv-mark").forEach((td) => {
+    const id = td.dataset.id, why = td.querySelector("[data-why]");
+    td.querySelectorAll("[data-read]").forEach((r) => r.onchange = () => { put(id, { mark: r.value, why: why.value.trim(), ...(r.value === "correct" ? { off: [] } : {}) }); redraw(r.value === "correct" ? undefined : id); });
+    td.querySelectorAll("[data-off]").forEach((c) => c.onchange = () => put(id, { off: [...td.querySelectorAll("[data-off]:checked")].map((x) => x.value) }));
+    why.onchange = () => { if (xNow(g)[id]?.mark) put(id, { why: why.value.trim() }); };
+  });
+  out.querySelectorAll("[data-todo]").forEach((b) => b.onclick = () => { showTodo = !showTodo; try { localStorage.setItem("gvginfo.review.todo", showTodo ? "1" : "0"); } catch { /* kept for this visit only */ } redraw(); });
+  out.querySelector("[data-xnotes]").onchange = (e) => { (xdraft[g.rid] ||= { marks: {} }).notes = e.target.value.trim(); keepX(); };
+  out.querySelectorAll("[data-xsave]").forEach((b) => b.onclick = async () => {
+    const before = JSON.stringify(xmarks), d = xdraft[g.rid] || { marks: {} };
+    xmarks.about = "Denning's marks on the rows of Model > Game review > Execution (R-713). For each death: whether the engine read it correct, partly or incorrect, what he ticked as off (extra = a chance listed was not there, missing = a missed chance is not listed, who, when, death = how he died), his words, and the text of the row as he saw it; `notes` holds the faults he says the engine does not read. Only what he marked. Saved by the page; Claude files them in the review key.";
+    const G0 = (xmarks.games ||= {}), e = (G0[g.rid] ||= { marks: {} });
+    e.game = `${g.teams.join(" v ")}, ${g.map}`; e.at = new Date().toISOString().slice(0, 10); e.engine = xrows.engine;
+    e.marks = Object.fromEntries(Object.entries({ ...e.marks, ...(d.marks || {}) }).filter(([, v]) => v.mark));
+    if (d.notes !== undefined) { if (d.notes) e.notes = d.notes; else delete e.notes; }
+    try { await writeJson(XMARKS, xmarks, `Execution: ${e.game} marked (${Object.keys(e.marks).length} deaths)`); }
+    catch (err) { xmarks = JSON.parse(before); toast(err.message); return; }
+    delete xdraft[g.rid]; keepX(); toast("Saved"); await redraw();
+  });
+}
+
+// The page: the four views and the switch between them.
 export async function renderReview(out, keep = false) {
-  if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else if (view === "lord") await renderLord(out, keep); else await renderGames(out, keep);
+  if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else if (view === "lord") await renderLord(out, keep); else if (view === "exec") await renderExec(out, keep); else await renderGames(out, keep);
   const sw = document.createElement("div"); sw.className = "row rv-view"; sw.style.cssText = "gap:.4rem;margin:.4rem 0 .8rem";
-  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"], ["lord", "Lord push: picked rows to grade"]]
+  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"], ["lord", "Lord push: picked rows to grade"], ["exec", "Execution: the chances missed at each death"]]
     .map(([v, t]) => `<button class="btn small ${view === v ? "primary" : "ghost"}" data-view="${v}">${t}</button>`).join("");
   out.querySelector("h1")?.after(sw);
   sw.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => { view = b.dataset.view; try { localStorage.setItem("gvginfo.review.view", view); } catch { /* for this visit only */ } renderReview(out); });

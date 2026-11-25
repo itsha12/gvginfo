@@ -1003,8 +1003,44 @@ index pointing here. Read the section for a reading before changing it, and keep
   sign in every group but one, set against the same test on records shuffled among plays of the same kind (with a 7 of 10 bar 92 measures passed against
   9, 26 and 14 shuffled; with this bar 49 against 1, 3 and 4, win points only). Measures, both outcomes (win points and net kills 90 s on): 132 pass, 2,
   13 and 9 on shuffles; 111 read backwards, about as many as the shuffles give (36 to 52 on win points), so most backwards readings are noise, not
-  reactions. `spike_kill_share` and `dmg` against net kills come close to the outcome itself: X4 says them as context, never as a fault. Not yet read on
-  their own outcome: a split holding and a run capped or stopped (win points and net kills stand in).
+  reactions. `spike_kill_share` and `dmg` against net kills come close to the outcome itself: X4 says them as context, never as a fault.
+- Stage X3's remainder, built 2026-11-25: a play's own outcome (`cases.exec_own`, kept on each case of `exec_cases` as `own`; `cases.py execution` section
+  C2, `x3.own` in `execution_cases.json`), said from the side of the team making the play: a split holds when nobody on it dies (R-517, R-523; the
+  attacker's row) and the defence's side of the same seconds is a split player killed; a push on a flagger stops their flag and the flagger's team gets it
+  in. Only the rows whose job it is: no change inside a split fight (R-511), no main team's row, no push team (R-487), no split nobody defends from the
+  defence's side, no Shadow of Haste run (R-456). Same bar, counted apart from the two general outcomes (which read as before: 132 pass, 2, 13 and 9
+  shuffled): 30 pass against 5, 2 and 3. A split loses nobody in 86% of 1,707 plays: of its own measures only `into_ready` passes (casts into a ready
+  interrupt, -10.0 points, 9 of 10) and 13 read backwards (its damage, knockdowns, kiting, strips: a split that fights is a split being fought, never a
+  fault, R-285); 14 of the defence's pass against it (damage -22.9, interrupts on its healers -32.5, knockdowns on a casting player -18.6, Cripple -11.2,
+  interrupts thrown late +13.3). The defence kills a split player in 17% of 1,501 plays: 11 of its own pass (damage +20.3, interrupts on the split's
+  healers +29.4, knockdowns on casting +23.7, strips, drain, Cripple, interrupts thrown late -18.4). A push stops their flag in 22% of 655 plays: the
+  pushers' damage against their usual passes (+14.4), their Cripple reads backwards (a long chase); of the flagger's team's own measures none passes for
+  getting the flag in (79%), only the pushers' damage against it (-13.2). Damage on a split or a flagger is close to the outcome itself, as `dmg` is to
+  net kills: context, never a fault.
+- Stage X4, built 2026-11-25 (`execution.deaths`, `death_lines`, `say_death`, `say_faults`, `chance_tests`, `FAULT_KINDS`; `python3 execution.py deaths
+  <report id> [m:ss]`; `cases.py execution-say` prints each play's faults under what stands out). All three checked kinds are the defence's, so by R-714 a
+  fault is listed only where a player died: `flag_cost[rid].deaths` keeps every death of a player with the chances his team missed, and each play's
+  execution record names the deaths that fell inside it (`deaths.own` for its own players, `deaths.their` for the enemy players it met: places in the
+  deaths record). On a spike that killed, from its kill attempt: a prot, a heal (the monk's chance in the 1.5 s from the first big hit) and an interrupt on
+  each spike skill cast from 3 s before the first big hit to 1.5 s after it; on a death with no spike (under 400 inside 3 s), as the death account reads
+  it: a prot and a heal from the start of the heaviest 2 s on him (`Forensics.killing_burst`), no interrupt (the chance is defined on a spike's skills). A
+  kind a team mate cast in time is no fault and is not listed against the monk who held back (R-715: `Forensics.taken_in_time`, the same seconds as on an
+  attempt; the death account's `healed` answer now drops it too). Busy on a player under pressure (R-711) and out of energy (R-681) are said as no chance.
+  `chance_tests` is the one reading of taken and missed (X3's test in `cases.py` and the faults listed both call it); `cases.py attempts` stops with an
+  error when its verdicts and `FAULT_KINDS` differ (R-460). The record holds what was there and no sentence; the words are `say_death`.
+  Found on the way: the losing team recorded dying all at once as the match ends (`Moments.over`) was read as deaths, and a spike in the last 8 s as a
+  kill: both left out now (2 of 1,836 kills in the attempt record; X3's verdicts as before: prot -10.9, heal -43.0, interrupt -17.8).
+  Full run 2026-11-25: 33,089 plays identical, the execution records identical but for `deaths`; 323 Classic rows pass. 10,218 deaths in 564 matches: 1,834
+  on a spike, 8,384 with none; 4,978 with a missed chance (1,397 of the spike deaths, 3,581 of the others; a prot at 3,785 deaths, a heal at 3,001, an
+  interrupt at 1,077); busy 5 times, out of energy 286; 1,035 deaths fall inside no play. On the development set, the interrupt faults by the spike skill:
+  463 on a cast of a second or more, 24 of half or three quarters of a second, 31 of a quarter second, 114 on an attack skill; 70 of 1,405 prot and heal
+  faults are by a monk who himself died within 3 s of the burst's start. Both put to him as GvG questions, neither changed (R-465).
+  Not tested on its own: a chance on a death with no spike (every such player died, so there is no taken-and-lived to set it against); the kinds were
+  checked on spikes, and R-714 lists them in the death accounts: his marks on the Execution view are its test (stage X5).
+  The Execution view (`tools/golden/review.py execution <plays file> <main>/data/model/execution_rows.json <report id> ...`; the site's Model > Game
+  review > Execution; his marks to `execution_row_marks.json`): each death told once, under the shortest situation that holds it, the others named on its
+  row; beside the situation, as context, each side's share of spikes that killed and its damage. Set out: Men v Crew (51683de9), RACK v hdm (d06ef3c7),
+  Men v NwAy (c19f13e3): 46 deaths, 31 with a missed chance.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
