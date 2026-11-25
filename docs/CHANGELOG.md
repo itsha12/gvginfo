@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-24 to 25, late night (a new chat): R-714, R-715; execution stage X3
+- R-714 (defence misses listed only on a spike that killed and in death accounts; attack misses only on a spike that failed) and R-715 (a chance taken by a team mate is no fault) filed; DEFINITIONS "Execution" updated.
+- `bundle-4`: the kill attempt record keeps each strip's, interrupt's and knockdown's time, so taken and missed are read over the same 1.5 s (a spike that fails was read 8 s, one that kills to the death). Full run twice: plays identical (33,089), only `attempts` moved; 323 Classic rows pass.
+- `bundle-4`: stage X3 in `cases.py` (attempts G, H; execution C): prot, heal and interrupt on a spike skill pass on unseen matches, like with like; strip reads backwards, pressure on the monks fails; no together window shows a gain yet (R-708).
+- The bar set against shuffled records (every group but one): 132 measure readings pass against 2, 13 and 9 by chance; backwards readings are about as many as chance gives. 78 matches have no spike at the 400 line (deaths by pressure), not a failed reading.
+
 ## 2026-11-24, later night (a new chat): R-701 to R-713, execution planned; casting efficiency on his answers; execution stage X1
 - What the old engine reads of execution and the branch does not, set out to him: spike spread, kill conversion, target choice judged, which faults matter, and `tq.py` under the old nodes.
 - R-701 to R-713 filed (off-timed spikes, wrong target, healing at a death; casting efficiency; the flag lying; the gvg.report check rule in CLAUDE.md; the spike package; the objective from the job; the whole play; a busy monk; R-557's list now; his execution marks, faults as missed chances, no cost model). DEFINITIONS "Execution"; REDESIGN "Execution" (stages X1 to X5); ENGINE_NOTES section 44.

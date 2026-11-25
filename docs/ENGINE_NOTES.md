@@ -987,6 +987,24 @@ index pointing here. Read the section for a reading before changing it, and keep
   "sent for", his to correct. 옷옷옷옷 v RACK: RACK's run now starts 6:14 (his Visible row holds). Development set: 323
   Classic rows pass; 51 flag runs start earlier (median a few seconds), one history row no longer holds (cope v Team
   2:43, marked wrong before the fresh start).
+- Stage X3, built 2026-11-24/25 (R-714, R-715 ruled first): `cases.py attempts` sections G and H, `cases.py execution` section C (`x3_*` in `cases.py`; kept
+  in `data/model/attempts_cases.json` and `execution_cases.json`). Full run 2026-11-25 on the timed record: 33,089 plays identical to the run before, only
+  `attempts` moved; 323 Classic rows pass. Found on the way: the attempt record read taken against missed over different seconds (a spike that kills ends at
+  the death, median 1.7 s; one that fails is read 8 s), so strips and interrupts on the monks piled up on failed spikes; the record now keeps each strip's,
+  interrupt's and knockdown's time (`strip.at`, `pressure.interrupts_at`, `knockdowns_at`, `at` on interrupt chances) and X3 reads taken and missed only to
+  `CHANCE_S` (1.5 s) after the first big hit, a part done later kept apart as late. 78 counted matches have no attempt: no 3 s burst on one player reached
+  400 (the damage record is whole; their deaths come by pressure on players already low, read by the death accounts), not a failed reading.
+  Missed chances (5,317 attempts, 486 matches): like with like = killed less the kill expected from the situation at the first big hit alone (target,
+  prots on him, health and ceiling, healers in range, hexes, distance from his group, attackers), the expectation fitted without the attempt's group of
+  matches. Prot passes (taken 21% killed, missed 33%; -10.9 points, -13.1 to -8.3; 9 of 10 groups), heal passes (-43.0, 10 of 10), interrupt on a spike
+  skill passes (-17.8, -28.4 to -6.4, 8 of 9; only 36 cleanly taken); strip reads backwards (-8.8, 3 of 10: never a fault, R-285), pressure on his monks
+  fails (-2.5, -6.5 to +2.0). The together window (R-708): no lead of the strip or the first interrupt on the monks shows a gain against it ready and not
+  done; strips of a prot before the first big hit are almost never seen (26), so no window is measured yet. The bar (`X3_BUT`): range clear and the right
+  sign in every group but one, set against the same test on records shuffled among plays of the same kind (with a 7 of 10 bar 92 measures passed against
+  9, 26 and 14 shuffled; with this bar 49 against 1, 3 and 4, win points only). Measures, both outcomes (win points and net kills 90 s on): 132 pass, 2,
+  13 and 9 on shuffles; 111 read backwards, about as many as the shuffles give (36 to 52 on win points), so most backwards readings are noise, not
+  reactions. `spike_kill_share` and `dmg` against net kills come close to the outcome itself: X4 says them as context, never as a fault. Not yet read on
+  their own outcome: a split holding and a run capped or stopped (win points and net kills stand in).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

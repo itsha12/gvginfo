@@ -600,6 +600,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A fault is a missed chance: something there to be done that was not done, or done out of time. Faults are not
   priced or ranked; each kind is checked once on unseen matches that taking the chance goes with doing better, and
   every missed chance of a checked kind in a play is listed (R-713, Claude's handling, his to turn round).
+- Which misses are listed: a defence miss (prot, heal, interrupt on a spike skill) only on a spike that killed and
+  in the death accounts; an attack miss (strip, pressure on their monks) only on a spike that failed (R-714). A
+  chance taken in time by a team mate is no fault for the team, and is not listed against the one who held back (R-715).
+- The kinds checked (stage X3, 2026-11-25, on unseen matches): a prot, a heal and an interrupt on a spike skill missed by the defence may be told
+  as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so neither is ever told as a fault (R-713, R-285).
 - Monk casting efficiency places a monk by his bar and against monks whose team was hit as hard; Aegis, Protective
   Spirit and Aura of Stability are counted apart, their energy out of the points (R-704).
 - Also execution: how soon a res is tried and what stops it, giving ground a player down, converting an advantage,

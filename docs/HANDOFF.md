@@ -9,33 +9,33 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-24, late night: rulings to R-713; execution stages X1 and X2 built)
+## State (2026-11-25, small hours: rulings to R-715; execution stages X1 to X3 built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 matches
   trained. No workflow run in progress. The baseline (R-491): `baseline-2026-11-15`. Thirteen games graded and filed
   (set f1); no more matches until the engine is ready (R-570); nothing waits for his marks.
-- Execution (the micro answer) is the block of work now, agreed 2026-11-24 (R-701 to R-713): plan in REDESIGN.md
-  "Execution" (stages X1 to X5), definitions in DEFINITIONS.md "Execution", build notes ENGINE_NOTES section 44.
-  A fault is a missed chance, each kind checked once on unseen matches, none priced or ranked (R-713).
-- On the branch (stage E, step 2, then execution): the reader, flag returns, the Lord record, degen, energy (all four
-  pieces), a backline monk by his bar (R-698), casting efficiency placed by bar and pressure with Aegis, Protective
-  Spirit and Aura of Stability apart (R-704, section 43), and stage X1 (section 44): `execution.py` over the whole
-  play (R-710) with ten measures carried from the old nodes (spike spread, Dazed casts, Blind split, the right strip
-  and hex, strip worth, Cripple, escapes ready); `tq.py` no longer under `lnrows.py`, `eventlayer.py`,
-  `causalchain.py`. Development set: 6,934 plays identical, only the execution record moved; 323 Classic rows pass.
-- Stage X2 complete (section 44): kill attempts with their package, target state and missed chances; one reading of a
-  monk's chance (`forensics.chances`) in attempts and deaths; death accounts with healed, gvg.report's recap and monk
-  casting; execution measures for interrupt attempts, target choice by objective, res, ground, conversion, water; the
-  flag left lying from its taker's set-off (R-706). Development set: 323 Classic rows pass.
-- Last full run: 2bebbc6 (33,062 plays). Not rebuilt since: `npcpower.py bench` (moved with R-698), the forensics
-  benchmark, and `cases.py execution` (its window changed with R-710): all at X5's full run.
+- Execution (the micro answer) is the block of work now (R-701 to R-715): plan in REDESIGN.md "Execution" (stages X1
+  to X5), definitions in DEFINITIONS.md "Execution", build notes ENGINE_NOTES section 44. A fault is a missed chance,
+  each kind checked once on unseen matches, none priced or ranked (R-713); which misses are listed (R-714, R-715).
+- On the branch (stage E, step 2, then execution): the reader, flag returns, the Lord record, degen, energy, a backline
+  monk by his bar (R-698), casting efficiency (R-704, section 43), stage X1 (`execution.py` over the whole play, ten
+  measures from the old nodes; `tq.py` no longer under `lnrows.py`, `eventlayer.py`, `causalchain.py`) and stage X2
+  (kill attempts with package, target state and missed chances; `forensics.chances`; death accounts with healed,
+  recap, monk casting; interrupt attempts, target choice by objective, res, ground, conversion, water; R-706).
+- Stage X3 built (section 44): the attempt record keeps the time of each strip, interrupt and knockdown, so taken and
+  missed are read over the same 1.5 s. Checked on unseen matches, like with like: a prot, a heal and an interrupt on a
+  spike skill missed by the defence pass (may be faults); a missed strip reads backwards and pressure on the monks
+  fails (never faults). No together window shows a gain yet (R-708). Measures: 132 readings pass, about 8 by chance
+  (bar set against shuffled records, `cases.X3_BUT`). Kept: `data/model/attempts_cases.json`, `execution_cases.json`.
+- Last full run: the timed record, 2026-11-25 (33,089 plays, identical to the X2 run; 323 Classic rows pass). Not
+  rebuilt since 2bebbc6: `npcpower.py bench`, the forensics benchmark, the other `cases.py` reports: all at X5's run.
 
 ## Next (in order): execution before the close (REDESIGN.md "Execution"; R-571, R-572)
-1. Stage X3: each kind of missed chance and each measure tested on unseen matches against its outcome (kill attempt,
-   death, numbers advantage converted, split holding, run, a held team's losses), like with like (strips and an
-   interrupt possible mark the situation in the first look: section 44); the kinds that pass become faults (R-713,
-   R-285). The together window of the spike package measured (R-708). `cases.py attempts` and `execution` reports.
-2. Stage X4: the faults said on each play and death, the enemy's apart; an Execution view on the Game review.
+1. X3's remainder: a split holding and a run capped or stopped read as their own outcomes in `exec_cases` (win points
+   and net kills stand in now); the strip question below, if he turns it round.
+2. Stage X4: the checked faults said on each play and death (R-714, R-715), the enemy's apart, each with what was
+   there (the skill ready, the monk in reach) and the replay time; `spike_kill_share` and `dmg` as context only; an
+   Execution view on the Game review.
 3. Stage X5: he marks execution on two or three graded games (R-713); full run, truths, `npcpower.py bench`,
    forensics benchmark, every `cases.py` report.
 4. The flag readings he has seen, shown again on the new prices and flag tally: ENGINE_NOTES sections 15 and 22.
@@ -55,6 +55,9 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
    the next session reads `data/wiki_changes.json`.
 3. The early September matches (R-673): raise it at R-398 and before a pull. R-576 and R-575 on Nomad's are
    Claude's readings: bring him what either tells wrongly.
+4. Put to him 2026-11-25: a missed strip reads backwards and pressure on the monks shows nothing, so neither is told
+   as a fault; of 388 prots stripped in the first 1.5 s only 26 came before the first big hit. Is a strip meant to
+   land before the spike? His answer may turn the strip round (a reading to rebuild, not a threshold, R-465).
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the
