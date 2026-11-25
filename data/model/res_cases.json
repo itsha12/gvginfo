@@ -1041,38 +1041,38 @@
     "started at": 87.48665806432625
    },
    "our monks in their base: three": {
-    "stays": 98,
-    "one dies": 12.244897959183673,
+    "stays": 99,
+    "one dies": 12.121212121212121,
     "range": [
-     6.3125,
-     18.181818181818183
+     6.596165550821668,
+     18.200562324273648
     ],
-    "two or more within 60 s": 8.16326530612245,
-    "kills": 3.5,
-    "NPCs": 1.6020408163265305,
-    "win points": 1.8438397002180733,
+    "two or more within 60 s": 8.080808080808081,
+    "kills": 3.585858585858586,
+    "NPCs": 1.606060606060606,
+    "win points": 1.8262721832737998,
     "win range": [
-     0.6755370995887789,
-     3.070299399979421
+     0.6026369192966143,
+     3.1728989128601675
     ],
-    "started at": 90.89537790825392
+    "started at": 90.98628666147626
    },
    "our monks in their base: two or fewer": {
-    "stays": 67,
-    "one dies": 11.940298507462686,
+    "stays": 66,
+    "one dies": 12.121212121212121,
     "range": [
-     5.797101449275362,
-     19.11764705882353
+     5.714285714285714,
+     18.76488095238094
     ],
-    "two or more within 60 s": 7.462686567164178,
-    "kills": 2.955223880597015,
-    "NPCs": 1.3582089552238805,
-    "win points": -2.0358471273904604,
+    "two or more within 60 s": 7.575757575757576,
+    "kills": 2.8181818181818183,
+    "NPCs": 1.3484848484848484,
+    "win points": -2.0682789857256942,
     "win range": [
-     -6.161278914571972,
-     1.599549307763531
+     -6.200418935248084,
+     1.5879815663755268
     ],
-    "started at": 90.58249835771664
+    "started at": 90.44139462863258
    }
   },
   "checks": {
@@ -1175,12 +1175,12 @@
     "reads": "not clear"
    },
    "T1 the stays read worst are worse off three minutes on": {
-    "first": -2.7906733119232854,
-    "second": 1.7980142294726469,
-    "difference": -4.588687541395933,
+    "first": -2.8667381493141812,
+    "second": 1.8360466481680946,
+    "difference": -4.702784797482276,
     "range": [
-     -8.927027184315106,
-     -0.4799960952851826
+     -9.109122013759526,
+     -0.5375858835289946
     ],
     "n": [
      55,
@@ -1193,8 +1193,8 @@
     "second": 0.10909090909090909,
     "difference": 0.03636363636363636,
     "range": [
-     -0.05205185657285878,
-     0.14190519772375496
+     -0.05293413026841394,
+     0.13693689050831892
     ],
     "n": [
      55,
@@ -1207,8 +1207,8 @@
     "second": 0.07272727272727272,
     "difference": 0.018181818181818188,
     "range": [
-     -0.05604208606373963,
-     0.11005565260329911
+     -0.057268151177544496,
+     0.1121197538573932
     ],
     "n": [
      55,
@@ -1712,39 +1712,39 @@
   "reading": {
    "K": 30,
    "read": {
-    "the stay costs": 38,
-    "no clear reading": 52,
-    "the stay pays": 75
+    "the stay costs": 39,
+    "the stay pays": 78,
+    "no clear reading": 48
    },
    "stays": 165,
    "the stay pays": {
-    "stays": 75,
-    "one dies": 12.0,
-    "two or more within 60 s": 8.0,
-    "win points": 1.0087358154833153,
-    "started at": 95.12702847526329
+    "stays": 78,
+    "one dies": 11.538461538461538,
+    "two or more within 60 s": 7.6923076923076925,
+    "win points": 1.1732731822901115,
+    "started at": 95.11111555881239
    },
    "no clear reading": {
-    "stays": 52,
-    "one dies": 7.6923076923076925,
-    "two or more within 60 s": 5.769230769230769,
-    "win points": 3.2996404982466347,
-    "started at": 86.13149889177853
+    "stays": 48,
+    "one dies": 8.333333333333332,
+    "two or more within 60 s": 6.25,
+    "win points": 3.238094464010613,
+    "started at": 85.31560077334683
    },
    "the stay costs": {
-    "stays": 38,
-    "one dies": 18.421052631578945,
-    "two or more within 60 s": 10.526315789473683,
-    "win points": -5.340577867996401,
-    "started at": 88.51077228838605
+    "stays": 39,
+    "one dies": 17.94871794871795,
+    "two or more within 60 s": 10.256410256410255,
+    "win points": -5.19613613858789,
+    "started at": 88.79380959661248
    },
-   "worst_third_under": -0.3411934561425864,
+   "worst_third_under": -0.3716645198916629,
    "read_worst": [
     {
      "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
      "team": "One",
      "t": 720,
-     "worth": -25.4229082799208,
+     "worth": -26.25558237872644,
      "deaths": 4,
      "deaths_60": 4,
      "then": -5.858032691325009
@@ -1753,7 +1753,7 @@
      "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
      "team": "Men",
      "t": 600,
-     "worth": -18.492959500675347,
+     "worth": -18.370621565276622,
      "deaths": 2,
      "deaths_60": 2,
      "then": -20.297317958999827
@@ -1762,7 +1762,7 @@
      "rid": "e7a93c30-8c9d-527f-a080-465c38c75136",
      "team": "Team",
      "t": 720,
-     "worth": -16.277078325713198,
+     "worth": -16.272341981123553,
      "deaths": 0,
      "deaths_60": 0,
      "then": 1.0988127707387774
@@ -1771,7 +1771,7 @@
      "rid": "ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816",
      "team": "cope",
      "t": 840,
-     "worth": -16.212189539095508,
+     "worth": -16.150755648978034,
      "deaths": 0,
      "deaths_60": 1,
      "then": -0.011138760029372197
@@ -1780,7 +1780,7 @@
      "rid": "17662751-a293-59b0-a656-6e1f3c2bad73",
      "team": "hold",
      "t": 720,
-     "worth": -12.276729522617842,
+     "worth": -12.307003640254255,
      "deaths": 0,
      "deaths_60": 0,
      "then": 0.21409122724415086
@@ -1789,7 +1789,7 @@
      "rid": "7cb3ef17-7a51-54de-aa0f-2b41f2bd6f9e",
      "team": "Fun",
      "t": 840,
-     "worth": -11.80996082133596,
+     "worth": -11.767501531860505,
      "deaths": 3,
      "deaths_60": 3,
      "then": -75.20118645887977
@@ -1798,7 +1798,7 @@
      "rid": "418cf874-f817-523d-a810-56c7498bb69e",
      "team": "cope",
      "t": 1080,
-     "worth": -11.048492912370032,
+     "worth": -10.709330525921697,
      "deaths": 0,
      "deaths_60": 0,
      "then": 3.6510580982243357
@@ -1807,7 +1807,7 @@
      "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
      "team": "hook",
      "t": 600,
-     "worth": -10.411544204204827,
+     "worth": -10.458574453175375,
      "deaths": 2,
      "deaths_60": 5,
      "then": -17.15860168091314
@@ -1816,7 +1816,7 @@
      "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
      "team": "Apes",
      "t": 1440,
-     "worth": -10.308084242769977,
+     "worth": -10.294339664240322,
      "deaths": 0,
      "deaths_60": 0,
      "then": 0.18774327461845708
@@ -1825,7 +1825,7 @@
      "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
      "team": "Apes",
      "t": 1560,
-     "worth": -10.163320123684246,
+     "worth": -10.1228983934019,
      "deaths": 0,
      "deaths_60": 0,
      "then": -95.27035023396076
@@ -1834,7 +1834,7 @@
      "rid": "c63abf8c-fada-5522-a0ee-60a14882b18a",
      "team": "MBP",
      "t": 240,
-     "worth": -9.116324707460231,
+     "worth": -9.12565042884748,
      "deaths": 0,
      "deaths_60": 0,
      "then": 6.819573090516173
@@ -1843,7 +1843,7 @@
      "rid": "8684826a-4ce8-59cb-a5f9-d7bf81307491",
      "team": "Dz",
      "t": 1560,
-     "worth": -9.02986296872979,
+     "worth": -9.03301323073178,
      "deaths": 0,
      "deaths_60": 0,
      "then": 1.0195831181105786
@@ -3694,11 +3694,11 @@
     "started_at": 99.89534447726501,
     "win_points_180": 0.10465552273498657,
     "monk_energy": {
-     "mean": 56.0,
+     "mean": 57.7,
      "low": 52.0,
-     "n": 2
+     "n": 3
     },
-    "sentence": "One had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 626 damage a player in the minute before, its monks at 56 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 12 kills in 90 s, and three minutes on its chance of winning did not move."
+    "sentence": "One had a 100% chance of winning and stayed through DUM's base res of 8:00 in the danger zone (8 of 8 past their res shrine, 2 NPCs on them, 626 damage a player in the minute before, its monks at 58 on average, the lowest at 52), with nothing against the stay; it took no deaths within 60 s of the res, got 12 kills in 90 s, and three minutes on its chance of winning did not move."
    },
    {
     "rid": "5bd96957-db9d-5c5c-abda-12cf557644ca",

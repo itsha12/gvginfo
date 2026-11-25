@@ -1,84 +1,84 @@
 {
  "deaths": {
   "read": 9833,
-  "with a monk in the fight": 7432,
-  "no monk in the fight": 2401,
+  "with a monk in the fight": 7494,
+  "no monk in the fight": 2339,
   "every monk in the fight out": {
-   "deaths": 79,
-   "share": 0.010629709364908504,
-   "matches": 62
+   "deaths": 81,
+   "share": 0.010808646917534028,
+   "matches": 64
   },
   "some of them out, not all": {
-   "deaths": 287,
-   "share": 0.03861679224973089,
-   "matches": 140
+   "deaths": 288,
+   "share": 0.03843074459567654,
+   "matches": 141
   },
   "none out, one or more possibly out": {
-   "deaths": 156,
-   "share": 0.02099031216361679,
-   "matches": 86
+   "deaths": 157,
+   "share": 0.02095009340805978,
+   "matches": 87
   },
   "none out": {
-   "deaths": 6910,
-   "share": 0.9297631862217438,
+   "deaths": 6968,
+   "share": 0.9298105150787297,
    "matches": 544
   },
-  "monks read at a death": 15006,
-  "of them out": 0.025589764094362255
+  "monks read at a death": 15124,
+  "of them out": 0.025588468659084897
  },
  "accounts": {
   "out at the death": {
-   "monks": 381,
-   "from": 43.49632545931758,
-   "to": 10.622572178477691,
-   "spent": 88.1758530183727,
-   "taken": 3.533595800524935,
-   "unsure": 1.6070866141732283,
-   "came_back": 58.83569553805775
+   "monks": 384,
+   "from": 43.54713541666666,
+   "to": 10.6203125,
+   "spent": 88.26822916666667,
+   "taken": 3.550260416666667,
+   "unsure": 1.6361979166666665,
+   "came_back": 58.89166666666667
   },
   "possibly out": {
-   "monks": 170,
-   "from": 43.93588235294118,
-   "to": 26.243529411764705,
-   "spent": 82.1470588235294,
-   "taken": 4.537058823529412,
-   "unsure": 1.8899999999999997,
-   "came_back": 68.99176470588236
+   "monks": 171,
+   "from": 44.03216374269006,
+   "to": 26.294152046783626,
+   "spent": 82.16374269005848,
+   "taken": 4.510526315789473,
+   "unsure": 1.8789473684210523,
+   "came_back": 68.93625730994151
   },
   "not out": {
-   "monks": 14034,
-   "from": 55.11659541114436,
-   "to": 50.15183839247542,
-   "spent": 70.99365825851504,
-   "taken": 3.314379364400741,
-   "unsure": 1.437152629328773,
-   "came_back": 69.34328060424683
+   "monks": 14143,
+   "from": 55.13832991585943,
+   "to": 50.139355158028714,
+   "spent": 70.98600014141272,
+   "taken": 3.3105988828395674,
+   "unsure": 1.4338400622215937,
+   "came_back": 69.29762426642155
   },
-  "out monks with 20 or more taken in the minute": 0.04461942257217848
+  "out monks with 20 or more taken in the minute": 0.044270833333333336
  },
  "denial in those minutes": {
-  "Energy Surge": 0.32127038605862507,
-  "Mind Wrack": 0.10713444073163216,
-  "Energy Burn": 0.21057285403813664,
-  "Shame": 0.15054010340820054,
-  "Power Leak": 0.19211285875132683,
-  "Malaise": 0.01732198139296929,
-  "Guilt": 0.001047375619109771
+  "Mind Wrack": 0.10697841021197577,
+  "Energy Surge": 0.32239602823141467,
+  "Power Leak": 0.19224496575130026,
+  "Energy Burn": 0.20978854454532186,
+  "Shame": 0.15034208677938157,
+  "Malaise": 0.0172093963303964,
+  "Guilt": 0.001040568150210015
  },
  "kill jobs": {
   "did not kill": {
-   "plays": 2393,
-   "with midline read": 2213,
-   "one or more out": 0.0013556258472661546,
-   "out a second or more": 0.011296882060551287,
-   "lowest midline player": 46.040804338002715
+   "plays": 2358,
+   "with midline read": 2179,
+   "one or more out": 0.0009178522257916476,
+   "out a second or more": 0.009637448370812299,
+   "lowest midline player": 46.11128958237724
   },
   "killed": {
-   "plays": 972,
-   "with midline read": 933,
-   "one or more out": 0.004287245444801715,
-   "out a second or more": 0.04180064308681672,
-   "lowest midline player": 37.23665594855306
+   "plays": 957,
+   "with midline read": 919,
+   "one or more out": 0.004352557127312296,
+   "out a second or more": 0.042437431991294884,
+   "lowest midline player": 37.230359085963
   }
  },
  "moments": {
@@ -146,11 +146,6 @@
     "rid": "d26a7f5c-428f-5b34-a25c-11b4dcb407be",
     "t": 402,
     "sentence": "6:42 to 7:04 DMG does not kill: Necromancer 1 was out for 12 of 24 s (lowest 5; over the 60 s before he went from 66 to 12: spent 55 on casts, had 0 taken, and 1 came back); the other 3 midline were not out."
-   },
-   {
-    "rid": "0dfb1709-db25-5df3-a48d-fd3a8117b14a",
-    "t": 256,
-    "sentence": "4:16 to 5:01 Apes does not kill: Monk 5 was out for 2 of 2 s (lowest 0; the minute before is not read); the other 2 midline were not out."
    }
   ]
  }

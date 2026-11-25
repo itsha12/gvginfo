@@ -1,149 +1,149 @@
 {
- "lives": 6537,
- "put_downs": 4506,
- "holds": 79,
+ "lives": 6527,
+ "put_downs": 4541,
+ "holds": 77,
  "skipped": {
-  "a flag life: no winner recorded, or the flag lead not read": 111,
-  "a put-down: no winner recorded, or the flag lead not read": 142
+  "a flag life: no winner recorded, or the flag lead not read": 70,
+  "a put-down: no winner recorded, or the flag lead not read": 86
  },
  "checks": {
   "X1 a flag put down with an enemy player in range is returned more often than one put down out of range": {
-   "first": 0.34050179211469533,
-   "second": 0.13092269326683292,
-   "difference": 0.2095790988478624,
+   "first": 0.3703374777975133,
+   "second": 0.12239826032929481,
+   "difference": 0.2479392174682185,
    "range": [
-    0.18508325871051884,
-    0.23487178604992306
+    0.22240715702626165,
+    0.27559533579923895
    ],
    "n": [
-    1116,
-    3208
+    1126,
+    3219
    ],
    "reads": "HOLDS"
   },
   "X2 ... and more often with two or more in range than with one": {
-   "first": 0.40773809523809523,
-   "second": 0.23873873873873874,
-   "difference": 0.1689993564993565,
+   "first": 0.45161290322580644,
+   "second": 0.24549549549549549,
+   "difference": 0.20611740773031095,
    "range": [
-    0.12216780217106528,
-    0.2104951478634771
+    0.16287353099426757,
+    0.2512208751037073
    ],
    "n": [
-    672,
+    682,
     444
    ],
    "reads": "HOLDS"
   },
   "X3 in range, a flag put down by a frontliner is returned more often than one put down by a midline player": {
-   "first": 0.34963325183374083,
-   "second": 0.3541666666666667,
-   "difference": -0.004533414832925853,
+   "first": 0.3722627737226277,
+   "second": 0.38632478632478634,
+   "difference": -0.014062012602158613,
    "range": [
-    -0.061312775869554095,
-    0.058224652378821386
+    -0.07134805363899396,
+    0.04123599026714317
    ],
    "n": [
-    409,
-    480
+    411,
+    585
    ],
    "reads": "not clear"
   },
   "X4 a hand-off with an enemy player within an aggro bubble is returned within 15 s more often than one 1.5 bubbles or more from the enemy": {
-   "first": 0.27895266868076535,
-   "second": 0.014466546112115732,
-   "difference": 0.2644861225686496,
+   "first": 0.266,
+   "second": 0.03241296518607443,
+   "difference": 0.2335870348139256,
    "range": [
-    0.24003440170583962,
-    0.2917751931635305
+    0.2128651309008452,
+    0.2597503866463428
    ],
    "n": [
-    993,
-    1659
+    1000,
+    1666
    ],
    "reads": "HOLDS"
   },
   "X5 ... and than one 2 bubbles or more from the enemy": {
-   "first": 0.27895266868076535,
-   "second": 0.010526315789473684,
-   "difference": 0.2684263528912917,
+   "first": 0.266,
+   "second": 0.029940119760479042,
+   "difference": 0.23605988023952096,
    "range": [
-    0.23999982428808933,
-    0.2953422552261747
+    0.2123589998010121,
+    0.2605535660679471
    ],
    "n": [
-    993,
-    1330
+    1000,
+    1336
    ],
    "reads": "HOLDS"
   },
   "C1 with the stand ours, a flag run to the stand on the frontliner is returned more often than one handed on before it": {
-   "first": 0.055288461538461536,
-   "second": 0.06486486486486487,
-   "difference": -0.009576403326403332,
+   "first": 0.052132701421800945,
+   "second": 0.0582010582010582,
+   "difference": -0.006068356779257253,
    "range": [
-    -0.04883059336373166,
-    0.02675952896666988
+    -0.03812985792722139,
+    0.027074570154695034
    ],
    "n": [
-    416,
-    185
+    422,
+    189
    ],
    "reads": "not clear"
   },
   "C2 ... the team loses a player in the 90 s more often": {
-   "first": 0.24278846153846154,
-   "second": 0.2,
-   "difference": 0.042788461538461525,
+   "first": 0.24644549763033174,
+   "second": 0.19576719576719576,
+   "difference": 0.05067830186313599,
    "range": [
-    -0.018487155475397685,
-    0.11322703348822226
+    -0.004150295745201315,
+    0.10353861378370088
    ],
    "n": [
-    416,
-    185
+    422,
+    189
    ],
    "reads": "not clear"
   },
   "C3 ... is worse off in flags 90 s on": {
-   "first": -0.4128605769230769,
-   "second": -0.45091891891891894,
-   "difference": 0.038058341995842015,
+   "first": -0.3995971563981043,
+   "second": -0.4510052910052911,
+   "difference": 0.051408134607186684,
    "range": [
-    -0.08765079828418167,
-    0.16047549736777558
+    -0.07498376841831747,
+    0.18123060162080554
    ],
    "n": [
-    416,
-    185
+    422,
+    189
    ],
    "reads": "not clear"
   },
   "C4 ... and in the chance of winning three minutes on": {
-   "first": -1.8913788717462592,
-   "second": -2.11517713290917,
-   "difference": 0.22379826116291124,
+   "first": -2.012134109958338,
+   "second": -2.2214631812127754,
+   "difference": 0.2093290712544369,
    "range": [
-    -1.4144227858372693,
-    1.976868550877636
+    -1.5196042489465018,
+    1.6877886568383693
    ],
    "n": [
-    416,
-    185
+    422,
+    189
    ],
    "reads": "not clear"
   },
   "D1 a first flag kept on the frontliner is returned more often than one handed on": {
-   "first": 0.10355987055016182,
-   "second": 0.08648648648648649,
-   "difference": 0.017073384063675326,
+   "first": 0.08571428571428572,
+   "second": 0.07692307692307693,
+   "difference": 0.008791208791208788,
    "range": [
-    -0.025202015827466482,
-    0.055912829587645346
+    -0.031107520993050683,
+    0.050054847841471996
    ],
    "n": [
-    309,
-    185
+    315,
+    182
    ],
    "reads": "not clear"
   },
@@ -155,201 +155,201 @@
    "reads": "too few"
   },
   "D3 a frontliner's first flag put down in range is returned more often than one put down out of range": {
-   "first": 0.2222222222222222,
-   "second": 0.11214953271028037,
-   "difference": 0.11007268951194184,
+   "first": 0.21212121212121213,
+   "second": 0.10526315789473684,
+   "difference": 0.10685805422647529,
    "range": [
-    -0.003491929370188309,
-    0.2315095508928108
+    -0.012939644453405924,
+    0.2417119236370893
    ],
    "n": [
-    36,
-    214
+    33,
+    209
    ],
    "reads": "not clear"
   },
   "E1 a flag held on the Mes/A costs more NPCs in the three minutes from the hold than one held on the stand mesmer": {
    "n": [
     6,
-    3
+    2
    ],
    "reads": "too few"
   },
   "E2 a flag held on a frontliner leaves the team worse off three minutes on than one held on a midline player": {
    "n": [
-    13,
-    46
+    12,
+    60
    ],
    "reads": "too few"
   }
  },
  "record": {
   "a team mate took it up": {
-   "all": 2659,
-   "out of range": 2108,
-   "one in range": 266,
-   "two or more": 285
+   "all": 2722,
+   "out of range": 2157,
+   "one in range": 271,
+   "two or more": 294
   },
   "its carrier took it up again": {
-   "all": 480,
-   "out of range": 404,
-   "one in range": 34,
-   "two or more": 42
+   "all": 538,
+   "out of range": 446,
+   "one in range": 43,
+   "two or more": 49
   },
   "returned": {
-   "all": 800,
-   "out of range": 420,
-   "one in range": 106,
-   "two or more": 274
+   "all": 811,
+   "out of range": 394,
+   "one in range": 109,
+   "two or more": 308
   },
   "left lying": {
-   "all": 385,
-   "out of range": 276,
-   "one in range": 38,
-   "two or more": 71
+   "all": 274,
+   "out of range": 222,
+   "one in range": 21,
+   "two or more": 31
   },
   "returned, out of range": {
-   "put-downs": 3208,
-   "returned": 13.092269326683292
+   "put-downs": 3219,
+   "returned": 12.23982603292948
   },
   "returned, one enemy player in range": {
    "put-downs": 444,
-   "returned": 23.873873873873876
+   "returned": 24.54954954954955
   },
   "returned, two or more in range": {
-   "put-downs": 672,
-   "returned": 40.773809523809526
+   "put-downs": 682,
+   "returned": 45.16129032258064
   },
   "hand-offs by what became of them": {
-   "returned within 15 s": 333,
-   "a team mate took it up": 2125,
-   "returned later": 191,
-   "left lying": 196,
-   "its carrier took it up again": 220
+   "returned within 15 s": 352,
+   "a team mate took it up": 2167,
+   "its carrier took it up again": 259,
+   "returned later": 180,
+   "left lying": 124
   }
  },
  "price": {
   "by_lay": {
    "a hand-off, returned within 15 s": {
-    "returns": 333,
-    "started at": 29.93734746474102,
-    "flags 60": -0.12414414414414415,
-    "flags 90": -0.025512048192771086,
-    "flags 180": 0.026993865030674837,
-    "win points 180": -4.570410957513945
+    "returns": 352,
+    "started at": 29.71208952480302,
+    "flags 60": -0.4692329545454546,
+    "flags 90": -0.31201704545454545,
+    "flags 180": -0.17164739884393063,
+    "win points 180": -4.781933991447609
    },
    "no team mate by it, returned within 15 s": {
-    "returns": 101,
-    "started at": 31.716928288574593,
-    "flags 60": -0.12257425742574259,
-    "flags 90": -0.09267326732673267,
-    "flags 180": -0.15833333333333335,
-    "win points 180": -3.7001770497630835
+    "returns": 141,
+    "started at": 31.694663164693647,
+    "flags 60": -0.4253900709219857,
+    "flags 90": -0.3588652482269504,
+    "flags 180": -0.3388405797101449,
+    "win points 180": -3.6106762713031264
    },
    "it lay 15 s to 2 minutes first": {
-    "returns": 167,
-    "started at": 40.65378747152214,
-    "flags 60": -0.3789820359281437,
-    "flags 90": -0.4130538922155689,
-    "flags 180": -0.31041916167664674,
-    "win points 180": -4.893097165758307
+    "returns": 250,
+    "started at": 39.895843564791214,
+    "flags 60": -0.61512,
+    "flags 90": -0.6463453815261044,
+    "flags 180": -0.4528915662650602,
+    "win points 180": -5.341751987467786
    },
    "it lay 2 minutes or longer first": {
-    "returns": 199,
-    "started at": 47.25144021160418,
-    "flags 60": 0.055427135678391956,
-    "flags 90": 0.09608040201005023,
-    "flags 180": 0.048534031413612566,
-    "win points 180": 0.19420734959151878
+    "returns": 68,
+    "started at": 54.20046360655214,
+    "flags 60": -0.2186764705882353,
+    "flags 90": -0.18279411764705886,
+    "flags 180": -0.5476470588235294,
+    "win points 180": 0.19638630672895907
    }
   },
   "every hand-off": {
-   "hand-offs": 3065,
-   "returned within 15 s": 333,
-   "a team mate took it up": 2125,
+   "hand-offs": 3082,
+   "returned within 15 s": 352,
+   "a team mate took it up": 2167,
    "flags 60": {
-    "difference": -0.2712641441441441,
+    "difference": -0.5955366001384401,
     "range": [
-     -0.33557517308338064,
-     -0.21334158557485827
+     -0.6748499570767298,
+     -0.5235283636722843
     ],
     "n": [
-     333,
-     2125
+     352,
+     2167
     ]
    },
    "flags 90": {
-    "difference": -0.1661507295530825,
+    "difference": -0.4282376269035534,
     "range": [
-     -0.23168739046550751,
-     -0.11259658960434982
+     -0.5020480316083424,
+     -0.36473407724145407
     ],
     "n": [
-     333,
-     2125
+     352,
+     2167
     ]
    },
    "flags 180": {
-    "difference": -0.06383710298533825,
+    "difference": -0.2458328045685279,
     "range": [
-     -0.15171422861407513,
-     0.029920233042410475
+     -0.3298504549718393,
+     -0.1600452912719588
     ],
     "n": [
-     333,
-     2125
+     352,
+     2167
     ]
    },
    "win points 180": {
-    "difference": -3.9047829320124094,
+    "difference": -4.13535609238578,
     "range": [
-     -5.391149875673216,
-     -2.692390807146115
+     -5.406324247641085,
+     -2.9127736302055673
     ]
    }
   },
   "hand-offs with an enemy player in range": {
-   "hand-offs": 993,
-   "returned within 15 s": 277,
-   "a team mate took it up": 537,
+   "hand-offs": 1000,
+   "returned within 15 s": 266,
+   "a team mate took it up": 549,
    "flags 60": {
-    "difference": -0.31884032833834175,
+    "difference": -0.6825902187161892,
     "range": [
-     -0.3942305464475884,
-     -0.2523345615166117
+     -0.7614318062014478,
+     -0.6035449057302038
     ],
     "n": [
-     277,
-     537
+     266,
+     549
     ]
    },
    "flags 90": {
-    "difference": -0.1915160438053365,
+    "difference": -0.49886245668816853,
     "range": [
-     -0.28007353221648706,
-     -0.10363859845075932
+     -0.5833439783709711,
+     -0.40268934303611037
     ],
     "n": [
-     277,
-     537
+     266,
+     549
     ]
    },
    "flags 180": {
-    "difference": -0.055051126394127,
+    "difference": -0.29604503060931014,
     "range": [
-     -0.1668612856915435,
-     0.05542214733987609
+     -0.39916656091650227,
+     -0.18854017088237998
     ],
     "n": [
-     277,
-     537
+     266,
+     549
     ]
    },
    "win points 180": {
-    "difference": -4.219679858994193,
+    "difference": -5.175344485237702,
     "range": [
-     -6.051483936106787,
-     -2.436878479855459
+     -6.938633338269581,
+     -3.6133267483022258
     ]
    }
   }
@@ -357,123 +357,123 @@
  "frontliner": {
   "we hold the stand at the pickup": {
    "run to the stand on the frontliner": {
-    "cases": 416,
-    "matches": 204,
-    "started at": 56.691131142746556,
-    "the 60 s before": 2.058759302741014,
-    "they lose one": 22.355769230769234,
-    "we lose one": 24.278846153846153,
-    "net NPCs": 0.026442307692307692,
-    "flags": -0.4128605769230769,
-    "win points 90": -2.177827710480683,
-    "win points 180": -1.8913788717462592,
-    "capped": 92.54807692307693,
-    "returned": 5.528846153846153,
-    "capped in": 42.89999999999998,
-    "on him": 6.899999999999977,
-    "handed there": 15.144230769230768
+    "cases": 422,
+    "matches": 206,
+    "started at": 56.71775757360062,
+    "the 60 s before": 2.012517293084554,
+    "they lose one": 22.274881516587676,
+    "we lose one": 24.644549763033176,
+    "net NPCs": 0.02843601895734597,
+    "flags": -0.3995971563981043,
+    "win points 90": -2.098524380633166,
+    "win points 180": -2.012134109958338,
+    "capped": 93.12796208530806,
+    "returned": 5.213270142180095,
+    "capped in": 43.10000000000002,
+    "on him": 6.7000000000000455,
+    "handed there": 15.165876777251185
    },
    "handed on before the stand": {
-    "cases": 185,
-    "matches": 126,
-    "started at": 57.945167293127554,
-    "the 60 s before": 1.5849699581947663,
-    "they lose one": 26.486486486486488,
-    "we lose one": 20.0,
-    "net NPCs": -0.05945945945945946,
-    "flags": -0.45091891891891894,
-    "win points 90": -1.7869247454309698,
-    "win points 180": -2.11517713290917,
-    "capped": 91.35135135135135,
-    "returned": 6.486486486486487,
-    "capped in": 65.79999999999995,
-    "on him": 10.700000000000045,
-    "handed there": 3.783783783783784
+    "cases": 189,
+    "matches": 128,
+    "started at": 57.98839707728436,
+    "the 60 s before": 1.5695179350533413,
+    "they lose one": 26.455026455026452,
+    "we lose one": 19.576719576719576,
+    "net NPCs": -0.08994708994708994,
+    "flags": -0.4510052910052911,
+    "win points 90": -1.7630569331030097,
+    "win points 180": -2.2214631812127754,
+    "capped": 92.06349206349206,
+    "returned": 5.82010582010582,
+    "capped in": 65.64999999999998,
+    "on him": 10.650000000000034,
+    "handed there": 3.7037037037037033
    },
    "never stood at the stand": {
-    "cases": 110,
-    "matches": 92,
-    "started at": 53.18084126391637,
-    "the 60 s before": 2.4926290096002415,
-    "they lose one": 25.454545454545453,
-    "we lose one": 40.909090909090914,
-    "net NPCs": 0.05454545454545454,
-    "flags": -0.7702777777777777,
-    "win points 90": -2.452361852872857,
-    "win points 180": -4.120920931459143,
-    "capped": 5.454545454545454,
-    "returned": 53.63636363636364,
-    "capped in": 0.45000000000000284,
+    "cases": 108,
+    "matches": 91,
+    "started at": 52.296566652945565,
+    "the 60 s before": 1.6076976093406325,
+    "they lose one": 27.77777777777778,
+    "we lose one": 44.44444444444444,
+    "net NPCs": 0.06481481481481481,
+    "flags": -0.8266037735849057,
+    "win points 90": -3.0317431083031274,
+    "win points 180": -3.6718275112800702,
+    "capped": 6.481481481481481,
+    "returned": 62.96296296296296,
+    "capped in": 0.4000000000000057,
     "on him": 0.0,
     "handed there": 0.0
    }
   },
   "we do not hold the stand": {
    "run to the stand on the frontliner": {
-    "cases": 690,
+    "cases": 694,
     "matches": 256,
-    "started at": 38.73351693452007,
-    "the 60 s before": -2.1270039707826363,
-    "they lose one": 18.84057971014493,
-    "we lose one": 34.92753623188406,
-    "net NPCs": -0.14347826086956522,
-    "flags": 0.5026354319180087,
-    "win points 90": 0.6158509454915865,
-    "win points 180": 0.5293218917252379,
-    "capped": 96.52173913043478,
-    "returned": 2.4637681159420293,
-    "capped in": 38.55,
-    "on him": 6.349999999999994,
-    "handed there": 1.7391304347826086
+    "started at": 38.39897226717764,
+    "the 60 s before": -2.3427844047030257,
+    "they lose one": 18.587896253602306,
+    "we lose one": 35.014409221902014,
+    "net NPCs": -0.1440922190201729,
+    "flags": 0.604310595065312,
+    "win points 90": 0.9717313392319338,
+    "win points 180": 0.6949963449720996,
+    "capped": 96.68587896253602,
+    "returned": 2.881844380403458,
+    "capped in": 38.69999999999999,
+    "on him": 6.399999999999977,
+    "handed there": 1.729106628242075
    },
    "handed on before the stand": {
     "cases": 81,
-    "matches": 66,
-    "started at": 41.65758278883162,
-    "the 60 s before": -2.027256396141763,
+    "matches": 64,
+    "started at": 41.96336279045197,
+    "the 60 s before": -2.6471662837876213,
     "they lose one": 34.5679012345679,
-    "we lose one": 24.691358024691358,
-    "net NPCs": -0.037037037037037035,
-    "flags": 0.683,
-    "win points 90": 1.7061726463069244,
-    "win points 180": 1.283943808516217,
-    "capped": 95.06172839506173,
-    "returned": 4.938271604938271,
-    "capped in": 61.10000000000002,
-    "on him": 9.100000000000023,
-    "handed there": 2.4691358024691357
+    "we lose one": 25.925925925925924,
+    "net NPCs": -0.06172839506172839,
+    "flags": 0.8124691358024689,
+    "win points 90": 2.316881596863224,
+    "win points 180": 1.1434146216652605,
+    "capped": 98.76543209876543,
+    "returned": 1.2345679012345678,
+    "capped in": 59.150000000000006,
+    "on him": 9.299999999999955,
+    "handed there": 1.2345679012345678
    },
    "never stood at the stand": {
-    "cases": 213,
-    "matches": 161,
-    "started at": 20.298515232052292,
-    "the 60 s before": -3.5472348951795567,
-    "they lose one": 9.859154929577464,
-    "we lose one": 66.66666666666666,
-    "net NPCs": -0.9859154929577465,
-    "flags": -0.07064039408866996,
-    "win points 90": -4.909795648900294,
-    "win points 180": -6.9445276275728025,
-    "capped": 0.4694835680751174,
-    "returned": 63.84976525821596,
+    "cases": 196,
+    "matches": 148,
+    "started at": 18.290869379093827,
+    "the 60 s before": -3.46769343969339,
+    "they lose one": 9.693877551020408,
+    "we lose one": 68.87755102040816,
+    "net NPCs": -1.0204081632653061,
+    "flags": -0.1270680628272251,
+    "win points 90": -4.706064353199291,
+    "win points 180": -6.403973165958884,
+    "capped": 0.5102040816326531,
+    "returned": 76.0204081632653,
     "capped in": 39.0,
     "on him": 0.0,
     "handed there": 0.0
    }
   },
   "hand-offs": {
-   "put-downs": 776,
+   "put-downs": 797,
    "before the stand, out of range": [
-    424,
-    23.58490566037736
+    431,
+    22.041763341067284
    ],
    "before the stand, in range": [
-    216,
-    50.0
+    236,
+    51.69491525423729
    ],
    "at the stand, in range": [
-    73,
-    36.986301369863014
+    71,
+    33.80281690140845
    ]
   }
  },
@@ -486,7 +486,7 @@
     "returned": 37.5,
     "flags 5:00": -0.23375,
     "net kills 5:00": 1.25,
-    "win points 180": -2.000319837647388
+    "win points 180": -2.169032350895777
    },
    "handed to a midline player or a monk": {
     "openings": 15,
@@ -495,135 +495,135 @@
     "returned": 6.666666666666667,
     "flags 5:00": -0.10933333333333334,
     "net kills 5:00": 0.9333333333333333,
-    "win points 180": 1.825407660830128
+    "win points 180": 2.1600569284903197
    }
   },
   "every other opening": {
    "kept on the frontliner": {
-    "openings": 301,
-    "matches": 263,
-    "capped": 88.70431893687709,
-    "returned": 9.634551495016613,
-    "flags 5:00": 0.08420863309352516,
-    "net kills 5:00": -0.4418604651162791,
-    "win points 180": -0.5389342482647707
+    "openings": 307,
+    "matches": 269,
+    "capped": 91.53094462540716,
+    "returned": 7.81758957654723,
+    "flags 5:00": 0.08515901060070671,
+    "net kills 5:00": -0.43973941368078173,
+    "win points 180": -0.565430952260385
    },
    "handed to a midline player or a monk": {
-    "openings": 170,
-    "matches": 146,
-    "capped": 87.05882352941177,
-    "returned": 8.823529411764707,
-    "flags 5:00": -0.00031446540880502894,
-    "net kills 5:00": 0.6411764705882353,
-    "win points 180": 0.3245192396399584
+    "openings": 167,
+    "matches": 145,
+    "capped": 89.82035928143712,
+    "returned": 7.784431137724551,
+    "flags 5:00": -0.0004487179487179484,
+    "net kills 5:00": 0.718562874251497,
+    "win points 180": 0.6374341340039816
    }
   },
   "hand-offs": {
    "out of range": [
-    214,
-    11.214953271028037
+    209,
+    10.526315789473683
    ],
    "in range": [
-    36,
-    22.22222222222222
+    33,
+    21.21212121212121
    ]
   }
  },
  "holding": {
   "by group": {
    "held on the stand mesmer": {
-    "cases": 3,
-    "matches": 3,
-    "started at": 57.50337731031006,
-    "the 60 s before": 1.391393225625374,
+    "cases": 2,
+    "matches": 2,
+    "started at": 69.30035876594522,
+    "the 60 s before": 5.397187762642972,
     "they lose one": 0.0,
     "we lose one": 0.0,
-    "net NPCs": 1.6666666666666667,
-    "flags": 0.22000000000000006,
-    "win points 90": 5.285159776150655,
-    "win points 180": 3.140644785171102,
-    "held s": 19.0,
-    "next flag": 26.19999999999999,
+    "net NPCs": 2.5,
+    "flags": -0.02999999999999997,
+    "win points 90": 5.804409435402169,
+    "win points 180": -0.6288490612619437,
+    "held s": 25.5,
+    "next flag": 25.799999999999997,
     "NPCs lost": 0.0,
     "holder runs next": 0.0
    },
    "held on the Mes/A": {
     "cases": 6,
     "matches": 6,
-    "started at": 47.377009847074774,
-    "the 60 s before": -0.026553571126099722,
+    "started at": 47.393415848010775,
+    "the 60 s before": -0.03604782903136631,
     "they lose one": 33.33333333333333,
     "we lose one": 16.666666666666664,
     "net NPCs": -0.8333333333333334,
-    "flags": 0.24666666666666667,
-    "win points 90": 1.1622414085359034,
-    "win points 180": 1.3663487825077452,
+    "flags": 0.35833333333333334,
+    "win points 90": 1.3481874304568047,
+    "win points 180": 2.159554142692442,
     "held s": 19.5,
     "next flag": 6.0,
     "NPCs lost": 1.0,
     "holder runs next": 33.33333333333333
    },
    "held on another midline player": {
-    "cases": 37,
-    "matches": 32,
-    "started at": 54.04565357082352,
-    "the 60 s before": 0.4368519453444373,
-    "they lose one": 32.432432432432435,
-    "we lose one": 21.62162162162162,
-    "net NPCs": 0.2972972972972973,
-    "flags": -0.09243243243243242,
-    "win points 90": 0.7512404497682552,
-    "win points 180": -0.885134011165082,
-    "held s": 24.0,
-    "next flag": 33.79999999999998,
-    "NPCs lost": 1.0,
-    "holder runs next": 51.35135135135135
+    "cases": 52,
+    "matches": 44,
+    "started at": 53.54228360025418,
+    "the 60 s before": 0.18001563348538532,
+    "they lose one": 30.76923076923077,
+    "we lose one": 19.230769230769234,
+    "net NPCs": 0.19230769230769232,
+    "flags": -0.17019230769230764,
+    "win points 90": 0.5210517242679561,
+    "win points 180": 0.1204792035833889,
+    "held s": 22.0,
+    "next flag": 39.5,
+    "NPCs lost": 0.9230769230769231,
+    "holder runs next": 53.84615384615385
    },
    "held on a frontliner": {
-    "cases": 13,
-    "matches": 12,
-    "started at": 38.850611601132165,
-    "the 60 s before": -0.7789426414359146,
-    "they lose one": 30.76923076923077,
-    "we lose one": 15.384615384615385,
-    "net NPCs": 0.3076923076923077,
-    "flags": 0.016153846153846144,
-    "win points 90": 1.0176860028619468,
-    "win points 180": 3.3891944319860494,
-    "held s": 18.0,
-    "next flag": 45.30000000000001,
-    "NPCs lost": 0.3076923076923077,
-    "holder runs next": 23.076923076923077
+    "cases": 12,
+    "matches": 11,
+    "started at": 35.20784327995128,
+    "the 60 s before": -0.9193925895243903,
+    "they lose one": 25.0,
+    "we lose one": 16.666666666666664,
+    "net NPCs": 0.08333333333333333,
+    "flags": -0.041666666666666664,
+    "win points 90": 0.3092724620630542,
+    "win points 180": 2.984930328875572,
+    "held s": 17.5,
+    "next flag": 43.80000000000001,
+    "NPCs lost": 0.3333333333333333,
+    "holder runs next": 25.0
    },
    "held on a monk": {
-    "cases": 20,
-    "matches": 17,
-    "started at": 53.23771117884502,
-    "the 60 s before": -1.343933764068096,
-    "they lose one": 30.0,
-    "we lose one": 20.0,
-    "net NPCs": 0.15,
-    "flags": -0.2855,
-    "win points 90": -1.2699222076324765,
-    "win points 180": -0.10673768609856112,
-    "held s": 18.5,
-    "next flag": 76.45000000000002,
-    "NPCs lost": 0.65,
-    "holder runs next": 50.0
+    "cases": 5,
+    "matches": 5,
+    "started at": 55.86195076599352,
+    "the 60 s before": -1.8693717125372131,
+    "they lose one": 40.0,
+    "we lose one": 40.0,
+    "net NPCs": 0.8,
+    "flags": -0.16199999999999998,
+    "win points 90": -4.709621612469126,
+    "win points 180": -7.498273305175618,
+    "held s": 17.0,
+    "next flag": 71.60000000000002,
+    "NPCs lost": 0.4,
+    "holder runs next": 20.0
    }
   },
   "by build": {
    "Mesmer": {
     "cases": 19,
     "matches": 16,
-    "started at": 53.63058947063022,
-    "the 60 s before": 0.5697864999352674,
+    "started at": 53.47803503965939,
+    "the 60 s before": 0.5964075869912198,
     "they lose one": 26.31578947368421,
     "we lose one": 21.052631578947366,
     "net NPCs": 0.3684210526315789,
-    "flags": 0.06736842105263159,
-    "win points 90": 0.4460038134568035,
-    "win points 180": -1.254708646615072,
+    "flags": 0.039473684210526314,
+    "win points 90": 0.40224650811884005,
+    "win points 180": -1.0749256663899085,
     "held s": 21.0,
     "next flag": 28.59999999999991,
     "NPCs lost": 1.0526315789473684,
@@ -632,14 +632,14 @@
    "Ritualist": {
     "cases": 15,
     "matches": 14,
-    "started at": 60.99365996740514,
-    "the 60 s before": 0.615294752303436,
+    "started at": 60.76085396819402,
+    "the 60 s before": 0.4653517780884656,
     "they lose one": 33.33333333333333,
     "we lose one": 26.666666666666668,
     "net NPCs": 0.26666666666666666,
     "flags": -0.2173333333333333,
-    "win points 90": -0.6316945626906736,
-    "win points 180": -1.9443319952714644,
+    "win points 90": -0.5749573133677817,
+    "win points 180": -1.8517110816577336,
     "held s": 28.0,
     "next flag": 50.85000000000001,
     "NPCs lost": 0.9333333333333333,
@@ -648,14 +648,14 @@
    "Monk 4 (WoC)": {
     "cases": 11,
     "matches": 10,
-    "started at": 54.43745899839526,
-    "the 60 s before": -0.6725723216333706,
+    "started at": 54.60559731987339,
+    "the 60 s before": -0.2831920865599525,
     "they lose one": 27.27272727272727,
     "we lose one": 18.181818181818183,
     "net NPCs": -0.09090909090909091,
     "flags": -0.26999999999999996,
-    "win points 90": -0.6577637879417776,
-    "win points 180": -1.0855579422917478,
+    "win points 90": -0.706851407574128,
+    "win points 180": -1.28807234231409,
     "held s": 22.0,
     "next flag": 81.30000000000001,
     "NPCs lost": 1.0,
@@ -664,46 +664,30 @@
    "Mes/A": {
     "cases": 6,
     "matches": 6,
-    "started at": 47.377009847074774,
-    "the 60 s before": -0.026553571126099722,
+    "started at": 47.393415848010775,
+    "the 60 s before": -0.03604782903136631,
     "they lose one": 33.33333333333333,
     "we lose one": 16.666666666666664,
     "net NPCs": -0.8333333333333334,
-    "flags": 0.24666666666666667,
-    "win points 90": 1.1622414085359034,
-    "win points 180": 1.3663487825077452,
+    "flags": 0.35833333333333334,
+    "win points 90": 1.3481874304568047,
+    "win points 180": 2.159554142692442,
     "held s": 19.5,
     "next flag": 6.0,
     "NPCs lost": 1.0,
     "holder runs next": 33.33333333333333
    },
-   "AoB Derv": {
-    "cases": 4,
-    "matches": 4,
-    "started at": 54.494408171809404,
-    "the 60 s before": -1.2634386093142713,
-    "they lose one": 25.0,
-    "we lose one": 0.0,
-    "net NPCs": 0.75,
-    "flags": -0.6875000000000001,
-    "win points 90": -0.6973121952454193,
-    "win points 180": 8.303335674460728,
-    "held s": 20.5,
-    "next flag": 116.85,
-    "NPCs lost": 0.0,
-    "holder runs next": 25.0
-   },
    "Hammer": {
     "cases": 4,
     "matches": 3,
-    "started at": 39.518387233874506,
-    "the 60 s before": 3.729374760064095,
+    "started at": 39.538027578479415,
+    "the 60 s before": 3.82938931416625,
     "they lose one": 25.0,
     "we lose one": 25.0,
     "net NPCs": 0.0,
     "flags": 0.18,
-    "win points 90": 1.0051410970443742,
-    "win points 180": 1.8098532295831493,
+    "win points 90": 1.042913214955022,
+    "win points 180": 1.8859461318901123,
     "held s": 16.0,
     "next flag": 31.00000000000003,
     "NPCs lost": 0.25,
@@ -712,14 +696,14 @@
    "Monk 5 (WoC)": {
     "cases": 4,
     "matches": 4,
-    "started at": 46.76531280658227,
-    "the 60 s before": -2.5797502284885785,
+    "started at": 46.83182841495802,
+    "the 60 s before": -0.8571868419650089,
     "they lose one": 25.0,
     "we lose one": 0.0,
     "net NPCs": 0.0,
     "flags": -0.48250000000000004,
-    "win points 90": 1.0546698049860668,
-    "win points 180": 11.125043609490664,
+    "win points 90": 1.1882166916388646,
+    "win points 180": 11.03028174886801,
     "held s": 17.5,
     "next flag": 75.35000000000002,
     "NPCs lost": 0.0,
@@ -728,62 +712,78 @@
    "8 Monk": {
     "cases": 4,
     "matches": 4,
-    "started at": 48.682302778436835,
-    "the 60 s before": -2.1005356145278373,
+    "started at": 48.78064127904141,
+    "the 60 s before": -2.15153969277552,
     "they lose one": 25.0,
     "we lose one": 50.0,
     "net NPCs": 0.75,
     "flags": -0.52,
-    "win points 90": -8.413066000082177,
-    "win points 180": -11.81916289106686,
+    "win points 90": -8.689630583337696,
+    "win points 180": -12.501158320128855,
     "held s": 19.5,
     "next flag": 94.44999999999999,
     "NPCs lost": 0.5,
     "holder runs next": 25.0
    },
-   "Stand Mes": {
+   "AoB Derv": {
     "cases": 3,
     "matches": 3,
-    "started at": 57.50337731031006,
-    "the 60 s before": 1.391393225625374,
+    "started at": 45.155658521250295,
+    "the 60 s before": -2.2466618158885825,
     "they lose one": 0.0,
     "we lose one": 0.0,
-    "net NPCs": 1.6666666666666667,
-    "flags": 0.22000000000000006,
-    "win points 90": 5.285159776150655,
-    "win points 180": 3.140644785171102,
-    "held s": 19.0,
-    "next flag": 26.19999999999999,
+    "net NPCs": 0.0,
+    "flags": -1.1533333333333335,
+    "win points 90": -4.124026502565488,
+    "win points 180": 8.425722595295307,
+    "held s": 20.0,
+    "next flag": 65.5,
     "NPCs lost": 0.0,
-    "holder runs next": 0.0
+    "holder runs next": 33.33333333333333
    },
    "Dervish": {
     "cases": 3,
     "matches": 3,
-    "started at": 12.786723635823428,
-    "the 60 s before": -4.786068242527679,
+    "started at": 12.6697533828427,
+    "the 60 s before": -4.749671147052285,
     "they lose one": 0.0,
     "we lose one": 33.33333333333333,
     "net NPCs": 0.0,
     "flags": 0.77,
-    "win points 90": 0.5803351580944943,
-    "win points 180": -2.162128463684756,
+    "win points 90": 0.5448979758154393,
+    "win points 180": -2.3033834990255677,
     "held s": 18.0,
     "next flag": 46.299999999999955,
     "NPCs lost": 1.0,
     "holder runs next": 0.0
    },
+   "Stand Mes": {
+    "cases": 2,
+    "matches": 2,
+    "started at": 69.30035876594522,
+    "the 60 s before": 5.397187762642972,
+    "they lose one": 0.0,
+    "we lose one": 0.0,
+    "net NPCs": 2.5,
+    "flags": -0.02999999999999997,
+    "win points 90": 5.804409435402169,
+    "win points 180": -0.6288490612619437,
+    "held s": 25.5,
+    "next flag": 25.799999999999997,
+    "NPCs lost": 0.0,
+    "holder runs next": 0.0
+   },
    "Air Ele": {
     "cases": 2,
     "matches": 2,
-    "started at": 18.343701495112676,
-    "the 60 s before": -1.2422364210940027,
+    "started at": 19.05395099487457,
+    "the 60 s before": -0.7753424355299927,
     "they lose one": 50.0,
     "we lose one": 0.0,
     "net NPCs": 0.0,
     "flags": -0.63,
-    "win points 90": 4.595221670476407,
-    "win points 180": -1.0080525451707745,
+    "win points 90": 5.154361884861865,
+    "win points 180": 0.5338436974132166,
     "held s": 34.0,
     "next flag": 26.64999999999999,
     "NPCs lost": 1.5,
@@ -792,14 +792,14 @@
    "Warrior": {
     "cases": 2,
     "matches": 2,
-    "started at": 45.32329914225611,
-    "the 60 s before": -2.815897107041573,
+    "started at": 45.43288666660935,
+    "the 60 s before": -2.6806347210675403,
     "they lose one": 100.0,
     "we lose one": 0.0,
     "net NPCs": 0.5,
     "flags": -0.035,
-    "win points 90": 5.128798477863003,
-    "win points 180": 5.0465786953487,
+    "win points 90": 5.138501132593354,
+    "win points 180": 4.954181065068597,
     "held s": 26.5,
     "next flag": 75.35000000000002,
     "NPCs lost": 0.0,
@@ -881,21 +881,21 @@
    "first_flag": false
   },
   {
+   "rid": "c6832848-d4ce-5825-a8ed-1705b3e830ee",
+   "team": "fM",
+   "t": 709,
+   "by": "Warrior 2",
+   "place": "fM's front door",
+   "enemy_near": 1,
+   "first_flag": false
+  },
+  {
    "rid": "beaac0b1-38cb-5ba1-aebc-3e71ce81e9b3",
    "team": "Book",
    "t": 414,
    "by": "Assassin 2",
    "place": "Book's front door",
    "enemy_near": 3,
-   "first_flag": false
-  },
-  {
-   "rid": "fe3fd3d2-4563-5379-a08b-d24301c206a5",
-   "team": "Book",
-   "t": 664,
-   "by": "Hammer",
-   "place": "Book's back door",
-   "enemy_near": 1,
    "first_flag": false
   },
   {
@@ -926,30 +926,12 @@
    "first_flag": false
   },
   {
-   "rid": "df634bdc-5931-5685-a8ae-133e7e360244",
-   "team": "cope",
-   "t": 207,
-   "by": "AoB Derv",
-   "place": "cope's front door",
-   "enemy_near": 1,
-   "first_flag": false
-  },
-  {
    "rid": "8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f",
    "team": "cope",
    "t": 507,
    "by": "Hammer",
    "place": "the greater stand area",
    "enemy_near": 2,
-   "first_flag": false
-  },
-  {
-   "rid": "d70f3684-8f70-5513-a327-83e1a45013f1",
-   "team": "ohno",
-   "t": 858,
-   "by": "Warrior",
-   "place": "the flag stand",
-   "enemy_near": 5,
    "first_flag": false
   },
   {
@@ -962,12 +944,12 @@
    "first_flag": false
   },
   {
-   "rid": "1eb66e34-a3a9-5797-a9c5-c78df1b6d4ee",
-   "team": "One",
-   "t": 112,
-   "by": "Hammer",
-   "place": "the flag stand",
-   "enemy_near": 1,
+   "rid": "92977824-d166-5e37-a5c4-dc4846027086",
+   "team": "Crew",
+   "t": 1259,
+   "by": "Warrior",
+   "place": "Crew's front door",
+   "enemy_near": 5,
    "first_flag": false
   },
   {
@@ -982,10 +964,19 @@
   {
    "rid": "d9099718-a6ea-56f2-a176-17e30b378dc3",
    "team": "Rudi",
-   "t": 565,
-   "by": "Dervish",
+   "t": 609,
+   "by": "Warrior",
    "place": "Rudi's front door",
    "enemy_near": 5,
+   "first_flag": false
+  },
+  {
+   "rid": "21ee7fe1-1753-58e3-a31a-c32fa53f533d",
+   "team": "One",
+   "t": 222,
+   "by": "Hammer",
+   "place": "One's front footies",
+   "enemy_near": 1,
    "first_flag": false
   },
   {
@@ -1004,15 +995,6 @@
    "by": "Hammer",
    "place": "cope's front door",
    "enemy_near": 5,
-   "first_flag": false
-  },
-  {
-   "rid": "e14d826d-1c32-5bea-a5fc-d8a72142447e",
-   "team": "Dz",
-   "t": 804,
-   "by": "Hammer",
-   "place": "the flag stand",
-   "enemy_near": 2,
    "first_flag": false
   },
   {
@@ -1214,21 +1196,12 @@
    "first_flag": false
   },
   {
-   "rid": "862d6629-38f3-5359-a885-0285354ce534",
-   "team": "NwAy",
-   "t": 734,
-   "by": "Hammer",
-   "place": "NwAy's pit",
-   "enemy_near": 2,
-   "first_flag": false
-  },
-  {
-   "rid": "d4660b7b-1e09-584e-a786-0e9f48b3f343",
-   "team": "Team",
-   "t": 93,
-   "by": "AoB Derv",
-   "place": "Team's pit",
-   "enemy_near": 4,
+   "rid": "c57034e7-d30c-5250-ab14-22c7ef73bae3",
+   "team": "Apes",
+   "t": 749,
+   "by": "Dervish",
+   "place": "Apes's front door",
+   "enemy_near": 6,
    "first_flag": false
   },
   {
@@ -1277,6 +1250,15 @@
    "first_flag": false
   },
   {
+   "rid": "85498a8a-a558-5502-a52d-3ab7acfa7052",
+   "team": "TFS",
+   "t": 1401,
+   "by": "Hammer",
+   "place": "the field on TFS's side",
+   "enemy_near": 2,
+   "first_flag": false
+  },
+  {
    "rid": "354d49dc-0138-5578-a1ac-7bf4282fc96f",
    "team": "Apes",
    "t": 236,
@@ -1322,12 +1304,12 @@
    "first_flag": false
   },
   {
-   "rid": "d48b3b17-3494-5f76-acd4-904db81d1d64",
-   "team": "Team",
-   "t": 703,
-   "by": "Warrior",
-   "place": "Team's front door",
-   "enemy_near": 2,
+   "rid": "ca387a42-f896-5055-ae6d-c2122c86083e",
+   "team": "Apes",
+   "t": 151,
+   "by": "Dervish",
+   "place": "the greater stand area",
+   "enemy_near": 5,
    "first_flag": false
   },
   {
@@ -1367,6 +1349,15 @@
    "first_flag": false
   },
   {
+   "rid": "0426f3a7-3ddd-5a71-a53d-69597a130430",
+   "team": "Crew",
+   "t": 590,
+   "by": "Warrior",
+   "place": "Crew's front door",
+   "enemy_near": 2,
+   "first_flag": false
+  },
+  {
    "rid": "9a080f4e-ff97-5cac-a8d7-47610a9a0b2a",
    "team": "True",
    "t": 598,
@@ -1392,6 +1383,15 @@
    "place": "OG's front footies",
    "enemy_near": 3,
    "first_flag": true
+  },
+  {
+   "rid": "021c32e2-6d5b-5f2c-a3a1-0cea3ed2bf7b",
+   "team": "EDGE",
+   "t": 383,
+   "by": "Dervish",
+   "place": "EDGE's front door",
+   "enemy_near": 1,
+   "first_flag": false
   },
   {
    "rid": "c71fdca0-91ef-5ef5-a344-5d9c3b6db05d",
@@ -1439,12 +1439,48 @@
    "first_flag": false
   },
   {
+   "rid": "7761aa5f-0ff1-5724-a537-f257af86b9a5",
+   "team": "Book",
+   "t": 1147,
+   "by": "Dervish",
+   "place": "Book's front door",
+   "enemy_near": 1,
+   "first_flag": false
+  },
+  {
+   "rid": "65be200c-cb5c-59e5-ab98-915440357362",
+   "team": "push",
+   "t": 743,
+   "by": "AoB Derv",
+   "place": "push's front door",
+   "enemy_near": 6,
+   "first_flag": false
+  },
+  {
+   "rid": "5527465c-2adf-5c1c-a22f-1dac53eebcce",
+   "team": "hook",
+   "t": 756,
+   "by": "Hammer",
+   "place": "hook's front door",
+   "enemy_near": 3,
+   "first_flag": false
+  },
+  {
    "rid": "65be200c-cb5c-59e5-ab98-915440357362",
    "team": "push",
    "t": 1053,
    "by": "AoB Derv",
    "place": "push's back door",
    "enemy_near": 1,
+   "first_flag": false
+  },
+  {
+   "rid": "256729a8-dcab-5351-a2a1-5f446865f6e5",
+   "team": "hook",
+   "t": 85,
+   "by": "AoB Derv",
+   "place": "hook's front door",
+   "enemy_near": 4,
    "first_flag": false
   },
   {
@@ -1538,24 +1574,6 @@
    "first_flag": false
   },
   {
-   "rid": "32882ec3-b8e8-52b5-a232-9d509cfec65e",
-   "team": "Crew",
-   "t": 1547,
-   "by": "Assassin",
-   "place": "Crew's pit",
-   "enemy_near": 1,
-   "first_flag": false
-  },
-  {
-   "rid": "023475ba-4e0c-5ce0-a1d6-f9c660a5d16d",
-   "team": "chic",
-   "t": 505,
-   "by": "AoB Derv",
-   "place": "chic's front door",
-   "enemy_near": 1,
-   "first_flag": false
-  },
-  {
    "rid": "37ccbc87-b760-5bd4-adaa-f841953ea14f",
    "team": "Book",
    "t": 732,
@@ -1643,6 +1661,24 @@
    "by": "Dervish",
    "place": "Crew's back door",
    "enemy_near": 7,
+   "first_flag": false
+  },
+  {
+   "rid": "6aaa0f6d-da4e-5666-a036-7527fc7bd9d4",
+   "team": "Crew",
+   "t": 1322,
+   "by": "Warrior",
+   "place": "Crew's front door",
+   "enemy_near": 5,
+   "first_flag": false
+  },
+  {
+   "rid": "6aaa0f6d-da4e-5666-a036-7527fc7bd9d4",
+   "team": "Crew",
+   "t": 1435,
+   "by": "Hammer",
+   "place": "Crew's front door",
+   "enemy_near": 3,
    "first_flag": false
   },
   {
@@ -1754,6 +1790,24 @@
    "first_flag": false
   },
   {
+   "rid": "37c85b7e-85d0-5da5-aba5-fa3ce7d79be8",
+   "team": "Apes",
+   "t": 1235,
+   "by": "AoB Derv",
+   "place": "Apes's front door",
+   "enemy_near": 1,
+   "first_flag": false
+  },
+  {
+   "rid": "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d",
+   "team": "Team",
+   "t": 1394,
+   "by": "Hammer",
+   "place": "Team's front door",
+   "enemy_near": 3,
+   "first_flag": false
+  },
+  {
    "rid": "776323c5-276d-5816-a25e-ff5d8e968b76",
    "team": "True",
    "t": 345,
@@ -1826,6 +1880,15 @@
    "first_flag": false
   },
   {
+   "rid": "95a5c543-e80b-5b28-ab81-2ed391a374c0",
+   "team": "Crew",
+   "t": 1238,
+   "by": "AoB Derv",
+   "place": "Crew's front door",
+   "enemy_near": 4,
+   "first_flag": false
+  },
+  {
    "rid": "cd870ad3-52e8-5de9-a73a-897015fab0dc",
    "team": "Crew",
    "t": 1255,
@@ -1871,21 +1934,21 @@
    "first_flag": false
   },
   {
+   "rid": "1d073205-fdec-5684-aa7a-b03a558a9471",
+   "team": "cope",
+   "t": 1120,
+   "by": "AoB Derv",
+   "place": "the greater stand area",
+   "enemy_near": 1,
+   "first_flag": false
+  },
+  {
    "rid": "b547337a-ad89-5dfd-a180-75e4df97f78b",
    "team": "Men",
    "t": 148,
    "by": "Hammer",
    "place": "Men's front door",
    "enemy_near": 3,
-   "first_flag": false
-  },
-  {
-   "rid": "a44589cc-6a77-54f1-a3fc-4df044769e09",
-   "team": "Apes",
-   "t": 168,
-   "by": "AoB Derv",
-   "place": "the flag stand",
-   "enemy_near": 1,
    "first_flag": false
   },
   {
@@ -1925,6 +1988,15 @@
    "first_flag": false
   },
   {
+   "rid": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
+   "team": "chic",
+   "t": 622,
+   "by": "Warrior",
+   "place": "the field on chic's side",
+   "enemy_near": 1,
+   "first_flag": false
+  },
+  {
    "rid": "6dd8966c-f41b-5c3d-ae07-7344afb5c88c",
    "team": "MBP",
    "t": 736,
@@ -1952,21 +2024,21 @@
    "first_flag": false
   },
   {
+   "rid": "ad347cfb-1179-5a06-a484-37aa63bfebd4",
+   "team": "MBP",
+   "t": 1345,
+   "by": "AoB Derv",
+   "place": "MBP's front door",
+   "enemy_near": 3,
+   "first_flag": false
+  },
+  {
    "rid": "bfef12ce-6ed9-53e9-a306-44349c368add",
    "team": "hook",
    "t": 722,
    "by": "AoB Derv",
    "place": "hook's front door",
    "enemy_near": 3,
-   "first_flag": false
-  },
-  {
-   "rid": "480337e8-5e25-5320-a7ff-45522d1bb4b2",
-   "team": "hold",
-   "t": 494,
-   "by": "AoB Derv",
-   "place": "hold's pit",
-   "enemy_near": 2,
    "first_flag": false
   },
   {
@@ -1997,12 +2069,30 @@
    "first_flag": false
   },
   {
+   "rid": "2cacd546-3d3a-5edc-afe9-19e612b161b5",
+   "team": "Apes",
+   "t": 171,
+   "by": "AoB Derv",
+   "place": "Apes's pit",
+   "enemy_near": 4,
+   "first_flag": false
+  },
+  {
    "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
    "team": "Men",
    "t": 108,
    "by": "Hammer A",
    "place": "Men's front door",
    "enemy_near": 1,
+   "first_flag": false
+  },
+  {
+   "rid": "94d74d87-fbd0-5de2-af5b-180902fee866",
+   "team": "push",
+   "t": 1152,
+   "by": "Warrior",
+   "place": "push's front door",
+   "enemy_near": 3,
    "first_flag": false
   },
   {
@@ -2042,12 +2132,12 @@
    "first_flag": false
   },
   {
-   "rid": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-   "team": "hdm",
-   "t": 331,
+   "rid": "8da8570a-2b81-55ee-a016-95ea78476208",
+   "team": "cope",
+   "t": 1032,
    "by": "Hammer A",
-   "place": "the field on hdm's side",
-   "enemy_near": 1,
+   "place": "the greater stand area",
+   "enemy_near": 2,
    "first_flag": false
   },
   {
@@ -2056,15 +2146,6 @@
    "t": 14,
    "by": "AoB Derv",
    "place": "the flag stand",
-   "enemy_near": 1,
-   "first_flag": true
-  },
-  {
-   "rid": "6f9f7ba1-f18e-55aa-a562-b101d75b14dc",
-   "team": "RJT",
-   "t": 31,
-   "by": "AoB Derv",
-   "place": "the greater stand area",
    "enemy_near": 1,
    "first_flag": true
   },
@@ -2084,6 +2165,15 @@
    "by": "Hammer",
    "place": "RJT's front door",
    "enemy_near": 4,
+   "first_flag": false
+  },
+  {
+   "rid": "04befe7e-4050-51d4-ac06-3560dcb02611",
+   "team": "Apes",
+   "t": 671,
+   "by": "Warrior",
+   "place": "Apes's front door",
+   "enemy_near": 5,
    "first_flag": false
   },
   {
