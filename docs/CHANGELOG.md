@@ -6,6 +6,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - What the old engine reads of execution and the branch does not, set out to him: spike spread, kill conversion, target choice judged, which faults matter, and `tq.py` under the old nodes.
 - R-701 to R-713 filed (off-timed spikes, wrong target, healing at a death; casting efficiency; the flag lying; the gvg.report check rule in CLAUDE.md; the spike package; the objective from the job; the whole play; a busy monk; R-557's list now; his execution marks, faults as missed chances, no cost model). DEFINITIONS "Execution"; REDESIGN "Execution" (stages X1 to X5); ENGINE_NOTES section 44.
 - `bundle-4`: `casting.py` placed by bar and pressure, Aegis, Protective Spirit and Aura of Stability apart (R-704); report rebuilt.
+- `bundle-4`: stage X2 begun, the kill attempt record (every spike to its own outcome: package, missed chances of both sides, none ranked) and `cases.py attempts`; plays identical.
 - `bundle-4`: stage X1, `execution.py` over the whole play with ten measures carried from the old nodes; `tq.py` no longer under lnrows, eventlayer, causalchain. Development set: plays identical, 323 Classic rows pass.
 
 ## 2026-11-24, night (a new chat): R-697 to R-700; a backline monk told by his bar; casting efficiency (R-689, piece 4)

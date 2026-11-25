@@ -933,6 +933,29 @@ index pointing here. Read the section for a reading before changing it, and keep
   `tq.py` (`ask.py` and `learning.py`, report layer, still do: rewritten or retired at the close). Development set:
   6,934 plays identical, only `flag_cost[rid].execution` moved (82 matches); 323 Classic rows pass. Not yet built
   from the old nodes: the burst inputs of kill conversion, which belong to the attempt record (X2).
+- Stage X2, first piece, built 2026-11-24: the kill attempt record, `execution.attempts(E)` (kept beside the plays as
+  `flag_cost[rid].attempts`; `python3 execution.py attempts <report id> [m:ss]` says each in sentences,
+  `say_attempt`; `cases.py attempts <plays file>` the first look). Every spike of both teams (`events._spikes`: 400+
+  on one player inside 3 s) is read to its own outcome (R-710: his death, or 8 s, `ATT_AFTER_S`). The package
+  (R-708): spread and share in the first second (`events._landing`), strips on him by the spiking team from 3 s
+  before the first big hit (`ATT_BEFORE_S`) with the first one's lead and whether a prot came off, pressure on his
+  team's backline monks (interrupts, knockdowns, Dazed at the first hit) with its lead, prots up on him, prots and
+  heals cast on him with their offsets. Missed chances (R-713, `MISSED_KINDS`): defence prot and heal (a monk with
+  one ready, in reach, at a half-second moment within `CHANCE_S` 1.5 s of the first hit at which it could still land
+  a quarter second before the death; casting on another player under `PRESSED` 250 in 2 s is busy, R-711, and only
+  counted busy if he was so at every moment; out of energy, R-681, no chance); defence interrupt (each spike skill
+  cast on him that went off with an interrupt of ours ready, in range and able to stop it: `intr_kind` reads each
+  interrupt's own text for spell, attack or any action, and leaves out those thrown only on a condition the
+  thrower does not choose, `CONDITIONAL`; `intr_range` melee 250, bow, else cast range); attack strip (a prot up, a
+  strip ready and in range, none came); attack pressure (an interrupt able to stop a spell ready on one of their
+  monks in reach of him, none landed on their monks). Every row carries who had what ready.
+  First look on the development set (74 matches, 1,034 attempts, 33% killed; a report, nothing tested): big hits
+  within 1.0 s killed 47%, 1.0 to 2.0 s 27%, over 2.0 s 25% (R-701 reads as he says); a heal ready and nobody
+  healing within 1.5 s, 77% killed, healed 18%; a prot, no chance at all 51%, missed 30%, missed by one and taken by
+  another 16%, taken 32%. Strips and pressure on the monks go with fewer kills and an interrupt missed with fewer
+  than none possible (29% against 50%): both mark the situation (strips come on protted targets; no interrupt
+  possible means interrupters dead or away), so X3 compares only like with like. Busy at every moment: 0 times.
+  Development set: plays identical, only `execution` and the new `attempts` moved; key as before.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
