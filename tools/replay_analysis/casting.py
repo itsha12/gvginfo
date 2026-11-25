@@ -19,8 +19,9 @@ What is read, and from where (read this before changing any of it):
   interrupted  the energy of the casts an interrupt took (context: it is spent too, and bought nothing).
 
 What gvg.report's figures do not hold, to say whenever a figure is shown (found 2026-11-24, over the 564 counted matches):
-  - Aegis is credited with almost no blocks (0.02 a cast, 0.6 points; Guardian 0.83 a cast): where two blocking enchantments are up gvg.report gives the
-    block to the single-target one. So a party-wide block reads as nearly worthless here, which it is not (R-679 names it as the exception).
+  - Aegis (PvP) makes attacks on its target fail and stops hostile spells being cast on him, for 1 to 3 s: the spike save R-679 names as the exception.
+    gvg.report scores almost none of it (0.02 blocks a cast, 0.6 points; Guardian 0.83 blocks a cast): an attack that fails is no block in its record and
+    a spell that could not be cast leaves nothing. So Aegis reads as nearly worthless here, which it is not.
   - Protective Spirit and Aura of Stability prevent nothing in its figures (Protective Spirit caps a hit; Aura of Stability stops a knockdown), so their
     energy counts and only their Divine Favor heal comes back. Knockdowns prevented are kept apart as a count.
   - `uses` is casts started (43,210 against 43,012 in the replays of 47 matches), so the energy here and its figures cover the same casts.
@@ -196,7 +197,7 @@ def report(jobs=2, out=BENCH):
     res = {"matches": len(M), "monk_games": len(R), "placed": len(ok), "min_spent": MIN_SPENT, "cut": CUT, "roles": {}, "pressure": {}, "skills": {}, "won": {}}
     pr(f"Monk casting efficiency (R-666, R-678 to R-680, R-687; R-671): {len(M)} counted matches, {len(R)} backline monk-games, {len(ok)} with {MIN_SPENT} energy spent or more.")
     pr("Useful points are healing that landed (Divine Favor counted) and damage prevented (an attack blocked is 36 in it, gvg.report's worth), for the listed")
-    pr("energy of every cast started. Figures are gvg.report's estimates; Aegis is credited with almost no blocks and Protective Spirit with no prevention.")
+    pr("energy of every cast started. Figures are gvg.report's estimates; they credit Aegis with almost nothing and Protective Spirit with no prevention.")
     def band(rows, key):
         v = [r[key] for r in rows if r.get(key) is not None]
         return None if not v else {"n": len(v), "p20": round(_pct(v, CUT[0]), 3), "p50": round(_pct(v, 50), 3), "p80": round(_pct(v, CUT[1]), 3)}
