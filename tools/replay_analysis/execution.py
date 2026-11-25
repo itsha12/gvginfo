@@ -566,7 +566,7 @@ def deaths(E, atts):
     died (R-714): on the spike that killed him, read from its kill attempt (a prot, a heal, an interrupt on a spike skill), and on a death with no spike
     (under 400 on him inside 3 s: pressure on a player already low), read as the death account reads it, from the start of the burst that killed him (a prot,
     a heal; the interrupt chance is defined on a spike's skills). A kind a team mate took in time is no fault and is not listed against the player who held
-    back (R-715). Beside the faults, what was no chance: a monk busy on a player under pressure (R-711) or out of energy (R-681). The deaths recorded as
+    back (R-715). The record holds what was there; its words are `say_death`. Beside the faults, what was no chance: a monk busy on a player under pressure (R-711) or out of energy (R-681). The deaths recorded as
     the match ends are none (`Moments.over`)."""
     from forensics import is_prot, is_heal
     F, m, T = E.F, E.m, chance_tests()
@@ -606,7 +606,6 @@ def deaths(E, atts):
         d["faults"] = faults
         d["taken"] = sorted(set(taken))
         d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"out_of_energy": True})} for x in other if x["kind"] in FAULT_KINDS]
-        d["said"] = say_death(d)
         out.append(d)
     return sorted(out, key=lambda d: d["t"])
 
@@ -630,15 +629,16 @@ def death_lines(d):
         X = [x for x in d["faults"] if x["kind"] == kind]
         if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])} had {', '.join(nm(k) for k in x['skills'])} ready, in reach, his hands free" for x in X) + "; not cast on him.")
     X = [x for x in d["faults"] if x["kind"] == "interrupt"]
-    if X:
-        said = []
+    if X:                                                  # the spike's skills that went off, then the interrupts that were ready for them, each said once: one interrupt stops one skill
+        went, held = collections.Counter(nm(x["skill"]) for x in X), collections.OrderedDict()
         for x in X:
-            by = collections.OrderedDict()
-            for who_, what in x["by"]: by.setdefault(mine(who_), []).append(nm(what))
-            held = "; ".join(f"{w} had {', '.join(v)}" for w, v in by.items())
-            if x.get("tried"): said.append(f"{nm(x['skill'])} (thrown at and missed: {'; '.join(w + ' with ' + ', '.join(v) for w, v in by.items())}; gvg.report's read: {', '.join(str(v) for v in x['tried'])})")
-            else: said.append(f"{nm(x['skill'])} ({held} ready and in range)")
-        L.append(f"Missed by {d['team']}, {FAULT_SAY['interrupt']} ({len(X)} went off): " + "; ".join(said) + ".")
+            for who_, what in x["by"]:
+                if nm(what) not in held.setdefault(mine(who_), []): held[mine(who_)].append(nm(what))
+        tried = [f"{'; '.join(mine(w) + ' with ' + nm(v) for w, v in x['by'])} at {nm(x['skill'])} (gvg.report's read: {', '.join(str(v) for v in x['tried'])})" for x in X if x.get("tried")]
+        n_i = sum(len(v) for v in held.values())
+        L.append(f"Missed by {d['team']}, {FAULT_SAY['interrupt']}: {len(X)} of the spike's skills went off ({', '.join(k + (f' {v} times' if v > 1 else '') for k, v in went.items())}) with "
+                 + f"{n_i} interrupt{'s' if n_i != 1 else ''} ready and in range: " + "; ".join(f"{w} had {', '.join(v)}" for w, v in held.items()) + "."
+                 + (" Thrown and missed: " + "; ".join(tried) + "." if tried else ""))
     if not d["faults"]: L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
     if d["taken"]: L.append("Done in time by a team mate, so no fault (R-715): " + ", ".join(FAULT_SAY[k] for k in d["taken"]) + ".")
     for x in d["no_chance"]:
@@ -656,7 +656,7 @@ def say_faults(p, x, D, teams):
         L = [D[i] for i in x["deaths"][sd]]
         if not L: return f"{name}: nobody of its players in this play died, so no fault is listed (R-714)."
         n = sum(len(d["faults"]) for d in L)
-        return f"{name}: {len(L)} death{'s' if len(L) != 1 else ''}, {n} missed chance{'s' if n != 1 else ''}. " + " ".join(d["said"] for d in L)
+        return f"{name}: {len(L)} death{'s' if len(L) != 1 else ''}, {n} missed chance{'s' if n != 1 else ''}. " + " ".join(say_death(d) for d in L)
     ctx = []
     for sd, name in (("own", p["team"]), ("their", foe)):
         v = x.get(sd)
@@ -694,7 +694,7 @@ if __name__ == "__main__":
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
         for d in deaths(E_, attempts(E_)):
-            if d["t"] >= frm: print(d["said"] + "\n")
+            if d["t"] >= frm: print(say_death(d) + "\n")
         sys.exit()
     if a[0] == "attempts":                                # python3 execution.py attempts <report id> [m:ss]
         import moments

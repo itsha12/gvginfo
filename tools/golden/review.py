@@ -673,7 +673,7 @@ def execution_rows(path, out, picks):
         groups.sort(key=lambda g: (min(DT[i]["t"] for i in g["deaths"]), g["t0"]))
         for g in groups:
             g["deaths"] = [{"id": f"x:{DT[i]['t']}:{DT[i]['team']}:{DT[i]['who']}", "t": DT[i]["t"], "first": DT[i]["first"], "team": DT[i]["team"], "who": DT[i]["who"], "spike": DT[i]["spike"],
-                            "faults": len(DT[i]["faults"]), "lines": EX.death_lines(DT[i]), "also": others.get(i, []), "text": DT[i]["said"]} for i in g["deaths"]]
+                            "faults": len(DT[i]["faults"]), "lines": EX.death_lines(DT[i]), "also": others.get(i, []), "text": EX.say_death(DT[i])} for i in g["deaths"]]
         games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "deaths": len(DT), "with_faults": sum(1 for d in DT if d["faults"]), "groups": groups})
     commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
     json.dump({"about": "The rows of Model > Game review > Execution (R-713 to R-715): every death of a player in the games picked, with the checked chances his team missed (a prot, a heal, an interrupt on a spike skill: the kinds that passed on unseen matches), none priced or ranked, written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
