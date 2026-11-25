@@ -187,6 +187,8 @@ The full rules, with how each reading is built and the games it is tested agains
   `data/maps/labels/*.json` are copied to the branch before a hall is read. Party slots are in `data/matches/`, not
   in the replays. Never queue two Train batch runs.
 - A backline monk is told by his bar (`common.monk_kind`, R-698), never by his party slot or his role name.
+- A reading built on a gvg.report field is first checked against the raw record on a sample of matches before
+  it is used (R-707; e.g. `casting.py cover`).
 
 ### Index of `docs/ENGINE_NOTES.md` (read the section before changing that reading)
 
@@ -231,6 +233,7 @@ The full rules, with how each reading is built and the games it is tested agains
 - 39. Guild hall maps
 - 42. A backline monk, told by his bar (R-698)
 - 43. Monk casting efficiency (R-689, piece 4)
+- 44. Execution, the build (R-701 to R-713)
 - 40. The TQs
 - 41. The causal map and the old node models
 

@@ -262,6 +262,23 @@ pushing the flagger, the flag route, flag lead, the pre-game flag, the stand-off
 who is on the Guild Lord. Not yet in the records: a threat, the hand-off to hold, a flag pushed while it is held inside its
 team.
 
+## Execution (the micro answer; R-701 to R-713, agreed 2026-11-24)
+Built on `bundle-4` before the close, so it lands in the same rebuild (R-322) and nothing the old engine knew about
+execution is lost when its nodes and the TQ code retire. It takes in the handoff's earlier items on the rest of
+degen (R-649), interrupt attempts (R-639), what each prot did and the recaps (R-636) and who stripped what (R-637).
+What a fault is (R-713): a missed chance, something there to be done that was not done, or done out of time. No
+cost model a fault and no ranking: each kind of fault is checked once, on unseen matches, that teams who take the
+chance do better (a kind that fails, or reads backwards, R-285, is never told as a fault); every missed chance of a
+checked kind is then listed. Execution is read over the whole play, each kill attempt to its own outcome (R-710).
+
+| Stage | What | Done when |
+|---|---|---|
+| X1 Carry over | Into `execution.py`, what the old nodes measured: spike spread (supported in fight outcome and power play), spikes on healers, casts while Dazed, Blind on their frontline apart from defensive Blind, the right hex removed, strip value and strips on the best target, control on a runner (Cripple, knockdowns, pushers, snares near), a split's escapes in a collapse, and the burst inputs of kill conversion (healers in range, a prot on the target, health ceiling, hexes, distance from his group). The old row builders and chains no longer need `tq.py`. The window becomes the whole play (R-710). | every old execution input has a home; development set and key pass; plays unchanged (`compare.py`) |
+| X2 New measures | The spike package (R-708: damage, strip, pressure on his monks; the together window measured); target choice against the job (R-702, R-709; knockdown, interrupt, damage and strip targets); healing available at a death (R-703, R-711: monks in reach, energy over the excuse line, heal or prot off recharge, not busy); res attempts and what stopped them, giving ground, converting an advantage, environment areas (R-712); gvg.report's attempts, prot records and recaps read (R-636 to R-639, checked first, R-707); casting efficiency into the measures and the death accounts (R-704). | each measure checked against the raw record; development set and key pass |
+| X3 Which chances matter | Each kind of missed chance tested on unseen matches against its outcome: the kill attempt (did the spike kill), the death, the numbers advantage converted, the split holding, the run capped or stopped, a held team's losses; against the same role and the same kind of play. | a list of checked kinds, each with its evidence, and the kinds that failed |
+| X4 Said on the row | Each play: own team's missed chances, then the enemy's apart; each with what was there (the skill ready, the monk in reach), the replay time, and nothing ranked. In the death accounts the same. On the Game review as an Execution view. | the sentence reads in his words |
+| X5 Check | He marks execution on two or three graded games (R-713); his marks go in the key; full run, truths, `npcpower.py bench`, forensics benchmark. | his Classic execution rows read as he reads them |
+
 ## Tests
 - **The reading gate: the line-up** (R-368 to R-397). Denning's timestamped commentary on 7 games and Maga's comms on
   9, filed as paraphrased statements (`data/lineup/`; 16 transcripts, 1,121 statements) and checked against the story

@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-24, later night (a new chat): R-701 to R-713, execution planned; casting efficiency on his answers; execution stage X1
+- What the old engine reads of execution and the branch does not, set out to him: spike spread, kill conversion, target choice judged, which faults matter, and `tq.py` under the old nodes.
+- R-701 to R-713 filed (off-timed spikes, wrong target, healing at a death; casting efficiency; the flag lying; the gvg.report check rule in CLAUDE.md; the spike package; the objective from the job; the whole play; a busy monk; R-557's list now; his execution marks, faults as missed chances, no cost model). DEFINITIONS "Execution"; REDESIGN "Execution" (stages X1 to X5); ENGINE_NOTES section 44.
+- `bundle-4`: `casting.py` placed by bar and pressure, Aegis, Protective Spirit and Aura of Stability apart (R-704); report rebuilt.
+- `bundle-4`: stage X1, `execution.py` over the whole play with ten measures carried from the old nodes; `tq.py` no longer under lnrows, eventlayer, causalchain. Development set: plays identical, 323 Classic rows pass.
+
 ## 2026-11-24, night (a new chat): R-697 to R-700; a backline monk told by his bar; casting efficiency (R-689, piece 4)
 - Main after PR #6 and PR #7: R-398 items 3, 4, 5 and 9 marked done in REDESIGN.md, item 6 open (he runs "Update skills from the wiki" between sessions), the close's leftovers listed there; CLAUDE.md's short list gained the rules that lived only in HANDOFF.md (where build notes go, the files written on main and saved by the site, a monk told by his bar); HANDOFF.md's starter message and section references rewritten for `docs/ENGINE_NOTES.md` (sections 42 and 43 new).
 - R-697: Elementalists carry a double high set. R-698: a backline monk is told by his bar, as its own step. R-699: a healing Ritualist stays no monk for energy. R-700: a monk out of energy is mostly a monk who spent it.

@@ -237,7 +237,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   2 minutes has been left (R-586): lying for less it is still the opening's flag; lying for more, or held before the
   gates and carried by nobody for as long, the opening says what was brought up and put down, or that no flag was,
   and the take-up is a run of its own ("sent for the flag left lying since ..."). A later flag left lying is a run
-  from where it is taken up.
+  from where it is taken up. Either run starts when its taker sets off for the flag, going for good (R-706, R-548;
+  not built yet: as built it starts at the take-up).
 - The opening names every player who carried the first flag in the match, in the order they first carried it
   (R-587: "brought up by Mes/A, handed to 8 Monk").
 - What a team reads at the opening (R-590), in his order: how many players the other team has at its main team
@@ -583,3 +584,23 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A Vampiric weapon's upkeep is no damage. Degen credited to nobody is in what a team took and in no player's
   damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
 - The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).
+
+## Execution (R-701 to R-713; the plan is in REDESIGN.md, "Execution")
+- Execution is read for both teams over the whole play (R-710); each kill attempt only up to its own outcome, the
+  death or the save, so it is read before the result (R-299). The enemy's execution is scored, never a fix.
+- A spike is one package: its damage, the strip on its target and the pressure on the target's monks (interrupts,
+  knockdowns, Daze, energy). How close together each part must land is measured, never guessed (R-701, R-708).
+- A wrong target is damage or control that does not serve the play's objective (R-702). The objective is the play's
+  job: to kill is offensive; to hold, survive, defend a split or be held in base is defensive (R-709). Defending,
+  Mesmers interrupt damage and the frontline stops their frontline's damage; killing, monks over warriors.
+- Offensive or defensive Mesmer and midline play is execution, not a decision (R-692).
+- A death account says whether the target was healed at all while monks had energy and skills available (R-703); a
+  monk healing another player under pressure at the time is "busy on" him, not available (R-711).
+- A fault is a missed chance: something there to be done that was not done, or done out of time. Faults are not
+  priced or ranked; each kind is checked once on unseen matches that taking the chance goes with doing better, and
+  every missed chance of a checked kind in a play is listed (R-713, Claude's handling, his to turn round).
+- Monk casting efficiency places a monk by his bar and against monks whose team was hit as hard; Aegis, Protective
+  Spirit and Aura of Stability are counted apart, their energy out of the points (R-704).
+- Also execution: how soon a res is tried and what stops it, giving ground a player down, converting an advantage,
+  environment areas such as Druid's Isle's healing water (R-712, R-557, R-314), and a team held in its base (R-621).
+

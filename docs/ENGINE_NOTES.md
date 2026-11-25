@@ -607,8 +607,8 @@ index pointing here. Read the section for a reading before changing it, and keep
 ### 27. The measurements of R-572: execution, NPC damage, pair rule, split at all, stake
 - The measurements of R-572, on the branch (built 2026-11-23; each is a record or a report and moves no play: after any
   change to them compare the plays with the run before, the key `npc` left out wherever it stands).
-  Execution, both teams by the same measures (2.12, R-299): `execution.py`. For the first `EXEC_S` (20 s, Claude's
-  draft) of every play, the players the play names (`who`), else the team's main team, and the enemy players in the same
+  Execution, both teams by the same measures (2.12, R-299): `execution.py`. Over the whole play (R-710, 2026-11-24;
+  it was the first 20 s before; a hold keeps its first 20 s as `first`, for R-621) of every play, the players the play names (`who`), else the team's main team, and the enemy players in the same
   fight as one of them (`Moments.linked`): `MEASURES`, each with the direction a player expects and its words (damage a
   living player, damage against the roles' usual, the share on their backline monks, the share on the one player hit
   most, spikes, interrupts, knockdowns, disables, cast prevention, degen, kiting, baits, useful and wasted strips, time
@@ -907,7 +907,32 @@ index pointing here. Read the section for a reading before changing it, and keep
   least, 16.4 for the third hit hardest, overhealing 34% against 29%; losers 16.0 against winners' 15.0, overhealing
   26% against 36%. So against the same role alone it rewards being hit: put to him (place by bar, and beside monks
   hit as hard).
-  `role_of` is the role a monk is placed against: his names by slot, and "Monk, another slot" (26 monk-games).
+  Built on his answers (R-704, 2026-11-24): `role_of` is his elite; a bar with fewer than `MIN_GROUP` (40) placed
+  monk-games is pooled as "another bar" (98 monk-games); within a bar he is placed among the third of teams hit about
+  as hard (`team_taken_min`, thirds at 1,991 and 2,563 a minute) where that group holds 40, else within the bar alone,
+  and the sentence says which (`group_of`, `place`). Aegis, Protective Spirit and Aura of Stability (`APART`) are out
+  of `spent` and every figure from it (21,845 casts, 120,570 energy, 5.0% of what monks spend), counted apart
+  (`apart_casts`, `apart_energy`; `spent_all` keeps all). His name by slot is said only (`slot_name`). Middle points a
+  point of energy now: Healing Burst 21.2, Word of Healing 16.9, Blessed Light 15.8, Aura of Faith 15.0, Healer's
+  Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
+  against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
+
+### 44. Execution, the build (R-701 to R-713; plan: REDESIGN.md "Execution")
+- One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
+  What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
+  `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
+  strip value and best target, control on a runner, escapes in a collapse, the burst inputs of kill conversion.
+  `lnrows.py`, `eventlayer.py` and `causalchain.py` imported `tq.py`, which retires at the close.
+- Stage X1, built 2026-11-24 on `bundle-4`: the window is the whole play (R-710; `HOLD_FIRST_S` keeps a hold's first
+  20 s as `first` for R-621, read by `cases.py execution` section D); `MEASURES` gains `spike_spread` (the middle
+  spike's spread of big hits, from the event layer's spikes), `spikes_on_healers` (no direction until X2 reads it
+  against the job, R-709), `dazed_casts`, `blind_front_secs`, `blind_def_secs`, `strip_right`, `strip_value`,
+  `hex_right` (the event layer's records valued against what was in range, `eventlayer.valued`, now applied in
+  `Exec`), `cripple_secs` (control on a runner) and `escapes_ready` (speed and escape skills off recharge at the
+  start). `lnrows.py`, `eventlayer.py` and `causalchain.py` read `events.analysis` and their own values loader, never
+  `tq.py` (`ask.py` and `learning.py`, report layer, still do: rewritten or retired at the close). Development set:
+  6,934 plays identical, only `flag_cost[rid].execution` moved (82 matches); 323 Classic rows pass. Not yet built
+  from the old nodes: the burst inputs of kill conversion, which belong to the attempt record (X2).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
