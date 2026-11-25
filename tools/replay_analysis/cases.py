@@ -3309,7 +3309,7 @@ def exec_report(path, out_json=None):
     C, skipped = exec_cases(D, M, B)
     lines, res = [], {"cases": len(C), "skipped": dict(skipped), "bench": {}, "readings": {}, "hold": {}}
     pr = lambda x="": (lines.append(x), print(x))
-    pr(f"Execution of a play in its first {EX.EXEC_S} s, both teams by the same measures, on {len(M)} matches: {len(C)} plays whose players met somebody"
+    pr(f"Execution of a play over the whole play (R-710), both teams by the same measures, on {len(M)} matches: {len(C)} plays whose players met somebody"
        + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
     bench = res["bench"] = exec_bench(C)
     pr("\nA. The record: the middle of each measure by kind of play, the team making the play / the enemy it meets (blank: under the floor of plays)")
@@ -3346,7 +3346,8 @@ def exec_report(path, out_json=None):
         c["stratum"] = (HELD_NUMBERS[0] if down <= 0 else HELD_NUMBERS[1] if down == 1 else HELD_NUMBERS[2],
                         next((w for lo, hi, w in HOLD_RES if st["res_in"] is not None and lo <= st["res_in"] < hi), "no base res read"),
                         next((w for lo, hi, w in HOLD_NPC if lo <= lost <= hi), HOLD_NPC[-1][2]))
-    pr(f"\nD. A team held in its base (R-621): what it does in the first {EX.EXEC_S} s of the hold against what it then loses, only between holds that start alike")
+    H = [dict(c, x=dict(c["x"], **{k: v for k, v in (c["x"].get("first") or {}).items() if k in ("own", "their", "s")})) for c in H]      # R-621: the first seconds of the hold
+    pr(f"\nD. A team held in its base (R-621): what it does in the first {EX.HOLD_FIRST_S} s of the hold against what it then loses, only between holds that start alike")
     pr(f"   {len(H)} holds in {len({c['rid'] for c in H})} matches. Alike = the same players down, the same stretch of the base res clock and the same pit NPCs already lost;")
     pr("   inside each such group a hold is above or below the group's middle on a measure, and the two halves are compared over all groups together.")
     by = collections.defaultdict(list)

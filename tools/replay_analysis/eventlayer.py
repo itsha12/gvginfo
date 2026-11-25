@@ -192,8 +192,8 @@ def valued(R, V):
 
 def build(rid):
     from forensics import Forensics
-    import tq
-    F = Forensics(rid); m = F.m; a = tq._analysis(rid)
+    import events
+    F = Forensics(rid); m = F.m; a = events.analysis(rid)
     tag = F.tag; heal = F.healers
     from common import line
     cls = lambda b: "healer" if b in heal else ("frontline" if line(m, b) == "frontline" else "midline")
@@ -432,15 +432,15 @@ def _rate(xs):
 def report(ids):
     """What the measures show across matches (descriptive: who won the fight or the match, and outcome rates by
     situation; the node models of step 2 test them as causes on unseen matches)."""
-    import tq
+    import events
     R = {rid: records(rid) for rid in ids}
     win = {}
     for rid in ids:
-        mt = tq._analysis(rid)["meta"]; wid = (mt.get("result") or {}).get("winning_team_id")
+        mt = events.analysis(rid)["meta"]; wid = (mt.get("result") or {}).get("winning_team_id")
         win[rid] = next((t["tag"] for t in mt["teams"] if t["id"] == wid), None)
     fw = {}
     for rid in ids:
-        for i, f in enumerate(tq._analysis(rid).get("fights") or []):
+        for i, f in enumerate(events.analysis(rid).get("fights") or []):
             fw[(rid, i)] = f.get("opponent_won_fight")
     L = [f"# Event-layer measures (step 1), {len(ids)} matches", "",
          "Descriptive only: each measure split by who won the fight (or how a run, split or power play turned out). "

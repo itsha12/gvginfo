@@ -26,8 +26,13 @@ What gvg.report's figures do not hold, to say whenever a figure is shown (found 
     energy counts and only their Divine Favor heal comes back. Knockdowns prevented are kept apart as a count.
   - `uses` is casts started (43,210 against 43,012 in the replays of 47 matches), so the energy here and its figures cover the same casts.
 
-The monk role (R-671) is `role_of`: his names by slot (Prot, 7 Monk, 8 Monk), and "Monk, another slot" for a backline monk outside slots 6 to 8. Put to him
-2026-11-24: whether a role is his slot or what his bar is built on (a slot 6 monk with Healing Burst is a "Prot" by name).
+What a monk is placed against (R-704, his answers of 2026-11-24):
+  (a) by his bar, never his slot: `role_of` is his elite (R-698), and a bar whose elite has fewer than MIN_GROUP placed monk-games over every counted
+      match is placed among "another bar" (every such bar pooled), so no monk is left unplaced for a rare elite;
+  (b) beside monks whose team was hit about as hard: the thirds of `team_taken_min` (damage in hits on his team's players a minute) over every placed
+      monk-game; a monk is placed within his bar and his third where that holds MIN_GROUP or more, else within his bar alone, and the sentence says which;
+  (c) Aegis, Protective Spirit and Aura of Stability (APART): gvg.report credits them with almost nothing, so their energy is out of `spent` and of every
+      share and figure made from it, and their casts are shown apart as counts (`apart_casts`, `apart_energy`). `spent_all` keeps every cast's energy.
 
     from casting import record
     record(m)                        {"monks": {agent: row}}: every backline monk's row (`row` below)
@@ -44,7 +49,10 @@ MIN_SPENT = 100                 # a monk-game is placed, and counts in the usual
 BAIT_S = 1.0                    # an interrupt attempt begun within this many seconds of the end of a cancelled cast was drawn by it (the attempts read "cancel" begin a median 0.1 s after the cast ends, 90% within 0.3 s)
 CUT = (20, 80)                  # percentiles: under and over these a figure is low or high for the role (as the death accounts place a player, forensics.BENCH_CUT)
 BLOCK_WORTH = 36                # gvg.report's worth of a blocked attack, in `prevented` already: a check in `cover`, never added here
-SLOT_ROLE = {6: "Prot", 7: "7 Monk", 8: "8 Monk"}
+SLOT_ROLE = {6: "Prot", 7: "7 Monk", 8: "8 Monk"}     # his name by slot, said in the sentence only (R-704: he is placed by his bar)
+MIN_GROUP = 40                  # placed monk-games a bar (or a bar and a third) needs to be a group of its own; fewer go to "another bar" (bars) or the bar alone (thirds)
+OTHER_BAR = "another bar"
+APART = {"Aegis", "Aegis (PvP)", "Protective Spirit", "Protective Spirit (PvP)", "Aura of Stability"}   # R-704 c: energy out of the points, casts counted apart
 MEASURES = (                    # (key, what a higher figure is: +1 better, -1 worse, 0 no direction, words)
     ("per_energy", +1, "useful points (healing landed and damage prevented) a point of energy"),
     ("over_share", -1, "share of his healing that was overhealing"),
@@ -57,8 +65,18 @@ MEASURES = (                    # (key, what a higher figure is: +1 better, -1 w
 
 
 def role_of(m, a):
-    """The monk role a backline monk is placed against (R-671): his name by slot, or "Monk, another slot"."""
-    return SLOT_ROLE.get(m.A[a].get("slot"), "Monk, another slot")
+    """The bar a backline monk is placed against (R-704 a): his elite, or "no elite seen". Rare bars are pooled at placing (`group_of`)."""
+    return next((r["name"] for r in (skill_row(b, m.sk(b)) for b in m.A[a].get("bar") or [] if b) if r and r.get("elite")), None) or "no elite seen"
+
+
+def group_of(bench, r):
+    """(group, third, key) a row is placed in: his bar, or OTHER_BAR where the bench holds too few of it; and the bar and third where that holds MIN_GROUP."""
+    roles = (bench or {}).get("roles") or {}
+    g = r["group"] if (roles.get(r["group"]) or {}).get("games", 0) >= MIN_GROUP else OTHER_BAR
+    cuts = (bench or {}).get("pressure_cuts")
+    third = None if not cuts else ("hit least" if r["team_taken_min"] < cuts[0] else "the middle third" if r["team_taken_min"] < cuts[1] else "hit hardest")
+    k = f"{g} | {third}"
+    return g, third, (k if third and (roles.get(k) or {}).get("games", 0) >= MIN_GROUP else g)
 
 
 def _cost(sid, name):
@@ -101,8 +119,12 @@ def record(m, rid=None):
         by_end, by_skill = collections.defaultdict(lambda: [0, 0.0]), collections.defaultdict(lambda: [0, 0.0, 0.0, 0.0, 0.0, 0])
         canc = {"n": 0, "energy": 0.0, "baited": 0, "burned": 0}
         used = set()
+        ap = [0, 0.0]
         for _, sid, t0, t1, end, _tg in C[a]:
             c = _cost(sid, m.sk(sid))
+            if m.sk(sid) in APART:                                         # R-704 c: counted apart, out of the points
+                ap[0] += 1; ap[1] += c; by_skill[sid][0] += 1; by_skill[sid][1] += c
+                continue
             by_end[end][0] += 1; by_end[end][1] += c
             by_skill[sid][0] += 1; by_skill[sid][1] += c
             if end == "cancelled":
@@ -113,6 +135,10 @@ def record(m, rid=None):
         healed = over = prevented = 0.0; blocks = kd = 0
         for r in X.o.get("skills", {}).get(str(a), ()):
             if not str(r[0]).startswith("skill:"): continue             # the other rows are degen by condition, which is no cast of his
+            if m.sk(r[1]) in APART:                                        # R-704 c: its credit is out of the points as its energy is
+                s = by_skill[r[1]]; s[2] += (r[7] or 0) + (r[9] or 0); s[3] += (r[8] or 0) + (r[10] or 0); s[4] += r[11] or 0; s[5] += r[5] or 0
+                kd += r[6] or 0
+                continue
             h, o_ = (r[7] or 0) + (r[9] or 0), (r[8] or 0) + (r[10] or 0)
             healed += h; over += o_; prevented += r[11] or 0; blocks += r[5] or 0; kd += r[6] or 0
             s = by_skill[r[1]]; s[2] += h; s[3] += o_; s[4] += r[11] or 0; s[5] += r[5] or 0
@@ -122,7 +148,9 @@ def record(m, rid=None):
         out["monks"][a] = {
             "team": m.tag[m.team(a)], "role": m.roles[a], "group": role_of(m, a), "name": m.nm(a), "won": None if win not in (1, 2) else m.team(a) == win,
             "elite": next((r["name"] for r in (skill_row(b, m.sk(b)) for b in m.A[a].get("bar") or [] if b) if r and r.get("elite")), None),
+            "slot_name": SLOT_ROLE.get(m.A[a].get("slot"), "Monk, another slot"),
             "alive_s": alive, "team_taken_min": round(taken[m.team(a)] / mins), "casts": casts, "spent": round(spent),
+            "apart_casts": ap[0], "apart_energy": round(ap[1]), "spent_all": round(spent + ap[1]),
             "by_end": {k: [v[0], round(v[1])] for k, v in by_end.items()},
             "healed": round(healed), "over": round(over), "prevented": round(prevented), "blocks": blocks, "useful": round(healed + prevented),
             "per_energy": round((healed + prevented) / spent, 2) if ok else None, "over_share": round(over / (healed + over), 3) if healed + over > 0 else None,
@@ -142,20 +170,27 @@ def _pct(v, p):
     return v[lo] + (v[min(lo + 1, len(v) - 1)] - v[lo]) * (i - lo)
 
 
-def place(bench, group, key, x):
-    """low, usual or high for the role (under the 20th percentile, over the 80th), with the role's band; None where there is no usual to place him against (under 20 monk-games)."""
-    b = ((bench.get("roles") or {}).get(group) or {}).get(key)
+def place(bench, r, key):
+    """low, usual or high among the monks he is placed against (`group_of`: his bar, and his team's third of how hard it was hit where that group is
+    large enough), under the 20th percentile or over the 80th; with the band and the group's words. None where there is no usual (under 20 monk-games)."""
+    g, third, k = group_of(bench, r)
+    b = (((bench or {}).get("roles") or {}).get(k) or {}).get(key)
+    x = r.get(key)
     if x is None or not b or b["n"] < 20: return None
-    return ("low" if x < b["p20"] else "high" if x > b["p80"] else "usual"), b
+    words = f"monks on {g}" + ({"hit least": " whose team was among the third hit least", "the middle third": " whose team was hit about as hard (the middle third)",
+                                "hit hardest": " whose team was among the third hit hardest"}[third] if k != g else " (too few of them hit as hard as his team to place him by that too)")
+    return ("low" if x < b["p20"] else "high" if x > b["p80"] else "usual"), b, words
 
 
 def say(r, bench=None):
     """A monk's row in sentences (R-329: nothing in shorthand)."""
     def placed(key, fmt):
-        p = place(bench or {}, r["group"], key, r.get(key))
-        return "" if not p else f" ({p[0]} for {'an' if r['group'][0] == '8' else 'a'} {r['group']}: three in five of them lie between {fmt(p[1]['p20'])} and {fmt(p[1]['p80'])})"
+        p = place(bench or {}, r, key)
+        return "" if not p else f" ({p[0]} among {p[2]}: three in five of them lie between {fmt(p[1]['p20'])} and {fmt(p[1]['p80'])})"
     f2, pc = (lambda x: f"{x:.1f}"), (lambda x: f"{100 * x:.0f}%")
     s = [f"{r['team']} {r['role']} ({r['name']}, {r['elite'] or 'no elite seen'}): {r['casts']} casts started for {r['spent']} energy."]
+    if r.get("apart_casts"): s[0] += (f" Apart, {r['apart_casts']} casts of Aegis, Protective Spirit or Aura of Stability for {r['apart_energy']} energy, out of every figure"
+                                      f" below: gvg.report credits them with almost nothing (R-704).")
     if r["per_energy"] is None: return s[0] + f" Under {MIN_SPENT} energy spent: not placed."
     s.append(f"{r['healed']:,} healing landed and {r['prevented']:,} damage prevented ({r['blocks']} attacks blocked, at {BLOCK_WORTH} each, among it): "
              f"{f2(r['per_energy'])} useful points a point of energy{placed('per_energy', f2)}.")
@@ -197,7 +232,8 @@ def report(jobs=2, out=BENCH):
     res = {"matches": len(M), "monk_games": len(R), "placed": len(ok), "min_spent": MIN_SPENT, "cut": CUT, "roles": {}, "pressure": {}, "skills": {}, "won": {}}
     pr(f"Monk casting efficiency (R-666, R-678 to R-680, R-687; R-671): {len(M)} counted matches, {len(R)} backline monk-games, {len(ok)} with {MIN_SPENT} energy spent or more.")
     pr("Useful points are healing that landed (Divine Favor counted) and damage prevented (an attack blocked is 36 in it, gvg.report's worth), for the listed")
-    pr("energy of every cast started. Figures are gvg.report's estimates; they credit Aegis with almost nothing and Protective Spirit with no prevention.")
+    pr("energy of every cast started. Figures are gvg.report's estimates. Aegis, Protective Spirit and Aura of Stability, which it credits with almost nothing,")
+    pr("are out of every figure and counted apart (R-704 c).")
     def band(rows, key):
         v = [r[key] for r in rows if r.get(key) is not None]
         return None if not v else {"n": len(v), "p20": round(_pct(v, CUT[0]), 3), "p50": round(_pct(v, 50), 3), "p80": round(_pct(v, CUT[1]), 3)}
@@ -213,12 +249,20 @@ def report(jobs=2, out=BENCH):
                 f = (lambda x: f"{100 * x:.0f}%") if k.endswith("share") else (lambda x: f"{x:.1f}")
                 return f"{f(b['p50']) + ' (' + f(b['p20']) + ' to ' + f(b['p80']) + ')':>22}"
             pr(f"   {g:30} {len(rows):6} " + " ".join(cell(k) for k, _, _ in MEASURES))
-    groups = ["Prot", "7 Monk", "8 Monk", "Monk, another slot"]
-    table("A. By monk role (the middle monk-game, and the band three in five of them lie in, the 20th to the 80th percentile): what a monk is placed against", [(g, [r for r in ok if r["group"] == g]) for g in groups] + [("every backline monk", ok)], res["roles"])
-    el = collections.Counter(r["elite"] for r in ok)
-    table("B. By elite (the bars with 40 monk-games or more)", [(e or "no elite seen", [r for r in ok if r["elite"] == e]) for e, n in el.most_common() if n >= 40], res.setdefault("elites", {}))
     t3 = [_pct([r["team_taken_min"] for r in ok], p) for p in (33.3, 66.7)]
     res["pressure_cuts"] = [round(x) for x in t3]
+    gn = collections.Counter(r["group"] for r in ok)
+    bars = [g for g, n in gn.most_common() if n >= MIN_GROUP]
+    of_bar = lambda r: r["group"] if r["group"] in bars else OTHER_BAR
+    thirds = ("hit least", "the middle third", "hit hardest")
+    third_of = lambda r: thirds[0] if r["team_taken_min"] < t3[0] else thirds[1] if r["team_taken_min"] < t3[1] else thirds[2]
+    table(f"A. By bar, his elite (R-704 a; bars with fewer than {MIN_GROUP} placed monk-games pooled as '{OTHER_BAR}'): the middle monk-game, and the band three in five lie in",
+          [(g, [r for r in ok if of_bar(r) == g]) for g in bars + [OTHER_BAR]] + [("every backline monk", ok)], res["roles"])
+    table(f"A2. By bar and how hard his team was hit (R-704 b; thirds at {t3[0]:.0f} and {t3[1]:.0f} damage in hits a minute): what a monk is placed against where the group holds {MIN_GROUP}",
+          [(f"{g} | {t}", [r for r in ok if of_bar(r) == g and third_of(r) == t]) for g in bars + [OTHER_BAR] for t in thirds], res["roles"])
+    for k in [k for k, v in res["roles"].items() if " | " in k and v["games"] < MIN_GROUP]: del res["roles"][k]
+    sn = ["Prot", "7 Monk", "8 Monk", "Monk, another slot"]
+    table("B. By his name by slot (said only, never placed by it: R-704 a)", [(g, [r for r in ok if r.get("slot_name") == g]) for g in sn], res.setdefault("slots", {}))
     table(f"C. By how hard his team was hit (damage in hits on its players a minute; thirds at {t3[0]:.0f} and {t3[1]:.0f}): a team hit harder gives its monks more to heal",
           [("hit least", [r for r in ok if r["team_taken_min"] < t3[0]]), ("the middle third", [r for r in ok if t3[0] <= r["team_taken_min"] < t3[1]]), ("hit hardest", [r for r in ok if r["team_taken_min"] >= t3[1]])], res["pressure"])
     table("D. Winners beside losers (no cause is read from it: the losing side is hit harder and heals more)", [("won", [r for r in ok if r["won"]]), ("lost", [r for r in ok if r["won"] is False])], res["won"])
@@ -243,6 +287,10 @@ def report(jobs=2, out=BENCH):
     ie = sum((r["by_end"].get("interrupted") or [0, 0])[1] for r in R)
     res["interrupted_share_of_energy"] = round(ie / max(sum(r["spent"] for r in R), 1), 4)
     pr(f"   Casts an interrupt took: {100 * res['interrupted_share_of_energy']:.1f}% of the energy spent.")
+    res["apart"] = {"casts": sum(r.get("apart_casts", 0) for r in R), "energy": sum(r.get("apart_energy", 0) for r in R),
+                    "share_of_energy": round(sum(r.get("apart_energy", 0) for r in R) / max(sum(r.get("spent_all", r["spent"]) for r in R), 1), 4)}
+    pr(f"   Counted apart (R-704 c): {res['apart']['casts']:,} casts of Aegis, Protective Spirit and Aura of Stability, {res['apart']['energy']:,} energy, "
+       f"{100 * res['apart']['share_of_energy']:.1f}% of all the monks spent.")
     res["rows"] = {rid: rows for rid, rows in M.items()}
     if out:
         with open(out, "w") as fh: json.dump(res, fh, ensure_ascii=False, separators=(",", ":"))

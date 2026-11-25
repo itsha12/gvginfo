@@ -27,12 +27,12 @@ def _blind_secs(blinds, t0, t1):
 
 def _ctx(rid):
     """What every node's rows need from one match."""
-    import tq, eventlayer as EL
+    import events, eventlayer as EL      # events.analysis, not tq's wrapper of it: tq.py retires at the close
     from replaylib import Match
     from state import GameState, d
     from strength import strength_gap
     from buildfeat import matchup
-    a = tq._analysis(rid); R = EL.records(rid)
+    a = events.analysis(rid); R = EL.records(rid)
     st = GameState(Match.from_branch(rid)); m = st.m
     tags = [t["tag"] for t in a["meta"]["teams"]]
     tm_of = {m.tag[k]: k for k in (1, 2)}

@@ -1,12 +1,13 @@
 """Execution of a play, read the same way for both teams (REDESIGN 2.12; R-299, R-572, R-621).
 
-How a play was carried out in its first seconds, for the team that makes the play ("own") and for the players it meets
+How a play was carried out over the whole play (R-710), for the team that makes the play ("own") and for the players it meets
 ("their"), each side by the same measures, so that the enemy's execution is scored as ours is (R-299) and is never
 offered as a fix. A record kept beside the plays (`flag_cost[rid].execution`, one entry a play id): it tells no play
 and changes none.
 
-The window is the play's first EXEC_S seconds (or the whole play where it is shorter; nothing under EXEC_MIN_S): a
-fixed early stretch, read before the result (SPEC 5, rule 1). Who is read: the players the play names (`who`, a split
+The window is the whole play, from its start to its end (R-710; before it, the first 20 s); nothing under EXEC_MIN_S. A
+team held in its base is read on the first HOLD_FIRST_S of the hold as well (`first`, R-621). Each kill attempt is to
+be read to its own outcome (stage X2), so execution stays read before the result (R-299). Who is read: the players the play names (`who`, a split
 or its defence), else the team's main team at the second the play is told; against them, every enemy player in the
 same fight as one of them in the window (`Moments.linked`, the one reading of who is in which fight, R-464). A play
 whose players meet nobody has `n[1]` 0 and its measures say only what it did on its own (a run, a stand-off).
@@ -25,14 +26,21 @@ not casting (`Forensics.sets_damage`).
 Energy taken from their players (R-685, R-692: whom a Mesmer drains, their monks or their midline, is execution and no
 decision): `energy.denial`, the points taken by Energy Surge, Energy Burn, Mind Wrack, Power Leak, Shame, Guilt and
 Malaise, and the share of them taken from their backline monks.
-Not read here: what a prot did (R-636, at the rebuild); how well a monk spends his energy (R-678, piece 4).
+Carried from the old engine's execution nodes (stage X1, REDESIGN.md "Execution"): spike spread and spikes on healers
+(the event layer's spikes), casts while Dazed (`Forensics.casting`), Blind on their frontline and defensive Blind, the
+right strip and the worth stripped, the right hex removed (the event layer, valued against what was in range,
+`eventlayer.valued`), time their players spent Crippled (control on a runner), and the share of our speed and escape
+skills off recharge as the play starts (a split's escapes at a collapse).
+Not read here yet (stage X2): what a prot did (R-636); how well a monk spends his energy (R-704); the spike package (R-708).
 
 Usage:  python3 execution.py <report id> [m:ss]     the execution record of a match's plays (from the second given)"""
 import bisect, collections, sys
 from common import SPIKE_BURST, backline_monk
 
-EXEC_S = 20                 # the stretch of a play its execution is read on: the first 20 s, as the call is read 20 s in (R-556, R-567); Claude's draft
 EXEC_MIN_S = 6              # a play shorter than this has no execution read
+HOLD_FIRST_S = 20           # a team held in its base is also read on the first seconds of the hold, against what it then loses (R-621), kept as "first"
+# The stretch a play's execution is read on is the whole play, from its start to its end (R-710: "Read it over the whole play"), not its first 20 s.
+# Each kill attempt is read to its own outcome in the attempt record (REDESIGN.md "Execution", stage X2), which keeps execution read before the result (R-299).
 EXEC_STEP = 2               # who meets whom is read every other second, as the fights are
 
 MEASURES = (
@@ -62,6 +70,17 @@ MEASURES = (
     ("off_shield", -1, "share of the damage taken that landed on a player off his shield set and not casting (players who carry a shield set)"),
     ("drain", +1, "energy taken from their players (Energy Surge, Energy Burn, Mind Wrack, Power Leak, Shame, Guilt, Malaise), points a 10 s"),
     ("drain_on_monks", 0, "share of that energy taken from their backline monks (offence or defence: no direction, R-692)"),
+    # carried from the old engine's execution nodes (REDESIGN.md "Execution", stage X1; learnednodes.EXPECTED, R-290), so nothing it measured is lost
+    ("spike_spread", -1, "how far apart the big hits of a spike landed, seconds, the middle spike (off-timed spikes, R-701)"),
+    ("spikes_on_healers", 0, "share of the spikes on their healers (offence or defence: read against the play's job, R-709)"),
+    ("dazed_casts", -1, "casts started while Dazed, a 10 s"),
+    ("blind_front_secs", +1, "seconds their frontline spent Blind, a 10 s"),
+    ("blind_def_secs", +1, "seconds Blind on players who had just hit our healers (defensive Blind), a 10 s"),
+    ("strip_right", +1, "share of the strips that took the most valuable enchantment in range"),
+    ("strip_value", +1, "worth of the enchantments stripped (their measured output a second), a 10 s"),
+    ("hex_right", +1, "share of the hex removals that took the most costly hex in range off our players"),
+    ("cripple_secs", +1, "seconds their players spent Crippled, a 10 s (on a flag runner, the control the old run node read)"),
+    ("escapes_ready", +1, "share of the speed and escape skills on our bars off recharge as the play starts"),
 )
 KEYS = tuple(k for k, _, _ in MEASURES)
 SIGN = {k: s for k, s, _ in MEASURES}
@@ -113,6 +132,21 @@ class Exec:
         self.blind = collections.defaultdict(list)             # player -> [(from, to)] Blind on him
         for e in m.o.get("effects") or []:
             if e[2] == "c" and e[7] == "blind" and e[0] is not None and e[5] in pl: self.blind[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
+        self.crip = collections.defaultdict(list)              # player -> [(from, to)] Crippled
+        for e in m.o.get("effects") or []:
+            if e[2] == "c" and e[7] == "crippled" and e[0] is not None and e[5] in pl: self.crip[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
+        from common import skill_row
+        self.speed = {}                                        # player -> [(skill id, recharge)] his speed and escape skills (Increased Movement Speed)
+        for a in m.PL:
+            L = []
+            for sid in m.A[a].get("bar") or []:
+                r = skill_row(sid, m.sk(sid)) if sid else None
+                if r and "Increased Movement Speed" in (r.get("causes") or []): L.append((sid, float(r.get("recharge") or 0)))
+            self.speed[a] = L
+        self.cf = collections.defaultdict(list)                # (player, skill) -> the seconds a cast of it finished
+        for r in m.o["ev"]:
+            if r[0] is not None and r[1] == "cf" and r[2] in pl and len(r) > 4: self.cf[(r[2], r[4])].append(r[0] / 10)
+        EL.valued(self.R, self.V)                              # each strip and hex removal against the best it had in range (step 2a)
         self.att = collections.defaultdict(list)               # player -> the seconds he attacked
         for r in m.o["ev"]:
             if r[0] is not None and r[1] == "at" and r[2] in pl: self.att[r[2]].append(r[0] / 10)
@@ -160,6 +194,15 @@ class Exec:
         blind_att = sum(1 for a in X for t in self.att[a][bisect.bisect_left(self.att[a], t0):bisect.bisect_left(self.att[a], t1)] if any(s0 <= t <= s1 for s0, s1 in self.blind.get(a, ())))
         dn = [(b, e) for t, a, b, e in self.den if t0 <= t < t1 and a in X and b in Y]
         dn_tot = sum(e for _, e in dn)
+        import statistics
+        sp = [r for r in R.get("spikes", ()) if t0 <= r["t"] < t1 and r["team"] == tag and r["target"] in yr]
+        cs = [F.casting(a, t0, t1)["measures"] for a in X]
+        st_ = [r for r in R.get("strips", ()) if t0 <= r["t"] < t1 and r["team"] == tag and r["by"] in xr]
+        st_a = [r for r in st_ if r.get("available")]
+        hr = [r for r in R.get("hex_removals", ()) if t0 <= r["t"] < t1 and r["team"] == tag and r["by"] in xr and r.get("available")]
+        bl = [b for b in R.get("blinds", ()) if b["team"] == tag and b["target"] in yr]
+        esc = [(a, sid, rc) for a in X for sid, rc in self.speed.get(a, ())]
+        ready = sum(1 for a, sid, rc in esc if not any(t0 - rc < u <= t0 for u in self.cf.get((a, sid), ())))
         out = {
             "dmg": p10(tot),
             "dmg_v_usual": round(hit_tot / usual, 2) if usual > 0 else None,
@@ -182,11 +225,21 @@ class Exec:
             "hex_removed": g10(sum(1 for h in R.get("hex_removals", ()) if t0 <= h["t"] < t1 and h["team"] == tag and h["by"] in xr and h.get("removed"))),
             "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X) + sum(n for t, a, b, n in self._cut(self.dg_npc, t0, t1) if a in X)),
             "npc_heal": g10(sum(n for t, a, b, n in self._cut(self.hl_npc, t0, t1) if a in X)),
-            "into_ready": g10(sum(F.casting(a, t0, t1)["measures"]["into_ready_interrupt"] for a in X)),
+            "into_ready": g10(sum(c["into_ready_interrupt"] for c in cs)),
             "blind_attacks": g10(blind_att),
             "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
             "drain": g10(dn_tot),
             "drain_on_monks": round(sum(e for b, e in dn if b in self.monk) / dn_tot, 2) if dn_tot else None,
+            "spike_spread": round(statistics.median(r["spread_s"] for r in sp), 2) if sp else None,
+            "spikes_on_healers": round(sum(1 for r in sp if r["target_class"] == "healer") / len(sp), 2) if sp else None,
+            "dazed_casts": g10(sum(c.get("while_dazed", 0) for c in cs)),
+            "blind_front_secs": g10(sum(ov(b["t"], b["end"]) for b in bl if b["target_class"] == "frontline")),
+            "blind_def_secs": g10(sum(ov(b["t"], b["end"]) for b in bl if b.get("defensive"))),
+            "strip_right": round(sum(1 for r in st_a if r.get("right_target")) / len(st_a), 2) if st_a else None,
+            "strip_value": g10(sum(r.get("value") or 0 for r in st_)),
+            "hex_right": round(sum(1 for r in hr if r.get("right_hex")) / len(hr), 2) if hr else None,
+            "cripple_secs": g10(sum(ov(s0, s1) for b in Y for s0, s1 in self.crip.get(b, ()))),
+            "escapes_ready": round(ready / len(esc), 2) if esc else None,
         }
         return out
 
@@ -194,7 +247,7 @@ class Exec:
         """The players a play's execution is read for, and the enemy players they meet in its window: (X, Y, t0, t1), or None where the play is too short."""
         M, m = self.M, self.m
         tm, t0 = p["tm"], int(p["t0"])
-        t1 = min(int(p["t1"]), t0 + EXEC_S, M.T)
+        t1 = min(int(p["t1"]), M.T)                              # the whole play (R-710)
         if t1 - t0 < EXEC_MIN_S: return None
         X = [self.agent[(m.tag[tm], r)] for r in (p.get("who") or ()) if (m.tag[tm], r) in self.agent]
         if not X: X = [a for a in M.main_team(tm, t0) if M.AL[a][t0]] or [a for a in M.st.players[tm] if M.AL[a][t0]]
@@ -212,7 +265,11 @@ class Exec:
         X, Y, t0, t1 = w
         own = self.side(X, Y, t0, t1)
         if own is None: return None
-        return {"s": t1 - t0, "n": [len(X), len(Y)], "own": own, "their": self.side(Y, X, t0, t1) if Y else None}
+        out = {"s": t1 - t0, "n": [len(X), len(Y)], "own": own, "their": self.side(Y, X, t0, t1) if Y else None}
+        if p.get("play") == "pinned" and t1 - t0 > HOLD_FIRST_S:          # R-621: the first seconds of a hold read against what the team then loses
+            f1 = t0 + HOLD_FIRST_S
+            out["first"] = {"s": HOLD_FIRST_S, "own": self.side(X, Y, t0, f1), "their": self.side(Y, X, t0, f1) if Y else None}
+        return out
 
 
 def record(M, rid, plays):
@@ -241,7 +298,7 @@ if __name__ == "__main__":
         if p["t0"] < frm: continue
         r = E.play(p)
         if r is None: continue
-        print(f"\n{p['t0'] // 60}:{p['t0'] % 60:02d} {p['play']} ({p['team']}), {r['n'][0]} against {r['n'][1]}, first {r['s']} s: {p['scenario'][:110]}")
+        print(f"\n{p['t0'] // 60}:{p['t0'] % 60:02d} {p['play']} ({p['team']}), {r['n'][0]} against {r['n'][1]}, over {r['s']} s: {p['scenario'][:110]}")
         for k in KEYS:
             o, t = r["own"].get(k), (r["their"] or {}).get(k)
             if o or t: print(f"    {k:22} own {'' if o is None else o:>7}   their {'' if t is None else t:>7}   {WORDS[k]}")

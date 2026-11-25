@@ -134,10 +134,10 @@ def loser_deaths():
     """Measured: deaths of the losing side in a fight (median over every trained fight), the carry size of a fight."""
     global _LOSER
     if _LOSER is None:
-        import tq
+        import events
         L = []
         for rid in _ids():
-            try: a = tq._analysis(rid)
+            try: a = events.analysis(rid)
             except Exception: continue
             for f in a.get("fights") or []:
                 n = sum((f.get("losses") or {}).values())
@@ -157,9 +157,16 @@ def flag_points(rid, team, t, seconds):
     return round(wp.explain(r2)[0] - p0, 1)
 
 
-def _value(name):
-    import tq
-    return tq.value(name)
+_VAL = None
+def _value(name, default=None):
+    """Win points of a result (values.py, in data/model/values.json); kept here, not in tq.py, which retires at the close."""
+    global _VAL
+    if _VAL is None:
+        import json, os
+        from common import REPO
+        try: _VAL = json.load(open(os.path.join(REPO, "data", "model", "values.json")))
+        except (OSError, ValueError): _VAL = {}
+    return ((_VAL.get("values") or {}).get(name) or {}).get("result", default)
 
 
 class Chain:
@@ -178,8 +185,8 @@ class Chain:
         return self
 
     def _last_reset(self, t):
-        import tq
-        a = tq._analysis(self.rid)
+        import events
+        a = events.analysis(self.rid)
         rs = [r["t"] for r in a["scoreboard"] if r["t"] < t - 20 and all(r[x]["alive"] == 8 for x in r if isinstance(r.get(x), dict) and "alive" in r[x])
               and abs(r[self.team]["flag_lead"]) <= 10]
         return max(rs) if rs else 0
