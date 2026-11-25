@@ -887,11 +887,15 @@ index pointing here. Read the section for a reading before changing it, and keep
   and nothing is added; of 1,219 interrupt attempts read as missed on a cancel, 741 match a cancelled cast in the
   replay (the rest fall on a cast another interrupt took). The 39,976 targeted attempts of the counted matches: 25,412
   hit; missed, 7,926 the cast finished first, 2,650 "random", 2,592 a cancel, 1,063 "likely", 333 "ineligible".
-  What gvg.report's figures do not hold, to say with every figure: Aegis is credited with almost no blocks (122 in
-  6,753 casts; Guardian 52,931 in 63,095), since a block under two blocking enchantments goes to the single-target
-  one, so a party-wide block reads as nearly worthless (2.8 points a point of energy against Guardian's 10.8);
+  What gvg.report's figures do not hold, to say with every figure: Aegis (PvP: for 1 to 3 s attacks on its
+  target fail and no hostile spell can be cast on him, the spike save R-679 names as the exception) is credited with
+  almost nothing (122 blocks in 6,753 casts; Guardian 52,931 in 63,095), since a failed attack is no block in its
+  record and a spell that could not be cast leaves nothing, so it reads as nearly worthless (2.8 points a point of
+  energy against Guardian's 10.8);
   Protective Spirit prevents nothing in its figures (1.6) and Aura of Stability only heals through Divine Favor
-  (4.5); Healer's Covenant cuts a cost the listed cost does not know. Put to him.
+  (4.5); Healer's Covenant cuts a cost the listed cost does not know. Nor do the recaps measure Aegis: 211 of 4,054
+  survived spikes and 101 of 9,144 deaths had an Aegis up, but a spike it stops outright leaves no recap. Put to him
+  (recommended: the energy of the three out of the points, their casts shown apart as counts).
   Found over 3,116 monk-games with 100 energy or more (`MIN_SPENT`, a draft): the middle monk makes 15.6 useful
   points a point of energy (three in five between 11.7 and 20.6), overheals 31% of his healing (20% to 42%), spends
   61 energy a minute alive, 1.7% of it on cancelled casts and 2.8% on casts an interrupt took; 741 of 10,782

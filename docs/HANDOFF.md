@@ -16,7 +16,7 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
   (set f1); no more matches until the engine is ready (R-570); nothing waits for his marks.
 - Main, 2026-11-24: PR #6 (clean-up: R-398 items 3, 4, 5 and 9 done, REDESIGN.md's list marked) and PR #7 (CLAUDE.md
   slimmed; the engine's build notes are `docs/ENGINE_NOTES.md`, sections 1 to 43, and are recorded there from now on).
-- On the branch at 2bebbc6 (stage E, step 2): the reader, flag returns, the Lord record, degen as damage, and
+- On the branch at 318f689 (stage E, step 2): the reader, flag returns, the Lord record, degen as damage, and
   energy in his order, all four pieces (ENGINE_NOTES sections 8 and 43). Built this session: a backline monk told by
   his bar (R-698, section 42: `common.monk_kind`, his elite tells) and piece (4), monk casting efficiency
   (`casting.py`, section 43; report `data/model/casting_cases.json`; no play reads it).
@@ -50,8 +50,8 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
    sender's side: raise them when more matches are trained. The execution list (R-557).
 1. Put to him 2026-11-24, night, no answer yet (casting efficiency): (a) a monk's role, by slot or by what his bar
    is built on (recommended: his elite); (b) placed beside monks whose team was hit as hard (recommended: yes);
-   (c) Aegis, credited with almost no blocks by gvg.report: leave it, or estimate its blocks from the attacks that
-   landed under it; (d) Protective Spirit and Aura of Stability, which prevent nothing in gvg.report's figures.
+   (c) Aegis, Protective Spirit and Aura of Stability, credited with almost nothing by gvg.report: recommended,
+   their energy out of the points and their casts shown apart as counts (a spike Aegis stops leaves no recap).
 2. Skills from the wiki (R-398 item 6): he runs the site's "Update skills from the wiki" button between sessions;
    the next session reads `data/wiki_changes.json`.
 3. The NPC damage table with degen (R-659) was shown to him 2026-11-24; no word on it yet.
