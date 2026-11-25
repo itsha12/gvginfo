@@ -453,10 +453,11 @@ def attempts(E):
                 ready = [f"{F.name(f)} {F.sname(sid)}" for f in theirs for sid, sd in _role_skills(F, f, is_intr)
                          if can_stop(sd, sd_c) and (F.dist(f, c[0], c[2]) or 1e9) <= intr_range(F, f, sd, c[2]) and _ready(F, f, sid, sd, c[2])]
                 tried = [r for r in E.ia if r[2] == c[0] and r[1] in theirs and c[2] - 0.5 <= r[0] <= (c[3] or c[2] + 1)]
-                if c[4] == "interrupted": missed.append({"kind": "interrupt", "side": "defence", "taken": True, "skill": F.sname(c[1]), "chance": False})
+                at = round(c[2] - first, 1)          # when the spike skill's cast started, from the first big hit (X3 compares taken and missed over the same seconds)
+                if c[4] == "interrupted": missed.append({"kind": "interrupt", "side": "defence", "taken": True, "skill": F.sname(c[1]), "at": at, "chance": False})
                 elif tried: missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": [F.name(r[1]) + " " + F.sname(r[5]) for r in tried][:3],
-                                           "tried": [r[4] for r in tried], "chance": True})        # thrown and missed: a chance not taken all the same, with gvg.report's read of why
-                elif ready and c[4] == "finished": missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": ready[:3], "chance": True})
+                                           "tried": [r[4] for r in tried], "at": at, "chance": True})        # thrown and missed: a chance not taken all the same, with gvg.report's read of why
+                elif ready and c[4] == "finished": missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": ready[:3], "at": at, "chance": True})
             # attack: a strip on a prot, pressure on their monks
             if prots_up and not strips:
                 ready = [f"{F.name(a)} {F.sname(sid)}" for a in mine for sid, sd in _role_skills(F, a, is_strip) if near(a, first) and _ready(F, a, sid, sd, first)]
@@ -478,9 +479,11 @@ def attempts(E):
             out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "state": target_state, "target_class": "healer" if tgt in E.healer else "other",
                         "dmg": round(dmg), "killed": bool(died and end < t + ATT_AFTER_S), "s": round(end - first, 1), "attackers": [m.roles[a] for a in att],
                         "spread": ld["spread_s"], "in_1s": ld["in_1s"],
-                        "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips)},
+                        "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips),
+                                  "at": sorted([round(r["t"] - first, 1), bool(r.get("prot"))] for r in strips)},
                         "pressure": {"interrupts": len(pr_i), "knockdowns": len(pr_k), "dazed": len(pr_d),
-                                     "lead": round(min(pr_i + pr_k) - first, 1) if pr_i or pr_k else None},
+                                     "lead": round(min(pr_i + pr_k) - first, 1) if pr_i or pr_k else None,
+                                     "interrupts_at": sorted(round(x - first, 1) for x in pr_i), "knockdowns_at": sorted(round(x - first, 1) for x in pr_k)},
                         "prots_up": prots_up, "prots_cast": [[F.sname(c[1]), round(c[2] - first, 1), c[4]] for c in prot_cast],
                         "heals_cast": [[F.sname(c[1]), round(c[2] - first, 1), c[4]] for c in heal_cast],
                         "missed": missed})

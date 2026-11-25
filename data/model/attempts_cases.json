@@ -1,0 +1,436 @@
+{
+ "attempts": 5317,
+ "matches": 486,
+ "tables": {
+  "A": {
+   "within 1.0 s": [
+    755,
+    1812
+   ],
+   "1.0 to 2.0 s": [
+    619,
+    1858
+   ],
+   "over 2.0 s": [
+    462,
+    1647
+   ]
+  },
+  "B": {
+   "no strip": [
+    1176,
+    3070
+   ],
+   "a strip before the first big hit": [
+    128,
+    343
+   ],
+   "a strip at or after it": [
+    532,
+    1904
+   ],
+   "prots up at the first hit, no strip": [
+    83,
+    266
+   ],
+   "prots up at the first hit, a prot stripped": [
+    122,
+    455
+   ]
+  },
+  "C": {
+   "none": [
+    1366,
+    3825
+   ],
+   "some, before the first big hit": [
+    208,
+    532
+   ],
+   "some, at or after it": [
+    262,
+    960
+   ]
+  },
+  "D-prot": {
+   "missed (and not taken by anyone else)": [
+    791,
+    2419
+   ],
+   "missed by one, taken by another": [
+    162,
+    954
+   ],
+   "taken, nobody missed it": [
+    175,
+    626
+   ],
+   "no chance either way": [
+    708,
+    1318
+   ]
+  },
+  "D-heal": {
+   "missed (and not taken by anyone else)": [
+    597,
+    964
+   ],
+   "missed by one, taken by another": [
+    299,
+    1334
+   ],
+   "taken, nobody missed it": [
+    418,
+    2036
+   ],
+   "no chance either way": [
+    522,
+    983
+   ]
+  },
+  "D-interrupt": {
+   "missed (and not taken by anyone else)": [
+    1019,
+    3280
+   ],
+   "missed by one, taken by another": [
+    86,
+    505
+   ],
+   "taken, nobody missed it": [
+    6,
+    41
+   ],
+   "no chance either way": [
+    725,
+    1491
+   ]
+  },
+  "D-strip": {
+   "missed (and not taken by anyone else)": [
+    29,
+    83
+   ],
+   "taken, nobody missed it": [
+    122,
+    455
+   ],
+   "no chance either way": [
+    1685,
+    4779
+   ]
+  },
+  "D-pressure": {
+   "missed (and not taken by anyone else)": [
+    586,
+    1633
+   ],
+   "taken, nobody missed it": [
+    267,
+    927
+   ],
+   "no chance either way": [
+    983,
+    2757
+   ]
+  },
+  "E": {
+   "0": [
+    396,
+    673
+   ],
+   "1": [
+    170,
+    476
+   ],
+   "2": [
+    175,
+    530
+   ],
+   "3+": [
+    1095,
+    3638
+   ]
+  },
+  "F": {
+   "0": [
+    1235,
+    3644
+   ],
+   "1": [
+    587,
+    1630
+   ],
+   "2+": [
+    14,
+    43
+   ]
+  }
+ },
+ "busy": 2,
+ "out_of_energy": 47,
+ "x3": {
+  "prot": {
+   "side": "defence",
+   "words": "a prot ready on a monk in reach who was not busy, not cast on the target",
+   "verdict": "passes",
+   "taken": [
+    1580,
+    21.32911392405063
+   ],
+   "missed": [
+    2419,
+    32.69946258784622
+   ],
+   "difference": -10.854503436822604,
+   "range": [
+    -13.085164230811591,
+    -8.348601519143735
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "late": [
+    0,
+    NaN
+   ]
+  },
+  "heal": {
+   "side": "defence",
+   "words": "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome",
+   "verdict": "passes",
+   "taken": [
+    3370,
+    21.275964391691396
+   ],
+   "missed": [
+    964,
+    61.92946058091287
+   ],
+   "difference": -42.95384912240381,
+   "range": [
+    -46.09551451558159,
+    -39.974081425617854
+   ],
+   "groups_right": [
+    10,
+    10
+   ],
+   "late": [
+    0,
+    NaN
+   ]
+  },
+  "interrupt": {
+   "side": "defence",
+   "words": "a spike skill cast with an interrupt of ours ready and in range, and it went off",
+   "verdict": "passes",
+   "taken": [
+    36,
+    13.88888888888889
+   ],
+   "missed": [
+    3648,
+    29.577850877192986
+   ],
+   "difference": -17.84677094495611,
+   "range": [
+    -28.41160402141253,
+    -6.3862576283232775
+   ],
+   "groups_right": [
+    8,
+    9
+   ],
+   "late": [
+    0,
+    NaN
+   ]
+  },
+  "strip": {
+   "side": "attack",
+   "words": "a prot on the target with a strip of ours ready and in range, and none came",
+   "verdict": "reads backwards",
+   "taken": [
+    388,
+    27.835051546391753
+   ],
+   "missed": [
+    83,
+    34.93975903614458
+   ],
+   "difference": -8.827859104024839,
+   "range": [
+    -17.850228628872188,
+    -0.672499274742514
+   ],
+   "groups_right": [
+    3,
+    10
+   ],
+   "late": [
+    174,
+    23.563218390804597
+   ]
+  },
+  "pressure": {
+   "side": "attack",
+   "words": "an interrupt of ours ready on one of their monks in reach of the target, and none landed on their monks",
+   "verdict": "fails",
+   "taken": [
+    490,
+    38.57142857142858
+   ],
+   "missed": [
+    1633,
+    35.88487446417636
+   ],
+   "difference": -2.4648466891874774,
+   "range": [
+    -6.52051173218238,
+    1.9795417742812762
+   ],
+   "groups_right": [
+    3,
+    10
+   ],
+   "late": [
+    437,
+    17.84897025171625
+   ]
+  }
+ },
+ "together": {
+  "strip": {
+   "against": 83,
+   "rows": [
+    [
+     -3.0,
+     -1.5,
+     15,
+     null
+    ],
+    [
+     -1.5,
+     -0.5,
+     9,
+     null
+    ],
+    [
+     -0.5,
+     0.0,
+     2,
+     null
+    ],
+    [
+     0.0,
+     0.5,
+     264,
+     -8.194013672508902,
+     -16.602887964654474,
+     0.4609338970479451
+    ],
+    [
+     0.5,
+     1.0,
+     41,
+     -14.598869017012403,
+     -25.373069104599974,
+     -2.6883792811218954
+    ],
+    [
+     1.0,
+     1.5,
+     50,
+     -7.122774051948467,
+     -19.91947966268179,
+     6.350262338750543
+    ],
+    [
+     1.5,
+     3.0,
+     53,
+     -11.51110972927796,
+     -22.586976063419193,
+     -0.40009853178969174
+    ],
+    [
+     3.0,
+     8.1,
+     21,
+     null
+    ]
+   ]
+  },
+  "pressure": {
+   "against": 1633,
+   "rows": [
+    [
+     -3.0,
+     -1.5,
+     114,
+     -4.860208894858298,
+     -10.98523850297165,
+     1.3613817801945425
+    ],
+    [
+     -1.5,
+     -0.5,
+     86,
+     -2.4666162779812124,
+     -10.923531376814289,
+     6.414487588039914
+    ],
+    [
+     -0.5,
+     0.0,
+     39,
+     4.402622171187475,
+     -7.975329329504181,
+     19.05739264721883
+    ],
+    [
+     0.0,
+     0.5,
+     96,
+     -5.521302582334642,
+     -12.699253770853602,
+     2.221742690792187
+    ],
+    [
+     0.5,
+     1.0,
+     76,
+     -4.7252631426165905,
+     -11.917111014664924,
+     2.156152234629044
+    ],
+    [
+     1.0,
+     1.5,
+     69,
+     5.944914433920451,
+     -2.2138587816771556,
+     16.044157155994693
+    ],
+    [
+     1.5,
+     3.0,
+     174,
+     -8.076332804826118,
+     -14.134151521347114,
+     -1.9475226653378792
+    ],
+    [
+     3.0,
+     8.1,
+     273,
+     -28.806343185204675,
+     -32.09325871253116,
+     -25.320987409989417
+    ]
+   ]
+  }
+ }
+}

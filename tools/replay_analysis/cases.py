@@ -3336,6 +3336,7 @@ def exec_report(path, out_json=None):
         a, b = _exec_table(pr, o["their"], X, "their", EX.KEYS, outcomes, lambda k: -EX.SIGN[k]); made += a; clear += b
     res["count"] = {"readings": made, "clear": clear, "by chance": round(made * 0.1)}
     pr(f"\n   {made} readings were made and {clear} are clear; about {round(made * 0.1)} would be by chance alone at a 90% range. One clear line is a place to look, not a finding.")
+    x3_measures(C, pr, res, outcomes)
     # ---- D: a team held in its base (R-621)
     H = [c for c in C if c["kind"] == "held in its base"]
     for c in H:
@@ -3769,6 +3770,207 @@ def excuse_report(path, out_json=None):
     return res
 
 
+# ---- stage X3: which missed chances and which measures matter (REDESIGN.md "Execution"; R-713, R-285, R-708, R-714, R-715; ENGINE_NOTES section 44)
+X3_BUT = 1          # the bar: the 90% range over whole matches clear of no difference, and the right sign in every group of matches but this many (cache.fold_of);
+                    # set on 2026-11-24 against the same test on shuffled records: 49 measures pass, 1, 3 and 4 in three shuffles (about 6% by chance)
+X3_LEADS = ((-3.0, -1.5), (-1.5, -0.5), (-0.5, 0.0), (0.0, 0.5), (0.5, 1.0), (1.0, 1.5), (1.5, 3.0), (3.0, 8.1))     # R-708: when a part of the package landed
+
+
+def _x3_situation(r):
+    """The kill attempt's situation at the first big hit, nothing after it (a prot or heal cast changes the damage that lands, so the damage is not here):
+    who the target is, prots on him, his health and its ceiling, his healers in range, hexes, distance from his group, how many attack him."""
+    z = r.get("state") or {}
+    hp = z.get("health_pct")
+    return [1.0 if r["target_class"] == "healer" else 0.0, min(len(r["prots_up"]), 2), (hp if hp is not None else 100) / 100.0, 1.0 if hp is None else 0.0,
+            z.get("ceiling", 1.0), min(z.get("healers_in_range", 0), 4), min(z.get("hexes", 0), 3), 1.0 if z.get("from_group") else 0.0,
+            math.log1p(z.get("from_group") or 0) / 7.0, min(len(r["attackers"]), 5)]
+
+
+def _x3_expected(A):
+    """Each attempt's expected kill from its situation alone, by a model fitted without its group of matches (`_exp`): like with like on unseen matches."""
+    from sklearn.linear_model import LogisticRegression
+    from cache import fold_of, FOLDS
+    X = np.array([_x3_situation(r) for r in A]); y = np.array([r["killed"] for r in A], dtype=float); g = np.array([fold_of(r["rid"]) for r in A])
+    e = np.zeros(len(A))
+    for k in range(FOLDS):
+        te = g == k
+        if te.any(): e[te] = LogisticRegression(max_iter=2000).fit(X[~te], y[~te]).predict_proba(X[te])[:, 1]
+    for r, v in zip(A, e): r["_exp"] = float(v)
+
+
+def _x3_diff(T, Mi, n=400):
+    """Taken against missed in killed less expected, points, with its 90% range over whole matches, and the groups of matches in which each sign fell."""
+    from cache import fold_of
+    by = collections.defaultdict(lambda: [[], []])
+    for i, L in enumerate((T, Mi)):
+        for r in L: by[r["rid"]][i].append(r["killed"] - r["_exp"])
+    rids = sorted(by); rng = np.random.default_rng(7)
+    def d(R):
+        a = [v for x in R for v in by[x][0]]; b = [v for x in R for v in by[x][1]]
+        return 100 * (np.mean(a) - np.mean(b)) if a and b else None
+    bs = [x for x in (d(list(rng.choice(rids, len(rids)))) for _ in range(n)) if x is not None]
+    fold = collections.defaultdict(list)
+    for x in rids: fold[fold_of(x)].append(x)
+    signs = [v for v in (d(R) for R in fold.values()) if v is not None]
+    return d(rids), float(np.percentile(bs, 5)), float(np.percentile(bs, 95)), signs
+
+
+def _x3_word(d, lo, hi, signs, want):
+    """passes, reads backwards (R-285: never a fault), or fails; want is +1 or -1."""
+    if lo * want > 0 and hi * want > 0 and sum(1 for s in signs if s * want > 0) >= len(signs) - X3_BUT: return "passes"
+    if lo * want < 0 and hi * want < 0: return "reads backwards"
+    return "fails"
+
+
+def x3_kinds():
+    """Each kind of missed chance: (taken, missed, late), each a test on an attempt, all read over the same seconds (from 3 s before the first big hit to CHANCE_S
+    after it, the seconds a monk's chance is looked for): a spike that kills ends at the death and one that fails is read for 8 s, so anything counted to the
+    end of the attempt piles up on the spikes that failed. Taken by anyone in time is taken (R-715). Late: done, but only after those seconds (out of time, R-713)."""
+    from execution import CHANCE_S as CH
+    ints = lambda r: [x for x in r["missed"] if x["kind"] == "interrupt" and x.get("at", 0) <= CH]
+    out = {}
+    for kind, key in (("prot", "prots_cast"), ("heal", "heals_cast")):
+        tk = (lambda key: lambda r: any(d <= CH for _, d, _o in r[key]))(key)
+        has = (lambda kind: lambda r: any(x["kind"] == kind and x.get("chance") for x in r["missed"]))(kind)
+        out[kind] = (tk, (lambda tk, has: lambda r: has(r) and not tk(r))(tk, has), lambda r: False)
+    mi = lambda r: any(x.get("chance") for x in ints(r))
+    out["interrupt"] = (lambda r: any(x.get("taken") for x in ints(r)) and not mi(r), mi, lambda r: False)
+    st = lambda r: bool(r["prots_up"]) and any(prot and a <= CH for a, prot in r["strip"].get("at", []))
+    out["strip"] = (st, lambda r: not st(r) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"]),
+                    lambda r: bool(r["prots_up"]) and r["strip"]["n"] > 0 and not st(r))
+    pt = lambda r: any(a <= CH for a in r["pressure"].get("interrupts_at", []))
+    out["pressure"] = (pt, lambda r: not pt(r) and any(x["kind"] == "pressure" and x.get("chance") for x in r["missed"]),
+                       lambda r: r["pressure"]["interrupts"] > 0 and not pt(r))
+    return out
+
+
+def x3_attempts(A, pr, res):
+    """Stage X3 for the missed chances (R-713): among the attempts where a kind of chance was there for a side, taken against missed in what the spike did,
+    like with like on unseen matches. A kind that passes may be told as a fault (stage X4, with R-714 for which misses are listed); one that fails or reads
+    backwards (R-285) is never one."""
+    import execution as EX
+    if any("interrupts_at" not in r["pressure"] for r in A): raise ValueError("the kill attempts carry no times: run moments.py all again on this engine (R-460)")
+    _x3_expected(A)
+    pr(f"\nG. Stage X3: each kind of missed chance tested on unseen matches (R-713). Among the attempts where the chance was there for that side, those where it was")
+    pr("   taken (by anyone in time, R-715) against those where it was missed, all within the first 1.5 s; like with like = killed less the kill expected from the")
+    pr("   situation at the first big hit (target, prots on him, health and ceiling, healers in range, hexes, distance from his group, attackers), the expectation fitted")
+    pr(f"   without the attempt's group of matches. Passes: the 90% range over whole matches clear, and the right sign in every group of matches but {X3_BUT}.")
+    pr(f"   {'':10} {'side':8} {'taken':>16} {'missed':>16} {'like with like, points':>30} {'groups':>7}  verdict          late (apart)")
+    raw = lambda L: 100 * float(np.mean([r["killed"] for r in L])) if L else float("nan")
+    res["x3"] = {}
+    for kind, side, words in EX.MISSED_KINDS:
+        tk, mi, late = x3_kinds()[kind]
+        T = [r for r in A if tk(r)]; Mi = [r for r in A if mi(r)]; L = [r for r in A if late(r)]
+        want = -1 if side == "defence" else +1
+        if len(T) < MIN_PLAYS or len(Mi) < MIN_PLAYS:
+            res["x3"][kind] = {"verdict": "too few", "n": [len(T), len(Mi)]}; pr(f"   {kind:10} {side:8} too few ({len(T)} taken, {len(Mi)} missed)"); continue
+        d, lo, hi, signs = _x3_diff(T, Mi)
+        w = _x3_word(d, lo, hi, signs, want)
+        right = sum(1 for s in signs if s * want > 0)
+        res["x3"][kind] = {"side": side, "words": words, "verdict": w, "taken": [len(T), raw(T)], "missed": [len(Mi), raw(Mi)], "difference": d, "range": [lo, hi],
+                           "groups_right": [right, len(signs)], "late": [len(L), raw(L)]}
+        pr(f"   {kind:10} {side:8} {len(T):5} {raw(T):5.1f}% killed {len(Mi):5} {raw(Mi):5.1f}% {d:+8.1f} ({lo:+6.1f} to {hi:+6.1f})       {right:2}/{len(signs):<2}  {w:16} "
+           + (f"{len(L)}, {raw(L):.1f}% killed" if L else ""))
+    ok = [k for k, v in res["x3"].items() if v["verdict"] == "passes"]
+    pr(f"   Checked kinds that may be told as faults: {', '.join(ok) or 'none'}; not faults: {', '.join(k for k in res['x3'] if k not in ok) or 'none'}.")
+
+
+def x3_together(A, pr, res):
+    """R-708: how close together the parts of the package must land, measured: by when the strip (of a prot) and the first interrupt on his monks landed against the
+    first big hit, killed less expected against the attempts where that part was ready and not done at all (needs `_x3_expected` first)."""
+    pr("\nH. The spike package together (R-708): by when the part landed against the first big hit, killed less expected against the same attempts with the part ready")
+    pr("   and not done (points, 90% range over whole matches); blank under the floor of attempts")
+    res["together"] = {}
+    for part in ("strip", "pressure"):
+        if part == "strip":
+            first = lambda r: min((a for a, prot in r["strip"].get("at", []) if prot), default=None) if r["prots_up"] else None
+            none = [r for r in A if r["prots_up"] and not r["strip"]["n"] and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"])]
+        else:
+            first = lambda r: min(r["pressure"].get("interrupts_at") or [None], key=lambda v: 99 if v is None else v)
+            none = [r for r in A if not r["pressure"]["interrupts"] and any(x["kind"] == "pressure" and x.get("chance") for x in r["missed"])]
+        o = res["together"][part] = {"against": len(none), "rows": []}
+        pr(f"   {'the strip of a prot' if part == 'strip' else 'the first interrupt on his monks'}, against {len(none)} attempts with it ready and not done")
+        for lo_, hi_ in X3_LEADS:
+            T = [r for r in A if first(r) is not None and lo_ <= first(r) < hi_]
+            if len(T) < MIN_PLAYS or len(none) < MIN_PLAYS: o["rows"].append([lo_, hi_, len(T), None]); pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}"); continue
+            d, lo, hi, _ = _x3_diff(T, none)
+            o["rows"].append([lo_, hi_, len(T), d, lo, hi])
+            pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}   {d:+6.1f} ({lo:+.1f} to {hi:+.1f}){'' if lo <= 0 <= hi else '  clear'}")
+
+
+def _x3_split(X, side, key):
+    """The upper and lower third of a measure on unseen matches: the thirds cut on the other groups of matches, each play placed by its own group's cuts."""
+    from cache import fold_of, FOLDS
+    V = [(c["x"][side][key], c) for c in X if c["x"][side].get(key) is not None]
+    if len(V) < 3 * MIN_PLAYS: return None
+    a, b = [], []
+    for k in range(FOLDS):
+        tr = sorted(v for v, c in V if fold_of(c["rid"]) != k); te = [(v, c) for v, c in V if fold_of(c["rid"]) == k]
+        if not tr or not te or tr[0] == tr[-1]: continue
+        lo, hi = tr[len(tr) // 3], tr[(2 * len(tr)) // 3]
+        if lo != hi: a += [c for v, c in te if v >= hi]; b += [c for v, c in te if v <= lo]
+        elif lo == tr[0]: a += [c for v, c in te if v > lo]; b += [c for v, c in te if v <= lo]          # mostly nothing: any against none
+        else: a += [c for v, c in te if v >= lo]; b += [c for v, c in te if v < lo]
+    return (a, b) if len(a) >= MIN_PLAYS and len(b) >= MIN_PLAYS else None
+
+
+def _x3_measure(a, b, want, y):
+    """One measure's verdict: the difference in y (upper third less lower), its range, the groups' signs, and the same comparison on the 60 s before."""
+    from cache import fold_of
+    ia = {id(c) for c in a}
+    for c in a + b: c["_y"] = y(c)
+    d, lo, hi, na, nb = _num_range(a + b, lambda c: id(c) in ia, lambda c: True)
+    signs = []
+    for k in sorted({fold_of(c["rid"]) for c in a + b}):
+        A_ = [c["_y"] for c in a if fold_of(c["rid"]) == k]; B_ = [c["_y"] for c in b if fold_of(c["rid"]) == k]
+        if A_ and B_: signs.append(np.mean(A_) - np.mean(B_))
+    pa, pb = [c for c in a if c["pre"] is not None], [c for c in b if c["pre"] is not None]
+    for c in pa + pb: c["_y"] = c["pre"]
+    ipa = {id(c) for c in pa}
+    pre = _num_range(pa + pb, lambda c: id(c) in ipa, lambda c: True)[:3] if len(pa) >= MIN_PLAYS and len(pb) >= MIN_PLAYS else (None, None, None)
+    w = _x3_word(d, lo, hi, signs, want) if want else "no direction"
+    if w == "passes" and pre[0] is not None and not (pre[1] <= 0 <= pre[2]) and abs(pre[0]) >= abs(d) / 2: w = "marks the situation"
+    return {"difference": float(d), "range": [float(lo), float(hi)], "n": [len(a), len(b)], "groups_right": [sum(1 for s in signs if want and s * want > 0), len(signs)],
+            "before": None if pre[0] is None else float(pre[0]), "verdict": w}
+
+
+def x3_measures(C, pr, res, outcomes, shuffles=3):
+    """Stage X3 for the execution measures: each with a direction, for each kind of play and each side, upper third against lower on unseen matches (`_x3_split`)
+    against each outcome; the same test on records shuffled among plays of the same kind gives how many pass by chance alone."""
+    import execution as EX, random
+    def run(C_, keep):
+        n = collections.Counter()
+        for kind, _ in EXEC_KINDS:
+            X = [c for c in C_ if c["kind"] == kind]
+            for side, sg in (("own", 1), ("their", -1)):
+                for k in EX.KEYS:
+                    sp = _x3_split(X, side, k)
+                    for name, y, _u in outcomes:
+                        if sp is None: n["too few"] += 1; continue
+                        v = _x3_measure(*sp, sg * EX.SIGN[k], y); n[v["verdict"]] += 1
+                        if keep is not None: keep.setdefault(kind, {}).setdefault(side, {}).setdefault(k, {})[name] = v
+        return n
+    o = res["x3"] = {"readings": {}}
+    real = o["count"] = dict(run(C, o["readings"]))
+    chance = []
+    for s in range(1, shuffles + 1):
+        rng, S = random.Random(s), []
+        for kind, _ in EXEC_KINDS:
+            X = [dict(c) for c in C if c["kind"] == kind]; xs = [c["x"] for c in X]; rng.shuffle(xs)
+            S += [dict(c, x=x) for c, x in zip(X, xs)]
+        chance.append(run(S, None).get("passes", 0))
+    o["by chance"] = chance
+    pr(f"\nC. Stage X3: each measure tested on unseen matches (R-713, R-285). The thirds of a measure are cut on the other groups of matches and each play placed by them;")
+    pr(f"   passes = the 90% range over whole matches clear, the right sign in every group but {X3_BUT}, and not told as well by the 60 s before (marks the situation).")
+    pr(f"   Readings: " + "; ".join(f"{k} {v}" for k, v in sorted(real.items())) + f". The same test on records shuffled among plays of the same kind: "
+       + ", ".join(str(x) for x in chance) + " pass by chance alone.")
+    for kind in o["readings"]:
+        for side in ("own", "their"):
+            P_ = [(k, nm, v) for k, by in o["readings"][kind].get(side, {}).items() for nm, v in by.items() if v["verdict"] == "passes"]
+            if P_: pr(f"   {kind}, {'the team making the play' if side == 'own' else 'the enemy it meets'}: "
+                      + "; ".join(f"{k} ({nm} {v['difference']:+.2f}, {v['groups_right'][0]}/{v['groups_right'][1]})" for k, nm, v in P_))
+
+
 def attempts_report(path, out_json=None):
     """The kill attempts (stage X2, R-708, R-713): every spike of both teams read to its own outcome, how often it killed by how its package landed and by
     each kind of missed chance. A first look for stage X3, which tests each kind on unseen matches: nothing here is a finding, a fault or advice."""
@@ -3817,6 +4019,7 @@ def attempts_report(path, out_json=None):
     busy = sum(1 for r in A for x in r["missed"] if x.get("busy_on")); oe = sum(1 for r in A for x in r["missed"] if x.get("out_of_energy"))
     pr(f"\nNot counted as chances: {busy:,} times a monk with a prot or heal ready was busy on another player under pressure (R-711); {oe:,} times he was out of energy (R-681).")
     res["busy"], res["out_of_energy"] = busy, oe
+    x3_attempts(A, pr, res); x3_together(A, pr, res)
     if out_json:
         with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
         pr(f"written: {out_json}")
