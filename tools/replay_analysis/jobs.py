@@ -35,7 +35,7 @@ import collections, json, os, statistics, sys
 from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, END_LOOK_FROM, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
-from common import line as _line, RETURN_R
+from common import line as _line, RETURN_R, backline_monk
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
 _BENCH = None
@@ -636,7 +636,7 @@ def split_plays(M, K):
     role, hall = m.roles, M.hall
     A = [x for x in M.attempts() if x["kind"] == "split" and x.get("solo") != "other"]
     pushed = {id(x) for x in A if any(_push_not_split(M, x, p) for p in M.flag_pushes())}      # players who came for a flagger on his run and left when the flag had gone: the push on the flagger, told there (the record still ends the attempt before it)
-    is_monk = lambda a: m.A[a].get("p") == "Monk" and not role[a].startswith("Monk ") and "WoC" not in role[a]      # a backline monk; a smiter (the WoC monks, whatever their slot) is damage (R-457; TFS v 옷옷옷옷 4:06)
+    is_monk = lambda a: backline_monk(m, a)      # a backline monk, told by his bar (R-698); a smiter, whatever his slot, is damage (R-457; TFS v 옷옷옷옷 4:06)
     for x in A:
         if id(x) in pushed: continue
         tm, foe, an = x["tm"], 3 - x["tm"], x["answer"]
@@ -1276,7 +1276,7 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         scen = x["scenario"]["label"] + f"; {x['team']}: {x['call']['label'].lower()}"
         bes = lambda b: {"deaths": [dA(b), dB(b)], "npcs": [K.npcs(tm, t, b), K.npcs(foe, t, b)], "flag_lead": [K.lead(tm, t), K.lead(tm, b)], "lasted_s": e["last"] - e["start"]}
         back, push = c in ("retreat down the ladder", "fall out"), c in ("push up", "push in", "push their flagger")
-        monk = lambda a: M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a]
+        monk = lambda a: backline_monk(M.m, a)
         dmg_own, monks_their = sum(1 for a in e["ids"][tm] if not monk(a)), sum(1 for a in e["ids"][foe] if monk(a))
         kill_on = can_kill(dmg_own, monks_their)                          # R-457 in the main fight too (his marks, hdm v hook 4:12, 6:52: "2 damage v 2 monks again")
         kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"], numbers_end=int(e["last"]))
@@ -1456,7 +1456,7 @@ def _res_stand(M, tm, ids, u):
     out["taken_all"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
     mt = set(M.main_team(tm, u))
     out["of_main"] = sum(1 for a in in_ if a in mt)
-    out["monks"] = sum(1 for a in in_ if M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a])      # backline monks among them (a smiter is damage, R-457)
+    out["monks"] = sum(1 for a in in_ if backline_monk(M.m, a))      # backline monks among them (a smiter is damage, R-457)
     out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
     # The danger spot (R-610, his three factors: "Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before. I think
     # this is the danger spot"): half or more of the players in their base past the shrine, two or more enemy NPCs hitting them, and RES_WORN or more damage a

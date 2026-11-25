@@ -15,10 +15,10 @@ SPIKE = SPIKE_REACT       # a burst a monk should react to (monk profiles)
 
 
 def _monks(st, tm):
-    """The healing backline: monks in slots 6 to 8 and any other monk without Word of Censure (smiters are damage)."""
+    """The healing backline: the backline monks, told by their bars (`common.monk_kind`, R-698; smiters are damage)."""
     m = st.m
-    return [a for a in st.players[tm] if m.A[a].get("p") == "Monk" and (m.A[a].get("slot") in (6, 7, 8)
-            or not any(m.sk(b) == "Word of Censure" for b in m.A[a].get("bar", []) if b))]
+    from common import backline_monk
+    return [a for a in st.players[tm] if backline_monk(m, a)]
 
 
 def _casts(st):

@@ -29,7 +29,7 @@ Not read here: what a prot did (R-636, at the rebuild); how well a monk spends h
 
 Usage:  python3 execution.py <report id> [m:ss]     the execution record of a match's plays (from the second given)"""
 import bisect, collections, sys
-from common import SPIKE_BURST
+from common import SPIKE_BURST, backline_monk
 
 EXEC_S = 20                 # the stretch of a play its execution is read on: the first 20 s, as the call is read 20 s in (R-556, R-567); Claude's draft
 EXEC_MIN_S = 6              # a play shorter than this has no execution read
@@ -84,6 +84,7 @@ class Exec:
             cl = "healer" if healer(m, a) else ("frontline" if line(m, a) == "frontline" else "midline")
             self.usual[a] = EL.usual_dps(self.V, m.roles.get(a), cl) or 0.0
         self.healer = {a for a in m.PL if healer(m, a)}
+        self.monk = {a for a in m.PL if backline_monk(m, a)}       # the backline monks alone, by their bars (R-698): a healing Ritualist is no monk for energy (R-699)
         self.agent = {(m.tag[m.team(a)], m.roles[a]): a for a in m.PL}
         pl = set(m.PL)
         self.dm, self.dm_npc, self.hl_npc = [], [], []
@@ -185,7 +186,7 @@ class Exec:
             "blind_attacks": g10(blind_att),
             "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
             "drain": g10(dn_tot),
-            "drain_on_monks": round(sum(e for b, e in dn if b in self.healer) / dn_tot, 2) if dn_tot else None,
+            "drain_on_monks": round(sum(e for b, e in dn if b in self.monk) / dn_tot, 2) if dn_tot else None,
         }
         return out
 

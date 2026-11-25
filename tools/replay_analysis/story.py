@@ -22,6 +22,7 @@ Report layer: reads the measurement layers (moments.py, hallmap.py) and writes t
 Usage:  python3 story.py <report id> [from m:ss] [to m:ss]
 In code: story(Moments(st)) -> [(second, text)], in time order."""
 import collections, re, sys
+from common import backline_roles
 from common import (JOIN_S, OVERCAP_S, RES_EVERY, BOOST_EVERY, ON_TIME_S, LATE_S, PRESSURE_HP, PRESSURE_DEATH_S, PRESSURE_MIN, GROUND_MIN, GROUND_MOVE,
                     SPAWN_R, FIGHT_LINK, STANDOFF_HITS)
 from state import d
@@ -159,7 +160,7 @@ def _attempt_events(M):
         way = f" by the {x['way']}" if x["way"] else ""
         if x["kind"] == "split":
             size = NUM.get(len(starters), len(starters)) + (f" (up to {NUM.get(x['max'], x['max'])})" if x["max"] > len(starters) else "")
-            monks = sum(1 for q in x["members"] if q["role"] in starters and q["prof"] == "Monk" and not q["role"].startswith("Monk "))      # of those who set out
+            monks = sum(1 for q in x["members"] if q["role"] in starters and q["role"] in backline_roles(m, x["tm"]))      # of those who set out
             head = f"{tag} splits {size}{way}" + (" from the opening" if x["opening"] else "") + f" ({who}; {mk(monks)})"
             if x["carried_flag"]: head += ", taking the flag with it"
             out.append((x["t0"], head))

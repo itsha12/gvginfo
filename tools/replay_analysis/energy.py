@@ -52,6 +52,7 @@ read across the range of energy at that decision (R-669).
     python3 energy.py cover           coverage, and the checks of the record over every counted match (does it read as a player knows)
 """
 import bisect, collections
+import common
 
 TOP = 72                        # a double high set (R-667): 40 on a staff, 42 on a 40/40 set, 62 in single high, 72 in double high
 OUT_MONK = 20                   # a monk under this is out, for the excuse (R-681: "Anything less than 20e in my mind would likely be not the monk's fault")
@@ -63,9 +64,8 @@ SET_ELSE = 30                   # a shield set (25 to 35 by its weapon), a marti
 
 
 def backline_monk(m, a):
-    """A backline monk, as `jobs.plays` tells one (R-457): a Monk in a monk's slot who does not smite."""
-    r = m.roles.get(a) or ""
-    return m.A[a].get("p") == "Monk" and not r.startswith("Monk ") and "WoC" not in r
+    """A backline monk (R-457), told by his bar and never by his slot (R-698): `common.monk_kind` is the one reading."""
+    return common.backline_monk(m, a)
 
 
 class Energy:

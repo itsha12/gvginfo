@@ -23,7 +23,7 @@ import collections, math, statistics, sys
 from replaylib import Match
 from state import GameState, d
 from scoreboard import Scoreboard, LATE
-from common import RES_EVERY, PIT_R, line
+from common import RES_EVERY, PIT_R, line, backline_monk
 
 THEATRE_R = 2000       # players within this of each other (either team) are in one theatre
 MIN_PHASE = 8          # seconds a new setup must last to start a phase
@@ -31,9 +31,9 @@ BLIND = {"blind"}; WEAK = {"weakness", "weakness_or_cracked_armor"}; DAZE = {"da
 
 
 def healer(m, a):
-    """A healing monk (slots 6 to 8, or any monk without Word of Censure) or a healing ritualist in the 8 slot."""
-    p = m.A[a].get("p"); bar = {m.sk(b) for b in m.A[a].get("bar", []) if b}
-    if p == "Monk": return "Word of Censure" not in bar or m.A[a].get("slot") in (6, 7, 8)
+    """A backline monk, told by his bar (`common.monk_kind`, R-698), or a healing ritualist in the 8 slot."""
+    p = m.A[a].get("p")
+    if p == "Monk": return backline_monk(m, a)
     return p == "Ritualist" and m.A[a].get("slot") == 8
 
 

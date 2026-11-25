@@ -386,8 +386,8 @@ def _build(node, rid, V):
                     size=r["size"], minute=round(te / 60, 1), strength_gap=gaps[fg])
             elif node == "split_effect":
                 if s_.get("entered_base") is None: continue
-                from common import line as LINE
-                heal = sum(1 for x in s_["members"] if "Monk" in x or x in ("Prot",))
+                from common import line as LINE, backline_roles
+                heal = sum(1 for x in s_["members"] if x in backline_roles(st.m, tm_of[tg]))        # backline monks on the split, by their bars (R-698)
                 se = _row(sb, s_["entered_base"])
                 add(tg, s_["start"], int(r["pit_kills"] > 0), latency=latency, defenders=r["defenders"], size=r["size"],
                     main_diff=r["main_diff"], split_healers=heal, def_npc_value=se[fg].get("npc_value"),

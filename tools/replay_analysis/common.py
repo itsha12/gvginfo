@@ -292,11 +292,59 @@ def is_hold(st, c):
     return pr is not None and pr < HOLD_PROGRESS
 
 
+_ROW = None
+def skill_row(sid, name=""):
+    """The skill data's row for a skill on a bar, by its in-game id first, else by its name as the replay spells it (the replays write "Shield Guardian PvP" and
+    "Protectors Defense PvP" where the skill data has "Shield Guardian (PvP)" and "Protector's Defense (PvP)"); None where the skill data has neither."""
+    global _ROW
+    if _ROW is None:
+        plain = lambda n: "".join(ch for ch in n.replace(" (PvP)", " PvP") if ch.isalnum() or ch == " ").lower()
+        _ROW = {"plain": plain}
+        for x in _skills():
+            _ROW[x["id"]] = x
+            for n in {plain(x["name"]), plain(x["name"].replace(" (PvP)", ""))}:
+                if n not in _ROW or "(PvP)" in x["name"]: _ROW[n] = x
+    return _ROW.get(sid) or (_ROW.get(_ROW["plain"](name)) if name else None)
+
+
+MONK_LINES = ("Healing Prayers", "Protection Prayers", "Divine Favor")       # the attributes of a monk who heals and protects
+SMITE_LINE = "Smiting Prayers"
+def monk_kind(m, a):
+    """What a Monk is, told by his bar (R-698): "backline" (he heals and protects) or "smite" (a smiter is damage, R-457, and midline for energy, R-670); None for
+    any other profession. The one reading every count of monks asks: never tell a backline monk by his party slot or by his role name (until 2026-11-24 a heal or
+    prot monk in slot 1 to 5 was read as a smiter in a dozen places, and a Word of Censure monk in slot 6 to 8 as a backline monk in half of them).
+    His elite tells: a Smiting Prayers elite (Word of Censure, Ray of Judgment) makes a smite monk whatever else he carries, any other Monk elite a backline monk.
+    Where the observer saw no Monk elite on his bar, the skills it saw tell: more Smiting Prayers skills than Healing Prayers, Protection Prayers and Divine
+    Favor ones is a smite monk, more of those a backline monk. A bar that tells neither stops the reading (R-460): no slot stands in for it."""
+    K = m.__dict__.setdefault("_monk_kind", {})
+    if a not in K:
+        if m.A[a].get("p") != "Monk": K[a] = None
+        else:
+            rows = [r for r in (skill_row(b, m.sk(b)) for b in m.A[a].get("bar") or [] if b) if r]
+            el = [r for r in rows if r.get("elite") and r.get("prof") == "Monk"]
+            hp, sm = sum(1 for r in rows if r.get("attr") in MONK_LINES), sum(1 for r in rows if r.get("attr") == SMITE_LINE)
+            if el: K[a] = "smite" if el[0].get("attr") == SMITE_LINE else "backline"
+            elif hp != sm: K[a] = "smite" if sm > hp else "backline"
+            else: raise ValueError(f"common.monk_kind: the bar of {m.nm(a)} ({m.tag.get(m.team(a))}, a Monk) tells neither a backline monk nor a smite monk "
+                                   f"({[m.sk(b) for b in m.A[a].get('bar') or [] if b]}): no Monk elite seen, {hp} heal and prot skills, {sm} smiting (R-460, R-698)")
+    return K[a]
+
+
+def backline_monk(m, a):
+    """A backline monk (R-457, R-698): a Monk whose bar heals and protects. `monk_kind` is the reading."""
+    return monk_kind(m, a) == "backline"
+
+
+def backline_roles(m, tm):
+    """The role names of a team's backline monks, for a record that holds role names and no agent numbers (a role name is one player of his team)."""
+    return {m.roles[a] for a in m.PL if m.team(a) == tm and backline_monk(m, a)}
+
+
 def line(m, a):
     """Denning: frontline = dervishes, warriors, melee assassins; midline = elementalists, rangers, paragons, mesmers,
     caster assassins (and ritualists, to confirm); backline = monks. Decided by build, not profession alone."""
     p = m.A[a].get("p")
-    if p == "Monk": return "backline"
+    if p == "Monk": return "backline" if monk_kind(m, a) == "backline" else "midline"       # a smite monk is midline (R-670), told by his bar (R-698)
     if p in ("Warrior", "Dervish"): return "frontline"
     if p == "Assassin":
         bar = " ".join(m.sk(b) for b in m.A[a].get("bar", []) if b)

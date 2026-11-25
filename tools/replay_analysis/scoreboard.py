@@ -79,15 +79,15 @@ def archetype(m, tm):
     woc = sum(1 for a in ps if "Word of Censure" in bar(a))
     invoke = sum(1 for a in ps if "Invoke Lightning" in bar(a))
     paragon = sum(1 for a in ps if prof(a) == "Paragon") >= 2 or any("Decapitate" in bar(a) for a in ps)
-    healers = sum(1 for a in ps if prof(a) == "Monk" and "Word of Censure" not in bar(a))
-    from common import skill_type
+    from common import skill_type, backline_monk
+    healers = sum(1 for a in ps if backline_monk(m, a))                 # by his bar, whatever his slot or his elite's name (R-698)
     hexers = sum(1 for a in ps if prof(a) in ("Necromancer", "Mesmer") and sum(1 for s in bar(a) if "Hex" in skill_type(s)) >= 4)
     hammers = sum(1 for a in ps if prof(a) == "Warrior" and "Hammer Bash" in bar(a))
     front = sum(1 for a in ps if prof(a) in ("Warrior", "Dervish", "Assassin"))
     kind = ("WoC spike" if woc >= 2 else "invoke spike" if invoke >= 2 else "paragon spike" if paragon
             else "hex way" if hexers >= 2 and healers <= 2 else "double hammer balance" if hammers >= 2
             else "balance" if front >= 1 else "other")
-    dps = [lord_dps(m.roles[a], prof(a)) for a in ps if not (prof(a) == "Monk" and "Word of Censure" not in bar(a))]
+    dps = [lord_dps(m.roles[a], prof(a)) for a in ps if not backline_monk(m, a)]
     power = round(sum(x for x in dps if x is not None), 1) if dps and None not in dps else None
     return {"kind": kind, "spike": kind.endswith("spike"), "healing_monks": healers, "lord_dps_measured": power}
 

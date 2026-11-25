@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import END_LOOK_FROM, END_BACK_S, END_ALREADY_S, PLAY28_FROM, LORD_BASE_R as END_BASE_R
+from common import END_LOOK_FROM, END_BACK_S, END_ALREADY_S, PLAY28_FROM, LORD_BASE_R as END_BASE_R, backline_monk, backline_roles
 from common import (FLAG_LEFT_S, STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, RETURN_CAP_S, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
@@ -1055,7 +1055,7 @@ class Moments:
                 ahead = {"split_back": tj, "defenders_back": td_, "lead_s": lead,
                          "kills_for": sum(1 for b in st.players[foe] for x in st.death_times.get(b, []) if win[0] <= x <= win[1]),
                          "kills_against": sum(1 for b in st.players[tm] for x in st.death_times.get(b, []) if win[0] <= x <= win[1])}
-        mk = lambda ids: sum(1 for a in ids if m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))   # backline monks, not a smiter
+        mk = lambda ids: sum(1 for a in ids if backline_monk(m, a))   # backline monks, not a smiter (by his bar, R-698)
         onto = None                                       # R-401: a main team push that walks its fight onto the enemy's flag, held by a player standing in his team
         if kind == "push":
             secs, first_t = collections.Counter(), {}
@@ -1370,7 +1370,7 @@ class Moments:
                 for a in ids: r["last"][a] = t; r["at"][a].append(t)
                 r["track"].append((t, n[1], n[2], f["place"], f["side"], f["kind"]))
         out, atts = [], self.attempts()
-        mk = lambda ids: sum(1 for a in ids if m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))
+        mk = lambda ids: sum(1 for a in ids if backline_monk(m, a))
         cl = lambda x: max(min(int(x), T), 0)
         for r in recs:
             t0, t1 = r["t0"], r["seen"]
@@ -1583,7 +1583,7 @@ class Moments:
     # ---- reading step 2: the words of R-371, R-373 and R-375 to R-378, each its own record
     def _mk(self, ids):
         """Backline monks among these players (a smiter is not one)."""
-        return sum(1 for a in ids if self.m.A[a].get("p") == "Monk" and not self.m.roles[a].startswith("Monk "))
+        return sum(1 for a in ids if backline_monk(self.m, a))
 
     def _flagger(self, b, tm, t):
         """Is this player his team's flagger at second t: "carrying" its flag, or "going back" for it or "at the spawn"
@@ -2020,7 +2020,7 @@ class Moments:
                 fs = collections.Counter(id(idx[t][a]) for a in main if a in idx[t])
                 f = next((idx[t][a] for a in main if a in idx[t] and id(idx[t][a]) == fs.most_common(1)[0][0]), None) if fs else None
                 if f is None or fs.most_common(1)[0][1] * 2 < len(main) or f["n"][tm] < MONK_MIN: pend = None; continue
-                mk = frozenset(a for a in f["ids"][tm] if self.m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))
+                mk = frozenset(a for a in f["ids"][tm] if backline_monk(m, a))
                 n = len(mk)
                 if pend is None or pend[0] != n: pend = [n, t, mk, f]
                 if t - pend[1] < MONK_S or (told is not None and told[0] == n): continue
@@ -2028,7 +2028,7 @@ class Moments:
                 told = (n, pend[2])
                 if was is None and n >= total: continue      # the fight opens on all its monks: nothing to tell
                 t0 = pend[1]
-                gone = sorted((was[1] if was else frozenset(a for a in st.players[tm] if self.m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))) - pend[2])
+                gone = sorted((was[1] if was else frozenset(a for a in st.players[tm] if backline_monk(m, a))) - pend[2])
                 came = sorted(pend[2] - was[1]) if was else []
                 why = [(m.roles[a], "dead" if not self.AL[a][t0] else ("with the flag" if self._flagger(a, tm, t0) else "at " + self.place_words(*self.place_at(a, t0)))) for a in gone]
                 out.append({"t": t0, "tm": tm, "team": m.tag[tm], "n": n, "was": was[0] if was else None, "of": total, "place": pend[3]["place"],
@@ -3203,7 +3203,7 @@ class Moments:
                 defs = [role(b) for b in dids]
                 u0 = min(t + READ_FROM, self.T)                 # the split still on their ground: a player who left it through mid is answered elsewhere (golden Men v hdm 9:36: the Prot mirrors the Air Ele, 3 v 3 at the back door)
                 k = max(1, sum(1 for e in ene if self.AL[e][u0] and self.place_at(e, u0)[1] == own and self.place_at(e, u0)[0] != "field"))
-            monks = sum(1 for r_ in defs if "Monk" in r_ and "WoC" not in r_)
+            monks = sum(1 for r_ in defs if r_ in backline_roles(self.m, tm))
             alive = sum(self.AL[a][min(t + READ_TO, self.T)] for a in self.st.players[tm])
             if n >= max(6, alive - 1): c = "full collapse"
             elif n == 0: c = "no answer"
@@ -3222,7 +3222,7 @@ class Moments:
             alive = sum(self.AL[a][min(t + READ_TO, self.T)] for a in self.st.players[tm])
             ids = set(an["ids"]); defs = [r for _, r in arrived] if "split grows" in x["triggers"] else an["defenders"]
             n = len(defs) if "split grows" in x["triggers"] else an["n"]
-            monks = sum(1 for r in defs if "Monk" in r and "WoC" not in r)
+            monks = sum(1 for r in defs if r in backline_roles(self.m, tm))
             if went_back >= 5 or n >= max(6, alive - 1): c = "full collapse"
             elif n == 0: c = "no answer"
             elif n == 2 and monks == 2: c = "two monks"
