@@ -1036,7 +1036,9 @@ index pointing here. Read the section for a reading before changing it, and keep
   463 on a cast of a second or more, 24 of half or three quarters of a second, 31 of a quarter second, 114 on an attack skill; 70 of 1,405 prot and heal
   faults are by a monk who himself died within 3 s of the burst's start. Both put to him as GvG questions, neither changed (R-465).
   Not tested on its own: a chance on a death with no spike (every such player died, so there is no taken-and-lived to set it against); the kinds were
-  checked on spikes, and R-714 lists them in the death accounts: his marks on the Execution view are its test (stage X5).
+  checked on spikes, and R-714 lists them in the death accounts: his marks on the Execution view are its test (stage X5). 626 of the 10,218 deaths have
+  no hit recorded on the player in the 20 s before (degen, which the replay records as no damage, or life steal): the burst is then read from 2 s before
+  the death, and 170 of them list a chance (Men v NwAy 14:35, the AoB Derv). Put to him with the rest; not changed (R-465).
   The Execution view (`tools/golden/review.py execution <plays file> <main>/data/model/execution_rows.json <report id> ...`; the site's Model > Game
   review > Execution; his marks to `execution_row_marks.json`): each death told once, under the shortest situation that holds it, the others named on its
   row; beside the situation, as context, each side's share of spikes that killed and its damage. Set out: Men v Crew (51683de9), RACK v hdm (d06ef3c7),

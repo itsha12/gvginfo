@@ -61,7 +61,8 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
 6. Put to him 2026-11-25: is a monk who is himself being killed at that moment available to prot or heal another
    (as R-711's busy monk is not)? 70 of 1,405 prot and heal faults are by a monk dead within 3 s.
 7. Put to him 2026-11-25: a chance on a death with no spike is read from the heaviest 2 s on the player, sometimes
-   long before he dies, and cannot be tested as spikes were (all died): his marks on the Execution view are its test.
+   long before he dies, and cannot be tested as spikes were (all died): his marks are its test. 626 of 10,218 deaths
+   have no hit recorded on the player (degen, life steal); 170 of them list a chance, read from 2 s before the death.
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the
@@ -75,5 +76,5 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
-- Never print or decode a sealed field (blind picks, golden moments) in a chat. Don't merge `bundle-4` piecemeal
-  (R-322). The branch's own `CLAUDE.md` and `docs/` are old copies: main's are kept up to date (its standing rules too).
+- Never print or decode a sealed field in a chat. Don't merge `bundle-4` piecemeal (R-322). The branch's own
+  `CLAUDE.md` and `docs/` are old copies: main's are kept up to date (its standing rules too).
