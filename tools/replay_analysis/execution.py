@@ -357,7 +357,7 @@ class Exec:
 ATT_BEFORE_S = 3            # a strip, pressure on his monks or a prot this long before the spike's first big hit belongs to the attempt (Claude's draft: the window
                             # in which each part counts as "together" is measured in stage X3 from these records, R-708; this only bounds what is kept)
 ATT_AFTER_S = 8             # an attempt is read to the target's death, or this long after its first hit where he lives (the old spike reading's 8 s)
-from forensics import CHANCE_S, PRESSED                  # a monk's chance to prot or heal, and when he is busy (R-711): one reading, in forensics.py
+from forensics import CHANCE_S, PRESSED, REACT_S, _act   # a monk's chance to prot or heal, when he is busy (R-711) and the time to react (R-716): one reading, in forensics.py
 MISSED_KINDS = (            # each kind of missed chance (R-713), the side that missed it, and its words; stage X3 checks each on unseen matches
     ("prot", "defence", "a prot ready on a monk in reach who was not busy, not cast on the target"),
     ("heal", "defence", "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome"),
@@ -395,6 +395,32 @@ def can_stop(sd_i, sd_c):
     if k == "spell": return "Spell" in ty or "Chant" in ty
     if k == "attack": return "Attack" in ty
     return True
+
+
+# How long an interrupt takes to land once thrown (R-750): a spell or signet its cast time; an attack skill half its stated activation, or half its weapon's
+# swing where it states none (knowledge/attack-timing.md: the hit lands halfway; knowledge/weapons.md for the swings). So Distracting Shot and Savage Shot a
+# quarter second: arrow flight is left out for now (his word).
+SWING = {"Hammer": 1.75, "Scythe": 1.5, "Spear": 1.5, "Bow": 2.025}       # every other attack 1.33 (axe, sword, daggers)
+
+
+def intr_time(sd):
+    ty, a = sd.get("type") or "", _act(sd.get("activation"))
+    if "Attack" in ty: return (a or next((v for k, v in SWING.items() if k in ty), 1.33)) / 2
+    return a
+
+
+_WORTH = {}
+
+
+def worth(side):
+    """The skills worth interrupting (R-727; `data/model/interrupt_worth.json`, approved by Denning, the words in main's docs/EXECUTION.md): the names on one
+    side of the list ("defensive": interrupts that help us live; "offensive": that help us kill; "flag": snares on our runner). A missing file stops the reading (R-460)."""
+    if not _WORTH:
+        import json, os
+        here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        d = json.load(open(os.path.join(here, "data", "model", "interrupt_worth.json"), encoding="utf-8"))
+        for k in ("offensive", "flag", "defensive"): _WORTH[k] = frozenset(n for L in d[k].values() for n in L)
+    return _WORTH[side]
 
 
 def intr_range(F, f, sd, t):
@@ -451,12 +477,18 @@ def attempts(E):
             # A chance needs time to act (forensics.Forensics.chances, the one reading for attempts and deaths): "not healed" is never true merely because
             # he died at once; busy on a player under pressure (R-711) and out of energy (R-681) are no chance.
             missed += F.chances(tgt, first, end, {"prot": is_prot, "heal": is_heal}, monks=monks)
-            # defence: interrupts on the spike's skills
+            # defence: interrupts on the spike's skills. Only a skill worth interrupting (R-727), by an interrupt that can stop that kind of skill, where the
+            # cast took at least the time to react and the interrupt's own time to land (R-742, R-750: how long it took is the replay's own record of the
+            # cast, so a half-cast spell, a Mesmer's fast cast and an attack skill's hit halfway through a quickened swing are read as they were), and the
+            # interrupter could act once he had seen it (off recharge, hands free, his own aftercast over: R-716, the clock from the cast's start, R-748).
             sp_casts = [c for a in att for c in F._by_agent.get(a, ()) if c[5] == tgt and first - ATT_BEFORE_S <= c[2] <= end and c[1] is not None]
             for c in sp_casts:
                 sd_c = F.sdata(c[1])
+                if (sd_c.get("name") or "").replace(" (PvP)", "") not in worth("defensive"): continue
+                took, u = (c[3] - c[2] if c[3] is not None else None), c[2] + REACT_S
                 ready = [f"{F.name(f)} {F.sname(sid)}" for f in theirs for sid, sd in _role_skills(F, f, is_intr)
-                         if can_stop(sd, sd_c) and (F.dist(f, c[0], c[2]) or 1e9) <= intr_range(F, f, sd, c[2]) and _ready(F, f, sid, sd, c[2])]
+                         if can_stop(sd, sd_c) and took is not None and took + 1e-6 >= REACT_S + intr_time(sd)
+                         and (F.dist(f, c[0], u) or 1e9) <= intr_range(F, f, sd, u) and _ready(F, f, sid, sd, u) and not F.in_aftercast(f, u)]
                 tried = [r for r in E.ia if r[2] == c[0] and r[1] in theirs and c[2] - 0.5 <= r[0] <= (c[3] or c[2] + 1)]
                 at = round(c[2] - first, 1)          # when the spike skill's cast started, from the first big hit (X3 compares taken and missed over the same seconds)
                 if c[4] == "interrupted": missed.append({"kind": "interrupt", "side": "defence", "taken": True, "skill": F.sname(c[1]), "at": at, "chance": False})
@@ -527,6 +559,7 @@ def say_attempt(r):
     for x in r["missed"]:
         if x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
         elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
+        elif x.get("spiked"): L.append(f"Not a chance: {x['by']} was himself under a spike (R-747).")
     return " ".join(L)
 
 
@@ -594,7 +627,7 @@ def deaths(E, atts):
                     if x["kind"] != "interrupt" or x.get("at", 0) > CHANCE_S: continue
                     if x.get("taken"): taken.append("interrupt")
                     elif x.get("chance"): faults.append({"kind": "interrupt", "skill": x["skill"], "by": [who_what(b_) for b_ in x["by"]], "at": x["at"], **({"tried": x["tried"]} if x.get("tried") else {})})
-            other = [x for x in r["missed"] if x.get("busy_on") or x.get("out_of_energy")]
+            other = [x for x in r["missed"] if x.get("busy_on") or x.get("out_of_energy") or x.get("spiked")]
         else:
             bt = F.killing_burst(a, td)
             d.update(first=round(bt, 1), dmg=round(sum(x[3] for x in F.damage_on(a, bt, td))), attackers=sorted({m.roles[x[1]] for x in F.damage_on(a, bt, td) if x[1] in pl}))
@@ -602,10 +635,11 @@ def deaths(E, atts):
             ch = F.chances(a, bt, td, kinds)
             taken = F.taken_in_time(a, bt, kinds)
             faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"]} for c in ch if c["chance"] and c["kind"] not in taken]
-            other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy")]
+            other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked")]
         d["faults"] = faults
         d["taken"] = sorted(set(taken))
-        d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"out_of_energy": True})} for x in other if x["kind"] in FAULT_KINDS]
+        d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"out_of_energy": True})}
+                          for x in other if x["kind"] in FAULT_KINDS]
         out.append(d)
     return sorted(out, key=lambda d: d["t"])
 
@@ -627,7 +661,7 @@ def death_lines(d):
     else: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him (under 400 inside 3 s): {d['dmg']} from {d['by']} ({who}) between {clk(d['first'])}, the start of the heaviest 2 s on him, and his death."]
     for kind in ("prot", "heal"):
         X = [x for x in d["faults"] if x["kind"] == kind]
-        if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])} had {', '.join(nm(k) for k in x['skills'])} ready, in reach, his hands free" for x in X) + "; not cast on him.")
+        if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])} had {', '.join(nm(k) for k in x['skills'])} ready, in reach, his hands free" for x in X) + "; not cast on him in the time he had to see the hit and cast (R-716).")
     X = [x for x in d["faults"] if x["kind"] == "interrupt"]
     if X:                                                  # the spike's skills that went off, then the interrupts that were ready for them, each said once: one interrupt stops one skill
         went, held = collections.Counter(nm(x["skill"]) for x in X), collections.OrderedDict()
@@ -642,7 +676,9 @@ def death_lines(d):
     if not d["faults"]: L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
     if d["taken"]: L.append("Done in time by a team mate, so no fault (R-715): " + ", ".join(FAULT_SAY[k] for k in d["taken"]) + ".")
     for x in d["no_chance"]:
-        L.append(f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was busy on {mine(x['busy_on'])}, who was under pressure (R-711)." if x.get("busy_on") else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was out of energy (R-681).")
+        L.append(f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was busy on {mine(x['busy_on'])}, who was under pressure (R-711)." if x.get("busy_on")
+                 else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was himself under a spike (R-747)." if x.get("spiked")
+                 else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was out of energy (R-681).")
     return L
 
 

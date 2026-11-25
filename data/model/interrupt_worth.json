@@ -1,0 +1,170 @@
+{
+ "about": "Skills worth interrupting (R-727; approved by Denning 2026-11-25). The words and the reasons are in docs/EXECUTION.md on main: change the two together. offensive = interrupts that help us kill (a miss is a fault on the attack); flag = snares on our runner, read against flag time on the flag play; defensive = interrupts that help us live (a miss is a fault on the defence). Names as in data/skills.json without \" (PvP)\". Whether a cast is catchable is read from the replay (R-742, R-750), not from this file.",
+ "offensive": {
+  "res": [
+   "Resurrection Signet",
+   "Death Pact Signet",
+   "Flesh of My Flesh",
+   "Signet of Return",
+   "Resurrect",
+   "Rejuvenation"
+  ],
+  "heals on our target": [
+   "Healing Burst",
+   "Blessed Light",
+   "Word of Healing",
+   "Gift of Health",
+   "Mend Body and Soul",
+   "Boon Signet",
+   "Spirit Light",
+   "Healing Breeze",
+   "Signet of Devotion"
+  ],
+  "prots and removal on our target": [
+   "Guardian",
+   "Shield of Absorption",
+   "Weapon of Warding",
+   "Cure Hex",
+   "Deny Hexes",
+   "Convert Hexes",
+   "Holy Veil",
+   "Purge Signet",
+   "Dismiss Condition",
+   "Restore Condition",
+   "Mend Condition",
+   "Mend Ailment"
+  ],
+  "their defensive spirits": [
+   "Union",
+   "Displacement",
+   "Shelter",
+   "Recovery",
+   "Recuperation",
+   "Life"
+  ],
+  "hexes and conditions on our damage": [
+   "Empathy",
+   "Guilt",
+   "Price of Failure",
+   "Shadow of Fear",
+   "Clumsiness",
+   "Wandering Eye",
+   "Blurred Vision",
+   "Faintheartedness",
+   "Ineptitude",
+   "Insidious Parasite",
+   "Gaze from Beyond",
+   "Steam",
+   "Weapon of Shadow",
+   "Ebon Hawk",
+   "Oppressive Gaze",
+   "Blinding Flash",
+   "Spirit Shackles"
+  ],
+  "snares on our attackers": [
+   "Siphon Speed",
+   "Freezing Gust",
+   "Ethereal Burden",
+   "Kitah's Burden",
+   "Earthen Shackles",
+   "Mind Freeze",
+   "Shard Storm",
+   "Crippling Anguish",
+   "Signet of Pious Restraint",
+   "Winter's Embrace",
+   "Shatterstone",
+   "Ice Prison",
+   "Pin Down"
+  ]
+ },
+ "flag": {
+  "snares on our runner": [
+   "Siphon Speed",
+   "Freezing Gust",
+   "Ethereal Burden",
+   "Kitah's Burden",
+   "Earthen Shackles",
+   "Mind Freeze",
+   "Shard Storm",
+   "Crippling Anguish",
+   "Signet of Pious Restraint",
+   "Winter's Embrace",
+   "Shatterstone",
+   "Ice Prison",
+   "Pin Down"
+  ]
+ },
+ "defensive": {
+  "hammer and axe": [
+   "Hammer Bash",
+   "Crushing Blow",
+   "Decapitate"
+  ],
+  "ranged attacks": [
+   "Cruel Spear",
+   "Burning Arrow",
+   "Chest Thumper",
+   "Vicious Attack"
+  ],
+  "elementalist damage": [
+   "Lightning Strike",
+   "Spirit Burn",
+   "Essence Strike",
+   "Glowing Gaze",
+   "Immolate",
+   "Mind Burn",
+   "Teinai's Wind",
+   "Shell Shock",
+   "Invoke Lightning",
+   "Lightning Surge",
+   "Mind Shock",
+   "Shock Arrow",
+   "Glowing Ice",
+   "Lightning Bolt",
+   "Stoning",
+   "Double Dragon",
+   "Chain Lightning",
+   "Meteor",
+   "Deathly Swarm"
+  ],
+  "ritualist and necromancer damage": [
+   "Lamentation",
+   "Renewing Surge",
+   "Weaken Knees",
+   "Lingering Curse",
+   "Suffering",
+   "Rising Bile",
+   "Brutal Weapon",
+   "Sundering Weapon"
+  ],
+  "hexes, strips and shutdown on us": [
+   "Shame",
+   "Energy Surge",
+   "Energy Burn",
+   "Drain Enchantment",
+   "Rend Enchantments",
+   "Gaze of Contempt",
+   "Migraine",
+   "Backfire",
+   "Diversion",
+   "Signet of Humility",
+   "Mind Wrack",
+   "Shatter Enchantment",
+   "Conjure Phantasm",
+   "Conjure Nightmare",
+   "Air of Disenchantment",
+   "Mark of Insecurity",
+   "Barbs",
+   "Blackout",
+   "Toxic Chill"
+  ],
+  "smiting": [
+   "Word of Censure",
+   "Castigation Signet",
+   "Symbol of Wrath"
+  ],
+  "rituals": [
+   "Bloodsong"
+  ]
+ }
+}

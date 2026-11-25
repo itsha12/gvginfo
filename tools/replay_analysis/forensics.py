@@ -46,6 +46,15 @@ POS_DEFAULT = 5
 SNARES = {"crippled", "dazed", "blind", "weakness"}
 CHANCE_S = 1.5              # a monk's chance to prot or heal a player under a burst is looked for from its first big hit to this long after (Claude's draft; stage X3 reads it)
 PRESSED = 250               # an ally who took this much in the 2 s before is under pressure: a monk casting on him is busy (R-711), not a missed chance
+REACT_S = 0.2               # R-716: the time to see a thing and act on it, before the cast itself; ping left out. The clock starts at the first big hit for a prot or
+                            # a heal and at the cast's start for an interrupt (R-748)
+AFTERCAST_S = 0.75          # knowledge/casting.md: a finished spell, signet or ritual holds its caster this long (no aftercast on an attack skill, stance, shout or flash)
+SPIKE_DMG, SPIKE_S = 400, 3 # a spike as `events._spikes` reads it: a monk with one on himself (from its first hit) is not available to another player (R-747)
+
+
+def has_aftercast(sd):
+    """Does a finished cast of this skill hold its caster for AFTERCAST_S? Spells, signets, rituals and the like; not attack skills, nor anything with no cast time."""
+    return "Attack" not in (sd.get("type") or "") and _act(sd.get("activation")) > 0
 
 
 def _act(s):
@@ -91,6 +100,7 @@ class Forensics:
         from phases import healer
         self.healers = {a for a in self.m.PL if healer(self.m, a)}
         self._casts = None
+        self._dazed = None
 
     # ---- basics
     def name(self, a): return f"{self.tag.get(self.m.team(a), '?')} {self.m.roles.get(a, a)}" if a in self.m.PL else f"NPC {a}"
@@ -182,6 +192,19 @@ class Forensics:
         self.casts()                                           # the same reading, asked of that player's own casts only (execution.py asks it for every hit)
         return any(c[2] <= t <= (c[3] or c[2] + 1) for c in self._by_agent.get(a, ()))
 
+    def in_aftercast(self, a, t):
+        """Is a inside the aftercast of a cast of his own that finished (AFTERCAST_S; R-716: he cannot act)?"""
+        self.casts()
+        return any(c[4] == "finished" and c[3] is not None and c[3] < t < c[3] + AFTERCAST_S and has_aftercast(self.sdata(c[1])) for c in self._by_agent.get(a, ()))
+
+    def dazed_at(self, a, t):
+        """Was a Dazed at t? (Daze doubles a spell's cast time; read once a match from the effects record.)"""
+        if self._dazed is None:
+            self._dazed = collections.defaultdict(list)
+            for e in self.m.o.get("effects", []):
+                if e[2] == "c" and e[7] == "dazed" and e[0] is not None: self._dazed[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
+        return any(s_ <= t <= e_ for s_, e_ in self._dazed.get(a, ()))
+
     def ready(self, a, sid, sd, t, hands=True):
         """Skill sid off recharge for a at t, a alive, not knocked down and (hands) not already casting."""
         if not self.alive(a, t) or (hands and self.casting_at(a, t)): return False
@@ -198,35 +221,44 @@ class Forensics:
 
     def chances(self, tgt, first, end, kinds, monks=None):
         """R-703, R-711, R-713: for each backline monk of tgt's team, each kind in kinds ({kind: test on skill data}) he did not cast on tgt between
-        first - 3 s and end: a chance (a half-second moment within CHANCE_S of first at which a ready skill of that kind, in reach, could still land a
-        quarter second before end, his hands free and not out of energy), else busy on a player under pressure, else out of energy; nothing where none."""
+        first - 3 s and end: a chance (a moment from REACT_S after first, the time to see the hit and act, R-716 and R-748, to CHANCE_S after it, at which a
+        ready skill of that kind, in reach, could still be cast before end, Daze doubling a spell's cast time, with his hands free, his own aftercast over,
+        no spike on himself and not out of energy), else busy on a player under pressure (R-711), else himself under a spike (R-747), else out of energy;
+        nothing where none."""
         from common import backline_monk
         En = self.m.energy()
         tm = self.m.team(tgt)
         monks = monks if monks is not None else [h for h in self.players(tm) if backline_monk(self.m, h)]
         self.casts()
         cast = [c for h in monks for c in self._by_agent.get(h, ()) if c[5] == tgt and first - 3 <= c[2] <= end]
-        moments = [first + i / 2 for i in range(int(CHANCE_S * 2) + 1)]
+        moments = [round(first + REACT_S + i / 10, 2) for i in range(int(round((CHANCE_S - REACT_S) * 10)) + 1)]
         out = []
         for h in monks:
             for kind, test in kinds.items():
                 if any(c[0] == h and test(self.sdata(c[1])) for c in cast): continue
                 sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid))]
                 if not sk: continue
-                chance = busy = out_e = None
+                chance = busy = out_e = spk = None
+                # R-747: the spikes on the monk himself (SPIKE_DMG inside SPIKE_S from a hit on him), each from its first hit to SPIKE_S after it
+                hits = self.damage_on(h, first - SPIKE_S, first + CHANCE_S + SPIKE_S) if h != tgt else ()
+                own = [x[0] for x in hits if sum(d[3] for d in hits if x[0] <= d[0] <= x[0] + SPIKE_S) >= SPIKE_DMG]
                 for u in moments:
-                    ok = [self.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) + 0.25 <= end
+                    dz = 2 if self.dazed_at(h, u) else 1
+                    ok = [self.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6
                           and (self.dist(h, tgt, u) or 1e9) <= CAST_R and self.ready(h, sid, sd, u, hands=False)]
                     if not ok: continue
                     if self.casting_at(h, u):
                         b_ = self.busy(h, tgt, u)
                         if b_: busy = busy or (b_, ok)
                         continue
+                    if self.in_aftercast(h, u): continue
+                    if any(s_ <= u <= s_ + SPIKE_S for s_ in own): spk = spk or ok; continue
                     ex = En.at(h, u) if En.ok else None
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance = (u, ok); break
                 if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
                 elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": busy[1], "busy_on": busy[0], "chance": False})
+                elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": spk, "spiked": True, "chance": False})
                 elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
         return out
 
