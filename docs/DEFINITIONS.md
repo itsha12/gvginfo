@@ -586,7 +586,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
 - The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).
 
-## Execution (R-701 to R-713; the plan is in REDESIGN.md, "Execution")
+## Execution (R-701 to R-752; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
 - Execution is read for both teams over the whole play (R-710); each kill attempt only up to its own outcome, the
   death or the save, so it is read before the result (R-299). The enemy's execution is scored, never a fix.
 - A spike is one package: its damage, the strip on its target and the pressure on the target's monks (interrupts,
@@ -599,16 +599,21 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   monk healing another player under pressure at the time is "busy on" him, not available (R-711).
 - A fault is a missed chance: something there to be done that was not done, or done out of time. Faults are not
   priced or ranked; each kind is checked once on unseen matches that taking the chance goes with doing better, and
-  every missed chance of a checked kind in a play is listed (R-713, Claude's handling, his to turn round).
+  every missed chance of a checked kind in a play is listed (R-713). Each is shown with what it would have stopped
+  or added, measured, not ranked (R-734). A fault he rules by name stands whatever the check shows, the check's
+  result beside it; a ruled kind that reads backwards is brought to him (R-744).
 - Which misses are listed: a defence miss (prot, heal, interrupt on a spike skill) only on a spike that killed and
   in the death accounts; an attack miss (strip, pressure on their monks) only on a spike that failed (R-714). A
   chance taken in time by a team mate is no fault for the team, and is not listed against the one who held back (R-715).
+  Faults that belong to no kill attempt (balling, Flail lock, area damage, a trigger walked into) are always listed, on
+  the play's row, by kind, with a count and an amount (R-745).
 - The kinds checked (stage X3, 2026-11-25, on unseen matches): a prot, a heal and an interrupt on a spike skill missed by the defence may be told
-  as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so neither is ever told as a fault (R-713, R-285).
+  as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so pressure is never told as a fault (R-713, R-285); a missed strip is a fault by his ruling, on a spike that failed (R-729, R-744; not yet listed: stage 1 of the catalogue).
 - Where a fault is said (stage X4): at a death. The three checked kinds are all the defence's, so a fault is listed
   only where a player died (R-714): on the spike that killed him, a prot, a heal, or an interrupt on one of the
   spike's skills, each in the 1.5 s from the first big hit (an interrupt from 3 s before it); on a death with no spike
-  (under 400 on him inside 3 s), a prot or a heal from the start of the heaviest 2 s on him. On a play: the deaths of
+  (under 400 on him inside 3 s), a prot or a heal from the start of the heaviest 2 s on him, until the pressure attempt
+  replaces that reading (R-749). On a play: the deaths of
   its own players inside it, then the enemy's apart (R-299). The losing team recorded dying as the match ends is no
   death. How many of a side's spikes killed and its damage are context, never a fault.
 - A play's own outcome (stage X3): a split holds when nobody on it dies (R-517, R-523), and for its defence the same
@@ -619,4 +624,27 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   Spirit and Aura of Stability are counted apart, their energy out of the points (R-704).
 - Also execution: how soon a res is tried and what stops it, giving ground a player down, converting an advantage,
   environment areas such as Druid's Isle's healing water (R-712, R-557, R-314), and a team held in its base (R-621).
-
+- Time to react (R-716, R-748): a chance counts only if 200 ms of reaction and the skill's cast time fit before the
+  outcome. The clock starts at the cast's start for an interrupt and at the first big hit for a prot or a heal; a prot
+  cast before the hits is taken (R-085). A caster inside his own aftercast or knocked down cannot act; Daze doubles his
+  cast time. A monk who is himself under a spike is not available to another player (R-747), as a busy monk (R-711).
+- An interrupt is a chance only on a skill worth interrupting (R-727: the approved lists, `docs/EXECUTION.md`, the
+  engine's copy `data/model/interrupt_worth.json`), by an interrupt that can stop that kind of skill, where the skill
+  took at least the 200 ms and the interrupt's own time to land (R-742, R-750): a spell's cast time; half an attack's
+  activation or swing (Distracting Shot and Savage Shot a quarter second, arrow flight left out). How long the skill
+  took is the replay's own record of that cast (an attack skill lands halfway through its swing).
+- Casting into a ready interrupt is a fault only if the cast was interrupted, the skill is on the list, and generally
+  only for the backline (R-743).
+- Moving and kiting (R-746): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp are faults; kiting
+  is otherwise no fault ("Coward!" too, R-719, R-078); standing still when he should have kited a melee player is a
+  fault. Crits and extra damage while moving are context (*Claude's reading of R-746, his to correct*).
+- Faults by his ruling (R-744): balling, more than 1 player hit by one adjacent-damage cast (R-722); Flail up over 2 s
+  with nothing in melee reach (R-724); standing in area damage (R-735); attacking with Empathy on (the warrior's when
+  defensive, the monk's for not removing it when offensive, R-736); casting with Backfire on (the midline; never with
+  Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy or
+  Frenzied Defense up during an attempt (R-740); Deep Wound not removed on a spike target or to prevent a death, Daze
+  left on another monk (R-725); any condition left by a non-monk who carries removal (R-726).
+- An even 8v8 with no other job: both teams are read as trying to kill (R-731). Question 3 (why a team that should have
+  killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
+  apart from our faults (R-733). Cut-offs (too deep, monk following, the pressure attempt, nothing in melee reach) are
+  set from the data (R-741).

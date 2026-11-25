@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-713; plan: REDESIGN.md "Execution")
+### 44. Execution, the build (R-701 to R-752; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1043,6 +1043,27 @@ index pointing here. Read the section for a reading before changing it, and keep
   review > Execution; his marks to `execution_row_marks.json`): each death told once, under the shortest situation that holds it, the others named on its
   row; beside the situation, as context, each side's share of spikes that killed and its damage. Set out: Men v Crew (51683de9), RACK v hdm (d06ef3c7),
   Men v NwAy (c19f13e3): 46 deaths, 31 with a missed chance.
+
+- The catalogue (`docs/EXECUTION.md`; R-716 to R-752), stage 1, first piece, built 2026-11-25 (`bundle-4` 45ad7cf). A monk's chance (`Forensics.chances`):
+  looked for every tenth from `REACT_S` (0.2 s, R-716) after the first big hit (R-748) to `CHANCE_S`, the cast fitting before the outcome (the quarter
+  second's margin of the first build is gone: the reaction replaces it), a spell's cast time doubled while he is Dazed (`dazed_at`), his own aftercast over
+  (`in_aftercast`, `AFTERCAST_S` 0.75 after a finished spell, signet or ritual), and no spike on himself (R-747: `SPIKE_DMG` inside `SPIKE_S` from a hit on
+  him, the spike's own line; said as "himself under a spike", a no chance like busy and out of energy). An interrupt on a spike skill
+  (`execution.attempts`): only a skill on the defensive side of the approved list (`worth`, `data/model/interrupt_worth.json` on the branch, the words in
+  `docs/EXECUTION.md`; a missing file stops the reading), where the cast took at least `REACT_S` and the interrupt's own time (`intr_time`, R-750: a spell
+  its cast time, an attack half its activation or its weapon's swing, `SWING`), the interrupter off recharge, hands free and out of his aftercast 0.2 s
+  after the cast began. How long a cast took is the replay's record of it (cast start to finish), never the skill data's cast time: checked on 14 matches,
+  Hammer Bash and Crushing Blow finish in a median 0.5 s (0.8 with no attack speed boost: the hit lands halfway through the swing, as
+  `knowledge/attack-timing.md` says), Dismember and Bull's Strike 0.4, Protector's Strike 0.1; a 1 s spell 0.5 on a half-cast; a Mesmer's Shame 1.1.
+  Development set: 6,935 plays identical, 323 Classic rows pass. Of 1,619 deaths, 715 list a missed chance (744 before): an interrupt 383 (637), a prot 746
+  (788), a heal 565 (617); a monk himself under a spike 5 times, busy 2, out of energy 57. In the attempt record, interrupt chances 1,695 (3,080) and
+  taken 89 (115: an interrupt on a skill off the list is no longer counted either way). Not yet done: the check on unseen matches again (a full run and
+  `cases.py attempts`: `FAULT_KINDS` stands on the old reading's verdicts until then); the strip missed listed on failed spikes (R-729, R-744);
+  `into_ready` filtered by R-743. Found in the review of the catalogue (scratch scripts, not the engine; each to be read through the engine before it is
+  used, R-707): damage rows carry no skill (0 of 3,466 in d1e4b578); a melee hit is a crit on 23% of hits on a player standing, 52% moving at both samples,
+  65% moving away, a ranged hit 13% either way (87 matches); 11% of Mind Burn and 10% of Teinai's Wind casts hit two or more players (101 matches); 41
+  skills that are not attacks or instant have no cast time in `data/skills.json` (the wiki sync's fault); `intr_kind` misses Disrupting Chop, whose skill
+  data lacks "Interrupt" among its causes.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

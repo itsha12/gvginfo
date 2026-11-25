@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-25, midday (a new chat): the execution catalogue reviewed, filed and begun (R-716 to R-752)
+- The catalogue of every why of a kill or a death, worked through by Denning in another chat, reviewed against the skill data, the replays and the branch: corrections of fact (an attack skill lands halfway through its swing; damage rows carry no skill; no block or miss is recorded per attack; 41 skills lack a cast time), three whys added, five points ruled.
+- Main: `docs/EXECUTION.md` (the catalogue as amended: the rules, sections A to D, the skills worth interrupting, the limits of the data, the order of work in five stages); RULINGS R-716 to R-743 (his 28 standing rules) and R-744 to R-752 (his answers); DEFINITIONS "Execution"; REDESIGN's stage table; CLAUDE.md's document list.
+- Ruled: a fault he names stands whatever the check shows (R-744); play-level faults always listed (R-745); Bull's knockdown and Harrier's Cripple faults, kiting otherwise none, should have kited a fault (R-746); a monk under a spike not available (R-747); the clock of the time to react (R-748); the pressure attempt replaces the heaviest 2 s (R-749); an interrupt's own time (R-750); built before he checks (R-752).
+- `bundle-4` (45ad7cf): stage 1's first piece. A monk's chance from 0.2 s after the first big hit, Daze and aftercast read, a monk under a spike no chance; an interrupt only on an approved skill (`data/model/interrupt_worth.json`), catchable by the cast's recorded length and the interrupt's own time.
+- Development set: 6,935 plays identical, 323 Classic rows pass; interrupt faults at deaths 637 to 383, prot 788 to 746, heal 617 to 565. No full run: the check on unseen matches waits for the checkpoint.
+
 ## 2026-11-25, morning (a new chat): execution stage X3's remainder and stage X4; the Execution view
 - `bundle-4` (7d1f0ab, d7aacfe): a play's own outcome tested on unseen matches (`cases.exec_own`, `cases.py execution` C2): a split holding, the defence killing a split player, a push stopping their flag, the flagger's team getting it in. 30 readings pass against 5, 2 and 3 on shuffled records; the two general outcomes as before (132).
 - A split holds in 86% of 1,707 plays: of its own doing only not casting into a ready interrupt passes; its own damage and control read backwards (never faults); what the defence does to it passes (damage, interrupts on its healers, knockdowns on casting, Cripple).

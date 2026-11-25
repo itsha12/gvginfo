@@ -92,6 +92,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   - `docs/DEFINITIONS.md`: the current definitions by topic (counting players, flags, splits, collapse, the Lord push
     so far), each line citing its rulings (R-452). Read it instead of hunting through the register; when a ruling
     changes a definition, replace the line here in the same session and mark the amended ruling where it stands.
+  - `docs/EXECUTION.md`: the execution catalogue: every why of a kill or a death, the rules Denning set for each
+    (R-716 to R-752), the skills worth interrupting, the limits of the data and the order of work. Read it before any
+    execution work; replaced in place, its "Read" column kept current.
   - `docs/CHANGELOG.md`: dated session log, newest first, at most ten lines per session. Never read it whole.
   - `knowledge/model.md`: generated each run, the structural reference (every fitted node, rows, inputs by kind,
     held-out score). If a node can't be explained in GvG terms from that page, it isn't explainable yet.
@@ -234,7 +237,7 @@ The full rules, with how each reading is built and the games it is tested agains
 - 39. Guild hall maps
 - 42. A backline monk, told by his bar (R-698)
 - 43. Monk casting efficiency (R-689, piece 4)
-- 44. Execution, the build (R-701 to R-713)
+- 44. Execution, the build (R-701 to R-752; the catalogue is `docs/EXECUTION.md`)
 - 40. The TQs
 - 41. The causal map and the old node models
 
