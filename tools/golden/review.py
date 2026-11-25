@@ -43,6 +43,12 @@ w1p1, w1p2, w2) are history (R-491): scored and reported after every change, and
                                                                      matches already in the file are kept. A stand-in until the trim
                                                                      keeps this record for every match (R-632)
 
+  python3 tools/golden/review.py execution <plays file> <out.json> <report id> ...
+                                                                     every death of the games picked with the checked chances his team missed, as
+                                                                     the rows of the site's Model > Game review > Execution view (R-713; written
+                                                                     to main's data/model/execution_rows.json; his marks are saved by the page
+                                                                     to execution_row_marks.json)
+
 The key (`data/model/review_key.json`, on main; a copy rides on the branch) holds, for each row he was shown: the match,
 the window, what the engine said then (`shown`), his mark and his words (`said`), and `checks`: Claude's reading of his
 mark as things the plays must hold or must not hold, which he corrects. A check names plays by `play`, `side`, `team` and
@@ -623,6 +629,58 @@ def numbers(steps=(0.5, 0.75, 1.25, 2.0), names=NUMBERS, jobs=1, key=KEY, work="
             print(f"   {v}: {len(new_bad)} marked rows fail" + (f" ({', '.join(new_bad)})" if new_bad else "") + (f"; open checks that then hold: {', '.join(new_held)}" if new_held else "") + (f"; open checks that no longer hold: {', '.join(lost)}" if lost else ""))
 
 
+def execution_rows(path, out, picks):
+    """The rows of the site's Model > Game review > Execution view (stage X4 and X5; R-713 to R-715), for the games picked: every death of a player, told once,
+    under the situation it fell in (the shortest that holds it; the others are named on its row), with the checked chances his team missed, each with what was there and
+    the replay time, none ranked. Beside each situation, as context and never a fault, how many of each side's spikes killed and its damage. He marks each death
+    Correct, Partly or Incorrect and says what the engine does not read at all. Written to main's data/model/execution_rows.json; his marks are saved by the page
+    to execution_row_marks.json."""
+    import datetime, subprocess
+    sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
+    import execution as EX
+    D = json.load(open(path)); games = []
+    for pre in picks:
+        rid = next((r for r in D["matches"] if r.startswith(pre)), None)
+        if rid is None: sys.exit(f"execution: {pre} is not in {path}")
+        m, fc = D["matches"][rid], D["flag_cost"][rid]
+        if "deaths" not in fc: sys.exit(f"execution: the plays file carries no deaths record for {rid[:8]}: run moments.py all again on this engine (R-460)")
+        DT, X = fc["deaths"], fc["execution"]
+        P = [p for p in D["plays"] if p["rid"] == rid]
+        S, home, others = [], {}, collections.defaultdict(list)
+        for n, g in enumerate(situations(P), 1):
+            inside = sorted({i for p in g for sd in ("own", "their") for i in (X.get(p["id"]) or {}).get("deaths", {}).get(sd, [])})
+            S.append((n, g, _reads(g), inside, g[0]["t0"], max(p["t1"] for p in g)))
+        for n, g, reads, inside, t0, t1 in sorted(S, key=lambda s_: (s_[5] - s_[4], s_[0])):      # a death is told once, under the shortest situation that holds it: the closest account of what was going on
+            for i in inside:
+                if i in home: others[i].append(f"{cl(t0)} to {cl(t1)}: {reads[:90]}{'...' if len(reads) > 90 else ''}")
+                else: home[i] = n
+        groups = []
+        for n, g, reads, inside, t0, t1 in S:
+            mine = [i for i in inside if home[i] == n]
+            if not mine: continue
+            p0 = next((p for p in g if not p.get("change") and X.get(p["id"])), None)
+            ctx = []
+            if p0 is not None:
+                x = X[p0["id"]]; foe = next(t for t in m["teams"] if t != p0["team"])
+                for sd, name in (("own", p0["team"]), ("their", foe)):
+                    v = x.get(sd)
+                    if not v: continue
+                    k, dm = v.get("spike_kill_share"), v.get("dmg")
+                    ctx.append(f"{name} " + ("made no spike" if k is None else f"killed with {100 * k:.0f}% of its spikes") + ("" if dm is None else f", {dm:.0f} damage a living player a 10 s"))
+            groups.append({"n": n, "t0": t0, "t1": t1, "reads": reads, "context": "; ".join(ctx), "deaths": mine})
+        for i, d in enumerate(DT):                              # a death no situation holds is told on its own: nothing is dropped
+            if i not in home: groups.append({"n": None, "t0": int(d["t"]), "t1": int(d["t"]), "reads": "Outside any situation the engine reads.", "context": "", "deaths": [i]})
+        groups.sort(key=lambda g: (min(DT[i]["t"] for i in g["deaths"]), g["t0"]))
+        for g in groups:
+            g["deaths"] = [{"id": f"x:{DT[i]['t']}:{DT[i]['team']}:{DT[i]['who']}", "t": DT[i]["t"], "first": DT[i]["first"], "team": DT[i]["team"], "who": DT[i]["who"], "spike": DT[i]["spike"],
+                            "faults": len(DT[i]["faults"]), "lines": EX.death_lines(DT[i]), "also": others.get(i, []), "text": DT[i]["said"]} for i in g["deaths"]]
+        games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "deaths": len(DT), "with_faults": sum(1 for d in DT if d["faults"]), "groups": groups})
+    commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
+    json.dump({"about": "The rows of Model > Game review > Execution (R-713 to R-715): every death of a player in the games picked, with the checked chances his team missed (a prot, a heal, an interrupt on a spike skill: the kinds that passed on unseen matches), none priced or ranked, written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
+               "generated": datetime.date.today().isoformat(), "engine": commit, "kinds": list(EX.FAULT_KINDS), "games": games}, open(out, "w"), ensure_ascii=False, indent=1)
+    print("; ".join(f"{' v '.join(g['teams'])}: {g['deaths']} deaths, {g['with_faults']} with a missed chance, under {len(g['groups'])} situations" for g in games))
+
+
 def rows(key=KEY):
     for r in json.load(open(key))["rows"]:
         print(f"{r['id']:8} {r['mark']:12} {r['type']:34} {r['match']} {cl(r['window'][0])}-{cl(r['window'][1])} | {len(r.get('checks', []))} checks" + (" | " + r["note"] if r.get("note") else ""))
@@ -640,4 +698,5 @@ if __name__ == "__main__":
     elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "f1", a[a.index("--label") + 1] if "--label" in a else None, a[a.index("--drop") + 1].split(",") if "--drop" in a else (), a[a.index("--confidence") + 1] if "--confidence" in a else None)
     elif a and a[0] == "lord": lord_rows(a[1], [x for i, x in enumerate(a[2:]) if x != "--gvg" and a[2:][i - 1] != "--gvg"], a[a.index("--gvg") + 1] if "--gvg" in a else None)
     elif a and a[0] == "lord-record": lord_record(a[1], a[2:])
+    elif a and a[0] == "execution": execution_rows(a[1], a[2], [x for x in a[3:] if not x.startswith("--") and x != key])
     else: print(__doc__)

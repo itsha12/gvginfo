@@ -49369,6 +49369,5126 @@
     }
    }
   },
+  "own": {
+   "readings": {
+    "split, the split's side": {
+     "own": {
+      "dmg": {
+       "the split loses nobody": {
+        "difference": -7.294726363267671,
+        "range": [
+         -10.513777000393675,
+         -3.896591074468944
+        ],
+        "n": [
+         572,
+         569
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.6501642409490227,
+        "verdict": "reads backwards"
+       }
+      },
+      "dmg_v_usual": {
+       "the split loses nobody": {
+        "difference": -7.485345255837061,
+        "range": [
+         -10.853062597215162,
+         -4.2064141536821325
+        ],
+        "n": [
+         549,
+         550
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.5361165156833873,
+        "verdict": "reads backwards"
+       }
+      },
+      "healer_share": {
+       "the split loses nobody": {
+        "difference": -1.7456359102244363,
+        "range": [
+         -6.164048191690546,
+         2.8411792814577552
+        ],
+        "n": [
+         401,
+         401
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.18537492366943303,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "the split loses nobody": {
+        "difference": 6.388206388206385,
+        "range": [
+         2.4426454648023594,
+         10.189209597297623
+        ],
+        "n": [
+         407,
+         407
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.8532070061693097,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "the split loses nobody": {
+        "difference": -5.334865606844147,
+        "range": [
+         -9.433734080811698,
+         -1.7204615188653978
+        ],
+        "n": [
+         345,
+         1362
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.6083833226763816,
+        "verdict": "reads backwards"
+       }
+      },
+      "interrupts_on_healers": {
+       "the split loses nobody": {
+        "difference": -5.1869872500621454,
+        "range": [
+         -9.826361024522983,
+         0.0034926422333962977
+        ],
+        "n": [
+         185,
+         1522
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.7686795771313735,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "the split loses nobody": {
+        "difference": -7.390161627449771,
+        "range": [
+         -10.815872564198923,
+         -3.588884192218851
+        ],
+        "n": [
+         468,
+         1239
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.3481307222469962,
+        "verdict": "reads backwards"
+       }
+      },
+      "knockdowns_on_casting": {
+       "the split loses nobody": {
+        "difference": -2.8505977185836144,
+        "range": [
+         -7.720356153178437,
+         2.0578167213719163
+        ],
+        "n": [
+         166,
+         1541
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.6106878341263889,
+        "verdict": "fails"
+       }
+      },
+      "disable": {
+       "the split loses nobody": {
+        "difference": -7.07347768563038,
+        "range": [
+         -14.647241359370865,
+         0.989891843485255
+        ],
+        "n": [
+         76,
+         1631
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.7927152423203105,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "the split loses nobody": {
+        "difference": -4.090066716085985,
+        "range": [
+         -7.239244282674077,
+         -1.1047450888316839
+        ],
+        "n": [
+         568,
+         855
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.5232540746199614,
+        "verdict": "reads backwards"
+       }
+      },
+      "kite": {
+       "the split loses nobody": {
+        "difference": -12.346052897234003,
+        "range": [
+         -16.636813922313873,
+         -8.304366817240334
+        ],
+        "n": [
+         381,
+         1326
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.1926182210482646,
+        "verdict": "reads backwards"
+       }
+      },
+      "baits": {
+       "the split loses nobody": {
+        "difference": -22.83986765437883,
+        "range": [
+         -35.63086892134499,
+         -10.320720291637137
+        ],
+        "n": [
+         41,
+         1666
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.5720754550112136,
+        "verdict": "reads backwards"
+       }
+      },
+      "strips": {
+       "the split loses nobody": {
+        "difference": -7.3755851194875675,
+        "range": [
+         -12.839215791907014,
+         -1.724538931220248
+        ],
+        "n": [
+         123,
+         1584
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 1.0707313888580463,
+        "verdict": "reads backwards"
+       }
+      },
+      "strips_wasted": {
+       "the split loses nobody": {
+        "difference": -6.187110544709668,
+        "range": [
+         -12.050277127037575,
+         -0.601890338995693
+        ],
+        "n": [
+         166,
+         1541
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.1463202436737408,
+        "verdict": "fails"
+       }
+      },
+      "blind_secs": {
+       "the split loses nobody": {
+        "difference": -0.7228554289142153,
+        "range": [
+         -8.466656838173863,
+         7.7435280645104685
+        ],
+        "n": [
+         40,
+         1667
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -1.5017890447611357,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "the split loses nobody": {
+        "difference": 1.4474913479561167,
+        "range": [
+         -2.0044325263779625,
+         5.702438656297717
+        ],
+        "n": [
+         574,
+         593
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.1555004177835957,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "the split loses nobody": {
+        "difference": -5.817012710534826,
+        "range": [
+         -10.821510478457181,
+         -1.3844034011392983
+        ],
+        "n": [
+         293,
+         1414
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.4662292541951285,
+        "verdict": "reads backwards"
+       }
+      },
+      "npc_dmg": {
+       "the split loses nobody": {
+        "difference": 1.8667037965283555,
+        "range": [
+         -1.2656459950584866,
+         5.342074260544695
+        ],
+        "n": [
+         567,
+         570
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.5347935666334872,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "the split loses nobody": {
+        "difference": -2.3879774971478014,
+        "range": [
+         -6.195199000951516,
+         1.3801767147651796
+        ],
+        "n": [
+         333,
+         1374
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.28955797702262454,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "the split loses nobody": {
+        "difference": -10.041489676973228,
+        "range": [
+         -13.577212236217099,
+         -6.615359335136379
+        ],
+        "n": [
+         573,
+         1060
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.16113584669528574,
+        "verdict": "passes"
+       }
+      },
+      "off_shield": {
+       "the split loses nobody": {
+        "difference": 6.186389284395929,
+        "range": [
+         1.9722299632492046,
+         10.843593085830834
+        ],
+        "n": [
+         387,
+         392
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 1.004108865780276,
+        "verdict": "reads backwards"
+       }
+      },
+      "drain": {
+       "the split loses nobody": {
+        "difference": -3.2082602700079974,
+        "range": [
+         -8.06742876076872,
+         2.304512881226419
+        ],
+        "n": [
+         151,
+         1556
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.6875494242028894,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "the split loses nobody": {
+        "difference": 0.0,
+        "range": [
+         -10.930309338156258,
+         11.880635378827193
+        ],
+        "n": [
+         51,
+         51
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.3751922878098143,
+        "verdict": "no direction"
+       }
+      },
+      "spike_spread": {
+       "the split loses nobody": {
+        "difference": -3.594351732991015,
+        "range": [
+         -17.236111111111118,
+         10.291631145211689
+        ],
+        "n": [
+         38,
+         41
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.019942156153152535,
+        "verdict": "fails"
+       }
+      },
+      "spikes_on_healers": {
+       "the split loses nobody": {
+        "difference": 11.311475409836063,
+        "range": [
+         -1.1641025641025682,
+         22.280280762522704
+        ],
+        "n": [
+         40,
+         61
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 2.318113449578961,
+        "verdict": "no direction"
+       }
+      },
+      "blind_front_secs": {
+       "the split loses nobody": {
+        "difference": -1.964719210228182,
+        "range": [
+         -10.12485870402415,
+         7.1608960943348725
+        ],
+        "n": [
+         37,
+         1670
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      },
+      "strip_right": {
+       "the split loses nobody": {
+        "difference": 7.008547008546998,
+        "range": [
+         -4.313128729752774,
+         19.376157288197657
+        ],
+        "n": [
+         81,
+         65
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.5302811568343739,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "the split loses nobody": {
+        "difference": -11.258995530641627,
+        "range": [
+         -16.272466520422242,
+         -5.9273538500484175
+        ],
+        "n": [
+         172,
+         1535
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.8571751235976892,
+        "verdict": "reads backwards"
+       }
+      },
+      "hex_right": {
+       "the split loses nobody": {
+        "difference": 2.425452126050928,
+        "range": [
+         -6.628632647279048,
+         10.879591584878986
+        ],
+        "n": [
+         167,
+         99
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -1.3787006715977117,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "the split loses nobody": {
+        "difference": -7.134209616049816,
+        "range": [
+         -10.028469900971702,
+         -3.79225031941328
+        ],
+        "n": [
+         531,
+         1176
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.3633458715584244,
+        "verdict": "reads backwards"
+       }
+      },
+      "intr_tried": {
+       "the split loses nobody": {
+        "difference": -4.494040519848269,
+        "range": [
+         -9.234251892906707,
+         1.0298853152850806
+        ],
+        "n": [
+         169,
+         1538
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.5811172960540627,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "the split loses nobody": {
+        "difference": -1.2967200610221141,
+        "range": [
+         -12.113001140808347,
+         10.315185135973058
+        ],
+        "n": [
+         69,
+         57
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 1.1651852108935814,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "the split loses nobody": {
+        "difference": 7.71781175170382,
+        "range": [
+         -3.3042584610534917,
+         18.52983747121998
+        ],
+        "n": [
+         61,
+         89
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.7551130012948677,
+        "verdict": "fails"
+       }
+      },
+      "spike_kill_share": {
+       "the split loses nobody": {
+        "difference": 1.9656019656019765,
+        "range": [
+         -10.510157867494824,
+         15.555894604281702
+        ],
+        "n": [
+         37,
+         66
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.88932792149742,
+        "verdict": "fails"
+       }
+      },
+      "res_tried": {
+       "the split loses nobody": {
+        "difference": -51.922615476904625,
+        "range": [
+         -64.54899455425927,
+         -38.402141859699604
+        ],
+        "n": [
+         40,
+         1667
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -2.853313000013552,
+        "verdict": "no direction"
+       }
+      },
+      "ground_back": {
+       "the split loses nobody": {
+        "difference": 1.8028268028268002,
+        "range": [
+         -1.4718528379877625,
+         5.71385370449091
+        ],
+        "n": [
+         567,
+         572
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 2.121699463358754,
+        "verdict": "no direction"
+       }
+      },
+      "disrupt_right": {
+       "the split loses nobody": {
+        "difference": -8.393086964515533,
+        "range": [
+         -15.12767187685903,
+         -1.381644430800191
+        ],
+        "n": [
+         196,
+         222
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.12276693953714823,
+        "verdict": "reads backwards"
+       }
+      },
+      "dmg_on_front": {
+       "the split loses nobody": {
+        "difference": -6.533094098883566,
+        "range": [
+         -12.500847170048862,
+         -1.0757372530233933
+        ],
+        "n": [
+         240,
+         418
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.6417667871411431,
+        "verdict": "fails"
+       }
+      }
+     },
+     "their": {
+      "dmg": {
+       "the split loses nobody": {
+        "difference": -22.94220665499124,
+        "range": [
+         -26.457427462138416,
+         -19.237602092988727
+        ],
+        "n": [
+         571,
+         571
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.4462949474486567,
+        "verdict": "passes"
+       }
+      },
+      "dmg_v_usual": {
+       "the split loses nobody": {
+        "difference": -24.65989758466847,
+        "range": [
+         -28.310555329879968,
+         -21.564757849884963
+        ],
+        "n": [
+         523,
+         522
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.3452029590990071,
+        "verdict": "passes"
+       }
+      },
+      "healer_share": {
+       "the split loses nobody": {
+        "difference": -4.330810119884134,
+        "range": [
+         -8.603585974744975,
+         -0.24210986054852401
+        ],
+        "n": [
+         367,
+         793
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.07520484456705528,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "the split loses nobody": {
+        "difference": 10.959595959595958,
+        "range": [
+         6.746854643946602,
+         16.060926994223777
+        ],
+        "n": [
+         550,
+         396
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.19633091766640726,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "the split loses nobody": {
+        "difference": -18.59733419970418,
+        "range": [
+         -23.580104101745015,
+         -13.119474672429758
+        ],
+        "n": [
+         343,
+         1364
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.4820615540945238,
+        "verdict": "passes"
+       }
+      },
+      "interrupts_on_healers": {
+       "the split loses nobody": {
+        "difference": -32.54555056773172,
+        "range": [
+         -41.36694665650843,
+         -22.92219964280196
+        ],
+        "n": [
+         84,
+         1623
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.8222464865307029,
+        "verdict": "passes"
+       }
+      },
+      "knockdowns": {
+       "the split loses nobody": {
+        "difference": -10.861544216414728,
+        "range": [
+         -14.86060601150129,
+         -7.186630246973808
+        ],
+        "n": [
+         571,
+         1133
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": -0.19698234631872313,
+        "verdict": "passes"
+       }
+      },
+      "knockdowns_on_casting": {
+       "the split loses nobody": {
+        "difference": -18.617259110216864,
+        "range": [
+         -24.09086731773498,
+         -13.668736703588195
+        ],
+        "n": [
+         216,
+         1491
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": -0.5557127927371938,
+        "verdict": "passes"
+       }
+      },
+      "disable": {
+       "the split loses nobody": {
+        "difference": -7.5499594601039774,
+        "range": [
+         -11.924257046189485,
+         -1.9002061654104472
+        ],
+        "n": [
+         261,
+         1446
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.04121291305215513,
+        "verdict": "passes"
+       }
+      },
+      "castprev": {
+       "the split loses nobody": {
+        "difference": -2.4236983842010886,
+        "range": [
+         -12.672362935885086,
+         8.130328207168565
+        ],
+        "n": [
+         36,
+         1671
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.0434385350869717,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "the split loses nobody": {
+        "difference": -8.177697897944824,
+        "range": [
+         -11.651210382709703,
+         -4.939587876419999
+        ],
+        "n": [
+         573,
+         1072
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.023423112639077592,
+        "verdict": "passes"
+       }
+      },
+      "kite": {
+       "the split loses nobody": {
+        "difference": -3.1482663721929356,
+        "range": [
+         -6.246492947333862,
+         0.006060914784594809
+        ],
+        "n": [
+         571,
+         812
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.4796775581323049,
+        "verdict": "fails"
+       }
+      },
+      "baits": {
+       "the split loses nobody": {
+        "difference": 0.15261687860181894,
+        "range": [
+         -5.610363941331812,
+         6.415233004594276
+        ],
+        "n": [
+         106,
+         1601
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.009891413533779758,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "the split loses nobody": {
+        "difference": -7.407813070463675,
+        "range": [
+         -11.469013239982328,
+         -3.5235662392752496
+        ],
+        "n": [
+         462,
+         1245
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": -0.05268712481325466,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "the split loses nobody": {
+        "difference": -8.18791049760658,
+        "range": [
+         -12.121250406997225,
+         -4.245304414707961
+        ],
+        "n": [
+         325,
+         1382
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.08683819567431317,
+        "verdict": "reads backwards"
+       }
+      },
+      "hex_secs": {
+       "the split loses nobody": {
+        "difference": -10.531464100431663,
+        "range": [
+         -13.983246716401457,
+         -6.859701285038987
+        ],
+        "n": [
+         570,
+         886
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": -0.1592558468140851,
+        "verdict": "passes"
+       }
+      },
+      "hex_removed": {
+       "the split loses nobody": {
+        "difference": -1.7329643664681242,
+        "range": [
+         -4.711872186897531,
+         1.1651800036302018
+        ],
+        "n": [
+         583,
+         1037
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.5257703324073785,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "the split loses nobody": {
+        "difference": -9.211504543149815,
+        "range": [
+         -12.54675497902636,
+         -6.070534379648948
+        ],
+        "n": [
+         571,
+         1126
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.37129268070684596,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "the split loses nobody": {
+        "difference": -4.885403375303952,
+        "range": [
+         -8.00746539273306,
+         -1.802387570840136
+        ],
+        "n": [
+         569,
+         876
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.5110116004068302,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "the split loses nobody": {
+        "difference": -2.5203252032520425,
+        "range": [
+         -6.347538786498945,
+         1.138923846501415
+        ],
+        "n": [
+         574,
+         570
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.6106610056327482,
+        "verdict": "fails"
+       }
+      },
+      "blind_attacks": {
+       "the split loses nobody": {
+        "difference": -5.261320566527033,
+        "range": [
+         -16.109593326972536,
+         5.361600048311028
+        ],
+        "n": [
+         36,
+         1671
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      },
+      "off_shield": {
+       "the split loses nobody": {
+        "difference": -5.157334222276802,
+        "range": [
+         -9.532707977995033,
+         -1.1429285419988344
+        ],
+        "n": [
+         482,
+         473
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -0.002159418039762051,
+        "verdict": "reads backwards"
+       }
+      },
+      "drain": {
+       "the split loses nobody": {
+        "difference": -10.833148062933333,
+        "range": [
+         -15.53034897278174,
+         -5.879910089762708
+        ],
+        "n": [
+         269,
+         1438
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.07091917679408621,
+        "verdict": "passes"
+       }
+      },
+      "drain_on_monks": {
+       "the split loses nobody": {
+        "difference": -7.856511304787176,
+        "range": [
+         -18.091564867880656,
+         2.2316711202675887
+        ],
+        "n": [
+         87,
+         182
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.9497896562207314,
+        "verdict": "no direction"
+       }
+      },
+      "dazed_casts": {
+       "the split loses nobody": {
+        "difference": -2.4590163934426243,
+        "range": [
+         -12.418316519782717,
+         6.067355861803018
+        ],
+        "n": [
+         60,
+         1647
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.5125829680698739,
+        "verdict": "fails"
+       }
+      },
+      "strip_right": {
+       "the split loses nobody": {
+        "difference": -0.3016591251885359,
+        "range": [
+         -7.732942689206252,
+         6.115052567937727
+        ],
+        "n": [
+         195,
+         187
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.28043749152671793,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "the split loses nobody": {
+        "difference": -8.79305702928275,
+        "range": [
+         -12.471435291462063,
+         -5.468720729347787
+        ],
+        "n": [
+         542,
+         1165
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.12017085918352277,
+        "verdict": "passes"
+       }
+      },
+      "hex_right": {
+       "the split loses nobody": {
+        "difference": 2.6494849279659434,
+        "range": [
+         -2.8858700328462414,
+         8.048101162184713
+        ],
+        "n": [
+         333,
+         237
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.002308423950868596,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "the split loses nobody": {
+        "difference": -11.208560154382326,
+        "range": [
+         -14.460532094354422,
+         -7.979434707755325
+        ],
+        "n": [
+         568,
+         978
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": -0.25297037525995236,
+        "verdict": "passes"
+       }
+      },
+      "intr_tried": {
+       "the split loses nobody": {
+        "difference": -14.76367291102487,
+        "range": [
+         -20.113018402475493,
+         -9.349851776548789
+        ],
+        "n": [
+         245,
+         1462
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.10459944175592173,
+        "verdict": "passes"
+       }
+      },
+      "intr_missed_share": {
+       "the split loses nobody": {
+        "difference": 4.555555555555557,
+        "range": [
+         -6.700267379679133,
+         17.595565123608317
+        ],
+        "n": [
+         90,
+         100
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.26843801845881554,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "the split loses nobody": {
+        "difference": 13.31691297208539,
+        "range": [
+         3.363203738091693,
+         24.009779471736003
+        ],
+        "n": [
+         87,
+         140
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.28030517689127776,
+        "verdict": "passes"
+       }
+      },
+      "res_tried": {
+       "the split loses nobody": {
+        "difference": 1.6747310297717206,
+        "range": [
+         -4.738582303197875,
+         7.694604016276762
+        ],
+        "n": [
+         110,
+         1597
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.8982610811449399,
+        "verdict": "no direction"
+       }
+      },
+      "res_stopped_share": {
+       "the split loses nobody": {
+        "difference": 16.809492419248514,
+        "range": [
+         5.659439055780525,
+         27.313615400578183
+        ],
+        "n": [
+         37,
+         41
+        ],
+        "groups_right": [
+         6,
+         9
+        ],
+        "before": -1.8201675788680243,
+        "verdict": "fails"
+       }
+      },
+      "ground_back": {
+       "the split loses nobody": {
+        "difference": -3.5042782981534515,
+        "range": [
+         -7.030947235487896,
+         -0.4793285512041746
+        ],
+        "n": [
+         567,
+         566
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -1.246972685201205,
+        "verdict": "no direction"
+       }
+      },
+      "water_share": {
+       "the split loses nobody": {
+        "difference": -9.753787878787875,
+        "range": [
+         -22.365345530231583,
+         6.583867521367507
+        ],
+        "n": [
+         32,
+         33
+        ],
+        "groups_right": [
+         2,
+         7
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      }
+     }
+    },
+    "split, the defence": {
+     "own": {
+      "dmg": {
+       "a split player is killed": {
+        "difference": 20.34251497005988,
+        "range": [
+         15.850866685254928,
+         24.879814918126655
+        ],
+        "n": [
+         501,
+         500
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.0035684241913336856,
+        "verdict": "passes"
+       }
+      },
+      "dmg_v_usual": {
+       "a split player is killed": {
+        "difference": 24.916405727535796,
+        "range": [
+         20.611967782708923,
+         29.106536565931687
+        ],
+        "n": [
+         401,
+         399
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 1.0258375101936226,
+        "verdict": "passes"
+       }
+      },
+      "healer_share": {
+       "a split player is killed": {
+        "difference": 4.140447457830511,
+        "range": [
+         -0.6774761321508185,
+         8.964759105168746
+        ],
+        "n": [
+         391,
+         682
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.17732996266759254,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "a split player is killed": {
+        "difference": -11.282547501759325,
+        "range": [
+         -15.912971605004643,
+         -6.1302438460023145
+        ],
+        "n": [
+         435,
+         392
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.41268209295046443,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "a split player is killed": {
+        "difference": 17.84153504764391,
+        "range": [
+         12.528676469605966,
+         22.964465998204982
+        ],
+        "n": [
+         326,
+         1175
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.3675580189710294,
+        "verdict": "passes"
+       }
+      },
+      "interrupts_on_healers": {
+       "a split player is killed": {
+        "difference": 29.35261191438532,
+        "range": [
+         20.03710811148602,
+         39.66910202100027
+        ],
+        "n": [
+         103,
+         1398
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.30439630325713696,
+        "verdict": "passes"
+       }
+      },
+      "knockdowns": {
+       "a split player is killed": {
+        "difference": 13.44016499435287,
+        "range": [
+         8.090717049236286,
+         19.033907723399995
+        ],
+        "n": [
+         307,
+         1194
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": 0.5770619623278714,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns_on_casting": {
+       "a split player is killed": {
+        "difference": 23.743060584117785,
+        "range": [
+         14.709123926414192,
+         32.10645283296937
+        ],
+        "n": [
+         120,
+         1381
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.19531041339713412,
+        "verdict": "passes"
+       }
+      },
+      "disable": {
+       "a split player is killed": {
+        "difference": 4.64320435543457,
+        "range": [
+         -2.5695852143195688,
+         12.139906653517167
+        ],
+        "n": [
+         111,
+         1390
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": 0.1754355339569878,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "a split player is killed": {
+        "difference": 4.811611730057294,
+        "range": [
+         0.4332378548485298,
+         8.849070554779773
+        ],
+        "n": [
+         503,
+         914
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.17081066047200405,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "a split player is killed": {
+        "difference": 5.040765180901563,
+        "range": [
+         1.0528439011626367,
+         9.336874591002935
+        ],
+        "n": [
+         503,
+         921
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.24785220244323994,
+        "verdict": "fails"
+       }
+      },
+      "baits": {
+       "a split player is killed": {
+        "difference": -4.272043745727958,
+        "range": [
+         -12.624526257391501,
+         4.39866230277171
+        ],
+        "n": [
+         38,
+         1463
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "a split player is killed": {
+        "difference": 10.587781758809921,
+        "range": [
+         5.626044607975707,
+         16.684393919642684
+        ],
+        "n": [
+         204,
+         1297
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.3484278184136441,
+        "verdict": "passes"
+       }
+      },
+      "strips_wasted": {
+       "a split player is killed": {
+        "difference": 7.898796432062561,
+        "range": [
+         0.08493711639091801,
+         15.117254185120629
+        ],
+        "n": [
+         93,
+         1408
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.4503454739932018,
+        "verdict": "reads backwards"
+       }
+      },
+      "blind_secs": {
+       "a split player is killed": {
+        "difference": 9.12399229739874,
+        "range": [
+         -5.817870754937123,
+         26.22684607748307
+        ],
+        "n": [
+         42,
+         1459
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 2.2864710600553204,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "a split player is killed": {
+        "difference": 7.227968305812617,
+        "range": [
+         2.8680487469736238,
+         12.054073912252923
+        ],
+        "n": [
+         501,
+         495
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": 0.7320357067416489,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "a split player is killed": {
+        "difference": 1.945802361659858,
+        "range": [
+         -1.6368547805049936,
+         5.389469296043912
+        ],
+        "n": [
+         411,
+         1090
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.3443061517084599,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "a split player is killed": {
+        "difference": 2.1750260157262957,
+        "range": [
+         -1.9841748337790557,
+         6.209236759335714
+        ],
+        "n": [
+         299,
+         1202
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.4936603318134361,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "a split player is killed": {
+        "difference": -0.07705188069210678,
+        "range": [
+         -3.699104166489565,
+         3.587085036581155
+        ],
+        "n": [
+         493,
+         745
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.08363276194749208,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "a split player is killed": {
+        "difference": 7.526517197393673,
+        "range": [
+         3.0446048094194715,
+         12.402482033002324
+        ],
+        "n": [
+         503,
+         692
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.09258900660154676,
+        "verdict": "reads backwards"
+       }
+      },
+      "off_shield": {
+       "a split player is killed": {
+        "difference": 7.051293717960384,
+        "range": [
+         2.336235500385096,
+         11.630797090650017
+        ],
+        "n": [
+         407,
+         405
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.06695003561636864,
+        "verdict": "reads backwards"
+       }
+      },
+      "drain": {
+       "a split player is killed": {
+        "difference": 11.880814090758841,
+        "range": [
+         6.493916187533853,
+         17.952420005728193
+        ],
+        "n": [
+         234,
+         1267
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": -0.10123318195851466,
+        "verdict": "passes"
+       }
+      },
+      "drain_on_monks": {
+       "a split player is killed": {
+        "difference": -2.5269784172661858,
+        "range": [
+         -14.202812048689914,
+         8.943215307427964
+        ],
+        "n": [
+         80,
+         139
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.7160426826484305,
+        "verdict": "no direction"
+       }
+      },
+      "spike_spread": {
+       "a split player is killed": {
+        "difference": -9.821428571428573,
+        "range": [
+         -22.959193164611726,
+         4.398004434589794
+        ],
+        "n": [
+         48,
+         49
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 3.5532902480065474,
+        "verdict": "fails"
+       }
+      },
+      "spikes_on_healers": {
+       "a split player is killed": {
+        "difference": 8.929836995038979,
+        "range": [
+         -4.788992869875221,
+         20.799074613815215
+        ],
+        "n": [
+         51,
+         83
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.9438270803871073,
+        "verdict": "no direction"
+       }
+      },
+      "dazed_casts": {
+       "a split player is killed": {
+        "difference": 1.127819548872182,
+        "range": [
+         -9.476059446647684,
+         13.541870603724734
+        ],
+        "n": [
+         38,
+         1463
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.153873880164196,
+        "verdict": "fails"
+       }
+      },
+      "blind_front_secs": {
+       "a split player is killed": {
+        "difference": 9.774473772134982,
+        "range": [
+         -5.279276799874471,
+         26.373866755422902
+        ],
+        "n": [
+         41,
+         1460
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      },
+      "strip_right": {
+       "a split player is killed": {
+        "difference": 10.408042578356,
+        "range": [
+         -1.2739167739167727,
+         21.605264571582023
+        ],
+        "n": [
+         89,
+         76
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": -1.1641183844595782,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "a split player is killed": {
+        "difference": 12.054934954751133,
+        "range": [
+         6.9335361550343855,
+         18.14189245810886
+        ],
+        "n": [
+         221,
+         1280
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.13286122482264823,
+        "verdict": "passes"
+       }
+      },
+      "hex_right": {
+       "a split player is killed": {
+        "difference": -2.326055312954878,
+        "range": [
+         -9.389660751775136,
+         4.412278536193313
+        ],
+        "n": [
+         229,
+         150
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.3430402418731366,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "a split player is killed": {
+        "difference": 9.641546648385301,
+        "range": [
+         5.27736521719082,
+         13.752508856300775
+        ],
+        "n": [
+         502,
+         709
+        ],
+        "groups_right": [
+         10,
+         10
+        ],
+        "before": 0.7248222984939672,
+        "verdict": "passes"
+       }
+      },
+      "intr_tried": {
+       "a split player is killed": {
+        "difference": 11.534734484689265,
+        "range": [
+         5.85393505655457,
+         17.616498843077533
+        ],
+        "n": [
+         217,
+         1284
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.10073072298153557,
+        "verdict": "passes"
+       }
+      },
+      "intr_missed_share": {
+       "a split player is killed": {
+        "difference": -8.336117607751419,
+        "range": [
+         -23.228218520609826,
+         6.029453388899425
+        ],
+        "n": [
+         82,
+         73
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.8436855376098226,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "a split player is killed": {
+        "difference": -18.365732368896925,
+        "range": [
+         -29.89512692839935,
+         -7.027998402373622
+        ],
+        "n": [
+         79,
+         112
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.1702090672164303,
+        "verdict": "passes"
+       }
+      },
+      "spike_kill_share": {
+       "a split player is killed": {
+        "difference": 28.811594202898554,
+        "range": [
+         13.979981375010706,
+         43.65710845741804
+        ],
+        "n": [
+         46,
+         75
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.577018060528879,
+        "verdict": "fails"
+       }
+      },
+      "ground_back": {
+       "a split player is killed": {
+        "difference": 4.256462469596695,
+        "range": [
+         0.5389343794877595,
+         8.084386352631888
+        ],
+        "n": [
+         497,
+         498
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 1.7624781725851975,
+        "verdict": "no direction"
+       }
+      },
+      "disrupt_right": {
+       "a split player is killed": {
+        "difference": -14.787878787878789,
+        "range": [
+         -24.258854771802977,
+         -6.514153886843296
+        ],
+        "n": [
+         231,
+         150
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.012655271082314179,
+        "verdict": "reads backwards"
+       }
+      },
+      "dmg_on_front": {
+       "a split player is killed": {
+        "difference": -6.967213114754099,
+        "range": [
+         -18.38027284856838,
+         5.45760917569427
+        ],
+        "n": [
+         61,
+         84
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 1.9010325496552987,
+        "verdict": "fails"
+       }
+      }
+     },
+     "their": {
+      "dmg": {
+       "a split player is killed": {
+        "difference": 0.5322709163346637,
+        "range": [
+         -4.096172339155206,
+         5.026548250735521
+        ],
+        "n": [
+         502,
+         500
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.06838337286110385,
+        "verdict": "fails"
+       }
+      },
+      "dmg_v_usual": {
+       "a split player is killed": {
+        "difference": 0.13545978637194978,
+        "range": [
+         -4.4150416299989255,
+         4.207428033705552
+        ],
+        "n": [
+         499,
+         503
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.11230531773544572,
+        "verdict": "fails"
+       }
+      },
+      "healer_share": {
+       "a split player is killed": {
+        "difference": 0.5008825560870775,
+        "range": [
+         -4.239895222006077,
+         5.167477279679033
+        ],
+        "n": [
+         403,
+         485
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.2425554867388935,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "a split player is killed": {
+        "difference": -3.9837398373983763,
+        "range": [
+         -7.946535722648738,
+         -0.3922003906413254
+        ],
+        "n": [
+         615,
+         410
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.6347352914057615,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "a split player is killed": {
+        "difference": 1.236730437457048,
+        "range": [
+         -3.2201066420431372,
+         5.425378646124672
+        ],
+        "n": [
+         367,
+         1134
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.19283967897775883,
+        "verdict": "fails"
+       }
+      },
+      "interrupts_on_healers": {
+       "a split player is killed": {
+        "difference": 1.381351541865186,
+        "range": [
+         -4.074040366226538,
+         7.02546744760702
+        ],
+        "n": [
+         178,
+         1323
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.35026447610113465,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "a split player is killed": {
+        "difference": 0.03236245954692407,
+        "range": [
+         -3.9140358459914033,
+         4.023299143758897
+        ],
+        "n": [
+         515,
+         780
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.17051012849865155,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns_on_casting": {
+       "a split player is killed": {
+        "difference": -1.8213223465691435,
+        "range": [
+         -5.962444853631799,
+         2.4639236660735624
+        ],
+        "n": [
+         284,
+         1217
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.17276971514961248,
+        "verdict": "fails"
+       }
+      },
+      "disable": {
+       "a split player is killed": {
+        "difference": -1.5545750565905259,
+        "range": [
+         -5.7038644190179975,
+         2.8489624050264766
+        ],
+        "n": [
+         268,
+         1233
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.30542267665801254,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "a split player is killed": {
+        "difference": 0.32849797560793803,
+        "range": [
+         -3.4419408087976318,
+         4.2859860735101085
+        ],
+        "n": [
+         508,
+         634
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.0546649946337153,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "a split player is killed": {
+        "difference": 2.499178773140054,
+        "range": [
+         -1.6096521035459426,
+         5.990503929156228
+        ],
+        "n": [
+         498,
+         758
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.30679565051997804,
+        "verdict": "fails"
+       }
+      },
+      "baits": {
+       "a split player is killed": {
+        "difference": 6.9536870228072125,
+        "range": [
+         -0.002603920083325336,
+         13.426118047693938
+        ],
+        "n": [
+         118,
+         1383
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.6140594229722233,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "a split player is killed": {
+        "difference": -2.0871143375680585,
+        "range": [
+         -5.7137700037411,
+         1.8314019554001835
+        ],
+        "n": [
+         399,
+         1102
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.07732774457496328,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "a split player is killed": {
+        "difference": -0.8850885088508846,
+        "range": [
+         -5.520474685460476,
+         3.1942366705540888
+        ],
+        "n": [
+         390,
+         1111
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -0.04311660437309306,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "a split player is killed": {
+        "difference": 0.6540087905004803,
+        "range": [
+         -3.5515103168102247,
+         4.938317846411782
+        ],
+        "n": [
+         502,
+         717
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.5582935088260573,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "a split player is killed": {
+        "difference": -0.2336646860014362,
+        "range": [
+         -4.47611146296663,
+         3.410335002375654
+        ],
+        "n": [
+         507,
+         953
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.2221382288624844,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "a split player is killed": {
+        "difference": 1.6264960040553476,
+        "range": [
+         -2.1216748534712813,
+         6.176979064902712
+        ],
+        "n": [
+         502,
+         503
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.6702866649955181,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "a split player is killed": {
+        "difference": 4.534113060428851,
+        "range": [
+         0.589709260546778,
+         8.316103801445157
+        ],
+        "n": [
+         475,
+         1026
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.3181878340330687,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "a split player is killed": {
+        "difference": 2.310991538971418,
+        "range": [
+         -1.9405350359923068,
+         6.373020140911914
+        ],
+        "n": [
+         498,
+         515
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.08510240400453256,
+        "verdict": "fails"
+       }
+      },
+      "blind_attacks": {
+       "a split player is killed": {
+        "difference": 5.020857034508911,
+        "range": [
+         -9.130537516451446,
+         21.149000615030232
+        ],
+        "n": [
+         36,
+         1465
+        ],
+        "groups_right": [
+         4,
+         9
+        ],
+        "before": null,
+        "verdict": "fails"
+       }
+      },
+      "off_shield": {
+       "a split player is killed": {
+        "difference": -6.936691626957115,
+        "range": [
+         -11.75748815716312,
+         -1.8200778553354677
+        ],
+        "n": [
+         452,
+         455
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.6212342766912498,
+        "verdict": "reads backwards"
+       }
+      },
+      "drain": {
+       "a split player is killed": {
+        "difference": 1.9362029208301301,
+        "range": [
+         -3.5717177240576268,
+         7.4652012761670505
+        ],
+        "n": [
+         200,
+         1301
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.10464138686188718,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "a split player is killed": {
+        "difference": 3.877005347593581,
+        "range": [
+         -8.104515882127824,
+         15.773395542818527
+        ],
+        "n": [
+         68,
+         88
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.42219707387718575,
+        "verdict": "no direction"
+       }
+      },
+      "dazed_casts": {
+       "a split player is killed": {
+        "difference": 10.712931361395526,
+        "range": [
+         -2.0754794204222424,
+         23.813208844730156
+        ],
+        "n": [
+         36,
+         1465
+        ],
+        "groups_right": [
+         7,
+         9
+        ],
+        "before": -1.0307485272954264,
+        "verdict": "fails"
+       }
+      },
+      "strip_right": {
+       "a split player is killed": {
+        "difference": -4.066471163245357,
+        "range": [
+         -11.215333868619874,
+         3.015170385746404
+        ],
+        "n": [
+         165,
+         186
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -1.8748495233156208,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "a split player is killed": {
+        "difference": 0.20871550283315088,
+        "range": [
+         -3.8132202601728227,
+         4.031955878282153
+        ],
+        "n": [
+         481,
+         1020
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.18439017939033292,
+        "verdict": "fails"
+       }
+      },
+      "hex_right": {
+       "a split player is killed": {
+        "difference": -5.8730873087308755,
+        "range": [
+         -12.524174436610288,
+         1.4982355747575182
+        ],
+        "n": [
+         264,
+         202
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.22849647450719157,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "a split player is killed": {
+        "difference": 2.479463899697361,
+        "range": [
+         -3.4948070662686037,
+         8.694137914489199
+        ],
+        "n": [
+         216,
+         1285
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.1870907843881186,
+        "verdict": "fails"
+       }
+      },
+      "intr_tried": {
+       "a split player is killed": {
+        "difference": 1.6985973813897886,
+        "range": [
+         -3.305223733256733,
+         6.4356367665188925
+        ],
+        "n": [
+         213,
+         1288
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.28758068801920444,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "a split player is killed": {
+        "difference": 7.5769745649263704,
+        "range": [
+         -4.180034495985207,
+         17.996856390459943
+        ],
+        "n": [
+         90,
+         83
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -1.9948078902032045,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "a split player is killed": {
+        "difference": -0.01100594320933368,
+        "range": [
+         -11.339682291174828,
+         12.34374885721044
+        ],
+        "n": [
+         77,
+         118
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -0.8005045859240124,
+        "verdict": "fails"
+       }
+      },
+      "res_tried": {
+       "a split player is killed": {
+        "difference": 22.420704541346346,
+        "range": [
+         15.132197700354903,
+         29.57438665137468
+        ],
+        "n": [
+         138,
+         1363
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.9821106588415587,
+        "verdict": "no direction"
+       }
+      },
+      "res_stopped_share": {
+       "a split player is killed": {
+        "difference": 7.738095238095234,
+        "range": [
+         -11.07774376653095,
+         24.000396825396823
+        ],
+        "n": [
+         48,
+         56
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -2.214243470855316,
+        "verdict": "fails"
+       }
+      },
+      "ground_back": {
+       "a split player is killed": {
+        "difference": -5.287096774193547,
+        "range": [
+         -9.444844882426576,
+         -0.8514573540312007
+        ],
+        "n": [
+         496,
+         500
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -1.3531925252438755,
+        "verdict": "no direction"
+       }
+      }
+     }
+    },
+    "push on a flagger": {
+     "own": {
+      "dmg": {
+       "their flag is stopped": {
+        "difference": 4.078653794023815,
+        "range": [
+         -2.5027298476579567,
+         10.013705791322758
+        ],
+        "n": [
+         217,
+         221
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.0861195984727623,
+        "verdict": "fails"
+       }
+      },
+      "dmg_v_usual": {
+       "their flag is stopped": {
+        "difference": 14.35970067221917,
+        "range": [
+         7.891686581094736,
+         21.639639564411013
+        ],
+        "n": [
+         217,
+         218
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": 0.6856901264427052,
+        "verdict": "passes"
+       }
+      },
+      "healer_share": {
+       "their flag is stopped": {
+        "difference": -1.3576047316968527,
+        "range": [
+         -7.548514127780147,
+         5.008525724623793
+        ],
+        "n": [
+         219,
+         298
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -1.654180137477747,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "their flag is stopped": {
+        "difference": -2.884854038986578,
+        "range": [
+         -9.956562328056972,
+         4.5047385801198745
+        ],
+        "n": [
+         237,
+         221
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.3301998916819485,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "their flag is stopped": {
+        "difference": 2.3955590879737727,
+        "range": [
+         -4.2295461415341435,
+         9.450940675501796
+        ],
+        "n": [
+         164,
+         491
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.9573095598577981,
+        "verdict": "fails"
+       }
+      },
+      "interrupts_on_healers": {
+       "their flag is stopped": {
+        "difference": -1.2294372294372309,
+        "range": [
+         -7.609399063186279,
+         6.186640658917751
+        ],
+        "n": [
+         105,
+         550
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.7209897213840112,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "their flag is stopped": {
+        "difference": 0.5818923006114787,
+        "range": [
+         -4.506931749434864,
+         7.709916991676697
+        ],
+        "n": [
+         201,
+         454
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.5888557296889417,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns_on_casting": {
+       "their flag is stopped": {
+        "difference": -8.121212121212123,
+        "range": [
+         -16.520871868533693,
+         1.6654161968369607
+        ],
+        "n": [
+         55,
+         600
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -1.07157799506497,
+        "verdict": "fails"
+       }
+      },
+      "disable": {
+       "their flag is stopped": {
+        "difference": 9.565903280204537,
+        "range": [
+         0.030477878107928146,
+         18.76877157192446
+        ],
+        "n": [
+         62,
+         593
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.4151657535166199,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "their flag is stopped": {
+        "difference": 2.344854482523278,
+        "range": [
+         -3.7838134216487602,
+         8.300866236512828
+        ],
+        "n": [
+         219,
+         281
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.08991081465528805,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "their flag is stopped": {
+        "difference": -1.0878323932312668,
+        "range": [
+         -7.1650150287495595,
+         5.485776834263646
+        ],
+        "n": [
+         219,
+         408
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.6577755542501119,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "their flag is stopped": {
+        "difference": 2.149634841942536,
+        "range": [
+         -5.195929064092483,
+         10.37245833817774
+        ],
+        "n": [
+         148,
+         507
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.40054860387590163,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "their flag is stopped": {
+        "difference": 2.558064429313454,
+        "range": [
+         -3.8444518275232995,
+         10.488351944626132
+        ],
+        "n": [
+         146,
+         509
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.4191098748344322,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "their flag is stopped": {
+        "difference": -2.5083162875266005,
+        "range": [
+         -8.19135442064213,
+         5.251323808688279
+        ],
+        "n": [
+         219,
+         221
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.1137475571566302,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "their flag is stopped": {
+        "difference": 11.54127414290016,
+        "range": [
+         2.3424416753753516,
+         21.174244252630714
+        ],
+        "n": [
+         81,
+         574
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": -0.24098972553685372,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "their flag is stopped": {
+        "difference": 10.120922975365318,
+        "range": [
+         2.3269585981903447,
+         16.785168497731163
+        ],
+        "n": [
+         126,
+         529
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.1636212177942723,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "their flag is stopped": {
+        "difference": 8.33179269119369,
+        "range": [
+         -3.2971606874783492,
+         21.29323884018227
+        ],
+        "n": [
+         54,
+         601
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.8116355432637775,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "their flag is stopped": {
+        "difference": 7.893835616438356,
+        "range": [
+         0.3794631181412098,
+         14.664848452446712
+        ],
+        "n": [
+         219,
+         240
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.34821736920439994,
+        "verdict": "reads backwards"
+       }
+      },
+      "off_shield": {
+       "their flag is stopped": {
+        "difference": -1.7071952031978697,
+        "range": [
+         -9.841756136080782,
+         5.930771560314166
+        ],
+        "n": [
+         152,
+         158
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.30524245725180027,
+        "verdict": "fails"
+       }
+      },
+      "drain": {
+       "their flag is stopped": {
+        "difference": 5.089285714285715,
+        "range": [
+         -1.5706584969671138,
+         11.634402061220106
+        ],
+        "n": [
+         175,
+         480
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.17741561918891557,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "their flag is stopped": {
+        "difference": -7.595731324544882,
+        "range": [
+         -21.210179324894515,
+         5.702997004307818
+        ],
+        "n": [
+         59,
+         81
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -1.3796845182915476,
+        "verdict": "no direction"
+       }
+      },
+      "strip_right": {
+       "their flag is stopped": {
+        "difference": 4.637681159420289,
+        "range": [
+         -8.158921699360167,
+         14.618951904968842
+        ],
+        "n": [
+         69,
+         60
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.4930293450609324,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "their flag is stopped": {
+        "difference": 0.668975101877372,
+        "range": [
+         -6.465160329866213,
+         6.859656901115982
+        ],
+        "n": [
+         178,
+         477
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 2.681848339680659e-05,
+        "verdict": "fails"
+       }
+      },
+      "hex_right": {
+       "their flag is stopped": {
+        "difference": -8.519388954171564,
+        "range": [
+         -23.912037037037038,
+         8.91239316239315
+        ],
+        "n": [
+         46,
+         37
+        ],
+        "groups_right": [
+         3,
+         9
+        ],
+        "before": -0.3958864087091183,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "their flag is stopped": {
+        "difference": -10.851090816844241,
+        "range": [
+         -15.746798417000576,
+         -5.1131744472382765
+        ],
+        "n": [
+         219,
+         432
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.3484021027764309,
+        "verdict": "reads backwards"
+       }
+      },
+      "intr_tried": {
+       "their flag is stopped": {
+        "difference": 7.5764742983286055,
+        "range": [
+         -0.2912314918815777,
+         15.252498765909037
+        ],
+        "n": [
+         151,
+         504
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.1591790583822691,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "their flag is stopped": {
+        "difference": -4.301075268817208,
+        "range": [
+         -17.5,
+         10.191500576838916
+        ],
+        "n": [
+         62,
+         51
+        ],
+        "groups_right": [
+         6,
+         8
+        ],
+        "before": -0.35394556048534076,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "their flag is stopped": {
+        "difference": -12.321428571428573,
+        "range": [
+         -25.268721313826738,
+         1.282238606902545
+        ],
+        "n": [
+         56,
+         80
+        ],
+        "groups_right": [
+         7,
+         9
+        ],
+        "before": -1.2059790385644789,
+        "verdict": "fails"
+       }
+      },
+      "ground_back": {
+       "their flag is stopped": {
+        "difference": -6.645203375207792,
+        "range": [
+         -14.54767466225345,
+         0.8501006286718957
+        ],
+        "n": [
+         219,
+         217
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.3799497722649482,
+        "verdict": "no direction"
+       }
+      }
+     },
+     "their": {
+      "dmg": {
+       "their flag is stopped": {
+        "difference": 2.620320855614974,
+        "range": [
+         -4.799271061126731,
+         9.984324849896872
+        ],
+        "n": [
+         221,
+         220
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -1.0091846799044182,
+        "verdict": "fails"
+       }
+      },
+      "dmg_v_usual": {
+       "their flag is stopped": {
+        "difference": 1.0635635635635659,
+        "range": [
+         -5.335820294889874,
+         8.234183819325315
+        ],
+        "n": [
+         216,
+         222
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -1.6880204893242279,
+        "verdict": "fails"
+       }
+      },
+      "healer_share": {
+       "their flag is stopped": {
+        "difference": 11.62881245944192,
+        "range": [
+         4.161365664524527,
+         18.41600155654972
+        ],
+        "n": [
+         138,
+         335
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.4135246997330666,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "their flag is stopped": {
+        "difference": -12.292358803986712,
+        "range": [
+         -19.367470801099508,
+         -5.029543934089436
+        ],
+        "n": [
+         258,
+         161
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.32226946914930904,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "their flag is stopped": {
+        "difference": -0.6578772846645613,
+        "range": [
+         -6.4553198250658745,
+         4.770932959942002
+        ],
+        "n": [
+         149,
+         506
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.0929347565610461,
+        "verdict": "fails"
+       }
+      },
+      "interrupts_on_healers": {
+       "their flag is stopped": {
+        "difference": 3.275290215588722,
+        "range": [
+         -5.593984467363201,
+         14.374886823490783
+        ],
+        "n": [
+         52,
+         603
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.15935855200753257,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "their flag is stopped": {
+        "difference": -2.3375961449355955,
+        "range": [
+         -8.307211752342466,
+         2.7475416320017447
+        ],
+        "n": [
+         218,
+         396
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.3117201964127728,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns_on_casting": {
+       "their flag is stopped": {
+        "difference": 0.586956521739129,
+        "range": [
+         -8.446959825357071,
+         10.168329991655941
+        ],
+        "n": [
+         80,
+         575
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.02135280304976106,
+        "verdict": "fails"
+       }
+      },
+      "disable": {
+       "their flag is stopped": {
+        "difference": -4.320486815415823,
+        "range": [
+         -11.468696581196582,
+         1.7369088532538666
+        ],
+        "n": [
+         145,
+         510
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.37598362047017253,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "their flag is stopped": {
+        "difference": 0.41725712486222477,
+        "range": [
+         -5.538052540893449,
+         5.7267262316696295
+        ],
+        "n": [
+         219,
+         406
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.3152987210466518,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "their flag is stopped": {
+        "difference": -3.7422166874221645,
+        "range": [
+         -10.05299038967466,
+         2.875126644146973
+        ],
+        "n": [
+         220,
+         219
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.7748235332329702,
+        "verdict": "fails"
+       }
+      },
+      "baits": {
+       "their flag is stopped": {
+        "difference": -11.954736917255659,
+        "range": [
+         -19.113798699022865,
+         -3.134827661345422
+        ],
+        "n": [
+         46,
+         609
+        ],
+        "groups_right": [
+         8,
+         9
+        ],
+        "before": -0.2783036803211233,
+        "verdict": "passes"
+       }
+      },
+      "strips": {
+       "their flag is stopped": {
+        "difference": -8.256020363733796,
+        "range": [
+         -14.316889780096234,
+         -2.690202940900026
+        ],
+        "n": [
+         219,
+         409
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.03237464932288736,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "their flag is stopped": {
+        "difference": -4.731114408875698,
+        "range": [
+         -10.426820098775067,
+         1.8634995314999716
+        ],
+        "n": [
+         178,
+         477
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.0710405290503684,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "their flag is stopped": {
+        "difference": 1.3760896637608973,
+        "range": [
+         -4.656947751997964,
+         7.668237302695198
+        ],
+        "n": [
+         220,
+         292
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.9283692278755593,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "their flag is stopped": {
+        "difference": -7.65597180335017,
+        "range": [
+         -14.765476045723226,
+         -1.9775969279976586
+        ],
+        "n": [
+         219,
+         377
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.15528164034356573,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "their flag is stopped": {
+        "difference": 0.15531202010330958,
+        "range": [
+         -6.665495362429324,
+         7.340996529477844
+        ],
+        "n": [
+         104,
+         551
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.9068861851799995,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "their flag is stopped": {
+        "difference": 2.144994593507178,
+        "range": [
+         -4.257112130543854,
+         8.759139891686656
+        ],
+        "n": [
+         161,
+         494
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.8800459845453339,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "their flag is stopped": {
+        "difference": -9.530157960651236,
+        "range": [
+         -17.059652568504987,
+         -2.6987850443757693
+        ],
+        "n": [
+         223,
+         222
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": -0.3275727941513562,
+        "verdict": "reads backwards"
+       }
+      },
+      "off_shield": {
+       "their flag is stopped": {
+        "difference": -5.595129375951295,
+        "range": [
+         -12.888913582499226,
+         1.428078783447471
+        ],
+        "n": [
+         225,
+         219
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -1.0412609705625395,
+        "verdict": "fails"
+       }
+      },
+      "drain": {
+       "their flag is stopped": {
+        "difference": -1.5195291599785996,
+        "range": [
+         -7.338263373580622,
+         4.015666616987163
+        ],
+        "n": [
+         210,
+         445
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.17218052980694032,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "their flag is stopped": {
+        "difference": 20.87976539589443,
+        "range": [
+         10.607524567062141,
+         32.46657641163172
+        ],
+        "n": [
+         55,
+         155
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.5240393139716328,
+        "verdict": "no direction"
+       }
+      },
+      "dazed_casts": {
+       "their flag is stopped": {
+        "difference": 14.947944713695929,
+        "range": [
+         2.2457864780850074,
+         30.987545317065184
+        ],
+        "n": [
+         36,
+         619
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -1.112122876459437,
+        "verdict": "fails"
+       }
+      },
+      "strip_right": {
+       "their flag is stopped": {
+        "difference": -6.849056603773585,
+        "range": [
+         -16.826688635899785,
+         1.4604616875250536
+        ],
+        "n": [
+         106,
+         100
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.2829355923396337,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "their flag is stopped": {
+        "difference": -8.396769345438106,
+        "range": [
+         -14.533560660496502,
+         -2.082106648092256
+        ],
+        "n": [
+         223,
+         367
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.08123005148907914,
+        "verdict": "fails"
+       }
+      },
+      "hex_right": {
+       "their flag is stopped": {
+        "difference": -7.123893805309734,
+        "range": [
+         -15.159538737124944,
+         1.4330002536808442
+        ],
+        "n": [
+         140,
+         113
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -1.3874816422531175,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "their flag is stopped": {
+        "difference": 10.03032140691328,
+        "range": [
+         3.0273962618620778,
+         15.950849932212629
+        ],
+        "n": [
+         170,
+         485
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": -1.4301772791626277,
+        "verdict": "reads backwards"
+       }
+      },
+      "intr_tried": {
+       "their flag is stopped": {
+        "difference": -0.4700111159441285,
+        "range": [
+         -6.2123803057152855,
+         5.588682622942122
+        ],
+        "n": [
+         171,
+         484
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.2525947573706543,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "their flag is stopped": {
+        "difference": 11.958533876342097,
+        "range": [
+         0.8762737283483161,
+         23.555279451006296
+        ],
+        "n": [
+         74,
+         73
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.7534879634611674,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "their flag is stopped": {
+        "difference": 9.404388714733539,
+        "range": [
+         -2.3351085033006993,
+         19.801586607729856
+        ],
+        "n": [
+         58,
+         110
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": 1.0293552357696458,
+        "verdict": "fails"
+       }
+      },
+      "res_tried": {
+       "their flag is stopped": {
+        "difference": 17.495523594986423,
+        "range": [
+         7.161917044728833,
+         28.029690822341273
+        ],
+        "n": [
+         58,
+         597
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.2969731575918161,
+        "verdict": "no direction"
+       }
+      },
+      "ground_back": {
+       "their flag is stopped": {
+        "difference": 11.818181818181818,
+        "range": [
+         5.02799672541397,
+         18.589094693531873
+        ],
+        "n": [
+         220,
+         220
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.4409964185330537,
+        "verdict": "no direction"
+       }
+      }
+     }
+    },
+    "flagger pushed": {
+     "own": {
+      "dmg": {
+       "the flag gets in": {
+        "difference": -3.7304108806625464,
+        "range": [
+         -10.14685025533483,
+         2.5291908301397568
+        ],
+        "n": [
+         218,
+         257
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.8840195528125108,
+        "verdict": "fails"
+       }
+      },
+      "dmg_v_usual": {
+       "the flag gets in": {
+        "difference": 1.1813885859687332,
+        "range": [
+         -5.720407608547832,
+         7.4243000143376685
+        ],
+        "n": [
+         210,
+         262
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.467428633056166,
+        "verdict": "fails"
+       }
+      },
+      "healer_share": {
+       "the flag gets in": {
+        "difference": 0.3154696993301229,
+        "range": [
+         -7.03558923171169,
+         8.106762486742149
+        ],
+        "n": [
+         131,
+         196
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.13879824192141405,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "the flag gets in": {
+        "difference": -5.999746846124637,
+        "range": [
+         -13.633681535855448,
+         2.151031745791012
+        ],
+        "n": [
+         173,
+         137
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.33299561620692175,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "the flag gets in": {
+        "difference": 4.072102667929329,
+        "range": [
+         -2.155294322293141,
+         10.135633357801275
+        ],
+        "n": [
+         113,
+         542
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": -0.24460981920299185,
+        "verdict": "fails"
+       }
+      },
+      "interrupts_on_healers": {
+       "the flag gets in": {
+        "difference": 3.533697632058292,
+        "range": [
+         -6.643858244139167,
+         11.89486575323248
+        ],
+        "n": [
+         45,
+         610
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.09760914680350119,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "the flag gets in": {
+        "difference": -11.105098605098604,
+        "range": [
+         -19.670942428079925,
+         -2.3827940871150965
+        ],
+        "n": [
+         88,
+         567
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": -0.1640289496938645,
+        "verdict": "reads backwards"
+       }
+      },
+      "disable": {
+       "the flag gets in": {
+        "difference": 4.0853425181783365,
+        "range": [
+         -5.1586494796565905,
+         12.336042697869381
+        ],
+        "n": [
+         52,
+         603
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.9694024442898225,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "the flag gets in": {
+        "difference": -2.8709547786208987,
+        "range": [
+         -9.366167671444504,
+         2.673726088873273
+        ],
+        "n": [
+         177,
+         478
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": 0.1405510911838853,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "the flag gets in": {
+        "difference": 5.376794258373195,
+        "range": [
+         -1.5277417851346136,
+         11.63882399850262
+        ],
+        "n": [
+         220,
+         304
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 1.0110243715339036,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "the flag gets in": {
+        "difference": 1.497658791149874,
+        "range": [
+         -5.78842891903709,
+         8.303075743813976
+        ],
+        "n": [
+         101,
+         554
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.0053015274041009475,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "the flag gets in": {
+        "difference": 1.1570247933884303,
+        "range": [
+         -9.882445233404779,
+         10.433578392365579
+        ],
+        "n": [
+         50,
+         605
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.6199048878905747,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "the flag gets in": {
+        "difference": 6.88073394495413,
+        "range": [
+         -1.0571369758624802,
+         13.934280605951754
+        ],
+        "n": [
+         218,
+         218
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.7309608668600336,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "the flag gets in": {
+        "difference": 4.3765800754772215,
+        "range": [
+         -2.3873595595139117,
+         11.567302604017371
+        ],
+        "n": [
+         98,
+         557
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.487008725396077,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "the flag gets in": {
+        "difference": -12.915326902465168,
+        "range": [
+         -28.332531074660007,
+         1.1263668807793492
+        ],
+        "n": [
+         33,
+         622
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.16816957250984277,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "the flag gets in": {
+        "difference": 0.3280456567653829,
+        "range": [
+         -8.593116065748433,
+         7.991839515299085
+        ],
+        "n": [
+         77,
+         578
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 0.7770700505514321,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "the flag gets in": {
+        "difference": 0.5816496107758269,
+        "range": [
+         -4.546699378701392,
+         6.768871891571278
+        ],
+        "n": [
+         222,
+         309
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.0320767750864672,
+        "verdict": "fails"
+       }
+      },
+      "off_shield": {
+       "the flag gets in": {
+        "difference": -1.4393405043202279,
+        "range": [
+         -7.6410397090485604,
+         4.590852236559389
+        ],
+        "n": [
+         214,
+         424
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 1.0214942689428461,
+        "verdict": "fails"
+       }
+      },
+      "drain": {
+       "the flag gets in": {
+        "difference": 5.389408099688467,
+        "range": [
+         -1.4192674030940842,
+         11.121506406022979
+        ],
+        "n": [
+         120,
+         535
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.4238637065026165,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "the flag gets in": {
+        "difference": -11.666666666666671,
+        "range": [
+         -28.052691284618994,
+         0.8311681690434235
+        ],
+        "n": [
+         40,
+         75
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 1.6900086787129456,
+        "verdict": "no direction"
+       }
+      },
+      "strip_right": {
+       "the flag gets in": {
+        "difference": 9.615384615384613,
+        "range": [
+         -5.849061804070285,
+         27.349454717875737
+        ],
+        "n": [
+         39,
+         36
+        ],
+        "groups_right": [
+         2,
+         7
+        ],
+        "before": 1.4793367742006316,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "the flag gets in": {
+        "difference": 1.7199421204946077,
+        "range": [
+         -5.523770794287727,
+         8.057400707473429
+        ],
+        "n": [
+         112,
+         543
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.033141697613673915,
+        "verdict": "fails"
+       }
+      },
+      "hex_right": {
+       "the flag gets in": {
+        "difference": -2.2988505747126453,
+        "range": [
+         -16.2268663647974,
+         11.605253813294292
+        ],
+        "n": [
+         58,
+         36
+        ],
+        "groups_right": [
+         3,
+         9
+        ],
+        "before": 1.472309719132665,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "the flag gets in": {
+        "difference": -7.176993872288065,
+        "range": [
+         -12.188193638533455,
+         -2.006530110745001
+        ],
+        "n": [
+         219,
+         386
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.4709996335012254,
+        "verdict": "reads backwards"
+       }
+      },
+      "intr_tried": {
+       "the flag gets in": {
+        "difference": 6.058454060537187,
+        "range": [
+         -0.3248270252210812,
+         11.343162999601454
+        ],
+        "n": [
+         118,
+         537
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": 0.010268349499722995,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "the flag gets in": {
+        "difference": -19.28436911487759,
+        "range": [
+         -30.20107310839626,
+         -8.941423800850025
+        ],
+        "n": [
+         59,
+         45
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.1533435333562967,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "the flag gets in": {
+        "difference": -15.718157181571812,
+        "range": [
+         -29.262411440845437,
+         -1.0694928377855237
+        ],
+        "n": [
+         41,
+         72
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 0.08158247039888256,
+        "verdict": "fails"
+       }
+      },
+      "ground_back": {
+       "the flag gets in": {
+        "difference": -9.988211338548936,
+        "range": [
+         -17.446371838069805,
+         -2.4355937530112923
+        ],
+        "n": [
+         217,
+         215
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 1.4653356395565809,
+        "verdict": "no direction"
+       }
+      }
+     },
+     "their": {
+      "dmg": {
+       "the flag gets in": {
+        "difference": -13.203494797422692,
+        "range": [
+         -19.547286557014555,
+         -6.893977151006304
+        ],
+        "n": [
+         217,
+         221
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.17752772479840095,
+        "verdict": "passes"
+       }
+      },
+      "dmg_v_usual": {
+       "the flag gets in": {
+        "difference": -11.782452707110238,
+        "range": [
+         -17.935034472709184,
+         -5.475043163477339
+        ],
+        "n": [
+         219,
+         224
+        ],
+        "groups_right": [
+         9,
+         10
+        ],
+        "before": -0.35340289072982944,
+        "verdict": "passes"
+       }
+      },
+      "healer_share": {
+       "the flag gets in": {
+        "difference": 1.7201426024955424,
+        "range": [
+         -4.540139691293968,
+         7.59551194450632
+        ],
+        "n": [
+         204,
+         440
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 1.910055840404416,
+        "verdict": "no direction"
+       }
+      },
+      "focus": {
+       "the flag gets in": {
+        "difference": -1.4492753623188435,
+        "range": [
+         -6.6832489489862015,
+         4.407107978177232
+        ],
+        "n": [
+         437,
+         207
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.7477275172760053,
+        "verdict": "no direction"
+       }
+      },
+      "interrupts": {
+       "the flag gets in": {
+        "difference": 0.6701294507091546,
+        "range": [
+         -6.174501196795477,
+         6.4061110054936625
+        ],
+        "n": [
+         146,
+         509
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.0886373451902418,
+        "verdict": "fails"
+       }
+      },
+      "interrupts_on_healers": {
+       "the flag gets in": {
+        "difference": 0.6719184430027809,
+        "range": [
+         -8.023671322927838,
+         7.773178026521067
+        ],
+        "n": [
+         83,
+         572
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": 1.76064310968493,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns": {
+       "the flag gets in": {
+        "difference": -0.1616261231645808,
+        "range": [
+         -5.712090513221484,
+         6.440396626589156
+        ],
+        "n": [
+         216,
+         338
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.25165140552650334,
+        "verdict": "fails"
+       }
+      },
+      "knockdowns_on_casting": {
+       "the flag gets in": {
+        "difference": 2.9486753131581764,
+        "range": [
+         -5.037847626543615,
+         9.4473156277477
+        ],
+        "n": [
+         97,
+         558
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.7738916202128132,
+        "verdict": "fails"
+       }
+      },
+      "disable": {
+       "the flag gets in": {
+        "difference": -1.5872381256996562,
+        "range": [
+         -9.252800862879242,
+         4.846590400303344
+        ],
+        "n": [
+         148,
+         507
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.5030102647125454,
+        "verdict": "fails"
+       }
+      },
+      "degen": {
+       "the flag gets in": {
+        "difference": -2.3639743156471837,
+        "range": [
+         -8.756068978824013,
+         4.259536513229389
+        ],
+        "n": [
+         220,
+         269
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.3453983641704841,
+        "verdict": "fails"
+       }
+      },
+      "kite": {
+       "the flag gets in": {
+        "difference": 8.180130653625113,
+        "range": [
+         1.0779445146858218,
+         14.394157351962303
+        ],
+        "n": [
+         218,
+         257
+        ],
+        "groups_right": [
+         1,
+         10
+        ],
+        "before": 0.07571728532186794,
+        "verdict": "reads backwards"
+       }
+      },
+      "baits": {
+       "the flag gets in": {
+        "difference": 5.53117095670288,
+        "range": [
+         -3.8063922963393066,
+         14.73352558458283
+        ],
+        "n": [
+         44,
+         611
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 1.0302661269004239,
+        "verdict": "fails"
+       }
+      },
+      "strips": {
+       "the flag gets in": {
+        "difference": 2.1750650906661235,
+        "range": [
+         -3.0229503551228425,
+         8.29897112080396
+        ],
+        "n": [
+         222,
+         391
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -0.673313384000624,
+        "verdict": "fails"
+       }
+      },
+      "strips_wasted": {
+       "the flag gets in": {
+        "difference": 5.52139037433156,
+        "range": [
+         -0.2995509397677444,
+         11.19238763675761
+        ],
+        "n": [
+         220,
+         408
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.26048270284249364,
+        "verdict": "fails"
+       }
+      },
+      "hex_secs": {
+       "the flag gets in": {
+        "difference": -1.2697119383476831,
+        "range": [
+         -8.119238360617663,
+         6.22881856449311
+        ],
+        "n": [
+         219,
+         269
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": -1.991423345341055,
+        "verdict": "fails"
+       }
+      },
+      "hex_removed": {
+       "the flag gets in": {
+        "difference": 3.8030560271646863,
+        "range": [
+         -2.664785660175177,
+         9.170812285015176
+        ],
+        "n": [
+         217,
+         380
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.2840744294101639,
+        "verdict": "fails"
+       }
+      },
+      "npc_dmg": {
+       "the flag gets in": {
+        "difference": -7.818681318681314,
+        "range": [
+         -13.286499726021592,
+         -2.5401787185722404
+        ],
+        "n": [
+         200,
+         455
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.5819551560756508,
+        "verdict": "no direction"
+       }
+      },
+      "npc_heal": {
+       "the flag gets in": {
+        "difference": -2.4436090225564016,
+        "range": [
+         -10.849414973751687,
+         5.571874715152967
+        ],
+        "n": [
+         95,
+         560
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.2832457401029185,
+        "verdict": "no direction"
+       }
+      },
+      "into_ready": {
+       "the flag gets in": {
+        "difference": 5.9090909090909065,
+        "range": [
+         -0.29244084129750614,
+         13.15836352136704
+        ],
+        "n": [
+         220,
+         220
+        ],
+        "groups_right": [
+         8,
+         10
+        ],
+        "before": -0.809108880740722,
+        "verdict": "fails"
+       }
+      },
+      "off_shield": {
+       "the flag gets in": {
+        "difference": -5.729166666666671,
+        "range": [
+         -12.675877952419954,
+         0.8186870911812604
+        ],
+        "n": [
+         192,
+         192
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -1.127227241141723,
+        "verdict": "fails"
+       }
+      },
+      "drain": {
+       "the flag gets in": {
+        "difference": 3.440366972477065,
+        "range": [
+         -2.961909087126254,
+         8.947505947505947
+        ],
+        "n": [
+         218,
+         436
+        ],
+        "groups_right": [
+         3,
+         10
+        ],
+        "before": 0.04625195462981335,
+        "verdict": "fails"
+       }
+      },
+      "drain_on_monks": {
+       "the flag gets in": {
+        "difference": 0.23001725129384454,
+        "range": [
+         -9.223414516517959,
+         9.368163011432245
+        ],
+        "n": [
+         74,
+         141
+        ],
+        "groups_right": [
+         0,
+         9
+        ],
+        "before": 1.023962866624153,
+        "verdict": "no direction"
+       }
+      },
+      "strip_right": {
+       "the flag gets in": {
+        "difference": -3.3256291730867957,
+        "range": [
+         -11.868663546171728,
+         5.441566252594518
+        ],
+        "n": [
+         132,
+         118
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.5294497447549293,
+        "verdict": "fails"
+       }
+      },
+      "strip_value": {
+       "the flag gets in": {
+        "difference": 2.0807617704108736,
+        "range": [
+         -3.728521086534122,
+         8.210269222010231
+        ],
+        "n": [
+         214,
+         318
+        ],
+        "groups_right": [
+         5,
+         10
+        ],
+        "before": -0.3894304964738574,
+        "verdict": "fails"
+       }
+      },
+      "hex_right": {
+       "the flag gets in": {
+        "difference": -0.9690668720318314,
+        "range": [
+         -9.27770581619162,
+         7.4838159470364225
+        ],
+        "n": [
+         147,
+         106
+        ],
+        "groups_right": [
+         4,
+         10
+        ],
+        "before": -0.09548721370138014,
+        "verdict": "fails"
+       }
+      },
+      "cripple_secs": {
+       "the flag gets in": {
+        "difference": 9.550618786772162,
+        "range": [
+         3.581400742115034,
+         14.915212558323825
+        ],
+        "n": [
+         159,
+         496
+        ],
+        "groups_right": [
+         2,
+         10
+        ],
+        "before": 0.02566031278524039,
+        "verdict": "reads backwards"
+       }
+      },
+      "intr_tried": {
+       "the flag gets in": {
+        "difference": -3.0561189993238713,
+        "range": [
+         -9.514020537105676,
+         3.1931893556990776
+        ],
+        "n": [
+         145,
+         510
+        ],
+        "groups_right": [
+         6,
+         10
+        ],
+        "before": 0.3367243329672749,
+        "verdict": "fails"
+       }
+      },
+      "intr_missed_share": {
+       "the flag gets in": {
+        "difference": 5.512820512820511,
+        "range": [
+         -9.001704545454546,
+         19.166518418010963
+        ],
+        "n": [
+         60,
+         52
+        ],
+        "groups_right": [
+         7,
+         10
+        ],
+        "before": -0.6570124339546008,
+        "verdict": "fails"
+       }
+      },
+      "intr_slow_share": {
+       "the flag gets in": {
+        "difference": 9.96503496503496,
+        "range": [
+         -2.5067912310467397,
+         23.30225650018788
+        ],
+        "n": [
+         52,
+         88
+        ],
+        "groups_right": [
+         7,
+         9
+        ],
+        "before": 0.10207520159801287,
+        "verdict": "fails"
+       }
+      },
+      "res_tried": {
+       "the flag gets in": {
+        "difference": 20.06003951968384,
+        "range": [
+         14.903985048853144,
+         24.96021775544389
+        ],
+        "n": [
+         43,
+         612
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": 1.2415700752222036,
+        "verdict": "no direction"
+       }
+      },
+      "ground_back": {
+       "the flag gets in": {
+        "difference": -1.0995052226498103,
+        "range": [
+         -7.961118538324411,
+         6.370766696657359
+        ],
+        "n": [
+         221,
+         214
+        ],
+        "groups_right": [
+         0,
+         10
+        ],
+        "before": -0.1308851115150509,
+        "verdict": "no direction"
+       }
+      }
+     }
+    }
+   },
+   "plays": {
+    "split, the split's side": {
+     "outcome": "the split loses nobody",
+     "plays": 1707,
+     "matches": 427,
+     "rate": 85.70591681312244
+    },
+    "split, the defence": {
+     "outcome": "a split player is killed",
+     "plays": 1501,
+     "matches": 385,
+     "rate": 17.3217854763491
+    },
+    "push on a flagger": {
+     "outcome": "their flag is stopped",
+     "plays": 655,
+     "matches": 292,
+     "rate": 21.984732824427482
+    },
+    "flagger pushed": {
+     "outcome": "the flag gets in",
+     "plays": 655,
+     "matches": 292,
+     "rate": 78.93129770992367
+    }
+   },
+   "count": {
+    "reads backwards": 28,
+    "no direction": 55,
+    "too few": 110,
+    "fails": 153,
+    "passes": 30
+   },
+   "by chance": [
+    5,
+    2,
+    3
+   ]
+  },
   "count": {
    "passes": 132,
    "no direction": 240,

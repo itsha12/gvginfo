@@ -3140,6 +3140,24 @@ HOLD_RES = ((0, 30, "the base res within 30 s"), (30, 60, "30 to 60 s off"), (60
 HOLD_NPC = ((0, 0, "no pit NPC lost yet"), (1, 2, "one or two lost"), (3, 9, "three or more lost"))
 
 
+def exec_own(p):
+    """The outcome of its own a play has, beside the two every play is read against (stage X3, REDESIGN.md "Execution": the split holding, the run capped or
+    stopped), said from the side of the team making the play: (its words, 100 where it went that team's way, else 0). A split holds when nobody on it dies
+    (R-517, R-523: the test of the attacker's row) and the defence's side of the same seconds is a split player killed; a push on a flagger stops their flag
+    and the flagger's team gets it in (`push_plays`). None on a row whose job it is not: a change inside a split fight (a join, a leave, a collapse told as
+    its own decision, R-511), either main team's row, a push team with a defence team (R-487), a split nobody defends from the defence's side (it has no
+    players there), and a Shadow of Haste run (R-456)."""
+    b = p.get("beside") or {}
+    if p["play"] == "split":
+        if p.get("change") or p.get("group") == "push team": return None
+        if p["side"] == "attacker" and "lost" in b: return ("the split loses nobody", 0.0 if b["lost"] else 100.0)
+        if p["side"] == "defender" and "split_killed" in b and p.get("defenders"): return ("a split player is killed", 100.0 if b["split_killed"] else 0.0)
+        return None
+    if p["play"] == "push flagger" and not p.get("soh"): return ("their flag is stopped", 100.0 if p["any_of"].get("their flag is stopped") else 0.0)
+    if p["play"] == "flagger pushed" and not p.get("soh") and "flag" in b: return ("the flag gets in", 100.0 if b["flag"] == "captured" else 0.0)
+    return None
+
+
 def _exec_told(p, M, B):
     """`_told` for any play that carries its position: under `at_told`, or on the play itself (flag, boost and numbers plays)."""
     if "at_told" in p: return _told(p, M, B)
@@ -3160,7 +3178,7 @@ def exec_cases(D, M, B):
         if not x["n"][1] or x["their"] is None: skipped["its players met nobody in the window"] += 1; continue
         c = _exec_told(p, M, B)
         if c is None: skipped["no position on the play, no winner recorded, or the flag lead not read"] += 1; continue
-        c.update(kind=kind, x=x, met=bool(p.get("met")), play=p)
+        c.update(kind=kind, x=x, met=bool(p.get("met")), play=p, own=exec_own(p))
         out.append(c)
     return out, skipped
 
@@ -3234,6 +3252,7 @@ EXEC_LEGEND = ("What stands out is a measure outside nine plays in ten of the sa
 def exec_say(path, pre, at=None, bench_file=None):
     """The execution sentence of every play of a match that has one (from the second given): `cases.py execution-say <plays file> <report id> [m:ss]`. The benchmark is
     the kept report's (`data/model/execution_cases.json`, from `cases.py execution --json`), so the plays file may be a development set run."""
+    import execution as EX
     D = json.load(open(path))
     bench = json.load(open(bench_file or os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data", "model", "execution_cases.json")))["bench"]
     rid = next((r for r in D["matches"] if r.startswith(pre)), None)
@@ -3244,7 +3263,8 @@ def exec_say(path, pre, at=None, bench_file=None):
         kind = next((k for k, fn in EXEC_KINDS if fn(p)), None)
         x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
         sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
-        if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}")
+        flt = EX.say_faults(p, x, D["flag_cost"][rid].get("deaths") or [], teams) if x and "deaths" in x else None
+        if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}" + (f"\n   Faults (R-713, R-714). {flt}" if flt else ""))
 
 
 def _exec_split(X, side, key):
@@ -3823,25 +3843,8 @@ def _x3_word(d, lo, hi, signs, want):
 
 
 def x3_kinds():
-    """Each kind of missed chance: (taken, missed, late), each a test on an attempt, all read over the same seconds (from 3 s before the first big hit to CHANCE_S
-    after it, the seconds a monk's chance is looked for): a spike that kills ends at the death and one that fails is read for 8 s, so anything counted to the
-    end of the attempt piles up on the spikes that failed. Taken by anyone in time is taken (R-715). Late: done, but only after those seconds (out of time, R-713)."""
-    from execution import CHANCE_S as CH
-    ints = lambda r: [x for x in r["missed"] if x["kind"] == "interrupt" and x.get("at", 0) <= CH]
-    out = {}
-    for kind, key in (("prot", "prots_cast"), ("heal", "heals_cast")):
-        tk = (lambda key: lambda r: any(d <= CH for _, d, _o in r[key]))(key)
-        has = (lambda kind: lambda r: any(x["kind"] == kind and x.get("chance") for x in r["missed"]))(kind)
-        out[kind] = (tk, (lambda tk, has: lambda r: has(r) and not tk(r))(tk, has), lambda r: False)
-    mi = lambda r: any(x.get("chance") for x in ints(r))
-    out["interrupt"] = (lambda r: any(x.get("taken") for x in ints(r)) and not mi(r), mi, lambda r: False)
-    st = lambda r: bool(r["prots_up"]) and any(prot and a <= CH for a, prot in r["strip"].get("at", []))
-    out["strip"] = (st, lambda r: not st(r) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"]),
-                    lambda r: bool(r["prots_up"]) and r["strip"]["n"] > 0 and not st(r))
-    pt = lambda r: any(a <= CH for a in r["pressure"].get("interrupts_at", []))
-    out["pressure"] = (pt, lambda r: not pt(r) and any(x["kind"] == "pressure" and x.get("chance") for x in r["missed"]),
-                       lambda r: r["pressure"]["interrupts"] > 0 and not pt(r))
-    return out
+    """Each kind of missed chance as (taken, missed, late): the one reading, `execution.chance_tests`, which the faults listed on a death use too."""
+    return __import__("execution").chance_tests()
 
 
 def x3_attempts(A, pr, res):
@@ -3873,6 +3876,10 @@ def x3_attempts(A, pr, res):
            + (f"{len(L)}, {raw(L):.1f}% killed" if L else ""))
     ok = [k for k, v in res["x3"].items() if v["verdict"] == "passes"]
     pr(f"   Checked kinds that may be told as faults: {', '.join(ok) or 'none'}; not faults: {', '.join(k for k in res['x3'] if k not in ok) or 'none'}.")
+    res["faults_told"] = list(EX.FAULT_KINDS)
+    if set(ok) != set(EX.FAULT_KINDS):                    # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees, the report stops (R-460)
+        res["faults_differ"] = f"the engine tells {', '.join(EX.FAULT_KINDS)} as faults (execution.FAULT_KINDS) and this test passes {', '.join(ok) or 'none'}"
+        pr(f"   FAULT: {res['faults_differ']}: set execution.FAULT_KINDS to the kinds that pass and run again.")
 
 
 def x3_together(A, pr, res):
@@ -3936,30 +3943,43 @@ def _x3_measure(a, b, want, y):
 
 def x3_measures(C, pr, res, outcomes, shuffles=3):
     """Stage X3 for the execution measures: each with a direction, for each kind of play and each side, upper third against lower on unseen matches (`_x3_split`)
-    against each outcome; the same test on records shuffled among plays of the same kind gives how many pass by chance alone."""
+    against each outcome; the same test on records shuffled among plays of the same kind gives how many pass by chance alone. Read twice: against the two
+    outcomes every play has (`outcomes`), then against the outcome of its own a kind of play has (`exec_own`: the split holding, the run capped or stopped),
+    on the rows whose job it is; the two are counted apart, each against its own shuffles."""
     import execution as EX, random
-    def run(C_, keep):
+    own_of = lambda c: c["own"][1]
+    def run(C_, keep, own):
         n = collections.Counter()
         for kind, _ in EXEC_KINDS:
             X = [c for c in C_ if c["kind"] == kind]
+            if own:
+                X = [c for c in X if c.get("own") is not None]
+                outs = ((X[0]["own"][0], own_of, "%"),) if X else ()
+            else: outs = outcomes
+            if not outs: continue
             for side, sg in (("own", 1), ("their", -1)):
                 for k in EX.KEYS:
                     sp = _x3_split(X, side, k)
-                    for name, y, _u in outcomes:
+                    for name, y, _u in outs:
                         if sp is None: n["too few"] += 1; continue
                         v = _x3_measure(*sp, sg * EX.SIGN[k], y); n[v["verdict"]] += 1
                         if keep is not None: keep.setdefault(kind, {}).setdefault(side, {}).setdefault(k, {})[name] = v
         return n
-    o = res["x3"] = {"readings": {}}
-    real = o["count"] = dict(run(C, o["readings"]))
-    chance = []
-    for s in range(1, shuffles + 1):
+    def shuffled(s):
         rng, S = random.Random(s), []
         for kind, _ in EXEC_KINDS:
             X = [dict(c) for c in C if c["kind"] == kind]; xs = [c["x"] for c in X]; rng.shuffle(xs)
             S += [dict(c, x=x) for c, x in zip(X, xs)]
-        chance.append(run(S, None).get("passes", 0))
-    o["by chance"] = chance
+        return S
+    o = res["x3"] = {"readings": {}, "own": {"readings": {}, "plays": {}}}
+    real = o["count"] = dict(run(C, o["readings"], False))
+    real_own = o["own"]["count"] = dict(run(C, o["own"]["readings"], True))
+    chance, chance_own = [], []
+    for s in range(1, shuffles + 1):
+        S = shuffled(s)
+        chance.append(run(S, None, False).get("passes", 0)); chance_own.append(run(S, None, True).get("passes", 0))
+    o["by chance"], o["own"]["by chance"] = chance, chance_own
+    said = lambda side: "the team making the play" if side == "own" else "the enemy it meets"
     pr(f"\nC. Stage X3: each measure tested on unseen matches (R-713, R-285). The thirds of a measure are cut on the other groups of matches and each play placed by them;")
     pr(f"   passes = the 90% range over whole matches clear, the right sign in every group but {X3_BUT}, and not told as well by the 60 s before (marks the situation).")
     pr(f"   Readings: " + "; ".join(f"{k} {v}" for k, v in sorted(real.items())) + f". The same test on records shuffled among plays of the same kind: "
@@ -3967,8 +3987,23 @@ def x3_measures(C, pr, res, outcomes, shuffles=3):
     for kind in o["readings"]:
         for side in ("own", "their"):
             P_ = [(k, nm, v) for k, by in o["readings"][kind].get(side, {}).items() for nm, v in by.items() if v["verdict"] == "passes"]
-            if P_: pr(f"   {kind}, {'the team making the play' if side == 'own' else 'the enemy it meets'}: "
+            if P_: pr(f"   {kind}, {said(side)}: "
                       + "; ".join(f"{k} ({nm} {v['difference']:+.2f}, {v['groups_right'][0]}/{v['groups_right'][1]})" for k, nm, v in P_))
+    pr(f"\nC2. The same test against the outcome of its own a kind of play has, from the side of the team making the play (% points; R-517, R-523, R-456): a split")
+    pr("   holds when nobody on it dies, and the defence's side of it is a split player killed; a push on a flagger stops their flag, and the flagger's team gets it in.")
+    pr("   Only the rows whose job it is: no join, leave or collapse told inside a split fight, no main team's row, no Shadow of Haste run.")
+    pr(f"   Readings: " + "; ".join(f"{k} {v}" for k, v in sorted(real_own.items())) + f". On shuffled records: " + ", ".join(str(x) for x in chance_own) + " pass by chance alone.")
+    for kind, _ in EXEC_KINDS:
+        X = [c for c in C if c["kind"] == kind and c.get("own") is not None]
+        if not X: continue
+        name, rate = X[0]["own"][0], float(np.mean([own_of(c) for c in X]))
+        o["own"]["plays"][kind] = {"outcome": name, "plays": len(X), "matches": len({c["rid"] for c in X}), "rate": rate}
+        pr(f"   {kind}: {name} in {rate:.0f}% of {len(X):,} plays ({len({c['rid'] for c in X})} matches)")
+        for side in ("own", "their"):
+            by = o["own"]["readings"].get(kind, {}).get(side, {})
+            for word in ("passes", "reads backwards", "marks the situation"):
+                P_ = [(k, v[name]) for k, v in by.items() if name in v and v[name]["verdict"] == word]
+                if P_: pr(f"      {said(side)}, {word}: " + "; ".join(f"{k} ({v['difference']:+.1f}, {v['range'][0]:+.1f} to {v['range'][1]:+.1f}, {v['groups_right'][0]}/{v['groups_right'][1]})" for k, v in P_))
 
 
 def attempts_report(path, out_json=None):
@@ -4023,6 +4058,7 @@ def attempts_report(path, out_json=None):
     if out_json:
         with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
         pr(f"written: {out_json}")
+    if res.get("faults_differ"): sys.exit("attempts: " + res["faults_differ"] + " (R-460)")
     return res
 
 

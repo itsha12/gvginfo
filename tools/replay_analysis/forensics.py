@@ -230,6 +230,23 @@ class Forensics:
                 elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
         return out
 
+    def taken_in_time(self, a, first, kinds):
+        """R-715: the kinds in kinds ({kind: test on skill data}) that a team mate cast on a in time, from 3 s before first to CHANCE_S after it (the seconds a
+        chance is looked for, as on a kill attempt): the team took that chance, so it is no fault and is not listed against a monk who held back."""
+        self.casts()
+        tm = self.m.team(a)
+        return [k for k, test in kinds.items() if any(c[5] == a and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
+
+    def killing_burst(self, a, t):
+        """The second the burst that killed a at t began: the start of the heaviest 2 s of damage on him in the WINDOW before the death (2 s before it where
+        no damage on him is recorded). The death account and the faults said on a death (execution.deaths) read a monk's chance from here."""
+        dmg = self.damage_on(a, t - WINDOW, t)
+        bt, bs = t - 2, 0
+        for i, d_ in enumerate(dmg):
+            s_ = sum(x[3] for x in dmg[i:] if x[0] <= d_[0] + 2)
+            if s_ > bs: bs, bt = s_, d_[0]
+        return bt
+
     def damage_on(self, a, t0, t1):
         return [(e[0] / 10, e[2], e[4], e[5] or 0, e[6] if len(e) > 6 else None) for e in self.events(t0, t1, {"dm"})
                 if e[3] == a and e[2] in self.m.PL and self.m.team(e[2]) != self.m.team(a) and (e[5] or 0) > 0]
@@ -780,19 +797,17 @@ def death(rid, tag, role, t, F=None):
                          "measures": {"monks": n, "out": o, "possibly_out": sum(r["out"] == "maybe" for r in rows), "line": 20, "scale": "double high (R-668)"}, "rows": rows}
     # healed at all (R-703): healing that landed on him from the start of the burst that killed him, the heals and prots cast on him, and the chances his
     # monks missed (a heal or prot ready, in reach, his hands free, energy, in time to land; busy on a player under pressure is no chance, R-711)
-    dmg = F.damage_on(a, t0, t)
-    bt, bs = t - 2, 0
-    for i, d_ in enumerate(dmg):
-        s_ = sum(x[3] for x in dmg[i:] if x[0] <= d_[0] + 2)
-        if s_ > bs: bs, bt = s_, d_[0]
+    bt = F.killing_burst(a, t)
     healed = sum(e[5] for e in F.ev if e[1] == "hl" and e[3] == a and e[0] is not None and bt * 10 <= e[0] <= t * 10 and isinstance(e[5], (int, float)))
     kinds = {"heal": is_heal, "prot": is_prot}
     ch = F.chances(a, bt, t, kinds)
-    miss = [c for c in ch if c["chance"]]
+    took = F.taken_in_time(a, bt, kinds)                 # R-715: a kind a team mate cast in time is no fault, and is not listed against the monk who held back (as execution.deaths lists them)
+    miss = [c for c in ch if c["chance"] and c["kind"] not in took]
     ans["healed"] = {"q": "Was he healed at all while his monks had energy and skills available?",
                      "answer": (f"{round(healed)} healing landed from the start of the burst ({round(t - bt, 1)} s before the death)"
-                                + ("; missed: " + "; ".join(f"{c['by']} had {', '.join(c['skills'])} ready ({c['kind']})" for c in miss) if miss else "; no chance missed")),
-                     "measures": {"healed": round(healed), "burst_s": round(t - bt, 1), "missed": len(miss),
+                                + ("; missed: " + "; ".join(f"{c['by']} had {', '.join(c['skills'])} ready ({c['kind']})" for c in miss) if miss else "; no chance missed")
+                                + (f"; done in time by a team mate, so no fault (R-715): a {' and a '.join(took)}" if took else "")),
+                     "measures": {"healed": round(healed), "burst_s": round(t - bt, 1), "missed": len(miss), "taken": took,
                                   "busy": sum(1 for c in ch if c.get("busy_on")), "out_of_energy": sum(1 for c in ch if c.get("out_of_energy"))}, "rows": ch}
     # gvg.report's own recap of the death (R-636, R-638; checked against the replays, R-707: 680 of 821 deaths have one, every one on a death the
     # replays record, and 92% of the prots it lists are on him in the replays): its healing by source, the prots up, interrupts and knockdowns on him.
