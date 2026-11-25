@@ -45,8 +45,7 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
    hand-off and held flags.
 
 ## Open for Denning
-0. Held at his word (R-554): the cards for a flag in hand, with R-553 to build, and for a double run from the
-   sender's side: raise them when more matches are trained.
+0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
 1. R-713: Claude's handling of faults (missed chances, each kind checked once, none ranked) was put to him with the
    ruling; he had asked "Do you think we need the cost model?". His to turn round.
 2. Skills from the wiki (R-398 item 6): he runs the site's "Update skills from the wiki" button between sessions;
@@ -56,10 +55,10 @@ Rewritten each session; under 80 lines. `CLAUDE.md` is loaded already: read this
 4. Put to him 2026-11-25: a missed strip reads backwards and pressure on the monks shows nothing, so neither is told
    as a fault; of 388 prots stripped in the first 1.5 s only 26 came before the first big hit. Is a strip meant to
    land before the spike? His answer may turn the strip round (a reading to rebuild, not a threshold, R-465).
-5. Put to him 2026-11-25: is an interrupt on a quarter-second cast (Death's Charge, Power Spike) or on an attack
-   skill (Decapitate, Hammer Bash) a real chance? Development set: 31 and 114 of 637 such interrupt faults.
-6. Put to him 2026-11-25: is a monk who is himself being killed at that moment available to prot or heal another
-   (as R-711's busy monk is not)? 70 of 1,405 prot and heal faults are by a monk dead within 3 s.
+5. Put to him 2026-11-25: is an interrupt on a quarter-second cast (Death's Charge) or on an attack skill
+   (Decapitate, Hammer Bash) a real chance? Development set: 31 and 114 of 637 such interrupt faults.
+6. Put to him 2026-11-25: is a monk who is himself being killed available to prot or heal another (as R-711's
+   busy monk is not)? Development set: 70 of 1,405 prot and heal faults are by a monk dead within 3 s.
 7. Put to him 2026-11-25: a chance on a death with no spike is read from the heaviest 2 s on the player, sometimes
    long before he dies, and cannot be tested as spikes were (all died): his marks are its test. 626 of 10,218 deaths
    have no hit recorded on the player (degen, life steal); 170 of them list a chance, read from 2 s before the death.
