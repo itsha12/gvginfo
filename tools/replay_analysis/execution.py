@@ -272,9 +272,200 @@ class Exec:
         return out
 
 
-def record(M, rid, plays):
+# ------------------------------------------------------------------ the kill attempt (stage X2; R-701, R-703, R-708, R-710, R-711, R-713)
+ATT_BEFORE_S = 3            # a strip, pressure on his monks or a prot this long before the spike's first big hit belongs to the attempt (Claude's draft: the window
+                            # in which each part counts as "together" is measured in stage X3 from these records, R-708; this only bounds what is kept)
+ATT_AFTER_S = 8             # an attempt is read to the target's death, or this long after its first hit where he lives (the old spike reading's 8 s)
+CHANCE_S = 1.5             # a monk's chance to prot or heal is looked for from the first big hit to this long after it (Claude's draft; X3 reads it)
+PRESSED = 250               # an ally who took this much in the 2 s before is under pressure: a monk casting on him is busy (R-711), not a missed chance
+MISSED_KINDS = (            # each kind of missed chance (R-713), the side that missed it, and its words; stage X3 checks each on unseen matches
+    ("prot", "defence", "a prot ready on a monk in reach who was not busy, not cast on the target"),
+    ("heal", "defence", "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome"),
+    ("interrupt", "defence", "a spike skill cast with an interrupt of ours ready and in range, and it went off"),
+    ("strip", "attack", "a prot on the target with a strip of ours ready and in range, and none came"),
+    ("pressure", "attack", "an interrupt of ours ready on one of their monks in reach of the target, and none landed on their monks"),
+)
+
+
+# Interrupts that can be thrown on demand at a cast, by what they can stop (from each skill's own text, read once): "spell" (a spell or chant), "attack" or
+# "any". Skills that interrupt only on a condition the thrower does not choose at the moment (a critical hit, Burning, a Deep Wound, a condition on the
+# target, a hex or stance already up, an area or spirit) are not a chance to interrupt a given cast and are left out.
+CONDITIONAL = {"Clumsiness", "Panic", "Keystone Signet", "Spinal Shivers", "Rust", "Maelstrom", "Thunderclap", "Dwarven Battle Stance", "Choking Gas",
+               "Wailing Weapon", "Shivers of Dread", "Teinai's Wind", "Critical Chop", "Agonizing Chop", "Disrupting Throw", "Disrupting Accuracy",
+               "Warmonger's Weapon", "Dissonance", "Anthem of Disruption", "Lyssa's Haste", "Wandering Eye", "Disrupting Lunge"}
+MELEE_R = 250               # an interrupting melee attack reaches this far (adjacent, with a step)
+
+
+def intr_kind(sd):
+    """What an interrupt skill can stop when thrown at a cast: "spell", "attack", "any", or None where it is not thrown on demand (CONDITIONAL)."""
+    import re
+    name = (sd.get("name") or "").replace(" (PvP)", "")
+    if "Interrupt" not in (sd.get("causes") or []) or name in CONDITIONAL: return None
+    d = " ".join(x for x in re.split(r"(?<=\.)\s", sd.get("desc") or "") if "nterrupt" in x or "disrupt" in x)
+    if re.search(r"casting a spell|spell-casting|cast spells", d): return "spell"
+    if re.search(r"is attacking|attacking foe", d): return "attack"
+    return "any"
+
+
+def can_stop(sd_i, sd_c):
+    """Can interrupt skill sd_i stop a cast of sd_c?"""
+    k = intr_kind(sd_i)
+    if k is None: return False
+    ty = sd_c.get("type") or ""
+    if k == "spell": return "Spell" in ty or "Chant" in ty
+    if k == "attack": return "Attack" in ty
+    return True
+
+
+def intr_range(F, f, sd, t):
+    from common import CAST_R
+    ty = sd.get("type") or ""
+    if "Bow" in ty: return F.bow_range(f, t)
+    if "Attack" in ty and "Spear" not in ty: return MELEE_R
+    return CAST_R
+
+
+def _role_skills(F, a, test):
+    return [(sid, F.sdata(sid)) for sid in (F.m.A[a].get("bar") or []) if sid and test(F.sdata(sid))]
+
+
+def _ready(F, a, sid, sd, t, hands=True):
+    """Off recharge at t, alive, not knocked down and (hands) not already casting."""
+    if not F.alive(a, t) or (hands and F.casting_at(a, t)): return False
+    if any(k[0] <= t <= k[0] + 2 for k in F.kds_on(a, t - 3, t)): return False
+    from forensics import _act
+    return t - F.last_use(a, sid, t - .01) >= _act(sd.get("recharge"))
+
+
+def _busy(F, h, tgt, t):
+    """R-711: a monk casting at t on another ally under pressure (PRESSED in the 2 s before) is busy on him."""
+    for c in F._by_agent.get(h, ()):
+        if c[2] <= t <= (c[3] or c[2] + 1) and c[5] is not None and c[5] != tgt and c[5] in F.m.PL and F.m.team(c[5]) == F.m.team(h):
+            if sum(d[3] for d in F.damage_on(c[5], t - 2, t)) >= PRESSED: return F.name(c[5])
+    return None
+
+
+def attempts(E):
+    """Every spike of both teams (`events._spikes`: 400 or more on one player inside 3 s) as a kill attempt, read to its own outcome (R-710): the package
+    (R-708: how its big hits landed, the strip on the target, pressure on the target's monks) and the chances each side missed (R-713). A record: no play reads it."""
+    import events as EV
+    from common import CAST_R
+    F, m = E.F, E.m
+    F.casts()
+    En = m.energy()
+    kill_w, deaths = {}, collections.defaultdict(list)
+    for e in F.ev:
+        if e[1] == "dt": deaths[e[2]].append(e[0] / 10)
+    is_prot = lambda sd: bool(set(sd.get("causes") or []) & {"Block", "Damage Reduction"}) and "all" in (sd.get("target") or "").lower()
+    is_heal = lambda sd: "Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower()
+    is_strip = lambda sd: "Enchantment" in (sd.get("removes") or [])
+    is_intr = lambda sd: intr_kind(sd) is not None
+    out = []
+    for tm in (1, 2):
+        mine, theirs = F.players(tm), F.players(3 - tm)
+        for t, tgt, dmg, win, died in EV._spikes(F, tm):
+            end = next((d for d in deaths[tgt] if t <= d <= t + ATT_AFTER_S), t + ATT_AFTER_S)
+            ld = EV._landing(win)
+            first = ([x for x in win if x[3] >= 60] or win)[0][0]
+            att = sorted({x[1] for x in win})
+            near = lambda a, u: (F.dist(a, tgt, u) or 1e9) <= CAST_R
+            # the package (R-708)
+            strips = [r for r in E.R.get("strips", ()) if r["team"] == m.tag[tm] and r["target"] == m.roles[tgt] and first - ATT_BEFORE_S <= r["t"] <= end]
+            monks = [h for h in theirs if h in E.monk]
+            pr_i = [(i[0] / 10) for i in (m.o.get("interrupts") or []) if i[0] is not None and i[3] in monks and i[1] in mine and first - ATT_BEFORE_S <= i[0] / 10 <= end]
+            pr_k = [k[0] for h in monks for k in F.kds_on(h, first - ATT_BEFORE_S, end)]
+            pr_d = [h for h in monks if F.has(h, "c", "dazed", first)]
+            prots_up = [F.sname(e[3]) for e in m.o.get("effects") or [] if e[2] == "e" and e[5] == tgt and e[0] is not None and e[0] <= first * 10
+                        and (e[1] is None or e[1] >= first * 10) and is_prot(F.sdata(e[3]))]
+            on_tgt = [c for h in theirs for c in F._by_agent.get(h, ()) if c[5] == tgt and first - ATT_BEFORE_S <= c[2] <= end]
+            prot_cast = [c for c in on_tgt if is_prot(F.sdata(c[1]))]
+            heal_cast = [c for c in on_tgt if is_heal(F.sdata(c[1]))]
+            missed = []
+            # defence: prots and heals (R-703, R-711), read at the first big hit; the monk's energy from gvg.report (out under 20, R-681: no chance)
+            # A chance needs time to act: a moment from the first big hit, every half second over CHANCE_S, at which the skill could still land before the
+            # outcome (its activation and a quarter second to spare before the death): read so, "not healed" is never true merely because he died at once.
+            from forensics import _act
+            moments_ = [first + i / 2 for i in range(int(CHANCE_S * 2) + 1)]
+            for h in monks:
+                for kind, test, cast in (("prot", is_prot, prot_cast), ("heal", is_heal, heal_cast)):
+                    if any(c[0] == h for c in cast): continue
+                    sk = _role_skills(F, h, test)
+                    if not sk: continue
+                    chance = busy = out_e = None
+                    for u in moments_:
+                        ok = [F.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) + 0.25 <= end and near(h, u) and _ready(F, h, sid, sd, u, hands=False)]
+                        if not ok: continue
+                        if F.casting_at(h, u):
+                            b_ = _busy(F, h, tgt, u)
+                            if b_: busy = busy or (b_, ok)
+                            continue
+                        ex = En.at(h, u) if En.ok else None
+                        if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
+                        chance = (u, ok); break
+                    if chance: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
+                    elif busy: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": busy[1], "busy_on": busy[0], "chance": False})
+                    elif out_e: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
+            # defence: interrupts on the spike's skills
+            sp_casts = [c for a in att for c in F._by_agent.get(a, ()) if c[5] == tgt and first - ATT_BEFORE_S <= c[2] <= end and c[1] is not None]
+            for c in sp_casts:
+                sd_c = F.sdata(c[1])
+                ready = [f"{F.name(f)} {F.sname(sid)}" for f in theirs for sid, sd in _role_skills(F, f, is_intr)
+                         if can_stop(sd, sd_c) and (F.dist(f, c[0], c[2]) or 1e9) <= intr_range(F, f, sd, c[2]) and _ready(F, f, sid, sd, c[2])]
+                if c[4] == "interrupted": missed.append({"kind": "interrupt", "side": "defence", "taken": True, "skill": F.sname(c[1]), "chance": False})
+                elif ready and c[4] == "finished": missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": ready[:3], "chance": True})
+            # attack: a strip on a prot, pressure on their monks
+            if prots_up and not strips:
+                ready = [f"{F.name(a)} {F.sname(sid)}" for a in mine for sid, sd in _role_skills(F, a, is_strip) if near(a, first) and _ready(F, a, sid, sd, first)]
+                if ready: missed.append({"kind": "strip", "side": "attack", "by": ready[:3], "prots": prots_up, "chance": True})
+            if not pr_i:
+                ready = [f"{F.name(a)} {F.sname(sid)} on {F.name(h)}" for a in mine for sid, sd in _role_skills(F, a, lambda x: intr_kind(x) in ("spell", "any")) for h in monks
+                         if near(h, first) and (F.dist(a, h, first) or 1e9) <= intr_range(F, a, sd, first) and _ready(F, a, sid, sd, first)]
+                if ready: missed.append({"kind": "pressure", "side": "attack", "by": ready[:3], "chance": True})
+            out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "target_class": "healer" if tgt in E.healer else "other",
+                        "dmg": round(dmg), "killed": bool(died and end < t + ATT_AFTER_S), "s": round(end - first, 1), "attackers": [m.roles[a] for a in att],
+                        "spread": ld["spread_s"], "in_1s": ld["in_1s"],
+                        "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips)},
+                        "pressure": {"interrupts": len(pr_i), "knockdowns": len(pr_k), "dazed": len(pr_d),
+                                     "lead": round(min(pr_i + pr_k) - first, 1) if pr_i or pr_k else None},
+                        "prots_up": prots_up, "prots_cast": [[F.sname(c[1]), round(c[2] - first, 1), c[4]] for c in prot_cast],
+                        "heals_cast": [[F.sname(c[1]), round(c[2] - first, 1), c[4]] for c in heal_cast],
+                        "missed": missed})
+    return sorted(out, key=lambda r: r["t"])
+
+
+def say_attempt(r):
+    """A kill attempt in sentences (R-329): what landed together, and every missed chance of both sides, none ranked (R-713)."""
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    foe = "their" if r["tm"] else ""
+    L = [f"{clk(r['t'])} {r['team']} spike on the {r['target']} ({', '.join(r['attackers'])}): {r['dmg']} in 3 s, "
+         + ("killed him" if r["killed"] else "he lived") + f" (read over {r['s']} s)."]
+    L.append(f"Big hits landed over {r['spread']} s ({100 * r['in_1s']:.0f}% of the damage in the first second).")
+    st = r["strip"]
+    L.append("No strip on him." if not st["n"] else f"{st['n']} strip(s) on him, the first {abs(st['lead'])} s {'before' if st['lead'] < 0 else 'after'} the first big hit"
+             + (", a prot taken off." if st["prot_off"] else "."))
+    p_ = r["pressure"]
+    L.append("No pressure on his monks." if not (p_["interrupts"] or p_["knockdowns"] or p_["dazed"]) else
+             f"Pressure on his monks: {p_['interrupts']} interrupt(s), {p_['knockdowns']} knockdown(s), {p_['dazed']} Dazed at the first hit"
+             + (f", the first {abs(p_['lead'])} s {'before' if p_['lead'] < 0 else 'after'} it." if p_["lead"] is not None else "."))
+    if r["prots_up"]: L.append(f"Prots on him at the first hit: {', '.join(r['prots_up'])}.")
+    if r["prots_cast"] or r["heals_cast"]:
+        L.append("Cast on him: " + "; ".join(f"{n} {abs(d)} s {'before' if d < 0 else 'after'} ({o})" for n, d, o in r["prots_cast"] + r["heals_cast"]) + ".")
+    ch = [x for x in r["missed"] if x.get("chance")]
+    for x in ch:
+        who = x["by"] if isinstance(x["by"], str) else "; ".join(x["by"])
+        if x["kind"] == "interrupt": L.append(f"Missed by the defence: {x['skill']} went off with an interrupt ready ({who}).")
+        elif x["kind"] in ("prot", "heal"): L.append(f"Missed by the defence: {who} had {', '.join(x['skills'])} ready, not cast on him.")
+        elif x["kind"] == "strip": L.append(f"Missed by the attack: prot(s) up ({', '.join(x['prots'])}) and a strip ready ({who}), none came.")
+        elif x["kind"] == "pressure": L.append(f"Missed by the attack: an interrupt ready on his monks ({who}), none landed.")
+    for x in r["missed"]:
+        if x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
+        elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
+    return " ".join(L)
+
+
+def record(M, rid, plays, E=None):
     """{play id: its execution record} for the plays of one match (kept beside the plays; no play reads it)."""
-    E, out = Exec(M, rid), {}
+    E, out = E or Exec(M, rid), {}
     for p in plays:
         r = E.play(p)
         if r is not None: out[p["id"]] = r
@@ -286,6 +477,15 @@ if __name__ == "__main__":
     if not a: print(__doc__); sys.exit()
     from replaylib import Match
     from state import GameState
+    if a[0] == "attempts":                                # python3 execution.py attempts <report id> [m:ss]
+        import moments
+        from scoreboard import Scoreboard
+        st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
+        frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
+        for r in attempts(Exec(M, a[1])):
+            if r["t"] < frm: continue
+            print(say_attempt(r))
+        sys.exit()
     from scoreboard import Scoreboard
     import jobs, moments
     st = GameState(Match.from_branch(a[0]))

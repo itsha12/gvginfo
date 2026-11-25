@@ -3769,6 +3769,60 @@ def excuse_report(path, out_json=None):
     return res
 
 
+def attempts_report(path, out_json=None):
+    """The kill attempts (stage X2, R-708, R-713): every spike of both teams read to its own outcome, how often it killed by how its package landed and by
+    each kind of missed chance. A first look for stage X3, which tests each kind on unseen matches: nothing here is a finding, a fault or advice."""
+    D = json.load(open(path))
+    A = [dict(r, rid=rid) for rid, fc in D["flag_cost"].items() for r in (fc.get("attempts") or [])]
+    if not A: raise ValueError("the plays file carries no kill attempts: run moments.py all again on this engine (R-460)")
+    lines, res = [], {"attempts": len(A), "matches": len({r["rid"] for r in A}), "tables": {}}
+    pr = lambda x="": (lines.append(x), print(x))
+    k = lambda L: (sum(r["killed"] for r in L), len(L))
+    cell = lambda L: f"{100 * k(L)[0] / k(L)[1]:5.1f}% of {k(L)[1]:5}" if L else f"{'':>14}"
+    pr(f"Kill attempts (R-708, R-713): {len(A):,} spikes (400 or more on one player inside 3 s) in {res['matches']} matches; {sum(r['killed'] for r in A):,} killed ({100 * k(A)[0] / len(A):.0f}%).")
+    pr("Each is read to its own outcome: the target's death, or 8 s after the first big hit. Rates side by side are not causes: stage X3 tests each on unseen matches.")
+    def table(title, groups):
+        pr(f"\n{title}")
+        t = res["tables"].setdefault(title.split(".")[0], {})
+        for name, L in groups:
+            pr(f"   {name:58} {cell(L)}")
+            if L: t[name] = list(k(L))
+    sp = sorted(r["spread"] for r in A); q = lambda f: sp[int(f * (len(sp) - 1))]
+    t1, t2 = q(1 / 3), q(2 / 3)
+    table(f"A. How tightly the big hits landed (thirds at {t1} and {t2} s; R-701)",
+          [(f"within {t1} s", [r for r in A if r["spread"] <= t1]), (f"{t1} to {t2} s", [r for r in A if t1 < r["spread"] <= t2]), (f"over {t2} s", [r for r in A if r["spread"] > t2])])
+    table("B. The strip on the target (R-701, R-708)",
+          [("no strip", [r for r in A if not r["strip"]["n"]]), ("a strip before the first big hit", [r for r in A if r["strip"]["n"] and r["strip"]["lead"] < 0]),
+           ("a strip at or after it", [r for r in A if r["strip"]["n"] and r["strip"]["lead"] >= 0]),
+           ("prots up at the first hit, no strip", [r for r in A if r["prots_up"] and not r["strip"]["n"]]),
+           ("prots up at the first hit, a prot stripped", [r for r in A if r["prots_up"] and r["strip"]["prot_off"]])])
+    pp = lambda r: r["pressure"]["interrupts"] + r["pressure"]["knockdowns"] + r["pressure"]["dazed"]
+    table("C. Pressure on the target's monks (interrupts, knockdowns, Dazed; R-708)",
+          [("none", [r for r in A if not pp(r)]), ("some, before the first big hit", [r for r in A if pp(r) and (r["pressure"]["lead"] is None or r["pressure"]["lead"] < 0)]),
+           ("some, at or after it", [r for r in A if pp(r) and r["pressure"]["lead"] is not None and r["pressure"]["lead"] >= 0])])
+    CH = __import__("execution").CHANCE_S          # taken in the same seconds a chance is looked for, so the two sides of a row cover the same time
+    taken = {"prot": lambda r: any(d <= CH for _, d, _o in r["prots_cast"]), "heal": lambda r: any(d <= CH for _, d, _o in r["heals_cast"]),
+             "interrupt": lambda r: any(x["kind"] == "interrupt" and x.get("taken") for x in r["missed"]),
+             "strip": lambda r: bool(r["prots_up"]) and r["strip"]["prot_off"], "pressure": lambda r: r["pressure"]["interrupts"] > 0}
+    for kind, side, words in __import__("execution").MISSED_KINDS:
+        has = lambda r: any(x["kind"] == kind and x.get("chance") for x in r["missed"])
+        tk = taken[kind]
+        table(f"D-{kind}. Missed by the {side}: {words}",
+              [("missed (and not taken by anyone else)", [r for r in A if has(r) and not tk(r)]), ("missed by one, taken by another", [r for r in A if has(r) and tk(r)]),
+               ("taken, nobody missed it", [r for r in A if tk(r) and not has(r)]), ("no chance either way", [r for r in A if not has(r) and not tk(r)])])
+    nd = lambda r: sum(1 for x in r["missed"] if x.get("chance") and x["side"] == "defence")
+    na = lambda r: sum(1 for x in r["missed"] if x.get("chance") and x["side"] == "attack")
+    table("E. Every missed chance of the defence counted (none ranked, R-713)", [(f"{n}{'+' if n == 3 else ''}", [r for r in A if min(nd(r), 3) == n]) for n in range(4)])
+    table("F. Every missed chance of the attack counted", [(f"{n}{'+' if n == 2 else ''}", [r for r in A if min(na(r), 2) == n]) for n in range(3)])
+    busy = sum(1 for r in A for x in r["missed"] if x.get("busy_on")); oe = sum(1 for r in A for x in r["missed"] if x.get("out_of_energy"))
+    pr(f"\nNot counted as chances: {busy:,} times a monk with a prot or heal ready was busy on another player under pressure (R-711); {oe:,} times he was out of energy (R-681).")
+    res["busy"], res["out_of_energy"] = busy, oe
+    if out_json:
+        with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
+        pr(f"written: {out_json}")
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -3781,6 +3835,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "pushes": pushes(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "split-at-all": send_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "execution": exec_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "attempts": attempts_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 3 and a[0] == "execution-say": exec_say(a[1], a[2], next((x for x in a[3:] if ":" in x and not x.startswith("-")), None), a[a.index("--bench") + 1] if "--bench" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
