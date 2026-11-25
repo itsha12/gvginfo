@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import END_LOOK_FROM, END_BACK_S, END_ALREADY_S, PLAY28_FROM, LORD_BASE_R as END_BASE_R, backline_monk, backline_roles
+from common import SENT_MIN, END_LOOK_FROM, END_BACK_S, END_ALREADY_S, PLAY28_FROM, LORD_BASE_R as END_BASE_R, backline_monk, backline_roles
 from common import (FLAG_LEFT_S, STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, RETURN_CAP_S, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
@@ -2433,7 +2433,27 @@ class Moments:
                 elif self.place_at(a, set_off)[0] in inside:
                     moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
                     rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
-            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule, "waited_back": waited_back, "left_spawn": left_spawn,
+            # R-706: a flag that lay on the ground and was taken up again is a run from when its taker set off for it, going for good (R-548), not from the
+            # take-up (옷옷옷옷 v RACK 6:15, told at 6:27 at the take-up: "Yes"). Walked back from the take-up while he drew nearer the flag, reading by reading
+            # (`nearer`, as for a runner going back to his spawn); a taker who stood by it (walked under SENT_MIN) set off at the take-up.
+            sent_off = None
+            # ... by a player sent for it (R-581): a team mate who comes for a flag another put down; a carrier who takes up his own flag again is no one sent
+            # for it, and his run is told from the take-up as before (hold v RACK 16:43, Classic: the Air Ele 2 puts his flag down at 16:24 and takes it up at 16:43)
+            if ser and i0 > 0 and ser[i0 - 1][2] is not None and ser[i0 - 1][2] >= 0 and ser[i0][0] != ser[i0 - 1][0]:
+                ta, tc = ser[i0][0], min(max(int(ser[i0][1]), 0), self.T)
+                lay = self.P[ser[i0 - 1][0]][min(max(int(ser[i0 - 1][2]), 0), self.T)]
+                if lay:
+                    fld = self.hall.to(lay)
+                    dl = lambda v: fld.get(self.hall.snap(self.P[ta][v]), None) if v >= 0 and self.AL[ta][v] and self.P[ta][v] else None
+                    near2 = lambda v: v >= 4 and dl(v - 4) is not None and dl(v) is not None and dl(v - 4) > dl(v) + 40
+                    # setting off for it is leaving his team to go and get it: a taker still in his main group was moving with his team, not going for the
+                    # flag (his Classic rows hold v Men 5:15, Men v NwAy 8:19, hold v RACK 16:43 and 24:45, 옷옷옷옷 v hdm 7:29 were read wrong without it)
+                    apart = lambda v: v >= 0 and ta not in self.st.main_group(tm, v)
+                    v = tc - tc % 2
+                    while v > int(ser[i0 - 1][2]) and near2(v) and apart(v - 2): v -= 2
+                    v = max(v, int(ser[i0 - 1][2]))
+                    if dl(v) is not None and dl(v) >= SENT_MIN: sent_off = v
+            out.append({"a": a, "runner": runner, "how": L["how"], "sent_off": sent_off, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule, "waited_back": waited_back, "left_spawn": left_spawn,
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
@@ -3548,7 +3568,7 @@ def match_records(rid):
     import energy                                        # each fight's monk and midline energy at the decision and a minute before (R-689; kept beside the plays, no play reads it)
     ticks, spots = jobs.split_ticks(M, P), jobs.res_spots(M)
     EX_ = execution.Exec(M, rid)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_), "attempts": execution.attempts(EX_), "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_), "attempts": execution.attempts(EX_), "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
                   "energy": energy.record(M, P, ticks, spots), "excuse": energy.excuse(M, P), "split_holds": jobs.split_holds(M, P),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs

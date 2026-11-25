@@ -452,3 +452,4 @@ for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):
     _k, _v = _kv.split("=")
     if _k not in TRY_NAMES: raise SystemExit(f"GVG_TRY: {_k} is not a threshold of the reading")
     globals()[_k] = int(float(_v)) if isinstance(globals()[_k], int) else float(_v)
+SENT_MIN = 600                 # R-706: a taker who walked less than this to a flag lying on the ground stood by it, and set off at the take-up (Claude's draft)

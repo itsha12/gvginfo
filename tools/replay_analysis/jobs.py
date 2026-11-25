@@ -187,6 +187,7 @@ def _flag_rows(M):
                 if left: left_at, pre_row = int(r["first_end"]), False
                 if brought: pre_row = False
                 s0, runner, pick, ids, dbl = int(r["under_way"]), m.roles[r["out_by"]], int(r["chain"]), r["chain_ids"], False
+                if r.get("sent_off") is not None: s0 = min(s0, int(r["sent_off"]))          # R-706: from when its taker set off for it
                 carries = [c for c in r["carries"] if c[1] >= r["chain"] - 1]
             elif went and not opening: s0, off = min(int(r["moment"]), s0), int(r["set_off"])      # when he goes to run, by the hall (R-461); and when he set off
             elif not opening and r["under_way"] is not None and r["under_way"] > r["pickup"] + SPLIT_STEP:

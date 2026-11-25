@@ -81,7 +81,32 @@ MEASURES = (
     ("hex_right", +1, "share of the hex removals that took the most costly hex in range off our players"),
     ("cripple_secs", +1, "seconds their players spent Crippled, a 10 s (on a flag runner, the control the old run node read)"),
     ("escapes_ready", +1, "share of the speed and escape skills on our bars off recharge as the play starts"),
+    # gvg.report's interrupt attempts (R-639; checked against the replays, R-707: 2,006 of 2,011 of its hits are interrupts the replays record)
+    ("intr_tried", +1, "targeted interrupts thrown at them, landed or missed, a 10 s (gvg.report's attempts)"),
+    ("intr_missed_share", -1, "share of those that missed"),
+    ("intr_slow_share", -1, "share of those that missed because the cast finished first (thrown late)"),
+    # converting an advantage, the res and giving ground (R-712, R-557), and environment areas (R-314)
+    ("spike_kill_share", +1, "share of our spikes on them that killed (the conversion of an advantage into kills)"),
+    ("res_tried", 0, "resurrection casts started on our dead, a 10 s"),
+    ("res_first_s", -1, "seconds from the start of the play to our first res cast, where a player of ours lay dead at its start"),
+    ("res_stopped_share", -1, "share of our res casts interrupted or cancelled"),
+    ("ground_back", 0, "how far our group fell back towards our own pit over the first 20 s, game units (negative: it advanced)"),
+    ("water_share", +1, "share of our time in the flag stand area spent in its healing water (halls with water labelled: Druid's Isle, R-314)"),
+    # target choice against the play's objective (R-702, R-709): blank where the job is neither to kill nor to hold
+    ("disrupt_right", +1, "share of our knockdowns and interrupts on the right players for the job (to kill: their backline monks; to hold: their damage dealers)"),
+    ("dmg_on_front", -1, "share of our damage on their frontline when the job is to kill (warriors take less and stop only offence, R-702)"),
 )
+
+
+def objective(p):
+    """The objective a play's target choice is read against (R-709): "offence" where its job is to kill, "defence" where it is to hold, survive, defend a
+    split or be held in base, else None (a flag to get in, NPCs to take, ground: no target is right or wrong by the job alone). Read from the job's words."""
+    import re
+    j = (p.get("job") or "").strip()
+    if p.get("play") == "pinned": return "defence"
+    if re.match(r"(Kill|Turn the extra player into a kill|Take NPCs or kills|Concede the boost for kills)", j): return "offence"
+    if re.match(r"(Hold|Survive|Delay|No deaths|Lose no player|Reach cover|Keep them busy)", j): return "defence"
+    return None
 KEYS = tuple(k for k, _, _ in MEASURES)
 SIGN = {k: s for k, s, _ in MEASURES}
 WORDS = {k: w for k, _, w in MEASURES}
@@ -93,6 +118,7 @@ class Exec:
     def __init__(self, M, rid):
         import pressure as PR, eventlayer as EL
         from phases import healer, line
+        self.line = line
         self.M, self.m, self.rid = M, M.m, rid
         m = self.m
         self.PR, self.prr = PR, PR.record(rid)
@@ -132,6 +158,7 @@ class Exec:
         self.blind = collections.defaultdict(list)             # player -> [(from, to)] Blind on him
         for e in m.o.get("effects") or []:
             if e[2] == "c" and e[7] == "blind" and e[0] is not None and e[5] in pl: self.blind[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
+        self.ia = sorted((r[0] / 10, r[2], r[4], r[5], r[6], r[3]) for r in (m.extras().o.get("attempts") or []) if r[0] is not None)   # (second, by, on, hit, read, skill)
         self.crip = collections.defaultdict(list)              # player -> [(from, to)] Crippled
         for e in m.o.get("effects") or []:
             if e[2] == "c" and e[7] == "crippled" and e[0] is not None and e[5] in pl: self.crip[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
@@ -156,8 +183,9 @@ class Exec:
         T = self._t[id(L)]
         return L[bisect.bisect_left(T, t0):bisect.bisect_left(T, t1)]
 
-    def side(self, X, Y, t0, t1):
-        """What the players X did to the players Y in [t0, t1): one dict of MEASURES, or None where no player of X is alive in it."""
+    def side(self, X, Y, t0, t1, obj=None):
+        """What the players X did to the players Y in [t0, t1): one dict of MEASURES, or None where no player of X is alive in it. obj: the objective of X's
+        play (`objective`), for target choice."""
         M, m = self.M, self.m
         X, Y, secs = set(X), set(Y), t1 - t0
         if not X or secs <= 0: return None
@@ -203,6 +231,20 @@ class Exec:
         bl = [b for b in R.get("blinds", ()) if b["team"] == tag and b["target"] in yr]
         esc = [(a, sid, rc) for a in X for sid, rc in self.speed.get(a, ())]
         ready = sum(1 for a, sid, rc in esc if not any(t0 - rc < u <= t0 for u in self.cf.get((a, sid), ())))
+        ia = [r for r in self.ia if t0 <= r[0] < t1 and r[1] in X and r[2] in Y]
+        ia_miss = [r for r in ia if not r[3]]
+        rs = [c for a in X for c in F._by_agent.get(a, ()) if t0 <= c[2] < t1 and c[5] is not None and c[5] in m.PL and c[5] != a
+              and m.team(c[5]) == tm and not F.alive(c[5], c[2])]
+        dead0 = any(not M.AL[a][min(int(t0), M.T)] for a in M.st.players[tm])
+        g0, g1 = [a for a in X if M.AL[a][min(int(t0), M.T)]], [a for a in X if M.AL[a][min(int(t0) + 20, int(t1), M.T)]]
+        pit = M.st.geo.pit.get(tm) if hasattr(M.st, "geo") else None
+        from state import d as _d
+        c0, c1 = (M.st.centroid(g0, int(t0)) if g0 else None), (M.st.centroid(g1, min(int(t0) + 20, int(t1))) if g1 else None)
+        wa = self.water_share(X, t0, t1)
+        kd_on = [k[2] for k in (m.o.get("knockdowns") or []) if k[0] is not None and t0 * 10 <= k[0] < t1 * 10 and k[1] in X and k[2] in Y]
+        dis = kd_on + [b for _, b in intr]
+        right = (lambda b: b in self.monk) if obj == "offence" else (lambda b: b not in self.healer) if obj == "defence" else None
+        front = {b for b in Y if self.line(m, b) == "frontline"}
         out = {
             "dmg": p10(tot),
             "dmg_v_usual": round(hit_tot / usual, 2) if usual > 0 else None,
@@ -240,8 +282,41 @@ class Exec:
             "hex_right": round(sum(1 for r in hr if r.get("right_hex")) / len(hr), 2) if hr else None,
             "cripple_secs": g10(sum(ov(s0, s1) for b in Y for s0, s1 in self.crip.get(b, ()))),
             "escapes_ready": round(ready / len(esc), 2) if esc else None,
+            "spike_kill_share": round(sum(1 for r in sp if r.get("killed")) / len(sp), 2) if sp else None,
+            "res_tried": g10(len(rs)),
+            "res_first_s": round(min(c[2] for c in rs) - t0, 1) if rs and dead0 else None,
+            "res_stopped_share": round(sum(1 for c in rs if c[4] in ("interrupted", "cancelled")) / len(rs), 2) if rs else None,
+            "ground_back": round(_d(c1, pit) - _d(c0, pit), 0) * -1 if pit and c0 and c1 else None,
+            "water_share": wa,
+            "intr_tried": g10(len(ia)),
+            "intr_missed_share": round(len(ia_miss) / len(ia), 2) if ia else None,
+            "intr_slow_share": round(sum(1 for r in ia_miss if r[4] == "finished") / len(ia), 2) if ia else None,
+            "disrupt_right": round(sum(1 for b in dis if right(b)) / len(dis), 2) if right and dis else None,
+            "dmg_on_front": round(sum(n for b, n in on.items() if b in front) / tot, 2) if obj == "offence" and tot else None,
         }
         return out
+
+    def water_share(self, X, t0, t1):
+        """R-314: of X's player-seconds inside the hall's labelled flag stand area, the share inside a labelled Water area; None where the hall has none."""
+        H = self.M.hall
+        if H is None or not getattr(H, "labels", None): return None
+        water = [l["pts"] for l in H.labels if l.get("kind") == "area" and l.get("type") == "Water"]
+        stand = [l["pts"] for l in H.labels if l.get("kind") == "area" and l.get("type") == "Flag stand area"]
+        if not water or not stand: return None
+        def inside(pt, poly):
+            x, y, c = pt[0], pt[1], False
+            for i in range(len(poly)):
+                (x1, y1), (x2, y2) = poly[i], poly[i - 1]
+                if (y1 > y) != (y2 > y) and x < (x2 - x1) * (y - y1) / (y2 - y1) + x1: c = not c
+            return c
+        n = w = 0
+        for u in range(int(t0), int(t1), 2):
+            for a in X:
+                if not self.M.AL[a][min(u, self.M.T)]: continue
+                pt = self.M.st.pos(a, u)[0]
+                if not pt or not any(inside(pt, s) for s in stand): continue
+                n += 1; w += any(inside(pt, s) for s in water)
+        return round(w / n, 2) if n else None
 
     def players(self, p):
         """The players a play's execution is read for, and the enemy players they meet in its window: (X, Y, t0, t1), or None where the play is too short."""
@@ -263,12 +338,13 @@ class Exec:
         w = self.players(p)
         if w is None: return None
         X, Y, t0, t1 = w
-        own = self.side(X, Y, t0, t1)
+        obj = objective(p)
+        own = self.side(X, Y, t0, t1, obj)
         if own is None: return None
-        out = {"s": t1 - t0, "n": [len(X), len(Y)], "own": own, "their": self.side(Y, X, t0, t1) if Y else None}
+        out = {"s": t1 - t0, "n": [len(X), len(Y)], "objective": obj, "own": own, "their": self.side(Y, X, t0, t1) if Y else None}
         if p.get("play") == "pinned" and t1 - t0 > HOLD_FIRST_S:          # R-621: the first seconds of a hold read against what the team then loses
             f1 = t0 + HOLD_FIRST_S
-            out["first"] = {"s": HOLD_FIRST_S, "own": self.side(X, Y, t0, f1), "their": self.side(Y, X, t0, f1) if Y else None}
+            out["first"] = {"s": HOLD_FIRST_S, "own": self.side(X, Y, t0, f1, obj), "their": self.side(Y, X, t0, f1) if Y else None}
         return out
 
 
@@ -276,8 +352,7 @@ class Exec:
 ATT_BEFORE_S = 3            # a strip, pressure on his monks or a prot this long before the spike's first big hit belongs to the attempt (Claude's draft: the window
                             # in which each part counts as "together" is measured in stage X3 from these records, R-708; this only bounds what is kept)
 ATT_AFTER_S = 8             # an attempt is read to the target's death, or this long after its first hit where he lives (the old spike reading's 8 s)
-CHANCE_S = 1.5             # a monk's chance to prot or heal is looked for from the first big hit to this long after it (Claude's draft; X3 reads it)
-PRESSED = 250               # an ally who took this much in the 2 s before is under pressure: a monk casting on him is busy (R-711), not a missed chance
+from forensics import CHANCE_S, PRESSED                  # a monk's chance to prot or heal, and when he is busy (R-711): one reading, in forensics.py
 MISSED_KINDS = (            # each kind of missed chance (R-713), the side that missed it, and its words; stage X3 checks each on unseen matches
     ("prot", "defence", "a prot ready on a monk in reach who was not busy, not cast on the target"),
     ("heal", "defence", "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome"),
@@ -329,20 +404,7 @@ def _role_skills(F, a, test):
     return [(sid, F.sdata(sid)) for sid in (F.m.A[a].get("bar") or []) if sid and test(F.sdata(sid))]
 
 
-def _ready(F, a, sid, sd, t, hands=True):
-    """Off recharge at t, alive, not knocked down and (hands) not already casting."""
-    if not F.alive(a, t) or (hands and F.casting_at(a, t)): return False
-    if any(k[0] <= t <= k[0] + 2 for k in F.kds_on(a, t - 3, t)): return False
-    from forensics import _act
-    return t - F.last_use(a, sid, t - .01) >= _act(sd.get("recharge"))
-
-
-def _busy(F, h, tgt, t):
-    """R-711: a monk casting at t on another ally under pressure (PRESSED in the 2 s before) is busy on him."""
-    for c in F._by_agent.get(h, ()):
-        if c[2] <= t <= (c[3] or c[2] + 1) and c[5] is not None and c[5] != tgt and c[5] in F.m.PL and F.m.team(c[5]) == F.m.team(h):
-            if sum(d[3] for d in F.damage_on(c[5], t - 2, t)) >= PRESSED: return F.name(c[5])
-    return None
+def _ready(F, a, sid, sd, t, hands=True): return F.ready(a, sid, sd, t, hands)       # the one reading: forensics.Forensics.ready
 
 
 def attempts(E):
@@ -356,8 +418,7 @@ def attempts(E):
     kill_w, deaths = {}, collections.defaultdict(list)
     for e in F.ev:
         if e[1] == "dt": deaths[e[2]].append(e[0] / 10)
-    is_prot = lambda sd: bool(set(sd.get("causes") or []) & {"Block", "Damage Reduction"}) and "all" in (sd.get("target") or "").lower()
-    is_heal = lambda sd: "Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower()
+    from forensics import is_prot, is_heal
     is_strip = lambda sd: "Enchantment" in (sd.get("removes") or [])
     is_intr = lambda sd: intr_kind(sd) is not None
     out = []
@@ -382,36 +443,19 @@ def attempts(E):
             heal_cast = [c for c in on_tgt if is_heal(F.sdata(c[1]))]
             missed = []
             # defence: prots and heals (R-703, R-711), read at the first big hit; the monk's energy from gvg.report (out under 20, R-681: no chance)
-            # A chance needs time to act: a moment from the first big hit, every half second over CHANCE_S, at which the skill could still land before the
-            # outcome (its activation and a quarter second to spare before the death): read so, "not healed" is never true merely because he died at once.
-            from forensics import _act
-            moments_ = [first + i / 2 for i in range(int(CHANCE_S * 2) + 1)]
-            for h in monks:
-                for kind, test, cast in (("prot", is_prot, prot_cast), ("heal", is_heal, heal_cast)):
-                    if any(c[0] == h for c in cast): continue
-                    sk = _role_skills(F, h, test)
-                    if not sk: continue
-                    chance = busy = out_e = None
-                    for u in moments_:
-                        ok = [F.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) + 0.25 <= end and near(h, u) and _ready(F, h, sid, sd, u, hands=False)]
-                        if not ok: continue
-                        if F.casting_at(h, u):
-                            b_ = _busy(F, h, tgt, u)
-                            if b_: busy = busy or (b_, ok)
-                            continue
-                        ex = En.at(h, u) if En.ok else None
-                        if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
-                        chance = (u, ok); break
-                    if chance: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
-                    elif busy: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": busy[1], "busy_on": busy[0], "chance": False})
-                    elif out_e: missed.append({"kind": kind, "side": "defence", "by": F.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
+            # A chance needs time to act (forensics.Forensics.chances, the one reading for attempts and deaths): "not healed" is never true merely because
+            # he died at once; busy on a player under pressure (R-711) and out of energy (R-681) are no chance.
+            missed += F.chances(tgt, first, end, {"prot": is_prot, "heal": is_heal}, monks=monks)
             # defence: interrupts on the spike's skills
             sp_casts = [c for a in att for c in F._by_agent.get(a, ()) if c[5] == tgt and first - ATT_BEFORE_S <= c[2] <= end and c[1] is not None]
             for c in sp_casts:
                 sd_c = F.sdata(c[1])
                 ready = [f"{F.name(f)} {F.sname(sid)}" for f in theirs for sid, sd in _role_skills(F, f, is_intr)
                          if can_stop(sd, sd_c) and (F.dist(f, c[0], c[2]) or 1e9) <= intr_range(F, f, sd, c[2]) and _ready(F, f, sid, sd, c[2])]
+                tried = [r for r in E.ia if r[2] == c[0] and r[1] in theirs and c[2] - 0.5 <= r[0] <= (c[3] or c[2] + 1)]
                 if c[4] == "interrupted": missed.append({"kind": "interrupt", "side": "defence", "taken": True, "skill": F.sname(c[1]), "chance": False})
+                elif tried: missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": [F.name(r[1]) + " " + F.sname(r[5]) for r in tried][:3],
+                                           "tried": [r[4] for r in tried], "chance": True})        # thrown and missed: a chance not taken all the same, with gvg.report's read of why
                 elif ready and c[4] == "finished": missed.append({"kind": "interrupt", "side": "defence", "skill": F.sname(c[1]), "by": ready[:3], "chance": True})
             # attack: a strip on a prot, pressure on their monks
             if prots_up and not strips:
@@ -421,7 +465,17 @@ def attempts(E):
                 ready = [f"{F.name(a)} {F.sname(sid)} on {F.name(h)}" for a in mine for sid, sd in _role_skills(F, a, lambda x: intr_kind(x) in ("spell", "any")) for h in monks
                          if near(h, first) and (F.dist(a, h, first) or 1e9) <= intr_range(F, a, sd, first) and _ready(F, a, sid, sd, first)]
                 if ready: missed.append({"kind": "pressure", "side": "attack", "by": ready[:3], "chance": True})
-            out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "target_class": "healer" if tgt in E.healer else "other",
+            # what the old kill conversion node read (knowledge/model.md, "kill conversion"), at the first big hit: state of the target, never a fault
+            from state import d as _d
+            S_ = E.M.st
+            pos = S_.pos(tgt, int(first))[0]
+            mg = S_.main_group(3 - tm, int(first)); cen = S_.centroid(mg, int(first)) if mg else None
+            hp = (m.snap(tgt, round(first * 10)) or {}).get("hp")
+            target_state = {"health_pct": hp, "ceiling": round(1 + S_.morale(tgt, first) / 100, 2),
+                            "healers_in_range": sum(1 for h in theirs if h != tgt and h in E.healer and F.alive(h, first) and near(h, first)),
+                            "hexes": sum(1 for e in m.o.get("effects") or [] if e[2] == "h" and e[5] == tgt and e[0] is not None and e[0] <= first * 10 and (e[1] is None or e[1] >= first * 10)),
+                            "from_group": round(_d(pos, cen)) if pos and cen and tgt not in mg else 0}
+            out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "state": target_state, "target_class": "healer" if tgt in E.healer else "other",
                         "dmg": round(dmg), "killed": bool(died and end < t + ATT_AFTER_S), "s": round(end - first, 1), "attackers": [m.roles[a] for a in att],
                         "spread": ld["spread_s"], "in_1s": ld["in_1s"],
                         "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips)},
@@ -447,13 +501,18 @@ def say_attempt(r):
     L.append("No pressure on his monks." if not (p_["interrupts"] or p_["knockdowns"] or p_["dazed"]) else
              f"Pressure on his monks: {p_['interrupts']} interrupt(s), {p_['knockdowns']} knockdown(s), {p_['dazed']} Dazed at the first hit"
              + (f", the first {abs(p_['lead'])} s {'before' if p_['lead'] < 0 else 'after'} it." if p_["lead"] is not None else "."))
+    z = r.get("state") or {}
+    if z: L.append(f"He stood at {z['health_pct']}% health, his maximum {100 * z['ceiling']:.0f}% of normal, {z['healers_in_range']} healer(s) of his in range, "
+                   f"{z['hexes']} hex(es) on him" + (f", {z['from_group']} from his main group." if z["from_group"] else ", with his main group."))
     if r["prots_up"]: L.append(f"Prots on him at the first hit: {', '.join(r['prots_up'])}.")
     if r["prots_cast"] or r["heals_cast"]:
         L.append("Cast on him: " + "; ".join(f"{n} {abs(d)} s {'before' if d < 0 else 'after'} ({o})" for n, d, o in r["prots_cast"] + r["heals_cast"]) + ".")
     ch = [x for x in r["missed"] if x.get("chance")]
     for x in ch:
         who = x["by"] if isinstance(x["by"], str) else "; ".join(x["by"])
-        if x["kind"] == "interrupt": L.append(f"Missed by the defence: {x['skill']} went off with an interrupt ready ({who}).")
+        if x["kind"] == "interrupt" and x.get("tried"):
+            L.append(f"Missed by the defence: {x['skill']} went off; an interrupt was thrown at it and missed ({who}; gvg.report's read: {', '.join(str(r) for r in x['tried'])}).")
+        elif x["kind"] == "interrupt": L.append(f"Missed by the defence: {x['skill']} went off with an interrupt ready ({who}).")
         elif x["kind"] in ("prot", "heal"): L.append(f"Missed by the defence: {who} had {', '.join(x['skills'])} ready, not cast on him.")
         elif x["kind"] == "strip": L.append(f"Missed by the attack: prot(s) up ({', '.join(x['prots'])}) and a strip ready ({who}), none came.")
         elif x["kind"] == "pressure": L.append(f"Missed by the attack: an interrupt ready on his monks ({who}), none landed.")

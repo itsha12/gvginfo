@@ -44,6 +44,8 @@ BENCH_CUT = (20, 80)                   # percentiles: below / above = clearly lo
 POS_WINDOWS = (3, 5, 8)                # seconds before a death that position is judged on; the data picks one (bench)
 POS_DEFAULT = 5
 SNARES = {"crippled", "dazed", "blind", "weakness"}
+CHANCE_S = 1.5              # a monk's chance to prot or heal a player under a burst is looked for from its first big hit to this long after (Claude's draft; stage X3 reads it)
+PRESSED = 250               # an ally who took this much in the 2 s before is under pressure: a monk casting on him is busy (R-711), not a missed chance
 
 
 def _act(s):
@@ -179,6 +181,54 @@ class Forensics:
     def casting_at(self, a, t):
         self.casts()                                           # the same reading, asked of that player's own casts only (execution.py asks it for every hit)
         return any(c[2] <= t <= (c[3] or c[2] + 1) for c in self._by_agent.get(a, ()))
+
+    def ready(self, a, sid, sd, t, hands=True):
+        """Skill sid off recharge for a at t, a alive, not knocked down and (hands) not already casting."""
+        if not self.alive(a, t) or (hands and self.casting_at(a, t)): return False
+        if any(k[0] <= t <= k[0] + 2 for k in self.kds_on(a, t - 3, t)): return False
+        return t - self.last_use(a, sid, t - .01) >= _act(sd.get("recharge"))
+
+    def busy(self, h, tgt, t):
+        """R-711: the ally a monk is casting on at t, where it is another ally under pressure (PRESSED in the 2 s before); else None."""
+        self.casts()
+        for c in self._by_agent.get(h, ()):
+            if c[2] <= t <= (c[3] or c[2] + 1) and c[5] is not None and c[5] != tgt and c[5] in self.m.PL and self.m.team(c[5]) == self.m.team(h):
+                if sum(d[3] for d in self.damage_on(c[5], t - 2, t)) >= PRESSED: return self.name(c[5])
+        return None
+
+    def chances(self, tgt, first, end, kinds, monks=None):
+        """R-703, R-711, R-713: for each backline monk of tgt's team, each kind in kinds ({kind: test on skill data}) he did not cast on tgt between
+        first - 3 s and end: a chance (a half-second moment within CHANCE_S of first at which a ready skill of that kind, in reach, could still land a
+        quarter second before end, his hands free and not out of energy), else busy on a player under pressure, else out of energy; nothing where none."""
+        from common import backline_monk
+        En = self.m.energy()
+        tm = self.m.team(tgt)
+        monks = monks if monks is not None else [h for h in self.players(tm) if backline_monk(self.m, h)]
+        self.casts()
+        cast = [c for h in monks for c in self._by_agent.get(h, ()) if c[5] == tgt and first - 3 <= c[2] <= end]
+        moments = [first + i / 2 for i in range(int(CHANCE_S * 2) + 1)]
+        out = []
+        for h in monks:
+            for kind, test in kinds.items():
+                if any(c[0] == h and test(self.sdata(c[1])) for c in cast): continue
+                sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid))]
+                if not sk: continue
+                chance = busy = out_e = None
+                for u in moments:
+                    ok = [self.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) + 0.25 <= end
+                          and (self.dist(h, tgt, u) or 1e9) <= CAST_R and self.ready(h, sid, sd, u, hands=False)]
+                    if not ok: continue
+                    if self.casting_at(h, u):
+                        b_ = self.busy(h, tgt, u)
+                        if b_: busy = busy or (b_, ok)
+                        continue
+                    ex = En.at(h, u) if En.ok else None
+                    if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
+                    chance = (u, ok); break
+                if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
+                elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": busy[1], "busy_on": busy[0], "chance": False})
+                elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
+        return out
 
     def damage_on(self, a, t0, t1):
         return [(e[0] / 10, e[2], e[4], e[5] or 0, e[6] if len(e) > 6 else None) for e in self.events(t0, t1, {"dm"})
@@ -728,8 +778,64 @@ def death(rid, tag, role, t, F=None):
         ans["energy"] = {"q": "Were the monks within reach out of energy?",
                          "answer": "no monk within reach" if not n else "yes, every one" if o == n else f"partly: {o} of {n}" if o else "no",
                          "measures": {"monks": n, "out": o, "possibly_out": sum(r["out"] == "maybe" for r in rows), "line": 20, "scale": "double high (R-668)"}, "rows": rows}
+    # healed at all (R-703): healing that landed on him from the start of the burst that killed him, the heals and prots cast on him, and the chances his
+    # monks missed (a heal or prot ready, in reach, his hands free, energy, in time to land; busy on a player under pressure is no chance, R-711)
+    dmg = F.damage_on(a, t0, t)
+    bt, bs = t - 2, 0
+    for i, d_ in enumerate(dmg):
+        s_ = sum(x[3] for x in dmg[i:] if x[0] <= d_[0] + 2)
+        if s_ > bs: bs, bt = s_, d_[0]
+    healed = sum(e[5] for e in F.ev if e[1] == "hl" and e[3] == a and e[0] is not None and bt * 10 <= e[0] <= t * 10 and isinstance(e[5], (int, float)))
+    kinds = {"heal": is_heal, "prot": is_prot}
+    ch = F.chances(a, bt, t, kinds)
+    miss = [c for c in ch if c["chance"]]
+    ans["healed"] = {"q": "Was he healed at all while his monks had energy and skills available?",
+                     "answer": (f"{round(healed)} healing landed from the start of the burst ({round(t - bt, 1)} s before the death)"
+                                + ("; missed: " + "; ".join(f"{c['by']} had {', '.join(c['skills'])} ready ({c['kind']})" for c in miss) if miss else "; no chance missed")),
+                     "measures": {"healed": round(healed), "burst_s": round(t - bt, 1), "missed": len(miss),
+                                  "busy": sum(1 for c in ch if c.get("busy_on")), "out_of_energy": sum(1 for c in ch if c.get("out_of_energy"))}, "rows": ch}
+    # gvg.report's own recap of the death (R-636, R-638; checked against the replays, R-707: 680 of 821 deaths have one, every one on a death the
+    # replays record, and 92% of the prots it lists are on him in the replays): its healing by source, the prots up, interrupts and knockdowns on him.
+    # Shown beside our own reading of the same seconds, never in place of it.
+    rc = next((r for r in F.m.extras().o.get("recaps") or [] if r.get("kind") == "death" and r.get("who") == a and abs(r["t"] / 10 - t) <= 2), None)
+    if rc is None: ans["recap"] = {"q": "gvg.report's recap of the death", "answer": "none for this death (17% of deaths have none)", "measures": None}
+    else:
+        nm = lambda x: F.name(x) if x in F.m.PL else f"agent {x}"
+        heal_by = collections.Counter()
+        for h in rc.get("heal") or []: heal_by[nm(h[0])] += h[3] or 0
+        ans["recap"] = {"q": "gvg.report's recap of the death",
+                        "answer": (f"healing received {round((rc.get('totals') or {}).get('healing_received_estimate') or 0)}"
+                                   + (" (" + ", ".join(f"{k} {round(v)}" for k, v in heal_by.most_common(4)) + ")" if heal_by else "")
+                                   + f"; prots up {len(rc.get('prots') or [])}, interrupts on him {len(rc.get('intr') or [])}, knockdowns {len(rc.get('kd') or [])}"),
+                        "measures": rc.get("totals"), "rows": {"prots": [[nm(p_[0]), F.sname(p_[1])] for p_ in rc.get("prots") or []],
+                                                               "split": rc.get("split")}}
+    # his monks' casting this game (R-704, R-666 the first aspect): a whole-game figure (gvg.report's totals have no time), so context, never why he died
+    import casting
+    if not hasattr(F, "_cast"):
+        F._cast = casting.record(F.m, rid)["monks"]
+        try: F._cast_bench = json.load(open(casting.BENCH))
+        except (OSError, ValueError): F._cast_bench = None
+    rows = []
+    for b, r in F._cast.items():
+        if F.m.team(b) != tm: continue
+        p_ = casting.place(F._cast_bench, r, "per_energy") if F._cast_bench else None
+        o_ = casting.place(F._cast_bench, r, "over_share") if F._cast_bench else None
+        rows.append({"who": F.name(b), "per_energy": r["per_energy"], "placed": p_[0] if p_ else None, "against": p_[2] if p_ else None,
+                     "over_share": r["over_share"], "over_placed": o_[0] if o_ else None})
+    ans["monk_casting"] = {"q": "How did his monks spend their energy this game (whole game, R-704)?",
+                           "answer": "; ".join(f"{x['who']} {x['per_energy']} useful points a point of energy ({x['placed']} among {x['against']})" if x["placed"] else
+                                              f"{x['who']}: not placed" for x in rows) or "no backline monk",
+                           "measures": {"monks": len(rows)}, "rows": rows}
     ans["victim"] = {"name": F.name(a), "group": g, "set_now": (F.weapon_set(a, t - 1) or {}).get("label")}
     return ans
+
+
+def is_prot(sd): return bool(set(sd.get("causes") or []) & {"Block", "Damage Reduction"}) and "all" in (sd.get("target") or "").lower()
+def is_heal(sd):
+    """A heal on an ally: heals, is no prot (Shielding Hands is a prot that heals too) and removes nothing (Dismiss Condition heals only on a removal)."""
+    if not ("Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower() and not is_prot(sd)): return False
+    d = (sd.get("desc") or "").lower()
+    return not (sd.get("removes") or []) or d.find("heal") < d.find("remov")       # Blessed Light heals first; Dismiss Condition heals only on a removal
 
 
 def lines(ans):
@@ -737,7 +843,7 @@ def lines(ans):
     L = []
     v = ans.get("victim", {})
     L.append(f"**{v.get('name')}** ({v.get('group')}), set at death: {v.get('set_now')}")
-    for k in ("position", "prots", "monk_pressure", "energy", "sets", "own_output", "enemy_output", "peel", "casting", "conditions", "pressure"):
+    for k in ("position", "prots", "healed", "recap", "monk_pressure", "energy", "monk_casting", "sets", "own_output", "enemy_output", "peel", "casting", "conditions", "pressure"):
         if k not in ans: continue
         x = ans[k]
         L.append(f"- **{x['q']}** {x.get('answer', '')}" + (f" ({x['placed']})" if isinstance(x.get('placed'), str) else ""))
