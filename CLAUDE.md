@@ -61,7 +61,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   only that file: a stored replay is never written again. On the branch the engine reads it through `Match.extras()`
   (`tools/replay_analysis/extras.py`: an `Extras`, with `lord_record()` for gvg.report's Lord record by the second;
   `python3 extras.py cover` counts what every stored match holds). A match with no file stops the reading (R-460):
-  fetch the `replays` branch again. Read so far: the flag objects and the Lord record; the rest is listed under
+  fetch the `replays` branch again. Read so far: the flag objects, the Lord record, degen and energy; the rest is listed under
   "The engine on the new trim" in `docs/ENGINE_NOTES.md` (section 8).
 - Replay analysis toolkit: `tools/replay_analysis/` (`replaylib.py` = Match class: positions, groups, sides, carries,
   build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
@@ -177,7 +177,16 @@ The full rules, with how each reading is built and the games it is tested agains
 - Before an engine change ships, a fresh session reads `knowledge/model.md` alone and must be able to explain each
   node in GvG terms (the readability test).
 - Never add a `.py` file to `tools/replay_analysis/` for site or tooling work: every file there is part of the
-  measurement cache key and would force a full rebuild.
+  measurement cache key and would force a full rebuild. A scratch script lives outside the repository.
+- Engine build notes (how a reading is built, what it is tested against, what was found) go in the section of that
+  reading in `docs/ENGINE_NOTES.md`, the same session; a new reading gets the next section number and a line in the
+  index below. Never in this file, and in HANDOFF.md only as state.
+- The review key, `dev_set.json` and `game_reviews.json` are written on main only: pass `--key
+  <main>/data/model/review_key.json` and copy a changed file to the branch. Files the site saves whole (hall labels,
+  golden and review marks) are his: after a change to one here he reloads the page first, and changed
+  `data/maps/labels/*.json` are copied to the branch before a hall is read. Party slots are in `data/matches/`, not
+  in the replays. Never queue two Train batch runs.
+- A backline monk is told by his bar (`common.monk_kind`, R-698), never by his party slot or his role name.
 
 ### Index of `docs/ENGINE_NOTES.md` (read the section before changing that reading)
 
@@ -220,6 +229,8 @@ The full rules, with how each reading is built and the games it is tested agains
 - 37. Bundle 4 on its branch: story, records, line-up, gates, stage D, jobs
 - 38. Before the next training run (R-398)
 - 39. Guild hall maps
+- 42. A backline monk, told by his bar (R-698)
+- 43. Monk casting efficiency (R-689, piece 4)
 - 40. The TQs
 - 41. The causal map and the old node models
 

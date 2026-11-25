@@ -108,12 +108,9 @@ index pointing here. Read the section for a reading before changing it, and keep
   `data/model/excuse_cases.json`): over 546 matches 7,432 deaths with a monk in the fight, every monk out at 1.1%
   and one or more at 5.0%; a monk out at a death spent 88 in the minute before and had 3.5 taken (4% had 20 or more
   taken, 76% under 5: a monk out is mostly a monk who spent it); about 440 energy a match is taken in all, 38% of
-  it from backline monks; of 2,393 failures to kill, a midline player was out for half the stretch in 0.1%. An excuse says what was so, never why a player died, and is no fix. To build,
-  in his order (R-689):
-  (4) monk casting efficiency
-  (R-678 to R-680, R-687), with what each prot did (R-636) and the interrupt attempts (R-639), by monk role
-  (R-671): healing landed plus damage prevented for the energy spent, blocks credited to any blocking skill,
-  removals a count apart, cancelled casts apart as a bait that worked or energy burned.
+  it from backline monks; of 2,393 failures to kill, a midline player was out for half the stretch in 0.1%. An excuse says what was so, never why a player died, and is no fix. (4), monk
+  casting efficiency, is built (2026-11-24, `casting.py`): section 43. With it energy is built in his order
+  (R-689); who is a backline monk in all of it is `common.monk_kind` (R-698, section 42).
   Degen as damage (R-638, R-649, R-655, R-661) is one reading, `Match.degen()` (`degen.py`: read its top before
   touching a damage figure). The amounts are gvg.report's totals for the match (what each player took from each
   source, net of regen; what each player's degen did to each NPC and Lord); only the timing is ours: a total is laid
@@ -817,6 +814,96 @@ index pointing here. Read the section for a reading before changing it, and keep
   overstates the walk: use its walked length (`audit_labels.py --routes`, R-316). Never add a `.py` file to `tools/replay_analysis/` for site or
   tooling work: every file there is part of the measurement cache key and would force a full rebuild.
 
+
+### 42. A backline monk, told by his bar (R-698)
+- Who is a backline monk is one reading, `common.monk_kind(m, a)` ("backline", "smite", or None for any other
+  profession), with `common.backline_monk` and, for a record that holds role names and no agent numbers,
+  `common.backline_roles(m, tm)`. Every count of monks asks it: never tell a backline monk by his party slot, by his
+  role name or by Word of Censure on his bar. His elite tells: a Smiting Prayers elite (Word of Censure, Ray of
+  Judgment) is a smite monk whatever else he carries; any other Monk elite a backline monk. Where the observer saw no
+  Monk elite, the skills seen tell (more Smiting Prayers than Healing Prayers, Protection Prayers and Divine Favor is
+  a smite monk; more of those a backline monk); a bar that tells neither stops the reading (R-460: none in the 564
+  counted matches, one monk told by his skills). `common.skill_row` finds a bar's skill by its id, then by its name as
+  the replay spells it ("Shield Guardian PvP" for "Shield Guardian (PvP)").
+  Why it was built (2026-11-24): a monk was told by slot in a dozen places and not alike. `jobs.py` and `energy.py`
+  read a Monk outside slots 6 to 8 as a smiter (26 heal or prot monk-games of 3,628, in 23 team-games: hook, chic and
+  hdm with monks in slots 4 and 8, EDGE, One, meow and True with monks in 5, 6 and 7); `moments.py` and `story.py`
+  read a Word of Censure monk in slot 6 to 8 as a backline monk (57 monk-games), as did `phases.healer`, and through
+  it the death accounts, the nodes, `npcpower.py` (a smiter's NPC damage read as a backline monk's: 1.0 a second on
+  footmen for 10.7) and the execution measures. Over the 564 counted matches now: 3,139 backline monk-games, 489
+  smite (461 Word of Censure, 27 Ray of Judgment, 1 with no elite seen).
+  What asks it: `jobs.py` (the split's monks, the ratios of R-457 at the main fight, the base res), `moments.py` (the
+  monks of an attempt and its answer, `_mk`, `monk_counts`, the call keys "two monks"), `energy.py`
+  (`backline_monk`), `story.py`, `phases.healer` (a backline monk, or a healing Ritualist in the 8 slot: the older
+  "healer", which the death accounts, the nodes, `eventlayer.py`, `npcpower.py` and `execution.py` read),
+  `fights._monks`, `scoreboard.py`, `lnrows.py`, and `common.line` (a smite monk is midline, R-670; a backline monk
+  backline). `execution.py`'s `drain_on_monks` reads the backline monks alone (R-699: a healing Ritualist is no monk
+  for energy); its other "healer" shares keep the older healer. Role names are unchanged (his names by slot: Prot, 7
+  Monk, 8 Monk, "Monk N" elsewhere, "(WoC)" beside a Word of Censure monk): a name no longer says what a monk is.
+  Still by name, and left: `cases.py` `_usual_response` ("Monk" or "Prot" in a role name), `tq.HEALER_ROLES`,
+  `behaviour._line_of`, `forensics.role_group` (the role a death account is placed against: Prot, 7 Monk, 8 Monk by
+  name, else healer).
+  A monk with Word of Censure and four or more heal and prot skills (25 of 461 Word of Censure monk-games) is a smite
+  monk by his elite, and plays as one: a median 108 healing a minute against a backline monk's 641, and 249 damage a
+  minute against 4.
+  Checked (R-453): the development set, 323 Classic rows pass and the review key reads as before; 234 of 6,933 plays
+  moved, none gone, one new (hdm v hook 13:02: with hook's Monk 4 a backline monk its main fight is two damage and
+  two monks against hdm's three damage and one monk, so hook's main team has the job to kill, R-457). The keys that
+  moved: the monks of a split, of its defence and of the main fight beside it (`split.monks`, `split.numbers`,
+  `defending_monks`, `beside.defence`, `beside.main`, `beside.main_can_kill`, `split_damage`), a runner's line
+  (`line` on an opening's flags: 70 values, a smite monk backline to midline), and NPC damage by kind of bar
+  (`props.npc`, `our_runner.npc`, `their_runner.npc`: a Word of Censure monk in slot 6 to 8 read as a smiting monk).
+  The full run (2bebbc6, 29 minutes, against a full run of 7bce16e the same evening): 33,062 plays against 33,094;
+  1,935 changed in 196 matches, on the keys above; 44 gone and 12 new, every one the main fight's job to kill beside
+  a split (R-457): gone where "they have no monk there" was a heal monk in slot 4 or 5 unread (cope v Book nine
+  times, RACK v hdm fourteen), new where a team's own monks are counted now. The truths hold as before (15 of 15).
+  Every `cases.py` report rebuilt on both runs: the flag ladder, pushes and held teams read the same to the line; no
+  verdict of the flag test, the base res, the hand-offs or the energy tables moved; at the margin, a split of one
+  player 90 s on reads better again (+5.0, +1.6 to +8.3; it was no clear difference), an opening hold at 5:00 better
+  (+4.9, +0.1 to +9.8), and three numbers and main-fight lines fell to too few to call.
+  Not rebuilt: `npcpower.py bench` (57 monk-games moved from its backline kind to its smiting monk kind: rebuild it
+  before the next full run, since the plays read it) and the forensics benchmark (its healers moved the same way).
+
+### 43. Monk casting efficiency (R-689, piece 4)
+- Monk casting efficiency (R-666 the first aspect; R-678 to R-680, R-687; against the same monk role, R-671) is one
+  reading, `casting.py` (read its top before changing it): `record(m)` gives every backline monk's row for a match,
+  `python3 casting.py report` the usual of each role over every counted match (`data/model/casting_cases.json`, about
+  20 s), `casting.py <report id>` a match's monks in sentences, each placed low, usual or high for his role (under
+  the 20th percentile, over the 80th), `casting.py cover` the checks of the record. It needs no energy record, so it
+  reads all 564 counted matches. No play reads it and none moves; it is not yet in the death accounts or among the
+  execution measures (`execution.py`), where it belongs once he has ruled on the questions below.
+  What is read: energy spent is the listed cost of every cast a backline monk started from 0:00, whatever became of
+  it (R-680), from the replay's own casts (`forensics.Forensics.casts`, the one reading of how a cast ended). Useful
+  points are healing that landed, Divine Favor's counted, plus damage prevented, point for point (R-678), from
+  gvg.report's totals for every skill he cast (the file beside the replay, `skills`: match totals with no time, so the
+  measure is a monk's whole game, never a fight). Removals (the replay's own credit, `outcomes`) and knockdowns
+  prevented are counts apart. No cast is marked "not needed" (R-679): a prot that prevented nothing adds its energy
+  and no points. A cancelled cast is a bait where gvg.report reads an enemy interrupt on him as missed because he
+  cancelled (the attempts of R-639, its read "cancel"), begun inside the cast or within a second of its end; any
+  other cancel is energy burned, or an interrupter scared off unseen.
+  Checked against the raw record (2026-11-24, `casting.py cover`): gvg.report's `uses` are casts started (469,754
+  against 472,687 in the replays, 99.4%), so its figures and our energy cover the same casts; a blocked attack is in
+  `prevented` already, at 36 damage a block on all 4,449 rows with a block, so any blocking skill is credited (R-687)
+  and nothing is added; of 1,219 interrupt attempts read as missed on a cancel, 741 match a cancelled cast in the
+  replay (the rest fall on a cast another interrupt took). The 39,976 targeted attempts of the counted matches: 25,412
+  hit; missed, 7,926 the cast finished first, 2,650 "random", 2,592 a cancel, 1,063 "likely", 333 "ineligible".
+  What gvg.report's figures do not hold, to say with every figure: Aegis is credited with almost no blocks (122 in
+  6,753 casts; Guardian 52,931 in 63,095), since a block under two blocking enchantments goes to the single-target
+  one, so a party-wide block reads as nearly worthless (2.8 points a point of energy against Guardian's 10.8);
+  Protective Spirit prevents nothing in its figures (1.6) and Aura of Stability only heals through Divine Favor
+  (4.5); Healer's Covenant cuts a cost the listed cost does not know. Put to him.
+  Found over 3,116 monk-games with 100 energy or more (`MIN_SPENT`, a draft): the middle monk makes 15.6 useful
+  points a point of energy (three in five between 11.7 and 20.6), overheals 31% of his healing (20% to 42%), spends
+  61 energy a minute alive, 1.7% of it on cancelled casts and 2.8% on casts an interrupt took; 741 of 10,782
+  cancelled casts (7%) drew an interrupt. By role: Prot 12.4 (9.8 to 15.5), 7 Monk 20.2 (16.2 to 24.3), 8 Monk 15.0
+  (12.0 to 18.3); by elite: Healing Burst 21.2, Word of Healing 16.0, Blessed Light 15.3, Aura of Faith 13.8, Life
+  Sheath 11.7: what a bar is built on moves the figure more than how it is played, and a slot does not say the bar
+  (slot 6 is Life Sheath or Aura of Faith in 77% of games and Blessed Light in 16%; slot 7 Healing Burst in 66%;
+  slot 8 Blessed Light in 74%). And the figure rises with how hard a team is hit: 14.6 for the third of teams hit
+  least, 16.4 for the third hit hardest, overhealing 34% against 29%; losers 16.0 against winners' 15.0, overhealing
+  26% against 36%. So against the same role alone it rewards being hit: put to him (place by bar, and beside monks
+  hit as hard).
+  `role_of` is the role a monk is placed against: his names by slot, and "Monk, another slot" (26 monk-games).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

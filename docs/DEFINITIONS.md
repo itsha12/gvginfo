@@ -95,8 +95,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   job. *As built (`split_plays`, `defends`):* on his own ground, the split on his side of the hall, his walk to his own
   Lord no longer than the nearest split player's, and nearer to the split than to any group of two or more of the
   attackers' other players. Positions are read against the enemy's positions and aims, not alone (R-512).
-- A monk, when monks and damage are counted, is a backline monk only; a smiter (the WoC monks) and a ritualist healer
-  count as damage (R-457).
+- A monk, when monks and damage are counted, is a backline monk only; a smiter and a ritualist healer count as damage
+  (R-457, R-699). A backline monk is told by his bar, never by his party slot (R-698).
+  *As built:* his elite tells: a Smiting Prayers elite (Word of Censure, Ray of Judgment) is a smite monk whatever
+  else he carries, any other Monk elite a backline monk; where no Monk elite was seen, the skills seen.
 
 ## Flags
 - A team cannot capture its flag while it holds the stand: it waits for the other team to cap. A flag at the stand
@@ -540,7 +542,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   a midline out of energy, rarely, is why a team does not kill); and an input to decisions, as the energy of the
   monks in that fight, a team's own and the enemy's each a factor.
 - Energy is read on the double high scale, what the player would have on his double high set, 72 at most for a
-  monk: every monk carries one (R-667, R-668); the midline is read on it too (R-686).
+  monk: every monk carries one (R-667, R-668); the midline is read on it too (R-686), Elementalists carrying one as
+  monks do (R-697).
   *As built:* what he shows plus what the change of set would add. Death penalty and morale move a maximum by their
   share of the base 20 energy only (+2 at a full boost, -3 a death), on every set alike, so the change of set adds
   the same at any morale. An Elementalist's maximum holds his Energy Storage and falls with Overcast, so his is
@@ -570,6 +573,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   *As built:* Energy Surge and Energy Burn from their damage (7 and 9 a point), Mind Wrack a point a skill, Power
   Leak, Shame, Guilt and Malaise from the skill's own figure (not sure); whom a team drains is two execution
   measures, the points taken and the share of them from their backline monks.
+- A monk out of energy is mostly a monk who spent it: energy denial is common on bars and small beside what casting
+  costs (R-700).
 - A match with no energy record keeps its place, energy blank (R-672).
 
 ## Degen as damage

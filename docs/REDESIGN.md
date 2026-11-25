@@ -206,18 +206,30 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 
 ### Before the next training run (R-398)
 After the engine is built and before the rebuild, Claude goes through this with Denning:
-1. Check that this file and SPEC.md are accurate or need updating.
+1. Check that this file and SPEC.md are accurate or need updating. (For the close: this file's status line at the
+   top is still that of 2026-11-13.)
 2. Review the rulings: condense what can be, move "rules" that belong elsewhere, drop those no longer needed, add or
    amend. (Begun, R-452: `docs/DEFINITIONS.md` holds the current definitions for counting players, flags, splits,
    collapse and the Lord push; the other topics remain.)
-3. Review the repository for old, outdated or unneeded files.
-4. Remove the Templates tab from the site (R-526: "No, remove", asked because he had saved a template there).
+3. Review the repository for old, outdated or unneeded files. (Done 2026-11-24, PR #6: `tools/wiki_scraper.js` and
+   `exports/gw1_gvg_reference.md` deleted, the four merged map branches deleted. Left for the close, with the merge of
+   `bundle-4`: the old engine's data files (`data/model/lord_gvg.json`, `usual_play.json`, `advice_test.json`,
+   `discovery*.json`, `behaviour.json`, `link_log.json`, `blind_tests.json`, `golden_stories.json`) as their modules
+   are retired.)
+4. Remove the Templates tab from the site (R-526: "No, remove", asked because he had saved a template there). (Done
+   2026-11-24, PR #6, the save buttons with it.)
 5. Remove the Meta tab from the site (not used); and the Golden moments page (R-454), keeping
-   `golden_moments.json`, `golden_key.json` and the gate.
-6. See whether the skills need updating from the wiki.
-7. See whether the model pages (structure, results and the rest) need amending to match the approach taken.
+   `golden_moments.json`, `golden_key.json` and the gate. (Done 2026-11-24, PR #6: the Meta tab removed; Golden
+   moments and Blind test hidden from the Model tab's list, still reached by direct link, their data untouched.)
+6. See whether the skills need updating from the wiki. (Open: the wiki cannot be reached from a session. He runs the
+   site's "Update skills from the wiki" button between sessions, since it commits straight to main; the next session
+   reads `data/wiki_changes.json`.)
+7. See whether the model pages (structure, results and the rest) need amending to match the approach taken. (For the
+   close: the Model pages and the Mechanics pages Structure, Results and Finding new variables describe the old
+   engine.)
 8. Any other outstanding items, questions or rulings he has not addressed.
-9. Cut the repository's README down to a link to the site and the Data sources section (R-524).
+9. Cut the repository's README down to a link to the site and the Data sources section (R-524). (Done 2026-11-24,
+   PR #6.)
 10. Remind him of the held flag cards (R-554: "make sure you remember to write them as I will probably forget"): the
     flag in hand, with R-553 built (no runner while the next flag is already up is a flag-in-hand decision), and the
     double run from the side of the team that sends its second runner. Write them once more matches are trained.
