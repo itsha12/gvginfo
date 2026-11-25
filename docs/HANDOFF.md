@@ -69,8 +69,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   with the machine to itself, `cases.py execution` about 30 on its own, the other reports about 20 together (`ladder`
   before `test`, R-545; each kept with `--json data/model/<name>.json`). Set `PYTHONDONTWRITEBYTECODE=1`; never edit
   an engine file while a run is going (modules are imported late). After a change: `tools/golden/review.py score
-  <file> --key <main>/data/model/review_key.json`, then `tools/golden/compare.py <before> <after>`. One game's deaths
-  in sentences: `python3 execution.py deaths <report id>`.
+  <file> --key <main>/data/model/review_key.json`, then `tools/golden/compare.py <before> <after>`.
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
