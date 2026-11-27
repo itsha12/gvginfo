@@ -4042,7 +4042,7 @@ def attempts_report(path, out_json=None):
           [("none", [r for r in A if not pp(r)]), ("some, before the first big hit", [r for r in A if pp(r) and (r["pressure"]["lead"] is None or r["pressure"]["lead"] < 0)]),
            ("some, at or after it", [r for r in A if pp(r) and r["pressure"]["lead"] is not None and r["pressure"]["lead"] >= 0])])
     CH = __import__("execution").CHANCE_S          # taken in the same seconds a chance is looked for, so the two sides of a row cover the same time
-    taken = {"prot": lambda r: any(d <= CH for _, d, _o in r["prots_cast"]), "heal": lambda r: any(d <= CH for _, d, _o in r["heals_cast"]),
+    taken = {"prot": lambda r: any(d <= CH and o == "finished" for _, d, o in r["prots_cast"]), "heal": lambda r: any(d <= CH and o == "finished" for _, d, o in r["heals_cast"]),
              "interrupt": lambda r: any(x["kind"] == "interrupt" and x.get("taken") for x in r["missed"]),
              "strip": lambda r: bool(r["prots_up"]) and r["strip"]["prot_off"], "pressure": lambda r: r["pressure"]["interrupts"] > 0}
     for kind, side, words in __import__("execution").MISSED_KINDS:

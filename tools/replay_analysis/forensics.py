@@ -407,7 +407,10 @@ class Forensics:
         ready skill of that kind, in reach, could still be cast before end, Daze doubling a spell's cast time, with his hands free, his own aftercast over,
         no spike on himself, not himself under pressure and not out of energy), else busy on a player under pressure (R-711), else himself under a spike
         (R-747), else himself under pressure (R-790: PRESSED or more landed on him in the 2 s before, as R-711 reads a player under pressure; his prots and
-        his heals alike, R-793), else out of energy; nothing where none."""
+        his heals alike, R-793), else out of energy; nothing where none.
+        R-796: where tgt is himself a backline monk, his own prot or heal on himself is a chance as any other monk's is (`self` on the row), on the same
+        time to react, with the skills he can cast on himself (`can_self`: Infuse Health, Heal Other and Aegis are for another player); R-747 and R-790
+        speak of a monk's chances for another player and are not read against him here."""
         from common import backline_monk
         En = self.m.energy()
         tm = self.m.team(tgt)
@@ -419,8 +422,9 @@ class Forensics:
         for h in monks:
             for kind, test in kinds.items():
                 if any(c[0] == h and test(self.sdata(c[1])) for c in cast): continue
-                sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid))]
+                sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid)) and (h != tgt or can_self(self.sdata(sid)))]
                 if not sk: continue
+                me = {"self": True} if h == tgt else {}
                 chance = busy = out_e = spk = prs = None
                 # R-747: the spikes on the monk himself (SPIKE_DMG inside SPIKE_S from a hit on him), each from its first hit to SPIKE_S after it
                 hits = self.damage_on(h, first - SPIKE_S, first + CHANCE_S + SPIKE_S) if h != tgt else ()
@@ -428,7 +432,7 @@ class Forensics:
                 for u in moments:
                     dz = 2 if self.dazed_at(h, u) else 1
                     ok = [self.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6
-                          and (self.dist(h, tgt, u) or 1e9) <= CAST_R and self.ready(h, sid, sd, u, hands=False)]
+                          and (h == tgt or (self.dist(h, tgt, u) or 1e9) <= CAST_R) and self.ready(h, sid, sd, u, hands=False)]      # his distance to himself is nought, which is no unknown distance
                     if not ok: continue
                     if self.casting_at(h, u):
                         b_ = self.busy(h, tgt, u)
@@ -440,19 +444,29 @@ class Forensics:
                     ex = En.at(h, u) if En.ok else None
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance = (u, ok); break
-                if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
-                elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": busy[1], "busy_on": busy[0], "chance": False})
+                if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True, **me})
+                elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": busy[1], "busy_on": busy[0], "chance": False, **me})
                 elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": spk, "spiked": True, "chance": False})
                 elif prs: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": prs, "pressed": True, "chance": False})
                 elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": out_e, "out_of_energy": True, "chance": False})
         return out
 
-    def taken_in_time(self, a, first, kinds):
+    def taken_in_time(self, a, first, kinds, end=None):
         """R-715: the kinds in kinds ({kind: test on skill data}) that a team mate cast on a in time, from 3 s before first to CHANCE_S after it (the seconds a
-        chance is looked for, as on a kill attempt): the team took that chance, so it is no fault and is not listed against a monk who held back."""
+        chance is looked for, as on a kill attempt): the team took that chance, so it is no fault and is not listed against a monk who held back.
+        R-797: only a cast that landed is taken: it finished (one interrupted or cancelled is none) and, where he died at end, finished before he died."""
         self.casts()
         tm = self.m.team(a)
-        return [k for k, test in kinds.items() if any(self.cast_on(c, a) and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
+        return [k for k, test in kinds.items() if any(self.cast_on(c, a) and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) and landed(c, end)
+                                                      for h in self.players(tm) for c in self._by_agent.get(h, ()))]
+
+    def begun(self, a, first, kinds, end=None):
+        """R-797: the casts of the kinds in kinds begun on a in the seconds a chance is looked for that never landed (interrupted, cancelled, or finished
+        after he died at end): context beside a death, [kind, skill, seconds after first, how it ended]."""
+        self.casts()
+        tm = self.m.team(a)
+        return sorted(([k, self.sname(c[1]), round(c[2] - first, 1), outcome(c, end)] for k, test in kinds.items() for h in self.players(tm) for c in self._by_agent.get(h, ())
+                       if self.cast_on(c, a) and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) and not landed(c, end)), key=lambda r: (r[2], r[1]))
 
     def cast_on(self, c, tgt):
         """Is cast c (a row of `casts`) a cast on player tgt? Its target is tgt; or it is a prot on the whole party (PROT_RULES `party`: Shield Guardian,
@@ -1174,7 +1188,7 @@ def death(rid, tag, role, t, F=None):
     healed = sum(e[5] for e in F.ev if e[1] == "hl" and e[3] == a and e[0] is not None and bt * 10 <= e[0] <= t * 10 and isinstance(e[5], (int, float)))
     kinds = {"heal": is_heal, "prot": is_prot}
     ch = F.chances(a, bt, t, kinds)
-    took = F.taken_in_time(a, bt, kinds)                 # R-715: a kind a team mate cast in time is no fault, and is not listed against the monk who held back (as execution.deaths lists them)
+    took = F.taken_in_time(a, bt, kinds, t)              # R-715, R-797: a kind a team mate cast in time is no fault, and is not listed against the monk who held back (as execution.deaths lists them)
     miss = [c for c in ch if c["chance"] and c["kind"] not in took]
     ans["healed"] = {"q": "Was he healed at all while his monks had energy and skills available?",
                      "answer": (f"{round(healed)} healing landed from the start of " + {"spike": "the spike", "pressure": "the pressure that kept him in danger", "neither": "the damage"}[_how] + f" that killed him ({round(t - bt, 1)} s before the death)"
@@ -1275,6 +1289,25 @@ NO_PROT = {"Ward Against Melee", "Displacement", "Shelter", "Union", "Fertile Se
 def prot_rule(sd):
     """The rule of this skill in PROT_RULES, by its name without " (PvP)" (the replays write "Shield Guardian PvP"), or None."""
     return PROT_RULES.get((sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", ""))
+
+
+LATE = "after he died"      # R-797: how a cast ended which finished only after the player it was for had died (beside the record's finished, cancelled, interrupted)
+
+
+def outcome(c, end=None):
+    """How a cast (a row of `Forensics.casts`) ended for the player it was for: the record's own word, or LATE where it finished after he died at end."""
+    return LATE if end is not None and c[4] == "finished" and c[3] is not None and c[3] > end + 1e-6 else c[4]
+
+
+def landed(c, end=None):
+    """R-797: did the cast land on the player it was for: it finished, and where he died at end it finished before he died."""
+    return outcome(c, end) == "finished"
+
+
+def can_self(sd):
+    """R-796: can the skill be cast on its own caster? Not one for another player (the skill data's target, "other allies": Infuse Health, Heal Other,
+    Dwayna's Kiss; or its words, "target other": Aegis)."""
+    return not (sd.get("target") or "").lower().startswith("other") and "target other" not in (sd.get("desc") or "").lower()
 
 
 def is_prot(sd):
