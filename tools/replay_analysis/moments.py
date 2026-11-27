@@ -3568,9 +3568,11 @@ def match_records(rid):
     import energy                                        # each fight's monk and midline energy at the decision and a minute before (R-689; kept beside the plays, no play reads it)
     ticks, spots = jobs.split_ticks(M, P), jobs.res_spots(M)
     EX_ = execution.Exec(M, rid)
-    ATT_ = execution.attempts(EX_); DTH_ = execution.deaths(EX_, ATT_)      # every kill attempt (stage X2), and every death with the checked chances missed (stage X4)
+    ATT_ = execution.attempts(EX_); PRS_ = execution.pressure(EX_, ATT_)     # every kill attempt (stage X2), each with its sum (R-734), and the pressure attempts beside the spikes (R-741, R-749)
+    DTH_ = execution.deaths(EX_, ATT_, PRS_)                                 # every death with the checked chances missed (stage X4), a death with no spike read from its pressure attempt
     FLS_, CGT_ = execution.fails(EX_, ATT_), EX_.caught()                    # every spike that did not kill with the strip missed (R-729, R-744), and the casts into a ready interrupt (R-743)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_, DTH_, FLS_, CGT_), "attempts": ATT_, "deaths": DTH_, "fails": FLS_, "caught": CGT_, "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
+    EVN_ = execution.even_rows(EX_, P, ATT_, PRS_, DTH_, FLS_, CGT_)         # the even 8v8's execution-only rows (R-731): no play and no job, both teams read as trying to kill
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_, DTH_, FLS_, CGT_, ATT_, PRS_), "attempts": ATT_, "pressure": PRS_, "even": EVN_, "deaths": DTH_, "fails": FLS_, "caught": CGT_, "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
                   "energy": energy.record(M, P, ticks, spots), "excuse": energy.excuse(M, P), "split_holds": jobs.split_holds(M, P),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs

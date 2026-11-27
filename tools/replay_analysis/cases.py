@@ -3238,7 +3238,7 @@ def exec_sentence(bench, kind, x, team, foe):
             v = x[sd].get(k); o = exec_out(bench, kind, sd, k, v)
             if o is None: continue
             q = bench[kind][sd][k]
-            (hi if o == "high" else lo).append(f"{EXEC_SAY[k]} ({f(v)}; such plays mostly {rng(q)})")
+            (hi if o == "high" else lo).append(f"{EXEC_SAY.get(k) or EX.WORDS[k]} ({f(v)}; such plays mostly {rng(q)})")      # a measure with no short words here is said in its own (it stopped the sentence: found 2026-11-27)
         if not hi and not lo: return f"{name}: nothing stands out"
         return f"{name}: " + "; ".join(([("high on " + ", ".join(hi))] if hi else []) + ([("low on " + ", ".join(lo))] if lo else []))
     own, their = side("own", team), (side("their", foe + ", the players it met") if x["n"][1] else f"{foe}: its players met nobody")
@@ -3264,7 +3264,7 @@ def exec_say(path, pre, at=None, bench_file=None):
         x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
         sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
         fc = D["flag_cost"][rid]
-        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught")) if x and "deaths" in x else None
+        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught"), fc.get("attempts"), fc.get("pressure")) if x and "deaths" in x else None
         if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}" + (f"\n   Faults (R-713, R-714). {flt}" if flt else ""))
 
 
@@ -4066,6 +4066,71 @@ def attempts_report(path, out_json=None):
     return res
 
 
+# ------------------------------------------------------------------ the pressure attempt's cut-offs, from the data (the catalogue's stage 4; R-741)
+PRESSURE_GRID = [(H, K, (X, 3)) for H in (100, 125, 150, 175, 200, 250, 300) for K in (0, 1, 2, 3) for X in (1, 30, 60, 90, 120)]
+_PRESSURE_FC = {}
+
+
+def _pressure_init(path):
+    _PRESSURE_FC.update(json.load(open(path))["flag_cost"])
+
+
+def _pressure_one(rid):
+    from forensics import Forensics
+    fc = _PRESSURE_FC[rid]
+    F = Forensics(rid); m = F.m
+    role2a = {(m.tag[m.team(a)], m.roles[a]): a for a in m.PL}
+    spk, dts = collections.defaultdict(list), collections.defaultdict(list)
+    for r in fc["attempts"]: spk[role2a[(m.tag[3 - r["tm"]], r["target"])]].append((r["t"] - 3, r["t"] + r["s"]))
+    for d in fc["deaths"]: dts[d["id"]].append((d["t"], d["spike"]))
+    res = {}
+    for g in PRESSURE_GRID:
+        n = k8 = kd = cov = 0
+        for a in m.PL:
+            E = F.danger(a, *g)
+            for e in E:
+                if any(s0 <= e["told"] <= s1 for s0, s1 in spk[a]): continue      # begun inside a spike's own reading: that attempt going on, not a pressure attempt of its own
+                n += 1; kd += e["died"]; k8 += any(e["told"] < d <= e["told"] + 8 for d, _ in dts[a])
+            cov += sum(1 for d, sp in dts[a] if not sp and any(e["died"] and abs(e["t1"] - d) <= .3 for e in E))
+        res[g] = (n, k8, kd, cov)
+    return res, sum(1 for d in fc["deaths"] if not d["spike"]), len(fc["attempts"]), sum(r["killed"] for r in fc["attempts"])
+
+
+def pressure_report(path, out_json=None, jobs=2):
+    """`cases.py pressure <plays file>`: the table the pressure attempt's cut-offs are read from (R-741: "set by the engine from the data"; R-749). A pressure
+    attempt is a player kept in danger by the enemy for a while (`forensics.Forensics.danger`): his health at or under a line, for some seconds, with some
+    damage landing on him. For every line on the grid: how many such attempts there are (one begun inside a spike's own reading left out), how many die
+    within 8 s of the second it is told (the seconds a spike is read for), how many end in his death, and the share of the deaths with no spike that such an
+    attempt holds. The rule (Claude's, his to correct): a pressure attempt should be as dangerous as a spike, so of the lines "for a while" allows (a second
+    or longer) at which a player dies within 8 s at least as often as a spike kills, the one that holds the most deaths with no spike. The plays file gives
+    the spikes and the deaths (`flag_cost[rid].attempts`, `.deaths`); the danger itself is read from the replays here, so the file's own cut-offs do not bear."""
+    import multiprocessing
+    rids = sorted(json.load(open(path))["flag_cost"])
+    tot, nsd, na, nk = collections.defaultdict(lambda: [0, 0, 0, 0]), 0, 0, 0
+    with multiprocessing.Pool(jobs, initializer=_pressure_init, initargs=(path,)) as pool:
+        for res, a, b, c in pool.imap_unordered(_pressure_one, rids, chunksize=2):
+            nsd += a; na += b; nk += c
+            for g, v in res.items():
+                for i in range(4): tot[g][i] += v[i]
+    spike = nk / na if na else 0
+    print(f"{len(rids)} matches; {na} spikes, {100 * spike:.1f}% killed; {nsd} deaths with no spike")
+    print("health  kept s  landed in 3 s  attempts  die in 8 s  end in death  deaths with no spike held")
+    rows = []
+    for g in PRESSURE_GRID:
+        n, k8, kd, cov = tot[g]
+        if not n: continue
+        rows.append({"health": g[0], "kept": g[1], "landed": g[2][0], "attempts": n, "die_8s": round(k8 / n, 3), "end_in_death": round(kd / n, 3), "held": round(cov / nsd, 3) if nsd else None})
+        print(f"{g[0]:>6} {g[1]:>7} {g[2][0]:>14} {n:>9} {100 * k8 / n:>10.1f}% {100 * kd / n:>12.1f}% {100 * cov / nsd:>25.1f}%")
+    ok = [r for r in rows if r["kept"] >= 1 and r["die_8s"] >= spike]
+    best = max(ok, key=lambda r: (r["held"], r["die_8s"]), default=None)
+    import forensics
+    now = (forensics.DANGER_HP, forensics.DANGER_KEPT_S, forensics.DANGER_FIRE[0])
+    if best: print(f"\nBy the rule (kept a second or longer, dies within 8 s at least as often as a spike kills, holds the most deaths with no spike): health {best['health']}, kept {best['kept']} s, "
+                   f"{best['landed']} landed in 3 s: {best['attempts']} attempts, {100 * best['die_8s']:.1f}% die within 8 s, {100 * best['held']:.1f}% of the deaths with no spike held."
+                   f" The engine reads health {now[0]}, kept {now[1]} s, {now[2]} landed" + (": the same." if now == (best["health"], best["kept"], best["landed"]) else ": NOT the same (forensics.DANGER_*)."))
+    if out_json: json.dump({"matches": len(rids), "spikes": na, "spike_killed": round(spike, 3), "deaths_no_spike": nsd, "rows": rows, "rule": best, "engine": list(now)}, open(out_json, "w"), indent=1)
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -4079,6 +4144,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "split-at-all": send_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "execution": exec_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "attempts": attempts_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "pressure": pressure_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 3 and a[0] == "execution-say": exec_say(a[1], a[2], next((x for x in a[3:] if ":" in x and not x.startswith("-")), None), a[a.index("--bench") + 1] if "--bench" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)

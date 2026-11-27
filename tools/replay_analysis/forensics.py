@@ -50,6 +50,16 @@ REACT_S = 0.2               # R-716: the time to see a thing and act on it, befo
                             # a heal and at the cast's start for an interrupt (R-748)
 AFTERCAST_S = 0.75          # knowledge/casting.md: a finished spell, signet or ritual holds its caster this long (no aftercast on an attack skill, stance, shout or flash)
 SPIKE_DMG, SPIKE_S = 400, 3 # a spike as `events._spikes` reads it: a monk with one on himself (from its first hit) is not available to another player (R-747)
+BASE_HEALTH = 480           # a level 20 character's health before runes and weapons: morale and death penalty are a share of this (10% morale is 48 in every recap)
+DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DEEP_WOUND_LONGEST = 0.2, 100, 20    # knowledge/conditions.md: a fifth of his maximum, at most 100; an interval with no end recorded is read no longer than 20 s
+# The pressure attempt (R-741: "a player kept in danger for a while", the cut-offs set from the data; R-749). Set on the development set, 2026-11-27, by the
+# rule: of the lines at which a player kept there a second or longer dies within 8 s at least as often as a spike kills (33.3%), the one that holds the most
+# deaths with no spike. `cases.py pressure <plays file>` prints the table and says whether these still follow from it (ENGINE_NOTES section 44): 1,604
+# attempts on 82 matches, 34.9% dead within 8 s, 48.1% of the 1,275 deaths with no spike held. Read again at the full run for stages 1 to 4.
+DANGER_HP = 175             # at or under this many points of health ...
+DANGER_KEPT_S = 1           # ... for this long or longer (two samples running) ...
+DANGER_FIRE = (90, 3)       # ... with this much landed on him by the enemy, hits and degen, inside this many seconds
+DANGER_QUIET_S = 6          # nothing landed on him for this long ends it; two stretches on a player nearer than this are one (as `events._spikes` holds two spikes on a player 6 s apart)
 
 
 def has_aftercast(sd):
@@ -101,6 +111,7 @@ class Forensics:
         self.healers = {a for a in self.m.PL if healer(self.m, a)}
         self._casts = None
         self._dazed = None
+        self._trk, self._dng, self._hl, self._mo, self._dw, self._tk, self._spk = {}, {}, {}, None, None, None, None
 
     # ---- basics
     def name(self, a): return f"{self.tag.get(self.m.team(a), '?')} {self.m.roles.get(a, a)}" if a in self.m.PL else f"NPC {a}"
@@ -134,6 +145,158 @@ class Forensics:
         for k, v in BOW_RANGE.items():
             if k in lab: return v
         return DEFAULT_BOW
+
+    # ---- health in points, and a player kept in danger (the catalogue's stage 4; R-734, R-741, R-749)
+    def _track(self, a):
+        """His samples, about one a second: (seconds, health %, state, weapon set), read once."""
+        if a not in self._trk:
+            T = self.m.TR.get(str(a)) or {}
+            self._trk[a] = ([t / 10 for t in T.get("t", ())], T.get("hp", ()), T.get("st", ()), T.get("w") or [-1] * len(T.get("t", ())))
+        return self._trk[a]
+
+    def sample(self, a, t, after=False):
+        """The place in his samples of the last one at or before t (after: the first at or after t), or None where he has none there."""
+        ts = self._track(a)[0]
+        i = bisect.bisect_left(ts, t - 1e-6) if after else bisect.bisect_right(ts, t + 1e-6) - 1
+        return i if 0 <= i < len(ts) else None
+
+    def max_health(self, a, t):
+        """His maximum health at t, in points: the weapon set in his hands (gvg.report's figure for each set, else his base figure), 4.8 a point of morale or
+        death penalty as it stood before t (a tenth of the 480 every level 20 character has: a death's own 15% is recorded at the death and is not yet his),
+        less Deep Wound while it is on him (a fifth, at most 100). None where the replay holds no health figure for him. Checked against the maximum in
+        gvg.report's recaps of deaths and survived spikes (R-707; 2,171 recaps on the development set: within a point at 84%, within a weapon set at 91%)."""
+        i = self.sample(a, t)
+        ts, _, _, W = self._track(a)
+        S = self.sets.get(a) or []
+        w = W[i] if i is not None else -1
+        base = (S[w].get("hp") if w is not None and 0 <= w < len(S) else None) or self.m.A[a].get("hp")
+        if not base: return None
+        if self._mo is None:
+            self._mo = collections.defaultdict(list)
+            for e in self.ev:
+                if e[1] == "mo" and e[0] is not None and isinstance(e[5], (int, float)): self._mo[e[2]].append((e[0] / 10, e[5]))
+        mor = 0
+        for u, n in self._mo.get(a, ()):
+            if u < t - .5: mor = n
+            else: break
+        v = base + BASE_HEALTH * mor / 100
+        if self.deep_wound_at(a, t): v -= min(DEEP_WOUND_MAX, DEEP_WOUND_SHARE * v)
+        return v
+
+    def deep_wound_at(self, a, t):
+        if self._dw is None:
+            self._dw = collections.defaultdict(list)
+            for e in self.m.o.get("effects", []):
+                if e[2] == "c" and e[7] == "deep_wound" and e[0] is not None:
+                    self._dw[e[5]].append((e[0] / 10, min(e[1] / 10 if e[1] is not None else 1e9, e[0] / 10 + DEEP_WOUND_LONGEST)))
+        return any(s_ <= t <= e_ for s_, e_ in self._dw.get(a, ()))
+
+    def health(self, a, t, after=False):
+        """His health in points at his last sample at or before t (after: his first at or after t): the sample's share of `max_health` then. None where unread."""
+        i = self.sample(a, t, after)
+        if i is None: return None
+        ts, hp, st, _ = self._track(a)
+        mx = self.max_health(a, ts[i])
+        if mx is None or hp[i] is None: return None
+        return 0.0 if st[i] == "d" else hp[i] / 100 * mx
+
+    def _taken_index(self):
+        """Every hit on a player by the other team's players and NPCs, and the degen on him that is the enemy's or nobody's (gvg.report's, laid on its
+        seconds by degen.py; a hall's own degen and a team mate's are not pressure by the enemy): target -> [(second, amount, kind)], kind hit, npc or degen."""
+        if self._tk is None:
+            m, pl = self.m, set(self.m.PL)
+            self._tk = collections.defaultdict(list)
+            for e in self.ev:
+                if e[1] != "dm" or e[0] is None or e[3] not in pl or not isinstance(e[2], int) or e[2] >= len(m.A) or not isinstance(e[5], (int, float)) or e[5] <= 0: continue
+                if m.team(e[2]) in (None, m.team(e[3])): continue
+                self._tk[e[3]].append((e[0] / 10, e[5], "hit" if e[2] in pl else "npc", e[2]))
+            for tg, v in m.degen().rows.items():
+                if tg not in pl: continue
+                for u, n, src, kind in v:
+                    if src == "map" or (isinstance(src, int) and m.team(src) == m.team(tg)): continue
+                    self._tk[tg].append((float(u), n, "degen", src))
+            for a in self._tk: self._tk[a].sort(key=lambda x: x[0])
+            self._tkt = {a: [x[0] for x in v] for a, v in self._tk.items()}
+        return self._tk
+
+    def taken(self, a, t0, t1):
+        """What the enemy landed on a in (t0, t1]: {"hit": by their players, "npc": by their NPCs, "degen": degen that is theirs or nobody's} and the rows."""
+        L = self._taken_index().get(a) or []
+        if not L: return {"hit": 0.0, "npc": 0.0, "degen": 0.0}, []
+        T = self._tkt[a]
+        rows = L[bisect.bisect_right(T, t0):bisect.bisect_right(T, t1)]
+        out = {"hit": 0.0, "npc": 0.0, "degen": 0.0}
+        for _, n, k, _s in rows: out[k] += n
+        return out, rows
+
+    def danger(self, a, hp=None, kept=None, fire=None):
+        """The stretches in which a was kept in danger by the enemy (the pressure attempt, R-741, R-749): his health at or under `hp` points at successive
+        samples for `kept` seconds or longer, with `fire[0]` or more landed on him by the enemy (hits by players and NPCs, and degen: `taken`) in the
+        `fire[1]` seconds up to one of those samples. A stretch starts at the first sample that finds him at or under the line and is told at the sample
+        where both hold; it ends at his death, at the first sample that finds him above the line again, or DANGER_QUIET_S after the last thing landed on
+        him where nothing follows (left alone, he is in no attempt). Stretches on him less than DANGER_QUIET_S apart are one (as two spikes on one player are).
+        The cut-offs (DANGER_HP, DANGER_KEPT_S, DANGER_FIRE) are set from the data (R-741; `cases.py pressure` prints the table they are read from).
+        [{"t0", "told", "t1", "died", "how": died | escaped | left alone | the match ended}], in time order."""
+        hp = DANGER_HP if hp is None else hp; kept = DANGER_KEPT_S if kept is None else kept; fire = DANGER_FIRE if fire is None else fire
+        ts, _, st, _ = self._track(a)
+        if not ts: return []
+        self._taken_index()
+        deaths = [e[0] / 10 for e in self.ev if e[1] == "dt" and e[2] == a and e[0] is not None]
+        if a not in self._hl: self._hl[a] = [self.health(a, u) for u in ts]
+        H = self._hl[a]
+        low = [h is not None and st[i] != "d" and 0 < h <= hp for i, h in enumerate(H)]
+        landed = lambda u0, u1: sum(r[1] for r in self.taken(a, u0, u1)[1])
+        out, i, n = [], 0, len(ts)
+        while i < n:
+            if not low[i] or ts[i] < 0: i += 1; continue
+            j, told, end, how = i, None, None, None
+            while j < n and low[j]:
+                if told is None:
+                    if ts[j] - ts[i] >= kept - 1e-6 and landed(ts[j] - fire[1], ts[j]) >= fire[0]:
+                        told = ts[j]
+                        rows = self.taken(a, ts[i] - fire[1], ts[j])[1]          # he may have stood low and unharmed for long before it: the stretch starts with the
+                        k = len(rows) - 1                                        # run of things landed on him that it is told from, no gap of DANGER_QUIET_S in it
+                        while k > 0 and rows[k][0] - rows[k - 1][0] < DANGER_QUIET_S: k -= 1
+                        s0 = self.sample(a, rows[k][0]) if rows else i
+                        start = ts[max(i, s0 if s0 is not None else i)]
+                else:
+                    rows = self.taken(a, start - fire[1], ts[j])[1]
+                    if rows and ts[j] - rows[-1][0] >= DANGER_QUIET_S: end, how = rows[-1][0] + DANGER_QUIET_S, "left alone"; break
+                j += 1
+            if told is None: i = max(j, i + 1); continue
+            if end is None:
+                # he died where a death of his is recorded between the last sample that found him alive and low and the next (the death can be recorded a
+                # little before or after the samples either side of it), or the next sample finds him dead
+                dead_next = j < n and (st[j] == "d" or not H[j])
+                d_ = next((d for d in deaths if ts[j - 1] - .5 < d <= (ts[j] if j < n else ts[j - 1] + 2) + (1.5 if dead_next or j >= n else 1e-6)), None)
+                if d_ is not None: end, how = d_, "died"
+                elif j < n: end, how = ts[j], "escaped"
+                else: end, how = ts[-1], "the match ended"
+            if out and start - out[-1]["t1"] < DANGER_QUIET_S and not out[-1]["died"]: out[-1].update(t1=end, how=how, died=how == "died")
+            else: out.append({"t0": start, "told": told, "t1": end, "how": how, "died": how == "died"})
+            i = max(j, i + 1)
+        return out
+
+    def death_start(self, a, td):
+        """Where the reading of a death with no spike begins (R-749: the pressure attempt, in place of the heaviest 2 s on him): the start of the stretch
+        that kept him in danger until he died (`danger`); where he was not kept there (he fell from above the line and died inside DANGER_KEPT_S, or with
+        too little landing on him), the first thing the enemy landed on him after the last sample that found him above the line; and where nothing of the
+        enemy's is recorded on him in the WINDOW before the death (life stolen, his own sacrifice), 2 s before it. Returns (second, kept in danger or not)."""
+        if a not in self._dng: self._dng[a] = self.danger(a)
+        ep = next((e for e in self._dng[a] if e["died"] and abs(e["t1"] - td) <= .3), None)
+        if ep is not None: return ep["t0"], True
+        ts, _, st, _ = self._track(a)
+        i = self.sample(a, td - .05)
+        j, known = i, False
+        while j is not None and j >= 0 and td - ts[j] <= WINDOW:
+            h = self.health(a, ts[j])
+            known = known or h is not None
+            if st[j] != "d" and h is not None and h > DANGER_HP: break
+            j -= 1
+        if not known: safe = td - SPIKE_S                  # his health is not in the replay (no figure for his weapon sets): the line cannot be found, so the seconds a spike is read on
+        else: safe = ts[j] if j is not None and j >= 0 and td - ts[j] <= WINDOW else td - WINDOW
+        rows = self.taken(a, safe, td)[1]
+        return (rows[0][0], False) if rows else (td - 2, False)
 
     def hit_skill(self, a, t, sid):
         """The skill behind a hit: the recorded one, else a skill a finished within 1.5 s before the hit (spells and
@@ -256,10 +419,10 @@ class Forensics:
                     ex = En.at(h, u) if En.ok else None
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance = (u, ok); break
-                if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
-                elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": busy[1], "busy_on": busy[0], "chance": False})
-                elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": spk, "spiked": True, "chance": False})
-                elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "skills": out_e, "out_of_energy": True, "chance": False})
+                if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
+                elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": busy[1], "busy_on": busy[0], "chance": False})
+                elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": spk, "spiked": True, "chance": False})
+                elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": out_e, "out_of_energy": True, "chance": False})
         return out
 
     def taken_in_time(self, a, first, kinds):
@@ -269,15 +432,20 @@ class Forensics:
         tm = self.m.team(a)
         return [k for k, test in kinds.items() if any(c[5] == a and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
 
-    def killing_burst(self, a, t):
-        """The second the burst that killed a at t began: the start of the heaviest 2 s of damage on him in the WINDOW before the death (2 s before it where
-        no damage on him is recorded). The death account and the faults said on a death (execution.deaths) read a monk's chance from here."""
-        dmg = self.damage_on(a, t - WINDOW, t)
-        bt, bs = t - 2, 0
-        for i, d_ in enumerate(dmg):
-            s_ = sum(x[3] for x in dmg[i:] if x[0] <= d_[0] + 2)
-            if s_ > bs: bs, bt = s_, d_[0]
-        return bt
+    def killed_from(self, a, t):
+        """Where the reading of the death of a at t begins, and what killed him: the first big hit of the spike that killed him (`events._spikes`, as his kill
+        attempt reads it, "spike"); else the start of the pressure that kept him in danger until he died ("pressure", R-749: in place of the heaviest 2 s
+        on him, which read every death with no spike until the catalogue's stage 4); else, where he was not kept in danger, the first thing landed on him
+        after he was last above the line ("neither"; `death_start`). The death account and the faults said on a death read a monk's chance from here."""
+        if self._spk is None:
+            import events as EV
+            self._spk = {tm: EV._spikes(self, tm) for tm in (1, 2)}
+        S = [x for x in self._spk.get(3 - self.m.team(a), ()) if x[1] == a and x[0] <= t <= x[0] + 8]
+        if S:
+            win = S[-1][3]
+            return ([x for x in win if x[3] >= 60] or win)[0][0], "spike"
+        bt, kept = self.death_start(a, t)
+        return bt, "pressure" if kept else "neither"
 
     def damage_on(self, a, t0, t1):
         return [(e[0] / 10, e[2], e[4], e[5] or 0, e[6] if len(e) > 6 else None) for e in self.events(t0, t1, {"dm"})
@@ -829,17 +997,17 @@ def death(rid, tag, role, t, F=None):
                          "measures": {"monks": n, "out": o, "possibly_out": sum(r["out"] == "maybe" for r in rows), "line": 20, "scale": "double high (R-668)"}, "rows": rows}
     # healed at all (R-703): healing that landed on him from the start of the burst that killed him, the heals and prots cast on him, and the chances his
     # monks missed (a heal or prot ready, in reach, his hands free, energy, in time to land; busy on a player under pressure is no chance, R-711)
-    bt = F.killing_burst(a, t)
+    bt, _how = F.killed_from(a, t)                       # the spike's first big hit, else the start of the pressure on him (R-749; the heaviest 2 s is retired)
     healed = sum(e[5] for e in F.ev if e[1] == "hl" and e[3] == a and e[0] is not None and bt * 10 <= e[0] <= t * 10 and isinstance(e[5], (int, float)))
     kinds = {"heal": is_heal, "prot": is_prot}
     ch = F.chances(a, bt, t, kinds)
     took = F.taken_in_time(a, bt, kinds)                 # R-715: a kind a team mate cast in time is no fault, and is not listed against the monk who held back (as execution.deaths lists them)
     miss = [c for c in ch if c["chance"] and c["kind"] not in took]
     ans["healed"] = {"q": "Was he healed at all while his monks had energy and skills available?",
-                     "answer": (f"{round(healed)} healing landed from the start of the burst ({round(t - bt, 1)} s before the death)"
+                     "answer": (f"{round(healed)} healing landed from the start of " + {"spike": "the spike", "pressure": "the pressure that kept him in danger", "neither": "the damage"}[_how] + f" that killed him ({round(t - bt, 1)} s before the death)"
                                 + ("; missed: " + "; ".join(f"{c['by']} had {', '.join(c['skills'])} ready ({c['kind']})" for c in miss) if miss else "; no chance missed")
                                 + (f"; done in time by a team mate, so no fault (R-715): a {' and a '.join(took)}" if took else "")),
-                     "measures": {"healed": round(healed), "burst_s": round(t - bt, 1), "missed": len(miss), "taken": took,
+                     "measures": {"healed": round(healed), "burst_s": round(t - bt, 1), "by": _how, "missed": len(miss), "taken": took,
                                   "busy": sum(1 for c in ch if c.get("busy_on")), "out_of_energy": sum(1 for c in ch if c.get("out_of_energy"))}, "rows": ch}
     # gvg.report's own recap of the death (R-636, R-638; checked against the replays, R-707: 680 of 821 deaths have one, every one on a death the
     # replays record, and 92% of the prots it lists are on him in the replays): its healing by source, the prots up, interrupts and knockdowns on him.
