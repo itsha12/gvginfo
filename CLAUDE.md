@@ -257,3 +257,7 @@ The full rules, with how each reading is built and the games it is tested agains
   `wiki/sync.mjs` (skill refresh, Node), `replay_analysis/` (the
   engine), `maps/` (map data for the site).
 - `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Recent matches page.
+
+## Working alongside Opus
+- Denning runs Opus chats beside Fable's (full runs, reports, documentation drafts, site pages). Fable: at the start
+  of a session read only the "For Fable" section of `docs/OPUS.md`; never edit that file. Opus: follow its rules.
