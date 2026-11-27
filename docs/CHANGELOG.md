@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-27, evening (a new chat): R-803 and R-804 filed; stage 5 of the catalogue built (the readings from positions)
+- Rulings filed: R-803 (standing in area damage is a fault from the third hit; a knockdown or snare is context) and R-804 (Claude's readings of too deep, monk following, the snared frontline, should have kited and Flail's reach confirmed).
+- `bundle-4` f2b8796, one bundled change: `execution.positions` (Flail lock, standing in area damage, should have kited: rows on the play, R-745), `position_parts` (on every kill attempt and death: `place`, `followed`, `stood`, `snared`, `crits_moving`), `cases.py positions` (the cut-offs from the data, each kind checked once).
+- Cut-offs by the rule (the one distance that best tells the attempts that kill from those that do not): too deep 1,200 past his own front line (47.6% killed at or past it, 22.4% short), the monk in monk following 400 (50.8%, 24.4%); melee reach 250.
+- Development set (82 matches): 6,935 plays identical to 6ebb141, 323 Classic rows pass, no record differs but the new keys. 163 Flail locks (840 s, 5 matches), 44 area rows (Symbol of Wrath 35), 878 should-have-kited rows; 158 of 1,619 deaths too deep, 108 of them with no prot or heal fault; 71 attempts on a monk who followed; 305 attempts with the attack's frontline snared.
+- Checked once on the set: too deep +5.2 points like with like (-0.2 to +10.2), fails, so a why and no fault yet; monk following fails; should have kited reads backwards (-9.4; 19.6% killed with it, 29.8% without): put to him (R-744); the snared frontline passes as a why.
+- Found on the way: gvg.report's recaps put a smiter's other spells under Symbol of Wrath, so they cannot check the area join (checked on the raw rows: 40 or 42 a second at the cast's end plus 1, 2, 3 s).
+- No full run: wanted from Opus at f2b8796 (HANDOFF "Next"). Put to Denning: should have kited as it reads; a monk past his own front line as a why of its own.
+
 ## 2026-11-27, late afternoon (a new chat): R-794 to R-802 filed; a monk's own chance on himself; taken means landed; too late
 - Rulings filed: R-794 (a block stays at the average attack), R-795 ("would he have lived" stays literal), R-796 (a monk's own prot or heal on himself is a chance), R-797 (taken only if it landed before the death; amends R-715), R-798 (Divine Favor's heal stays counted), and from an Opus chat R-799 (family 5 dropped) and R-800 (the one-click match report planned after step 3; REDESIGN.md).
 - Found on his question about Men v Crew 4:05: a monk's distance to himself, nought, was read as unknown, so no monk's own skill on himself was ever a chance; the Prot's own Spirit Bond, 0.45 s after the first big hit, was the answer there, not the 8 Monk's Guardian.

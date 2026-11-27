@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-802; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-804; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1296,15 +1296,51 @@ index pointing here. Read the section for a reading before changing it, and keep
   On the 82 matches (6,935 plays identical, 323 Classic rows pass): 99 rows on 87 deaths (59 heals, 40 prots; 13 the dying monk's own; Blessed Light 26,
   Infuse Health 20, Spirit Bond 8), begun a middle 1.3 s after the start where 0.2 s was open. Deaths with a prot fault 539 (525), a heal fault 389
   (344), faults 2,236 (2,137). Spikes killed 51.4% where a prot was missed and 62.6% where a heal was (15.3% and 13.8% where it landed).
-- Stage 5, groundwork only (2026-11-27; measured with scratch scripts on the 82 matches, nothing built): **Flail lock** (R-724): a Flail carrier's
-  attack hits land with him a middle 115 from his target, 76% within 250, and beyond 250 the count is flat (hits told as attacks at 600 and more are
-  8%: a floor of wrongly told hits, not reach), so melee reach reads 250 (R-741). Flail is on warriors in 5 of the 82 matches (432 stances, a middle
-  9.9 s, 402 ended by another stance); with nothing of the enemy, players or NPCs, inside 250 for more than 2 s: 132 stances, 710 s (a middle 5 s;
-  Men v Apes 5:09, the Hammer, nearest foe 1,775 falling to 1,081). **Area damage** (R-735): the lasting skills cast are Symbol of Wrath 112, Lava
-  Font 89 and Ray of Judgment 72 (273 casts), each a hit a second for 5 s. Damage rows name no skill, so its hits are the caster's rows on a player
-  at a second's spacing after the cast (Ray of Judgment reads cleanly: 40 a second on two players; a smiter's other spells sit among Symbol of
-  Wrath's): to be joined by spacing and equal amounts, and checked against gvg.report's recaps (R-707). Players hit in the 6 s after such a cast,
-  by seconds hit (rough): 1 s 58, 2 s 38, 3 s 23, 4 s 17, 5 s 20. Put to him: from which hit standing in it is the fault.
+- Stage 5, the readings from positions, built 2026-11-27 (evening) as one bundled change (`bundle-4` f2b8796; R-803, R-804; `execution.positions`,
+  `position_parts`, `place_at`, `followed`, `area_hits`, `say_position`, `say_place`; `cases.py positions`). No full run: Opus's is wanted (HANDOFF).
+  **Two records.** `flag_cost[rid].positions`: the faults tied to no kill attempt, listed on the play's row (R-745; each play's `positions`, own and
+  their): Flail lock, standing in area damage, should have kited. On every kill attempt and death: `place` (too deep), `followed` (monk following),
+  `stood` (his own rows inside it), `snared` (the attack's frontline, a why) and `crits_moving` (context).
+  **Flail lock** (R-724): a Flail carrier's hits land with him a middle 115 from his target, 76% within 250, flat beyond (hits told as attacks at 600
+  and more are 8%: wrongly told hits, not reach), so melee reach is 250 (`MELEE_R`, R-741). Read every half second from the nearest position sample:
+  a stretch of more than 2 s with no living enemy player or NPC inside 250. 163 rows, 840 s, on warriors in 5 of the 82 matches (433 stances).
+  **Standing in area damage** (R-735, R-803): the skills whose damage stays at a spot are the tags' `lasting` ones that add damage on a foe, traps
+  left out; how long each lasts and its beat are read from its own text (`area_skill`: a text with no length stops the reading). A hit names no
+  skill: a cast's hits on a player are its caster's rows on him a whole number of beats after the cast finished (to 0.25 s; they fall on the same
+  tenth, cast after cast), of the one amount most of them share, plus the rows for less on that very tenth (a prot cut the hit). Read from two such
+  hits; a fault from the third, the row carrying how many counted hits found him knocked down or slowed (context, R-803). Cast on the set: Symbol of
+  Wrath 112, Lava Font 89, Ray of Judgment 72; 44 rows in 6 matches (Symbol of Wrath 35), 82 counted hits, 3,064 damage; knocked down on 7 rows.
+  Checked (R-707): gvg.report's recaps cannot check it, for they put the caster's other spells under the area skill (18 recap rows name one, none
+  agrees; "Symbol of Wrath 258 in 5" is two hits of 40, two of 20 under a prot, Word of Censure's 130 and Castigation Signet's 28). Checked on the
+  raw rows instead: the hits fall at the cast's end plus 1, 2, 3 s, at 40 or 42 each, the skill text's figure at ranks 15 and 16.
+  **Should have kited** (R-746, R-792, R-804): a hit by a melee attacker (a Warrior, Dervish or Assassin within 250) on a player not of the
+  frontline, standing still (idle or attacking at the position samples either side: `_states`), not casting, not knocked down, another melee hit
+  having landed on him 0.2 to 3 s before (he had seen it: R-716's reaction, the slowest swing); never while the attacker has Bull's Strike off
+  recharge or Harrier's Grasp up or off recharge. Hits no further than 3 s apart are one row. 878 rows in 67 matches, 1,401 hits, 54,052 damage;
+  565 rows are one hit; Paragons 149, Prot monks 144. On the attempts it reads backwards (below): put to him (R-744).
+  **Too deep** (R-741, R-804; `place_at`): his team in the fight is he and the team mates in a fight with an enemy he is in a fight with
+  (`Moments.linked`); the line runs from the middle of those team mates to the middle of those enemies; the front line is the most forward team
+  mate who is no backline monk (a monk who has followed does not make the front line). `past` is how far he stands beyond that player at the first
+  big hit. No front line where only monks are with him (`alone`: 412 of 4,685 attempts; a decision, not execution). The cut-off is the one distance
+  that best tells the attempts that kill from those that do not (two rates against one, the largest gain in likelihood, 30 attempts either side:
+  `cases._best_cut`): 1,200 for players who are no backline monk (225 attempts at or past it, 47.6% killed; 22.4% short of it; 1,200 to 1,550
+  leaving each tenth of the matches out), which is a cast range: at 1,200 past the front line no monk behind it reaches him. 158 of 1,619 deaths
+  are too deep; 108 of them list no prot or heal fault. A backline monk is read on the same cut-off.
+  **Monk following** (R-804; `followed`): a kill attempt on a backline monk who stands 400 or more past his front line, behind a team mate who is
+  1,200 or more past it (the front line told without that player), within a cast range of him. The 400 is the same rule on the attempts on
+  backline monks by the monk's own distance past the front line (319 at or past it, 50.8% killed; 24.4% short; 350 to 400 leaving each tenth out).
+  71 attempts (55 of the 4,685 not carried on from a spike), 18 deaths.
+  **The snared frontline** (a why, R-804): each frontline attacker in the fight with the target who was Crippled or under a slowing hex (the tags'
+  `slows` on a foe, R-738's left out) and out of melee reach of the target for a second or longer of the attempt. 305 attempts.
+  **Crits while moving** (context, R-746): critical melee hits on the target with both samples moving: 1,070 hits on 722 attempts.
+  **Checked once on the development set** (`cases.py positions`, section B; with it against without, then on the spikes like with like as stage X3):
+  too deep 51.7% killed against 27.9%, like with like +5.2 points (-0.2 to +10.2), 6 groups of 10: fails, so a why and no fault yet
+  (`POSITION_FAULTS`, R-713); monk following 30.9% against 29.4%, -6.4: fails; standing in area damage 22 attempts, too few; should have kited
+  19.6% against 29.8%, -9.4 (-14.7 to -3.5): reads backwards; the attack's frontline snared 21.6% against 29.9%, -9.6 (-16.0 to -4.5), 9 of 10:
+  passes as a why of a failed kill. **Run** (82 matches, f2b8796 against 6ebb141): 6,935 plays identical, 323 Classic rows pass, no record differs
+  but the new keys (`positions`, `place`, `followed`, `stood`, `snared`, `crits_moving`); deaths with a prot fault 539, a heal fault 389, as before.
+  **Not built**: the three readings the match report asks for (Shadow Shroud on the target, their monks disabled at the spike itself, the weapon
+  set the target was in: parked with the report, `docs/OPUS.md`); X4's sentences in `cases.py` do not pass the stage 3 or stage 5 rows to `say_faults` yet (X4 again, after the full run).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
