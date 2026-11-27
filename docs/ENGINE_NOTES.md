@@ -1296,6 +1296,15 @@ index pointing here. Read the section for a reading before changing it, and keep
   On the 82 matches (6,935 plays identical, 323 Classic rows pass): 99 rows on 87 deaths (59 heals, 40 prots; 13 the dying monk's own; Blessed Light 26,
   Infuse Health 20, Spirit Bond 8), begun a middle 1.3 s after the start where 0.2 s was open. Deaths with a prot fault 539 (525), a heal fault 389
   (344), faults 2,236 (2,137). Spikes killed 51.4% where a prot was missed and 62.6% where a heal was (15.3% and 13.8% where it landed).
+- Stage 5, groundwork only (2026-11-27; measured with scratch scripts on the 82 matches, nothing built): **Flail lock** (R-724): a Flail carrier's
+  attack hits land with him a middle 115 from his target, 76% within 250, and beyond 250 the count is flat (hits told as attacks at 600 and more are
+  8%: a floor of wrongly told hits, not reach), so melee reach reads 250 (R-741). Flail is on warriors in 5 of the 82 matches (432 stances, a middle
+  9.9 s, 402 ended by another stance); with nothing of the enemy, players or NPCs, inside 250 for more than 2 s: 132 stances, 710 s (a middle 5 s;
+  Men v Apes 5:09, the Hammer, nearest foe 1,775 falling to 1,081). **Area damage** (R-735): the lasting skills cast are Symbol of Wrath 112, Lava
+  Font 89 and Ray of Judgment 72 (273 casts), each a hit a second for 5 s. Damage rows name no skill, so its hits are the caster's rows on a player
+  at a second's spacing after the cast (Ray of Judgment reads cleanly: 40 a second on two players; a smiter's other spells sit among Symbol of
+  Wrath's): to be joined by spacing and equal amounts, and checked against gvg.report's recaps (R-707). Players hit in the 6 s after such a cast,
+  by seconds hit (rough): 1 s 58, 2 s 38, 3 s 23, 4 s 17, 5 s 20. Put to him: from which hit standing in it is the fault.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

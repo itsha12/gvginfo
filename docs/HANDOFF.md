@@ -45,7 +45,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
    first: its cases files land there): the chances on a pressure attempt, the stance, the triggers, balling, pact
    kills, R-782's no attempt made, the key, the truths. Its prot, heal and Deep Wound left are before 3111449.
 2. Stage 5: readings from positions (too deep, monk following, Flail lock, snared frontline, area damage, should have
-   kited). When it is built, push and write "Full run wanted at <commit>: <what to check>" as the first line here
+   kited). Nothing built; groundwork for Flail lock and area damage is in ENGINE_NOTES section 44 (last item). When it is built, push and write "Full run wanted at <commit>: <what to check>" as the first line here
    (full runs are Opus's): stage 5's kinds, and prot, heal and the Deep Wound left as they read at 6ebb141 (a monk's
    own chance, taken means landed, too late). Then X4's sentences on the full list, and stage X5: his marks.
 3. After execution: the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new
@@ -55,7 +55,8 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Nothing put to him is waiting: R-794 to R-802 answer what was asked on the prot amounts.
+1. Put to him 2026-11-27, set out in the chat: standing in area damage (R-735), a fault from the second hit or the
+   third (one a second for 5 s; the first cannot be avoided).
 2. An even 6v6 and below has no row, as built.
 3. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
 
