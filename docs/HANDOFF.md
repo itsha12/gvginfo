@@ -51,9 +51,8 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-27 (early afternoon), set out in the chat: the one-line rule for each prot skill (33 tagged
-   as stopping damage on an ally, with Spirit Bond, Ballad of Restoration, Aura of Stability and Vital Weapon), and
-   which of them are worth a missed chance at all. His answer starts the build ("Next" 1).
+1. Put to him 2026-11-27 (early afternoon), in the chat: the one-line rule for each prot skill (the tags' 33 that
+   stop damage on an ally, and Spirit Bond, Ballad of Restoration, Aura of Stability). His answer starts "Next" 1.
 2. Claude's readings, his to correct: "at a death" (R-789) is inside the kill attempt that killed a player of the
    caster's team; the pressed monk's heals are left out as his prots are (R-790); a lasting ground effect stays
    "standing in area damage" (R-735), not balling (R-787). An even 6v6 and below has no row, as built.
