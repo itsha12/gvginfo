@@ -29,7 +29,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
    never a branch that moves under it. Fetch the replays branch as HANDOFF's "Running it" says.
 2. Run what HANDOFF names, one at a time (each needs the machine to itself): `moments.py all`, then the `cases.py`
    reports, the key (`review.py score` with main's key), the truths, and the rows for main's views. Compare with the
-   last full run (`compare.py`). About 1.5 h in all on 2 cores.
+   last full run (`compare.py`). About 1.5 h in all on 2 cores. A chat's background job stops a few minutes after
+   its reply ends, so the run stays inside one turn: started in the background, waited on in the foreground.
 3. The output files go back where Fable would have put them: the `data/model/*_cases.json` reports to `bundle-4`
    (fetch first; data files only, never an engine file), the views' rows to main. If `bundle-4`'s engine files have
    changed since the run's commit, push the outputs to the branch `opus-runs` instead and say so under "For Fable".
