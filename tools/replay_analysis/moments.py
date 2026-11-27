@@ -3569,10 +3569,12 @@ def match_records(rid):
     ticks, spots = jobs.split_ticks(M, P), jobs.res_spots(M)
     EX_ = execution.Exec(M, rid)
     ATT_ = execution.attempts(EX_); PRS_ = execution.pressure(EX_, ATT_)     # every kill attempt (stage X2), each with its sum (R-734), and the pressure attempts beside the spikes (R-741, R-749)
+    TRG_, BAL_ = execution.triggers(EX_), execution.balling(EX_)             # stage 3: the triggers walked into and the balling (R-745), tied to no kill attempt
+    execution.tagged_parts(EX_, ATT_, PRS_, TRG_)                            # stage 3 on every kill attempt: stances, the block or immunity it went into, Deep Wound, an attacker elsewhere (R-751, R-725)
     DTH_ = execution.deaths(EX_, ATT_, PRS_)                                 # every death with the checked chances missed (stage X4), a death with no spike read from its pressure attempt
     FLS_, CGT_ = execution.fails(EX_, ATT_), EX_.caught()                    # every spike that did not kill with the strip missed (R-729, R-744), and the casts into a ready interrupt (R-743)
     EVN_ = execution.even_rows(EX_, P, ATT_, PRS_, DTH_, FLS_, CGT_)         # the even 8v8's execution-only rows (R-731): no play and no job, both teams read as trying to kill
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_, DTH_, FLS_, CGT_, ATT_, PRS_), "attempts": ATT_, "pressure": PRS_, "even": EVN_, "deaths": DTH_, "fails": FLS_, "caught": CGT_, "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_, DTH_, FLS_, CGT_, ATT_, PRS_, TRG_, BAL_), "triggers": TRG_, "balled": BAL_, "untagged": execution.untagged(EX_), "attempts": ATT_, "pressure": PRS_, "even": EVN_, "deaths": DTH_, "fails": FLS_, "caught": CGT_, "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
                   "energy": energy.record(M, P, ticks, spots), "excuse": energy.excuse(M, P), "split_holds": jobs.split_holds(M, P),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
@@ -3633,6 +3635,8 @@ def run_all(path, jobs=2, ids=None):
     print(f"the end of the match (Moments.end_play): {sum(1 for o in ep if (o.get('told') or {}).get('play') is not None)} plays for 28:00; {sum(1 for o in ep if o.get('kind') == 'push before it')} pushes before it, "
           f"{sum(1 for o in ep if o.get('kind') == 'push before it' and not (o.get('told') or {}).get('lines'))} of them with no row to be told on (R-460); "
           f"{sum(1 for o in ep if o.get('kind') != 'push before it' and (o.get('told') or {}).get('lines'))} matches with a Lord line before their play for 28:00; {sum(1 for o in ep if o.get('kind') is None)} in which nobody is sent")
+    ut = collections.Counter(n for r in out for n in (extra[r] or {}).get("untagged") or [])
+    print(f"untagged skills on a bar (R-767: counted and listed, never read as doing nothing): {len(ut)} skills in {sum(1 for r in out if (extra[r] or {}).get('untagged'))} matches" + (": " + ", ".join(f"{n} {k}" for n, k in ut.most_common(40)) if ut else ""))
     sc = [(r, c) for r in sorted(out) for c in (extra[r] or {}).get("selfcheck") or []]
     print(f"self-check (R-488): {len(sc)} times a player is counted in two fights at once for {JOIN_S} s or longer, in {len({r for r, _ in sc})} matches")
     if blanks([x for r in sorted(out) for x in out[r]], [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])]): sys.exit(1)

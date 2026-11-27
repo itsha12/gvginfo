@@ -414,9 +414,15 @@ MELEE_R = 250               # an interrupting melee attack reaches this far (adj
 
 
 def intr_kind(sd):
-    """What an interrupt skill can stop when thrown at a cast: "spell", "attack", "any", or None where it is not thrown on demand (CONDITIONAL)."""
+    """What an interrupt skill can stop when thrown at a cast: "spell", "attack", "any", or None where it is not thrown on demand. A tagged skill is read
+    from the tags (they catch Disrupting Chop, whose skill data lacks "Interrupt", and leave out Exhausting Assault, R-774); an untagged one from its own
+    text as before (CONDITIONAL)."""
     import re
     name = (sd.get("name") or "").replace(" (PvP)", "")
+    t = tags().get(name)
+    if t is not None:                                      # a tagged skill is read from the reviewed tags (stage 3): its reach, and whether it is thrown on demand (R-774, R-757, R-759)
+        if not t.get("interrupt") or t.get("not_interrupt") or t.get("interrupt_on_demand") is False: return None
+        return {"spell only": "spell", "attack only": "attack", "any action": "any"}[t["interrupt"]]
     if "Interrupt" not in (sd.get("causes") or []) or name in CONDITIONAL: return None
     d = " ".join(x for x in re.split(r"(?<=\.)\s", sd.get("desc") or "") if "nterrupt" in x or "disrupt" in x)
     if re.search(r"casting a spell|spell-casting|cast spells", d): return "spell"
@@ -476,10 +482,11 @@ def tags():
 def is_strip(sd):
     """Can this skill take an enchantment off a foe? The skill data lists what a skill removes without saying from whom, so a Dervish skill that spends one
     of its user's own enchantments (Wearying Strike, Pious Assault, Signet of Pious Restraint) read as a strip; the reviewed tags say which removals are
-    strips, and a tagged skill is read from them. An untagged skill is read from the skill data as before."""
-    if "Enchantment" not in (sd.get("removes") or []): return False
+    strips, and a tagged skill is read from them: only one that strips as it is cast is a strip thrown on demand (`strip_at_once`, R-773: Mark of Insecurity,
+    Order of Apostasy, Rending Aura and Well of the Profane are not). An untagged skill is read from the skill data as before."""
     t = tags().get((sd.get("name") or "").replace(" (PvP)", ""))
-    return t is None or "enchantments" in t["removes"]
+    if t is not None: return t.get("strip_at_once") is True          # a strip that takes an enchantment off as it is cast (R-773): not a spirit, a well, or a hex that strips later
+    return "Enchantment" in (sd.get("removes") or [])
 
 
 def intr_range(F, f, sd, t):
@@ -595,12 +602,12 @@ def attempts(E):
     return sorted(out, key=lambda r: r["t"])
 
 
-def say_attempt(r):
+def say_attempt(r, trig=None):
     """A kill attempt in sentences (R-329): what landed together, and every missed chance of both sides, none ranked (R-713)."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     foe = "their" if r["tm"] else ""
     L = [f"{clk(r['t'])} {r['team']} spike on the {r['target']} ({', '.join(r['attackers'])}): {r['dmg']} in 3 s"
-         + (f", a burst on a hurt player (he stood at {r['hurt']} health: most of it, R-780), " if r.get("hurt") else ", ")
+         + (f", most of the {r['hurt']} health he had (a spike by R-780), " if r.get("hurt") else ", ")
          + ("killed him" if r["killed"] else "he lived") + f" (read over {r['s']} s)."]
     if r.get("pact"): L.append(f"He died as the {r['pact']}, who had resurrected him with Death Pact Signet, died: a pact kill (R-783), not this spike's.")
     L.append(f"Big hits landed over {r['spread']} s ({100 * r['in_1s']:.0f}% of the damage in the first second).")
@@ -618,8 +625,10 @@ def say_attempt(r):
     if r["prots_cast"] or r["heals_cast"]:
         L.append("Cast on him: " + "; ".join(f"{n} {abs(d)} s {'before' if d < 0 else 'after'} ({o})" for n, d, o in r["prots_cast"] + r["heals_cast"]) + ".")
     if r.get("ledger"): L.append(say_ledger(r["ledger"]))
+    L.append(say_parts(r, trig))
     ch = [x for x in r["missed"] if x.get("chance")]
     for x in ch:
+        if x["kind"] == "deep wound": continue             # said with the parts (`say_parts`)
         who = x["by"] if isinstance(x["by"], str) else "; ".join(x["by"])
         if x["kind"] == "interrupt" and x.get("tried"):
             L.append(f"Missed by the defence: {x['skill']} went off; an interrupt was thrown at it and missed ({who}; gvg.report's read: {', '.join(str(r) for r in x['tried'])}).")
@@ -628,10 +637,11 @@ def say_attempt(r):
         elif x["kind"] == "strip": L.append(f"Missed by the attack: prot(s) up ({', '.join(x['prots'])}) and a strip ready ({who}), none came{say_amounts(x)}.")
         elif x["kind"] == "pressure": L.append(f"Missed by the attack: an interrupt ready on his monks ({who}), none landed.")
     for x in r["missed"]:
+        if x["kind"] == "deep wound": continue
         if x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
         elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
         elif x.get("spiked"): L.append(f"Not a chance: {x['by']} was himself under a spike (R-747).")
-    return " ".join(L)
+    return " ".join(x for x in L if x)
 
 
 # ------------------------------------------------------------------ the ledger (the catalogue's stage 4; R-734: "a death is a sum")
@@ -808,7 +818,7 @@ def pressure(E, atts):
     return sorted(out, key=lambda r: r["t"])
 
 
-def say_pressure(r):
+def say_pressure(r, trig=None):
     """A pressure attempt in sentences (R-329): what it was, the sum, the chances his monks missed with the amount beside each (R-734), nothing ranked."""
     from forensics import DANGER_HP, DANGER_KEPT_S
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
@@ -820,14 +830,306 @@ def say_pressure(r):
     if r.get("after_spike") is not None: L.append(f"It follows their spike on him at {clk(r['after_spike'])}: one attempt going on, not a second.")
     elif r["spikes"]: L.append("Their spike" + ("s" if len(r["spikes"]) > 1 else "") + " on him inside it: " + ", ".join(clk(t) for t in r["spikes"]) + ".")
     L.append(say_ledger(r["ledger"]))
+    L.append(say_parts(r, trig))
     if r["prots_up"]: L.append(f"Prots on him as it began: {', '.join(nm(k) for k in r['prots_up'])}.")
     if r["prots_cast"] or r["heals_cast"]:
         L.append("Cast on him: " + "; ".join(f"{nm(n)} {abs(d)} s {'before' if d < 0 else 'after'} it began ({o})" for n, d, o in (r["prots_cast"] + r["heals_cast"])[:8]) + ".")
     for x in r["missed"]:
+        if x["kind"] == "deep wound": continue             # said with the parts (`say_parts`)
         if x.get("chance"): L.append(f"Missed by the defence: {x['by']} had {', '.join(nm(k) for k in x['skills'])} ready, not cast on him before the outcome" + say_amounts(x) + ".")
         elif x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
         elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
         elif x.get("spiked"): L.append(f"Not a chance: {x['by']} was himself under a spike (R-747).")
+    return " ".join(L)
+
+
+# ------------------------------------------------------------------ what the records already show, read with the skill tags (the catalogue's stage 3)
+# Each join of a hit to a cast was first checked against the raw record (R-707; 44 matches of the development set, 2026-11-27; ENGINE_NOTES section 44):
+# a knockdown names its skill; a Cripple names none, so Harrier's is told from the hit; 91% of plain attacks finished under Empathy have a hit from the
+# hex's caster on the attacker inside TRIGGER_JOIN_S (attack skills set it off too, so its hits are counted, not the attacks: `Forensics.trigger_rows`);
+# 85% of spells finished under Backfire; the hits of one cast land in the tenth its cast finishes.
+STANCE_FAULT = ("Frenzy", "Frenzied Defense", "Primal Rage")     # R-740, R-768: by name. Aggressive Refrain raises damage taken too (R-775): context until he says
+STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
+                            # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
+                            # rank, which the replay does not hold), "take double damage" (half), -20 armour (hits 1.41 times as hard: 29% of what landed)
+TRIGGER_JOIN_S = 0.3        # a trigger's own damage lands inside this long of the attack or cast that set it off
+BALL_S = 0.15               # the hits of one cast on several players land inside this long of one another (the same tenth)
+BALL_LAND_S = 1.0           # ... the first of them no later than this after the cast finished (4,860 of 4,968 in the tenth it finished; a projectile's flight the rest)
+CRIPPLE_CAST_S = 1.5        # a Cripple with another Cripple skill cast on him inside this long before it is that skill's, not Harrier's Grasp's
+DW_LOOK_S = 20              # Deep Wound on the target is looked for from this long before the first big hit (it lasts up to 20 s)
+HG = "Harrier's Grasp"
+TRIGGER_SAY = {"bulls": "knocked down by Bull's Strike (it knocks down a moving foe, R-720)", "harriers": "Crippled by Harrier's Grasp (it Cripples a moving foe, R-721)",
+               "empathy": "attacked through Empathy (R-736)", "backfire": "cast through Backfire (R-737)", "shame": "cast into Shame and lost the spell (R-739)",
+               "diversion": "used a skill into Diversion (R-739)", "clumsiness": "attacked into Clumsiness (R-739)", "ineptitude": "attacked into Ineptitude (R-739)",
+               "daze_left": "Daze left on a backline monk with a removal ready on another (R-725)"}
+
+
+def tname(F, sid):
+    """A replay skill's name as the tag file and the approved list spell it: the skill data's, without " (PvP)"."""
+    if sid is None: return None
+    return (F.sdata(sid).get("name") or F.sname(sid) or "").replace(" (PvP)", "")
+
+
+def tag_of(F, sid): return tags().get(tname(F, sid))
+
+
+def untagged(E):
+    """The skills on this match's bars that the tag file lacks (R-767): counted and listed by each run, never read as doing nothing (R-460)."""
+    F, m = E.F, E.m
+    return sorted({tname(F, sid) or str(sid) for a in m.PL for sid in (m.A[a].get("bar") or []) if sid and tag_of(F, sid) is None})
+
+
+def _fx(E):
+    """Every effect that is not a condition, by the player it is on: [(from, to, skill name, caster, family, how it ended, skill id)]; family e enchantment, h hex,
+    s stance, w weapon spell. One with no end recorded is read no longer than 30 s."""
+    if getattr(E, "_fxi", None) is None:
+        F, fx = E.F, collections.defaultdict(list)
+        for e in E.m.o.get("effects") or []:
+            if e[0] is None or e[2] == "c" or not e[3]: continue
+            fx[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else e[0] / 10 + 30, tname(F, e[3]), e[4], e[2], e[6], e[3]))
+        E._fxi = fx
+    return E._fxi
+
+
+def fx_up(E, a, name, t):
+    return next((x for x in _fx(E).get(a, ()) if x[2] == name and x[0] <= t <= x[1]), None)
+
+
+def removes_cond(sd):
+    """Can this skill take a condition off another ally? From the reviewed tags (who each part lands on, R-772)."""
+    t = tags().get((sd.get("name") or "").replace(" (PvP)", ""))
+    return bool(t and "conditions" in t["removes"] and "ally" in str(t["on"].get("removes")))
+
+
+def triggers(E):
+    """The triggers a player walked into and the conditions left on a monk (sections A to C of the catalogue; stage 3), each one a row tied to no kill
+    attempt and always listed on the play's row by kind, with its count and amount (R-745). A row is the player's own (`tm` his team):
+      bulls       knocked down by Bull's Strike (the knockdown record names the skill; R-720 as amended by R-746: the hit proves he was moving)
+      harriers    Crippled at a melee hit by an attacker with Harrier's Grasp up, no other Cripple skill cast on him then (R-721); `s` the seconds
+      empathy     the hits Empathy did to him, one for every attack he made through it (`Forensics.trigger_rows`; R-736: the warrior's fault when his team
+                  is defensive, the monk's for not removing it when it is offensive: said from the play's objective, `say_trigger`)
+      clumsiness, ineptitude   an attack started with the hex on him (R-739)
+      backfire    spells finished with Backfire on him and no Spirit Bond (R-737: a fault for the midline, not for a backline monk; `spirit_bond` counts
+                  the casts made with Spirit Bond on him, never a fault)
+      shame       a spell started with Shame on him that failed as the hex went (R-739); diversion: a skill used as Diversion went (R-739)
+      daze_left   a backline monk Dazed with a condition removal ready on another backline monk in reach, and no removal came (R-725)
+    Spiteful Spirit and Visions of Regret are left out (R-739). `fault`: is it one by his rulings; `n` how many times, `amount` what it cost in damage."""
+    import re
+    from forensics import is_heal
+    F, m = E.F, E.m
+    F.casts()
+    pl, fx, role, out = set(m.PL), _fx(E), m.roles, []
+    dm = collections.defaultdict(list)
+    for t, s, g, n in E.dm: dm[(s, g)].append((t, n))
+    trg = F.trigger_rows()
+    def row(t, a, kind, **kw): out.append({"t": round(t, 1), "tm": m.team(a), "team": m.tag[m.team(a)], "id": a, "who": role[a], "kind": kind, **kw})
+    joined = lambda by, a, u, s=TRIGGER_JOIN_S: sum(n for x, n in dm.get((by, a), ()) if abs(x - u) <= s)
+    for k in m.o.get("knockdowns") or []:
+        if k[0] is not None and k[2] in pl and k[0] / 10 < E.M.over and tname(F, k[3]) == "Bull's Strike": row(k[0] / 10, k[2], "bulls", by=role.get(k[1]), n=1, fault=True)
+    for e in m.o.get("effects") or []:
+        if e[2] != "c" or e[7] != "crippled" or e[5] not in pl or e[0] is None or e[0] / 10 >= E.M.over: continue
+        t, a = e[0] / 10, e[5]
+        who = [b for b in pl if m.team(b) != m.team(a) and fx_up(E, b, HG, t) and any(abs(u - t) <= TRIGGER_JOIN_S for u, _ in dm.get((b, a), ()))]
+        if not who: continue
+        if any(c[5] == a and c[3] is not None and t - CRIPPLE_CAST_S <= c[3] <= t + TRIGGER_JOIN_S and tname(F, c[1]) != HG and "Crippled" in (F.sdata(c[1]).get("causes") or [])
+               for b in pl if m.team(b) != m.team(a) for c in F._by_agent.get(b, ())): continue
+        row(t, a, "harriers", by=role[who[0]], n=1, s=round(max(0.0, min((e[1] / 10 if e[1] is not None else t) - t, 20)), 1), fault=True)
+    for a in pl:
+        for t0, t1, name, by, fam, how, _sid in fx.get(a, ()):
+            if fam != "h" or t0 >= E.M.over: continue
+            if name == "Empathy":                           # each hit the hex did to him (`Forensics.trigger_rows`): one for every attack he made through it
+                hit = [x for x in trg.get(a, ()) if x[3] == name and x[1] == by and t0 <= x[0] <= t1 + TRIGGER_JOIN_S]
+                if hit: row(hit[0][0], a, "empathy", by=role.get(by), n=len(hit), amount=round(sum(x[2] for x in hit)), t1=round(hit[-1][0], 1), fault=True)
+            elif name in ("Clumsiness", "Ineptitude"):
+                u = next((u for u in E.att.get(a, ()) if t0 <= u <= t1), None)
+                if u is not None: row(u, a, name.lower(), by=role.get(by), n=1, amount=round(joined(by, a, u, 1.0)), fault=True)
+            elif name == "Backfire":
+                sp = [c for c in F._by_agent.get(a, ()) if c[4] == "finished" and c[3] is not None and t0 <= c[3] <= t1 + TRIGGER_JOIN_S and "Spell" in (F.sdata(c[1]).get("type") or "")]
+                sb = [c for c in sp if fx_up(E, a, "Spirit Bond", c[3])]
+                bare = [c for c in sp if c not in sb]
+                if sp: row(sp[0][3], a, "backfire", by=role.get(by), n=len(bare), amount=round(sum(x[2] for c in bare for x in trg.get(a, ()) if x[3] == name and x[1] == by and abs(x[0] - c[3]) <= TRIGGER_JOIN_S)), spirit_bond=len(sb),
+                           skills=sorted({tname(F, c[1]) for c in bare}), monk=a in E.monk, fault=bool(bare) and a not in E.monk)
+            elif name == "Shame":
+                c = next((c for c in F._by_agent.get(a, ()) if c[4] == "interrupted" and c[3] is not None and t0 <= c[2] <= t1 and abs(c[3] - t1) <= 0.5 and "Spell" in (F.sdata(c[1]).get("type") or "")), None)
+                if c is not None: row(c[3], a, "shame", by=role.get(by), n=1, skill=tname(F, c[1]), fault=True)
+            elif name == "Diversion":
+                c = next((c for c in F._by_agent.get(a, ()) if c[4] == "finished" and c[3] is not None and t0 <= c[2] and abs(c[3] - t1) <= 0.5), None)
+                if c is not None: row(c[3], a, "diversion", by=role.get(by), n=1, skill=tname(F, c[1]), fault=True)
+    # R-725: Daze left on another monk (the one condition fault for monks beside Deep Wound on a spike target)
+    for e in m.o.get("effects") or []:
+        if e[2] != "c" or e[7] != "dazed" or e[5] not in E.monk or e[0] is None or e[0] / 10 >= E.M.over: continue
+        a, t0 = e[5], e[0] / 10
+        t1 = min(e[1] / 10 if e[1] is not None else t0 + 20, t0 + 20)
+        if "removed" in str(e[6] or ""): continue
+        others = [h for h in F.players(m.team(a)) if h in E.monk and h != a]
+        ch = [x for x in F.chances(a, t0, t1, {"daze": removes_cond}, monks=others) if x.get("chance")] if others else []
+        if ch: row(t0, a, "daze_left", n=1, s=round(t1 - t0, 1), by=[x["by"] for x in ch], skills=sorted({k for x in ch for k in x["skills"]}), fault=True)
+    return sorted(out, key=lambda r: r["t"])
+
+
+def say_trigger(r, objective=None):
+    """A trigger row in a sentence. Empathy's fault is said from the play's objective (R-736)."""
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    nm = lambda s_: (s_ or "").replace(" PvP", "")
+    k = r["kind"]
+    if k == "bulls": return f"{clk(r['t'])} the {r['who']} is knocked down by the {r['by']}'s Bull's Strike: he was moving as it hit (a fault, R-720)."
+    if k == "harriers": return f"{clk(r['t'])} the {r['who']} is Crippled for {r['s']} s at a hit by the {r['by']}, who had Harrier's Grasp up: he was moving as it hit (a fault, R-721)."
+    if k == "empathy":
+        whose = ("his own fault: his team was playing defensively" if objective == "defence" else "the monks' fault, for not removing it: his team was playing offensively" if objective == "offence"
+                 else "the warrior's fault when his team is defensive, the monks' for not removing it when it is offensive")
+        return f"{clk(r['t'])} the {r['who']} attacks {r['n']} time{'s' if r['n'] != 1 else ''} through the {r['by']}'s Empathy and takes {r['amount']} from it ({whose}, R-736)."
+    if k in ("clumsiness", "ineptitude"): return f"{clk(r['t'])} the {r['who']} attacks into the {r['by']}'s {k.capitalize()}" + (f" and takes {r['amount']}" if r.get("amount") else "") + " (a fault, R-739)."
+    if k == "backfire":
+        if not r["n"]: return f"{clk(r['t'])} the {r['who']} casts {r['spirit_bond']} spell{'s' if r['spirit_bond'] != 1 else ''} through the {r['by']}'s Backfire with Spirit Bond on him: never a fault (R-737)."
+        return (f"{clk(r['t'])} the {r['who']} casts {r['n']} spell{'s' if r['n'] != 1 else ''} through the {r['by']}'s Backfire ({', '.join(nm(s) for s in r['skills'])}) and takes {r['amount']} from it: "
+                + ("generally no fault for a backline monk, who sometimes has to cast through it (R-737)." if r.get("monk") else "a fault for the midline (R-737)."))
+    if k == "shame": return f"{clk(r['t'])} the {r['who']} casts {nm(r['skill'])} into the {r['by']}'s Shame and loses it (a fault, R-739)."
+    if k == "diversion": return f"{clk(r['t'])} the {r['who']} uses {nm(r['skill'])} into the {r['by']}'s Diversion (a fault, R-739)."
+    if k == "daze_left": return f"{clk(r['t'])} the {r['who']} is Dazed for {r['s']} s with a removal ready ({'; '.join(nm(b) for b in r['by'])}: {', '.join(nm(s) for s in r['skills'])}) and none comes (a fault, R-725)."
+    return ""
+
+
+def balling(E):
+    """Rule 7 (R-722): a team should almost never have more than 1 player hit by one adjacent-damage cast. Every cast of a skill that damages its target and
+    the foes adjacent to or near him (the tags: adds damage on a foe, area target and adjacent or nearby, not an effect that stays on the ground, no
+    trigger but Mind Burn's), finished on an enemy player, whose hits landed on two or more players in one tenth; and every scythe attack that did (a
+    player who carries a scythe attack: his hits on two or more players in one tenth, outside those casts). A row is the team that was hit (`tm`):
+    the players, the skill, `reach` (adjacent or nearby), `amount` what landed on the players beyond the cast's own target. The fault is the adjacent
+    reach (his rule names adjacent damage); a nearby reach is kept and counted apart."""
+    F, m = E.F, E.m
+    F.casts()
+    pl, role, out = set(m.PL), m.roles, []
+    by_src = collections.defaultdict(list)
+    for t, s, g, n in E.dm: by_src[s].append((t, g, n))
+    def add(t, a, target, hit, skill, reach):
+        tm = m.team(target)
+        out.append({"t": round(t, 1), "tm": tm, "team": m.tag[tm], "ids": sorted(hit), "who": sorted(role[x] for x in hit), "n": len(hit), "kind": "balled", "skill": skill, "by": role[a],
+                    "target": role[target], "reach": reach, "amount": round(sum(v for k, v in hit.items() if k != target)), "fault": reach == "adjacent"})
+    for a in pl:
+        rows = by_src.get(a) or []
+        ts, used = [r[0] for r in rows], set()
+        for c in F._by_agent.get(a, ()):
+            if c[4] != "finished" or c[3] is None or c[5] not in pl or m.team(c[5]) == m.team(a) or c[3] >= E.M.over: continue
+            tg = tag_of(F, c[1])
+            if (not tg or tg["reads"] != "read" or "adds damage" not in tg["parts"] or tg["on"].get("adds damage") != "foe" or tg["lasting"] or "target" not in tg["area"]
+                    or (tg["trigger"] and tg["trigger"] != ["more energy"])): continue
+            reach = "adjacent" if "adjacent" in tg["area"] else "nearby" if "nearby" in tg["area"] else None
+            if reach is None: continue
+            win = rows[bisect.bisect_left(ts, c[3] - BALL_S):bisect.bisect_right(ts, c[3] + BALL_LAND_S)]
+            first = next((r[0] for r in win if r[1] == c[5]), None)
+            if first is None: continue
+            hit = collections.defaultdict(float)
+            for r in win:
+                if abs(r[0] - first) <= BALL_S: hit[r[1]] += r[2]; used.add(round(r[0] * 10))
+            if len(hit) >= 2: add(first, a, c[5], hit, tname(F, c[1]), reach)
+        if any("Scythe" in (F.sdata(sid).get("type") or "") for sid in (m.A[a].get("bar") or []) if sid):
+            tenth = collections.defaultdict(lambda: collections.defaultdict(float))
+            for t, g, n in rows:
+                if round(t * 10) not in used and t < E.M.over: tenth[round(t * 10)][g] += n
+            for k in sorted(tenth):
+                if len(tenth[k]) >= 2: add(k / 10, a, max(tenth[k], key=tenth[k].get), tenth[k], "a scythe attack", "adjacent")
+    return sorted(out, key=lambda r: r["t"])
+
+
+def say_balled(r):
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    return (f"{clk(r['t'])} the {r['by']}'s {r['skill']} on the {r['target']} hits {r['n']} of {r['team']} ({', '.join(r['who'])}): {r['amount']} landed on the "
+            + ("other" if r["n"] == 2 else "others") + (" (a fault: they stood adjacent, R-722)." if r["fault"] else " (they stood nearby; counted apart, his rule names adjacent damage)."))
+
+
+def tagged_parts(E, atts, prs, trig):
+    """Stage 3 on every kill attempt, added to its record in place (the spikes `atts`, the pressure attempts `prs`; `trig` the match's trigger rows):
+      stance      the target's own skills that raised the damage he took while hits landed (the tags' `takes_more`): what landed while each was up and
+                  the share of it the skill added, from its text; a fault for Frenzy, Frenzied Defense and Primal Rage (R-740, R-768)
+      walked      the trigger rows on the target from ATT_BEFORE_S before it to its outcome (places in `trig`)
+      missed      gains the kind "deep wound" (R-725): Deep Wound still on him at the outcome and a backline monk with a condition removal ready, in
+                  reach, who cast none on him (the one reading of a monk's chance, `Forensics.chances`); a fault by his ruling (R-744)
+    and on a spike:
+      into        what the target had up at the first big hit that an attack or a spell cannot go through: `blocks` (his effects whose text blocks
+                  attacks: Aegis, Guardian, Mirage Cloak, a stance of his own) and `immune` (he cannot be the target of enemy spells: Spell Breaker,
+                  Obsidian Flesh, Aegis); wards and spirits are not read (a ward has no record but its cast, a spirit no position: the limits)
+      deep_wound  R-751: was Deep Wound on him at the first big hit, when it came against that hit (`at`), and who of the spiking team in reach carried a
+                  skill that gives it (`carried`); `missing` where it was carried and none was on him by CHANCE_S after the first big hit
+      elsewhere   R-751: the damage players of the spiking team, alive and in reach of the target, with a damage skill off recharge, whose damage in
+                  those seconds went on another player (adrenaline is not in the replays: an attack skill is read by its recharge alone)"""
+    import re
+    from common import CAST_R
+    F, m = E.F, E.m
+    F.casts()
+    fx, role = _fx(E), m.roles
+    block = re.compile(r"block|attacks against .{0,40}fail", re.I)
+    immune = re.compile(r"cannot be the target of (enemy|hostile) spells", re.I)
+    dmg_skill = lambda sd: (lambda t: bool(t and t["reads"] == "read" and t["on"].get("adds damage") == "foe" and t["kind"] in ("cast", "attack")))(tags().get((sd.get("name") or "").replace(" (PvP)", "")))
+    F.deep_wound_at(m.PL[0], 0)
+    dw_fx = collections.defaultdict(list)
+    for e in m.o.get("effects") or []:
+        if e[2] == "c" and e[7] == "deep_wound" and e[0] is not None: dw_fx[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else e[0] / 10 + 20))
+    for r in list(atts) + list(prs):
+        tgt, t0, t1, tm = r["id"], r["t"], r["t"] + r["s"], r["tm"]
+        rows = F.taken(tgt, t0 - .05, t1)[1]
+        st = collections.OrderedDict()
+        for x0, x1, name, _by, _fam, _how, _sid in fx.get(tgt, ()):
+            tg = tags().get(name)
+            if not tg or not tg.get("takes_more") or x1 < t0 or x0 > t1: continue
+            n = sum(q[1] for q in rows if q[2] != "degen" and x0 <= q[0] <= x1)
+            if n: st[name] = st.get(name, 0) + n
+        r["stance"] = [{"skill": k, "landed": round(v), "extra": [round(v * STANCE_EXTRA.get(k, (0, 0))[0]), round(v * STANCE_EXTRA.get(k, (0, 0))[1])], "fault": k in STANCE_FAULT} for k, v in st.items()]
+        r["walked"] = [i for i, x in enumerate(trig) if x["id"] == tgt and t0 - ATT_BEFORE_S <= x["t"] <= t1]
+        on = [(s_, e_) for s_, e_ in dw_fx.get(tgt, ()) if s_ <= t1 and e_ >= t0]
+        if on and any(e_ >= t1 - .05 for _s, e_ in on):          # still on him at the outcome: nobody took it off
+            first = max(t0, min(s_ for s_, _e in on))
+            monks = [h for h in F.players(3 - tm) if h in E.monk]
+            mx = F.max_health(tgt, first - .6)
+            for x in F.chances(tgt, first, t1, {"deep wound": removes_cond}, monks=monks):
+                x["gives"] = round(min(DEEP_WOUND_MAX, DEEP_WOUND_SHARE * mx)) if mx else DEEP_WOUND_MAX
+                r["missed"].append(x)
+        if r.get("kind") != "spike": continue
+        up = [(x[2], F.sdata(x[6])) for x in fx.get(tgt, ()) if x[0] <= t0 <= x[1] and x[4] != "h"]         # his enchantments, stances and weapon spells: a hex on him is the enemy's (Defile Defenses speaks of blocking too)
+        r["into"] = {"blocks": sorted({n_ for n_, sd in up if block.search(sd.get("desc") or "")}), "immune": sorted({n_ for n_, sd in up if immune.search(sd.get("desc") or "")})}
+        mine = F.players(tm)
+        near = [a for a in mine if F.alive(a, t0) and (F.dist(a, tgt, t0) or 1e9) <= CAST_R]
+        carried = [f"{role[a]} {tname(F, sid)}" for a in near for sid in (m.A[a].get("bar") or []) if sid and "Deep Wound" in (F.sdata(sid).get("causes") or [])]
+        app = [s_ for s_, e_ in dw_fx.get(tgt, ()) if t0 - DW_LOOK_S <= s_ <= t1 and e_ >= t0 - .05]
+        had = any(s_ <= t0 + CHANCE_S and e_ >= t0 for s_, e_ in dw_fx.get(tgt, ()))
+        r["deep_wound"] = {"on": any(s_ <= t0 <= e_ for s_, e_ in dw_fx.get(tgt, ())), "at": round(min(app, key=lambda s_: abs(s_ - t0)) - t0, 1) if app else None,
+                           "carried": carried[:4], "missing": bool(carried) and not had}
+        att = {E.agent.get((m.tag[tm], x)) for x in r["attackers"]}
+        el = []
+        for a in near:
+            if a in att or a in E.healer: continue
+            got = collections.Counter()
+            for u, s_, g, n in E._cut(E.dm, t0 - 1, t0 + CHANCE_S):
+                if s_ == a and g != tgt: got[g] += n
+            if not got: continue
+            ready = [tname(F, sid) for sid in (m.A[a].get("bar") or []) if sid and dmg_skill(F.sdata(sid)) and F.ready(a, sid, F.sdata(sid), t0, hands=False)]
+            if ready: el.append({"who": role[a], "on": role[got.most_common(1)[0][0]], "dmg": round(sum(got.values())), "ready": ready[:3]})
+        r["elsewhere"] = el
+    return atts, prs
+
+
+def say_parts(r, trig=None):
+    """Stage 3's parts of a kill attempt in sentences: said in the sum, after the amounts (`say_attempt`, `say_pressure`, `say_fail`, a death)."""
+    nm = lambda s_: (s_ or "").replace(" PvP", "")
+    L = []
+    for s_ in r.get("stance") or ():
+        lo, hi = s_["extra"]
+        L.append(f"He had {s_['skill']} up while {s_['landed']} of it landed: about {lo if lo == hi else f'{lo} to {hi}'} of that is the skill's own doing"
+                 + (" (a fault: a skill that raises the damage he takes, up during a kill attempt on him, R-740)." if s_["fault"] else " (context: it cannot be dropped at will, R-775)."))
+    if trig is not None:
+        for i in r.get("walked") or (): L.append("His own play in it: " + say_trigger(trig[i]))
+    for x in r.get("missed") or ():
+        if x["kind"] != "deep wound": continue
+        if x.get("chance"): L.append(f"Missed by the defence: Deep Wound stayed on him to the end with {nm(x['by'])} holding {', '.join(nm(k) for k in x['skills'])} ready, in reach: taking it off gives back {x['gives']} health (a fault, R-725).")
+    it = r.get("into") or {}
+    if it.get("blocks") or it.get("immune"):
+        L.append("The spike went into " + " and ".join(p for p in ((f"{', '.join(it['blocks'])} (attacks blocked)" if it.get("blocks") else ""), (f"{', '.join(it['immune'])} (no enemy spell can target him)" if it.get("immune") else "")) if p)
+                 + ", up on him at the first big hit.")
+    dw = r.get("deep_wound")
+    if dw:
+        if dw["missing"]: L.append(f"No Deep Wound on him by the first big hits though the attack carried it in reach ({', '.join(dw['carried'])})" + (f"; it came {dw['at']} s after the first big hit." if dw["at"] is not None and dw["at"] > 0 else "."))
+        elif dw["on"] or (dw["at"] is not None and dw["at"] <= CHANCE_S): L.append("Deep Wound was on him " + ("at the first big hit." if dw["on"] else f"{dw['at']} s after the first big hit."))
+    for x in r.get("elsewhere") or ():
+        L.append(f"The {x['who']} was in reach with {', '.join(nm(k) for k in x['ready'])} off recharge and put {x['dmg']} on the {x['on']} in those seconds.")
     return " ".join(L)
 
 
@@ -993,7 +1295,7 @@ def deaths(E, atts, prs=None):
         if tm not in (1, 2) or td >= E.M.over: continue           # the losing team recorded dying all at once as the match ends is no death to account for (Moments.over)
         r = max((r for r in atts if r["killed"] and r["tm"] == 3 - tm and r["target"] == m.roles[a] and abs(r["t"] + r["s"] - td) <= 0.3), key=lambda r: r["t"], default=None)
         d = {"t": round(td, 1), "id": a, "tm": tm, "team": m.tag[tm], "who": m.roles[a], "by": m.tag[3 - tm], "spike": r is not None}
-        faults, taken = [], []
+        faults, taken, q = [], [], None
         if r is not None:
             d.update(first=r["t"], dmg=r["dmg"], attackers=r["attackers"], spread=r["spread"])
             d["ledger"] = r.get("ledger")
@@ -1028,6 +1330,11 @@ def deaths(E, atts, prs=None):
         if r is None and not d["dmg"] and not (d.get("ledger") or {}).get("landed"): d["nothing_landed"] = True
         if d.get("pact") or d.get("nothing_landed"): faults, taken, other = [], [], []
         if r is not None: d["hurt"] = r.get("hurt")
+        src = r if r is not None else q                      # stage 3: what the attempt that killed him shows of his own play, and Deep Wound left on him (R-725)
+        if src is not None and not d.get("pact"):
+            d["stance"], d["walked"] = src.get("stance") or [], src.get("walked") or []
+            faults += [{"kind": "deep wound", "by": x["by"], "skills": x["skills"], "at": x["at"], "gives": x.get("gives")} for x in src["missed"] if x["kind"] == "deep wound" and x.get("chance")]
+            if r is not None: d["into"], d["deep_wound"] = r.get("into"), r.get("deep_wound")
         d["faults"] = faults
         d["taken"] = sorted(set(taken))
         d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"out_of_energy": True})}
@@ -1082,6 +1389,8 @@ def fails(E, atts):
             elif mi(r): faults += [{"kind": kind, "by": [who_what(b_) for b_ in x["by"]], "prots": x.get("prots") or [], "amount": x.get("amount")} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
             elif lt(r): late.append({"kind": kind, "at": min((a_ for a_, _p in r[kind].get("at", [])), default=None), "prot_off": bool(r[kind].get("prot_off"))})
         d.update(faults=faults, taken=taken, late=late)
+        # stage 3: why it failed, from the attempt's own record: what it went into, Deep Wound, an attacker elsewhere (R-751); the target's own play beside it
+        d["parts"] = {k: r.get(k) for k in ("stance", "walked", "into", "deep_wound", "elsewhere")}
         out.append(d)
     return out
 
@@ -1104,7 +1413,7 @@ RULED_SAY = {"strip": "a strip on a protted target"}
 RULED_BY = {"strip": "R-729, R-744"}
 
 
-def say_fail(d):
+def say_fail(d, trig=None):
     """A spike that did not kill, in sentences: what it was, then the attack's ruled misses with what was there and the check's result beside them (R-744)."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     nm = lambda s_: s_.replace(" PvP", "")
@@ -1124,6 +1433,9 @@ def say_fail(d):
             L.append(f"{d['team']}'s strip came in time ({x['at']:+.1f} s from the first big hit) but took no prot off." if x["at"] <= CHANCE_S
                      else f"Out of time (R-713): {d['team']}'s strip came only {x['at']:+.1f} s from the first big hit.")
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
+    if d.get("parts"):
+        p_ = say_parts(d["parts"], trig)
+        if p_: L.append(p_)
     if d.get("credit"):
         c_ = say_credit(d["credit"], d["on"])
         if c_: L.append(c_)
@@ -1133,10 +1445,10 @@ def say_fail(d):
 FAULT_SAY = {"prot": "a prot", "heal": "a heal", "interrupt": "an interrupt on a spike skill"}
 
 
-def say_death(d): return " ".join(death_lines(d))
+def say_death(d, trig=None): return " ".join(death_lines(d, trig))
 
 
-def death_lines(d):
+def death_lines(d, trig=None):
     """A death in sentences (R-329), one a line: what killed him, then every checked chance his team missed with what was there (the skill ready, the monk in
     reach), none ranked (R-713), then what was no chance (R-711, R-681). Times are match times, as on the replay."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
@@ -1147,12 +1459,14 @@ def death_lines(d):
         return [f"{clk(d['t'])} {d['team']}'s {d['who']} dies as the {d['pact']['by']} dies: a pact kill (R-783). The {d['pact']['by']} had resurrected him with Death Pact Signet "
                 f"{round(d['t'] - d['pact']['cast'])} s before, and the signet's target dies if its caster dies within 120 s. The why is the {d['pact']['by']}'s death; no chance is read on this one."]
     if d["spike"]: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies to a spike by {d['by']} ({who}): {d['dmg']} in 3 s"
-                        + (f" on a hurt player (he stood at {d['hurt']} health: most of it, R-780)" if d.get("hurt") else "") + f", the first big hit at {clk(d['first'])}, the big hits over {d['spread']} s."]
+                        + (f", most of the {d['hurt']} health he had (a spike by R-780)" if d.get("hurt") else "") + f", the first big hit at {clk(d['first'])}, the big hits over {d['spread']} s."]
     elif d.get("kept"): L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him, kept in danger by {d['by']} from {clk(d['first'])} (at or under {DANGER_HP} health with damage landing on him, R-749): {d['dmg']} landed on him, hits and degen ({who})."]
     else: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him and without being kept in danger first: {d['dmg']} landed on him from {d['by']} ({who}) between {clk(d['first'])}, the first thing landed on him after he was last above {DANGER_HP} health, and his death."]
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
     if d.get("took"): L.append(f"He took the {' and the '.join(d['took'])} with him: resurrected by his Death Pact Signet inside the last 120 s (a pact kill, R-783).")
     if d.get("nothing_landed"): return L + ["No fault is listed where the record does not show what killed him (R-783)."]
+    own = say_parts({"stance": d.get("stance"), "walked": d.get("walked"), "missed": [dict(x, chance=True) for x in d["faults"] if x["kind"] == "deep wound"]}, trig)
+    if own: L.append(own)
     for kind in ("prot", "heal"):
         X = [x for x in d["faults"] if x["kind"] == kind]
         if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])} had {', '.join(nm(k) for k in x['skills'])} ready, in reach, his hands free" + say_amounts(x) for x in X) + "; not cast on him in the time he had to see " + ("the hit" if d["spike"] else "it") + " and cast (R-716).")
@@ -1169,7 +1483,7 @@ def death_lines(d):
                  + ((lambda A: " What a cast of each did for its caster on average this match (R-734): " + ", ".join(f"{k} about {v}" for k, v in A.items()) + "." if A else "")(
                      collections.OrderedDict((nm(x["skill"]), x["amount"]["damage"]) for x in X if x.get("amount"))))
                  + (" Thrown and missed: " + "; ".join(tried) + "." if tried else ""))
-    if not d["faults"]: L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
+    if not d["faults"] and not any(s_.get("fault") for s_ in d.get("stance") or ()) and not d.get("walked"): L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
     if d["taken"]: L.append("Done in time by a team mate, so no fault (R-715): " + ", ".join(FAULT_SAY[k] for k in d["taken"]) + ".")
     for x in d["no_chance"]:
         L.append(f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was busy on {mine(x['busy_on'])}, who was under pressure (R-711)." if x.get("busy_on")
@@ -1178,7 +1492,7 @@ def death_lines(d):
     return L
 
 
-def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None):
+def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None):
     """The faults of a play in sentences (stage X4): the deaths of the team making the play with the checked chances it missed, then the enemy's apart (scored
     the same way, never a fix, R-299), each with its replay time; then the two measures that come close to the outcome itself, said as context and never as a
     fault (`spike_kill_share`, `dmg`). x is the play's execution record, D the match's deaths (`deaths`). None where the play has no record."""
@@ -1188,7 +1502,7 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None):
         L = [D[i] for i in x["deaths"][sd]]
         if not L: return f"{name}: nobody of its players in this play died, so no fault is listed (R-714)."
         n = sum(len(d["faults"]) for d in L)
-        return f"{name}: {len(L)} death{'s' if len(L) != 1 else ''}, {n} missed chance{'s' if n != 1 else ''}. " + " ".join(say_death(d) for d in L)
+        return f"{name}: {len(L)} death{'s' if len(L) != 1 else ''}, {n} missed chance{'s' if n != 1 else ''}. " + " ".join(say_death(d, TRG) for d in L)
     ctx = []
     for sd, name in (("own", p["team"]), ("their", foe)):
         v = x.get(sd)
@@ -1203,7 +1517,19 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None):
                 + f", {sum(1 for d in L if d['taken'])} with the strip in time." + (" " + " ".join(say_fail(d) for d in W) if W else ""))
     def play_level(sd, name):                              # faults tied to no kill attempt, always listed on the play's row by kind, with their count (R-745)
         L = [CT[i] for i in (x.get("caught") or {}).get(sd, ())] if CT is not None else []
-        return f" {name}, casts into a ready interrupt (R-743): {len(L)}. " + " ".join(say_caught(c) for c in L) if L else ""
+        out = f" {name}, casts into a ready interrupt (R-743): {len(L)}. " + " ".join(say_caught(c) for c in L) if L else ""
+        obj = x.get("objective") if sd == "own" else {"offence": "defence", "defence": "offence"}.get(x.get("objective"))
+        W = [TRG[i] for i in (x.get("walked") or {}).get(sd, ())] if TRG is not None else []
+        for k in TRIGGER_SAY:                              # stage 3: by kind, each with its count and amount (R-745)
+            K = [w for w in W if w["kind"] == k]
+            if not K: continue
+            n, amt = sum(w.get("n", 1) for w in K), sum(w.get("amount") or 0 for w in K)
+            out += f" {name}, {TRIGGER_SAY[k]}: {n}" + (f", {amt} damage" if amt else "") + ". " + " ".join(say_trigger(w, obj) for w in K)
+        Bl = [BAL[i] for i in (x.get("balled") or {}).get(sd, ())] if BAL is not None else []
+        for reach, words in (("adjacent", "more than one player hit by one adjacent-damage cast (R-722)"), ("nearby", "more than one player hit by one cast that reaches nearby foes (counted apart)")):
+            K = [b for b in Bl if b["reach"] == reach]
+            if K: out += f" {name}, {words}: {len(K)}, {sum(b['amount'] for b in K)} damage on the players beyond the target. " + " ".join(say_balled(b) for b in K[:6]) + (f" And {len(K) - 6} more." if len(K) > 6 else "")
+        return out
     # question 3 (R-732): where the play's job is to kill, every kill attempt it made over the whole play, each with its sum and the enemy's credit apart (R-733)
     q3 = ""
     if asks_q3(p, x) and ATT is not None and PRS is not None and "attempts" in x:
@@ -1254,7 +1580,7 @@ def say_even(row, ATT, PRS, FL=None):
     return "\n".join(L)
 
 
-def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None):
+def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None):
     """{play id: its execution record} for the plays of one match (kept beside the plays; no play reads it). With the match's deaths (`deaths`), each record
     carries `deaths`: for the play's own players and for the enemy players it met, which deaths fell inside the play (their places in the deaths record), so
     the faults are said on the play (stage X4). With the kill attempts (`attempts`, `pressure`), each carries `attempts` and `pressure` the same way: the
@@ -1279,6 +1605,11 @@ def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None):
             Xs, Ys, tm = set(X), set(Y), p["tm"]
             r[key] = {"own": [i for i, a_ in enumerate(L_) if a_["tm"] == tm and a_["id"] in Ys and t0 <= a_["t"] <= t1],
                       "their": [i for i, a_ in enumerate(L_) if a_["tm"] == 3 - tm and a_["id"] in Xs and t0 <= a_["t"] <= t1]}
+        if TRG is not None or BAL is not None:             # stage 3: the triggers walked into and the balling inside the play, as places in `triggers` and `balled` (R-745)
+            X, Y, t0, t1 = E.players(p)
+            Xs, Ys = set(X), set(Y)
+            if TRG is not None: r["walked"] = {"own": [i for i, x in enumerate(TRG) if x["id"] in Xs and t0 <= x["t"] <= t1], "their": [i for i, x in enumerate(TRG) if x["id"] in Ys and t0 <= x["t"] <= t1]}
+            if BAL is not None: r["balled"] = {"own": [i for i, x in enumerate(BAL) if set(x["ids"]) <= Xs and t0 <= x["t"] <= t1], "their": [i for i, x in enumerate(BAL) if set(x["ids"]) <= Ys and t0 <= x["t"] <= t1]}
         out[p["id"]] = r
     return out
 
@@ -1294,9 +1625,10 @@ if __name__ == "__main__":
         st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
-        A_ = attempts(E_)
-        for d in deaths(E_, A_, pressure(E_, A_)):
-            if d["t"] >= frm: print(say_death(d) + "\n")
+        A_ = attempts(E_); P_ = pressure(E_, A_); T_ = triggers(E_)
+        tagged_parts(E_, A_, P_, T_)
+        for d in deaths(E_, A_, P_):
+            if d["t"] >= frm: print(say_death(d, T_) + "\n")
         sys.exit()
     if a[0] in ("fails", "caught"):                       # python3 execution.py fails|caught <report id> [m:ss]: the spikes that did not kill with the strip missed; the casts into a ready interrupt (R-743)
         import moments
@@ -1304,8 +1636,10 @@ if __name__ == "__main__":
         st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
-        for d in (fails(E_, attempts(E_)) if a[0] == "fails" else E_.caught()):
-            if d["t"] >= frm: print((say_fail(d) if a[0] == "fails" else say_caught(d)) + "\n")
+        A_ = attempts(E_); T_ = triggers(E_)
+        tagged_parts(E_, A_, pressure(E_, A_), T_)
+        for d in (fails(E_, A_) if a[0] == "fails" else E_.caught()):
+            if d["t"] >= frm: print((say_fail(d, T_) if a[0] == "fails" else say_caught(d)) + "\n")
         sys.exit()
     if a[0] in ("pressure", "even"):                     # python3 execution.py pressure|even <report id> [m:ss]: the pressure attempts (R-741, R-749); the even 8v8s' rows (R-731)
         import moments, jobs
@@ -1313,10 +1647,11 @@ if __name__ == "__main__":
         st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
-        A_ = attempts(E_); P_ = pressure(E_, A_)
+        A_ = attempts(E_); P_ = pressure(E_, A_); T_ = triggers(E_)
+        tagged_parts(E_, A_, P_, T_)
         if a[0] == "pressure":
             for r in P_:
-                if r["t"] >= frm: print(say_pressure(r) + "\n")
+                if r["t"] >= frm: print(say_pressure(r, T_) + "\n")
         else:
             FL_ = fails(E_, A_)
             for row in even_rows(E_, jobs.plays(M, M.records()), A_, P_, deaths(E_, A_, P_), FL_, E_.caught()):
@@ -1327,9 +1662,22 @@ if __name__ == "__main__":
         from scoreboard import Scoreboard
         st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
-        for r in attempts(Exec(M, a[1])):
+        E_ = Exec(M, a[1])
+        A_ = attempts(E_); T_ = triggers(E_)
+        tagged_parts(E_, A_, pressure(E_, A_), T_)
+        for r in A_:
             if r["t"] < frm: continue
-            print(say_attempt(r))
+            print(say_attempt(r, T_) + "\n")
+        sys.exit()
+    if a[0] in ("triggers", "balled"):                   # python3 execution.py triggers|balled <report id> [m:ss]: the triggers walked into; more than one player hit by one cast (stage 3)
+        import moments
+        from scoreboard import Scoreboard
+        st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
+        frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
+        E_ = Exec(M, a[1])
+        print("untagged on a bar:", ", ".join(untagged(E_)) or "none")
+        for r in (triggers(E_) if a[0] == "triggers" else balling(E_)):
+            if r["t"] >= frm: print(r["team"], say_trigger(r) if a[0] == "triggers" else say_balled(r))
         sys.exit()
     from scoreboard import Scoreboard
     import jobs, moments

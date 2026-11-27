@@ -55,6 +55,7 @@ SPIKE_DMG, SPIKE_S = 400, 3 # a spike as `events._spikes` reads it: a monk with 
 # such a burst kills within 8 s about as often as a spike of 400 does (31 to 33% at every floor from 100 to 250, against 33%; at half his health 19 to 20%);
 # the floor is half a spike's 400, so that with the pressure line (R-779) a player under about 300 health is read by one or the other.
 HURT_SHARE, HURT_FLOOR = 2 / 3, 200
+TRIGGER_AFTER_S = 0.3       # a hex's own damage lands inside this long of the attack or cast that set it off (and so of the hex's end)
 PACT_S = 120                # Death Pact Signet: the player it resurrects dies if its caster dies within this long (the skill's text)
 BASE_HEALTH = 480           # a level 20 character's health before runes and weapons: morale and death penalty are a share of this (10% morale is 48 in every recap)
 DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DEEP_WOUND_LONGEST = 0.2, 100, 20    # knowledge/conditions.md: a fifth of his maximum, at most 100; an interval with no end recorded is read no longer than 20 s
@@ -127,7 +128,15 @@ class Forensics:
     def alive(self, a, t): return Match.alive(self.snap(a, t))
     def dist(self, a, b, t): return self.m.dist(a, b, round(t * 10))
     def sname(self, sid): return self.SN.get(sid, str(sid)) if sid is not None else "attack"
-    def sdata(self, sid): return skilldata().get(self.sname(sid)) or {}
+    def sdata(self, sid):
+        """The skill data's row for a skill id of the replay: by the replay's own name for it, else by its in-game id or its name with the punctuation the
+        replays drop (`common.skill_row`: "Harriers Grasp PvP", "Protectors Strike PvP", "Bulls Strike": until the catalogue's stage 3 these eleven skills,
+        2% of the casts on the development set, read as skills with no data)."""
+        r = skilldata().get(self.sname(sid))
+        if not r and sid is not None:
+            from common import skill_row
+            r = skill_row(sid, self.sname(sid))
+        return r or {}
     def events(self, t0, t1, codes=None):
         i, j = bisect.bisect_left(self.T, t0 * 10), bisect.bisect_right(self.T, t1 * 10)
         return [e for e in self.ev[i:j] if codes is None or e[1] in codes]
@@ -437,9 +446,38 @@ class Forensics:
         tm = self.m.team(a)
         return [k for k, test in kinds.items() if any(c[5] == a and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
 
+    def trigger_rows(self):
+        """The hits that are a hex's own doing: damage a player took from a hex on him that punishes what he did (the tags: a hex that adds damage on a foe
+        with the trigger attacking, casting or using a skill: Empathy, Backfire, Spiteful Spirit, Visions of Regret, Insidious Parasite, Price of Failure and
+        the like). The damage rows carry no skill, so a row is the hex's where it is from the hex's caster on the hexed player while the hex was on him (to
+        TRIGGER_AFTER_S after it) and its amount is one the hex's text gives for some rank (its progression in the skill data). Checked (R-707, development
+        set): under Empathy the rows from its caster come in multiples of one amount (47, 94, 141: the Mesmer's rank), and 91% of the attacks that finish
+        under it have one. {hexed player: [(second, the hex's caster, amount, the hex's name)]}, in time order."""
+        if getattr(self, "_trg", None) is None:
+            import json, os
+            here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+            T = {v["name"]: v for v in json.load(open(os.path.join(here, "data", "model", "skill_tags.json"), encoding="utf-8"))["skills"].values()}
+            m, pl, hexes = self.m, set(self.m.PL), collections.defaultdict(list)
+            for e in m.o.get("effects") or []:
+                if e[2] != "h" or e[0] is None or not e[3] or e[5] not in pl or e[4] not in pl: continue
+                sd = self.sdata(e[3]); name = (sd.get("name") or "").replace(" (PvP)", "")
+                t = T.get(name)
+                if not t or "adds damage" not in t["parts"] or t["on"].get("adds damage") != "foe" or not set(t["trigger"]) & {"attacking", "casting", "using a skill"}: continue
+                vals = {v for p in sd.get("prog") or [] if "amage" in p.get("name", "") or "steal" in p.get("name", "") for v in p.get("values") or []}
+                if vals: hexes[(e[4], e[5])].append((e[0] / 10, (e[1] / 10 if e[1] is not None else e[0] / 10 + 30) + TRIGGER_AFTER_S, name, vals))
+            out = collections.defaultdict(list)
+            for e in self.ev:
+                if e[1] != "dm" or e[0] is None or (e[2], e[3]) not in hexes or not isinstance(e[5], (int, float)): continue
+                u = e[0] / 10
+                h = next((h for h in hexes[(e[2], e[3])] if h[0] <= u <= h[1] and any(abs(e[5] - v) <= .6 for v in h[3])), None)
+                if h is not None: out[e[3]].append((u, e[2], e[5], h[2]))
+            self._trg = out
+        return self._trg
+
     def spikes(self, tm):
         """Every spike by team tm, as `events._spikes` gives them, each with a sixth part: None for a spike of SPIKE_DMG inside SPIKE_S, and for a burst on a
-        hurt player (R-780) his health in points as it began. A burst on a hurt player: HURT_FLOOR or more inside SPIKE_S by their players' hits that is
+        hurt player (R-780) his health in points as it began. A burst on a hurt player: HURT_FLOOR or more inside SPIKE_S by their players' hits (those a
+        hex did to him for attacking or casting through it left out, `trigger_rows`: a warrior attacking through Empathy is not being spiked) that is
         HURT_SHARE or more of the health the replay last found him at before its first hit; none is read inside a spike's own reading (from its first hit
         to 8 s after it) or in the 6 s before one (it is that spike coming), and two on a player are 6 s apart, as two spikes are. The spikes of 400 are
         untouched by it: every reading built on them reads as before."""
@@ -453,7 +491,10 @@ class Forensics:
                     hits[e[3]].append((e[0] / 10, e[2], e[4], e[5]))
                 elif e[1] == "dt": deaths[e[2]].append(e[0] / 10)
             out = [x + (None,) for x in full]
+            trg = self.trigger_rows()
             for tgt, H in hits.items():
+                own = {(round(u * 10), s_) for u, s_, _n, _h in trg.get(tgt, ())}
+                H = [h for h in H if (round(h[0] * 10), h[1]) not in own]        # what a hex did to him for attacking or casting through it is his own doing, no burst of theirs
                 sp, last = [x[0] for x in full if x[1] == tgt], -99
                 for i, h in enumerate(H):
                     if h[0] - last < 6 or any(s_ - 6 < h[0] <= s_ + 8 for s_ in sp): continue
