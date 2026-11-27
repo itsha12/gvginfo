@@ -1,6 +1,6 @@
 {
  "about": "Skill tags for execution (stage 2 of docs/EXECUTION.md): what each skill does to the sum of a death, its trigger, area, cast time, interrupt reach, and whether the engine reads it. Drafted by Claude from data/skills.json (wiki, 2026-10-08), reviewed by Denning 2026-11-25 (flagged rows, a 20-row spot-check and every context-only and ignore row). data/skills.json is never edited by hand; this file stands beside it. Keys are in-game skill ids (PvP ids for split skills); names drop \" (PvP)\" as in interrupt_worth.json.",
- "status": "Path confirmed by the engine session, 2026-11-27 (beside interrupt_worth.json; keys the in-game PvP ids). The additions stage 3 needs are in (R-767, R-768), for Denning's review: who each part lands on, the mark for raised damage taken, R-738's snares, ground effects, strips at cast, interrupts on demand, and 31 more skills. Nothing in the engine reads the new fields yet (execution.is_strip reads only \"removes\").",
+ "status": "Path confirmed by the engine session, 2026-11-27 (beside interrupt_worth.json; keys the in-game PvP ids). The additions stage 3 needs are in (R-767, R-768) and reviewed by Denning on 2026-11-27 (denning_rulings_2026_11_27): who each part lands on, the mark for raised damage taken, R-738's snares, ground effects, strips at cast, interrupts on demand, and 31 more skills. Nothing in the engine reads the new fields yet (execution.is_strip reads only \"removes\").",
  "scope": "608 skills: every skill on 4 or more bars in 876 matches from 7 September to 8 November 2026 (571), plus 6 below that which the catalogue names (Clumsiness, Ineptitude, Wandering Eye, Weapon of Shadow, Spirit Shackles, Visions of Regret); and (R-767) the 7 more the catalogue names (Spell Breaker, Shadow Form, Obsidian Flesh, Earth Shaker, Mark of Pain, Sum of All Fears, Teinai's Prison) and the other 24 of the 25 skills on 4 or more bars in the 1,000 matches from 1 September to 8 November 2026, where the engine's matches start. The rarer ones (about 190 on 1 to 3 bars) are counted and listed by each run. A skill not in this file is untagged and must be reported, not read as doing nothing (R-460).",
  "vocabulary": {
   "reads": {
@@ -60,7 +60,7 @@
   ],
   "kind": {
    "cast": "cast_s is the activation in seconds",
-   "attack": "an attack skill with its own activation (cast_s)",
+   "attack": "an attack skill with its own activation (cast_s); like every attack skill it lands halfway through its activation (R-750)",
    "weapon swing": "an attack timed by the weapon (R-750); cast_s null",
    "instant": "cast_s 0"
   },
@@ -87,6 +87,18 @@
   "Resurrection skills are very important and already covered (res interrupts, numbers): context only here.",
   "Energy skills (attunements, energy glyphs, energy signets and the like) are context only: a failed cast or a stripped attunement may explain a lack of energy.",
   "Ice Spikes, Lava Font, Obsidian Flame, Smoldering Embers, Vapor Blade, Ethereal Burden, Kitah's Burden and Shield Guardian cast in 1.5 s (missing from the wiki sync)."
+ ],
+ "denning_rulings_2026_11_27": [
+  "Sum of All Fears casts in 1.5 s; Black Mantis Thrust's activation is 1 s. Every attack skill lands halfway through its activation (as R-750).",
+  "Energizing Finale is context only; Primal Echoes is context only; Call of Protection, Ritual Lord and Shadow Form are ignored.",
+  "Healer's Boon heals and lands on its user; Signet of Suffering only adds damage on a foe (its user's Bleeding is a cost); Mark of Pain's area is adjacent, its trigger a hit.",
+  "Who a part lands on: a part that raises its holder's own damage or healing names the holder (Frenzy: self; Brutal Weapon: ally); damage the skill deals itself is foe (Death Nova, Balthazar's Aura, Hundred Blades, Magnetic Aura, Reversal of Damage). Hex Eater Vortex removes from both sides; Weapon of Shadow lands on the ally, Shadowsong's Blind on the foe; Ebon Dust Aura and Dust Cloak stop damage on the foe; Fertile Season and Favorable Winds land on allies.",
+  "Strips at cast: Corrupt Enchantment and Air of Disenchantment yes; Gaze of Contempt, Lyssa's Balance, Signet of Twilight and Hex Eater Vortex yes, when their condition holds; Order of Apostasy and Rending Aura no.",
+  "Interrupts not on demand also include Exhausting Assault and Lyssa's Haste.",
+  "Aggressive Refrain raises the damage its user takes (-20 armour).",
+  "Ray of Judgment's area is the cast area only (in the area): a foe who leaves it takes no more damage.",
+  "Dolyak Signet and Seeping Wound stay out of the file.",
+  "All 30 speed boosts of the 2026-11-25 review stand, the 15 added by the same rule included (Featherfoot Grace, Fleeting Stability, Dark Escape, Enchanted Haste, Harrier's Haste, Whirling Charge, Armor of Mist, Flame Djinn's Haste, Gust, \"Fall Back!\", Natural Stride, Rampage as One, Bull's Charge, Primal Rage, Siphon Speed)."
  ],
  "skills": {
   "1": {
@@ -5827,7 +5839,7 @@
    "name": "Primal Echoes",
    "prof": "Ranger",
    "type": "Nature Ritual",
-   "reads": "ignore",
+   "reads": "context only",
    "parts": [],
    "removes": [],
    "trigger": [],
@@ -14250,7 +14262,7 @@
    "name": "Shadow Form",
    "prof": "Assassin",
    "type": "Enchantment Spell",
-   "reads": "read",
+   "reads": "ignore",
    "parts": [
     "stops damage"
    ],
