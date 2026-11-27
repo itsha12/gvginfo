@@ -649,6 +649,19 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
   apart from our faults (R-733). Cut-offs (too deep, monk following, the pressure attempt, nothing in melee reach) are
   set from the data (R-741).
+- The sum of a kill attempt, as read (R-734): his health at the start, in points; what landed (hits by their players,
+  hits by their NPCs, degen, Deep Wound's cut); what was healed (as it landed: overhealing apart); his health at the
+  end; and what the parts leave over, shown. What was stopped before it landed is gvg.report's estimate, where it has
+  a recap. Beside a missed chance: what a cast of that skill gave that player on average this match.
+- A pressure attempt, as read (R-741, R-749; the cut-offs from the data, *Claude's rule, his to correct*: as
+  dangerous as a spike): a player at or under 175 health for a second or longer with 90 or more landed on him by the
+  enemy in 3 s, hits and degen; it ends at his death, when his health is back above the line, or when nothing has
+  landed on him for 6 s. A death with no spike is read from it (R-749); a death that is neither is read from the
+  first thing landed on him after he was last above the line.
+- An even 8v8, as read (R-731; *"8v8" to the letter, his to correct*): all sixteen alive in one fight that is no
+  stand-off, for 12 s or longer, in the seconds no play of either team covers. Execution only.
+- Question 3 is asked where a play's job is to kill and on every numbers advantage from the side that has it (R-732),
+  over every kill attempt made in it, spike or pressure.
 - The parts of the sum a skill can act on (the skill tags, `data/model/skill_tags.json`, R-765): adds damage, stops
   damage, heals, prevents enchantments, removes, slows, disables, drains energy, cuts healing (Deep Wound and the like,
   R-753), stops disables (knockdown immunity, R-755). Making enchantments or conditions expire faster counts as

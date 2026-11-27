@@ -39,9 +39,14 @@ below, read on its own.
 
 Read at three levels, said in one place:
 1. **The kill attempt.** Every spike of both teams has an attempt record, read to its own outcome (the death or the
-   save, R-710). A pressure attempt sits beside it (R-741, R-749). Each attempt gets the parts of the sum as amounts
-   and both teams' missed chances. Most of sections A to D land here.
-2. **The death account.** The same reading for every death, from the dead player's side.
+   save, R-710). A pressure attempt sits beside it (R-741, R-749; built, stage 4). Each attempt carries the parts of
+   the sum as amounts (the ledger, built: health at the start, what landed by kind, what was healed, health at the
+   end, what the parts leave over; what was stopped from gvg.report's recap) and both teams' missed chances, each
+   with what a cast of that skill gave that player on average this match (R-734). Most of sections A to D land here.
+2. **The death account.** The same reading for every death, from the dead player's side: from the spike that killed
+   him, else from the pressure attempt that did, else (a player already hurt, finished inside a second under the
+   line: 41% of deaths on the development set, put to Denning) from the first thing landed on him after he was last
+   above the line. The heaviest 2 s is retired (Rule 33).
 3. **The play.** Over the whole play the engine reads the faults tied to no attempt: balling, Flail lock, a snared
    frontline, standing in area damage. These are always listed on the play's row, by kind, each with its count and
    amount (R-745). Each attempt inside a play is listed under it.
@@ -49,7 +54,9 @@ Read at three levels, said in one place:
 Said on the play's row and in the death account: the call first (macro), then the faults (micro), ours, then the
 enemy's apart (R-299), each with what was there (the skill ready, the monk in reach), its amount (R-734) and the replay
 time. An even 8v8 with no flag, split or numbers difference has no play and no job: both teams are read as trying to
-kill (R-731), on an execution-only row for the fight (not a decision family, R-557).
+kill (R-731), on an execution-only row for the fight (not a decision family, R-557). Built (stage 4): all sixteen in
+one fight, no stand-off, 12 s or longer, the seconds no play covers. Question 3 is said on every play whose job is
+to kill and on every numbers advantage, attempt by attempt, with the enemy's credit apart (R-732, R-733).
 
 ## The rules (rule n is R-(715+n); 29 on are the review's)
 
@@ -95,7 +102,8 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
 25. **Damage-raising stances** (R-740, R-768): Frenzy, Frenzied Defense or Primal Rage up during a spike or pressure
     attempt is a fault. The armour penalty of Healing Signet is context.
 26. **Cut-offs** ("too deep", "monk following", the pressure attempt, Flail's "nothing in melee reach") are set by
-    the engine from the data (R-741).
+    the engine from the data (R-741). The pressure attempt's is set (stage 4): at or under 175 health for a second or
+    longer with 90 or more landing in 3 s, the line at which a player dies about as often as a spike kills.
 27. **Catchable skills** (R-742, R-750). A skill can be interrupted on reaction only if it takes at least the 200 ms
     plus the interrupt's own time to land: half a second or longer against a quarter-second interrupt. An interrupt's
     own time is its cast time for a spell and half its activation or swing for an attack (Distracting Shot and Savage
@@ -111,7 +119,7 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
     standing still when he should have kited a melee player is a fault. *Draft, his to correct:* not told against an
     attacker with Bull's Strike or Harrier's Grasp ready, where moving is itself the fault.
 32. **A monk who is himself the spike's target** is not available to another player (R-747), as a busy monk (R-711).
-33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749).
+33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749). Built.
 34. **Built before he checks** (R-752): his marks on the Execution view wait for the catalogue's readings.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
@@ -132,7 +140,7 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
 | Standing still when he should have kited a melee player (Rule 31) | Partly: kiting measured | Kiting as a missed chance, not only a measure |
 | Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | No | Trigger tags; his attacks and casts while the hex was on him |
 | Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1): an interrupted cast of a listed skill by a backline monk, the interrupt that stopped it ready when the cast began; listed on the play's row | |
-| Wrong weapon set when under attack | Partly: shield set read over the play | The weapon set at each attempt |
+| Wrong weapon set when under attack | Partly: on each attempt's sum, what landed off his shield set and what a shield would have stopped (stage 4) | As a missed chance, checked once; the set he swapped to |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
 | Fell back too late, or not to his monks | No | Movement towards safety once the attempt starts, against the time he had |
 
@@ -174,8 +182,9 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
 
 ## D. The attack (questions 1 and 3)
 
-A spike (400 or more damage on one player in 3 s) is the only kill attempt today; the pressure attempt (a player kept
-in danger for a while, the cut-off from data, degen counted) is needed for question 3.
+Two kill attempts are read: a spike (400 or more damage on one player in 3 s) and a pressure attempt (a player kept
+at or under 175 health for a second or longer with 90 or more landing on him in 3 s, hits and degen; the cut-offs
+from the data, Rule 26). Question 3 lists every attempt of either kind over the play, each with its sum.
 
 | Why | Read | What it needs |
 |---|---|---|
@@ -197,7 +206,7 @@ in danger for a while, the cut-off from data, degen counted) is needed for quest
 | Switched targets too early | No | Damage on a target against how low he was when they left him |
 | Did not snare the target | No | Snares ready and unused on a target who escaped |
 | The kill undone at once by Death Pact Signet or a quick res not stopped | No | Res casts after a kill against our interrupts ready (Rule 1) |
-| The lead not kept long enough to convert | Partly: its length read | Tied to the attempts made during it |
+| The lead not kept long enough to convert | Partly: its length read; every attempt made during it listed with its sum (stage 4). Most plays with the job to kill make none (31% make one) | Whether making no attempt is a fault of its own (his) |
 
 **Snares on gvg.report's bars** (1,915 matches to 9 November 2026; bars carrying the skill). The engine reads every
 skill that cripples or slows except Rule 23's. For scale, frontline interference: Empathy 693, Faintheartedness 199,
@@ -285,6 +294,14 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
   Phoenix, Arc Lightning, Ice Spikes, Ethereal Burden, Kitah's Burden, Sum of All Fears among them): a fault of the
   wiki sync, to be fixed there, later (R-765); eight of them cast in 1.5 s by his word and carry it in the tag file
   (R-764). The interrupt reading does not lean on it: how long a cast took is the replay's own record.
+- Health is in points: the weapon set in hand, 4.8 a point of morale or death penalty, less Deep Wound (within a point
+  of gvg.report's recaps at 84%). Healing rows are heals as cast, overhealing in: what landed is read by walking the
+  hits and heals in order. Deep Wound gives its health back as it ends (the sum balances only so).
+- What never landed is not in the replays. Damage stopped and attacks blocked are gvg.report's, only in its recap of a
+  death or a survived spike (97% of spikes, 44% of pressure attempts have one), and its credit for prots is small
+  (nought on 72% of spike recaps; nothing for Aegis, Protective Spirit and Aura of Stability). So the amount beside a
+  missed prot (what a cast gave that monk on average this match) reads low: 20 to 60, not the 300 a prot can stop.
+- 7% of deaths have nothing landed on the player in the record and mostly no recap: the sum says so.
 - Armour and insignias are left out: a player cannot change them in a match. Out of reach: ping, line of sight around
   obstacles, calls and intent (R-371).
 
@@ -295,7 +312,7 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 | 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file; failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt. No full run of its own (R-766) | development set and key pass; plays unchanged (they do) |
 | 2. The skill data | Done but for the sync: every skill in use tagged in a file of its own, `data/model/skill_tags.json` (`data/skills.json` is never edited by hand), reviewed by Denning (R-753 to R-765). Left for later: the wiki sync's missing cast times | Denning has reviewed the tagged list (he has) |
 | 3. What the records already show | Bull's knockdown, Harrier's Cripple, balling, Empathy and the other triggers, damage-raising stances, a spike into a block, ward or spirit, Deep Wound on the spike, an attacker on another target, Rule 10 and 11 removals | each join checked against the raw record (R-707); each kind checked once on unseen matches, shown beside the ruled ones (Rule 29) |
-| 4. The ledger and the pressure attempt | Each part of the sum a measured amount on every attempt, for both teams (Rule 19); the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33) |
+| 4. The ledger and the pressure attempt | Built (2026-11-27): each part of the sum a measured amount on every attempt, for both teams (Rule 19), and an amount beside each missed chance; the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row; question 3 on every play to kill and every numbers advantage, the enemy's credit apart. No full run of its own (R-766) | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33): both done; development set and key pass, plays unchanged |
 | 5. Readings from positions | Too deep, monk following, Flail lock, the snared frontline, area damage, should have kited; crits while moving as context | cut-offs set from data (Rule 26) |
 | The runs (R-766) | Built in the order 1's remainder, 4, 3. Then one full run with every check for stages 1 to 4 together: `cases.py attempts` and `execution` (do the kinds still pass on unseen matches?), the key, the truths, `execution_rows.json`. Stage 5 has its own full run, before X4's sentences | the three built kinds still pass on unseen matches; each new kind checked once |
 | Then | The faults said on each play and death (stage X4 again on the full list); his marks on the Execution view (stage X5) | his Classic execution rows read as he reads them |

@@ -1103,6 +1103,72 @@ index pointing here. Read the section for a reading before changing it, and keep
   read from the skill data, for stage 3 with the tags: which strips are thrown on demand (a spirit, a well or a hex that makes enchantments expire is
   "ready" today), and `intr_kind`, which misses Disrupting Chop.
 
+- The catalogue's stage 4, built 2026-11-27 (`bundle-4` c43c85a, on the tag file's d345505; R-731 to R-734, R-741, R-749): the ledger, the pressure attempt, question 3 by attempt, the
+  even 8v8's row. No full run (R-766): the cut-offs and every count below are the development set's (82 matches) and are read again at the run for
+  stages 1 to 4.
+  **Health in points** (`Forensics.max_health`, `health`, `sample`): the weapon set in his hands (gvg.report's figure for each set) plus 4.8 a point of
+  morale or death penalty as it stood before that second (a death's own 15% is recorded at the death) less Deep Wound (a fifth, at most 100). Checked
+  against the maximum in gvg.report's recaps (R-707): within a point at 84% of 2,171 recaps, within a weapon set (30 or 60) at 91%. A first reading
+  (the set times 1 + morale, the death's own penalty in) was within a point at 15%: found by setting the two side by side.
+  **The ledger** (`execution.ledger`, on every spike and pressure attempt as `ledger`, on every death and failed spike; words `say_ledger`): health at
+  the start, what landed (hits by their players, by their NPCs, degen from every source, Deep Wound's cut), what was healed, health at the end, and
+  `unread`, what the parts leave over, kept and shown (R-460). Read between two of his samples (the last at or before the attempt's first hit, the first
+  at or after its outcome; his death where he died). Found on the way: (1) healing rows are heals as cast, overhealing in (a first sum left a middle
+  +600 on a player healed to full): what landed is read by walking hits and heals in order from his health at the start, a heal filling him no further
+  than his maximum then, the rest kept as `overhealed`; (2) Deep Wound gives its health back as it ends: without that, attempts with Deep Wound on a
+  player who lived were a middle 30 to 77 over; with it they balance. The sum balances within 25 points on 64% of 1,002 spikes and within 60 on 88%
+  (pressure attempts 66% and 86%; deaths by spike or pressure 92 to 93% within 60). Not in the replays: what never landed. `stopped` is gvg.report's
+  recap of the death or the survived spike (`_recap`: its own second lies a middle 2.7 s after our first big hit; 1,006 of 1,034 spikes have one, 785
+  of 1,778 pressure attempts), by prot, with attacks blocked; None where it has none, never nought. Its credit is small: nought on 72% of spike recaps,
+  Reversal of Fortune a middle 50, Shielding Hands 45, Guardian 0 (a block is scored at 36 and Aegis, Protective Spirit and Aura of Stability at
+  nothing, as section 43 found). `off_shield`: what landed off his shield set while not casting and what a shield would have stopped of it.
+  As it fell: spikes that killed, a middle 465 health at the start, 554 landed, 22 healed; spikes he lived, 500, 625 landed, 535 healed.
+  **The amount beside a missed chance** (R-734; `_amounts`, `Exec.per_use`, words `say_amounts`): what a cast of that skill gave that player on
+  average this match, from gvg.report's summary: a monk's prot or heal as `casting.py` reads it (healing landed with Divine Favor, and prevention), an
+  interrupt's worth as the damage a cast of the skill that went off did for its caster (`data/matches`; checked, R-707, on 14 matches: a player's
+  total is the replay's own hits, middle ratio 1.00; skills hold a middle 55% of it, the rest plain attacks), a strip's as what the prots on the target
+  stopped in that attempt (the recap). Aegis, Protective Spirit and Aura of Stability are said as not measured, never as nought (R-704 c). 1,507 of
+  1,526 faults on deaths carry one. A limit to say whenever one is shown: these are averages of every cast, and gvg.report's prevention is low, so a
+  prot reads as 20 to 60 where his own example was "about 300". The root reading would work out from each prot's text what it stops of the hits that
+  did land (Protective Spirit's cap, Shielding Hands' cut, Reversal of Fortune's one hit, a block's half): not built.
+  **The pressure attempt** (`Forensics.danger`, `death_start`, `killed_from`; `execution.pressure`, kept as `flag_cost[rid].pressure`; `python3
+  execution.py pressure <report id> [m:ss]`, words `say_pressure`): a player at or under DANGER_HP (175) health at successive samples for
+  DANGER_KEPT_S (1 s) or longer with DANGER_FIRE (90 in 3 s) landed on him by the enemy, hits by players and NPCs and degen that is theirs or
+  nobody's. It starts at the first sample that finds him at or under the line (no earlier than the run of hits it is told from), and ends at his
+  death, at the first sample above the line, or 6 s after the last thing landed (left alone); two on a player less than 6 s apart are one. Shaped as
+  a spike's record (`prots_cast`, `heals_cast`, `missed` from `Forensics.chances`, the clock from its start as from a spike's first big hit, R-748).
+  One begun inside a spike's own reading is that attempt going on (`after_spike`) and is counted in nothing. The cut-offs are from the data (R-741;
+  `cases.py pressure <plays file>`, kept in `data/model/pressure_cases.json`, which also says whether the engine's constants still follow from its
+  table). Claude's rule, his to correct: an attempt should be as dangerous as a spike, so of the lines "for a while" allows (a second or longer) at
+  which a player dies within 8 s at least as often as a spike kills (33.3%), the one that holds the most deaths with no spike: 1,604 attempts, 34.9%
+  dead within 8 s, 48.1% of the 1,275 deaths with no spike. Health in points beat health as a share at every line; a single sample under the line
+  (no "while") holds more deaths but is ruled out by his words. As built: 1,778 attempts, 177 of them a spike going on; of the 1,601, 612 killed
+  (38%), 941 escaped, 47 left alone; a middle 3.1 s. Killed: 140 health at the start, 180 landed, nothing healed; lived: 143, 91 landed, 203 healed.
+  **Deaths** (R-749; `execution.deaths`, `forensics.death`): `Forensics.killing_burst` (the heaviest 2 s) is gone. A death by spike is read as before;
+  a death with no spike from the pressure attempt that killed him (`kept` true); one that is neither, from the first thing the enemy landed on him
+  after the replay last found him above the line (`death_start`; 2 s before the death where nothing is recorded). Of 1,619 deaths: 344 by spike, 613
+  kept in danger, 662 neither. The 662 are players already hurt (a middle 232 health, quartiles 190 to 338) finished with a middle 195 landed in 1.4
+  s: under the spike's 400 and too quick to be "kept". Put to him (is a burst that takes most of a hurt player's health a spike?); nothing changed
+  (R-465). Deaths with no spike listing a fault: 405 (486 on the heaviest 2 s; a prot 311 from 406, a heal 269 from 300). 113 deaths have nothing
+  landed in the record and mostly no recap (39 list a fault): `say_ledger` says the record does not tell what killed him; whether a fault should be
+  listed there is his (asked before, section above).
+  **Question 3 and the enemy's credit** (R-732, R-733): each play's record names the attempts made inside it (`attempts`, `pressure`: own and their,
+  places in the match's lists). `asks_q3`: where the play's job is to kill, and on every numbers advantage from the side that has it whatever its
+  call. `say_q3` lists every attempt with its sum; `credit` and `say_credit` say apart what the defence did in time (prots, heals, interrupts) with
+  what was stopped and healed; `say_faults` and `say_fail` carry them. Of 2,166 plays with the job to kill, 664 made a kill attempt of either kind
+  (numbers 47% of 366, splits 29% of 1,207, flag plays 25% of 453, boost plays 21% of 140): for most, the answer to question 3 starts with "no
+  attempt was made". Whether that is itself a play-level fault (R-745) is his.
+  **The even 8v8's row** (R-731; `execution.even_rows`, kept as `flag_cost[rid].even`; `python3 execution.py even <report id>`, words `say_even`):
+  all sixteen alive in one fight (`Moments.fights`), no stand-off (R-405), JOIN_S (12 s) or longer with one missed reading allowed; the seconds
+  inside a play of either team are that play's (a fight is told once), so a row is the part no play covers, itself 12 s or longer (`under` names the
+  plays that took the rest). Both teams by `Exec.side` with the objective to kill, and question 3 for each. Sixteen stand in one fight for about a
+  quarter of a match; a quarter of that is under no play. 74 rows in 32 of the 82 matches, a middle 24 s; 158 kill attempts and 36 deaths in them.
+  "8v8" is read to the letter (his to correct: 7v7 with both runners away is no row). No decision, no card, no test (R-557).
+  Development set: 6,935 plays identical to 4af6a49 (`compare.py`), 323 Classic rows pass; beside the plays only the deaths with no spike moved
+  (1,127), the rest gained keys. Also mended: `cases.py execution-say` stopped on any play where a measure added since X1 stood out (no words for 23
+  measures in `EXEC_SAY`; it now says the measure's own). Not done, for the full run: the chances on a pressure attempt checked on unseen matches
+  (now possible: 989 lived), `cases.py attempts` and `execution` again, `execution_rows.json` (the Execution view shows none of this yet).
+
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
 ### 40. The TQs
