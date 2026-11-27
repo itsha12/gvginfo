@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765, the order of the stages R-766. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767, the order of the stages R-766. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -26,7 +26,8 @@ player met it and could reasonably have avoided it, covers skills nobody thinks 
    (R-732) and every target tried.
 
 **Every skill in use is tagged** (`data/model/skill_tags.json` on `bundle-4`; stage 2, reviewed by Denning, R-753 to
-R-765). 577 skills: every one on 4 or more bars from 7 September 2026, and six this page names. Each carries the parts
+R-765). 577 skills: every one on 4 or more bars from 7 September 2026, and six this page names; to come (R-767), the
+seven more this page names and those on 4 or more bars from 1 September. Each carries the parts
 of the sum it acts on (adds damage, stops damage, heals, prevents enchantments, removes, slows, disables, drains
 energy, cuts healing, stops disables), its trigger, its area, its cast time, what its interrupt can stop, whether it
 speeds its user up, and what the engine does with it: read, context only (known to have been used, never a why or a
@@ -91,7 +92,8 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
     Crippling Sweep, Leaping Mantis Sting, Return.
 24. **Other triggers** (R-739): casting into Shame or Diversion, attacking into Clumsiness or Ineptitude, are faults.
     Spiteful Spirit and Visions of Regret are excluded for now.
-25. **Damage-raising stances** (R-740): Frenzy or Frenzied Defense up during a spike or pressure attempt is a fault.
+25. **Damage-raising stances** (R-740, R-768): Frenzy, Frenzied Defense or Primal Rage up during a spike or pressure
+    attempt is a fault. The armour penalty of Healing Signet is context.
 26. **Cut-offs** ("too deep", "monk following", the pressure attempt, Flail's "nothing in melee reach") are set by
     the engine from the data (R-741).
 27. **Catchable skills** (R-742, R-750). A skill can be interrupted on reaction only if it takes at least the 200 ms
@@ -129,7 +131,7 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
 | Fighting in reach of their NPCs when not pushing their pit | No | NPC damage taken, against his position and the team's job |
 | Standing still when he should have kited a melee player (Rule 31) | Partly: kiting measured | Kiting as a missed chance, not only a measure |
 | Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | No | Trigger tags; his attacks and casts while the hex was on him |
-| Casting into a ready interrupt, not cancelling (Rule 28) | Partly: counted, not filtered | Only interrupted casts of listed skills, backline players |
+| Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1): an interrupted cast of a listed skill by a backline monk, the interrupt that stopped it ready when the cast began; listed on the play's row | |
 | Wrong weapon set when under attack | Partly: shield set read over the play | The weapon set at each attempt |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
 | Fell back too late, or not to his monks | No | Movement towards safety once the attempt starts, against the time he had |
@@ -178,7 +180,7 @@ in danger for a while, the cut-off from data, degen counted) is needed for quest
 | Why | Read | What it needs |
 |---|---|---|
 | Damage off-timed, not landing together | Yes | |
-| Strip missing or off-timed (Rule 14) | Yes; a fault by ruling, not yet listed | Failed spikes listed with the attack's misses (stage 1's remainder) |
+| Strip missing or off-timed (Rule 14) | Yes (stage 1): listed on each spike that did not kill, the check's result beside it; a strip in time said as good play | Which strips can be thrown on demand, from the tags (stage 3) |
 | Deep Wound missing or off-timed on the spike (R-751) | No | Deep Wound on the target against the first big hit |
 | A damage player with his skill ready who hit another target (R-751) | No | Each attacker's spike skills ready, in range, and where his damage went |
 | Enchantment prevention not used: Shadow Shroud | No | Tag the skill; read on the attempt |
@@ -290,7 +292,7 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 
 | Stage | What | Done when |
 |---|---|---|
-| 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file. Left: failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt. No full run of its own (R-766) | development set and key pass; plays unchanged |
+| 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file; failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt. No full run of its own (R-766) | development set and key pass; plays unchanged (they do) |
 | 2. The skill data | Done but for the sync: every skill in use tagged in a file of its own, `data/model/skill_tags.json` (`data/skills.json` is never edited by hand), reviewed by Denning (R-753 to R-765). Left for later: the wiki sync's missing cast times | Denning has reviewed the tagged list (he has) |
 | 3. What the records already show | Bull's knockdown, Harrier's Cripple, balling, Empathy and the other triggers, damage-raising stances, a spike into a block, ward or spirit, Deep Wound on the spike, an attacker on another target, Rule 10 and 11 removals | each join checked against the raw record (R-707); each kind checked once on unseen matches, shown beside the ruled ones (Rule 29) |
 | 4. The ledger and the pressure attempt | Each part of the sum a measured amount on every attempt, for both teams (Rule 19); the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33) |

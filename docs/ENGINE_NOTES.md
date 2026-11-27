@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-766; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-768; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1065,8 +1065,6 @@ index pointing here. Read the section for a reading before changing it, and keep
   skills that are not attacks or instant have no cast time in `data/skills.json` (the wiki sync's fault); `intr_kind` misses Disrupting Chop, whose skill
   data lacks "Interrupt" among its causes.
 
-## The old engine (retired at the close, R-323): the TQs and the causal map
-
 - The skill tags (`data/model/skill_tags.json`, `bundle-4` 37f10b4; stage 2, R-753 to R-765), checked 2026-11-27 against `data/skills.json`, the bars
   in `data/matches/` and the catalogue, before anything reads them. Holds: 577 ids, all PvP ids, names and types as the skill data; every cast time
   equal to the skill data's, the eight it lacks at 1.5 s (R-764); the scope as stated (876 matches from 7 September to 8 November, 571 skills on 4 or
@@ -1081,6 +1079,31 @@ index pointing here. Read the section for a reading before changing it, and keep
   untagged (476 of 120,606 bar slots, in 265 of 1,000 matches; 25 of them on 4 or more bars): an untagged skill is counted and listed by the run,
   never a stop and never read as doing nothing (R-460). The path stands (beside `interrupt_worth.json`; keys the in-game PvP ids). The file goes into
   `cache.DATA_DEPS` once a prepared reading leans on it.
+
+- The catalogue's stage 1, the remainder, built 2026-11-27 (`bundle-4` 4af6a49; the tag file's commit is da11306 since that day, with Twisting Fangs
+  given "cuts healing"). Failed spikes (`execution.fails`, kept as `flag_cost[rid].fails`; `python3 execution.py fails <report id> [m:ss]`; words
+  `say_fail`): every spike that did not kill, with the attack's miss of a kind he rules by name (`RULED_KINDS`, the strip: R-729, R-744), read by
+  `chance_tests` over the same seconds as X3 (a prot on the target at the first big hit, a strip ready and in range, none from 3 s before it to 1.5 s
+  after); a strip that took a prot off in those seconds is said as good play, one that came later or took no prot off is kept apart as late and is not
+  listed as a fault (the record does not say it was ready at the first hit). The check's result is said beside the fault (`ruled_check` reads the last
+  `cases.py attempts` kept in `attempts_cases.json`; that report now names the ruled kinds and which read backwards). A strip is told from the
+  reviewed tags where a skill is tagged (`execution.tags`, `is_strip`; a missing file stops the reading): the skill data lists what a skill removes
+  without saying from whom, so Wearying Strike and eight other skills that spend their user's own enchantment read as strips (3 attempt records on the
+  development set). Casts caught (`execution.caught`, `flag_cost[rid].caught`; `python3 execution.py caught <report id>`; words `say_caught`; R-743):
+  a cast by a backline monk (by his bar) of a skill on either side of the approved list, interrupted, where the interrupt that stopped it (the
+  replay's own interrupt record: interrupter and skill) was ready, in range and able to stop that kind of skill when the cast began. The measure
+  `into_ready` counts these alone. Checked against the raw record on 14 matches (R-707): all 296 interrupted casts of listed skills by backline monks
+  have an interrupt row; 257 had some enemy interrupt ready at the start, 217 the one that stopped them (the others were stopped by Lyssa's Haste,
+  Shame already on the caster, a Hammer Bash knockdown or an interrupt that came off recharge during the cast: not this fault). Each play's record
+  names its failed spikes and casts caught (`fails`, `caught`: own and their, places in the match's lists) and `say_faults` says them (R-745).
+  Development set (82 matches): 6,935 plays identical, 323 Classic rows pass; attempts and deaths as before but for those 3 records; 690 failed
+  spikes, a prot on the target at 103, the strip in time at 47, missed at 7, late or no prot off at 18; 1,375 casts caught, a median of 13 a match
+  (Guardian 486, Blessed Light 326, Healing Burst 302; by Power Spike 441, Complicate 298, Power Leak 209); `into_ready` on 654 plays where it was on
+  4,461. No full run (R-766): `FAULT_KINDS` and the check beside the strip stand on the old reading's verdicts until the run for stages 1 to 4. Still
+  read from the skill data, for stage 3 with the tags: which strips are thrown on demand (a spirit, a well or a hex that makes enchantments expire is
+  "ready" today), and `intr_kind`, which misses Disrupting Chop.
+
+## The old engine (retired at the close, R-323): the TQs and the causal map
 
 ### 40. The TQs
 - The TQs (Denning's four question categories; the learning report's section "The TQs", `tq.py`, METHODS.md "The TQs")

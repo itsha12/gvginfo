@@ -586,7 +586,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
 - The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).
 
-## Execution (R-701 to R-766; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
+## Execution (R-701 to R-768; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
 - Execution is read for both teams over the whole play (R-710); each kill attempt only up to its own outcome, the
   death or the save, so it is read before the result (R-299). The enemy's execution is scored, never a fix.
 - A spike is one package: its damage, the strip on its target and the pressure on the target's monks (interrupts,
@@ -608,7 +608,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   Faults that belong to no kill attempt (balling, Flail lock, area damage, a trigger walked into) are always listed, on
   the play's row, by kind, with a count and an amount (R-745).
 - The kinds checked (stage X3, 2026-11-25, on unseen matches): a prot, a heal and an interrupt on a spike skill missed by the defence may be told
-  as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so pressure is never told as a fault (R-713, R-285); a missed strip is a fault by his ruling, on a spike that failed (R-729, R-744; not yet listed: stage 1 of the catalogue).
+  as faults; a strip missed by the attack reads backwards and pressure on the target's monks shows no difference, so pressure is never told as a fault (R-713, R-285); a missed strip is a fault by his ruling, on a spike that failed (R-729, R-744): listed on every spike that did not kill where a prot was on the target and a strip was ready and in range, the check's result said beside it; a strip that took a prot off in time is said as good play.
 - Where a fault is said (stage X4): at a death. The three checked kinds are all the defence's, so a fault is listed
   only where a player died (R-714): on the spike that killed him, a prot, a heal, or an interrupt on one of the
   spike's skills, each in the 1.5 s from the first big hit (an interrupt from 3 s before it); on a death with no spike
@@ -634,15 +634,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   activation or swing (Distracting Shot and Savage Shot a quarter second, arrow flight left out). How long the skill
   took is the replay's own record of that cast (an attack skill lands halfway through its swing).
 - Casting into a ready interrupt is a fault only if the cast was interrupted, the skill is on the list, and generally
-  only for the backline (R-743).
+  only for the backline (R-743). As read: a backline monk's cast of a listed skill, stopped by an interrupt that was
+  ready and in range when the cast began; listed on the play's row with its count (R-745).
 - Moving and kiting (R-746): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp are faults; kiting
   is otherwise no fault ("Coward!" too, R-719, R-078); standing still when he should have kited a melee player is a
   fault. Crits and extra damage while moving are context (*Claude's reading of R-746, his to correct*).
 - Faults by his ruling (R-744): balling, more than 1 player hit by one adjacent-damage cast (R-722); Flail up over 2 s
   with nothing in melee reach (R-724); standing in area damage (R-735); attacking with Empathy on (the warrior's when
   defensive, the monk's for not removing it when offensive, R-736); casting with Backfire on (the midline; never with
-  Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy or
-  Frenzied Defense up during an attempt (R-740); Deep Wound not removed on a spike target or to prevent a death, Daze
+  Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy,
+  Frenzied Defense or Primal Rage up during an attempt (R-740, R-768; Healing Signet's armour penalty is context); Deep Wound not removed on a spike target or to prevent a death, Daze
   left on another monk (R-725); any condition left by a non-monk who carries removal (R-726).
 - An even 8v8 with no other job: both teams are read as trying to kill (R-731). Question 3 (why a team that should have
   killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
@@ -656,6 +657,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   damage; Soothing Images and Spirit Shackles stop damage (R-757, R-758). Not interrupt skills for the engine:
   Clumsiness, Ineptitude, Wandering Eye, Lyssa's Haste (R-757, R-759). Drain Delusions is energy denial only, Power
   Drain an interrupt only, Power Leech and Power Leak both (R-760).
-- Each tagged skill is read, context only or ignore (R-765). Context only for kills and deaths: speed boosts (they
+- Each tagged skill is read, context only or ignore (R-765); a skill with no tags is counted and listed by the run,
+  never read as doing nothing (R-767, R-460). Context only for kills and deaths: speed boosts (they
   bear on flag runs and on how fast defenders collapse, R-761), resurrection skills (covered by res interrupts and
   numbers, and still worth interrupting, R-762), energy skills (R-763).
