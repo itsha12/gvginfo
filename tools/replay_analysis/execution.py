@@ -543,7 +543,7 @@ def attempts(E):
             # defence: prots and heals (R-703, R-711), read at the first big hit; the monk's energy from gvg.report (out under 20, R-681: no chance)
             # A chance needs time to act (forensics.Forensics.chances, the one reading for attempts and deaths): "not healed" is never true merely because
             # he died at once; busy on a player under pressure (R-711) and out of energy (R-681) are no chance.
-            missed += F.chances(tgt, first, end, {"prot": is_prot, "heal": is_heal}, monks=monks)
+            missed += F.chances(tgt, first, end, {"prot": is_prot, "heal": is_heal}, monks=monks, died=bool(died and end < t + ATT_AFTER_S))
             # defence: interrupts on the spike's skills. Only a skill worth interrupting (R-727), by an interrupt that can stop that kind of skill, where the
             # cast took at least the time to react and the interrupt's own time to land (R-742, R-750: how long it took is the replay's own record of the
             # cast, so a half-cast spell, a Mesmer's fast cast and an attack skill's hit halfway through a quickened swing are read as they were), and the
@@ -983,7 +983,7 @@ def pressure(E, atts):
             prots_up = [F.sname(e[3]) for e in m.o.get("effects") or [] if e[2] == "e" and e[5] == tgt and e[0] is not None and e[0] <= t0 * 10
                         and (e[1] is None or e[1] >= t0 * 10) and is_prot(F.sdata(e[3]))]
             led = ledger(E, tgt, t0, t1, ep["died"])
-            missed = [_amounts(E, x, (tgt, t0, bool(ep["died"]), led)) for x in F.chances(tgt, t0, t1, {"prot": is_prot, "heal": is_heal}, monks=monks)]
+            missed = [_amounts(E, x, (tgt, t0, bool(ep["died"]), led)) for x in F.chances(tgt, t0, t1, {"prot": is_prot, "heal": is_heal}, monks=monks, died=bool(ep["died"]))]
             out.append({"t": round(t0, 1), "told": round(ep["told"], 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "kind": "pressure",
                         "target_class": "healer" if tgt in E.healer else "other", "killed": bool(ep["died"]), "how": ep["how"], "s": round(t1 - t0, 1),
                         "pact": (lambda pk: None if pk is None else m.roles[pk[0]])(F.pact_kill(tgt, t1) if ep["died"] else None),
@@ -1498,8 +1498,8 @@ def deaths(E, atts, prs=None):
                 if kind not in FAULT_KINDS: continue
                 tk, mi, _ = T[kind]
                 if tk(r): taken.append(kind)
-                elif mi(r): faults += [{"kind": kind, "by": x["by"], "skills": x["skills"], "at": x["at"], "amounts": x.get("amounts"), **({"self": True} if x.get("self") else {})} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
-                if not tk(r): begun += [[kind, n_, d_, o_] for n_, d_, o_ in r[{"prot": "prots_cast", "heal": "heals_cast"}[kind]] if -3 <= d_ <= CHANCE_S and o_ != "finished"]
+                elif mi(r): faults += [{"kind": kind, "by": x["by"], "skills": x["skills"], "at": x["at"], "amounts": x.get("amounts"), **{k_: x[k_] for k_ in ("self", "too_late") if k_ in x}} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
+                if not tk(r): begun += [[kind, n_, d_, o_] for n_, d_, o_ in r[{"prot": "prots_cast", "heal": "heals_cast"}[kind]] if o_ != "finished"]
             if "interrupt" in FAULT_KINDS:
                 for x in r["missed"]:
                     if x["kind"] != "interrupt" or x.get("at", 0) > CHANCE_S: continue
@@ -1515,10 +1515,10 @@ def deaths(E, atts, prs=None):
             d.update(first=round(bt, 1), kept=bool(kept), dmg=round(sum(tk_.values())), attackers=sorted({m.roles[x[3]] for x in rows_ if x[3] in pl}),
                      ledger=q["ledger"] if q is not None else ledger(E, a, bt, td, True))
             kinds = {k: f for k, f in (("prot", is_prot), ("heal", is_heal)) if k in FAULT_KINDS}
-            ch = [_amounts(E, c, (a, bt, True, d["ledger"])) for c in F.chances(a, bt, td, kinds)]
+            ch = [_amounts(E, c, (a, bt, True, d["ledger"])) for c in F.chances(a, bt, td, kinds, died=True)]
             taken = F.taken_in_time(a, bt, kinds, td)
             begun = [b_ for b_ in F.begun(a, bt, kinds, td) if b_[0] not in taken]
-            faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"], "amounts": c.get("amounts"), **({"self": True} if c.get("self") else {})} for c in ch if c["chance"] and c["kind"] not in taken]
+            faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"], "amounts": c.get("amounts"), **{k_: c[k_] for k_ in ("self", "too_late") if k_ in c}} for c in ch if c["chance"] and c["kind"] not in taken]
             other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked") or c.get("pressed")]
         # R-783: a death with nothing landed on him in the record lists no fault (the record does not show what killed him); and a pact kill (he died as
         # the player he had resurrected with Death Pact Signet died: the signet kills its caster) is a why of its own: no chance of his team's is read on it
@@ -1672,7 +1672,11 @@ def death_lines(d, trig=None):
     own = say_parts({"stance": d.get("stance"), "walked": d.get("walked"), "missed": [dict(x, chance=True) for x in d["faults"] if x["kind"] == "deep wound"]}, trig)
     if own: L.append(own)
     for kind in ("prot", "heal"):
-        X = [x for x in d["faults"] if x["kind"] == kind]
+        XL = [x for x in d["faults"] if x["kind"] == kind and "too_late" in x]
+        if XL: L.append(f"Too late by {d['team']}, {FAULT_SAY[kind]} (R-802): " + "; ".join(
+            f"{mine(x['by'])}{' himself' if x.get('self') else ''} began {', '.join(nm(k) for k in x['skills'])} {x['too_late']} s after " + ("the first big hit" if d["spike"] else "it began")
+            + f" and the death cut it off; he had it ready{'' if x.get('self') else ', in reach'}, his hands free, {x['at']} s after, when it would have landed" + say_amounts(x) for x in XL) + ".")
+        X = [x for x in d["faults"] if x["kind"] == kind and "too_late" not in x]
         if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])}{' himself (R-796)' if x.get('self') else ''} had {', '.join(nm(k) for k in x['skills'])} ready, {'' if x.get('self') else 'in reach, '}his hands free" + say_amounts(x) for x in X) + "; not cast on him in the time he had to see " + ("the hit" if d["spike"] else "it") + " and cast (R-716).")
     X = [x for x in d["faults"] if x["kind"] == "interrupt"]
     if X:                                                  # the spike's skills that went off, then the interrupts that were ready for them, each said once: one interrupt stops one skill
@@ -1690,7 +1694,7 @@ def death_lines(d, trig=None):
     if d.get("caught"): L.append("Cast into a ready interrupt inside this kill attempt, a fault at a death (R-789): " + " ".join(say_caught(c) for c in d["caught"]))
     if not d["faults"] and not d.get("caught") and not any(s_.get("fault") for s_ in d.get("stance") or ()) and not d.get("walked"): L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
     if d["taken"]: L.append("Done in time by a team mate, so no fault (R-715): " + ", ".join(FAULT_SAY[k] for k in d["taken"]) + ".")
-    if d.get("begun"): L.append("Begun on him in time but never landed, so not done (R-797): " + "; ".join(f"{nm(n_)} {abs(d_)} s {'before' if d_ < 0 else 'after'} " + ("the first big hit" if d["spike"] else "it began") + f" ({o_})" for _k, n_, d_, o_ in d["begun"]) + ".")
+    if d.get("begun"): L.append("Begun on him and never landed, so not done (R-797): " + "; ".join(f"{nm(n_)} {abs(d_)} s {'before' if d_ < 0 else 'after'} " + ("the first big hit" if d["spike"] else "it began") + f" ({o_})" for _k, n_, d_, o_ in d["begun"]) + ".")
     for x in d["no_chance"]:
         L.append(f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was busy on {mine(x['busy_on'])}, who was under pressure (R-711)." if x.get("busy_on")
                  else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was himself under a spike (R-747)." if x.get("spiked")

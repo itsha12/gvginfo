@@ -401,7 +401,7 @@ class Forensics:
                 if sum(d[3] for d in self.damage_on(c[5], t - 2, t)) >= PRESSED: return self.name(c[5])
         return None
 
-    def chances(self, tgt, first, end, kinds, monks=None):
+    def chances(self, tgt, first, end, kinds, monks=None, died=False):
         """R-703, R-711, R-713: for each backline monk of tgt's team, each kind in kinds ({kind: test on skill data}) he did not cast on tgt between
         first - 3 s and end: a chance (a moment from REACT_S after first, the time to see the hit and act, R-716 and R-748, to CHANCE_S after it, at which a
         ready skill of that kind, in reach, could still be cast before end, Daze doubling a spell's cast time, with his hands free, his own aftercast over,
@@ -410,7 +410,10 @@ class Forensics:
         his heals alike, R-793), else out of energy; nothing where none.
         R-796: where tgt is himself a backline monk, his own prot or heal on himself is a chance as any other monk's is (`self` on the row), on the same
         time to react, with the skills he can cast on himself (`can_self`: Infuse Health, Heal Other and Aegis are for another player); R-747 and R-790
-        speak of a monk's chances for another player and are not read against him here."""
+        speak of a monk's chances for another player and are not read against him here.
+        R-802: where tgt died at end (`died`), a monk whose cast of that kind on him began in time and was cut off by the death (cancelled as he died, or
+        finished after it: CUT_S) is read for an earlier moment at which that same skill, cast then, would have landed: a chance (`too_late`: the second he
+        did begin it, from first), else nothing (the cast is context, `begun`). A cast of his that landed, or one interrupted (R-789's matter), is none."""
         from common import backline_monk
         En = self.m.energy()
         tm = self.m.team(tgt)
@@ -421,15 +424,22 @@ class Forensics:
         out = []
         for h in monks:
             for kind, test in kinds.items():
-                if any(c[0] == h and test(self.sdata(c[1])) for c in cast): continue
-                sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid)) and (h != tgt or can_self(self.sdata(sid)))]
+                his, late = [c for c in cast if c[0] == h and test(self.sdata(c[1]))], None
+                if his:                                    # he acted: no chance of this kind, unless he died and the cast came too late to land (R-802)
+                    cut = [c for c in his if outcome(c, end) == LATE or (c[4] == "cancelled" and (c[3] is None or c[3] >= end - CUT_S))]
+                    if not died or not cut or any(landed(c, end) for c in his): continue
+                    late = min(cut, key=lambda c: c[2])
+                sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid)) and (h != tgt or can_self(self.sdata(sid)))
+                      and (late is None or sid == late[1])]
                 if not sk: continue
                 me = {"self": True} if h == tgt else {}
+                if late is not None: me["too_late"] = round(late[2] - first, 1)
                 chance = busy = out_e = spk = prs = None
                 # R-747: the spikes on the monk himself (SPIKE_DMG inside SPIKE_S from a hit on him), each from its first hit to SPIKE_S after it
                 hits = self.damage_on(h, first - SPIKE_S, first + CHANCE_S + SPIKE_S) if h != tgt else ()
                 own = [x[0] for x in hits if sum(d[3] for d in hits if x[0] <= d[0] <= x[0] + SPIKE_S) >= SPIKE_DMG]
                 for u in moments:
+                    if late is not None and u >= late[2] - 1e-6: break       # only a moment before the cast he did begin
                     dz = 2 if self.dazed_at(h, u) else 1
                     ok = [self.sname(sid) for sid, sd in sk if u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6
                           and (h == tgt or (self.dist(h, tgt, u) or 1e9) <= CAST_R) and self.ready(h, sid, sd, u, hands=False)]      # his distance to himself is nought, which is no unknown distance
@@ -445,6 +455,7 @@ class Forensics:
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance = (u, ok); break
                 if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True, **me})
+                elif late is not None: continue            # no earlier moment: his cast is context (`begun`), and no "no chance" is said of a monk who acted
                 elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": busy[1], "busy_on": busy[0], "chance": False, **me})
                 elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": spk, "spiked": True, "chance": False})
                 elif prs: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": prs, "pressed": True, "chance": False})
@@ -461,12 +472,12 @@ class Forensics:
                                                       for h in self.players(tm) for c in self._by_agent.get(h, ()))]
 
     def begun(self, a, first, kinds, end=None):
-        """R-797: the casts of the kinds in kinds begun on a in the seconds a chance is looked for that never landed (interrupted, cancelled, or finished
-        after he died at end): context beside a death, [kind, skill, seconds after first, how it ended]."""
+        """R-797: the casts of the kinds in kinds begun on a from 3 s before first to his death at end (to CHANCE_S after first where no end is given) that
+        never landed (interrupted, cancelled, or finished after he died): context beside a death, [kind, skill, seconds after first, how it ended]."""
         self.casts()
         tm = self.m.team(a)
         return sorted(([k, self.sname(c[1]), round(c[2] - first, 1), outcome(c, end)] for k, test in kinds.items() for h in self.players(tm) for c in self._by_agent.get(h, ())
-                       if self.cast_on(c, a) and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) and not landed(c, end)), key=lambda r: (r[2], r[1]))
+                       if self.cast_on(c, a) and first - 3 <= c[2] <= (first + CHANCE_S if end is None else end) and test(self.sdata(c[1])) and not landed(c, end)), key=lambda r: (r[2], r[1]))
 
     def cast_on(self, c, tgt):
         """Is cast c (a row of `casts`) a cast on player tgt? Its target is tgt; or it is a prot on the whole party (PROT_RULES `party`: Shield Guardian,
@@ -1187,7 +1198,7 @@ def death(rid, tag, role, t, F=None):
     bt, _how = F.killed_from(a, t)                       # the spike's first big hit, else the start of the pressure on him (R-749; the heaviest 2 s is retired)
     healed = sum(e[5] for e in F.ev if e[1] == "hl" and e[3] == a and e[0] is not None and bt * 10 <= e[0] <= t * 10 and isinstance(e[5], (int, float)))
     kinds = {"heal": is_heal, "prot": is_prot}
-    ch = F.chances(a, bt, t, kinds)
+    ch = F.chances(a, bt, t, kinds, died=True)
     took = F.taken_in_time(a, bt, kinds, t)              # R-715, R-797: a kind a team mate cast in time is no fault, and is not listed against the monk who held back (as execution.deaths lists them)
     miss = [c for c in ch if c["chance"] and c["kind"] not in took]
     ans["healed"] = {"q": "Was he healed at all while his monks had energy and skills available?",
@@ -1291,6 +1302,8 @@ def prot_rule(sd):
     return PROT_RULES.get((sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", ""))
 
 
+CUT_S = 0.3                 # R-802: a cast cancelled within this long of the death of the player it was for was cut off by that death (the record's tenths, and the
+                            # 0.3 s a death is matched to its kill attempt by)
 LATE = "after he died"      # R-797: how a cast ended which finished only after the player it was for had died (beside the record's finished, cancelled, interrupted)
 
 
