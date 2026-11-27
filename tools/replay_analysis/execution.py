@@ -309,7 +309,7 @@ class Exec:
             "hex_removed": g10(sum(1 for h in R.get("hex_removals", ()) if t0 <= h["t"] < t1 and h["team"] == tag and h["by"] in xr and h.get("removed"))),
             "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X) + sum(n for t, a, b, n in self._cut(self.dg_npc, t0, t1) if a in X)),
             "npc_heal": g10(sum(n for t, a, b, n in self._cut(self.hl_npc, t0, t1) if a in X)),
-            "into_ready": g10(sum(1 for c in self.caught() if c["id"] in X and t0 <= c["t"] < t1)),       # R-743: only an interrupted cast of a listed skill by a backline monk (`caught`)
+            "into_ready": g10(sum(1 for c in self.caught() if c["monk"] and c["id"] in X and t0 <= c["t"] < t1)),       # R-743: only an interrupted cast of a listed skill by a backline monk (`caught`)
             "blind_attacks": g10(blind_att),
             "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
             "drain": g10(dn_tot),
@@ -536,7 +536,7 @@ def attempts(E):
             pr_d = [h for h in monks if F.has(h, "c", "dazed", first)]
             prots_up = [F.sname(e[3]) for e in m.o.get("effects") or [] if e[2] == "e" and e[5] == tgt and e[0] is not None and e[0] <= first * 10
                         and (e[1] is None or e[1] >= first * 10) and is_prot(F.sdata(e[3]))]
-            on_tgt = [c for h in theirs for c in F._by_agent.get(h, ()) if c[5] == tgt and first - ATT_BEFORE_S <= c[2] <= end]
+            on_tgt = [c for h in theirs for c in F._by_agent.get(h, ()) if F.cast_on(c, tgt) and first - ATT_BEFORE_S <= c[2] <= end]
             prot_cast = [c for c in on_tgt if is_prot(F.sdata(c[1]))]
             heal_cast = [c for c in on_tgt if is_heal(F.sdata(c[1]))]
             missed = []
@@ -583,7 +583,7 @@ def attempts(E):
             # the sum (R-734): each part a measured amount, from the spike's first hit to its outcome; and beside each missed chance what it would have stopped or added
             led = ledger(E, tgt, t, end, bool(died and end < t + ATT_AFTER_S), first)
             for x in missed:
-                _amounts(E, x)
+                _amounts(E, x, (tgt, first, bool(died and end < t + ATT_AFTER_S), led))
                 if x["kind"] == "strip" and led.get("stopped") is not None:
                     up = {k.replace(" PvP", "") for k in prots_up}
                     x["amount"] = sum(b[2] for b in led["stopped"]["by"] if b[1] and b[1].replace(" PvP", "") in up)
@@ -641,6 +641,7 @@ def say_attempt(r, trig=None):
         if x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
         elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
         elif x.get("spiked"): L.append(f"Not a chance: {x['by']} was himself under a spike (R-747).")
+        elif x.get("pressed"): L.append(f"Not a chance: {x['by']} was himself under pressure (R-790).")
     return " ".join(x for x in L if x)
 
 
@@ -740,15 +741,176 @@ def say_ledger(g, who="He"):
     return " ".join(L)
 
 
-def _amounts(E, row):
-    """R-734: beside a missed chance, what it would have stopped or added, measured and not ranked: what a cast of that skill gave that player on average this
-    match (`Exec.per_use`). On a prot or a heal, each ready skill's healing and prevention a cast; on an interrupt, the damage a cast of the skill that went
-    off did for its caster. Added to the row as `amounts`; a skill gvg.report cannot measure (R-704 c) or he never cast this match is None, never nought."""
+WOULD_BALANCE = 60          # "would he have lived" is told only where the parts of the sum explain the death to within this (the sum balances within 60 on 88% of spikes)
+ENCH_LONGER = 1.2           # a weapon set that lengthens enchantments adds a fifth (the sets' `ench`, gvg.report's)
+DIVINE_FAVOR = 3.2          # a Monk spell cast on an ally heals him this much for each rank of its caster's Divine Favor
+_USUAL = {}
+
+
+def usual_rank(name, attr):
+    """The middle rank among the players who carry this skill in the matches that count and whose rank in its attribute gvg.report has: read where it has
+    none for this caster (a third of the monks have no Protection Prayers rank; R-785: a limit he accepted), and said as such. None where nobody's is known."""
+    if not _USUAL:
+        import glob, json, os, statistics
+        from common import REPO, TRAIN_FROM, skill_row
+        by = collections.defaultdict(list)
+        for f in sorted(glob.glob(os.path.join(REPO, "data", "matches", "20*.json"))):
+            if os.path.basename(f)[:7] < TRAIN_FROM[:7]: continue
+            d = json.load(open(f, encoding="utf-8"))
+            for mt in (d["matches"] if isinstance(d, dict) else d):
+                for p_ in mt.get("players") or []:
+                    at = p_.get("attrs") or {}
+                    for sid in p_.get("bar") or []:
+                        r = skill_row(sid) if sid else None
+                        if r and r.get("attr") in at: by[((r.get("name") or "").replace(" (PvP)", ""), r["attr"])].append(at[r["attr"]])
+        _USUAL.update({k: int(statistics.median_low(v)) for k, v in by.items()})
+        _USUAL[None] = None
+    return _USUAL.get((name, attr))
+
+
+def prot_would(E, h, skill, tgt, cast_at, died, led):
+    """R-784, R-785, R-791: what the prot `skill`, begun by monk h on tgt at cast_at (the moment of his missed chance), would have stopped and healed of
+    what then landed on tgt, by the skill's own rule (`forensics.PROT_RULES`) at h's rank in its attribute (gvg.report's; the usual rank of those who
+    carry the skill where it has none: `usual`), from the second it would have landed to the end of the attempt's sum or of the skill. The sum is walked
+    again, event by event as `ledger` lays it out (hits, degen, Deep Wound, the heals that landed), once as it was and once with the prot on him:
+        stopped   what the prot takes off the hits (a block: its chance times what an attack of that attacker did on average this match, R-791)
+        healed    what the prot heals of itself and adds to the heals that landed, as far as he had the health missing to take it; with a Monk spell
+                  its caster's Divine Favor on the cast
+        lives     where he died: would he have been above nought at every moment to the end, on what landed? None where the parts of the sum do not
+                  explain the death (WOULD_BALANCE): not told, never guessed (R-460). `left`: the lowest it leaves him (below nought: how far short)
+    An upper bound (R-785): attackers change target when they see a prot, and what would have landed on him after the second he died is in no
+    record. None where the skill has no rule; `unread` where his health is not in the replay there, or (`rank` None) no rank is known for the skill:
+    said, never a nought (R-460)."""
+    from forensics import prot_rule, _act
+    import movepower
+    F, m = E.F, E.m
+    sid = next((x for x in (m.A[h].get("bar") or []) if x and F.sname(x) == skill), None)
+    sd = F.sdata(sid) if sid is not None else {}
+    rule = prot_rule(sd)
+    if rule is None: return None
+    if not led or led.get("start") is None: return {"rule": True, "unread": True}
+    name, ty = tname(F, sid), sd.get("type") or ""
+    mine = movepower._ranks().get((E.rid, m.nm(h))) or {}
+    rank, usual = mine.get(sd.get("attr")), False
+    if rank is None: rank, usual = usual_rank(name, sd.get("attr")), True
+    if rank is None: return {"rule": True, "unread": True, "rank": None}
+    def val(k):
+        if isinstance(k, (int, float)): return float(k)
+        v = next((p_["values"] for p_ in sd.get("prog") or [] if p_.get("name") == k), None)
+        if v is None: raise KeyError(f"prot_would: {name} has no figure named {k!r} in the skill data")       # R-460
+        return float(v[min(int(rank), len(v) - 1)])
+    land = cast_at + _act(sd.get("activation")) * (2 if "Spell" in ty and F.dazed_at(h, cast_at) else 1)
+    dur = val(rule["dur"])
+    i_ = F.sample(h, cast_at)
+    w_ = F._track(h)[3][i_] if i_ is not None else -1
+    if "Enchantment" in ty and w_ is not None and 0 <= w_ < len(F.sets.get(h) or ()) and F.sets[h][w_].get("ench"): dur *= ENCH_LONGER
+    s0, s1 = led["from"], led["to"]
+    off = land + dur
+    if rule.get("ends_on_attack"): off = min(off, next((u for u in E.att.get(tgt, ()) if u > land), off))
+    fx = _fx(E)
+    hexed = any(x[4] == "h" and x[0] <= land <= x[1] for x in fx.get(tgt, ()))
+    if rule.get("needs") == "hex" and not hexed: off = land - 1
+    if rule.get("needs") == "hex or condition" and not hexed and not any(e[2] == "c" and e[5] == tgt and e[0] is not None and e[0] <= land * 10 and (e[1] is None or e[1] >= land * 10) for e in m.o.get("effects") or ()): off = land - 1
+    # the events of the sum, as `ledger` lays them out: (second, order, kind, amount, the hit)
+    ev = [(x[0], 0, "hit", x[1], x) for x in F.hits_on(tgt) if s0 < x[0] <= s1]
+    ev += [(float(r[0]), 0, "degen", r[1], None) for r in m.degen().cut(tgt, s0, s1)]
+    F.deep_wound_at(tgt, s0)
+    for a_, b_ in F._dw.get(tgt, ()):
+        v = F.max_health(tgt, a_ - .6)
+        c_ = min(DEEP_WOUND_MAX, DEEP_WOUND_SHARE * v) if v else float(DEEP_WOUND_MAX)
+        if s0 < a_ <= s1: ev.append((a_, 0, "dw", c_, None))
+        if s0 < b_ <= s1 and not (died and b_ >= s1 - .2): ev.append((b_ + .05, 2, "back", c_, None))
+    ev += [(u, 1, "heal", n, None) for u, _h, n in E.hl.get(tgt, ()) if s0 < u <= s1]
+    add = []                                               # what the prot heals of itself, as events of their own
+    if "Spell" in ty and (sd.get("prof") or "") == "Monk" and h != tgt and not rule.get("party") and mine.get("Divine Favor") and land <= s1: add.append((land, 1, "prot", DIVINE_FAVOR * mine["Divine Favor"], None))
+    if rule.get("regen"):
+        u = land + 1
+        while u <= min(off, s1) + 1e-6: add.append((u, 1, "prot", 2 * val(rule["regen"]), None)); u += 1
+    if rule.get("end_heal") and land <= off <= s1: add.append((off, 1, "prot", val(rule["end_heal"]), None))
+    mx = led.get("max")
+    kind = rule["kind"]
+    n_hex = sum(1 for x in fx.get(tgt, ()) if x[4] == "h" and x[0] <= land <= x[1] and (F.sdata(x[6]).get("prof") or "") == "Necromancer") if rule.get("per_hex") else 0
+    def walk(on):
+        st = {"k": 0, "used": False, "blind": {}}
+        hp, lo, early, stopped, healed = float(led["start"]), None, False, 0.0, 0.0
+        for u, _o, k, n, x in sorted(ev + (add if on else []), key=lambda r: (r[0], r[1])):
+            cap = F.max_health(tgt, u) or mx or hp
+            up = on and land - 1e-6 <= u <= off + 1e-6
+            if k in ("heal", "back", "prot"):
+                got = max(0.0, min(n, cap - hp)); hp += got
+                if k == "prot": healed += got
+                elif k == "heal" and up and kind == "share" and rule.get("more"):
+                    g2 = max(0.0, min(n * val(rule["more"]) / 100, cap - hp)); hp += g2; healed += g2
+            else:
+                s_ = h_ = 0.0
+                if up and k == "hit":
+                    _t, _n, src, cls, direct, cast_t, resp, crit = x
+                    if kind == "block":
+                        if cls == "attack" and not (rule.get("first") and st["used"]) and (rule.get("only") != "enchanted" or any(y[4] == "e" and y[0] <= u <= y[1] for y in fx.get(src, ()))):
+                            p_ = rule["p"] * ((1 - rule["p"]) ** st["k"] if rule.get("first") else 1)
+                            s_ = min(n, p_ * (F.attack_avg(src) or n))
+                            if rule.get("first") and rule.get("heal"): h_ = p_ * val(rule["heal"])
+                            st["k"] += 1
+                        if rule.get("armor") and resp: s_ += resp * (1 - s_ / n) * (1 - 2 ** (-val(rule["armor"]) / 40))
+                    elif kind == "full":
+                        if (cls == "attack" and rule.get("attacks")) or (cls == "spell" and direct and cast_t is not None and cast_t >= land - 1e-6 and rule.get("spells")): s_ = n      # a spell already cast on him as the prot lands is not stopped
+                    elif kind in ("next", "each"):
+                        if not st["used"]:
+                            s_ = min(n, val(rule["cap"])); h_ = s_ if rule.get("heal") else 0.0
+                            st["used"] = kind == "next"
+                    elif kind == "fatal":
+                        if not st["used"] and hp - n <= 0: s_, h_, st["used"] = n, (val(rule["heal"]) if rule.get("heal") else 0.0), True
+                    elif kind == "share": s_ = n * val(rule["less"]) / 100
+                    elif kind == "cap": s_ = max(0.0, n - rule["share"] * cap)
+                    elif kind == "ramp": st["k"] += 1; s_ = min(n, rule["step"] * st["k"])
+                    elif kind == "armor":
+                        if resp:
+                            arm = rule["per_hex"] * n_hex if rule.get("per_hex") else val(rule["armor"])
+                            s_ = resp - (resp / 1.41 if rule.get("no_crit") and crit else resp) * 2 ** (-arm / 40)
+                    elif kind == "flat": s_ = min(n, val(rule["cut"]))
+                    elif kind == "bond":
+                        if cls in ("attack", "spell", "skill") and st["k"] < rule["hits"]:
+                            st["k"] += 1
+                            if n > rule["over"]: h_ = val(rule["heal"])
+                    elif kind == "onhit":
+                        if not st["used"]: h_, st["used"] = val(rule["heal"]), True
+                    elif kind == "blind":
+                        if cls == "attack":
+                            if st["blind"].get(src, -1) >= u: s_ = rule["miss"] * n
+                            st["blind"][src] = u + rule["blind_s"]
+                hp -= n - s_; stopped += s_
+                if h_:
+                    got = max(0.0, min(h_, cap - hp)); hp += got; healed += got
+            if hp <= 0 and u < s1 - .3: early = True
+            if u >= land - 1e-6: lo = hp if lo is None else min(lo, hp)
+        return hp, lo, early, stopped, healed
+    hp1, lo1, _e1, stopped, healed = walk(True)
+    out = {"rule": True, "stopped": round(stopped), "healed": round(healed), "rank": int(rank), **({"usual": True} if usual else {})}
+    if died:
+        hp0, _lo0, early0, _s0, _h0 = walk(False)
+        if early0 or hp0 > WOULD_BALANCE: out["lives"] = None
+        else:
+            left = min(lo1 if lo1 is not None else hp1, hp1 - max(hp0, 0.0))
+            out["lives"], out["left"] = bool(left > 0), round(left)
+    return out
+
+
+def _amounts(E, row, ctx=None):
+    """R-734: beside a missed chance, what it would have stopped or added, measured and not ranked. On a heal: what a cast of that skill gave that player
+    on average this match (`Exec.per_use`: its healing and prevention a cast). On a prot (R-784: gvg.report credits prots with little, so that figure
+    read 20 to 60): what the skill's own rule would have stopped and healed of what landed on him, and where he died whether he would have lived
+    (`prot_would`; ctx = (the target, the second the chance is read from, did he die, the attempt's sum); the old figure is kept as `gave`). On an
+    interrupt: the damage a cast of the skill that went off did for its caster. Added to the row as `amounts`; a skill gvg.report cannot measure
+    (R-704 c), one he never cast this match, or a prot with no rule is None, never nought."""
     if row["kind"] in ("prot", "heal") and row.get("id") is not None:
         out = {}
         for nm in row.get("skills") or ():
             u = E.per_use(row["id"], nm)
-            out[nm] = None if u is None or u.get("unmeasured") or "healing" not in u else {"healed": u["healing"], "stopped": u["stopped"], "casts": u["casts"]}
+            gave = None if u is None or u.get("unmeasured") or "healing" not in u else {"healed": u["healing"], "stopped": u["stopped"], "casts": u["casts"]}
+            if row["kind"] == "prot":
+                w = prot_would(E, row["id"], nm, ctx[0], ctx[1] + row["at"], ctx[2], ctx[3]) if ctx is not None and row.get("chance") and row.get("at") is not None else None
+                out[nm] = None if w is None else dict(w, gave=gave)
+            else: out[nm] = gave
         row["amounts"] = out
     elif row["kind"] == "interrupt" and row.get("caster") is not None:
         u = E.per_use(row["caster"], row["skill"])
@@ -759,6 +921,20 @@ def _amounts(E, row):
 def say_amounts(x):
     """The amount beside a missed chance, in words (R-734)."""
     nm = lambda s_: s_.replace(" PvP", "")
+    if x["kind"] == "prot" and any((v or {}).get("rule") for v in (x.get("amounts") or {}).values()):
+        P = []
+        for k in x.get("skills") or ():
+            v = (x.get("amounts") or {}).get(k)
+            if v is None: P.append(f"{nm(k)}: no rule for it, not read")
+            elif v.get("unread"): P.append(f"{nm(k)}: not read, " + ("no rank is known for it" if "rank" in v else "his health is not in the replay here"))
+            else:
+                w = f"{nm(k)} about {v['stopped']} stopped" + (f" and {v['healed']} healed" if v["healed"] else "")
+                if v.get("usual"): w += f" (at the usual rank, {v['rank']}: his is not in gvg.report's record)"
+                if "lives" in v:
+                    w += (": the sum of this death does not balance, so whether he would have lived is not told" if v["lives"] is None
+                          else f": enough to outlast what landed before he died, about {v['left']} health left" if v["lives"] else f": not enough to outlast what landed, {abs(v['left'])} short")
+                P.append(w)
+        return ("; what each would have stopped and healed of what landed, by the skill's own rule (R-784, an upper bound): " + "; ".join(P)) if P else ""
     if x["kind"] in ("prot", "heal"):
         A = x.get("amounts") or {}
         P = []
@@ -803,10 +979,11 @@ def pressure(E, atts):
             for _, n, _k, src in rows:
                 if isinstance(src, int) and src in m.PL: by[src] += n
             sp = [r for r in atts if r["tm"] == tm and r.get("id") == tgt and r["t"] - ATT_BEFORE_S <= t1 and t0 <= r["t"] + r["s"]]
-            on_tgt = [c for h in theirs for c in F._by_agent.get(h, ()) if c[5] == tgt and t0 - ATT_BEFORE_S <= c[2] <= t1]
+            on_tgt = [c for h in theirs for c in F._by_agent.get(h, ()) if F.cast_on(c, tgt) and t0 - ATT_BEFORE_S <= c[2] <= t1]
             prots_up = [F.sname(e[3]) for e in m.o.get("effects") or [] if e[2] == "e" and e[5] == tgt and e[0] is not None and e[0] <= t0 * 10
                         and (e[1] is None or e[1] >= t0 * 10) and is_prot(F.sdata(e[3]))]
-            missed = [_amounts(E, x) for x in F.chances(tgt, t0, t1, {"prot": is_prot, "heal": is_heal}, monks=monks)]
+            led = ledger(E, tgt, t0, t1, ep["died"])
+            missed = [_amounts(E, x, (tgt, t0, bool(ep["died"]), led)) for x in F.chances(tgt, t0, t1, {"prot": is_prot, "heal": is_heal}, monks=monks)]
             out.append({"t": round(t0, 1), "told": round(ep["told"], 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "kind": "pressure",
                         "target_class": "healer" if tgt in E.healer else "other", "killed": bool(ep["died"]), "how": ep["how"], "s": round(t1 - t0, 1),
                         "pact": (lambda pk: None if pk is None else m.roles[pk[0]])(F.pact_kill(tgt, t1) if ep["died"] else None),
@@ -814,7 +991,7 @@ def pressure(E, atts):
                         "spikes": [r["t"] for r in sp], "after_spike": next((r["t"] for r in sp if r["t"] <= ep["told"] <= r["t"] + r["s"]), None),
                         "prots_up": prots_up, "prots_cast": [[F.sname(c[1]), round(c[2] - t0, 1), c[4]] for c in on_tgt if is_prot(F.sdata(c[1]))],
                         "heals_cast": [[F.sname(c[1]), round(c[2] - t0, 1), c[4]] for c in on_tgt if is_heal(F.sdata(c[1]))],
-                        "missed": missed, "ledger": ledger(E, tgt, t0, t1, ep["died"])})
+                        "missed": missed, "ledger": led})
     return sorted(out, key=lambda r: r["t"])
 
 
@@ -840,6 +1017,7 @@ def say_pressure(r, trig=None):
         elif x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
         elif x.get("out_of_energy"): L.append(f"Not a chance: {x['by']} was out of energy (R-681).")
         elif x.get("spiked"): L.append(f"Not a chance: {x['by']} was himself under a spike (R-747).")
+        elif x.get("pressed"): L.append(f"Not a chance: {x['by']} was himself under pressure (R-790).")
     return " ".join(L)
 
 
@@ -990,12 +1168,13 @@ def say_trigger(r, objective=None):
 
 
 def balling(E):
-    """Rule 7 (R-722): a team should almost never have more than 1 player hit by one adjacent-damage cast. Every cast of a skill that damages its target and
-    the foes adjacent to or near him (the tags: adds damage on a foe, area target and adjacent or nearby, not an effect that stays on the ground, no
-    trigger but Mind Burn's), finished on an enemy player, whose hits landed on two or more players in one tenth; and every scythe attack that did (a
-    player who carries a scythe attack: his hits on two or more players in one tenth, outside those casts). A row is the team that was hit (`tm`):
-    the players, the skill, `reach` (adjacent or nearby), `amount` what landed on the players beyond the cast's own target. The fault is the adjacent
-    reach (his rule names adjacent damage); a nearby reach is kept and counted apart."""
+    """Rule 7 (R-722, R-787): a team should almost never have more than 1 player hit by one cast that reaches adjacent foes, nearby foes or foes in the
+    area. Every cast of a skill that damages its target and the foes adjacent to him, near him or in the area (the tags: adds damage on a foe, area
+    target and adjacent, nearby or in the area, no trigger but Mind Burn's), finished on an enemy player, whose hits landed on two or more players in
+    one tenth; and every scythe attack that did (a player who carries a scythe attack: his hits on two or more players in one tenth, outside those
+    casts). An effect that stays on the ground (a storm, Ray of Judgment) is standing in area damage (R-735) and never balling too (R-793). A row is
+    the team that was hit (`tm`): the players, the skill, `reach` (adjacent, nearby or in the area), `amount` what landed on the players beyond the
+    cast's own target. Every reach is the fault (R-787; until then the adjacent reach alone, his rule naming adjacent damage)."""
     F, m = E.F, E.m
     F.casts()
     pl, role, out = set(m.PL), m.roles, []
@@ -1004,7 +1183,7 @@ def balling(E):
     def add(t, a, target, hit, skill, reach):
         tm = m.team(target)
         out.append({"t": round(t, 1), "tm": tm, "team": m.tag[tm], "ids": sorted(hit), "who": sorted(role[x] for x in hit), "n": len(hit), "kind": "balled", "skill": skill, "by": role[a],
-                    "target": role[target], "reach": reach, "amount": round(sum(v for k, v in hit.items() if k != target)), "fault": reach == "adjacent"})
+                    "target": role[target], "reach": reach, "amount": round(sum(v for k, v in hit.items() if k != target)), "fault": True})
     for a in pl:
         rows = by_src.get(a) or []
         ts, used = [r[0] for r in rows], set()
@@ -1013,7 +1192,7 @@ def balling(E):
             tg = tag_of(F, c[1])
             if (not tg or tg["reads"] != "read" or "adds damage" not in tg["parts"] or tg["on"].get("adds damage") != "foe" or tg["lasting"] or "target" not in tg["area"]
                     or (tg["trigger"] and tg["trigger"] != ["more energy"])): continue
-            reach = "adjacent" if "adjacent" in tg["area"] else "nearby" if "nearby" in tg["area"] else None
+            reach = "adjacent" if "adjacent" in tg["area"] else "nearby" if "nearby" in tg["area"] else "in the area" if "in the area" in tg["area"] else None
             if reach is None: continue
             win = rows[bisect.bisect_left(ts, c[3] - BALL_S):bisect.bisect_right(ts, c[3] + BALL_LAND_S)]
             first = next((r[0] for r in win if r[1] == c[5]), None)
@@ -1034,7 +1213,8 @@ def balling(E):
 def say_balled(r):
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     return (f"{clk(r['t'])} the {r['by']}'s {r['skill']} on the {r['target']} hits {r['n']} of {r['team']} ({', '.join(r['who'])}): {r['amount']} landed on the "
-            + ("other" if r["n"] == 2 else "others") + (" (a fault: they stood adjacent, R-722)." if r["fault"] else " (they stood nearby; counted apart, his rule names adjacent damage)."))
+            + ("other" if r["n"] == 2 else "others") + {"adjacent": " (a fault: they stood adjacent, R-722).", "nearby": " (a fault: they stood within its reach, nearby, R-787).",
+                                                          "in the area": " (a fault: they stood within its reach, in the area, R-787)."}[r["reach"]])
 
 
 def tagged_parts(E, atts, prs, trig):
@@ -1190,7 +1370,7 @@ def even_rows(E, plays, ATT=None, PRS=None, D=None, FL=None, CT=None):
                 if PRS is not None: sd["pressure"] = [i for i, r in enumerate(PRS) if r["tm"] == tm and t0 <= r["t"] <= t1]
                 if D is not None: sd["deaths"] = [i for i, d in enumerate(D) if d["tm"] == tm and t0 <= d["t"] <= t1]
                 if FL is not None: sd["fails"] = [i for i, d in enumerate(FL) if d["tm"] == tm and t0 <= d["t"] <= t1]
-                if CT is not None: sd["caught"] = [i for i, c in enumerate(CT) if c["tm"] == tm and t0 <= c["t"] <= t1]
+                if CT is not None: sd["caught"] = [i for i, c in enumerate(CT) if c["fault"] and c["tm"] == tm and t0 <= c["t"] <= t1]
                 row["sides"][m.tag[tm]] = sd
             out.append(row)
     return out
@@ -1198,12 +1378,15 @@ def even_rows(E, plays, ATT=None, PRS=None, D=None, FL=None, CT=None):
 
 # ------------------------------------------------------------------ casting into a ready interrupt (the catalogue's stage 1; R-743)
 def caught(E):
-    """Every cast into a ready interrupt that is a fault by R-743: the cast was interrupted, the skill is one worth interrupting (either side of the approved
-    list, `worth`), the caster is a backline monk (told by his bar, R-698: "generally only for the backline"), and the interrupt that stopped it was ready
-    when the cast began: off recharge, in range, its thrower free to act, and able to stop that kind of skill (the reading of an interrupt chance on a spike
-    skill: `can_stop`, `intr_range`, `Forensics.ready`). The interrupter and his skill are the replay's own interrupt record for that cast. A cast stopped
-    by something he could not see ready as he began (a knockdown, Shame already on him, an interrupt that came off recharge during the cast, a skill that is
-    no interrupt thrown on demand) is not this fault. Tied to no kill attempt, so it is listed on the play's row by kind (R-745). A record: no play reads it."""
+    """Every cast into a ready interrupt, of every player (R-743 as amended by R-789): the cast was interrupted, the skill is one worth interrupting (either
+    side of the approved list, `worth`), and the interrupt that stopped it was ready when the cast began: off recharge, in range, its thrower free to
+    act, and able to stop that kind of skill (the reading of an interrupt chance on a spike skill: `can_stop`, `intr_range`, `Forensics.ready`). The
+    interrupter and his skill are the replay's own interrupt record for that cast. A cast stopped by something he could not see ready as he began (a
+    knockdown, Shame already on him, an interrupt that came off recharge during the cast, a skill that is no interrupt thrown on demand) is not one.
+    Each row is context, kept for the report (how often a player, a non-monk too, casts into interrupts over the match: `caught_by_player`). `monk`:
+    the caster is a backline monk (told by his bar, R-698; R-743: "generally only for the backline"). `fault`: a backline monk's, caught inside the
+    kill attempt that killed a player of his team, himself or the player he was casting for (R-789, R-793): set by `deaths`, which lists it on that
+    death; False until then. A record: no play reads it."""
     F, m = E.F, E.m
     F.casts()
     listed = worth("offensive") | worth("defensive") | worth("flag")
@@ -1212,7 +1395,8 @@ def caught(E):
     for i in m.o.get("interrupts") or []:
         if i[0] is not None: irs[i[3]].append((i[0] / 10, i[1], i[2]))
     out = []
-    for a in sorted(E.monk):
+    for a in sorted(m.PL):
+        if m.team(a) not in (1, 2): continue
         foes = {f: _role_skills(F, f, is_intr) for f in F.enemies(a)}
         for c in F._by_agent.get(a, ()):
             if c[4] != "interrupted" or c[1] is None or c[3] is None: continue
@@ -1225,16 +1409,26 @@ def caught(E):
             ready = [sid for sid, sd in foes[by] if (sk is None or sid == sk) and can_stop(sd, sd_c) and (F.dist(by, a, t) or 1e9) <= intr_range(F, by, sd, t) and _ready(F, by, sid, sd, t)]
             if not ready: continue
             tm = m.team(a)
-            out.append({"t": round(t, 1), "id": a, "tm": tm, "team": m.tag[tm], "who": m.roles[a], "skill": F.sname(c[1]),
-                        "on": m.roles[c[5]] if c[5] in m.PL and c[5] != a else None, "by": [F.name(by), F.sname(ready[0])]})
+            out.append({"t": round(t, 1), "id": a, "tm": tm, "team": m.tag[tm], "who": m.roles[a], "skill": F.sname(c[1]), "monk": a in E.monk, "fault": False,
+                        "on": m.roles[c[5]] if c[5] in m.PL and c[5] != a else None, "on_id": c[5] if c[5] in m.PL and c[5] != a else None, "by": [F.name(by), F.sname(ready[0])]})
     return sorted(out, key=lambda r: r["t"])
+
+
+def caught_by_player(CT):
+    """R-789: the casts caught by a ready interrupt over the whole match, by player (non-monks too): context for the report, never a fault of its own.
+    [{team, who, monk, n, at_deaths, skills: {skill: count}}], the most caught first."""
+    by = collections.OrderedDict()
+    for c in CT:
+        r = by.setdefault(c["id"], {"team": c["team"], "who": c["who"], "monk": c["monk"], "n": 0, "at_deaths": 0, "skills": collections.Counter()})
+        r["n"] += 1; r["at_deaths"] += bool(c["fault"]); r["skills"][c["skill"].replace(" PvP", "")] += 1
+    return sorted(({**r, "skills": dict(r["skills"].most_common())} for r in by.values()), key=lambda r: (-r["n"], r["team"], r["who"]))
 
 
 def say_caught(c):
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     nm = lambda s_: s_.replace(" PvP", "")
     return (f"{clk(c['t'])} {c['team']}'s {c['who']} cast {nm(c['skill'])}" + (f" on {c['on']}" if c.get("on") else "") + f" into a ready interrupt and was interrupted: {c['by'][0]} had "
-            + f"{nm(c['by'][1])} ready and in range when the cast began (R-743).")
+            + f"{nm(c['by'][1])} ready and in range when the cast began (R-743" + ("; inside the kill attempt of a death, so a fault, R-789)." if c.get("fault") else "; context, no fault away from a death, R-789)."))
 
 
 # ------------------------------------------------------------------ the faults said on a death and on a play (stage X4; R-713, R-714, R-715)
@@ -1309,7 +1503,7 @@ def deaths(E, atts, prs=None):
                     if x["kind"] != "interrupt" or x.get("at", 0) > CHANCE_S: continue
                     if x.get("taken"): taken.append("interrupt")
                     elif x.get("chance"): faults.append({"kind": "interrupt", "skill": x["skill"], "by": [who_what(b_) for b_ in x["by"]], "at": x["at"], "amount": x.get("amount"), **({"tried": x["tried"]} if x.get("tried") else {})})
-            other = [x for x in r["missed"] if x.get("busy_on") or x.get("out_of_energy") or x.get("spiked")]
+            other = [x for x in r["missed"] if x.get("busy_on") or x.get("out_of_energy") or x.get("spiked") or x.get("pressed")]
         else:
             # R-749: the pressure attempt that ended in this death, in place of the heaviest 2 s on him; where he was not kept in danger, from the first
             # thing landed on him after he was last found above the line (`Forensics.death_start`). One reading of where it starts for both.
@@ -1319,10 +1513,10 @@ def deaths(E, atts, prs=None):
             d.update(first=round(bt, 1), kept=bool(kept), dmg=round(sum(tk_.values())), attackers=sorted({m.roles[x[3]] for x in rows_ if x[3] in pl}),
                      ledger=q["ledger"] if q is not None else ledger(E, a, bt, td, True))
             kinds = {k: f for k, f in (("prot", is_prot), ("heal", is_heal)) if k in FAULT_KINDS}
-            ch = [_amounts(E, c) for c in F.chances(a, bt, td, kinds)]
+            ch = [_amounts(E, c, (a, bt, True, d["ledger"])) for c in F.chances(a, bt, td, kinds)]
             taken = F.taken_in_time(a, bt, kinds)
             faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"], "amounts": c.get("amounts")} for c in ch if c["chance"] and c["kind"] not in taken]
-            other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked")]
+            other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked") or c.get("pressed")]
         # R-783: a death with nothing landed on him in the record lists no fault (the record does not show what killed him); and a pact kill (he died as
         # the player he had resurrected with Death Pact Signet died: the signet kills its caster) is a why of its own: no chance of his team's is read on it
         pk = F.pact_kill(a, td)
@@ -1335,9 +1529,15 @@ def deaths(E, atts, prs=None):
             d["stance"], d["walked"] = src.get("stance") or [], src.get("walked") or []
             faults += [{"kind": "deep wound", "by": x["by"], "skills": x["skills"], "at": x["at"], "gives": x.get("gives")} for x in src["missed"] if x["kind"] == "deep wound" and x.get("chance")]
             if r is not None: d["into"], d["deep_wound"] = r.get("into"), r.get("deep_wound")
+        # R-789, R-793: a backline monk's cast caught inside the kill attempt that killed this player (from ATT_BEFORE_S before its start to the death),
+        # his own or one for him, is a fault, listed on the death; every other cast caught is context
+        d["caught"] = []
+        if not d.get("pact") and not d.get("nothing_landed"):
+            for i, c in enumerate(E.caught()):
+                if c["monk"] and c["tm"] == tm and (c["id"] == a or c.get("on_id") == a) and d["first"] - ATT_BEFORE_S <= c["t"] <= td: c["fault"] = True; d["caught"].append(dict(c, place=i))
         d["faults"] = faults
         d["taken"] = sorted(set(taken))
-        d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"out_of_energy": True})}
+        d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"pressed": True} if x.get("pressed") else {"out_of_energy": True})}
                           for x in other if x["kind"] in FAULT_KINDS]
         out.append(d)
     for d in out:                                          # on the death of the player a pact was made on: whose death his own brought
@@ -1483,11 +1683,13 @@ def death_lines(d, trig=None):
                  + ((lambda A: " What a cast of each did for its caster on average this match (R-734): " + ", ".join(f"{k} about {v}" for k, v in A.items()) + "." if A else "")(
                      collections.OrderedDict((nm(x["skill"]), x["amount"]["damage"]) for x in X if x.get("amount"))))
                  + (" Thrown and missed: " + "; ".join(tried) + "." if tried else ""))
-    if not d["faults"] and not any(s_.get("fault") for s_ in d.get("stance") or ()) and not d.get("walked"): L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
+    if d.get("caught"): L.append("Cast into a ready interrupt inside this kill attempt, a fault at a death (R-789): " + " ".join(say_caught(c) for c in d["caught"]))
+    if not d["faults"] and not d.get("caught") and not any(s_.get("fault") for s_ in d.get("stance") or ()) and not d.get("walked"): L.append(f"No checked chance missed by {d['team']}" + (" (a prot, a heal or an interrupt on a spike skill)." if d["spike"] else " (a prot or a heal; with no spike there is no spike skill to interrupt)."))
     if d["taken"]: L.append("Done in time by a team mate, so no fault (R-715): " + ", ".join(FAULT_SAY[k] for k in d["taken"]) + ".")
     for x in d["no_chance"]:
         L.append(f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was busy on {mine(x['busy_on'])}, who was under pressure (R-711)." if x.get("busy_on")
                  else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was himself under a spike (R-747)." if x.get("spiked")
+                 else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was himself under pressure, 250 or more landed on him in the 2 s before (R-790)." if x.get("pressed")
                  else f"Not a chance ({FAULT_SAY[x['kind']]}): {mine(x['by'])} was out of energy (R-681).")
     return L
 
@@ -1516,8 +1718,7 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
         return (f" {name}'s spikes that did not kill: {len(L)}, {sum(1 for d in L if d['faults'])} with a strip missed (a fault by his ruling, R-744)"
                 + f", {sum(1 for d in L if d['taken'])} with the strip in time." + (" " + " ".join(say_fail(d) for d in W) if W else ""))
     def play_level(sd, name):                              # faults tied to no kill attempt, always listed on the play's row by kind, with their count (R-745)
-        L = [CT[i] for i in (x.get("caught") or {}).get(sd, ())] if CT is not None else []
-        out = f" {name}, casts into a ready interrupt (R-743): {len(L)}. " + " ".join(say_caught(c) for c in L) if L else ""
+        out = ""                                           # a cast caught is a fault only at a death (R-789) and is said on that death (`death_lines`); the rest is context (`caught_by_player`)
         obj = x.get("objective") if sd == "own" else {"offence": "defence", "defence": "offence"}.get(x.get("objective"))
         W = [TRG[i] for i in (x.get("walked") or {}).get(sd, ())] if TRG is not None else []
         for k in TRIGGER_SAY:                              # stage 3: by kind, each with its count and amount (R-745)
@@ -1526,7 +1727,8 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
             n, amt = sum(w.get("n", 1) for w in K), sum(w.get("amount") or 0 for w in K)
             out += f" {name}, {TRIGGER_SAY[k]}: {n}" + (f", {amt} damage" if amt else "") + ". " + " ".join(say_trigger(w, obj) for w in K)
         Bl = [BAL[i] for i in (x.get("balled") or {}).get(sd, ())] if BAL is not None else []
-        for reach, words in (("adjacent", "more than one player hit by one adjacent-damage cast (R-722)"), ("nearby", "more than one player hit by one cast that reaches nearby foes (counted apart)")):
+        for reach, words in (("adjacent", "more than one player hit by one adjacent-damage cast (R-722)"), ("nearby", "more than one player hit by one cast that reaches nearby foes (R-787)"),
+                             ("in the area", "more than one player hit by one cast that reaches foes in the area (R-787)")):
             K = [b for b in Bl if b["reach"] == reach]
             if K: out += f" {name}, {words}: {len(K)}, {sum(b['amount'] for b in K)} damage on the players beyond the target. " + " ".join(say_balled(b) for b in K[:6]) + (f" And {len(K) - 6} more." if len(K) > 6 else "")
         return out
@@ -1597,8 +1799,8 @@ def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, 
             Xs, Ys, tm = set(X), set(Y), p["tm"]
             if FL is not None: r["fails"] = {"own": [i for i, d in enumerate(FL) if d["tm"] == tm and d["id"] in Ys and t0 <= d["t"] <= t1],
                                              "their": [i for i, d in enumerate(FL) if d["tm"] == 3 - tm and d["id"] in Xs and t0 <= d["t"] <= t1]}
-            if CT is not None: r["caught"] = {"own": [i for i, c in enumerate(CT) if c["id"] in Xs and t0 <= c["t"] <= t1],
-                                              "their": [i for i, c in enumerate(CT) if c["id"] in Ys and t0 <= c["t"] <= t1]}
+            if CT is not None: r["caught"] = {"own": [i for i, c in enumerate(CT) if c["fault"] and c["id"] in Xs and t0 <= c["t"] <= t1],       # the faults alone (R-789): `deaths` has set them
+                                              "their": [i for i, c in enumerate(CT) if c["fault"] and c["id"] in Ys and t0 <= c["t"] <= t1]}
         for key, L_ in (("attempts", ATT), ("pressure", PRS)):
             if L_ is None: continue
             X, Y, t0, t1 = E.players(p)
@@ -1637,7 +1839,12 @@ if __name__ == "__main__":
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
         A_ = attempts(E_); T_ = triggers(E_)
-        tagged_parts(E_, A_, pressure(E_, A_), T_)
+        P_ = pressure(E_, A_)
+        tagged_parts(E_, A_, P_, T_)
+        if a[0] == "caught":                               # the faults at a death are set by `deaths` (R-789); then every player's count, the context for the report
+            deaths(E_, A_, P_)
+            for r in caught_by_player(E_.caught()): print(f"{r['team']} {r['who']}{' (backline monk)' if r['monk'] else ''}: {r['n']} caught, {r['at_deaths']} at a death; " + ", ".join(f"{k} {v}" for k, v in r["skills"].items()))
+            print()
         for d in (fails(E_, A_) if a[0] == "fails" else E_.caught()):
             if d["t"] >= frm: print((say_fail(d, T_) if a[0] == "fails" else say_caught(d)) + "\n")
         sys.exit()

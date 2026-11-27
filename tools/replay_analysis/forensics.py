@@ -46,6 +46,10 @@ POS_DEFAULT = 5
 SNARES = {"crippled", "dazed", "blind", "weakness"}
 CHANCE_S = 1.5              # a monk's chance to prot or heal a player under a burst is looked for from its first big hit to this long after (Claude's draft; stage X3 reads it)
 PRESSED = 250               # an ally who took this much in the 2 s before is under pressure: a monk casting on him is busy (R-711), not a missed chance
+EARSHOT_R = 1010            # a prot cast on the whole party (Shield Guardian) reaches the allies in earshot of its caster: cast within this of a player, it is a prot on him
+SPELL_FLY_S = 1.5           # a hit no attack explains is a spell's where its source finished a damaging cast on this player inside this long before it (a projectile's flight)
+HIT_JOIN_S = 0.15           # a hit is a cast's own where it lands inside this long of the cast finishing (4,860 of 4,968 in the tenth it finished, ENGINE_NOTES section 44)
+SWING_LOOK_S = 3.0          # a hit is an attack's where its attacker began an attack inside this long before it (the slowest swing 2.03 s, and an arrow's flight)
 REACT_S = 0.2               # R-716: the time to see a thing and act on it, before the cast itself; ping left out. The clock starts at the first big hit for a prot or
                             # a heal and at the cast's start for an interrupt (R-748)
 AFTERCAST_S = 0.75          # knowledge/casting.md: a finished spell, signet or ritual holds its caster this long (no aftercast on an attack skill, stance, shout or flash)
@@ -117,6 +121,7 @@ class Forensics:
         self.healers = {a for a in self.m.PL if healer(self.m, a)}
         self._casts = None
         self._dazed = None
+        self._hits, self._attack_avg = None, {}
         self._trk, self._dng, self._hl, self._mo, self._dw, self._tk, self._spk = {}, {}, {}, None, None, None, None
 
     # ---- basics
@@ -400,14 +405,15 @@ class Forensics:
         """R-703, R-711, R-713: for each backline monk of tgt's team, each kind in kinds ({kind: test on skill data}) he did not cast on tgt between
         first - 3 s and end: a chance (a moment from REACT_S after first, the time to see the hit and act, R-716 and R-748, to CHANCE_S after it, at which a
         ready skill of that kind, in reach, could still be cast before end, Daze doubling a spell's cast time, with his hands free, his own aftercast over,
-        no spike on himself and not out of energy), else busy on a player under pressure (R-711), else himself under a spike (R-747), else out of energy;
-        nothing where none."""
+        no spike on himself, not himself under pressure and not out of energy), else busy on a player under pressure (R-711), else himself under a spike
+        (R-747), else himself under pressure (R-790: PRESSED or more landed on him in the 2 s before, as R-711 reads a player under pressure; his prots and
+        his heals alike, R-793), else out of energy; nothing where none."""
         from common import backline_monk
         En = self.m.energy()
         tm = self.m.team(tgt)
         monks = monks if monks is not None else [h for h in self.players(tm) if backline_monk(self.m, h)]
         self.casts()
-        cast = [c for h in monks for c in self._by_agent.get(h, ()) if c[5] == tgt and first - 3 <= c[2] <= end]
+        cast = [c for h in monks for c in self._by_agent.get(h, ()) if self.cast_on(c, tgt) and first - 3 <= c[2] <= end]
         moments = [round(first + REACT_S + i / 10, 2) for i in range(int(round((CHANCE_S - REACT_S) * 10)) + 1)]
         out = []
         for h in monks:
@@ -415,7 +421,7 @@ class Forensics:
                 if any(c[0] == h and test(self.sdata(c[1])) for c in cast): continue
                 sk = [(sid, self.sdata(sid)) for sid in (self.m.A[h].get("bar") or []) if sid and test(self.sdata(sid))]
                 if not sk: continue
-                chance = busy = out_e = spk = None
+                chance = busy = out_e = spk = prs = None
                 # R-747: the spikes on the monk himself (SPIKE_DMG inside SPIKE_S from a hit on him), each from its first hit to SPIKE_S after it
                 hits = self.damage_on(h, first - SPIKE_S, first + CHANCE_S + SPIKE_S) if h != tgt else ()
                 own = [x[0] for x in hits if sum(d[3] for d in hits if x[0] <= d[0] <= x[0] + SPIKE_S) >= SPIKE_DMG]
@@ -430,12 +436,14 @@ class Forensics:
                         continue
                     if self.in_aftercast(h, u): continue
                     if any(s_ <= u <= s_ + SPIKE_S for s_ in own): spk = spk or ok; continue
+                    if h != tgt and sum(d[3] for d in self.damage_on(h, u - 2, u)) >= PRESSED: prs = prs or ok; continue      # R-790
                     ex = En.at(h, u) if En.ok else None
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance = (u, ok); break
                 if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True})
                 elif busy: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": busy[1], "busy_on": busy[0], "chance": False})
                 elif spk: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": spk, "spiked": True, "chance": False})
+                elif prs: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": prs, "pressed": True, "chance": False})
                 elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": out_e, "out_of_energy": True, "chance": False})
         return out
 
@@ -444,7 +452,80 @@ class Forensics:
         chance is looked for, as on a kill attempt): the team took that chance, so it is no fault and is not listed against a monk who held back."""
         self.casts()
         tm = self.m.team(a)
-        return [k for k, test in kinds.items() if any(c[5] == a and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
+        return [k for k, test in kinds.items() if any(self.cast_on(c, a) and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
+
+    def cast_on(self, c, tgt):
+        """Is cast c (a row of `casts`) a cast on player tgt? Its target is tgt; or it is a prot on the whole party (PROT_RULES `party`: Shield Guardian,
+        cast on nobody) by a team mate within earshot of him as it began."""
+        if c[5] == tgt: return True
+        r = prot_rule(self.sdata(c[1]))
+        return bool(r and r.get("party") and c[0] in self.m.PL and tgt in self.m.PL and self.m.team(c[0]) == self.m.team(tgt) and (c[0] == tgt or (self.dist(c[0], tgt, c[2]) or 1e9) <= EARSHOT_R))
+
+    def hits_on(self, a):
+        """Every hit on player a by the other team's players and NPCs, in time order, each told as an attack, a spell or neither (R-791: a block stops
+        attacks, Aegis attacks and spells, Spell Breaker spells): [(second, amount, source, class, direct, cast second, armoured, critical)]. gvg.report
+        writes the parts of one hit as rows of their own (an attack skill's added damage comes as a row that ignores armour beside the blow itself), so
+        the rows of one source on him in one tenth are one hit: `amount` their sum, `armoured` the part that respects armour (its kinds damage and
+        critical), `critical` where a row is one. The replays name no skill on a hit, so `class` is read from what its source was doing (checked
+        against the raw record, R-707: ENGINE_NOTES section 44): "attack" where he finished an attack skill inside HIT_JOIN_S of it (an attack skill is
+        a cast in the record and starts no attack), where a row is critical, where an armoured hit follows an attack he began in the SWING_LOOK_S
+        before it, and for an NPC's armoured hit; "spell" ("skill" for a signet or a touch skill) where he finished a cast that damages a foe inside
+        HIT_JOIN_S of it, or one on this player in the SPELL_FLY_S before it (a projectile; a hit that comes a moment after its cast), `direct` where
+        that cast was on this player and `cast second` when it finished; else "other" (a hex's own damage, damage that stays at a spot)."""
+        if self._hits is None:
+            import execution as EX
+            m, pl = self.m, set(self.m.PL)
+            self.casts()
+            fin, att = {}, collections.defaultdict(list)
+            for src, L in self._by_agent.items():
+                rows = []
+                for c in L:
+                    if c[4] != "finished" or c[3] is None or c[1] is None: continue
+                    sd = self.sdata(c[1]); ty = sd.get("type") or ""
+                    if "Attack" in ty: rows.append((c[3], "attack", c[5])); continue
+                    tg = EX.tags().get((sd.get("name") or "").replace(" (PvP)", ""))
+                    if (tg["on"].get("adds damage") == "foe") if tg else ("damage" in (sd.get("desc") or "").lower() and "foe" in (sd.get("target") or "").lower()):
+                        rows.append((c[3], "spell" if "Spell" in ty else "skill", c[5]))
+                rows.sort(key=lambda r: r[0]); fin[src] = ([r[0] for r in rows], rows)
+            for e in self.ev:
+                if e[1] == "at" and e[0] is not None: att[e[2]].append(e[0] / 10)
+            grp = collections.OrderedDict()                    # (target, source, tenth) -> the rows of one hit
+            for e in self.ev:
+                if e[1] != "dm" or e[0] is None or e[3] not in pl or not isinstance(e[2], int) or e[2] >= len(m.A) or not isinstance(e[5], (int, float)) or e[5] <= 0: continue
+                if m.team(e[2]) in (None, m.team(e[3])): continue
+                grp.setdefault((e[3], e[2], e[0]), []).append((e[5], e[6] if len(e) > 6 else None))
+            self._hits = collections.defaultdict(list)
+            rank = {"attack": 3, "spell": 2, "skill": 1}
+            for (tg_, src, t10), rows in grp.items():
+                t, n = t10 / 10, sum(r[0] for r in rows)
+                resp, crit = sum(r[0] for r in rows if r[1] != "armor_ignoring"), any(r[1] == "critical" for r in rows)
+                cls, direct, cast_t = None, False, None
+                T, R = fin.get(src) or ((), ())
+                near = R[bisect.bisect_left(T, t - HIT_JOIN_S - 1e-6):bisect.bisect_right(T, t + HIT_JOIN_S + 1e-6)]
+                if near:
+                    r = max(near, key=lambda r: (rank[r[1]], r[2] == tg_))
+                    cls, direct, cast_t = r[1], r[2] == tg_, r[0]
+                if cls != "attack" and crit: cls, direct, cast_t = "attack", False, None
+                if cls is None and resp:
+                    A = att.get(src) or ()
+                    j_ = bisect.bisect_right(A, t + 1e-6)
+                    if src not in pl or (j_ and A[j_ - 1] >= t - SWING_LOOK_S): cls = "attack"
+                if cls is None:
+                    late = [r for r in R[bisect.bisect_left(T, t - SPELL_FLY_S - 1e-6):bisect.bisect_right(T, t + 1e-6)] if r[1] != "attack" and r[2] == tg_]
+                    if late: cls, direct, cast_t = late[-1][1], True, late[-1][0]
+                self._hits[tg_].append((t, n, src, cls or "other", direct, cast_t, resp, crit))
+            for a_ in self._hits: self._hits[a_].sort(key=lambda x: x[0])
+            by = collections.defaultdict(list)
+            for L in self._hits.values():
+                for x in L:
+                    if x[3] == "attack": by[x[2]].append(x[1])
+            self._attack_avg = {k: sum(v) / len(v) for k, v in by.items()}
+        return self._hits.get(a) or []
+
+    def attack_avg(self, src):
+        """What an attack of this source that landed on a player did on average this match (R-791: a block is an average), or None where none landed."""
+        self.hits_on(src)
+        return self._attack_avg.get(src)
 
     def trigger_rows(self):
         """The hits that are a hex's own doing: damage a player took from a hex on him that punishes what he did (the tags: a hex that adds damage on a foe
@@ -1137,10 +1218,77 @@ def death(rid, tag, role, t, F=None):
     return ans
 
 
-def is_prot(sd): return bool(set(sd.get("causes") or []) & {"Block", "Damage Reduction"}) and "all" in (sd.get("target") or "").lower()
+# What each prot does to the hits that land on the player it is on (R-784, R-785, R-791: his seven kinds; the rule for each skill approved by Denning). Read by
+# `execution.prot_would` (what a missed prot would have stopped). A value in quotes is the skill's own figure of that name at its caster's rank (the skill
+# data's `prog`); a number is the skill's text. `dur` is how long it stays up. Kinds:
+#   block   each attack that lands while it is up is stopped with chance `p` (`first`: it ends at the first block; `only` enchanted: attacks by enchanted
+#           foes alone; `armor`: armour too on what gets through; `ends_on_attack`: gone when its holder attacks; `regen`: health regeneration in pips)
+#   full    every attack (`attacks`) and every spell cast on him (`spells`) stopped in full
+#   next    the next hit negated up to `cap` (`heal`: and the same healed; `needs` hex: only where a hex was on him to remove)
+#   each    the same on every hit
+#   fatal   the hit that would kill him negated (`heal`: and that much healed)
+#   share   every hit cut by `less` per cent and every heal that lands raised by `more` per cent
+#   cap     no attack or spell takes more than `share` of his maximum health
+#   ramp    `step` less on the first hit, twice that on the second, and so on
+#   armor   `armor` more armour against the hits that respect armour (`per_hex`: for each Necromancer hex on him; `no_crit`: no critical hits)
+#   flat    every hit cut by `cut` (`end_heal`: healed as it ends)
+#   bond    `heal` for each of the next `hits` attacks or spells that does more than `over`
+#   onhit   `heal` at the next hit
+#   blind   the attacker who strikes him misses `miss` of his attacks for `blind_s` seconds
+# `chance` False: counted where it is up, never a missed chance (R-791: Protector's Defense, the shouts and chants). Wards and spirits have no rule (no ward
+# area and no spirit position in the replays); Aura of Stability stops no damage (a knockdown stopped, no amount); Vital Weapon is left out.
+PROT_RULES = {
+    "Guardian": {"kind": "block", "p": .5, "dur": "Duration"},
+    "Pensive Guardian": {"kind": "block", "p": .5, "dur": "Duration", "only": "enchanted"},
+    "Weapon of Warding": {"kind": "block", "p": .5, "dur": "Duration", "regen": "Health regeneration", "ends_on_attack": True},
+    "Shield of Deflection": {"kind": "block", "p": .75, "dur": "Duration", "armor": "+ Armor rating"},
+    "Shield Guardian": {"kind": "block", "p": .75, "dur": "Duration", "first": True, "heal": "Healing", "party": True},
+    "Magnetic Surge": {"kind": "block", "p": 1.0, "dur": "Duration", "first": True},
+    "Aegis": {"kind": "full", "dur": "Duration", "attacks": True, "spells": True},
+    "Spell Breaker": {"kind": "full", "dur": "Duration", "spells": True},
+    "Reversal of Fortune": {"kind": "next", "cap": "Maximum healing", "dur": 8, "heal": True},
+    "Life Sheath": {"kind": "next", "cap": "Maximum healing", "dur": 8, "heal": True},
+    "Mark of Protection": {"kind": "each", "cap": "Maximum healing", "dur": 10, "heal": True},
+    "Divine Intervention": {"kind": "fatal", "dur": 10, "heal": "Healing"},
+    "Judge's Intervention": {"kind": "fatal", "dur": 10},
+    "Angelic Bond": {"kind": "fatal", "dur": 10, "heal": "Healing"},
+    "Reversal of Damage": {"kind": "next", "cap": "Max damage returned", "dur": 8},
+    "Reverse Hex": {"kind": "next", "cap": "Damage reduction", "dur": "Duration", "needs": "hex"},
+    "Aura of Faith": {"kind": "share", "less": "% less damage", "more": "% extra Healing", "dur": 3},
+    "Protective Spirit": {"kind": "cap", "share": .10, "dur": "Duration"},
+    "Shield of Absorption": {"kind": "ramp", "step": 5, "dur": "Duration"},
+    "Shield of Regeneration": {"kind": "armor", "armor": "Armor", "regen": "Health regeneration", "dur": "Duration"},
+    "Stone Sheath": {"kind": "armor", "armor": "+ Armor rating", "dur": "Duration", "no_crit": True},
+    "Convert Hexes": {"kind": "armor", "per_hex": 10, "dur": "Duration"},
+    "Resilient Weapon": {"kind": "armor", "armor": 24, "regen": "Health regeneration", "dur": "Duration", "needs": "hex or condition"},
+    "Shielding Hands": {"kind": "flat", "cut": "Damage reduction", "dur": 8, "end_heal": "Healing"},
+    "Spirit Bond": {"kind": "bond", "heal": "Healing", "over": 50, "hits": 10, "dur": 8},
+    "Ballad of Restoration": {"kind": "onhit", "heal": "Health gain", "dur": 10, "chance": False},
+    "Weapon of Shadow": {"kind": "blind", "dur": "Duration", "miss": .9, "blind_s": 5},
+    "Protector's Defense": {"kind": "block", "p": .75, "dur": "Duration", "chance": False},
+    "\"Stand Your Ground!\"": {"kind": "armor", "armor": 24, "dur": "Duration", "chance": False},
+    "\"They're on Fire!\"": {"kind": "share", "less": "% less damage", "dur": 10, "chance": False},
+}
+NO_PROT = {"Ward Against Melee", "Displacement", "Shelter", "Union", "Fertile Season", "Aura of Stability", "Vital Weapon"}     # R-791: left out, or no amount
+
+
+def prot_rule(sd):
+    """The rule of this skill in PROT_RULES, by its name without " (PvP)" (the replays write "Shield Guardian PvP"), or None."""
+    return PROT_RULES.get((sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", ""))
+
+
+def is_prot(sd):
+    """A prot a player casts on an ally in answer to what is landing on him: a skill with a rule in PROT_RULES that can be a missed chance (R-791: Aegis,
+    Life Sheath, Shield of Absorption, Aura of Faith and Spell Breaker among them, which the skill data's causes missed; Spirit Bond, a prot that only
+    heals, R-784). A skill with no rule that R-791 leaves out is none; any other (untagged: Xinrae's Weapon, Life Bond) is read from the skill data as
+    before and has no amount."""
+    r = prot_rule(sd)
+    if r is not None: return r.get("chance", True)
+    if (sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", "") in NO_PROT: return False
+    return bool(set(sd.get("causes") or []) & {"Block", "Damage Reduction"}) and "all" in (sd.get("target") or "").lower()
 def is_heal(sd):
     """A heal on an ally: heals, is no prot (Shielding Hands is a prot that heals too) and removes nothing (Dismiss Condition heals only on a removal)."""
-    if not ("Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower() and not is_prot(sd)): return False
+    if prot_rule(sd) is not None or not ("Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower() and not is_prot(sd)): return False
     d = (sd.get("desc") or "").lower()
     return not (sd.get("removes") or []) or d.find("heal") < d.find("remov")       # Blessed Light heals first; Dismiss Condition heals only on a removal
 
