@@ -42,11 +42,17 @@ missed chance what it would have stopped or added. `pressure` keeps the pressure
 while; it reads every death with no spike, in place of the heaviest 2 s). Each play's record names the attempts made inside it, so question 3 is read
 attempt by attempt (R-732, `say_q3`), with the enemy's credit apart (R-733). `even_rows` keeps the even 8v8's execution-only rows (R-731).
 
+The readings from positions (the catalogue's stage 5; R-724, R-735, R-741, R-746, R-803, R-804): `positions` keeps the faults tied to no kill attempt
+(Flail lock, standing in area damage from the third hit, should have kited), listed on the play's row (R-745); `position_parts` adds to every kill attempt
+the target's place against his own front line (too deep), the monk who followed a too-deep player, the attack's snared frontline (a why) and the crits
+that landed on him while moving (context). The cut-offs come from the data (`cases.py positions`).
+
 Usage:  python3 execution.py <report id> [m:ss]            the execution record of a match's plays (from the second given)
         python3 execution.py attempts <report id> [m:ss]   every kill attempt in sentences
         python3 execution.py pressure <report id> [m:ss]   every pressure attempt in sentences
         python3 execution.py even <report id> [m:ss]       the even 8v8s' rows: both teams read as trying to kill (question 3)
-        python3 execution.py deaths <report id> [m:ss]     every death with the checked chances his team missed"""
+        python3 execution.py deaths <report id> [m:ss]     every death with the checked chances his team missed
+        python3 execution.py positions <report id> [m:ss]  the readings from positions (stage 5): Flail lock, area damage, should have kited, each attempt's place"""
 import bisect, collections, sys
 from common import SPIKE_BURST, backline_monk
 
@@ -1310,6 +1316,305 @@ def say_parts(r, trig=None):
         elif dw["on"] or (dw["at"] is not None and dw["at"] <= CHANCE_S): L.append("Deep Wound was on him " + ("at the first big hit." if dw["on"] else f"{dw['at']} s after the first big hit."))
     for x in r.get("elsewhere") or ():
         L.append(f"The {x['who']} was in reach with {', '.join(nm(k) for k in x['ready'])} off recharge and put {x['dmg']} on the {x['on']} in those seconds.")
+    pl_ = say_place(r)                                     # stage 5: his place, the monk who followed, standing in area damage, should have kited, the attack's snared frontline
+    if pl_: L.append(pl_)
+    return " ".join(L)
+
+
+# ------------------------------------------------------------------ readings from positions (the catalogue's stage 5; R-724, R-735, R-741, R-746, R-803, R-804)
+FLAIL_LOCK_S = 2            # R-724: a warrior in Flail for more than this long with nothing in melee reach (MELEE_R, measured: ENGINE_NOTES section 44)
+POS_STEP_S = 0.5            # a position comes about once a second: reach is read every half second, from the sample nearest to it
+AREA_BEAT_S = 0.25          # a hit of an effect that stays on the ground lands a whole number of its beats after its cast finished, to within this
+AREA_FROM_HIT = 3           # R-803: standing in area damage is a fault from his third hit of it (the first cannot be avoided, the second lets him finish his cast)
+STOOD_GAP_S = 3.0           # should have kited: a melee hit on him counts where another landed on him inside this long before it (the slowest swing 2.03 s) ...
+                            # ... and at least REACT_S before it (R-716: the time to see the first and act); hits no further apart than this are one row
+DEEP_PAST = 1200            # too deep (R-741, R-804): a player this far past his own team's front line at the first big hit. From the data (`cases.py positions`): the
+                            # one cut-off that best tells who dies from who survives; on the development set 47.6% of the attempts at or past it kill, 22.4% short of it
+FOLLOW_PAST = 400           # monk following (R-741, R-804): a backline monk this far past his own front line, behind a player who is too deep. The same rule on the
+                            # attempts on backline monks, by the monk's own distance past the front line: 50.8% of those at or past it kill, 24.4% short of it
+SNARED_MIN_S = 1.0          # a frontline attacker snared and out of melee reach of the target for less than this is not said
+POSITION_FAULTS = ()        # too deep and monk following are whys nobody ruled a fault: named a fault only once they pass the check on unseen matches (R-713;
+                            # `cases.py positions`, section B). On the development set neither passes (too deep +5.2 points like with like, -0.2 to +10.2; monk
+                            # following -6.4): the full run decides. Flail lock, standing in area damage and should have kited are faults by his rulings (R-744)
+
+
+_AREA = {}
+
+
+def area_skill(F, sid):
+    """(how long it lasts, the seconds between its hits) for a skill whose damage stays at a spot on the ground (the tags' `lasting`, adds damage on a foe; a
+    trap goes off once and is none), else None. Both from the skill's own text; a text with no length stops the reading (R-460)."""
+    import re
+    name = tname(F, sid)
+    if name not in _AREA:
+        tg, sd, v = tags().get(name), F.sdata(sid), None
+        if tg and tg["reads"] == "read" and tg["lasting"] and tg["on"].get("adds damage") == "foe" and "Trap" not in (sd.get("type") or ""):
+            d = sd.get("desc") or ""
+            secs, beat = re.search(r"(\d+) seconds", d), re.search(r"every (\d+) seconds", d)
+            if not secs: raise ValueError(f"{name}: an effect that stays on the ground with no length in its text (R-460)")
+            v = (int(secs.group(1)), int(beat.group(1)) if beat else 1)
+        _AREA[name] = v
+    return _AREA[name]
+
+
+def _slows(name):
+    """Is this a hex that slows the foe it is on (the tags; R-738's skills are left out, `not_snare`)?"""
+    tg = tags().get(name)
+    return bool(tg and tg["reads"] == "read" and "slows" in tg["parts"] and tg["on"].get("slows") == "foe" and not tg["not_snare"])
+
+
+def _snare_at(E, a, t):
+    """What slows player a at t: "Crippled" and the slowing hexes on him, by name."""
+    out = ["Crippled"] if any(s0 <= t <= s1 for s0, s1 in E.crip.get(a, ())) else []
+    return out + sorted({x[2] for x in _fx(E).get(a, ()) if x[4] == "h" and x[0] <= t <= x[1] and _slows(x[2])})
+
+
+def _down_at(E, a, t):
+    """Is player a knocked down at t (a knockdown holds him 2 s, as `Forensics.ready` reads it)?"""
+    if getattr(E, "_kd", None) is None:
+        E._kd = collections.defaultdict(list)
+        for k in E.m.o.get("knockdowns") or []:
+            if k[0] is not None: E._kd[k[2]].append(k[0] / 10)
+    return any(k <= t <= k + 2 for k in E._kd.get(a, ()))
+
+
+def area_hits(E, single=False):
+    """The hits of every cast that stays on the ground, by the player they landed on: [(caster, player, skill, [(second, amount)])], a cast's hits in time
+    order. The replay names no skill on a hit, so the hits of such a cast are its caster's damage rows on an enemy player a whole number of the skill's
+    beats after the cast finished (to within AREA_BEAT_S), for as long as it lasts (`area_skill`), of the one amount most of those rows share (the effect
+    does the same to him at every beat; a spell of the caster's own among them has another amount), and the rows for less on the very tenth those fall
+    on (a prot on him cut the hit). One row at a whole second is as likely another
+    spell of his, so a cast is read on a player from two such hits (`single`: from one, for the check against gvg.report's recaps, R-707). A row is one
+    cast's only: an earlier cast takes it first."""
+    F, m, M = E.F, E.m, E.M
+    F.casts()
+    by_src, out = collections.defaultdict(list), []
+    for t, s_, g, n in E.dm: by_src[s_].append((t, g, n))
+    for a in m.PL:
+        rows = by_src.get(a) or []
+        if not rows: continue
+        ts, used = [r[0] for r in rows], set()
+        for c in sorted((c for c in F._by_agent.get(a, ()) if c[4] == "finished" and c[3] is not None and c[1] is not None and c[3] < M.over), key=lambda c: c[3]):
+            sk = area_skill(F, c[1])
+            if not sk: continue
+            secs, beat = sk
+            per = collections.defaultdict(list)
+            for i in range(bisect.bisect_left(ts, c[3] + beat - AREA_BEAT_S), bisect.bisect_right(ts, c[3] + secs + AREA_BEAT_S)):
+                t, g, n = rows[i]
+                k = round((t - c[3]) / beat)
+                if i not in used and 1 <= k <= secs // beat and abs(t - c[3] - k * beat) <= AREA_BEAT_S: per[g].append((k, t, n, i))
+            for g, L in per.items():
+                amt = collections.Counter(x[2] for x in L).most_common(1)[0][0]
+                beats = {}
+                for k, t, n, i in L:
+                    if n == amt and k not in beats: beats[k] = (t, n, i)
+                if len(beats) < (1 if single else 2): continue
+                at = {round((t - c[3] - k * beat) * 10) for k, (t, _n, _i) in beats.items()}          # the tenth of the beat its hits fall on
+                for k, t, n, i in L:                       # a hit on that same tenth for less: a prot on him cut it
+                    if n < amt and k not in beats and round((t - c[3] - k * beat) * 10) in at: beats[k] = (t, n, i)
+                used.update(h[2] for h in beats.values())
+                out.append((a, g, tname(F, c[1]), [beats[k][:2] for k in sorted(beats)]))
+    return out
+
+
+def _states(m, a, t):
+    """The states of player a at the position samples either side of second t (i idle, m moving, a attacking, c casting, k knocked down, d dead), or None
+    where there is none within 3 s on a side."""
+    T = m.TR.get(str(a))
+    if not T: return None
+    i = bisect.bisect_right(T["t"], round(t * 10))
+    if i == 0 or i >= len(T["t"]) or T["t"][i] - T["t"][i - 1] > 30: return None
+    return T["st"][i - 1], T["st"][i]
+
+
+def positions(E):
+    """The faults read from positions that belong to no kill attempt (the catalogue's stage 5), each a row always listed on the play's row by kind, with its
+    count and amount (R-745). A row is the player's own (`tm` his team):
+      flail   Flail lock (R-724): a warrior in Flail for more than FLAIL_LOCK_S with nothing of the enemy, player or NPC, in melee reach (MELEE_R); `s` the
+              seconds it lasted, `nearest` how near the nearest enemy came in them
+      area    standing in area damage (R-735, R-803): the hits of one cast that stays on the ground (`area_skill`) on one player, from his third on (`n`,
+              `amount`; `hits` all of them). The replay names no skill on a hit: the hits of such a cast are its caster's rows on a player a whole number
+              of beats after the cast finished (AREA_BEAT_S), of the one amount most of them share (a spell of his own among them has another). `down` and
+              `snared`: how many of the counted hits found him knocked down or slowed: context beside the fault, not an excuse (R-803)
+      stood   should have kited (R-746, R-792, R-804): a player not of the frontline hit by a melee attacker in melee reach while standing still (the
+              position samples either side of the hit not moving), not casting and not knocked down, another melee hit having landed on him between REACT_S
+              and STOOD_GAP_S before (he had seen it); never while that attacker has Bull's Strike off recharge or Harrier's Grasp up or off recharge, where
+              moving is itself the fault. Hits no further apart than STOOD_GAP_S are one row: `n`, `amount`, `s`
+    Every row is a fault by his rulings (`fault`)."""
+    from pressure import MELEE
+    F, m, M = E.F, E.m, E.M
+    F.casts()
+    pl, role, fx, out = set(m.PL), m.roles, _fx(E), []
+    def row(t, a, kind, **kw): out.append({"t": round(t, 1), "tm": m.team(a), "team": m.tag[m.team(a)], "id": a, "who": role[a], "kind": kind, **kw, "fault": True})
+    # Flail lock
+    for a in pl:
+        st = [x for x in fx.get(a, ()) if x[2] == "Flail" and x[4] == "s" and x[0] < M.over]
+        if not st: continue
+        foes = [b for b in range(len(m.A)) if (b in pl and m.team(b) != m.team(a)) or (b not in pl and m.A[b].get("npc") and m.A[b].get("team") not in (None, m.team(a)))]
+        for x in st:
+            t0, t1, run = x[0], min(x[1], M.over), None
+            def close(u, run):
+                if run is not None and u - run[0] > FLAIL_LOCK_S: row(run[0], a, "flail", n=1, s=round(u - run[0], 1), nearest=None if run[1] is None else round(run[1]))
+            u = t0
+            while u <= t1 + 1e-6:
+                if not F.alive(a, u): break
+                near = min((d_ for d_ in (F.dist(a, b, u) for b in foes if F.alive(b, u)) if d_ is not None), default=None)
+                if near is None or near > MELEE_R: run = [u, near] if run is None else [run[0], near if run[1] is None else run[1] if near is None else min(run[1], near)]
+                else: close(u, run); run = None
+                u += POS_STEP_S
+            close(min(u, t1), run)
+    # standing in area damage
+    for a, g, name, hits in area_hits(E):
+        late = hits[AREA_FROM_HIT - 1:]
+        if late: row(late[0][0], g, "area", skill=name, by=role[a], hits=len(hits), n=len(late), amount=round(sum(h[1] for h in late)),
+                     down=sum(1 for h in late if _down_at(E, g, h[0])), snared=sum(1 for h in late if _snare_at(E, g, h[0])))
+    # should have kited
+    carry = lambda b, name: [(sid, F.sdata(sid)) for sid in (m.A[b].get("bar") or []) if sid and tname(F, sid) == name]
+    bulls, hgs = {b: carry(b, "Bull's Strike") for b in pl}, {b: carry(b, HG) for b in pl}
+    waits = lambda b, t: (any(F.ready(b, sid, sd, t, hands=False) for sid, sd in bulls[b]) or (bool(hgs[b]) and (fx_up(E, b, HG, t) is not None or any(F.ready(b, sid, sd, t, hands=False) for sid, sd in hgs[b]))))
+    still = lambda a, t: (lambda st: st is not None and all(x in ("i", "a") for x in st))(_states(m, a, t))      # idle or attacking at the samples either side of the hit
+    for a in pl:
+        if E.line(m, a) == "frontline": continue
+        H = [h for h in F.hits_on(a) if h[3] == "attack" and h[2] in pl and m.A[h[2]].get("p") in MELEE and h[0] < M.over and (F.dist(h[2], a, h[0]) or 1e9) <= MELEE_R]
+        run = None
+        for i, h in enumerate(H):
+            t = h[0]
+            ok = (any(REACT_S <= t - q[0] <= STOOD_GAP_S for q in H[max(0, i - 6):i]) and still(a, t) and not F.casting_at(a, t) and not _down_at(E, a, t) and not waits(h[2], t))
+            if not ok: continue
+            if run is not None and t - run["t1"] <= STOOD_GAP_S: run["n"] += 1; run["amount"] += h[1]; run["t1"] = t; run["by"].add(role[h[2]])
+            else:
+                if run is not None: row(run["t"], a, "stood", by=sorted(run["by"]), n=run["n"], amount=round(run["amount"]), s=round(run["t1"] - run["t"], 1))
+                run = {"t": t, "t1": t, "n": 1, "amount": h[1], "by": {role[h[2]]}}
+        if run is not None: row(run["t"], a, "stood", by=sorted(run["by"]), n=run["n"], amount=round(run["amount"]), s=round(run["t1"] - run["t"], 1))
+    return sorted(out, key=lambda r: (r["t"], r["id"], r["kind"]))
+
+
+POSITION_SAY = {"flail": "Flail lock: in Flail with nothing in melee reach (R-724)", "area": "standing in area damage, from the third hit (R-735, R-803)",
+                "stood": "stood still under a melee attacker when he should have kited (R-746)"}
+
+
+def say_position(r):
+    """A row of `positions` in a sentence."""
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    k = r["kind"]
+    if k == "flail":
+        return (f"{clk(r['t'])} the {r['who']} is in Flail for {r['s']} s with nothing in melee reach"
+                + ("" if r.get("nearest") is None else f" (the nearest enemy {r['nearest']} away at its nearest)") + ": Flail lock (a fault, R-724).")
+    if k == "area":
+        ctx = [w for w in ((f"knocked down at {r['down']} of them" if r.get("down") else ""), (f"slowed at {r['snared']} of them" if r.get("snared") else "")) if w]
+        return (f"{clk(r['t'])} the {r['who']} takes his third hit of the {r['by']}'s {r['skill']} and {r['hits']} of it in all: {r['amount']} from the third hit on, over "
+                f"{r['n']} hit{'s' if r['n'] != 1 else ''} (a fault: standing in area damage, R-735, R-803" + (f"; context, not an excuse: {' and '.join(ctx)}" if ctx else "") + ").")
+    if k == "stood":
+        return (f"{clk(r['t'])} the {r['who']} stands still, not casting, under the {' and the '.join(r['by'])}: {r['n']} melee hit{'s' if r['n'] != 1 else ''} for {r['amount']} after the first"
+                + (f", over {r['s']} s" if r["s"] else "") + " (a fault: he should have kited, R-746; no Bull's Strike or Harrier's Grasp was waiting for him to move, R-792).")
+    return ""
+
+
+def place_at(E, a, t):
+    """Where player a stands against his own team's front line at t (too deep, R-741, R-804). His team in the fight: he and the team mates in a fight with an
+    enemy player he is in a fight with (`Moments.linked`, the one reading of who is in which fight). The line runs from the middle of those team mates to
+    the middle of those enemies; the front line is the most forward of the team mates who is no backline monk (a monk stands behind it: he does not make
+    it). `past`: how far a stands beyond that player along the line (negative: behind him), `front` that player, `monk` a's distance to his nearest other
+    backline monk alive, `backline` whether a is one himself, `too_deep`: at or past DEEP_PAST. None where he is in no fight or his position is not
+    recorded; `alone` where no team mate but backline monks is in the fight with him (no front line to be past: a decision, not execution).
+    `_line`: the projections, for `followed`."""
+    import math, statistics
+    M, m = E.M, E.m
+    u, tm = max(0, min(int(round(t)), M.T)), m.team(a)
+    P, AL = M.P, M.AL
+    if not AL[a][u] or not P[a][u]: return None
+    foes = [b for b in M.st.players[3 - tm] if AL[b][u] and P[b][u] and M.linked(a, b, u)]
+    if not foes: return None
+    mates = [b for b in M.st.players[tm] if b != a and AL[b][u] and P[b][u] and any(M.linked(b, f, u) for f in foes)]
+    line = [b for b in mates if b not in E.monk]
+    if not line: return {"alone": True}
+    cx = (statistics.fmean(P[b][u][0] for b in mates), statistics.fmean(P[b][u][1] for b in mates))
+    cf = (statistics.fmean(P[b][u][0] for b in foes), statistics.fmean(P[b][u][1] for b in foes))
+    n = math.dist(cx, cf)
+    if n < 1: return None
+    ax = ((cf[0] - cx[0]) / n, (cf[1] - cx[1]) / n)
+    pr = {b: (P[b][u][0] - cx[0]) * ax[0] + (P[b][u][1] - cx[1]) * ax[1] for b in mates + [a]}
+    lead = max(line, key=pr.get)
+    past = pr[a] - pr[lead]
+    dm = [math.dist(P[a][u], P[b][u]) for b in M.st.players[tm] if b != a and b in E.monk and AL[b][u] and P[b][u]]
+    return {"past": round(past), "front": m.roles[lead], "monk": round(min(dm)) if dm else None, "backline": a in E.monk, "too_deep": bool(past >= DEEP_PAST),
+            "_line": (pr, line, u)}
+
+
+def followed(E, a, pa):
+    """Monk following (R-804): backline monk a, with his place `pa` (`place_at`), stands behind a team mate who is too deep (DEEP_PAST or more past the
+    front line the rest of the team makes, told without that player and without monks), himself FOLLOW_PAST or more past that same front line, with
+    that player in reach (CAST_R). {"who": the player he followed, "past": how far that player is past the rest, "monk_past": how far the monk is,
+    "dist": between them}, or None."""
+    import math
+    from common import CAST_R
+    if a not in E.monk or not pa or "_line" not in pa: return None
+    pr, line, u = pa["_line"]
+    best = None
+    for p in line:
+        rest = [pr[b] for b in line if b != p]
+        if not rest: continue
+        v = pr[p] - max(rest)
+        if v >= DEEP_PAST and pr[a] < pr[p] and pr[a] - max(rest) >= FOLLOW_PAST and (best is None or v > best[0]): best = (v, p, max(rest))
+    if best is None: return None
+    d_ = math.dist(E.M.P[a][u], E.M.P[best[1]][u])
+    if d_ > CAST_R: return None
+    return {"who": E.m.roles[best[1]], "past": round(best[0]), "monk_past": round(pr[a] - best[2]), "dist": round(d_)}
+
+
+def position_parts(E, atts, prs, pos):
+    """Stage 5 on every kill attempt, added to its record in place (the spikes `atts`, the pressure attempts `prs`; `pos` the match's rows of `positions`):
+      place     the target's place against his own front line at the first big hit (`place_at`): `past`, `front`, `monk`, `too_deep`; `alone`; or None
+      followed  on a backline monk: the too-deep team mate he stood behind, past his own front line (`followed`), or None
+      stood     the target's own rows of `positions` (standing in area damage, should have kited) from ATT_BEFORE_S before it to its outcome, as copies
+      snared    a why, not a fault (R-804): the attacking team's frontline in the fight with the target, each one slowed (Crippled, or a slowing hex on
+                him: `_snare_at`) and out of melee reach of the target for SNARED_MIN_S or longer of the attempt: `s` those seconds, `of` the attempt's
+                length, `by` what slowed him, `dist` his middle distance to the target in them
+      crits_moving  context, never a fault (R-746, R-792): the critical hits of melee attackers that landed on the target while he was moving (the
+                position samples either side of the hit both moving): `n`, `amount`; None where none. A moving foe hit from behind always takes a
+                critical hit, but the hit names no direction, and tried on 87 matches about 4 in 10 of these would have been critical anyway"""
+    import statistics
+    from pressure import MELEE
+    F, m, M = E.F, E.m, E.M
+    role, pl = m.roles, set(m.PL)
+    for r in list(atts) + list(prs):
+        tgt, t0, t1, tm = r["id"], r["t"], r["t"] + r["s"], r["tm"]
+        pa = place_at(E, tgt, t0)
+        r["followed"] = followed(E, tgt, pa)
+        r["place"] = None if pa is None else {k: v for k, v in pa.items() if not k.startswith("_")}
+        r["stood"] = [dict(x) for x in pos if x["id"] == tgt and x["kind"] in ("area", "stood") and t0 - ATT_BEFORE_S <= x["t"] <= t1]
+        sn, u0 = [], max(0, min(int(t0), M.T))
+        for a in F.players(tm):
+            if E.line(m, a) != "frontline" or not M.AL[a][u0] or not M.linked(a, tgt, u0): continue
+            secs, ds, by, u = 0.0, [], set(), t0
+            while u <= t1 + 1e-6:
+                if not F.alive(a, u): break
+                w, d_ = _snare_at(E, a, u), F.dist(a, tgt, u)
+                if w and d_ is not None and d_ > MELEE_R: secs += POS_STEP_S; ds.append(d_); by.update(w)
+                u += POS_STEP_S
+            if secs >= SNARED_MIN_S: sn.append({"who": role[a], "s": round(secs, 1), "of": round(t1 - t0, 1), "by": sorted(by), "dist": round(statistics.median(ds))})
+        r["snared"] = sn
+        cm = [h for h in F.hits_on(tgt) if t0 - .05 <= h[0] <= t1 and h[7] and h[3] == "attack" and h[2] in pl and m.A[h[2]].get("p") in MELEE and _states(m, tgt, h[0]) == ("m", "m")]
+        r["crits_moving"] = {"n": len(cm), "amount": round(sum(h[1] for h in cm))} if cm else None
+    return atts, prs
+
+
+def say_place(r, who="He"):
+    """Stage 5's parts of a kill attempt (or of a death) in sentences: his place, the monk who followed, his own rows, the attack's snared frontline."""
+    L = []
+    pa = r.get("place")
+    status = lambda k: "a fault" if k in POSITION_FAULTS else "a why: named a fault only once it passes on unseen matches, R-713"
+    if pa and pa.get("too_deep"):
+        L.append(f"{who} was too deep: {pa['past']} past his own front line (the {pa['front']}) at the first big hit"
+                 + (f", his nearest monk {pa['monk']} away" if pa.get("monk") is not None else ", no monk of his alive") + f" (R-741, R-804; {status('too deep')}).")
+    fo = r.get("followed")
+    if fo: L.append(f"{who} had followed the {fo['who']}, who was too deep ({fo['past']} past the rest of the front line): the monk stood {fo['monk_past']} past it himself, {fo['dist']} from him "
+                    f"(monk following, R-804; {status('monk following')}).")
+    for x in r.get("stood") or (): L.append("His own play in it: " + say_position(x))
+    for x in r.get("snared") or ():
+        L.append(f"The attack's {x['who']} was slowed ({', '.join(x['by'])}) and out of melee reach for {x['s']} s of the {x['of']} ({x['dist']} from the target): a why, not a fault (R-804).")
+    cm = r.get("crits_moving")
+    if cm: L.append(f"Context, never a fault (R-746): {cm['n']} critical melee hit{'s' if cm['n'] != 1 else ''} for {cm['amount']} landed on him while he was moving (about 4 in 10 of such hits are critical anyway).")
     return " ".join(L)
 
 
@@ -1532,6 +1837,10 @@ def deaths(E, atts, prs=None):
             d["stance"], d["walked"] = src.get("stance") or [], src.get("walked") or []
             faults += [{"kind": "deep wound", "by": x["by"], "skills": x["skills"], "at": x["at"], "gives": x.get("gives")} for x in src["missed"] if x["kind"] == "deep wound" and x.get("chance")]
             if r is not None: d["into"], d["deep_wound"] = r.get("into"), r.get("deep_wound")
+            d["place"], d["followed"], d["stood"], d["crits_moving"] = src.get("place"), src.get("followed"), src.get("stood") or [], src.get("crits_moving")      # stage 5: where he stood, whom he followed, his own play (the attack's snared frontline is no why of a death)
+        elif not d.get("pact") and not d.get("nothing_landed"):      # no attempt of its own (not kept in danger first): his place at the start of what killed him
+            pa = place_at(E, a, d["first"])
+            d["place"], d["followed"] = (None if pa is None else {k_: v_ for k_, v_ in pa.items() if not k_.startswith("_")}), followed(E, a, pa)
         # R-789, R-793: a backline monk's cast caught inside the kill attempt that killed this player (from ATT_BEFORE_S before its start to the death),
         # his own or one for him, is a fault, listed on the death; every other cast caught is context
         d["caught"] = []
@@ -1669,7 +1978,8 @@ def death_lines(d, trig=None):
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
     if d.get("took"): L.append(f"His death took the {' and the '.join(d['took'])} with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).")
     if d.get("nothing_landed"): return L + ["No fault is listed where the record does not show what killed him (R-783)."]
-    own = say_parts({"stance": d.get("stance"), "walked": d.get("walked"), "missed": [dict(x, chance=True) for x in d["faults"] if x["kind"] == "deep wound"]}, trig)
+    own = say_parts({"stance": d.get("stance"), "walked": d.get("walked"), "missed": [dict(x, chance=True) for x in d["faults"] if x["kind"] == "deep wound"],
+                     "place": d.get("place"), "followed": d.get("followed"), "stood": d.get("stood"), "crits_moving": d.get("crits_moving")}, trig)
     if own: L.append(own)
     for kind in ("prot", "heal"):
         XL = [x for x in d["faults"] if x["kind"] == kind and "too_late" in x]
@@ -1703,7 +2013,7 @@ def death_lines(d, trig=None):
     return L
 
 
-def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None):
+def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None):
     """The faults of a play in sentences (stage X4): the deaths of the team making the play with the checked chances it missed, then the enemy's apart (scored
     the same way, never a fix, R-299), each with its replay time; then the two measures that come close to the outcome itself, said as context and never as a
     fault (`spike_kill_share`, `dmg`). x is the play's execution record, D the match's deaths (`deaths`). None where the play has no record."""
@@ -1740,6 +2050,12 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
                              ("in the area", "more than one player hit by one cast that reaches foes in the area (R-787)")):
             K = [b for b in Bl if b["reach"] == reach]
             if K: out += f" {name}, {words}: {len(K)}, {sum(b['amount'] for b in K)} damage on the players beyond the target. " + " ".join(say_balled(b) for b in K[:6]) + (f" And {len(K) - 6} more." if len(K) > 6 else "")
+        Ps = [POS[i] for i in (x.get("positions") or {}).get(sd, ())] if POS is not None else []
+        for k in POSITION_SAY:                             # stage 5: by kind, each with its count and amount (R-745): seconds for Flail lock, damage for the others
+            K = [w for w in Ps if w["kind"] == k]
+            if not K: continue
+            amt = f"{round(sum(w['s'] for w in K), 1)} s" if k == "flail" else f"{sum(w['n'] for w in K)} hit{'s' if sum(w['n'] for w in K) != 1 else ''}, {sum(w['amount'] for w in K)} damage"
+            out += f" {name}, {POSITION_SAY[k]}: {len(K)}, {amt}. " + " ".join(say_position(w) for w in K[:6]) + (f" And {len(K) - 6} more." if len(K) > 6 else "")
         return out
     # question 3 (R-732): where the play's job is to kill, every kill attempt it made over the whole play, each with its sum and the enemy's credit apart (R-733)
     q3 = ""
@@ -1791,7 +2107,7 @@ def say_even(row, ATT, PRS, FL=None):
     return "\n".join(L)
 
 
-def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None):
+def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None):
     """{play id: its execution record} for the plays of one match (kept beside the plays; no play reads it). With the match's deaths (`deaths`), each record
     carries `deaths`: for the play's own players and for the enemy players it met, which deaths fell inside the play (their places in the deaths record), so
     the faults are said on the play (stage X4). With the kill attempts (`attempts`, `pressure`), each carries `attempts` and `pressure` the same way: the
@@ -1821,6 +2137,10 @@ def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, 
             Xs, Ys = set(X), set(Y)
             if TRG is not None: r["walked"] = {"own": [i for i, x in enumerate(TRG) if x["id"] in Xs and t0 <= x["t"] <= t1], "their": [i for i, x in enumerate(TRG) if x["id"] in Ys and t0 <= x["t"] <= t1]}
             if BAL is not None: r["balled"] = {"own": [i for i, x in enumerate(BAL) if set(x["ids"]) <= Xs and t0 <= x["t"] <= t1], "their": [i for i, x in enumerate(BAL) if set(x["ids"]) <= Ys and t0 <= x["t"] <= t1]}
+        if POS is not None:                                # stage 5: Flail lock, standing in area damage and should have kited inside the play, as places in `positions` (R-745)
+            X, Y, t0, t1 = E.players(p)
+            Xs, Ys = set(X), set(Y)
+            r["positions"] = {"own": [i for i, x in enumerate(POS) if x["id"] in Xs and t0 <= x["t"] <= t1], "their": [i for i, x in enumerate(POS) if x["id"] in Ys and t0 <= x["t"] <= t1]}
         out[p["id"]] = r
     return out
 
@@ -1837,7 +2157,7 @@ if __name__ == "__main__":
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
         A_ = attempts(E_); P_ = pressure(E_, A_); T_ = triggers(E_)
-        tagged_parts(E_, A_, P_, T_)
+        tagged_parts(E_, A_, P_, T_); position_parts(E_, A_, P_, positions(E_))
         for d in deaths(E_, A_, P_):
             if d["t"] >= frm: print(say_death(d, T_) + "\n")
         sys.exit()
@@ -1849,7 +2169,7 @@ if __name__ == "__main__":
         E_ = Exec(M, a[1])
         A_ = attempts(E_); T_ = triggers(E_)
         P_ = pressure(E_, A_)
-        tagged_parts(E_, A_, P_, T_)
+        tagged_parts(E_, A_, P_, T_); position_parts(E_, A_, P_, positions(E_))
         if a[0] == "caught":                               # the faults at a death are set by `deaths` (R-789); then every player's count, the context for the report
             deaths(E_, A_, P_)
             for r in caught_by_player(E_.caught()): print(f"{r['team']} {r['who']}{' (backline monk)' if r['monk'] else ''}: {r['n']} caught, {r['at_deaths']} at a death; " + ", ".join(f"{k} {v}" for k, v in r["skills"].items()))
@@ -1864,7 +2184,7 @@ if __name__ == "__main__":
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
         A_ = attempts(E_); P_ = pressure(E_, A_); T_ = triggers(E_)
-        tagged_parts(E_, A_, P_, T_)
+        tagged_parts(E_, A_, P_, T_); position_parts(E_, A_, P_, positions(E_))
         if a[0] == "pressure":
             for r in P_:
                 if r["t"] >= frm: print(say_pressure(r, T_) + "\n")
@@ -1880,10 +2200,26 @@ if __name__ == "__main__":
         frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
         E_ = Exec(M, a[1])
         A_ = attempts(E_); T_ = triggers(E_)
-        tagged_parts(E_, A_, pressure(E_, A_), T_)
+        P_ = pressure(E_, A_)
+        tagged_parts(E_, A_, P_, T_); position_parts(E_, A_, P_, positions(E_))
         for r in A_:
             if r["t"] < frm: continue
             print(say_attempt(r, T_) + "\n")
+        sys.exit()
+    if a[0] == "positions":                              # python3 execution.py positions <report id> [m:ss]: Flail lock, standing in area damage, should have kited; then each attempt's place (stage 5)
+        import moments
+        from scoreboard import Scoreboard
+        st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
+        frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
+        E_ = Exec(M, a[1])
+        A_ = attempts(E_); P_ = pressure(E_, A_); Q_ = positions(E_)
+        position_parts(E_, A_, P_, Q_)
+        for r in Q_:
+            if r["t"] >= frm: print(r["team"], say_position(r))
+        print()
+        for r in sorted(A_ + P_, key=lambda r: r["t"]):
+            w = say_place(r)
+            if r["t"] >= frm and w: print(f"{int(r['t'] // 60)}:{int(r['t'] % 60):02d} {r['team']} on the {r['target']} ({'spike' if r.get('kind') != 'pressure' else 'kept in danger'}, {'killed' if r['killed'] else 'he lived'}): {w}")
         sys.exit()
     if a[0] in ("triggers", "balled"):                   # python3 execution.py triggers|balled <report id> [m:ss]: the triggers walked into; more than one player hit by one cast (stage 3)
         import moments

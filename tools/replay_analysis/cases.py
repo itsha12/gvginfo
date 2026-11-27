@@ -73,6 +73,7 @@ Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.js
         python3 cases.py opening <plays file> [--json <out.json>]                        the opening, stage 1: the first flag and where the players went
         python3 cases.py energy <plays file> [--json <out.json>]                         energy at the decisions (R-689): what followed each call by the fight's monk energy
         python3 cases.py excuse <plays file> [--json <out.json>]                         the energy excuse (R-689, piece 3): the monks out at a death, where the minute's energy went, the midline at a failure to kill
+        python3 cases.py positions <plays file> [--json <out.json>]                      the readings from positions (stage 5): their cut-offs from the data, each kind checked once
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, re, sys
 import numpy as np
@@ -4133,6 +4134,104 @@ def pressure_report(path, out_json=None, jobs=2):
     if out_json: json.dump({"matches": len(rids), "spikes": na, "spike_killed": round(spike, 3), "deaths_no_spike": nsd, "rows": rows, "rule": best, "engine": list(now), "at_engine": mine}, open(out_json, "w"), indent=1)
 
 
+# ------------------------------------------------------------------ the readings from positions: their cut-offs from the data, each kind checked once (the catalogue's stage 5; R-741)
+POS_STEP = 50               # the grid a cut-off is looked for on, game units
+POS_EITHER = 30             # a cut-off needs this many attempts on either side of it
+
+
+def _best_cut(L, key, grid):
+    """The one cut-off on `key` that best tells the attempts that kill from those that do not: reading them as two rates, at or past the cut and short of it,
+    the cut with the largest gain in likelihood over one rate for all (POS_EITHER or more attempts either side). (gain, cut, attempts at or past it, their
+    share killed, the share killed short of it), or None."""
+    ll = lambda k_, n_: 0.0 if n_ == 0 or k_ in (0, n_) else k_ * math.log(k_ / n_) + (n_ - k_) * math.log(1 - k_ / n_)
+    n, kall, best = len(L), sum(r["killed"] for r in L), None
+    for c in grid:
+        a = [r for r in L if key(r) >= c]; ka = sum(r["killed"] for r in a)
+        if len(a) < POS_EITHER or n - len(a) < POS_EITHER: continue
+        v = ll(ka, len(a)) + ll(kall - ka, n - len(a)) - ll(kall, n)
+        if best is None or v > best[0]: best = (v, c, len(a), ka / len(a), (kall - ka) / (n - len(a)))
+    return best
+
+
+def positions_report(path, out_json=None):
+    """`cases.py positions <plays file>`: the cut-offs of the readings from positions, read from the data (R-741: "set by the engine from the data"; R-804), and
+    each of those readings checked once on unseen matches. Every kill attempt (a spike, or a player kept in danger; one that only carries a spike on left
+    out) keeps the target's place at its first big hit (`execution.place_at`): how far he stood past his own team's front line. The rule (Claude's, his to
+    correct): the cut-off is the one distance that best tells the attempts that kill from those that do not (`_best_cut`); too deep on the attempts on
+    players who are no backline monk, monk following on the attempts on backline monks by the monk's own distance past the front line. Then, beside the
+    engine's own constants, each kind on the attempts: how often an attempt with it kills against one without, and on the spikes like with like (killed
+    less the kill expected from the situation at the first big hit, fitted without the attempt's group of matches: stage X3's test). Too deep and monk
+    following are whys nobody ruled a fault: told as one only if they pass (R-713). Standing in area damage and should have kited are faults by his ruling
+    whatever this shows (R-744); a snared frontline is a why, not a fault (R-804)."""
+    import execution as EX
+    from cache import fold_of, FOLDS
+    D = json.load(open(path))
+    S = [dict(r, rid=rid) for rid, fc in D["flag_cost"].items() for r in (fc.get("attempts") or [])]
+    P = [dict(r, rid=rid) for rid, fc in D["flag_cost"].items() for r in (fc.get("pressure") or []) if r.get("after_spike") is None]
+    A = S + P
+    if not A or any("place" not in r for r in A): raise ValueError("the kill attempts carry no place: run moments.py all again on this engine (R-460)")
+    res, lines = {"attempts": len(A), "matches": len({r["rid"] for r in A})}, []
+    pr = lambda x="": (lines.append(x), print(x))
+    k = lambda L: f"{len(L):6} {100 * sum(r['killed'] for r in L) / len(L):5.1f}% killed" if L else f"{'':>20}"
+    G = [r for r in A if r["place"] and not r["place"].get("alone")]
+    pr(f"The readings from positions (stage 5): {len(A):,} kill attempts in {res['matches']} matches ({len(S):,} spikes, {len(P):,} times a player kept in danger), {100 * sum(r['killed'] for r in A) / len(A):.1f}% killed.")
+    pr(f"   {len(G):,} have a front line to stand past; {sum(1 for r in A if r['place'] and r['place'].get('alone')):,} have no team mate but backline monks in the fight (no front line: not read); "
+       f"{sum(1 for r in A if not r['place']):,} are in no fight or without a position.")
+    N, Mk = [r for r in G if not r["place"]["backline"]], [r for r in G if r["place"]["backline"]]
+    res["cuts"] = {}
+    for name, L, eng, lo in (("too deep (players who are no backline monk)", N, EX.DEEP_PAST, 0), ("monk following (backline monks, the monk's own distance past the front line)", Mk, EX.FOLLOW_PAST, -1000)):
+        pr(f"\nA. {name}: {k(L)}")
+        pr("   past the front line      attempts in the step          at or past it")
+        for c in range(lo if lo < 0 else 0, 2400, 200):
+            pr(f"   {c:>6} to {c + 199:<6} {k([r for r in L if c <= r['place']['past'] < c + 200]):>28}   {k([r for r in L if r['place']['past'] >= c]):>28}")
+        grid = range(lo, 2500, POS_STEP)
+        b = _best_cut(L, lambda r: r["place"]["past"], grid)
+        folds = [_best_cut([r for r in L if fold_of(r["rid"]) != f], lambda r: r["place"]["past"], grid) for f in range(FOLDS)]
+        key = name.split(" (")[0]
+        res["cuts"][key] = {"rule": None if b is None else {"cut": b[1], "attempts": b[2], "killed_past": round(b[3], 3), "killed_short": round(b[4], 3)}, "engine": eng,
+                            "without_each_group": [None if x is None else x[1] for x in folds]}
+        if b: pr(f"   By the rule: {b[1]} ({b[2]} attempts at or past it, {100 * b[3]:.1f}% killed; {100 * b[4]:.1f}% short of it). Without each group of matches in turn: {', '.join('-' if x is None else str(x[1]) for x in folds)}.")
+        at = [r for r in L if r["place"]["past"] >= eng]
+        pr(f"   The engine reads {eng}: {k(at)}; short of it {k([r for r in L if r['place']['past'] < eng])}." + ("" if b and b[1] == eng else "  NOT the rule's cut-off on this file: set the engine's constant from a full run, or say why not."))
+    # each kind, checked once
+    has = {"too deep": lambda r: bool(r["place"] and r["place"].get("too_deep")), "monk following": lambda r: bool(r.get("followed")),
+           "standing in area damage": lambda r: any(x["kind"] == "area" for x in r.get("stood") or ()), "should have kited": lambda r: any(x["kind"] == "stood" for x in r.get("stood") or ()),
+           "the attack's frontline snared": lambda r: bool(r.get("snared"))}
+    want = {"too deep": +1, "monk following": +1, "standing in area damage": +1, "should have kited": +1, "the attack's frontline snared": -1}
+    _x3_expected(S)
+    pr(f"\nB. Each kind on the kill attempts, and on the spikes like with like (points of killed less expected, 90% range over whole matches; passes as in stage X3: the range clear and the right sign in every group of matches but {X3_BUT}).")
+    pr(f"   {'':32} {'with it':>20} {'without':>20} {'spikes with it':>16} {'like with like':>26} {'groups':>7}  verdict")
+    res["kinds"] = {}
+    for name, f in has.items():
+        T, O = [r for r in A if f(r)], [r for r in A if not f(r)]
+        Ts, Os = [r for r in S if f(r)], [r for r in S if not f(r)]
+        o = res["kinds"][name] = {"with": [len(T), round(100 * sum(r["killed"] for r in T) / len(T), 1) if T else None], "without": [len(O), round(100 * sum(r["killed"] for r in O) / len(O), 1) if O else None]}
+        if len(Ts) < MIN_PLAYS or len(Os) < MIN_PLAYS:
+            o["verdict"] = "too few"; pr(f"   {name:32} {k(T):>20} {k(O):>20} {len(Ts):>16}   too few spikes with it for the test"); continue
+        d, lo_, hi_, signs = _x3_diff(Ts, Os)
+        w = _x3_word(d, lo_, hi_, signs, want[name]); right = sum(1 for s_ in signs if s_ * want[name] > 0)
+        o.update({"spikes_with": len(Ts), "difference": d, "range": [lo_, hi_], "groups_right": [right, len(signs)], "verdict": w})
+        pr(f"   {name:32} {k(T):>20} {k(O):>20} {len(Ts):>16} {d:+8.1f} ({lo_:+6.1f} to {hi_:+6.1f})    {right:2}/{len(signs):<2}  {w}")
+    pr("   Too deep and monk following are told as faults only if they pass (R-713); the two his rulings name stand whatever this shows, and one that reads backwards is brought to him (R-744).")
+    ok = tuple(n for n in ("too deep", "monk following") if res["kinds"][n].get("verdict") == "passes")
+    res["position_faults"] = {"pass": list(ok), "engine": list(EX.POSITION_FAULTS)}
+    if set(ok) != set(EX.POSITION_FAULTS): pr(f"   The engine names {', '.join(EX.POSITION_FAULTS) or 'neither'} a fault (execution.POSITION_FAULTS) and this file passes {', '.join(ok) or 'neither'}: set it from a full run.")
+    # the rows tied to no attempt
+    Q = [dict(x, rid=rid) for rid, fc in D["flag_cost"].items() for x in (fc.get("positions") or [])]
+    pr(f"\nC. The rows tied to no kill attempt, always listed on the play's row (R-745): {len(Q):,} in {len({x['rid'] for x in Q})} matches.")
+    res["rows"] = {}
+    for kind, words in EX.POSITION_SAY.items():
+        L = [x for x in Q if x["kind"] == kind]
+        amt = f"{sum(x['s'] for x in L):,.0f} s" if kind == "flail" else f"{sum(x['n'] for x in L):,} hits, {sum(x['amount'] for x in L):,} damage"
+        res["rows"][kind] = {"rows": len(L), "matches": len({x["rid"] for x in L}), "amount": sum(x["s"] for x in L) if kind == "flail" else sum(x["amount"] for x in L)}
+        pr(f"   {words}: {len(L):,} rows in {len({x['rid'] for x in L})} matches, {amt}"
+           + (f"; by skill: {', '.join(f'{n} {c}' for n, c in collections.Counter(x['skill'] for x in L).most_common())}; knocked down at a counted hit on {sum(1 for x in L if x['down'])} rows, slowed on {sum(1 for x in L if x['snared'])}" if kind == "area" and L else "") + ".")
+    if out_json:
+        with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
+        pr(f"written: {out_json}")
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -4147,6 +4246,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "execution": exec_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "attempts": attempts_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "pressure": pressure_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "positions": positions_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 3 and a[0] == "execution-say": exec_say(a[1], a[2], next((x for x in a[3:] if ":" in x and not x.startswith("-")), None), a[a.index("--bench") + 1] if "--bench" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
