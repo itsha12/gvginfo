@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-768; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-784; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1168,6 +1168,57 @@ index pointing here. Read the section for a reading before changing it, and keep
   (1,127), the rest gained keys. Also mended: `cases.py execution-say` stopped on any play where a measure added since X1 stood out (no words for 23
   measures in `EXEC_SAY`; it now says the measure's own). Not done, for the full run: the chances on a pressure attempt checked on unseen matches
   (now possible: 989 lived), `cases.py attempts` and `execution` again, `execution_rows.json` (the Execution view shows none of this yet).
+
+- His answers on stage 4, built 2026-11-27 (`bundle-4` 25047ff; R-779 to R-783). No full run (R-766); every count is the development set's (82 matches).
+  **The pressure line** is his: `forensics.DANGER_HP` 225 (R-779), the second and the 90 in 3 s as before. `cases.py pressure` has 225 on its grid and
+  prints what his line gives beside the rule's (`pressure_cases.json` is stale until it is run again). 1,707 pressure attempts of their own, 25% killed
+  (at 175: 1,601 and 38%: a wider line holds more players who live).
+  **A burst on a hurt player is a spike** (R-780; `Forensics.spikes`, which `attempts` and `killed_from` read; `events._spikes` and every reading built
+  on the spikes of 400 untouched): 200 or more inside 3 s that is two thirds or more of the health the replay last found him at (`HURT_SHARE`,
+  `HURT_FLOOR`), none inside a spike's own reading or in the 6 s before one, what a hex did to him left out (below). The share and the floor from the
+  data (scratch table, 82 matches): at two thirds such a burst kills within 8 s 31 to 33% of the time at every floor from 100 to 250 (a spike of 400:
+  33%), at half his health 19 to 20%, at three quarters 36 to 40%; the floor is half a spike, so that with the pressure line a player under about 300
+  is read by one or the other. The record carries `hurt` (his health as it began). 1,034 spikes of 400 (33.3% killed) and 1,944 bursts (31.0%; a middle
+  344 health and 285 landed): the bursts are two thirds of all spikes now, and many are on players near full health who took just under 400 (Men v Crew
+  26:51, the Ranger: 369 on 414 of 493). Of 1,619 deaths 940 by spike (596 of them a burst), 378 kept in danger, 301 neither (111 nothing landed).
+  **The even 7v7** (R-781; `even_rows`, `EVEN_N`): the largest fight with eight or seven a side, a stretch read at one number, ids `even_7v7`; the 74
+  rows of 8v8 are as they were, 9 rows of 7v7 beside them (a middle 15 s: most 7v7s lie under a play).
+  **Pact kills and nothing landed** (R-783; `Forensics.pact_kill`): a finished Death Pact Signet on him inside 120 s, he has not died since, its
+  caster's death in the same fifth of a second as his. Checked (R-707): of 104 such casts whose caster died before the pacted player's next death, 61
+  are at the very tenth of his death. 54 pact kills among the deaths (40 read as spikes before, 9 kept in danger): the death says so and lists no
+  fault, the caster's death says whom he took (`took`), the attempt carries `pact` (64; still counted as killed: to be left out of the check at the
+  full run). A death with nothing landed (`nothing_landed`, 111) lists no fault.
+- The catalogue's stage 3, built 2026-11-27 with the tag file (`bundle-4` 116ef1a; R-720 to R-726, R-736 to R-740, R-751, R-767 to R-778). No full run:
+  no new kind is checked on unseen matches yet (Rule 29: at the run for stages 1 to 4). Plays identical (6,935), 323 Classic rows pass.
+  **The tags read**: `intr_kind` (reach and on demand: Disrupting Chop in, Exhausting Assault out, R-774; an untagged skill by its text as before),
+  `is_strip` (`strip_at_once`, R-773: Mark of Insecurity, Order of Apostasy, Rending Aura and Well of the Profane are no strip on demand),
+  `removes_cond` (who a removal lands on), `tag_of`, `untagged` (`flag_cost[rid].untagged`; the run prints them: 10 skills in 6 matches).
+  **Found on the way**: `Forensics.sdata` looked a skill up by the replay's spelling alone and missed eleven skills the replays write without
+  punctuation (Protector's Strike 4,861 casts, Glass Arrows, Harrier's Grasp, Protector's Defense, Wounding Strike, Recovery, Bull's Strike: 2% of
+  casts); it falls back to `common.skill_row` (id, then the plain name). The engine's `is_prot` (the skill data's causes) misses 16 skills the tags
+  have stopping damage on an ally, Aegis, Life Sheath, Shield of Absorption, Aura of Faith and Spell Breaker among them, and reads Spirit Bond as a
+  heal only: not changed here, it moves to the tags with the prot amounts (R-784).
+  **The joins, checked first** (R-707; 44 matches, scratch scripts): a knockdown names its skill (97 of Bull's Strike; 36% of its finished casts on a
+  player knock him down); a condition names none (the effect's skill field is no skill for conditions), so Harrier's Cripple is told from the hit: 58
+  Cripples at a hit by an attacker with Harrier's Grasp up, 8 of them with another Cripple skill cast on him (left out); damage rows carry no skill
+  and gvg.report's hints carry no attacker, so a hex's own damage is told by its amounts (`Forensics.trigger_rows`: under Empathy the caster's rows
+  come as 47, 94, 141; 91% of plain attacks finished under it have one; attack skills set it off too, so its hits are counted, not the attacks); 85%
+  of spells finished under Backfire have its hit; 59 of 81 spells started under Shame fail as the hex goes; the hits of one cast land in the tenth it
+  finishes (4,860 of 4,968); Mind Burn hits two or more on 13% of casts, Energy Surge (nearby) on 30%, a scythe on 4% of its tenths.
+  **Triggers** (`execution.triggers`, `flag_cost[rid].triggers`; each play names its own, `walked`; `python3 execution.py triggers <report id>`): 877
+  rows, 10.7 a match: Empathy 312 (1,396 hits, 64,376 damage, in 13 matches), Bull's Strike 250, Shame 126, Harrier's Grasp 88, Daze left 83, Backfire
+  18 (9 by a backline monk, 16 casts with Spirit Bond on: no fault). Clumsiness, Ineptitude and Diversion are read and did not occur.
+  **Balling** (`execution.balling`, `flag_cost[rid].balled`; `execution.py balled`): 773 adjacent (a scythe 532, Mind Burn 118, Shell Shock 72, Death
+  Blossom 38; a middle 28 on the other player; 82 with three or more hit) and 1,065 nearby (Energy Surge 795, Lamentation 266), counted apart: his
+  rule names adjacent damage, put to him.
+  **On every kill attempt** (`execution.tagged_parts`; words `say_parts`, in `say_attempt`, `say_pressure`, `say_fail` and a death): `stance` (76
+  attempts with Frenzy, Frenzied Defense or Primal Rage up while hits landed; the share the skill added from its text, a third to a half by rank),
+  `walked`, the missed kind "deep wound" (348 attempts, 121 deaths: `Forensics.chances` with `removes_cond`, Deep Wound still on him at the outcome);
+  on a spike `into` (441: Guardian 229, Shield Guardian 166, Mirage Cloak 26, Aegis 22; 24% killed against 28%), `deep_wound` (carried in reach at
+  2,388 spikes, on him in time at 1,116: 35% killed against 30% without), `elsewhere` (511: 25% against 27%). These three are whys, not faults.
+  **Not read**: wards (no record but the cast: 18 Ward Against Melee in 44 matches) and spirits (no position in the replays; no Shelter, Union or
+  Displacement in the 44); Rule 11 (R-726) stays read over the play. **For the full run**: every new kind once on unseen matches; pact kills out
+  of the check; `cases.py pressure` again; the hurt bursts change who is a spike target in `cases.py attempts` (the situation model holds health).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

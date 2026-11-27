@@ -586,7 +586,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
 - The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).
 
-## Execution (R-701 to R-768; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
+## Execution (R-701 to R-784; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
 - Execution is read for both teams over the whole play (R-710); each kill attempt only up to its own outcome, the
   death or the save, so it is read before the result (R-299). The enemy's execution is scored, never a fix.
 - A spike is one package: its damage, the strip on its target and the pressure on the target's monks (interrupts,
@@ -645,21 +645,41 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy,
   Frenzied Defense or Primal Rage up during an attempt (R-740, R-768; Healing Signet's armour penalty is context); Deep Wound not removed on a spike target or to prevent a death, Daze
   left on another monk (R-725); any condition left by a non-monk who carries removal (R-726).
-- An even 8v8 with no other job: both teams are read as trying to kill (R-731). Question 3 (why a team that should have
+- An even 8v8 or 7v7 with no other job: both teams are read as trying to kill (R-731, R-781). Question 3 (why a team that should have
   killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
-  apart from our faults (R-733). Cut-offs (too deep, monk following, the pressure attempt, nothing in melee reach) are
-  set from the data (R-741).
+  apart from our faults (R-733). Cut-offs (too deep, monk following, nothing in melee reach, the floor of a burst on a
+  hurt player) are set from the data (R-741); the pressure line is his (R-779).
+- A spike (R-780): 400 or more on one player inside 3 s, or a burst inside 3 s that takes most of the health he had as
+  it began (as read: two thirds of it or more, and 200 or more, the share and the floor from the data; what a hex did
+  to him for attacking or casting through it is left out).
+- A pact kill (R-783): a player dies because the player who resurrected him with Death Pact Signet inside the last
+  120 s died. It is a why of its own, on the caster's death; no chance is read on it. A death with nothing landed on
+  the player in the record lists no fault (R-783).
+- A job to kill with no kill attempt made is said as a fact; a fault of its own on a numbers advantage only if it
+  passes the check on unseen matches (R-782).
+- What a missed prot would have stopped is to account for blocks, Aegis, hybrid prots, ally buffs, the reductions
+  gvg.report does not count, straight prots and heal-only prots such as Spirit Bond (R-784; not built).
 - The sum of a kill attempt, as read (R-734): his health at the start, in points; what landed (hits by their players,
   hits by their NPCs, degen, Deep Wound's cut); what was healed (as it landed: overhealing apart); his health at the
   end; and what the parts leave over, shown. What was stopped before it landed is gvg.report's estimate, where it has
   a recap. Beside a missed chance: what a cast of that skill gave that player on average this match.
-- A pressure attempt, as read (R-741, R-749; the cut-offs from the data, *Claude's rule, his to correct*: as
-  dangerous as a spike): a player at or under 175 health for a second or longer with 90 or more landed on him by the
+- A pressure attempt, as read (R-741, R-749; the line is his, R-779): a player at or under 225 health for a second
+  or longer with 90 or more landed on him by the
   enemy in 3 s, hits and degen; it ends at his death, when his health is back above the line, or when nothing has
   landed on him for 6 s. A death with no spike is read from it (R-749); a death that is neither is read from the
   first thing landed on him after he was last above the line.
-- An even 8v8, as read (R-731; *"8v8" to the letter, his to correct*): all sixteen alive in one fight that is no
-  stand-off, for 12 s or longer, in the seconds no play of either team covers. Execution only.
+- An even 8v8 or 7v7, as read (R-731, R-781): eight a side, or seven a side, in the largest fight on the map, which
+  is no stand-off, for 12 s or longer at that one number, in the seconds no play of either team covers. Execution only.
+- The faults read from the records with the skill tags (stage 3 of the catalogue), as read: a knockdown by Bull's
+  Strike (the knockdown names it); a Cripple at a melee hit by an attacker with Harrier's Grasp up, no other Cripple
+  skill cast on him then; every hit Empathy did to him (the warrior's fault or the monks', by his team's objective);
+  spells finished through Backfire (no fault for a backline monk, never with Spirit Bond on); a spell lost to Shame, a
+  skill used into Diversion; Daze on a backline monk with a removal ready on another and none cast; more than one
+  player hit in one tenth by one cast that reaches adjacent foes or by one scythe attack (a cast that reaches nearby
+  foes is counted apart: *his to say whether it is a fault*); Frenzy, Frenzied Defense or Primal Rage up while hits
+  of a kill attempt landed (Aggressive Refrain as context, R-775); Deep Wound still on a target at the outcome with a
+  removal ready on a backline monk in reach. Whys, never faults: what a spike went into (blocks, spell immunity),
+  Deep Wound against the first big hit, a damage player in reach who hit another player.
 - Question 3 is asked where a play's job is to kill and on every numbers advantage from the side that has it (R-732),
   over every kill attempt made in it, spike or pressure.
 - The parts of the sum a skill can act on (the skill tags, `data/model/skill_tags.json`, R-765): adds damage, stops

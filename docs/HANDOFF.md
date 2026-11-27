@@ -10,36 +10,37 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, afternoon: rulings to R-768; execution stages X1 to X4 built; the catalogue's stages 1, 2 and 4 done)
+## State (2026-11-27, midday: rulings to R-784; execution stages X1 to X4 built; the catalogue's stages 1 to 4 built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   No workflow run in progress. Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-768). The catalogue, `docs/EXECUTION.md`, is the brief:
+- Execution (the micro answer) is the block of work (R-701 to R-784). The catalogue, `docs/EXECUTION.md`, is the brief:
   a death is a sum, every why one part of it; 34 rules (rule n is R-(715+n) up to 28), sections A to D, five stages.
   Built before he checks anything: his marks on the Execution view (stage X5; 46 deaths on the site) wait (R-752).
-- Stage 4 is built (`bundle-4` c43c85a; ENGINE_NOTES section 44, last item). The ledger: every kill attempt, death and
-  failed spike carries the sum as amounts (`ledger`: health in points, what landed by kind, what was healed, the end,
-  what the parts leave over; what was stopped from gvg.report's recap), every missed chance what a cast of that skill
-  gave that player this match (R-734). The pressure attempt (`flag_cost[rid].pressure`: at or under 175 health for 1 s
-  or longer with 90 landing in 3 s; the cut-offs from `cases.py pressure`, `data/model/pressure_cases.json`) reads the
-  deaths with no spike: the heaviest 2 s is gone (R-749). Question 3 on every play to kill and every numbers
-  advantage, the enemy's credit apart (R-732, R-733). The even 8v8's rows (`flag_cost[rid].even`, R-731).
-- Stage 1 was built before it (4af6a49). Stage 2 is done but for the wiki sync (R-765): `data/model/skill_tags.json`,
-  608 skills since d345505 (the other chat, R-767: `on`, `takes_more`, `not_snare`, `lasting`; it may push again).
-- Last run: the development set at c43c85a (82 matches): 6,935 plays identical to 4af6a49, 323 Classic rows pass; 1,778
-  pressure attempts; of 1,619 deaths 344 by spike, 613 kept in danger, 662 neither; 74 even 8v8 rows. Last full run:
-  7d1f0ab. Stale since: `attempts_cases.json`, `execution_cases.json`, main's `execution_rows.json`. `cache` untouched.
+- His answers on stage 4 are built (`bundle-4` 25047ff; ENGINE_NOTES section 44): the pressure line at 225 health
+  (R-779); a burst that takes most of a player's health is a spike (R-780: two thirds of it and 200 or more, the
+  share and the floor the engine's; `Forensics.spikes`, the record's `hurt`); the even 7v7's row (R-781); pact kills
+  (`Forensics.pact_kill`) and no fault where nothing landed (R-783). R-782: "no attempt made" waits for the full run.
+- Stage 3 is built with the tag file (`bundle-4` 116ef1a; 608 skills, his review R-769 to R-778): the tags read
+  (interrupt reach and on demand, strips on demand, removals; untagged skills listed by the run); `triggers` (Bull's
+  Strike, Harrier's Grasp, Empathy, Backfire, Shame, Diversion, Clumsiness, Ineptitude, Daze left on a monk) and
+  `balling`, named on each play (R-745); `tagged_parts` on every kill attempt (the target's damage-raising skills,
+  Deep Wound left on him, what a spike went into, Deep Wound on the spike, an attacker elsewhere), said in the sum.
+  Not read: wards and spirits (not in the records); R-726 stays read over the play.
+- Last run: the development set at 116ef1a (82 matches): 6,935 plays identical to c43c85a, 323 Classic rows pass;
+  1,034 spikes of 400 and 1,944 bursts, 1,707 pressure attempts, 54 pact kills, 877 trigger rows, 773 times balled.
+  Last full run: 7d1f0ab. Stale since: `attempts_cases.json`, `execution_cases.json`, `pressure_cases.json`, main's
+  `execution_rows.json`. `cache` untouched. No new kind is checked on unseen matches yet.
 
 ## Next (in order, R-766): the catalogue, `docs/EXECUTION.md` "Order of work" (ENGINE_NOTES section 44)
-1. Stage 3, with the tag file (fetch `bundle-4` first): Bull's knockdown, Harrier's Cripple, balling, Empathy and the
-   other triggers, damage-raising stances (Primal Rage too, R-768), a spike into a block, ward or spirit, Deep Wound
-   on the spike, an attacker on another target, R-725's and R-726's removals. Each join of a hit to a cast checked
-   first (R-707). An interrupt's reach and the strips thrown on demand from the tags (they catch Disrupting Chop); an
-   untagged skill counted and listed (R-767). Each new part is said in the sum (`say_ledger`).
-2. The one full run for stages 1 to 4 (R-766), the machine to itself: `cases.py pressure` (do the cut-offs still
-   follow), `attempts` and `execution` (do the three kinds still pass; each new kind checked once, the chances on a
-   pressure attempt among them), the key, the truths, `execution_rows.json` (the Execution view shows no sum, failed
-   spike, cast caught, pressure attempt or even row yet).
+1. His answers to "Open for Denning" 1 to 4 below, filed as rulings; then, if he says go, what a missed prot would
+   have stopped (R-784): each prot's own rule over the hits that landed (blocks as an expected number, Aegis, hybrid
+   prots, ally buffs, uncounted reductions, heal-only prots such as Spirit Bond), `is_prot` moved to the tags, the
+   answer "would he have lived" from the sum walked again. The rules per skill go to him as a list first.
+2. The one full run for stages 1 to 4 (R-766), the machine to itself: `cases.py pressure`, `attempts` and
+   `execution` (do the three kinds still pass; each new kind checked once: the chances on a pressure attempt, the
+   Deep Wound left, the stance, the triggers, balling; pact kills left out of "killed"; R-782's no attempt made),
+   the key, the truths, `execution_rows.json` (the Execution view shows none of stage 1, 3 or 4 yet).
 3. Stage 5: readings from positions (too deep, monk following, Flail lock, snared frontline, area damage, should have
    kited), then its own full run. Then X4's sentences on the full list, and stage X5: his marks.
 4. After execution: the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new
@@ -49,17 +50,16 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-27 (stage 4), each set out in the chat: (a) the pressure line, Claude's rule (as dangerous as a
-   spike: 175 health, 1 s, 90 in 3 s); (b) the 662 deaths that are neither a spike nor kept in danger (a hurt player,
-   a middle 232 health, finished with 195 in 1.4 s): is a burst that takes most of his health a spike; (c) "8v8" to
-   the letter, or even numbers with both runners away too; (d) a job to kill with no kill attempt made (69% of such
-   plays): a play-level fault of its own; (e) the 113 deaths with nothing landed in the record: list no fault there.
+1. Put to him 2026-11-27 (midday), each set out in the chat: (a) the plan for the prot amounts (R-784) and the list
+   of skills in each of his seven kinds; (b) the burst's share and floor (two thirds, 200): the bursts are two thirds
+   of all spikes, many on players near full health hit for just under 400; (c) a cast that reaches nearby foes
+   (Energy Surge, Lamentation) hitting two or more: balling or not; (d) Aggressive Refrain up during an attempt: a
+   fault or context (R-775); (e) an even 6v6 and below: no row, as built.
 2. Put to him 2026-11-27 (stage 1): casts caught are 13 a match. Each a fault (R-743 as built), or only at a death?
 3. R-746, Claude's reading, his to correct: crits while moving and the extra damage of Protector's Strike, Harrier's
    Haste and Weaken Knees are context; "should have kited" is not told against Bull's Strike or Harrier's Grasp ready.
 4. R-747 as built takes little (5 deaths, development set). Is a monk under R-711's 250 in 2 s also not available?
-5. The speed-boost mark: 30 skills, 15 he ruled on and 15 by the same rule (none missed). His to confirm or trim.
-6. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
+5. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the
