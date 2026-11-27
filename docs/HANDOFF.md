@@ -19,16 +19,14 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   the skill tags, the skills worth interrupting, the limits of the data, five stages. It is built before he checks
   anything: his marks on the Execution view (stage X5; 46 deaths set out on the site) wait (R-752).
 - Stages X1 to X4 and the catalogue's stage 1, first piece: ENGINE_NOTES section 44 (`bundle-4` 45ad7cf). Stage 2 is
-  done but for the wiki sync (R-765): `data/model/skill_tags.json` on `bundle-4` (37f10b4, made in another chat,
-  reviewed by him; his rulings R-753 to R-764): 577 skills, each with its parts of the sum, trigger, area, cast
-  time, interrupt reach, speed-boost mark and read / context only / ignore.
-- The file checked 2026-11-27 (ENGINE_NOTES section 44, last item): it holds and its path stands. To correct:
-  Twisting Fangs lacks "cuts healing"; four `engine_note` lines reworded. Wanted before stage 3 reads it: who each
-  skill lands on (foe, ally, self); a mark for a skill that raises the damage its user takes; R-738's snares marked;
-  the seven skills the catalogue names and the file lacks. No build, no run, nothing pushed to `bundle-4` this session.
-- Last run: the development set at 45ad7cf (6,935 plays as d7aacfe, 323 Classic rows pass). Last full run: 7d1f0ab
-  (33,089 plays). Stale since: `attempts_cases.json`, `execution_cases.json`, and `execution_rows.json` on main (the
-  Execution view shows the reading before stage 1). The `cache` branch was not pulled or pushed.
+  done but for the wiki sync (R-765): `data/model/skill_tags.json` on `bundle-4` (37f10b4, from another chat, reviewed
+  by him, R-753 to R-764): 577 skills with parts of the sum, trigger, area, cast time, interrupt reach, reads.
+- The file checked 2026-11-27 (section 44, last item): it holds, its path stands. To correct: Twisting Fangs lacks
+  "cuts healing"; four `engine_note` lines reworded. Wanted before stage 3 reads it: who each skill lands on (foe,
+  ally, self); a mark for a skill that raises its user's damage taken; R-738's snares marked; the seven skills the
+  catalogue names and the file lacks. No build, no run, nothing pushed to `bundle-4` this session.
+- Last run: the development set at 45ad7cf (6,935 plays as d7aacfe, 323 Classic rows pass). Last full run: 7d1f0ab.
+  Stale since: `attempts_cases.json`, `execution_cases.json`, main's `execution_rows.json`. `cache` branch untouched.
 
 ## Next (in order, R-766): the catalogue, `docs/EXECUTION.md` "Order of work" (ENGINE_NOTES section 44)
 0. First on `bundle-4`: the tag file's two corrections ("Open" 1), then its additions (by whom: "Open" 2).
@@ -38,16 +36,16 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 2. Stage 4: the ledger (each part of the sum an amount, R-734), the pressure attempt (R-741, R-749), the even 8v8.
 3. Stage 3, with the tag file: Bull's knockdown, Harrier's Cripple, balling, Empathy and the other triggers,
    damage-raising stances, a spike into a block, ward or spirit, Deep Wound on the spike, an attacker on another
-   target, the removals of R-725 and R-726. Damage rows carry no skill: each join to a cast is checked first (R-707).
-   The reach of an interrupt comes from the tags (it catches Disrupting Chop); an untagged skill is counted and listed.
+   target, R-725's and R-726's removals. Each join of a hit to a cast is checked first (R-707). An interrupt's reach
+   comes from the tags (they catch Disrupting Chop); an untagged skill is counted and listed (R-460).
 4. The one full run for stages 1 to 4 (R-766), the machine to itself: `cases.py attempts` and `execution` (do the
    three kinds still pass on unseen matches; each new kind checked once), the key, the truths, `execution_rows.json`.
 5. Stage 5: readings from positions (too deep, monk following, Flail lock, snared frontline, area damage, should have
    kited), then its own full run. Then X4's sentences on the full list, and stage X5: his marks.
-6. After execution: the flag readings shown again (sections 15 and 22), then the close (sections 37, 38, 34, 35, 41):
-   the new families beside the old kinds for one rebuild (R-323), stand-in prices replaced, replaced kinds retired
-   (`ask.py` and `learning.py` still import `tq.py`), SPEC and METHODS rewritten, the readability test, his list of
-   R-398 (left: items 1, 2, 3's remainder, 6, 7, 8 and 10), the merge, one Train batch on the same 506 (he starts it).
+6. After execution: the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new
+   families beside the old kinds for one rebuild (R-323), stand-in prices replaced, replaced kinds retired (`ask.py`,
+   `learning.py` still import `tq.py`), SPEC and METHODS rewritten, the readability test, his list of R-398 (left:
+   items 1, 2, 3's remainder, 6, 7, 8, 10), the merge, one Train batch on the same 506 (he starts it).
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
@@ -55,11 +53,11 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 2. Put to him 2026-11-27: who adds to the tag file (this chat or the other); the skills to tag beyond the 577 (the
    catalogue's seven; the 25 on 4 or more bars from 1 September); is Primal Rage read as Frenzy is (R-740)?
 3. R-766's reading of "after stage 4": the full run comes when stages 1, 4 and 3 are all built. His to correct.
-4. R-746, Claude's reading of "kiting should be no fault", his to correct: crits while moving and the extra damage of
-   Protector's Strike, Harrier's Haste and Weaken Knees are counted as context, never told as faults; and "should have
-   kited" is not told against an attacker with Bull's Strike or Harrier's Grasp ready (where moving is the fault).
-5. R-747 as built takes little: on the development set a monk had a spike on himself (400 inside 3 s, from its first
-   hit) at 5 deaths. Is a monk under lighter pressure himself (R-711's 250 in 2 s) also not available to another?
+4. R-746, Claude's reading, his to correct: crits while moving and the extra damage of Protector's Strike, Harrier's
+   Haste and Weaken Knees are context, never faults; "should have kited" is not told against an attacker with Bull's
+   Strike or Harrier's Grasp ready (where moving is the fault).
+5. R-747 as built takes little (a spike on the monk himself at 5 deaths of the development set). Is a monk under
+   lighter pressure himself (R-711's 250 in 2 s) also not available to another?
 6. The speed-boost mark: 30 skills, 15 he ruled on and 15 by the same rule (none missed). His to confirm or trim.
 7. Skills from the wiki (R-398 item 6): the sync fixed later (R-765), then he runs "Update skills from the wiki".
 8. The early September matches (R-673): raise at R-398 and before a pull. R-576, R-575 (Nomad's): Claude's readings.
@@ -73,7 +71,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   before `test`, R-545; each kept with `--json data/model/<name>.json`). Set `PYTHONDONTWRITEBYTECODE=1`; never edit
   an engine file while a run is going (modules are imported late). After a change: `tools/golden/review.py score
   <file> --key <main>/data/model/review_key.json`, then `tools/golden/compare.py <before> <after>`.
-- Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
+  Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
 - Never print or decode a sealed field in a chat. Don't merge `bundle-4` piecemeal (R-322). The branch's own
