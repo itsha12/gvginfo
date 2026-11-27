@@ -604,7 +604,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   result beside it; a ruled kind that reads backwards is brought to him (R-744).
 - Which misses are listed: a defence miss (prot, heal, interrupt on a spike skill) only on a spike that killed and
   in the death accounts; an attack miss (strip, pressure on their monks) only on a spike that failed (R-714). A
-  chance taken in time by a team mate is no fault for the team, and is not listed against the one who held back (R-715).
+  chance taken in time by a team mate is no fault for the team, and is not listed against the one who held back (R-715);
+  taken means the cast landed: it finished, and before the death (R-797). A monk's own prot or heal on himself is a
+  chance as any other monk's is (R-796).
   Faults that belong to no kill attempt (balling, Flail lock, area damage, a trigger walked into) are always listed, on
   the play's row, by kind, with a count and an amount (R-745).
 - The kinds checked (stage X3, 2026-11-25, on unseen matches): a prot, a heal and an interrupt on a spike skill missed by the defence may be told

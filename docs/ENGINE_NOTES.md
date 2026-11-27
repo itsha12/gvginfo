@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-793; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-798; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1263,6 +1263,31 @@ index pointing here. Read the section for a reading before changing it, and keep
   backline monk's inside the kill attempt that killed a player of his team, his own or one for him, set by `deaths` and said on that death (114 casts
   on 113 deaths); a play's `caught` holds the faults alone and its row says none; the measure `into_ready` counts what it did.
   **For the full run**: prot and heal are new kinds now (the prot test and Spirit Bond moved): checked again on unseen matches with the rest.
+- A monk's own chance on himself, and taken means landed, built 2026-11-27 (late afternoon) as one bundled change (`bundle-4` 3111449; R-794 to R-798). No
+  full run: Opus's run at 97bac17 does not hold it, so prot, heal and the Deep Wound left are read again at stage 5's full run.
+  **Found** on his question of why Guardian's Divine Favor was the answer to the Prot's death in Men v Crew at 4:05 (five spells from 4:04.3 to 4:05.7,
+  563 on 540 health): `Forensics.chances` read "in reach" as `dist(h, tgt) or 1e9`, and a monk's distance to himself is nought, so no monk's own prot
+  or heal on himself was ever a chance. There the Prot had Spirit Bond ready with his hands free for a second and began Blessed Light a second after
+  the first big hit, cut off by his death; the 8 Monk's Guardian (nothing blocked, 45 healed by Divine Favor, 22 over) was the only row.
+  **His own chance** (R-796; `chances`, the row's `self`; `forensics.can_self`): the spiked or pressed monk is read as any other monk on the same clock
+  (`REACT_S` after the first big hit, then the cast: Spirit Bond lands 0.45 s after it), with the skills that can be cast on their own caster (the
+  skill data's target is not "other allies", its words not "target other": Infuse Health, Heal Other, Dwayna's Kiss and Aegis are out); the guards
+  for a monk under a spike or pressure (R-747, R-790) were already written for another player only. `prot_would` counts Divine Favor on his own cast
+  (a targeted Monk spell heals its target, an untargeted one its caster: Shield Guardian). The same reading gives a removal of Deep Wound from himself.
+  **Taken means landed** (R-797; `forensics.outcome`, `landed`, `Forensics.taken_in_time(.., end)`, `Forensics.begun`; `chance_tests` and X3's own
+  `taken` in `cases.py`): a kind is taken where a cast of it on him, begun in the seconds a chance is looked for, finished, and where he died finished
+  before he died. `prots_cast` and `heals_cast` say how each cast ended: the record's finished, cancelled or interrupted, or "after he died"
+  (`forensics.LATE`). A death keeps `begun` ([kind, skill, seconds after the start, how it ended]) for a kind not taken, said as "Begun on him in time
+  but never landed". The monk who began the cast is still skipped for that kind (he acted): whether he had an earlier moment is put to him.
+  **What moved** (82 matches, before and after; 6,935 plays identical, 323 Classic rows pass): deaths with a prot fault 525 (387), a heal fault 344
+  (245), faults 2,137 (1,769); 209 deaths carry a row on the dying monk himself (a prot 154, a heal 96; on 98 one of his own prots would have outlasted
+  what landed: Guardian 105 rows, Shield Guardian 89, Spirit Bond 66, Blessed Light 52, Reversal of Fortune 42). A prot taken on 306 deaths (408), a
+  heal on 256 (359); 192 deaths have a cast begun that never landed (118 heals, 113 prots: 126 cancelled, 95 interrupted, 10 finished after he died).
+  Spikes with a prot in time 1,581 (1,697): killed 15.3% where it landed (19.1% by the old reading) and 50.5% where it was missed (47.5%); a heal
+  13.8% (17.9%) and 58.9% (60.4%). Pressure attempts: a prot 15.9% (17.8%) and 34.0% (30.4%); a heal 15.1% (17.6%) and 42.9% (38.0%). Missed prot
+  rows 1,709 on spikes (270 his own) and 1,871 on pressure attempts (420); missed heals 652 (153) and 619 (154); Deep Wound left 289 (58) and 295 (72).
+  Of 384 deaths with a prot fault told, a prot would have outlasted what landed on 343, none on 41 (141 not told). R-798: Guardian keeps a player
+  alive by Divine Favor alone on 29 of 1,491 deaths (29 to 45 healed, 1 to 45 over), kept as built.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

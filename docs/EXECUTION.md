@@ -129,6 +129,12 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     not available to another player, as a busy monk (R-711).
 33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749). Built.
 34. **Built before he checks** (R-752): his marks on the Execution view wait for the catalogue's readings.
+35. **A monk's own prot or heal on himself is a chance** (R-796), on the same time as every save (Rule 1: 200 ms from
+    the first big hit, then the cast), with the skills he can cast on himself. Rule 32 speaks of his chances for
+    another player. Built.
+36. **Taken means landed** (R-797, amending R-715): a prot or heal begun in time that was interrupted, cancelled, or
+    cut off by his death is not the chance taken; it is said beside the death as context, and the other monks'
+    chances are listed. Built.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -165,7 +171,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | Backfire or Visions of Regret making his casts costly | No | Trigger tags; his casts while hexed |
 | Out of energy | Yes: gvg.report's model, out under 20 (R-681) | |
 | Busy on another player under pressure (R-711) | Yes | |
-| Prot or heal ready and not cast | Yes, with Rule 1 (stage 1) | |
+| Prot or heal ready and not cast | Yes, with Rule 1 (stage 1); his own on himself too (Rule 35) | |
+| Prot or heal begun in time that never landed (Rule 36) | Yes: context beside the death, no fault of its own | Whether the monk who began it late had an earlier moment (put to him) |
 | Prot cast too early, ended before the spike landed | No | Each prot's end against the first big hit |
 | Both monks on the same player while another died | No | Each monk's targets during the attempt |
 | Wrong kind of prot for the damage | Partly: death accounts | Each prot's effect on each damage type, from skill text |

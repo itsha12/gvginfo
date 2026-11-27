@@ -46,9 +46,10 @@ The first four are the decision (macro); the last two are execution (micro), sco
 | 2 Answer to a split | an enemy group leaves main and turns out to be a split | split size and make-up, defenders home, flag state, numbers at main | no answer, one defender, mirror, two monks, add one, full collapse | split_in_base, who_defends |
 | 3 Numbers advantage | numbers differ where the mains meet | source (runner away, split elsewhere, kills, wipe), how long it should last, res timer | up: stay and kill, push their flagger, run again for a backup, push the pit for NPCs, chase DP, take the flag and reset. Down: fight on, fall to footmen, retreat to the pit, trade with a split | power_play, after_wipe, npcs_or_dp |
 | 4 Game plan | a slow clock, read when the state shifts | morale, NPCs, Lord damage, clock, fights so far, match-up, map | fight at main, split game (solo, two, three, 4v4), turtle, play for 28, push for the Lord | split_or_stay, play_for_28_or_lord, late_game |
-| 5 Engage or wait | a stand-off: mains apart, no damage traded, incl. the opening | who gains from what is ticking, builds, positions and NPC cover, map | advance to fight, take the flag first, hold position, split first | new |
+| 5 Engage or wait (dropped, R-799) | a stand-off: mains apart, no damage traded, incl. the opening | who gains from what is ticking, builds, positions and NPC cover, map | advance to fight, take the flag first, hold position, split first | new |
 
-Families 1 to 3 are step 2; 4 and 5 are step 4 (the old kinds they replace keep running until then).
+Families 1 to 3 are step 2; 4 is step 4 (the old kinds it replaces keep running until then). Family 5 is dropped
+(R-799, 2026-11-27): the opening is captured in the flag family (R-520, R-590, R-611).
 Family 3 as a family of its own is withdrawn for numbers from kills (R-557, 2026-11-20): that is a state and a matter
 of execution. The numbers a team chose to make belong to family 1 (a runner) and family 2 (a split, a collapse, and
 the main fight while a split is out); big advantages (three or more kills, a wipe) stay with family 4.
@@ -104,7 +105,8 @@ fix; no number without its cases.
 | 2 | one (bundle 4) | zones and path distance, the reading (records and story), families 1 to 3, calls read as allocations, the consequence record, the plays and their jobs | the reading gate (R-380, R-383, R-396); the decision gate (R-394); the review key, each kind of play at the mark he sets (R-450); advice test no worse |
 | 2, within it (R-451) | none (on the branch) | the flag decision taken to the end first: its plays through similar cases to the held-out advice test, before splits, numbers and the Lord push are finished | the flag plays pass the review key; the advice test on unseen matches is read with him, whatever it shows |
 | 3 | none | the decision card in the blind test, match review and query tool; TQs retired | readability test; Denning approves mock picks |
-| 4 | one (bundle 5) | families 4 and 5, win model stability, speed | as step 2 |
+| after 3 | none | the one-click match report (R-800) | Denning approves the layout |
+| 4 | one (bundle 5) | family 4 (family 5 dropped, R-799), win model stability, speed | as step 2 |
 
 ### Step 2 items (build order)
 2.1 named zones from labelled areas (all 14 halls are labelled); 2.2 path distance along the walkable outline, with
@@ -134,6 +136,15 @@ scored cumulatively, on matches that played no part in choosing the picks; no ve
 disagreement picks; each reason filed as a candidate variable or ruling request. The TQ section leaves the report;
 forensics stay as the mechanics evidence.
 
+### After step 3: the match report (R-800; planned, not to be built yet)
+One click on the site makes a report on one match: the teams, the builds with skill images (as gvg.report shows
+them), the map, the line-up, each team's chance of winning at the start, then the significant moments, decisions or
+executions, that changed the win chance: what was done, the alternatives, how much the win chance moved, and what
+the alternative would have looked like. Nothing of it is saved to the repository and there is no public store of
+reports; it does not have to be a PDF. The engine may write a per-match moments file (unlisted engine output) after a
+full run, and the button turns that file into the report in the browser. It starts with the families already built.
+The layout is worked out with him in Opus chats; Fable checks the work.
+
 ### Step 2: where it stands (branch `bundle-4`, R-322)
 | Stage | Items | State |
 |---|---|---|
@@ -157,7 +168,7 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 ### Build plan from here
 1. **Reading step 2: the words** (R-373, R-375 to R-378): built. Pushing the flagger (its own record, R-371); flag
    route and flag lead (a full flag and half a flag up, R-375); the pre-game flag; posture (R-376; family 5 itself
-   stays in step 4), the four timing choices (R-377), monk counts in the main fight and who is on the Guild Lord
+   was to stay in step 4 and is dropped, R-799), the four timing choices (R-377), monk counts in the main fight and who is on the Guild Lord
    (R-378). Ruled on in R-399 to R-412: posture gave way to the stand-off (R-405, R-411), flag lead is a tally that
    counts the stand (R-408); posture and timing statements outside those are set aside in the line-up (R-414).
 2. **Reading step 3: the check.** The golden stories are regenerated (draft 6), compared with the 13 blind notes, and
