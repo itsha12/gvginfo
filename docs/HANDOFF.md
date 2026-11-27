@@ -10,11 +10,11 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, early afternoon: rulings to R-790; execution stages X1 to X4 built; the catalogue's stages 1 to 4 built)
+## State (2026-11-27, afternoon: rulings to R-793; execution stages X1 to X4 built; the catalogue's stages 1 to 4 built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   No workflow run in progress. Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-790). The catalogue, `docs/EXECUTION.md`, is the brief:
+- Execution (the micro answer) is the block of work (R-701 to R-793). The catalogue, `docs/EXECUTION.md`, is the brief:
   a death is a sum, every why one part of it; 34 rules (rule n is R-(715+n) up to 28), sections A to D, five stages.
   Built before he checks anything: his marks on the Execution view (stage X5; 46 deaths on the site) wait (R-752).
 - His answers on stage 4 are built (`bundle-4` 25047ff; ENGINE_NOTES section 44): the pressure line at 225 health
@@ -27,19 +27,19 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   `balling`, named on each play (R-745); `tagged_parts` on every kill attempt (the target's damage-raising skills,
   Deep Wound left on him, what a spike went into, Deep Wound on the spike, an attacker elsewhere), said in the sum.
   Not read: wards and spirits (not in the records); R-726 stays read over the play.
-- Last run: the development set at f93fd2c (82 matches): 6,935 plays identical to c43c85a, 323 Classic rows pass;
-  1,034 spikes of 400 and 1,944 bursts, 1,707 pressure attempts, 54 pact kills, 877 trigger rows, 773 times balled.
+- The prot amounts are built with R-787, R-789 and R-790 (`bundle-4` 97bac17): `Forensics.hits_on` (one hit, told
+  as attack or spell), `forensics.PROT_RULES` (his rule for each skill, R-791; `is_prot` reads it, Spirit Bond a
+  prot), `execution.prot_would` (the sum walked again: stopped, healed, would he have lived); a pressed monk; balling
+  at every reach; casts caught a fault only at a death, `caught_by_player` the context.
+- Last run: the development set at 97bac17 (82 matches): 6,935 plays identical to f93fd2c, 323 Classic rows pass;
+  387 deaths with a prot fault (426), 245 with a heal fault (337); 1,838 times balled; 114 casts caught at a death.
   Last full run: 7d1f0ab. Stale since: `attempts_cases.json`, `execution_cases.json`, `pressure_cases.json`, main's
   `execution_rows.json`. `cache` untouched. No new kind is checked on unseen matches yet.
 
 ## Next (in order, R-766): the catalogue, `docs/EXECUTION.md` "Order of work" (ENGINE_NOTES section 44)
-1. One bundled build once he approves the rule for each prot (the list is with him, "Open" 1): what a missed prot
-   would have stopped (R-784, R-785: each prot's own rule over the hits that landed, `is_prot` moved to the tags,
-   "would he have lived" from the sum walked again); balling by nearby and in-the-area casts as faults (R-787); casts
-   caught a fault only inside the kill attempt of a death, every player's count kept as context (R-789); a monk
-   under R-711's pressure not available (R-790). Then the development set, the key, `compare.py`.
+1. His answers to "Open" 1 (two small changes at most, in `prot_would`), then:
 2. The one full run for stages 1 to 4 (R-766), the machine to itself: `cases.py pressure`, `attempts` and
-   `execution` (do the three kinds still pass; each new kind checked once: the chances on a pressure attempt, the
+   `execution` (do the three kinds still pass, prot and heal as they read now, Spirit Bond a prot; each new kind checked once: the chances on a pressure attempt, the
    Deep Wound left, the stance, the triggers, balling; pact kills left out of "killed"; R-782's no attempt made),
    the key, the truths, `execution_rows.json` (the Execution view shows none of stage 1, 3 or 4 yet).
 3. Stage 5: readings from positions (too deep, monk following, Flail lock, snared frontline, area damage, should have
@@ -51,15 +51,12 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-27 (early afternoon), in the chat: the one-line rule for each prot skill (the tags' 33 that
-   stop damage on an ally, and Spirit Bond, Ballad of Restoration, Aura of Stability). His answer starts "Next" 1.
-2. Claude's readings, his to correct: "at a death" (R-789) is inside the kill attempt that killed a player of the
-   caster's team; the pressed monk's heals are left out as his prots are (R-790); a lasting ground effect stays
-   "standing in area damage" (R-735), not balling (R-787). An even 6v6 and below has no row, as built.
-3. R-746, set out again in full (he had forgotten it), Claude's reading: crits while moving and the extra damage of
-   Protector's Strike, Harrier's Haste and Weaken Knees are context; "should have kited" is not told against Bull's
-   Strike or Harrier's Grasp ready.
-4. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
+1. Put to him 2026-11-27 (afternoon), set out in the chat: (a) a block by the attacker's average attack (R-791, as
+   built) or on the hits that landed (14% more; 7 of 98 deaths change); (b) "would he have lived" is literal: on 251
+   of 286 deaths a missed prot outlasts what landed, a third by under 50 health, many by the cast's Divine Favor heal
+   alone: a margin, or as it is; (c) Divine Favor's heal counted with a missed Monk prot: keep or leave out.
+2. An even 6v6 and below has no row, as built.
+3. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the

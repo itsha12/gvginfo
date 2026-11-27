@@ -1223,6 +1223,47 @@ index pointing here. Read the section for a reading before changing it, and keep
   Displacement in the 44); Rule 11 (R-726) stays read over the play. **For the full run**: every new kind once on unseen matches; pact kills out
   of the check; `cases.py pressure` again; the hurt bursts change who is a spike target in `cases.py attempts` (the situation model holds health).
 
+- What a missed prot would have stopped, built 2026-11-27 with R-787, R-789 and R-790 as one bundled change (`bundle-4` 97bac17; R-784, R-785, R-791 to
+  R-793). No full run: no kind is checked on unseen matches yet. Plays identical (6,935), 323 Classic rows pass.
+  **A hit** (`Forensics.hits_on`): gvg.report writes the parts of one hit as rows of their own (an attack skill's added damage is a row that ignores
+  armour beside the blow), so the rows of one source on a player in one tenth are one hit, with the part that respects armour kept. The replays name
+  no skill on a hit, so it is told as an attack, a spell or neither from what its source was doing: an attack skill is a cast in the record and starts
+  no attack (found here: a third of the warriors' hits read as neither until it was joined); a critical row; an armoured hit after an attack he began in
+  the 3 s before; an NPC's armoured hit; a damaging cast finished in that tenth, or one on this player in the 1.5 s before (a projectile). Checked
+  (R-707) against gvg.report's recaps, which name the skill, on the 82 matches: 2,056 recaps, attacks 303,000 by its skills against 308,000 here, spells
+  432,000 against 441,000, 7% told as neither; the share that is attacks agrees within 10 points on 77% of recaps (middle gap 3.6 points).
+  **The rules** (`forensics.PROT_RULES`, one line a skill as he approved them, R-791; `prot_rule`): block, full, next, each, fatal, share, cap, ramp,
+  armor, flat, bond, onhit, blind. `is_prot` reads it: Aegis, Life Sheath, Shield of Absorption, Aura of Faith, Spell Breaker and Shield Guardian (cast
+  on nobody: a prot on the players in earshot of its caster, `Forensics.cast_on`) are prots now, Spirit Bond a prot and no longer a heal; wards, spirits,
+  Aura of Stability and Vital Weapon are out; Protector's Defense, the shouts and chants are never a chance; an untagged skill (Xinrae's Weapon, Life
+  Bond) is read from the skill data as before and has no amount.
+  **The amount** (`execution.prot_would`, in `_amounts`; the old figure kept as `gave`): the sum of the attempt walked again, event by event as `ledger`
+  lays it out, once as it was and once with the prot on him from the second it would have landed (the chance's moment and the cast time, Daze doubling
+  it) to the skill's end: `stopped`, `healed` (as far as he had the health missing), and on a death `lives` and `left` (above nought at every moment to
+  the end: told only where the parts explain the death to within 60, else None). Technical choices, Claude's: the caster's rank from gvg.report, else
+  the middle rank of those who carry the skill in the matches that count (`usual`; 1,285 of 6,390 amounts: a third of the monks have no Protection
+  Prayers rank); a set that lengthens enchantments adds a fifth; a Monk spell's cast heals by its caster's Divine Favor (3.2 a rank: about 40), counted
+  in `healed`; a block is its chance times that attacker's average attack this match (the ruling's words), never more than the hit; armour as if no
+  other bonus were on him. On 24 matches the blocks by the average come to 11,431 over 444 chances, on the hits that landed 13,075 (14% more: a spike's
+  hits are bigger than the average), and 7 of 98 deaths change from not enough to enough: put to him.
+  **What moved** (82 matches, before and after): a prot cast in time on 1,697 spikes (893); missed prot rows 1,439 on spikes and 1,451 on pressure
+  attempts (2,100, 1,892: a monk who cast Spirit Bond or Aegis did prot); missed heals 499 and 465 (1,374, 1,342: 1,847 of the 2,716 old missed heals
+  were Spirit Bond alone); deaths with a prot fault 387 (426), a heal fault 245 (337); faults 1,769 (2,003). A prot up as the spike began on 898 spikes
+  (457), so the strip missed on 123 (46) and 98 failed spikes carry that fault (32): Spirit Bond, Aegis and Life Sheath are prots to strip. A cast,
+  mean stopped and healed: Guardian 27 and 36, Shield Guardian 17 and 16, Spirit Bond 0 and 120, Reversal of Fortune 40 and 78, Shielding Hands 44 and
+  39, Aegis 99 and 33, Life Sheath 43 and 72, Aura of Faith 57 and 73, Protective Spirit 54 and 40. Of 378 deaths with a prot fault: on 251 a prot
+  would have outlasted what landed, on 35 none, 92 not told; where it does the middle margin is 74 health and a third (265 of 815) are under 50, many
+  by the Divine Favor heal alone (Men v Crew 4:05, the Prot: 23 over, Guardian stops nothing and its cast heals 45). The reading ends at the death:
+  what would have landed after is in no record. Put to him.
+  **A pressed monk** (R-790, R-793; `Forensics.chances`, `pressed`): 250 or more on himself in the 2 s before: 9 rows, 4 on deaths.
+  **Balling** (R-787): a cast that reaches nearby foes is a fault as the adjacent is (1,065: Energy Surge 795, Lamentation 266); a cast that reaches
+  foes in the area is read and none hit two players; an effect that stays on the ground is never balling (R-793).
+  **Casts caught** (R-789, R-793; `execution.caught`, `caught_by_player`): every player's, as context for the report (`flag_cost[rid].caught_by_player`:
+  3,555 on the 82 matches; the backline monks' 1,375 as before, 2,180 by others, 165 non-monks caught five times or more in a game); a fault is a
+  backline monk's inside the kill attempt that killed a player of his team, his own or one for him, set by `deaths` and said on that death (114 casts
+  on 113 deaths); a play's `caught` holds the faults alone and its row says none; the measure `into_ready` counts what it did.
+  **For the full run**: prot and heal are new kinds now (the prot test and Spirit Bond moved): checked again on unseen matches with the rest.
+
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
 ### 40. The TQs

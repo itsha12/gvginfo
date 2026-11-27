@@ -636,7 +636,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   took is the replay's own record of that cast (an attack skill lands halfway through its swing).
 - Casting into a ready interrupt is a fault only at a death (R-789, amending R-743): the cast was interrupted, the
   skill is on the list, and it was caught inside the kill attempt that killed a player of the caster's team (R-793). Elsewhere it is context: counted for every player over the match,
-  non-monks included, for the report. (As built until the next build: a backline monk's, each one listed, R-745.)
+  non-monks included, for the report. As read: the fault is a backline monk's (R-743), said on that death.
 - Moving and kiting (R-746): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp are faults; kiting
   is otherwise no fault ("Coward!" too, R-719, R-078); standing still when he should have kited a melee player is a
   fault, never told while the attacker has Bull's Strike or Harrier's Grasp ready. Crits and extra damage while
@@ -660,8 +660,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   the player in the record lists no fault (R-783).
 - A job to kill with no kill attempt made is said as a fact; a fault of its own on a numbers advantage only if it
   passes the check on unseen matches (R-782).
-- What a missed prot would have stopped is to account for blocks, Aegis, hybrid prots, ally buffs, the reductions
-  gvg.report does not count, straight prots and heal-only prots such as Spirit Bond (R-784; not built).
+- What a missed prot would have stopped (R-784, R-785, R-791): each prot's own rule, as he approved it skill by
+  skill, over the hits that landed on the player from the second the prot would have landed: what it stops, what it
+  heals, and on a death whether he would have outlasted what landed (told only where the sum explains the death). An
+  upper bound. A prot is a skill with such a rule: Spirit Bond is one (it only heals), wards and spirits are not, and
+  Protector's Defense, the shouts and chants are never a missed chance.
 - The sum of a kill attempt, as read (R-734): his health at the start, in points; what landed (hits by their players,
   hits by their NPCs, degen, Deep Wound's cut); what was healed (as it landed: overhealing apart); his health at the
   end; and what the parts leave over, shown. What was stopped before it landed is gvg.report's estimate, where it has
@@ -678,8 +681,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   skill cast on him then; every hit Empathy did to him (the warrior's fault or the monks', by his team's objective);
   spells finished through Backfire (no fault for a backline monk, never with Spirit Bond on); a spell lost to Shame, a
   skill used into Diversion; Daze on a backline monk with a removal ready on another and none cast; more than one
-  player hit in one tenth by one cast that reaches adjacent foes or by one scythe attack (a cast that reaches nearby
-  foes or foes in the area is a fault too, R-787: counted apart until the next build); Frenzy, Frenzied Defense or
+  player hit in one tenth by one cast that reaches adjacent foes, nearby foes or foes in the area, or by one scythe
+  attack (R-787); Frenzy, Frenzied Defense or
   Primal Rage up while hits of a kill attempt landed (Aggressive Refrain is context, R-788); Deep Wound still on a target at the outcome with a
   removal ready on a backline monk in reach. Whys, never faults: what a spike went into (blocks, spell immunity),
   Deep Wound against the first big hit, a damage player in reach who hit another player.

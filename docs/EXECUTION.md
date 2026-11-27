@@ -138,7 +138,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 |---|---|---|
 | Pushed too deep, away from his monks | Partly: distance to the nearest monk | Distance past his own team's front line, the cut-off from data (Rule 26) |
 | Pushed too deep, pulling a monk into pressure after him | No | The monk's position and the pressure he took, against the player he followed |
-| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | A cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is a fault too (R-787): counted apart until the next build |
+| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | Built (R-787): a cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is the same fault; an effect on the ground never (R-793) |
 | Standing in area damage (Rule 20): Chaos Storm, Symbol of Wrath and the like | No | Each skill's area from its text; repeated hits joined to the cast |
 | Knocked down by Bull's Strike (Rule 5) | Yes (stage 3): the knockdown record names the skill | |
 | Crippled by Harrier's Grasp (Rule 6) | Yes (stage 3): a Cripple at a hit by an attacker with Harrier's Grasp up, no other Cripple skill cast on him then | |
@@ -147,7 +147,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | Fighting in reach of their NPCs when not pushing their pit | No | NPC damage taken, against his position and the team's job |
 | Standing still when he should have kited a melee player (Rule 31) | Partly: kiting measured | Kiting as a missed chance, not only a measure |
 | Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | Yes (stage 3): each hit the hex did to him, told by the hex's own amounts; a spell lost to Shame; a skill used as Diversion went | |
-| Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1): an interrupted cast of a listed skill by a backline monk, the interrupt that stopped it ready when the cast began; listed on the play's row | To change (R-789): a fault only inside the kill attempt of a death; every player's count over the match kept as context |
+| Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1; R-789): an interrupted cast of a listed skill, the interrupt that stopped it ready when the cast began. Every player's is kept as context by player; a backline monk's inside the kill attempt that killed a player of his team is the fault, said on that death | |
 | Wrong weapon set when under attack | Partly: on each attempt's sum, what landed off his shield set and what a shield would have stopped (stage 4) | As a missed chance, checked once; the set he swapped to |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
 | Fell back too late, or not to his monks | No | Movement towards safety once the attempt starts, against the time he had |
@@ -308,17 +308,19 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 - What never landed is not in the replays. Damage stopped and attacks blocked are gvg.report's, only in its recap of a
   death or a survived spike (97% of spikes, 44% of pressure attempts have one), and its credit for prots is small
   (nought on 72% of spike recaps; nothing for Aegis, Protective Spirit and Aura of Stability). So the amount beside a
-  missed prot (what a cast gave that monk on average this match) reads low: 20 to 60, not the 300 a prot can stop.
+  missed prot is not gvg.report's (it read 20 to 60) but each prot's own rule over what landed (R-784, below).
 - 7% of deaths have nothing landed on the player in the record and mostly no recap: a third of them are pact kills
   (R-783, read from the signet's cast and the two deaths); for the rest the sum says so, and no fault is listed.
 - A condition names no skill (a Cripple is told as Harrier's from the hit that brought it). A ward has no record but
   its cast, and a spirit no position: neither is read. Adrenaline is not in the replays: an attack skill is "ready" by
   its recharge alone. The replays spell eleven skills without their punctuation ("Harriers Grasp"): read by id.
-- What a missed prot would have stopped is to be worked out from each prot's own rule over the hits that landed
-  (R-784: blocks, Aegis, hybrid prots, ally buffs, uncounted reductions, straight prots, heal-only prots); the plan is
-  approved (R-785) and the rule for each skill is with him. The engine's own test of what is a prot still reads the skill data and misses Aegis, Life Sheath,
-  Shield of Absorption, Aura of Faith, Shield of Regeneration, Shield of Deflection, Mark of Protection and Spell
-  Breaker: it moves to the tags with that build.
+- What a missed prot would have stopped is built (R-784, R-785, R-791): each prot's own rule over the hits that
+  landed, the sum walked again with the prot on him: what it stops, what it heals, and on a death whether he would
+  have outlasted what landed. Limits: a hit names no skill, so attack or spell is told from what its source was
+  doing (within 10 points of gvg.report's recaps on 77% of them); a third of the monks have no Protection Prayers
+  rank in gvg.report's record (the usual rank of those who carry the skill is read, and said); a block is an
+  average; the reading ends at the death, and attackers change target when they see a prot: an upper bound. Wards
+  and spirits are left out; Protector's Defense, the shouts and chants are never a missed chance.
 - Armour and insignias are left out: a player cannot change them in a match. Out of reach: ping, line of sight around
   obstacles, calls and intent (R-371).
 
@@ -329,7 +331,7 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 | 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file; failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt. No full run of its own (R-766) | development set and key pass; plays unchanged (they do) |
 | 2. The skill data | Done but for the sync: every skill in use tagged in a file of its own, `data/model/skill_tags.json` (`data/skills.json` is never edited by hand), reviewed by Denning (R-753 to R-765). Left for later: the wiki sync's missing cast times | Denning has reviewed the tagged list (he has) |
 | 3. What the records already show | Built (2026-11-27), with the tag file: Bull's knockdown, Harrier's Cripple, balling, Empathy and the other triggers, damage-raising stances, a spike into a block or spell immunity, Deep Wound on the spike, an attacker on another target, Rule 10's removals; the interrupt's reach and strips on demand from the tags; untagged skills listed. Not built: wards and spirits (not in the records), Rule 11 (a non-monk's removal, read over the play as before). No full run of its own (R-766) | each join checked against the raw record (R-707): done; each kind checked once on unseen matches, shown beside the ruled ones (Rule 29): at the full run |
-| 4. The ledger and the pressure attempt | Built (2026-11-27): each part of the sum a measured amount on every attempt, for both teams (Rule 19), and an amount beside each missed chance; the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row; question 3 on every play to kill and every numbers advantage, the enemy's credit apart. No full run of its own (R-766) | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33): both done; development set and key pass, plays unchanged |
+| 4. The ledger and the pressure attempt | Built (2026-11-27): each part of the sum a measured amount on every attempt, for both teams (Rule 19), and an amount beside each missed chance (a missed prot's by its own rule, R-784 to R-791, with whether he would have lived); the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row; question 3 on every play to kill and every numbers advantage, the enemy's credit apart. No full run of its own (R-766) | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33): both done; development set and key pass, plays unchanged |
 | 5. Readings from positions | Too deep, monk following, Flail lock, the snared frontline, area damage, should have kited; crits while moving as context | cut-offs set from data (Rule 26) |
 | The runs (R-766) | Built in the order 1's remainder, 4, 3. Then one full run with every check for stages 1 to 4 together: `cases.py attempts` and `execution` (do the kinds still pass on unseen matches?), the key, the truths, `execution_rows.json`. Stage 5 has its own full run, before X4's sentences | the three built kinds still pass on unseen matches; each new kind checked once |
 | Then | The faults said on each play and death (stage X4 again on the full list); his marks on the Execution view (stage X5) | his Classic execution rows read as he reads them |
