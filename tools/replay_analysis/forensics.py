@@ -56,7 +56,7 @@ SPIKE_DMG, SPIKE_S = 400, 3 # a spike as `events._spikes` reads it: a monk with 
 # the floor is half a spike's 400, so that with the pressure line (R-779) a player under about 300 health is read by one or the other.
 HURT_SHARE, HURT_FLOOR = 2 / 3, 200
 TRIGGER_AFTER_S = 0.3       # a hex's own damage lands inside this long of the attack or cast that set it off (and so of the hex's end)
-PACT_S = 120                # Death Pact Signet: the player it resurrects dies if its caster dies within this long (the skill's text)
+PACT_S = 120                # Death Pact Signet: its caster dies the next time the player it resurrected dies within this long (the skill's text)
 BASE_HEALTH = 480           # a level 20 character's health before runes and weapons: morale and death penalty are a share of this (10% morale is 48 in every recap)
 DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DEEP_WOUND_LONGEST = 0.2, 100, 20    # knowledge/conditions.md: a fifth of his maximum, at most 100; an interval with no end recorded is read no longer than 20 s
 # The pressure attempt (R-741: "a player kept in danger for a while"; R-749). The line is Denning's (R-779: 225 health, "slightly less than half health";
@@ -509,20 +509,22 @@ class Forensics:
         return self._spk[tm]
 
     def pact_kill(self, a, td):
-        """R-783: did a die at td because the player who resurrected him with Death Pact Signet died? The signet's text: its target dies if its caster dies
-        within PACT_S. Read as: a finished cast of it on him inside PACT_S before td, he has not died since, and its caster's death is recorded in the same
-        fifth of a second as his (checked on the development set, R-707: of 104 such casts whose caster died before the pacted player's next death, 61 are
-        at the very tenth of his death and one within 3 s of it). Returns (caster, the second the cast finished) or None."""
+        """R-783: did a die at td by his own Death Pact Signet? The signet's text: "Resurrect target party member ... The next time that ally dies within 120
+        seconds, so do you." So the pact kills its caster: read as a finished cast of it by a inside PACT_S before td, on an ally whose next death after
+        that cast is recorded in the same fifth of a second as a's own. Checked on the development set (R-707): of 104 finished casts where both players
+        died afterwards, 61 are at the very tenth and one within 3 s. Returns (the ally whose death killed him, the second the cast finished) or None.
+        (Built the wrong way round at first, the resurrected player read as the one the pact kills: found on 옷옷옷옷 v cope 4:34, where cope's Mesmer, the
+        signet's caster, dies with nothing landed as the 7 Monk he had resurrected dies.)"""
         self.casts()
         if getattr(self, "_dts", None) is None:
             self._dts = collections.defaultdict(list)
             for e in self.ev:
                 if e[1] == "dt" and e[0] is not None: self._dts[e[2]].append(e[0] / 10)
-        for h in self.players(self.m.team(a)):
-            for c in self._by_agent.get(h, ()):
-                if c[5] != a or h == a or c[4] != "finished" or c[3] is None or not td - PACT_S <= c[3] < td or "Death Pact" not in self.sname(c[1]): continue
-                if any(c[3] < d < td - .25 for d in self._dts.get(a, ())): continue
-                if any(abs(d - td) <= .2 for d in self._dts.get(h, ())): return h, c[3]
+        for c in self._by_agent.get(a, ()):
+            g = c[5]
+            if g is None or g == a or c[4] != "finished" or c[3] is None or not td - PACT_S <= c[3] < td or "Death Pact" not in self.sname(c[1]): continue
+            nxt = next((d for d in sorted(self._dts.get(g, ())) if d > c[3]), None)          # "the next time that ally dies"
+            if nxt is not None and abs(nxt - td) <= .2: return g, c[3]
         return None
 
     def killed_from(self, a, t):

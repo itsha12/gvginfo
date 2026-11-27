@@ -609,7 +609,7 @@ def say_attempt(r, trig=None):
     L = [f"{clk(r['t'])} {r['team']} spike on the {r['target']} ({', '.join(r['attackers'])}): {r['dmg']} in 3 s"
          + (f", most of the {r['hurt']} health he had (a spike by R-780), " if r.get("hurt") else ", ")
          + ("killed him" if r["killed"] else "he lived") + f" (read over {r['s']} s)."]
-    if r.get("pact"): L.append(f"He died as the {r['pact']}, who had resurrected him with Death Pact Signet, died: a pact kill (R-783), not this spike's.")
+    if r.get("pact"): L.append(f"He died as the {r['pact']}, whom he had resurrected with Death Pact Signet, died: a pact kill (R-783), not this spike's.")
     L.append(f"Big hits landed over {r['spread']} s ({100 * r['in_1s']:.0f}% of the damage in the first second).")
     st = r["strip"]
     L.append("No strip on him." if not st["n"] else f"{st['n']} strip(s) on him, the first {abs(st['lead'])} s {'before' if st['lead'] < 0 else 'after'} the first big hit"
@@ -826,7 +826,7 @@ def say_pressure(r, trig=None):
     how = {"died": "he died", "escaped": f"his health came back above {DANGER_HP}", "left alone": "they left him alone", "the match ended": "the match ended"}[r["how"]]
     L = [f"{clk(r['t'])} {r['team']} keep the {r['target']} in danger (at or under {DANGER_HP} health for {DANGER_KEPT_S} s or longer, with damage landing on him) for {r['s']} s: {how}"
          + (f" ({', '.join(r['attackers'][:5])})." if r["attackers"] else " (degen and NPCs only).")]
-    if r.get("pact"): L.append(f"He died as the {r['pact']}, who had resurrected him with Death Pact Signet, died: a pact kill (R-783).")
+    if r.get("pact"): L.append(f"He died as the {r['pact']}, whom he had resurrected with Death Pact Signet, died: a pact kill (R-783).")
     if r.get("after_spike") is not None: L.append(f"It follows their spike on him at {clk(r['after_spike'])}: one attempt going on, not a second.")
     elif r["spikes"]: L.append("Their spike" + ("s" if len(r["spikes"]) > 1 else "") + " on him inside it: " + ", ".join(clk(t) for t in r["spikes"]) + ".")
     L.append(say_ledger(r["ledger"]))
@@ -1324,7 +1324,7 @@ def deaths(E, atts, prs=None):
             faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"], "amounts": c.get("amounts")} for c in ch if c["chance"] and c["kind"] not in taken]
             other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked")]
         # R-783: a death with nothing landed on him in the record lists no fault (the record does not show what killed him); and a pact kill (he died as
-        # the player who resurrected him with Death Pact Signet died) is a why of its own: no chance of his team's is read on it
+        # the player he had resurrected with Death Pact Signet died: the signet kills its caster) is a why of its own: no chance of his team's is read on it
         pk = F.pact_kill(a, td)
         if pk is not None: d["pact"] = {"by": m.roles[pk[0]], "id": pk[0], "cast": round(pk[1], 1)}
         if r is None and not d["dmg"] and not (d.get("ledger") or {}).get("landed"): d["nothing_landed"] = True
@@ -1340,7 +1340,7 @@ def deaths(E, atts, prs=None):
         d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"out_of_energy": True})}
                           for x in other if x["kind"] in FAULT_KINDS]
         out.append(d)
-    for d in out:                                          # on the death of a pact's caster: who he took with him
+    for d in out:                                          # on the death of the player a pact was made on: whose death his own brought
         if d.get("pact"):
             c = next((x for x in out if x["id"] == d["pact"]["id"] and abs(x["t"] - d["t"]) <= .2), None)
             if c is not None: c.setdefault("took", []).append(d["who"])
@@ -1456,14 +1456,14 @@ def death_lines(d, trig=None):
     mine = lambda s_: nm(s_[len(d["team"]) + 1:] if s_.startswith(d["team"] + " ") else s_)      # a team mate is said by his role alone
     who = (", ".join(d["attackers"]) or "nobody recorded")
     if d.get("pact"):                                    # R-783: a pact kill is a why of its own; nothing else is read on it
-        return [f"{clk(d['t'])} {d['team']}'s {d['who']} dies as the {d['pact']['by']} dies: a pact kill (R-783). The {d['pact']['by']} had resurrected him with Death Pact Signet "
-                f"{round(d['t'] - d['pact']['cast'])} s before, and the signet's target dies if its caster dies within 120 s. The why is the {d['pact']['by']}'s death; no chance is read on this one."]
+        return [f"{clk(d['t'])} {d['team']}'s {d['who']} dies as the {d['pact']['by']} dies: a pact kill (R-783). He had resurrected the {d['pact']['by']} with Death Pact Signet "
+                f"{round(d['t'] - d['pact']['cast'])} s before, and the signet's caster dies the next time that player dies within 120 s. The why is the {d['pact']['by']}'s death; no chance is read on this one."]
     if d["spike"]: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies to a spike by {d['by']} ({who}): {d['dmg']} in 3 s"
                         + (f", most of the {d['hurt']} health he had (a spike by R-780)" if d.get("hurt") else "") + f", the first big hit at {clk(d['first'])}, the big hits over {d['spread']} s."]
     elif d.get("kept"): L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him, kept in danger by {d['by']} from {clk(d['first'])} (at or under {DANGER_HP} health with damage landing on him, R-749): {d['dmg']} landed on him, hits and degen ({who})."]
     else: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him and without being kept in danger first: {d['dmg']} landed on him from {d['by']} ({who}) between {clk(d['first'])}, the first thing landed on him after he was last above {DANGER_HP} health, and his death."]
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
-    if d.get("took"): L.append(f"He took the {' and the '.join(d['took'])} with him: resurrected by his Death Pact Signet inside the last 120 s (a pact kill, R-783).")
+    if d.get("took"): L.append(f"His death took the {' and the '.join(d['took'])} with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).")
     if d.get("nothing_landed"): return L + ["No fault is listed where the record does not show what killed him (R-783)."]
     own = say_parts({"stance": d.get("stance"), "walked": d.get("walked"), "missed": [dict(x, chance=True) for x in d["faults"] if x["kind"] == "deep wound"]}, trig)
     if own: L.append(own)
