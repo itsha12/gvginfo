@@ -1,1282 +1,1471 @@
 {
- "matches": 82,
- "spikes": 1034,
- "spike_killed": 0.333,
- "deaths_no_spike": 1275,
+ "matches": 564,
+ "spikes": 17061,
+ "spike_killed": 0.332,
+ "deaths_no_spike": 4567,
  "rows": [
   {
    "health": 100,
    "kept": 0,
    "landed": 1,
-   "attempts": 1435,
-   "die_8s": 0.472,
-   "end_in_death": 0.505,
-   "held": 0.559
+   "attempts": 4695,
+   "die_8s": 0.475,
+   "end_in_death": 0.53,
+   "held": 0.537
   },
   {
    "health": 100,
    "kept": 0,
    "landed": 30,
-   "attempts": 1406,
-   "die_8s": 0.479,
-   "end_in_death": 0.507,
-   "held": 0.551
+   "attempts": 4566,
+   "die_8s": 0.482,
+   "end_in_death": 0.534,
+   "held": 0.527
   },
   {
    "health": 100,
    "kept": 0,
    "landed": 60,
-   "attempts": 1330,
-   "die_8s": 0.488,
-   "end_in_death": 0.511,
-   "held": 0.526
-  },
-  {
-   "health": 100,
-   "kept": 0,
-   "landed": 90,
-   "attempts": 1236,
-   "die_8s": 0.494,
-   "end_in_death": 0.511,
-   "held": 0.489
-  },
-  {
-   "health": 100,
-   "kept": 0,
-   "landed": 120,
-   "attempts": 1062,
+   "attempts": 4166,
    "die_8s": 0.492,
-   "end_in_death": 0.509,
-   "held": 0.418
+   "end_in_death": 0.539,
+   "held": 0.487
   },
   {
    "health": 100,
-   "kept": 1,
-   "landed": 1,
-   "attempts": 761,
-   "die_8s": 0.451,
-   "end_in_death": 0.489,
-   "held": 0.289
-  },
-  {
-   "health": 100,
-   "kept": 1,
-   "landed": 30,
-   "attempts": 731,
-   "die_8s": 0.462,
-   "end_in_death": 0.492,
-   "held": 0.28
-  },
-  {
-   "health": 100,
-   "kept": 1,
-   "landed": 60,
-   "attempts": 650,
-   "die_8s": 0.477,
-   "end_in_death": 0.503,
-   "held": 0.255
-  },
-  {
-   "health": 100,
-   "kept": 1,
+   "kept": 0,
    "landed": 90,
-   "attempts": 565,
-   "die_8s": 0.469,
-   "end_in_death": 0.501,
-   "held": 0.221
+   "attempts": 3555,
+   "die_8s": 0.492,
+   "end_in_death": 0.537,
+   "held": 0.413
   },
   {
    "health": 100,
-   "kept": 1,
+   "kept": 0,
    "landed": 120,
-   "attempts": 436,
-   "die_8s": 0.461,
-   "end_in_death": 0.509,
-   "held": 0.173
-  },
-  {
-   "health": 100,
-   "kept": 2,
-   "landed": 1,
-   "attempts": 398,
-   "die_8s": 0.445,
-   "end_in_death": 0.455,
-   "held": 0.14
-  },
-  {
-   "health": 100,
-   "kept": 2,
-   "landed": 30,
-   "attempts": 362,
-   "die_8s": 0.472,
-   "end_in_death": 0.464,
-   "held": 0.13
-  },
-  {
-   "health": 100,
-   "kept": 2,
-   "landed": 60,
-   "attempts": 289,
-   "die_8s": 0.495,
-   "end_in_death": 0.484,
-   "held": 0.109
-  },
-  {
-   "health": 100,
-   "kept": 2,
-   "landed": 90,
-   "attempts": 221,
-   "die_8s": 0.466,
-   "end_in_death": 0.457,
-   "held": 0.078
-  },
-  {
-   "health": 100,
-   "kept": 2,
-   "landed": 120,
-   "attempts": 141,
-   "die_8s": 0.454,
-   "end_in_death": 0.468,
-   "held": 0.051
-  },
-  {
-   "health": 100,
-   "kept": 3,
-   "landed": 1,
-   "attempts": 225,
-   "die_8s": 0.422,
-   "end_in_death": 0.427,
-   "held": 0.075
-  },
-  {
-   "health": 100,
-   "kept": 3,
-   "landed": 30,
-   "attempts": 165,
+   "attempts": 2702,
    "die_8s": 0.473,
-   "end_in_death": 0.461,
-   "held": 0.059
+   "end_in_death": 0.524,
+   "held": 0.305
+  },
+  {
+   "health": 100,
+   "kept": 1,
+   "landed": 1,
+   "attempts": 2919,
+   "die_8s": 0.49,
+   "end_in_death": 0.522,
+   "held": 0.336
+  },
+  {
+   "health": 100,
+   "kept": 1,
+   "landed": 30,
+   "attempts": 2772,
+   "die_8s": 0.504,
+   "end_in_death": 0.531,
+   "held": 0.324
+  },
+  {
+   "health": 100,
+   "kept": 1,
+   "landed": 60,
+   "attempts": 2352,
+   "die_8s": 0.517,
+   "end_in_death": 0.544,
+   "held": 0.282
+  },
+  {
+   "health": 100,
+   "kept": 1,
+   "landed": 90,
+   "attempts": 1827,
+   "die_8s": 0.512,
+   "end_in_death": 0.543,
+   "held": 0.219
+  },
+  {
+   "health": 100,
+   "kept": 1,
+   "landed": 120,
+   "attempts": 1225,
+   "die_8s": 0.493,
+   "end_in_death": 0.534,
+   "held": 0.143
+  },
+  {
+   "health": 100,
+   "kept": 2,
+   "landed": 1,
+   "attempts": 1799,
+   "die_8s": 0.491,
+   "end_in_death": 0.5,
+   "held": 0.202
+  },
+  {
+   "health": 100,
+   "kept": 2,
+   "landed": 30,
+   "attempts": 1607,
+   "die_8s": 0.521,
+   "end_in_death": 0.517,
+   "held": 0.187
+  },
+  {
+   "health": 100,
+   "kept": 2,
+   "landed": 60,
+   "attempts": 1199,
+   "die_8s": 0.529,
+   "end_in_death": 0.532,
+   "held": 0.144
+  },
+  {
+   "health": 100,
+   "kept": 2,
+   "landed": 90,
+   "attempts": 812,
+   "die_8s": 0.496,
+   "end_in_death": 0.505,
+   "held": 0.093
+  },
+  {
+   "health": 100,
+   "kept": 2,
+   "landed": 120,
+   "attempts": 447,
+   "die_8s": 0.477,
+   "end_in_death": 0.492,
+   "held": 0.05
+  },
+  {
+   "health": 100,
+   "kept": 3,
+   "landed": 1,
+   "attempts": 1111,
+   "die_8s": 0.479,
+   "end_in_death": 0.484,
+   "held": 0.121
+  },
+  {
+   "health": 100,
+   "kept": 3,
+   "landed": 30,
+   "attempts": 820,
+   "die_8s": 0.54,
+   "end_in_death": 0.522,
+   "held": 0.097
   },
   {
    "health": 100,
    "kept": 3,
    "landed": 60,
-   "attempts": 97,
-   "die_8s": 0.464,
-   "end_in_death": 0.454,
-   "held": 0.035
+   "attempts": 445,
+   "die_8s": 0.521,
+   "end_in_death": 0.539,
+   "held": 0.055
   },
   {
    "health": 100,
    "kept": 3,
    "landed": 90,
-   "attempts": 49,
-   "die_8s": 0.388,
-   "end_in_death": 0.469,
-   "held": 0.018
+   "attempts": 202,
+   "die_8s": 0.426,
+   "end_in_death": 0.505,
+   "held": 0.024
   },
   {
    "health": 100,
    "kept": 3,
    "landed": 120,
-   "attempts": 26,
-   "die_8s": 0.385,
-   "end_in_death": 0.5,
+   "attempts": 89,
+   "die_8s": 0.371,
+   "end_in_death": 0.449,
    "held": 0.01
   },
   {
    "health": 125,
    "kept": 0,
    "landed": 1,
-   "attempts": 1875,
-   "die_8s": 0.415,
-   "end_in_death": 0.455,
-   "held": 0.658
-  },
-  {
-   "health": 125,
-   "kept": 0,
-   "landed": 30,
-   "attempts": 1839,
-   "die_8s": 0.421,
+   "attempts": 6205,
+   "die_8s": 0.392,
    "end_in_death": 0.458,
-   "held": 0.649
+   "held": 0.614
   },
   {
    "health": 125,
    "kept": 0,
-   "landed": 60,
-   "attempts": 1746,
-   "die_8s": 0.43,
-   "end_in_death": 0.463,
-   "held": 0.624
-  },
-  {
-   "health": 125,
-   "kept": 0,
-   "landed": 90,
-   "attempts": 1619,
-   "die_8s": 0.44,
-   "end_in_death": 0.469,
-   "held": 0.586
-  },
-  {
-   "health": 125,
-   "kept": 0,
-   "landed": 120,
-   "attempts": 1416,
-   "die_8s": 0.439,
-   "end_in_death": 0.469,
-   "held": 0.511
-  },
-  {
-   "health": 125,
-   "kept": 1,
-   "landed": 1,
-   "attempts": 1053,
-   "die_8s": 0.394,
-   "end_in_death": 0.453,
-   "held": 0.37
-  },
-  {
-   "health": 125,
-   "kept": 1,
    "landed": 30,
-   "attempts": 1022,
-   "die_8s": 0.403,
-   "end_in_death": 0.457,
-   "held": 0.362
-  },
-  {
-   "health": 125,
-   "kept": 1,
-   "landed": 60,
-   "attempts": 918,
-   "die_8s": 0.422,
-   "end_in_death": 0.473,
-   "held": 0.337
-  },
-  {
-   "health": 125,
-   "kept": 1,
-   "landed": 90,
-   "attempts": 807,
-   "die_8s": 0.424,
-   "end_in_death": 0.478,
-   "held": 0.3
-  },
-  {
-   "health": 125,
-   "kept": 1,
-   "landed": 120,
-   "attempts": 651,
-   "die_8s": 0.418,
-   "end_in_death": 0.479,
-   "held": 0.242
-  },
-  {
-   "health": 125,
-   "kept": 2,
-   "landed": 1,
-   "attempts": 617,
-   "die_8s": 0.404,
-   "end_in_death": 0.429,
-   "held": 0.205
-  },
-  {
-   "health": 125,
-   "kept": 2,
-   "landed": 30,
-   "attempts": 571,
-   "die_8s": 0.424,
-   "end_in_death": 0.443,
-   "held": 0.196
-  },
-  {
-   "health": 125,
-   "kept": 2,
-   "landed": 60,
-   "attempts": 475,
-   "die_8s": 0.451,
-   "end_in_death": 0.463,
-   "held": 0.171
-  },
-  {
-   "health": 125,
-   "kept": 2,
-   "landed": 90,
-   "attempts": 374,
-   "die_8s": 0.447,
-   "end_in_death": 0.463,
-   "held": 0.135
-  },
-  {
-   "health": 125,
-   "kept": 2,
-   "landed": 120,
-   "attempts": 252,
-   "die_8s": 0.433,
+   "attempts": 6028,
+   "die_8s": 0.402,
    "end_in_death": 0.464,
-   "held": 0.091
+   "held": 0.604
   },
   {
    "health": 125,
-   "kept": 3,
-   "landed": 1,
-   "attempts": 385,
-   "die_8s": 0.387,
-   "end_in_death": 0.418,
-   "held": 0.125
-  },
-  {
-   "health": 125,
-   "kept": 3,
-   "landed": 30,
-   "attempts": 313,
-   "die_8s": 0.435,
-   "end_in_death": 0.454,
-   "held": 0.11
-  },
-  {
-   "health": 125,
-   "kept": 3,
+   "kept": 0,
    "landed": 60,
-   "attempts": 203,
-   "die_8s": 0.483,
-   "end_in_death": 0.488,
-   "held": 0.078
+   "attempts": 5601,
+   "die_8s": 0.412,
+   "end_in_death": 0.466,
+   "held": 0.565
   },
   {
    "health": 125,
-   "kept": 3,
+   "kept": 0,
    "landed": 90,
-   "attempts": 123,
-   "die_8s": 0.463,
-   "end_in_death": 0.496,
-   "held": 0.048
+   "attempts": 4855,
+   "die_8s": 0.418,
+   "end_in_death": 0.466,
+   "held": 0.491
   },
   {
    "health": 125,
-   "kept": 3,
+   "kept": 0,
    "landed": 120,
-   "attempts": 71,
-   "die_8s": 0.479,
+   "attempts": 3746,
+   "die_8s": 0.408,
+   "end_in_death": 0.457,
+   "held": 0.373
+  },
+  {
+   "health": 125,
+   "kept": 1,
+   "landed": 1,
+   "attempts": 4093,
+   "die_8s": 0.431,
+   "end_in_death": 0.482,
+   "held": 0.434
+  },
+  {
+   "health": 125,
+   "kept": 1,
+   "landed": 30,
+   "attempts": 3909,
+   "die_8s": 0.447,
    "end_in_death": 0.493,
-   "held": 0.027
+   "held": 0.425
   },
   {
-   "health": 150,
-   "kept": 0,
-   "landed": 1,
-   "attempts": 2429,
-   "die_8s": 0.338,
-   "end_in_death": 0.384,
-   "held": 0.719
-  },
-  {
-   "health": 150,
-   "kept": 0,
-   "landed": 30,
-   "attempts": 2374,
-   "die_8s": 0.346,
-   "end_in_death": 0.388,
-   "held": 0.711
-  },
-  {
-   "health": 150,
-   "kept": 0,
-   "landed": 60,
-   "attempts": 2247,
-   "die_8s": 0.363,
-   "end_in_death": 0.395,
-   "held": 0.685
-  },
-  {
-   "health": 150,
-   "kept": 0,
-   "landed": 90,
-   "attempts": 2095,
-   "die_8s": 0.374,
-   "end_in_death": 0.401,
-   "held": 0.648
-  },
-  {
-   "health": 150,
-   "kept": 0,
-   "landed": 120,
-   "attempts": 1844,
-   "die_8s": 0.378,
-   "end_in_death": 0.402,
-   "held": 0.57
-  },
-  {
-   "health": 150,
-   "kept": 1,
-   "landed": 1,
-   "attempts": 1491,
-   "die_8s": 0.348,
-   "end_in_death": 0.405,
-   "held": 0.469
-  },
-  {
-   "health": 150,
-   "kept": 1,
-   "landed": 30,
-   "attempts": 1447,
-   "die_8s": 0.36,
-   "end_in_death": 0.41,
-   "held": 0.46
-  },
-  {
-   "health": 150,
+   "health": 125,
    "kept": 1,
    "landed": 60,
-   "attempts": 1332,
-   "die_8s": 0.378,
-   "end_in_death": 0.42,
-   "held": 0.435
+   "attempts": 3460,
+   "die_8s": 0.463,
+   "end_in_death": 0.504,
+   "held": 0.385
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 1,
    "landed": 90,
-   "attempts": 1192,
-   "die_8s": 0.387,
-   "end_in_death": 0.429,
-   "held": 0.398
+   "attempts": 2772,
+   "die_8s": 0.475,
+   "end_in_death": 0.517,
+   "held": 0.317
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 1,
    "landed": 120,
-   "attempts": 987,
-   "die_8s": 0.388,
-   "end_in_death": 0.433,
-   "held": 0.332
+   "attempts": 1928,
+   "die_8s": 0.457,
+   "end_in_death": 0.512,
+   "held": 0.219
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 2,
    "landed": 1,
-   "attempts": 931,
-   "die_8s": 0.349,
-   "end_in_death": 0.385,
-   "held": 0.278
+   "attempts": 2735,
+   "die_8s": 0.445,
+   "end_in_death": 0.471,
+   "held": 0.289
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 2,
    "landed": 30,
-   "attempts": 873,
-   "die_8s": 0.369,
-   "end_in_death": 0.394,
-   "held": 0.267
+   "attempts": 2518,
+   "die_8s": 0.47,
+   "end_in_death": 0.49,
+   "held": 0.277
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 2,
    "landed": 60,
-   "attempts": 761,
-   "die_8s": 0.39,
-   "end_in_death": 0.407,
-   "held": 0.241
+   "attempts": 2021,
+   "die_8s": 0.493,
+   "end_in_death": 0.51,
+   "held": 0.232
   },
   {
-   "health": 150,
+   "health": 125,
    "kept": 2,
    "landed": 90,
-   "attempts": 621,
-   "die_8s": 0.403,
-   "end_in_death": 0.42,
-   "held": 0.203
-  },
-  {
-   "health": 150,
-   "kept": 2,
-   "landed": 120,
-   "attempts": 447,
-   "die_8s": 0.383,
-   "end_in_death": 0.423,
-   "held": 0.147
-  },
-  {
-   "health": 150,
-   "kept": 3,
-   "landed": 1,
-   "attempts": 604,
-   "die_8s": 0.364,
-   "end_in_death": 0.396,
-   "held": 0.185
-  },
-  {
-   "health": 150,
-   "kept": 3,
-   "landed": 30,
-   "attempts": 506,
-   "die_8s": 0.403,
-   "end_in_death": 0.429,
+   "attempts": 1438,
+   "die_8s": 0.49,
+   "end_in_death": 0.515,
    "held": 0.168
   },
   {
+   "health": 125,
+   "kept": 2,
+   "landed": 120,
+   "attempts": 852,
+   "die_8s": 0.454,
+   "end_in_death": 0.493,
+   "held": 0.096
+  },
+  {
+   "health": 125,
+   "kept": 3,
+   "landed": 1,
+   "attempts": 1784,
+   "die_8s": 0.446,
+   "end_in_death": 0.471,
+   "held": 0.191
+  },
+  {
+   "health": 125,
+   "kept": 3,
+   "landed": 30,
+   "attempts": 1464,
+   "die_8s": 0.497,
+   "end_in_death": 0.515,
+   "held": 0.17
+  },
+  {
+   "health": 125,
+   "kept": 3,
+   "landed": 60,
+   "attempts": 923,
+   "die_8s": 0.525,
+   "end_in_death": 0.555,
+   "held": 0.117
+  },
+  {
+   "health": 125,
+   "kept": 3,
+   "landed": 90,
+   "attempts": 486,
+   "die_8s": 0.492,
+   "end_in_death": 0.566,
+   "held": 0.064
+  },
+  {
+   "health": 125,
+   "kept": 3,
+   "landed": 120,
+   "attempts": 224,
+   "die_8s": 0.469,
+   "end_in_death": 0.545,
+   "held": 0.029
+  },
+  {
+   "health": 150,
+   "kept": 0,
+   "landed": 1,
+   "attempts": 8089,
+   "die_8s": 0.306,
+   "end_in_death": 0.382,
+   "held": 0.662
+  },
+  {
+   "health": 150,
+   "kept": 0,
+   "landed": 30,
+   "attempts": 7847,
+   "die_8s": 0.317,
+   "end_in_death": 0.388,
+   "held": 0.653
+  },
+  {
+   "health": 150,
+   "kept": 0,
+   "landed": 60,
+   "attempts": 7302,
+   "die_8s": 0.333,
+   "end_in_death": 0.393,
+   "held": 0.617
+  },
+  {
+   "health": 150,
+   "kept": 0,
+   "landed": 90,
+   "attempts": 6433,
+   "die_8s": 0.34,
+   "end_in_death": 0.392,
+   "held": 0.546
+  },
+  {
+   "health": 150,
+   "kept": 0,
+   "landed": 120,
+   "attempts": 5084,
+   "die_8s": 0.335,
+   "end_in_death": 0.382,
+   "held": 0.422
+  },
+  {
+   "health": 150,
+   "kept": 1,
+   "landed": 1,
+   "attempts": 5521,
+   "die_8s": 0.353,
+   "end_in_death": 0.43,
+   "held": 0.519
+  },
+  {
+   "health": 150,
+   "kept": 1,
+   "landed": 30,
+   "attempts": 5289,
+   "die_8s": 0.372,
+   "end_in_death": 0.441,
+   "held": 0.51
+  },
+  {
+   "health": 150,
+   "kept": 1,
+   "landed": 60,
+   "attempts": 4747,
+   "die_8s": 0.393,
+   "end_in_death": 0.452,
+   "held": 0.472
+  },
+  {
+   "health": 150,
+   "kept": 1,
+   "landed": 90,
+   "attempts": 3932,
+   "die_8s": 0.405,
+   "end_in_death": 0.461,
+   "held": 0.401
+  },
+  {
+   "health": 150,
+   "kept": 1,
+   "landed": 120,
+   "attempts": 2854,
+   "die_8s": 0.395,
+   "end_in_death": 0.456,
+   "held": 0.29
+  },
+  {
+   "health": 150,
+   "kept": 2,
+   "landed": 1,
+   "attempts": 3894,
+   "die_8s": 0.38,
+   "end_in_death": 0.436,
+   "held": 0.379
+  },
+  {
+   "health": 150,
+   "kept": 2,
+   "landed": 30,
+   "attempts": 3625,
+   "die_8s": 0.409,
+   "end_in_death": 0.455,
+   "held": 0.368
+  },
+  {
+   "health": 150,
+   "kept": 2,
+   "landed": 60,
+   "attempts": 3093,
+   "die_8s": 0.432,
+   "end_in_death": 0.471,
+   "held": 0.326
+  },
+  {
+   "health": 150,
+   "kept": 2,
+   "landed": 90,
+   "attempts": 2335,
+   "die_8s": 0.446,
+   "end_in_death": 0.487,
+   "held": 0.256
+  },
+  {
+   "health": 150,
+   "kept": 2,
+   "landed": 120,
+   "attempts": 1466,
+   "die_8s": 0.424,
+   "end_in_death": 0.478,
+   "held": 0.159
+  },
+  {
+   "health": 150,
+   "kept": 3,
+   "landed": 1,
+   "attempts": 2706,
+   "die_8s": 0.407,
+   "end_in_death": 0.449,
+   "held": 0.274
+  },
+  {
+   "health": 150,
+   "kept": 3,
+   "landed": 30,
+   "attempts": 2306,
+   "die_8s": 0.46,
+   "end_in_death": 0.492,
+   "held": 0.254
+  },
+  {
    "health": 150,
    "kept": 3,
    "landed": 60,
-   "attempts": 364,
-   "die_8s": 0.445,
-   "end_in_death": 0.473,
-   "held": 0.134
+   "attempts": 1648,
+   "die_8s": 0.502,
+   "end_in_death": 0.539,
+   "held": 0.2
   },
   {
    "health": 150,
    "kept": 3,
    "landed": 90,
-   "attempts": 249,
-   "die_8s": 0.426,
-   "end_in_death": 0.47,
-   "held": 0.091
+   "attempts": 993,
+   "die_8s": 0.506,
+   "end_in_death": 0.559,
+   "held": 0.126
   },
   {
    "health": 150,
    "kept": 3,
    "landed": 120,
-   "attempts": 136,
-   "die_8s": 0.426,
-   "end_in_death": 0.478,
-   "held": 0.05
+   "attempts": 475,
+   "die_8s": 0.493,
+   "end_in_death": 0.547,
+   "held": 0.061
   },
   {
    "health": 175,
    "kept": 0,
    "landed": 1,
-   "attempts": 3013,
-   "die_8s": 0.268,
-   "end_in_death": 0.324,
-   "held": 0.749
-  },
-  {
-   "health": 175,
-   "kept": 0,
-   "landed": 30,
-   "attempts": 2948,
-   "die_8s": 0.275,
-   "end_in_death": 0.327,
-   "held": 0.741
-  },
-  {
-   "health": 175,
-   "kept": 0,
-   "landed": 60,
-   "attempts": 2788,
-   "die_8s": 0.291,
-   "end_in_death": 0.336,
-   "held": 0.72
-  },
-  {
-   "health": 175,
-   "kept": 0,
-   "landed": 90,
-   "attempts": 2578,
-   "die_8s": 0.303,
-   "end_in_death": 0.344,
+   "attempts": 10457,
+   "die_8s": 0.23,
+   "end_in_death": 0.313,
    "held": 0.681
   },
   {
    "health": 175,
    "kept": 0,
+   "landed": 30,
+   "attempts": 10121,
+   "die_8s": 0.24,
+   "end_in_death": 0.318,
+   "held": 0.674
+  },
+  {
+   "health": 175,
+   "kept": 0,
+   "landed": 60,
+   "attempts": 9432,
+   "die_8s": 0.256,
+   "end_in_death": 0.325,
+   "held": 0.645
+  },
+  {
+   "health": 175,
+   "kept": 0,
+   "landed": 90,
+   "attempts": 8364,
+   "die_8s": 0.266,
+   "end_in_death": 0.327,
+   "held": 0.578
+  },
+  {
+   "health": 175,
+   "kept": 0,
    "landed": 120,
-   "attempts": 2271,
-   "die_8s": 0.312,
-   "end_in_death": 0.351,
-   "held": 0.611
+   "attempts": 6701,
+   "die_8s": 0.266,
+   "end_in_death": 0.32,
+   "held": 0.457
   },
   {
    "health": 175,
    "kept": 1,
    "landed": 1,
-   "attempts": 1984,
-   "die_8s": 0.298,
-   "end_in_death": 0.353,
-   "held": 0.544
+   "attempts": 7393,
+   "die_8s": 0.283,
+   "end_in_death": 0.365,
+   "held": 0.583
   },
   {
    "health": 175,
    "kept": 1,
    "landed": 30,
-   "attempts": 1929,
-   "die_8s": 0.307,
-   "end_in_death": 0.357,
-   "held": 0.536
+   "attempts": 7057,
+   "die_8s": 0.298,
+   "end_in_death": 0.376,
+   "held": 0.575
   },
   {
    "health": 175,
    "kept": 1,
    "landed": 60,
-   "attempts": 1776,
-   "die_8s": 0.332,
-   "end_in_death": 0.374,
-   "held": 0.517
+   "attempts": 6407,
+   "die_8s": 0.323,
+   "end_in_death": 0.388,
+   "held": 0.543
   },
   {
    "health": 175,
    "kept": 1,
    "landed": 90,
-   "attempts": 1604,
-   "die_8s": 0.349,
-   "end_in_death": 0.385,
-   "held": 0.481
+   "attempts": 5411,
+   "die_8s": 0.339,
+   "end_in_death": 0.399,
+   "held": 0.473
   },
   {
    "health": 175,
    "kept": 1,
    "landed": 120,
-   "attempts": 1343,
-   "die_8s": 0.356,
-   "end_in_death": 0.389,
-   "held": 0.407
-  },
-  {
-   "health": 175,
-   "kept": 2,
-   "landed": 1,
-   "attempts": 1313,
-   "die_8s": 0.296,
-   "end_in_death": 0.347,
+   "attempts": 4040,
+   "die_8s": 0.338,
+   "end_in_death": 0.396,
    "held": 0.354
   },
   {
    "health": 175,
    "kept": 2,
+   "landed": 1,
+   "attempts": 5358,
+   "die_8s": 0.318,
+   "end_in_death": 0.397,
+   "held": 0.467
+  },
+  {
+   "health": 175,
+   "kept": 2,
    "landed": 30,
-   "attempts": 1233,
-   "die_8s": 0.32,
-   "end_in_death": 0.362,
-   "held": 0.347
+   "attempts": 4985,
+   "die_8s": 0.346,
+   "end_in_death": 0.416,
+   "held": 0.457
   },
   {
    "health": 175,
    "kept": 2,
    "landed": 60,
-   "attempts": 1095,
-   "die_8s": 0.344,
-   "end_in_death": 0.374,
-   "held": 0.32
+   "attempts": 4344,
+   "die_8s": 0.376,
+   "end_in_death": 0.435,
+   "held": 0.417
   },
   {
    "health": 175,
    "kept": 2,
    "landed": 90,
-   "attempts": 914,
-   "die_8s": 0.356,
-   "end_in_death": 0.389,
-   "held": 0.278
+   "attempts": 3394,
+   "die_8s": 0.396,
+   "end_in_death": 0.451,
+   "held": 0.343
   },
   {
    "health": 175,
    "kept": 2,
    "landed": 120,
-   "attempts": 690,
-   "die_8s": 0.354,
-   "end_in_death": 0.391,
-   "held": 0.211
+   "attempts": 2254,
+   "die_8s": 0.391,
+   "end_in_death": 0.455,
+   "held": 0.232
   },
   {
    "health": 175,
    "kept": 3,
    "landed": 1,
-   "attempts": 895,
-   "die_8s": 0.297,
-   "end_in_death": 0.356,
-   "held": 0.248
+   "attempts": 3852,
+   "die_8s": 0.336,
+   "end_in_death": 0.41,
+   "held": 0.353
   },
   {
    "health": 175,
    "kept": 3,
    "landed": 30,
-   "attempts": 769,
-   "die_8s": 0.339,
-   "end_in_death": 0.395,
-   "held": 0.237
+   "attempts": 3361,
+   "die_8s": 0.388,
+   "end_in_death": 0.448,
+   "held": 0.338
   },
   {
    "health": 175,
    "kept": 3,
    "landed": 60,
-   "attempts": 597,
-   "die_8s": 0.374,
-   "end_in_death": 0.425,
-   "held": 0.198
+   "attempts": 2576,
+   "die_8s": 0.434,
+   "end_in_death": 0.493,
+   "held": 0.285
   },
   {
    "health": 175,
    "kept": 3,
    "landed": 90,
-   "attempts": 435,
-   "die_8s": 0.382,
-   "end_in_death": 0.444,
-   "held": 0.152
+   "attempts": 1717,
+   "die_8s": 0.459,
+   "end_in_death": 0.521,
+   "held": 0.203
   },
   {
    "health": 175,
    "kept": 3,
    "landed": 120,
-   "attempts": 271,
-   "die_8s": 0.38,
-   "end_in_death": 0.461,
-   "held": 0.099
+   "attempts": 935,
+   "die_8s": 0.446,
+   "end_in_death": 0.523,
+   "held": 0.113
   },
   {
    "health": 200,
    "kept": 0,
    "landed": 1,
-   "attempts": 3706,
-   "die_8s": 0.216,
-   "end_in_death": 0.274,
-   "held": 0.78
+   "attempts": 13509,
+   "die_8s": 0.173,
+   "end_in_death": 0.255,
+   "held": 0.694
   },
   {
    "health": 200,
    "kept": 0,
    "landed": 30,
-   "attempts": 3605,
-   "die_8s": 0.224,
-   "end_in_death": 0.279,
-   "held": 0.773
+   "attempts": 13028,
+   "die_8s": 0.181,
+   "end_in_death": 0.26,
+   "held": 0.686
   },
   {
    "health": 200,
    "kept": 0,
    "landed": 60,
-   "attempts": 3384,
-   "die_8s": 0.239,
-   "end_in_death": 0.29,
-   "held": 0.753
+   "attempts": 12098,
+   "die_8s": 0.196,
+   "end_in_death": 0.267,
+   "held": 0.66
   },
   {
    "health": 200,
    "kept": 0,
    "landed": 90,
-   "attempts": 3130,
-   "die_8s": 0.252,
-   "end_in_death": 0.296,
-   "held": 0.713
+   "attempts": 10742,
+   "die_8s": 0.207,
+   "end_in_death": 0.27,
+   "held": 0.599
   },
   {
    "health": 200,
    "kept": 0,
    "landed": 120,
-   "attempts": 2734,
-   "die_8s": 0.265,
-   "end_in_death": 0.307,
-   "held": 0.645
+   "attempts": 8643,
+   "die_8s": 0.211,
+   "end_in_death": 0.269,
+   "held": 0.488
   },
   {
    "health": 200,
    "kept": 1,
    "landed": 1,
-   "attempts": 2587,
-   "die_8s": 0.244,
-   "end_in_death": 0.301,
-   "held": 0.603
+   "attempts": 9725,
+   "die_8s": 0.22,
+   "end_in_death": 0.308,
+   "held": 0.628
   },
   {
    "health": 200,
    "kept": 1,
    "landed": 30,
-   "attempts": 2493,
-   "die_8s": 0.256,
-   "end_in_death": 0.309,
-   "held": 0.597
+   "attempts": 9252,
+   "die_8s": 0.234,
+   "end_in_death": 0.318,
+   "held": 0.621
   },
   {
    "health": 200,
    "kept": 1,
    "landed": 60,
-   "attempts": 2288,
-   "die_8s": 0.279,
-   "end_in_death": 0.327,
-   "held": 0.58
+   "attempts": 8380,
+   "die_8s": 0.258,
+   "end_in_death": 0.333,
+   "held": 0.593
   },
   {
    "health": 200,
    "kept": 1,
    "landed": 90,
-   "attempts": 2072,
-   "die_8s": 0.299,
-   "end_in_death": 0.338,
-   "held": 0.544
-  },
-  {
-   "health": 200,
-   "kept": 1,
-   "landed": 120,
-   "attempts": 1762,
-   "die_8s": 0.309,
+   "attempts": 7144,
+   "die_8s": 0.277,
    "end_in_death": 0.345,
-   "held": 0.472
+   "held": 0.53
+  },
+  {
+   "health": 200,
+   "kept": 1,
+   "landed": 120,
+   "attempts": 5468,
+   "die_8s": 0.281,
+   "end_in_death": 0.345,
+   "held": 0.411
   },
   {
    "health": 200,
    "kept": 2,
    "landed": 1,
-   "attempts": 1757,
-   "die_8s": 0.253,
-   "end_in_death": 0.311,
+   "attempts": 7196,
+   "die_8s": 0.258,
+   "end_in_death": 0.346,
+   "held": 0.539
+  },
+  {
+   "health": 200,
+   "kept": 2,
+   "landed": 30,
+   "attempts": 6679,
+   "die_8s": 0.282,
+   "end_in_death": 0.365,
+   "held": 0.531
+  },
+  {
+   "health": 200,
+   "kept": 2,
+   "landed": 60,
+   "attempts": 5823,
+   "die_8s": 0.318,
+   "end_in_death": 0.389,
+   "held": 0.495
+  },
+  {
+   "health": 200,
+   "kept": 2,
+   "landed": 90,
+   "attempts": 4736,
+   "die_8s": 0.345,
+   "end_in_death": 0.408,
    "held": 0.426
   },
   {
    "health": 200,
    "kept": 2,
-   "landed": 30,
-   "attempts": 1652,
-   "die_8s": 0.276,
-   "end_in_death": 0.327,
-   "held": 0.421
-  },
-  {
-   "health": 200,
-   "kept": 2,
-   "landed": 60,
-   "attempts": 1469,
-   "die_8s": 0.306,
-   "end_in_death": 0.349,
-   "held": 0.4
-  },
-  {
-   "health": 200,
-   "kept": 2,
-   "landed": 90,
-   "attempts": 1270,
-   "die_8s": 0.329,
-   "end_in_death": 0.364,
-   "held": 0.362
-  },
-  {
-   "health": 200,
-   "kept": 2,
    "landed": 120,
-   "attempts": 982,
-   "die_8s": 0.331,
-   "end_in_death": 0.368,
-   "held": 0.282
-  },
-  {
-   "health": 200,
-   "kept": 3,
-   "landed": 1,
-   "attempts": 1227,
-   "die_8s": 0.253,
-   "end_in_death": 0.319,
+   "attempts": 3262,
+   "die_8s": 0.35,
+   "end_in_death": 0.417,
    "held": 0.305
   },
   {
    "health": 200,
    "kept": 3,
+   "landed": 1,
+   "attempts": 5257,
+   "die_8s": 0.285,
+   "end_in_death": 0.371,
+   "held": 0.427
+  },
+  {
+   "health": 200,
+   "kept": 3,
    "landed": 30,
-   "attempts": 1087,
-   "die_8s": 0.291,
-   "end_in_death": 0.348,
-   "held": 0.294
+   "attempts": 4594,
+   "die_8s": 0.335,
+   "end_in_death": 0.41,
+   "held": 0.414
   },
   {
    "health": 200,
    "kept": 3,
    "landed": 60,
-   "attempts": 867,
-   "die_8s": 0.329,
-   "end_in_death": 0.383,
-   "held": 0.259
+   "attempts": 3661,
+   "die_8s": 0.391,
+   "end_in_death": 0.454,
+   "held": 0.366
   },
   {
    "health": 200,
    "kept": 3,
    "landed": 90,
-   "attempts": 652,
-   "die_8s": 0.348,
-   "end_in_death": 0.406,
-   "held": 0.208
+   "attempts": 2547,
+   "die_8s": 0.424,
+   "end_in_death": 0.489,
+   "held": 0.278
   },
   {
    "health": 200,
    "kept": 3,
    "landed": 120,
-   "attempts": 447,
-   "die_8s": 0.351,
-   "end_in_death": 0.425,
-   "held": 0.149
+   "attempts": 1480,
+   "die_8s": 0.423,
+   "end_in_death": 0.501,
+   "held": 0.169
   },
   {
-   "health": 250,
+   "health": 225,
    "kept": 0,
    "landed": 1,
-   "attempts": 5472,
-   "die_8s": 0.135,
-   "end_in_death": 0.194,
-   "held": 0.814
+   "attempts": 17357,
+   "die_8s": 0.126,
+   "end_in_death": 0.211,
+   "held": 0.704
   },
   {
-   "health": 250,
+   "health": 225,
    "kept": 0,
    "landed": 30,
-   "attempts": 5297,
-   "die_8s": 0.141,
-   "end_in_death": 0.198,
-   "held": 0.805
+   "attempts": 16721,
+   "die_8s": 0.134,
+   "end_in_death": 0.215,
+   "held": 0.696
   },
   {
-   "health": 250,
+   "health": 225,
    "kept": 0,
    "landed": 60,
-   "attempts": 4957,
-   "die_8s": 0.155,
-   "end_in_death": 0.206,
-   "held": 0.786
+   "attempts": 15508,
+   "die_8s": 0.148,
+   "end_in_death": 0.222,
+   "held": 0.672
   },
   {
-   "health": 250,
+   "health": 225,
    "kept": 0,
    "landed": 90,
-   "attempts": 4526,
+   "attempts": 13704,
+   "die_8s": 0.159,
+   "end_in_death": 0.224,
+   "held": 0.614
+  },
+  {
+   "health": 225,
+   "kept": 0,
+   "landed": 120,
+   "attempts": 11106,
+   "die_8s": 0.165,
+   "end_in_death": 0.223,
+   "held": 0.506
+  },
+  {
+   "health": 225,
+   "kept": 1,
+   "landed": 1,
+   "attempts": 12543,
    "die_8s": 0.167,
-   "end_in_death": 0.214,
-   "held": 0.749
+   "end_in_death": 0.258,
+   "held": 0.657
+  },
+  {
+   "health": 225,
+   "kept": 1,
+   "landed": 30,
+   "attempts": 11909,
+   "die_8s": 0.18,
+   "end_in_death": 0.267,
+   "held": 0.649
+  },
+  {
+   "health": 225,
+   "kept": 1,
+   "landed": 60,
+   "attempts": 10801,
+   "die_8s": 0.201,
+   "end_in_death": 0.279,
+   "held": 0.625
+  },
+  {
+   "health": 225,
+   "kept": 1,
+   "landed": 90,
+   "attempts": 9234,
+   "die_8s": 0.219,
+   "end_in_death": 0.29,
+   "held": 0.564
+  },
+  {
+   "health": 225,
+   "kept": 1,
+   "landed": 120,
+   "attempts": 7088,
+   "die_8s": 0.229,
+   "end_in_death": 0.295,
+   "held": 0.448
+  },
+  {
+   "health": 225,
+   "kept": 2,
+   "landed": 1,
+   "attempts": 9425,
+   "die_8s": 0.202,
+   "end_in_death": 0.295,
+   "held": 0.587
+  },
+  {
+   "health": 225,
+   "kept": 2,
+   "landed": 30,
+   "attempts": 8732,
+   "die_8s": 0.224,
+   "end_in_death": 0.312,
+   "held": 0.579
+  },
+  {
+   "health": 225,
+   "kept": 2,
+   "landed": 60,
+   "attempts": 7636,
+   "die_8s": 0.256,
+   "end_in_death": 0.335,
+   "held": 0.55
+  },
+  {
+   "health": 225,
+   "kept": 2,
+   "landed": 90,
+   "attempts": 6236,
+   "die_8s": 0.285,
+   "end_in_death": 0.357,
+   "held": 0.486
+  },
+  {
+   "health": 225,
+   "kept": 2,
+   "landed": 120,
+   "attempts": 4399,
+   "die_8s": 0.298,
+   "end_in_death": 0.372,
+   "held": 0.362
+  },
+  {
+   "health": 225,
+   "kept": 3,
+   "landed": 1,
+   "attempts": 7035,
+   "die_8s": 0.234,
+   "end_in_death": 0.328,
+   "held": 0.495
+  },
+  {
+   "health": 225,
+   "kept": 3,
+   "landed": 30,
+   "attempts": 6121,
+   "die_8s": 0.278,
+   "end_in_death": 0.365,
+   "held": 0.484
+  },
+  {
+   "health": 225,
+   "kept": 3,
+   "landed": 60,
+   "attempts": 4930,
+   "die_8s": 0.333,
+   "end_in_death": 0.409,
+   "held": 0.443
+  },
+  {
+   "health": 225,
+   "kept": 3,
+   "landed": 90,
+   "attempts": 3577,
+   "die_8s": 0.372,
+   "end_in_death": 0.446,
+   "held": 0.358
+  },
+  {
+   "health": 225,
+   "kept": 3,
+   "landed": 120,
+   "attempts": 2195,
+   "die_8s": 0.379,
+   "end_in_death": 0.467,
+   "held": 0.233
+  },
+  {
+   "health": 250,
+   "kept": 0,
+   "landed": 1,
+   "attempts": 22238,
+   "die_8s": 0.095,
+   "end_in_death": 0.177,
+   "held": 0.712
+  },
+  {
+   "health": 250,
+   "kept": 0,
+   "landed": 30,
+   "attempts": 21322,
+   "die_8s": 0.101,
+   "end_in_death": 0.18,
+   "held": 0.704
+  },
+  {
+   "health": 250,
+   "kept": 0,
+   "landed": 60,
+   "attempts": 19674,
+   "die_8s": 0.113,
+   "end_in_death": 0.186,
+   "held": 0.681
+  },
+  {
+   "health": 250,
+   "kept": 0,
+   "landed": 90,
+   "attempts": 17392,
+   "die_8s": 0.123,
+   "end_in_death": 0.189,
+   "held": 0.628
   },
   {
    "health": 250,
    "kept": 0,
    "landed": 120,
-   "attempts": 3906,
-   "die_8s": 0.183,
-   "end_in_death": 0.227,
-   "held": 0.685
+   "attempts": 14119,
+   "die_8s": 0.131,
+   "end_in_death": 0.189,
+   "held": 0.523
   },
   {
    "health": 250,
    "kept": 1,
    "landed": 1,
-   "attempts": 4038,
-   "die_8s": 0.162,
-   "end_in_death": 0.226,
-   "held": 0.707
+   "attempts": 16297,
+   "die_8s": 0.125,
+   "end_in_death": 0.216,
+   "held": 0.683
   },
   {
    "health": 250,
    "kept": 1,
    "landed": 30,
-   "attempts": 3863,
-   "die_8s": 0.172,
-   "end_in_death": 0.233,
-   "held": 0.698
+   "attempts": 15432,
+   "die_8s": 0.135,
+   "end_in_death": 0.223,
+   "held": 0.674
   },
   {
    "health": 250,
    "kept": 1,
    "landed": 60,
-   "attempts": 3567,
-   "die_8s": 0.193,
-   "end_in_death": 0.247,
-   "held": 0.682
+   "attempts": 13919,
+   "die_8s": 0.155,
+   "end_in_death": 0.235,
+   "held": 0.652
   },
   {
    "health": 250,
    "kept": 1,
    "landed": 90,
-   "attempts": 3181,
-   "die_8s": 0.211,
-   "end_in_death": 0.261,
-   "held": 0.645
+   "attempts": 11921,
+   "die_8s": 0.173,
+   "end_in_death": 0.246,
+   "held": 0.597
   },
   {
    "health": 250,
    "kept": 1,
    "landed": 120,
-   "attempts": 2695,
-   "die_8s": 0.23,
-   "end_in_death": 0.276,
-   "held": 0.58
+   "attempts": 9202,
+   "die_8s": 0.185,
+   "end_in_death": 0.253,
+   "held": 0.486
   },
   {
    "health": 250,
    "kept": 2,
    "landed": 1,
-   "attempts": 2973,
-   "die_8s": 0.181,
-   "end_in_death": 0.247,
-   "held": 0.57
+   "attempts": 12251,
+   "die_8s": 0.158,
+   "end_in_death": 0.254,
+   "held": 0.63
   },
   {
    "health": 250,
    "kept": 2,
    "landed": 30,
-   "attempts": 2787,
-   "die_8s": 0.198,
-   "end_in_death": 0.259,
-   "held": 0.563
+   "attempts": 11332,
+   "die_8s": 0.175,
+   "end_in_death": 0.267,
+   "held": 0.62
   },
   {
    "health": 250,
    "kept": 2,
    "landed": 60,
-   "attempts": 2490,
-   "die_8s": 0.228,
-   "end_in_death": 0.281,
-   "held": 0.545
+   "attempts": 9893,
+   "die_8s": 0.205,
+   "end_in_death": 0.29,
+   "held": 0.596
   },
   {
    "health": 250,
    "kept": 2,
    "landed": 90,
-   "attempts": 2142,
-   "die_8s": 0.257,
-   "end_in_death": 0.303,
+   "attempts": 8084,
+   "die_8s": 0.232,
+   "end_in_death": 0.31,
+   "held": 0.534
+  },
+  {
+   "health": 250,
+   "kept": 2,
+   "landed": 120,
+   "attempts": 5818,
+   "die_8s": 0.248,
+   "end_in_death": 0.324,
+   "held": 0.412
+  },
+  {
+   "health": 250,
+   "kept": 3,
+   "landed": 1,
+   "attempts": 9283,
+   "die_8s": 0.186,
+   "end_in_death": 0.287,
+   "held": 0.556
+  },
+  {
+   "health": 250,
+   "kept": 3,
+   "landed": 30,
+   "attempts": 8077,
+   "die_8s": 0.223,
+   "end_in_death": 0.318,
+   "held": 0.544
+  },
+  {
+   "health": 250,
+   "kept": 3,
+   "landed": 60,
+   "attempts": 6556,
+   "die_8s": 0.273,
+   "end_in_death": 0.359,
    "held": 0.508
   },
   {
    "health": 250,
-   "kept": 2,
-   "landed": 120,
-   "attempts": 1715,
-   "die_8s": 0.272,
-   "end_in_death": 0.32,
+   "kept": 3,
+   "landed": 90,
+   "attempts": 4911,
+   "die_8s": 0.315,
+   "end_in_death": 0.398,
    "held": 0.431
   },
   {
    "health": 250,
    "kept": 3,
-   "landed": 1,
-   "attempts": 2226,
-   "die_8s": 0.188,
-   "end_in_death": 0.265,
-   "held": 0.458
-  },
-  {
-   "health": 250,
-   "kept": 3,
-   "landed": 30,
-   "attempts": 1981,
-   "die_8s": 0.215,
-   "end_in_death": 0.29,
-   "held": 0.448
-  },
-  {
-   "health": 250,
-   "kept": 3,
-   "landed": 60,
-   "attempts": 1636,
-   "die_8s": 0.259,
-   "end_in_death": 0.33,
-   "held": 0.421
-  },
-  {
-   "health": 250,
-   "kept": 3,
-   "landed": 90,
-   "attempts": 1315,
-   "die_8s": 0.298,
-   "end_in_death": 0.364,
-   "held": 0.376
-  },
-  {
-   "health": 250,
-   "kept": 3,
    "landed": 120,
-   "attempts": 952,
-   "die_8s": 0.317,
-   "end_in_death": 0.391,
-   "held": 0.291
+   "attempts": 3115,
+   "die_8s": 0.335,
+   "end_in_death": 0.426,
+   "held": 0.298
   },
   {
    "health": 300,
    "kept": 0,
    "landed": 1,
-   "attempts": 7748,
-   "die_8s": 0.084,
+   "attempts": 34582,
+   "die_8s": 0.055,
+   "end_in_death": 0.131,
+   "held": 0.724
+  },
+  {
+   "health": 300,
+   "kept": 0,
+   "landed": 30,
+   "attempts": 32882,
+   "die_8s": 0.059,
+   "end_in_death": 0.133,
+   "held": 0.714
+  },
+  {
+   "health": 300,
+   "kept": 0,
+   "landed": 60,
+   "attempts": 30037,
+   "die_8s": 0.067,
+   "end_in_death": 0.138,
+   "held": 0.691
+  },
+  {
+   "health": 300,
+   "kept": 0,
+   "landed": 90,
+   "attempts": 26397,
+   "die_8s": 0.075,
    "end_in_death": 0.141,
-   "held": 0.831
+   "held": 0.64
   },
   {
    "health": 300,
    "kept": 0,
+   "landed": 120,
+   "attempts": 21348,
+   "die_8s": 0.084,
+   "end_in_death": 0.142,
+   "held": 0.547
+  },
+  {
+   "health": 300,
+   "kept": 1,
+   "landed": 1,
+   "attempts": 26489,
+   "die_8s": 0.071,
+   "end_in_death": 0.156,
+   "held": 0.707
+  },
+  {
+   "health": 300,
+   "kept": 1,
    "landed": 30,
-   "attempts": 7450,
-   "die_8s": 0.089,
-   "end_in_death": 0.144,
-   "held": 0.821
-  },
-  {
-   "health": 300,
-   "kept": 0,
-   "landed": 60,
-   "attempts": 6878,
-   "die_8s": 0.1,
-   "end_in_death": 0.152,
-   "held": 0.802
-  },
-  {
-   "health": 300,
-   "kept": 0,
-   "landed": 90,
-   "attempts": 6186,
-   "die_8s": 0.11,
+   "attempts": 24785,
+   "die_8s": 0.077,
    "end_in_death": 0.161,
-   "held": 0.77
-  },
-  {
-   "health": 300,
-   "kept": 0,
-   "landed": 120,
-   "attempts": 5263,
-   "die_8s": 0.128,
-   "end_in_death": 0.175,
-   "held": 0.711
-  },
-  {
-   "health": 300,
-   "kept": 1,
-   "landed": 1,
-   "attempts": 6081,
-   "die_8s": 0.102,
-   "end_in_death": 0.164,
-   "held": 0.764
-  },
-  {
-   "health": 300,
-   "kept": 1,
-   "landed": 30,
-   "attempts": 5775,
-   "die_8s": 0.11,
-   "end_in_death": 0.17,
-   "held": 0.754
+   "held": 0.697
   },
   {
    "health": 300,
    "kept": 1,
    "landed": 60,
-   "attempts": 5249,
-   "die_8s": 0.124,
-   "end_in_death": 0.182,
-   "held": 0.735
+   "attempts": 22192,
+   "die_8s": 0.089,
+   "end_in_death": 0.169,
+   "held": 0.673
   },
   {
    "health": 300,
    "kept": 1,
    "landed": 90,
-   "attempts": 4651,
-   "die_8s": 0.14,
-   "end_in_death": 0.195,
-   "held": 0.704
+   "attempts": 18956,
+   "die_8s": 0.103,
+   "end_in_death": 0.178,
+   "held": 0.624
   },
   {
    "health": 300,
    "kept": 1,
    "landed": 120,
-   "attempts": 3872,
-   "die_8s": 0.16,
-   "end_in_death": 0.214,
-   "held": 0.642
+   "attempts": 14759,
+   "die_8s": 0.116,
+   "end_in_death": 0.186,
+   "held": 0.526
   },
   {
    "health": 300,
    "kept": 2,
    "landed": 1,
-   "attempts": 4745,
-   "die_8s": 0.119,
-   "end_in_death": 0.185,
-   "held": 0.674
+   "attempts": 20363,
+   "die_8s": 0.09,
+   "end_in_death": 0.184,
+   "held": 0.679
   },
   {
    "health": 300,
    "kept": 2,
    "landed": 30,
-   "attempts": 4428,
-   "die_8s": 0.131,
-   "end_in_death": 0.195,
-   "held": 0.665
+   "attempts": 18624,
+   "die_8s": 0.101,
+   "end_in_death": 0.193,
+   "held": 0.669
   },
   {
    "health": 300,
    "kept": 2,
    "landed": 60,
-   "attempts": 3909,
-   "die_8s": 0.153,
-   "end_in_death": 0.213,
+   "attempts": 16144,
+   "die_8s": 0.121,
+   "end_in_death": 0.209,
    "held": 0.645
   },
   {
    "health": 300,
    "kept": 2,
    "landed": 90,
-   "attempts": 3355,
-   "die_8s": 0.177,
-   "end_in_death": 0.236,
-   "held": 0.618
+   "attempts": 13256,
+   "die_8s": 0.143,
+   "end_in_death": 0.227,
+   "held": 0.594
   },
   {
    "health": 300,
    "kept": 2,
    "landed": 120,
-   "attempts": 2710,
-   "die_8s": 0.2,
-   "end_in_death": 0.259,
-   "held": 0.547
+   "attempts": 9810,
+   "die_8s": 0.161,
+   "end_in_death": 0.241,
+   "held": 0.483
   },
   {
    "health": 300,
    "kept": 3,
    "landed": 1,
-   "attempts": 3599,
-   "die_8s": 0.131,
-   "end_in_death": 0.203,
-   "held": 0.563
+   "attempts": 15539,
+   "die_8s": 0.111,
+   "end_in_death": 0.213,
+   "held": 0.629
   },
   {
    "health": 300,
    "kept": 3,
    "landed": 30,
-   "attempts": 3205,
-   "die_8s": 0.153,
-   "end_in_death": 0.222,
-   "held": 0.554
+   "attempts": 13498,
+   "die_8s": 0.134,
+   "end_in_death": 0.235,
+   "held": 0.619
   },
   {
    "health": 300,
    "kept": 3,
    "landed": 60,
-   "attempts": 2661,
-   "die_8s": 0.189,
-   "end_in_death": 0.255,
-   "held": 0.529
+   "attempts": 10876,
+   "die_8s": 0.174,
+   "end_in_death": 0.272,
+   "held": 0.592
   },
   {
    "health": 300,
    "kept": 3,
    "landed": 90,
-   "attempts": 2132,
-   "die_8s": 0.225,
-   "end_in_death": 0.289,
-   "held": 0.485
+   "attempts": 8309,
+   "die_8s": 0.212,
+   "end_in_death": 0.305,
+   "held": 0.525
   },
   {
    "health": 300,
    "kept": 3,
    "landed": 120,
-   "attempts": 1621,
-   "die_8s": 0.252,
-   "end_in_death": 0.323,
-   "held": 0.411
+   "attempts": 5603,
+   "die_8s": 0.238,
+   "end_in_death": 0.331,
+   "held": 0.398
   }
  ],
  "rule": {
-  "health": 175,
+  "health": 150,
   "kept": 1,
-  "landed": 90,
-  "attempts": 1604,
-  "die_8s": 0.349,
-  "end_in_death": 0.385,
-  "held": 0.481
+  "landed": 1,
+  "attempts": 5521,
+  "die_8s": 0.353,
+  "end_in_death": 0.43,
+  "held": 0.519
  },
  "engine": [
-  175,
+  225,
   1,
   90
- ]
+ ],
+ "at_engine": {
+  "health": 225,
+  "kept": 1,
+  "landed": 90,
+  "attempts": 9234,
+  "die_8s": 0.219,
+  "end_in_death": 0.29,
+  "held": 0.564
+ }
 }
