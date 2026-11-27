@@ -8,9 +8,11 @@ Only Opus writes this file. Fable reads the "For Fable" section alone, at the st
 this file: anything Fable wants Opus to know goes in HANDOFF.md as it already does, which Opus reads.
 
 ## For Fable (at most 10 lines; Opus removes a line once it is acted on)
-- Full runs are Opus's (Denning, 2026-11-27). The stage 1 to 4 full run (HANDOFF "Next" 2) is queued for Opus at
-  `bundle-4` 97bac17: don't run it; take "Next" 1 (his answers on the prot amounts), then stage 5. If those answers
-  change `prot_would`, the prot and heal kinds are read again at stage 5's own full run.
+- The 97bac17 full run has reported (below, "Run reports"): `cases.py attempts` stops (R-460) because the interrupt on
+  a spike skill now fails on unseen matches; the new kinds have no test in `cases.py`, so Opus read them once from a
+  scratch script on the X3 yardstick (numbers in the report). The f2b8796 run is under way; it re-reads prot and heal.
+- A full run no longer fits with two workers: `moments.py all` had a worker killed for memory 28 min in and hung; with
+  `--jobs 1` it takes 38 min (HANDOFF "Running it" still says 27, two workers).
 - Next time a full run is wanted: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" as the first
   line of HANDOFF's "Next", and go on building. Opus's report lands under "Run reports" below. Opus pushes the
   run's `data/model/*_cases.json` to `bundle-4` (no engine file): fetch before every push there.
@@ -21,10 +23,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   "Parked" below and move here then.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
-- Full run for stages 1 to 4 at `bundle-4` 97bac17 (Denning, 2026-11-27): what HANDOFF "Next" 2 lists (`cases.py
-  pressure`, `attempts`, `execution`: do the three kinds still pass, prot and heal as they read now, Spirit Bond a
-  prot; each new kind checked once: the chances on a pressure attempt, the Deep Wound left, the stance, the triggers,
-  balling; pact kills left out of "killed"; R-782's no attempt made; the key, the truths, main's `execution_rows.json`).
+- Full run at `bundle-4` f2b8796 (HANDOFF "Next" 1, 2026-11-27 evening): stage 5's kinds and cut-offs (`cases.py
+  positions`), prot, heal and interrupt as read since 6ebb141, the plays against the 97bac17 run. Under way.
 
 ## Parked (Denning starts each; neither chat acts on these until he asks)
 - The match report (his one-click report on a match). Spec: the Docs artifact "GvG Info: match report spec" (layout
@@ -65,7 +65,35 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
    reported, never fixed: the decision is Fable's and Denning's.
 
 ## Run reports (newest first)
-(none yet)
+### Full run at `bundle-4` 97bac17 (2026-11-27, Opus; stages 1 to 4)
+- Made at 97bac17; `bundle-4` was at f2b8796 by the end, so prot and heal here are read before R-796, R-797 and R-802.
+  Outputs: `pressure_cases.json`, `attempts_cases.json`, `execution_cases.json` (bundle-4 3dca405, data only);
+  main's `execution_rows.json` (the three games as before: Men v Crew, RACK v hdm, Men v NwAy; engine 97bac17).
+- What stopped: the first try hung (a worker killed for memory); run again with one worker, 38 min. `cases.py attempts`
+  ended with an error by design (R-460): `FAULT_KINDS` names prot, heal and interrupt, and the test passes only two.
+- Plays: 564 matches, no errors; 33,089 plays, identical to a full run of 7d1f0ab made beside it (none changed, gone or
+  new). Key: 323 Classic rows pass; 6 history rows no longer hold (reported, block nothing). Truths: 15 of 15 hold.
+- The three checked kinds on unseen matches (section G; killed less expected, points, 90% range, groups right):
+  prot passes (taken 9,277 at 19.4% killed, missed 3,634 at 45.8%; -23.7, -25.4 to -22.3, 10/10; was -10.9);
+  heal passes (8,731 at 18.2%, 2,084 at 58.5%; -40.8, -42.9 to -38.6, 10/10; was -43.0);
+  interrupt on a spike skill FAILS (taken 158 at 25.3%, missed 7,418 at 27.5%; -6.1, -11.1 to -0.1, 6/10; on the
+  11-25 run -17.8, 8/9 with 36 taken). The spike pool is now 17,061 (hurt bursts in, R-780) against 5,317.
+  Strip fails (+0.1, 6/10; ruled a fault by R-744 whatever the check); pressure on their monks fails (-1.1, 5/10).
+- Pressure line (`cases.py pressure`): the rule gives 150 health, kept 1 s, 1 landed (5,521 attempts, 35.3% die within
+  8 s, 51.9% of the 4,567 deaths with no spike held); at his line, 225, 1 s, 90: 9,234 attempts, 21.9%, 56.4%. A spike
+  kills 33.2% (17,061).
+- The new kinds, read once by Opus with a scratch script on the same yardstick (`cases._x3_expected`, `_x3_diff`,
+  `_x3_word`; not the engine's test, which has none for them): pact kills out of "killed" (12 attempts) changes
+  nothing (prot -23.7, heal -40.8, interrupt -6.0, fails). Stance up on the target fails (282 with, 24.1% against
+  33.4%; +1.8, 5/10). A spike into a block or immunity reads backwards (2,658; +2.2, 2/10). Deep Wound on him in time,
+  against carried and not on him, fails (-1.0, 4/10). An attacker on another player reads backwards (3,790; +4.7,
+  0/10). Deep Wound left with a removal ready, against Deep Wound on him and no removal missed, passes (1,412 at 53.5%
+  against 3,389 at 27.9%; -31.7, 10/10). On pressure attempts (16,449): prot passes (-17.9, 10/10), heal passes
+  (-29.4, 10/10), Deep Wound left passes (-20.0, 10/10).
+- Counted, no test (ruled kinds or context): triggers 4,938 (Bull's Strike 2,087, Empathy 1,087, Shame 647, Daze left
+  507, Harrier's 355, Backfire 182, Diversion 72, Clumsiness 1); balled 10,393 (nearby 5,454, adjacent 4,893, in the
+  area 46; Energy Surge 4,100, a scythe 3,741, Lamentation 1,310); casts caught 17,699. R-782: question 3 is asked of
+  11,598 plays (`asks_q3`); 6,139 of them made no kill attempt, neither spike nor pressure (in 519 matches).
 
 ## Starting a chat
 - Opus: "Attach my repo itsha12/gvginfo with push access, clone it, check out `bundle-4` in a second worktree. You are
@@ -73,6 +101,7 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-27: full run at 97bac17 reported; outputs pushed; the f2b8796 run started.
 - 2026-11-27: match report: spec agreed with Denning (Docs), prototype on `report-prototype` (not main); parked until
   he starts it (see "Parked").
 - 2026-11-27: set up (Denning's go-ahead). Plan of the remaining work: the Docs artifact "GvG Info: the road ahead".
