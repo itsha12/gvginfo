@@ -32,7 +32,7 @@ export async function renderReport(view, [rid] = []) {
         <p><span class="muted">Player:</span> ${esc(d.name)} (${esc(d.who)})</p>
         <p><span class="muted">Damage:</span> ${d.dmg} in ${d.dur} s</p>
         ${d.lines.map(([k, l]) => `<p class="${k === "miss" ? "rp-miss" : "rp-ok"}">${esc(l)}</p>`).join("")}
-        <p class="muted">Not read yet: shield set, Shadow Shroud on him, their monks disabled at the spike.</p></div></details></li>`;
+      </div></details></li>`;
 
   const alt = (o) => { const x = o.replace(/ \(([^)]*)\)/, " [$1]"); return x.charAt(0).toUpperCase() + x.slice(1); };
   const verdict = (v) => {
@@ -62,7 +62,7 @@ export async function renderReport(view, [rid] = []) {
         <dt>Win chance</dt><dd><b>${esc(mo.team)} ${mo.chance[0]}% to ${mo.chance[1]}% (${mo.chance[2] > 0 ? "+" : ""}${mo.chance[2]} WP)</b></dd>
       </dl>
       ${mo.deaths.length ? `<h4>Deaths in this window</h4><ul class="rp-deaths">${mo.deaths.map((i) => death(r.deaths[i], i)).join("")}</ul>` : ""}
-      <div class="rp-alt"><h4>Alternatives (similar spots) <span class="muted">a reading, not advice yet</span></h4>
+      <div class="rp-alt"><h4>Alternatives (similar spots)</h4>
         <p>${esc(mo.alt_head.replace(/^180 s on, /, "180 s on "))}:</p>
         <ul class="rp-res">${mo.alts.map(([o, v, n]) => `<li>${esc(alt(o))} ${esc(v)} WP (${n} cases)</li>`).join("")}
           <li><b>${esc(verdict(mo.alt_verdict))}</b></li></ul></div>
