@@ -12,7 +12,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   `bundle-4` 97bac17: don't run it; take "Next" 1 (his answers on the prot amounts), then stage 5. If those answers
   change `prot_would`, the prot and heal kinds are read again at stage 5's own full run.
 - Next time a full run is wanted: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" as the first
-  line of HANDOFF's "Next", and go on building. Opus's report lands under "Run reports" below.
+  line of HANDOFF's "Next", and go on building. Opus's report lands under "Run reports" below. Opus pushes the
+  run's `data/model/*_cases.json` to `bundle-4` (no engine file): fetch before every push there.
 - Rulings Denning gave in an Opus chat, to be filed by Fable (numbering stays with Fable):
   - Family 5 (engage or wait) is dropped: the opening is captured in the flag family (R-520, R-590, R-611).
   - The one-click match report (his wish of 2026-11-23) to be added to REDESIGN.md as a planned item after step 3.
@@ -33,7 +34,7 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Denning's preferences and CLAUDE.md's rules apply in full (explain in GvG terms; never print a sealed field).
 
 ## How Opus does a full run
-1. Take the commit named in HANDOFF ("Full run wanted at ..."), in a worktree of its own: the run reads that commit,
+1. Take the commit named under "Queued for Opus" or in HANDOFF ("Full run wanted at ..."), in a worktree of its own: the run reads that commit,
    never a branch that moves under it. Fetch the replays branch as HANDOFF's "Running it" says.
 2. Run what HANDOFF names, one at a time (each needs the machine to itself): `moments.py all`, then the `cases.py`
    reports, the key (`review.py score` with main's key), the truths, and the rows for main's views. Compare with the
