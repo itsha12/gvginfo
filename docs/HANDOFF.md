@@ -21,13 +21,13 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   (R-779); a burst that takes most of a player's health is a spike (R-780: two thirds of it and 200 or more, the
   share and the floor the engine's; `Forensics.spikes`, the record's `hurt`); the even 7v7's row (R-781); pact kills
   (`Forensics.pact_kill`) and no fault where nothing landed (R-783). R-782: "no attempt made" waits for the full run.
-- Stage 3 is built with the tag file (`bundle-4` 116ef1a; 608 skills, his review R-769 to R-778): the tags read
+- Stage 3 is built with the tag file (`bundle-4` 116ef1a, the pact reading corrected in f93fd2c; 608 skills, his review R-769 to R-778): the tags read
   (interrupt reach and on demand, strips on demand, removals; untagged skills listed by the run); `triggers` (Bull's
   Strike, Harrier's Grasp, Empathy, Backfire, Shame, Diversion, Clumsiness, Ineptitude, Daze left on a monk) and
   `balling`, named on each play (R-745); `tagged_parts` on every kill attempt (the target's damage-raising skills,
   Deep Wound left on him, what a spike went into, Deep Wound on the spike, an attacker elsewhere), said in the sum.
   Not read: wards and spirits (not in the records); R-726 stays read over the play.
-- Last run: the development set at 116ef1a (82 matches): 6,935 plays identical to c43c85a, 323 Classic rows pass;
+- Last run: the development set at f93fd2c (82 matches): 6,935 plays identical to c43c85a, 323 Classic rows pass;
   1,034 spikes of 400 and 1,944 bursts, 1,707 pressure attempts, 54 pact kills, 877 trigger rows, 773 times balled.
   Last full run: 7d1f0ab. Stale since: `attempts_cases.json`, `execution_cases.json`, `pressure_cases.json`, main's
   `execution_rows.json`. `cache` untouched. No new kind is checked on unseen matches yet.

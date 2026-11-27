@@ -652,8 +652,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A spike (R-780): 400 or more on one player inside 3 s, or a burst inside 3 s that takes most of the health he had as
   it began (as read: two thirds of it or more, and 200 or more, the share and the floor from the data; what a hex did
   to him for attacking or casting through it is left out).
-- A pact kill (R-783): a player dies because the player who resurrected him with Death Pact Signet inside the last
-  120 s died. It is a why of its own, on the caster's death; no chance is read on it. A death with nothing landed on
+- A pact kill (R-783): the caster of Death Pact Signet dies the next time the player he resurrected with it dies
+  inside 120 s. His death is a why of its own, read from that player's death; no chance is read on it. A death with nothing landed on
   the player in the record lists no fault (R-783).
 - A job to kill with no kill attempt made is said as a fact; a fault of its own on a numbers advantage only if it
   passes the check on unseen matches (R-782).

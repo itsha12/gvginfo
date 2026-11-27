@@ -49,7 +49,8 @@ Read at three levels, said in one place:
 2. **The death account.** The same reading for every death, from the dead player's side: from the spike that killed
    him, else from the pressure attempt that did, else from the first thing landed on him after he was last above the
    line (19% of deaths on the development set, a third of them with nothing landed in the record: those list no
-   fault, R-783). A pact kill is said as one and reads no chance (R-783). The heaviest 2 s is retired (Rule 33).
+   fault, R-783). A pact kill (Death Pact Signet's caster dying as the player he resurrected dies) is said as one and
+   reads no chance (R-783). The heaviest 2 s is retired (Rule 33).
 3. **The play.** Over the whole play the engine reads the faults tied to no attempt: balling and the triggers a
    player walked into (built, stage 3), Flail lock, a snared frontline, standing in area damage (stage 5). These are always listed on the play's row, by kind, each with its count and
    amount (R-745). Each attempt inside a play is listed under it.
@@ -305,8 +306,8 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
   death or a survived spike (97% of spikes, 44% of pressure attempts have one), and its credit for prots is small
   (nought on 72% of spike recaps; nothing for Aegis, Protective Spirit and Aura of Stability). So the amount beside a
   missed prot (what a cast gave that monk on average this match) reads low: 20 to 60, not the 300 a prot can stop.
-- 7% of deaths have nothing landed on the player in the record and mostly no recap: the sum says so, and no fault is
-  listed (R-783).
+- 7% of deaths have nothing landed on the player in the record and mostly no recap: a third of them are pact kills
+  (R-783, read from the signet's cast and the two deaths); for the rest the sum says so, and no fault is listed.
 - A condition names no skill (a Cripple is told as Harrier's from the hit that brought it). A ward has no record but
   its cast, and a spirit no position: neither is read. Adrenaline is not in the replays: an attack skill is "ready" by
   its recharge alone. The replays spell eleven skills without their punctuation ("Harriers Grasp"): read by id.

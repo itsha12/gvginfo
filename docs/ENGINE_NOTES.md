@@ -1183,10 +1183,13 @@ index pointing here. Read the section for a reading before changing it, and keep
   26:51, the Ranger: 369 on 414 of 493). Of 1,619 deaths 940 by spike (596 of them a burst), 378 kept in danger, 301 neither (111 nothing landed).
   **The even 7v7** (R-781; `even_rows`, `EVEN_N`): the largest fight with eight or seven a side, a stretch read at one number, ids `even_7v7`; the 74
   rows of 8v8 are as they were, 9 rows of 7v7 beside them (a middle 15 s: most 7v7s lie under a play).
-  **Pact kills and nothing landed** (R-783; `Forensics.pact_kill`): a finished Death Pact Signet on him inside 120 s, he has not died since, its
-  caster's death in the same fifth of a second as his. Checked (R-707): of 104 such casts whose caster died before the pacted player's next death, 61
-  are at the very tenth of his death. 54 pact kills among the deaths (40 read as spikes before, 9 kept in danger): the death says so and lists no
-  fault, the caster's death says whom he took (`took`), the attempt carries `pact` (64; still counted as killed: to be left out of the check at the
+  **Pact kills and nothing landed** (R-783; `Forensics.pact_kill`; corrected in f93fd2c): Death Pact Signet kills its caster ("The next time
+  that ally dies within 120 seconds, so do you"): a finished cast of it by the dying player inside 120 s, on an ally whose next death after the cast
+  is in the same fifth of a second as his own. Checked (R-707): of 104 finished casts where both died afterwards, 61 are at the very tenth. Built the
+  wrong way round at first (the resurrected player read as the one the pact kills; 25047ff and 116ef1a carry that), found on his own example, 옷옷옷옷
+  v cope 4:34: cope's Mesmer, the caster, dies with nothing landed as the 7 Monk he resurrected 117 s before dies. 54 pact kills among the deaths, 37
+  of them deaths with nothing landed in the record (a third of the 111: the rest, 74, list no fault): the death says so and lists no fault, the
+  resurrected player's death says whose it brought (`took`), the attempt carries `pact` (4; still counted as killed: to be left out of the check at the
   full run). A death with nothing landed (`nothing_landed`, 111) lists no fault.
 - The catalogue's stage 3, built 2026-11-27 with the tag file (`bundle-4` 116ef1a; R-720 to R-726, R-736 to R-740, R-751, R-767 to R-778). No full run:
   no new kind is checked on unseen matches yet (Rule 29: at the run for stages 1 to 4). Plays identical (6,935), 323 Classic rows pass.
