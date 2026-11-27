@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752). Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765, the order of the stages R-766. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -24,6 +24,15 @@ player met it and could reasonably have avoided it, covers skills nobody thinks 
 2. Why a team that should have been defensive lost a player: the defenders' side, over the fight, not only the burst.
 3. Why a team that should have been offensive did not kill: the attackers' side, over the whole numbers advantage
    (R-732) and every target tried.
+
+**Every skill in use is tagged** (`data/model/skill_tags.json` on `bundle-4`; stage 2, reviewed by Denning, R-753 to
+R-765). 577 skills: every one on 4 or more bars from 7 September 2026, and six this page names. Each carries the parts
+of the sum it acts on (adds damage, stops damage, heals, prevents enchantments, removes, slows, disables, drains
+energy, cuts healing, stops disables), its trigger, its area, its cast time, what its interrupt can stop, whether it
+speeds its user up, and what the engine does with it: read, context only (known to have been used, never a why or a
+fault: speed boosts, resurrection skills, energy skills, R-761 to R-763) or ignore. A skill not in the file is
+untagged and is reported, never read as doing nothing (R-460). Whether a cast is worth interrupting stays the list
+below, read on its own.
 
 ## Where the whys sit in the engine
 
@@ -272,7 +281,8 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
   Teinai's Wind casts that hit their target hit two or more players, few of them two frontliners.
 - 41 skills that are not attacks or instant have no cast time in `data/skills.json` (Fireball, Obsidian Flame,
   Phoenix, Arc Lightning, Ice Spikes, Ethereal Burden, Kitah's Burden, Sum of All Fears among them): a fault of the
-  wiki sync, to be fixed there. The interrupt reading does not lean on it: how long a cast took is the replay's own record.
+  wiki sync, to be fixed there, later (R-765); eight of them cast in 1.5 s by his word and carry it in the tag file
+  (R-764). The interrupt reading does not lean on it: how long a cast took is the replay's own record.
 - Armour and insignias are left out: a player cannot change them in a match. Out of reach: ping, line of sight around
   obstacles, calls and intent (R-371).
 
@@ -280,9 +290,10 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 
 | Stage | What | Done when |
 |---|---|---|
-| 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file. Left: failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt; then the check on unseen matches run again on a full run | development set and key pass; plays unchanged; the three kinds still pass on unseen matches |
-| 2. The skill data | The wiki sync's missing cast times fixed; every skill in use tagged by the part of the sum it acts on and its trigger (moving, attacking, casting, adjacent, knocked down, enchanted), in a file of its own (`data/skills.json` is never edited by hand) | Denning has reviewed the tagged list |
+| 1. The built kinds on the new rules | Built: Rules 1, 12, 27 and 32 on the prot, the heal and the interrupt on a spike skill; the lists as a data file. Left: failed spikes listed with the strip missed (Rules 14, 29); Rule 28's filter on casting into a ready interrupt. No full run of its own (R-766) | development set and key pass; plays unchanged |
+| 2. The skill data | Done but for the sync: every skill in use tagged in a file of its own, `data/model/skill_tags.json` (`data/skills.json` is never edited by hand), reviewed by Denning (R-753 to R-765). Left for later: the wiki sync's missing cast times | Denning has reviewed the tagged list (he has) |
 | 3. What the records already show | Bull's knockdown, Harrier's Cripple, balling, Empathy and the other triggers, damage-raising stances, a spike into a block, ward or spirit, Deep Wound on the spike, an attacker on another target, Rule 10 and 11 removals | each join checked against the raw record (R-707); each kind checked once on unseen matches, shown beside the ruled ones (Rule 29) |
 | 4. The ledger and the pressure attempt | Each part of the sum a measured amount on every attempt, for both teams (Rule 19); the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33) |
 | 5. Readings from positions | Too deep, monk following, Flail lock, the snared frontline, area damage, should have kited; crits while moving as context | cut-offs set from data (Rule 26) |
+| The runs (R-766) | Built in the order 1's remainder, 4, 3. Then one full run with every check for stages 1 to 4 together: `cases.py attempts` and `execution` (do the kinds still pass on unseen matches?), the key, the truths, `execution_rows.json`. Stage 5 has its own full run, before X4's sentences | the three built kinds still pass on unseen matches; each new kind checked once |
 | Then | The faults said on each play and death (stage X4 again on the full list); his marks on the Execution view (stage X5) | his Classic execution rows read as he reads them |

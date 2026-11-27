@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-752; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-766; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1066,6 +1066,21 @@ index pointing here. Read the section for a reading before changing it, and keep
   data lacks "Interrupt" among its causes.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
+
+- The skill tags (`data/model/skill_tags.json`, `bundle-4` 37f10b4; stage 2, R-753 to R-765), checked 2026-11-27 against `data/skills.json`, the bars
+  in `data/matches/` and the catalogue, before anything reads them. Holds: 577 ids, all PvP ids, names and types as the skill data; every cast time
+  equal to the skill data's, the eight it lacks at 1.5 s (R-764); the scope as stated (876 matches from 7 September to 8 November, 571 skills on 4 or
+  more bars, six more); every word inside the file's own vocabulary; the twelve rulings applied, but for Twisting Fangs (Deep Wound, no "cuts
+  healing"). The interrupt reach agrees with `execution.intr_kind` and catches Disrupting Chop, which the skill data's `causes` lacks (the engine's
+  reading misses it today): stage 3 takes the reach from the tags and keeps `CONDITIONAL` for what is thrown on demand. Lacking for stage 3: who a
+  skill lands on (a block on the target and a hex on the attacker are both "stops damage" with area "target"; the skill data's `target` is empty for
+  307 of the 577); a mark for a skill that raises the damage its user takes (Rule 25: Frenzy, Frenzied Defense, Primal Rage); R-738's snares marked as
+  not checked. Lacking for stage 5: which area effects stay on the ground (Chaos Storm and Symbol of Wrath are "in the area", Lava Font "adjacent").
+  Not in the file though the catalogue names them: Spell Breaker, Shadow Form, Obsidian Flesh, Earth Shaker, Mark of Pain, Sum of All Fears, Teinai's
+  Prison (and Dolyak Signet and Seeping Wound, which Rule 23 drops). From 1 September, where the engine's matches start, 221 skills on a bar are
+  untagged (476 of 120,606 bar slots, in 265 of 1,000 matches; 25 of them on 4 or more bars): an untagged skill is counted and listed by the run,
+  never a stop and never read as doing nothing (R-460). The path stands (beside `interrupt_worth.json`; keys the in-game PvP ids). The file goes into
+  `cache.DATA_DEPS` once a prepared reading leans on it.
 
 ### 40. The TQs
 - The TQs (Denning's four question categories; the learning report's section "The TQs", `tq.py`, METHODS.md "The TQs")

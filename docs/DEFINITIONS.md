@@ -586,7 +586,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   damage dealt. The Miasma of Isle of Meditation is ignored (R-677).
 - The danger zone of a base res: 300 damage a player in the minute before, hits and degen (R-676, amending R-615).
 
-## Execution (R-701 to R-752; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
+## Execution (R-701 to R-766; the plan is in REDESIGN.md, "Execution"; every why, the rules and the lists of skills in `docs/EXECUTION.md`)
 - Execution is read for both teams over the whole play (R-710); each kill attempt only up to its own outcome, the
   death or the save, so it is read before the result (R-299). The enemy's execution is scored, never a fix.
 - A spike is one package: its damage, the strip on its target and the pressure on the target's monks (interrupts,
@@ -648,3 +648,14 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
   apart from our faults (R-733). Cut-offs (too deep, monk following, the pressure attempt, nothing in melee reach) are
   set from the data (R-741).
+- The parts of the sum a skill can act on (the skill tags, `data/model/skill_tags.json`, R-765): adds damage, stops
+  damage, heals, prevents enchantments, removes, slows, disables, drains energy, cuts healing (Deep Wound and the like,
+  R-753), stops disables (knockdown immunity, R-755). Making enchantments or conditions expire faster counts as
+  removing them (R-754). "More energy than the foe" is a trigger (R-756).
+- Empathy, Backfire, Spiteful Spirit, Visions of Regret, Clumsiness, Ineptitude and Wandering Eye add damage and stop
+  damage; Soothing Images and Spirit Shackles stop damage (R-757, R-758). Not interrupt skills for the engine:
+  Clumsiness, Ineptitude, Wandering Eye, Lyssa's Haste (R-757, R-759). Drain Delusions is energy denial only, Power
+  Drain an interrupt only, Power Leech and Power Leak both (R-760).
+- Each tagged skill is read, context only or ignore (R-765). Context only for kills and deaths: speed boosts (they
+  bear on flag runs and on how fast defenders collapse, R-761), resurrection skills (covered by res interrupts and
+  numbers, and still worth interrupting, R-762), energy skills (R-763).
