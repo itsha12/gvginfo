@@ -17,6 +17,10 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Rulings Denning gave in an Opus chat, to be filed by Fable (numbering stays with Fable):
   - Family 5 (engage or wait) is dropped: the opening is captured in the flag family (R-520, R-590, R-611).
   - The one-click match report (his wish of 2026-11-23) to be added to REDESIGN.md as a planned item after step 3.
+- Match report (Opus's, spec in the Docs artifact "GvG Info: match report spec"; prototype on branch `report-prototype`):
+  the death account should name every prot and heal ready and in reach, by monk, with energy; and three readings it
+  needs, at your pace: Shadow Shroud on the target (tagged, read by nothing), their monks disabled or cast-prevented
+  at the spike itself (now only over a pressure window), and the weapon set the target was in.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
 - Full run for stages 1 to 4 at `bundle-4` 97bac17 (Denning, 2026-11-27): what HANDOFF "Next" 2 lists (`cases.py
@@ -56,4 +60,6 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-27: match report: spec agreed with Denning (Docs), prototype page on `report-prototype` (not main); the
+  exporter of per-match files from a full run's output is next.
 - 2026-11-27: set up (Denning's go-ahead). Plan of the remaining work: the Docs artifact "GvG Info: the road ahead".
