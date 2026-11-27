@@ -70,7 +70,7 @@ MEASURES = (
     ("hex_removed", +1, "hexes removed from our own players, a 10 s"),
     ("npc_dmg", 0, "damage on their NPCs, a living player a 10 s"),
     ("npc_heal", 0, "healing on our own NPCs, a 10 s"),
-    ("into_ready", -1, "casts started with an enemy interrupt ready and in range, a 10 s"),
+    ("into_ready", -1, "casts of a skill worth interrupting by a backline monk, started with an enemy interrupt ready and in range, and interrupted, a 10 s (R-743)"),
     ("blind_attacks", -1, "attacks made while Blind, a 10 s"),
     ("off_shield", -1, "share of the damage taken that landed on a player off his shield set and not casting (players who carry a shield set)"),
     ("drain", +1, "energy taken from their players (Energy Surge, Energy Burn, Mind Wrack, Power Leak, Shame, Guilt, Malaise), points a 10 s"),
@@ -184,6 +184,11 @@ class Exec:
             if r[0] is not None and r[1] == "at" and r[2] in pl: self.att[r[2]].append(r[0] / 10)
         for a in self.att: self.att[a].sort()
 
+    def caught(self):
+        """The match's casts into a ready interrupt as R-743 counts them (`caught`), read once."""
+        if getattr(self, "_caught", None) is None: self._caught = caught(self)
+        return self._caught
+
     def _cut(self, L, t0, t1):
         T = self._t[id(L)]
         return L[bisect.bisect_left(T, t0):bisect.bisect_left(T, t1)]
@@ -272,7 +277,7 @@ class Exec:
             "hex_removed": g10(sum(1 for h in R.get("hex_removals", ()) if t0 <= h["t"] < t1 and h["team"] == tag and h["by"] in xr and h.get("removed"))),
             "npc_dmg": p10(sum(n for t, a, b, n in self._cut(self.dm_npc, t0, t1) if a in X) + sum(n for t, a, b, n in self._cut(self.dg_npc, t0, t1) if a in X)),
             "npc_heal": g10(sum(n for t, a, b, n in self._cut(self.hl_npc, t0, t1) if a in X)),
-            "into_ready": g10(sum(c["into_ready_interrupt"] for c in cs)),
+            "into_ready": g10(sum(1 for c in self.caught() if c["id"] in X and t0 <= c["t"] < t1)),       # R-743: only an interrupted cast of a listed skill by a backline monk (`caught`)
             "blind_attacks": g10(blind_att),
             "off_shield": sd["off_shield_share"] if sd["taken"] > 1 else None,
             "drain": g10(dn_tot),
@@ -423,6 +428,28 @@ def worth(side):
     return _WORTH[side]
 
 
+_TAGS = {}
+
+
+def tags():
+    """The skill tags (`data/model/skill_tags.json`: what each skill in use does to the sum of a death, reviewed by Denning, R-753 to R-765), by the skill's
+    name without " (PvP)". A missing file stops the reading (R-460). A skill not in it is untagged: never read as doing nothing (R-767)."""
+    if not _TAGS:
+        import json, os
+        here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        for v in json.load(open(os.path.join(here, "data", "model", "skill_tags.json"), encoding="utf-8"))["skills"].values(): _TAGS[v["name"]] = v
+    return _TAGS
+
+
+def is_strip(sd):
+    """Can this skill take an enchantment off a foe? The skill data lists what a skill removes without saying from whom, so a Dervish skill that spends one
+    of its user's own enchantments (Wearying Strike, Pious Assault, Signet of Pious Restraint) read as a strip; the reviewed tags say which removals are
+    strips, and a tagged skill is read from them. An untagged skill is read from the skill data as before."""
+    if "Enchantment" not in (sd.get("removes") or []): return False
+    t = tags().get((sd.get("name") or "").replace(" (PvP)", ""))
+    return t is None or "enchantments" in t["removes"]
+
+
 def intr_range(F, f, sd, t):
     from common import CAST_R
     ty = sd.get("type") or ""
@@ -450,7 +477,6 @@ def attempts(E):
     for e in F.ev:
         if e[1] == "dt" and e[0] / 10 < E.M.over: deaths[e[2]].append(e[0] / 10)      # the losing team recorded dying all at once as the match ends is no kill (Moments.over)
     from forensics import is_prot, is_heal
-    is_strip = lambda sd: "Enchantment" in (sd.get("removes") or [])
     is_intr = lambda sd: intr_kind(sd) is not None
     out = []
     for tm in (1, 2):
@@ -563,11 +589,57 @@ def say_attempt(r):
     return " ".join(L)
 
 
+# ------------------------------------------------------------------ casting into a ready interrupt (the catalogue's stage 1; R-743)
+def caught(E):
+    """Every cast into a ready interrupt that is a fault by R-743: the cast was interrupted, the skill is one worth interrupting (either side of the approved
+    list, `worth`), the caster is a backline monk (told by his bar, R-698: "generally only for the backline"), and the interrupt that stopped it was ready
+    when the cast began: off recharge, in range, its thrower free to act, and able to stop that kind of skill (the reading of an interrupt chance on a spike
+    skill: `can_stop`, `intr_range`, `Forensics.ready`). The interrupter and his skill are the replay's own interrupt record for that cast. A cast stopped
+    by something he could not see ready as he began (a knockdown, Shame already on him, an interrupt that came off recharge during the cast, a skill that is
+    no interrupt thrown on demand) is not this fault. Tied to no kill attempt, so it is listed on the play's row by kind (R-745). A record: no play reads it."""
+    F, m = E.F, E.m
+    F.casts()
+    listed = worth("offensive") | worth("defensive") | worth("flag")
+    is_intr = lambda sd: intr_kind(sd) is not None
+    irs = collections.defaultdict(list)                    # caster -> [(second, interrupter, interrupt skill)]
+    for i in m.o.get("interrupts") or []:
+        if i[0] is not None: irs[i[3]].append((i[0] / 10, i[1], i[2]))
+    out = []
+    for a in sorted(E.monk):
+        foes = {f: _role_skills(F, f, is_intr) for f in F.enemies(a)}
+        for c in F._by_agent.get(a, ()):
+            if c[4] != "interrupted" or c[1] is None or c[3] is None: continue
+            sd_c = F.sdata(c[1])
+            if (sd_c.get("name") or "").replace(" (PvP)", "") not in listed: continue
+            t = c[2]
+            row = next(((by, sk) for u, by, sk in irs.get(a, ()) if abs(u - c[3]) <= .3 and by in foes), None)
+            if row is None: continue
+            by, sk = row
+            ready = [sid for sid, sd in foes[by] if (sk is None or sid == sk) and can_stop(sd, sd_c) and (F.dist(by, a, t) or 1e9) <= intr_range(F, by, sd, t) and _ready(F, by, sid, sd, t)]
+            if not ready: continue
+            tm = m.team(a)
+            out.append({"t": round(t, 1), "id": a, "tm": tm, "team": m.tag[tm], "who": m.roles[a], "skill": F.sname(c[1]),
+                        "on": m.roles[c[5]] if c[5] in m.PL and c[5] != a else None, "by": [F.name(by), F.sname(ready[0])]})
+    return sorted(out, key=lambda r: r["t"])
+
+
+def say_caught(c):
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    nm = lambda s_: s_.replace(" PvP", "")
+    return (f"{clk(c['t'])} {c['team']}'s {c['who']} cast {nm(c['skill'])}" + (f" on {c['on']}" if c.get("on") else "") + f" into a ready interrupt and was interrupted: {c['by'][0]} had "
+            + f"{nm(c['by'][1])} ready and in range when the cast began (R-743).")
+
+
 # ------------------------------------------------------------------ the faults said on a death and on a play (stage X4; R-713, R-714, R-715)
 FAULT_KINDS = ("prot", "heal", "interrupt")      # the kinds of missed chance stage X3 passed on unseen matches (`cases.py attempts` section G, which stops with an error
                                                  # when its verdicts and this line differ): a strip missed by the attack reads backwards and pressure on the target's
                                                  # monks shows no difference, so neither is ever told as a fault (R-285). All three are the defence's, so by R-714 a
                                                  # fault is listed only where a player died: on a spike that killed, and in the death accounts.
+
+
+RULED_KINDS = ("strip",)    # the kinds of missed chance he rules by name (R-744): told as faults whatever the check on unseen matches shows, the check's result said beside
+                            # them (`ruled_check`), and brought to him where they read backwards. A strip ready and not used on a protted target is the attack's, so by
+                            # R-714 it is listed on a spike that failed (R-729). Pressure on the target's monks is ruled by nobody and fails the check: never told.
 
 
 def chance_tests():
@@ -644,6 +716,71 @@ def deaths(E, atts):
     return sorted(out, key=lambda d: d["t"])
 
 
+def fails(E, atts):
+    """Every spike that did not kill, with the attack's missed chances of the kinds he rules by name (RULED_KINDS; R-729, R-744), listed where the attack
+    failed (R-714): a strip ready and in range at the first big hit with a prot on the target, and none came from 3 s before the first big hit to CHANCE_S
+    after it (`chance_tests`, the one reading of taken and missed). A strip that took a prot off in those seconds is the strip taken (good play, R-729); one
+    that came only later is kept apart as late (done out of time, R-713: not listed as a fault, since the record does not say it was ready at the first
+    hit). The record holds what was there; its words are `say_fail`. Kept beside the plays as `flag_cost[rid].fails`; no play reads it."""
+    F, m, T = E.F, E.m, chance_tests()
+    names = sorted((F.name(a) for a in m.PL), key=len, reverse=True)
+    who_what = lambda s_: next(([n, s_[len(n) + 1:]] for n in names if s_.startswith(n + " ")), [s_, ""])
+    out = []
+    for r in atts:
+        if r["killed"]: continue
+        tm = r["tm"]
+        d = {"t": r["t"], "tm": tm, "team": r["team"], "on": m.tag[3 - tm], "target": r["target"], "id": E.agent.get((m.tag[3 - tm], r["target"])), "dmg": r["dmg"],
+             "attackers": r["attackers"], "spread": r["spread"], "prots_up": r["prots_up"]}
+        faults, taken, late = [], [], []
+        for kind in RULED_KINDS:
+            tk, mi, lt = T[kind]
+            if tk(r): taken.append(kind)
+            elif mi(r): faults += [{"kind": kind, "by": [who_what(b_) for b_ in x["by"]], "prots": x.get("prots") or []} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
+            elif lt(r): late.append({"kind": kind, "at": min((a_ for a_, _p in r[kind].get("at", [])), default=None), "prot_off": bool(r[kind].get("prot_off"))})
+        d.update(faults=faults, taken=taken, late=late)
+        out.append(d)
+    return out
+
+
+_CHECK = {}
+
+
+def ruled_check(kind):
+    """What the check on unseen matches says of a ruled kind (R-744: shown beside the fault as evidence): (verdict, difference in points of spikes that killed,
+    taken against missed, like with like) from the last `cases.py attempts` kept in data/model/attempts_cases.json, or None where no report is kept."""
+    if not _CHECK:
+        import json, os
+        p = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data", "model", "attempts_cases.json")
+        _CHECK.update((json.load(open(p, encoding="utf-8")).get("x3") or {}) if os.path.exists(p) else {}); _CHECK.setdefault("", None)
+    v = _CHECK.get(kind)
+    return (v["verdict"], round(v["difference"], 1)) if v else None
+
+
+RULED_SAY = {"strip": "a strip on a protted target"}
+RULED_BY = {"strip": "R-729, R-744"}
+
+
+def say_fail(d):
+    """A spike that did not kill, in sentences: what it was, then the attack's ruled misses with what was there and the check's result beside them (R-744)."""
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    nm = lambda s_: s_.replace(" PvP", "")
+    L = [f"{clk(d['t'])} {d['team']}'s spike on {d['on']}'s {d['target']} does not kill ({', '.join(d['attackers']) or 'nobody recorded'}): {d['dmg']} in 3 s, the big hits over {d['spread']} s"
+         + (f"; on him at the first big hit: {', '.join(nm(k) for k in d['prots_up'])}." if d["prots_up"] else "; no prot on him at the first big hit.")]
+    for kind in RULED_KINDS:
+        X = [x for x in d["faults"] if x["kind"] == kind]
+        if X:
+            ck = ruled_check(kind)
+            L.append(f"Missed by {d['team']}, {RULED_SAY[kind]} (a fault by his ruling, {RULED_BY[kind]}): " + "; ".join(f"{w[len(d['team']) + 1:] if w.startswith(d['team'] + ' ') else w} had {nm(v)}" for x in X for w, v in x["by"])
+                     + " ready and in range, and none came from 3 s before the first big hit to 1.5 s after it."
+                     + (f" The check on unseen matches: {ck[0]} (the strip taken against missed, {ck[1]:+.1f} points of spikes that killed)." if ck else " The check on unseen matches: not yet run on this reading."))
+        elif kind in d["taken"]: L.append(f"Done in time by {d['team']} (good play, R-729): {RULED_SAY[kind]}.")
+        for x in d["late"]:
+            if x["kind"] != kind or x.get("at") is None: continue
+            L.append(f"{d['team']}'s strip came in time ({x['at']:+.1f} s from the first big hit) but took no prot off." if x["at"] <= CHANCE_S
+                     else f"Out of time (R-713): {d['team']}'s strip came only {x['at']:+.1f} s from the first big hit.")
+    return " ".join(L)
+
+
 FAULT_SAY = {"prot": "a prot", "heal": "a heal", "interrupt": "an interrupt on a spike skill"}
 
 
@@ -682,7 +819,7 @@ def death_lines(d):
     return L
 
 
-def say_faults(p, x, D, teams):
+def say_faults(p, x, D, teams, FL=None, CT=None):
     """The faults of a play in sentences (stage X4): the deaths of the team making the play with the checked chances it missed, then the enemy's apart (scored
     the same way, never a fix, R-299), each with its replay time; then the two measures that come close to the outcome itself, said as context and never as a
     fault (`spike_kill_share`, `dmg`). x is the play's execution record, D the match's deaths (`deaths`). None where the play has no record."""
@@ -699,11 +836,21 @@ def say_faults(p, x, D, teams):
         if not v: continue
         k, dm = v.get("spike_kill_share"), v.get("dmg")
         ctx.append(f"{name} " + ("made no spike" if k is None else f"killed with {100 * k:.0f}% of its spikes") + ("" if dm is None else f" and did {dm:.0f} damage a living player a 10 s"))
-    return (side("own", p["team"]) + " Apart, the enemy it met (never a fix, R-299): " + side("their", foe)
+    def attack(sd, name):                                  # the spikes that did not kill, with the strip missed (R-729, R-744, R-714)
+        L = [FL[i] for i in (x.get("fails") or {}).get(sd, ())] if FL is not None else []
+        if not L: return ""
+        W = [d for d in L if d["faults"] or d["late"]]
+        return (f" {name}'s spikes that did not kill: {len(L)}, {sum(1 for d in L if d['faults'])} with a strip missed (a fault by his ruling, R-744)"
+                + f", {sum(1 for d in L if d['taken'])} with the strip in time." + (" " + " ".join(say_fail(d) for d in W) if W else ""))
+    def play_level(sd, name):                              # faults tied to no kill attempt, always listed on the play's row by kind, with their count (R-745)
+        L = [CT[i] for i in (x.get("caught") or {}).get(sd, ())] if CT is not None else []
+        return f" {name}, casts into a ready interrupt (R-743): {len(L)}. " + " ".join(say_caught(c) for c in L) if L else ""
+    return (side("own", p["team"]) + attack("own", p["team"]) + play_level("own", p["team"])
+            + " Apart, the enemy it met (never a fix, R-299): " + side("their", foe) + attack("their", foe) + play_level("their", foe)
             + (" Context, not a fault: " + "; ".join(ctx) + "." if ctx else ""))
 
 
-def record(M, rid, plays, E=None, D=None):
+def record(M, rid, plays, E=None, D=None, FL=None, CT=None):
     """{play id: its execution record} for the plays of one match (kept beside the plays; no play reads it). With the match's deaths (`deaths`), each record
     carries `deaths`: for the play's own players and for the enemy players it met, which deaths fell inside the play (their places in the deaths record), so
     the faults are said on the play (stage X4)."""
@@ -714,6 +861,13 @@ def record(M, rid, plays, E=None, D=None):
         if D is not None:
             X, Y, t0, t1 = E.players(p)
             r["deaths"] = {"own": [i for i, d in enumerate(D) if d["id"] in X and t0 <= d["t"] <= t1], "their": [i for i, d in enumerate(D) if d["id"] in Y and t0 <= d["t"] <= t1]}
+        if FL is not None or CT is not None:               # the spikes that did not kill and the casts caught inside the play, as places in `fails` and `caught` (stage 1 of the catalogue)
+            X, Y, t0, t1 = E.players(p)
+            Xs, Ys, tm = set(X), set(Y), p["tm"]
+            if FL is not None: r["fails"] = {"own": [i for i, d in enumerate(FL) if d["tm"] == tm and d["id"] in Ys and t0 <= d["t"] <= t1],
+                                             "their": [i for i, d in enumerate(FL) if d["tm"] == 3 - tm and d["id"] in Xs and t0 <= d["t"] <= t1]}
+            if CT is not None: r["caught"] = {"own": [i for i, c in enumerate(CT) if c["id"] in Xs and t0 <= c["t"] <= t1],
+                                              "their": [i for i, c in enumerate(CT) if c["id"] in Ys and t0 <= c["t"] <= t1]}
         out[p["id"]] = r
     return out
 
@@ -731,6 +885,15 @@ if __name__ == "__main__":
         E_ = Exec(M, a[1])
         for d in deaths(E_, attempts(E_)):
             if d["t"] >= frm: print(say_death(d) + "\n")
+        sys.exit()
+    if a[0] in ("fails", "caught"):                       # python3 execution.py fails|caught <report id> [m:ss]: the spikes that did not kill with the strip missed; the casts into a ready interrupt (R-743)
+        import moments
+        from scoreboard import Scoreboard
+        st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
+        frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 else 0
+        E_ = Exec(M, a[1])
+        for d in (fails(E_, attempts(E_)) if a[0] == "fails" else E_.caught()):
+            if d["t"] >= frm: print((say_fail(d) if a[0] == "fails" else say_caught(d)) + "\n")
         sys.exit()
     if a[0] == "attempts":                                # python3 execution.py attempts <report id> [m:ss]
         import moments

@@ -3210,7 +3210,7 @@ EXEC_SAY = {"dmg": "damage on their players", "dmg_v_usual": "damage against the
             "knockdowns": "knockdowns", "knockdowns_on_casting": "knockdowns on a casting player", "disable": "skills disabled", "castprev": "casts punished by Shame, Guilt or Diversion",
             "degen": "degen landed on them", "kite": "their melee kited", "baits": "their interrupts baited", "strips": "useful strips", "strips_wasted": "strips that removed nothing",
             "blind_secs": "Blind kept on their attackers", "hex_secs": "hexes kept on them", "hex_removed": "hexes taken off its own players", "npc_dmg": "damage on their NPCs",
-            "npc_heal": "healing of its own NPCs", "into_ready": "casts started into a ready interrupt", "blind_attacks": "attacks made while Blind",
+            "npc_heal": "healing of its own NPCs", "into_ready": "listed skills a backline monk cast into a ready interrupt and had interrupted", "blind_attacks": "attacks made while Blind",
             "off_shield": "the share of the damage it took off its shield sets while not casting"}
 
 
@@ -3263,7 +3263,8 @@ def exec_say(path, pre, at=None, bench_file=None):
         kind = next((k for k, fn in EXEC_KINDS if fn(p)), None)
         x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
         sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
-        flt = EX.say_faults(p, x, D["flag_cost"][rid].get("deaths") or [], teams) if x and "deaths" in x else None
+        fc = D["flag_cost"][rid]
+        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught")) if x and "deaths" in x else None
         if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}" + (f"\n   Faults (R-713, R-714). {flt}" if flt else ""))
 
 
@@ -3877,6 +3878,9 @@ def x3_attempts(A, pr, res):
     ok = [k for k, v in res["x3"].items() if v["verdict"] == "passes"]
     pr(f"   Checked kinds that may be told as faults: {', '.join(ok) or 'none'}; not faults: {', '.join(k for k in res['x3'] if k not in ok) or 'none'}.")
     res["faults_told"] = list(EX.FAULT_KINDS)
+    res["faults_ruled"] = list(EX.RULED_KINDS)            # told as faults by his ruling whatever this test says, its verdict beside them (R-744; `execution.ruled_check` reads it here)
+    back = [k for k in EX.RULED_KINDS if res["x3"].get(k, {}).get("verdict") == "reads backwards"]
+    pr(f"   Told as faults by his ruling whatever the check shows (R-744): {', '.join(EX.RULED_KINDS)}" + (f"; reading backwards, to bring to him: {', '.join(back)}." if back else "."))
     if set(ok) != set(EX.FAULT_KINDS):                    # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees, the report stops (R-460)
         res["faults_differ"] = f"the engine tells {', '.join(EX.FAULT_KINDS)} as faults (execution.FAULT_KINDS) and this test passes {', '.join(ok) or 'none'}"
         pr(f"   FAULT: {res['faults_differ']}: set execution.FAULT_KINDS to the kinds that pass and run again.")
