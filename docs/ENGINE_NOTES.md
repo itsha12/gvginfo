@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-790; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-793; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,

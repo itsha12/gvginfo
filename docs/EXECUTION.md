@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-790. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-793. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -123,8 +123,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     a ruled kind that reads backwards is brought to him (R-744). A kind nobody ruled is told only if it passes (R-713).
 30. **Play-level faults are always listed** (R-745); a missed chance on an attempt is listed by its outcome (R-714).
 31. **Moving and kiting** (R-746): Bull's knockdown and Harrier's Cripple are faults; kiting is otherwise no fault;
-    standing still when he should have kited a melee player is a fault. *Draft, his to correct:* not told against an
-    attacker with Bull's Strike or Harrier's Grasp ready, where moving is itself the fault.
+    standing still when he should have kited a melee player is a fault, not told against an attacker with Bull's
+    Strike or Harrier's Grasp ready, where moving is itself the fault (R-792).
 32. **A monk who is himself the spike's target** (R-747), or himself under pressure (250 or more in 2 s, R-790), is
     not available to another player, as a busy monk (R-711).
 33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749). Built.
