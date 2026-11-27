@@ -366,3 +366,8 @@ tr.selected td { background: var(--accent-soft); }
 .rp-fault { color: var(--bad); }
 .rp-break { margin: .3rem 0 .6rem 1.2rem; padding-left: .8rem; border-left: 2px solid var(--line); }
 .rp-break p { margin: .2rem 0; }
+.rp-go { cursor: pointer; }
+.rp-miss { color: var(--bad); }
+.rp-ok { color: var(--good); }
+@keyframes rp-flash { from { background: #ece6fa; } to { background: transparent; } }
+.rp-flash { animation: rp-flash 2s ease-out; }

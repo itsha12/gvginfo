@@ -5,6 +5,7 @@ import { esc, skillBar } from "../core.js";
 
 const clock = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 const SIDE = { blue: "#1f5fd1", red: "#c62828" };
+const MOMENT = "#6b4fb8"; // key moments, in the chart and on the map
 const MISSED = { prot: "prots", heal: "heals", interrupt: "interrupts" };
 let cut = 5;
 
@@ -24,21 +25,27 @@ export async function renderReport(view, [rid] = []) {
         <td>${skillBar(p.bar, null, true)}</td><td class="muted rp-d">${p.deaths ?? ""}${p.deaths != null ? " d" : ""}</td></tr>`).join("")}</table></section>`;
 
   // one death: a line that opens into the full breakdown
-  const death = (d) => `<li><details><summary><b>${clock(d.t)}</b> ${esc(d.team)}'s ${esc(d.who)} dies ${d.spike ? "to a spike" : "under pressure"}:
+  const death = (d, i) => `<li id="rp-d-${i}"><details><summary><b>${clock(d.t)}</b> ${esc(d.team)}'s ${esc(d.who)} dies ${d.spike ? "to a spike" : "under pressure"}:
         ${d.dmg} in ${d.dur} s. ${d.missed.length ? `<span class="rp-fault">Missed: ${d.missed.map((k) => MISSED[k] || k).join(", ")}</span>` : `<span class="muted">No missed chance.</span>`}
         <span class="rp-swing">win chance: engine file</span></summary>
       <div class="rp-break">
         <p><span class="muted">Player:</span> ${esc(d.name)} (${esc(d.who)})</p>
-        <p><span class="muted">Damage:</span> ${d.dmg} from the first big hit at ${clock(d.first)} to death at ${clock(d.t)} (${d.dur} s), by ${esc(d.by)}</p>
-        ${d.breakdown.map((l) => `<p>${esc(l.replace(/^Missed by \w+, /, "Missed: "))}</p>`).join("")}
-        ${d.notes.map((l) => `<p class="muted">${esc(l)}</p>`).join("")}
+        <p><span class="muted">Damage:</span> ${d.dmg} in ${d.dur} s</p>
+        ${d.lines.map(([k, l]) => `<p class="${k === "miss" ? "rp-miss" : "rp-ok"}">${esc(l)}</p>`).join("")}
         <p class="muted">Not read yet: shield set, Shadow Shroud on him, their monks disabled at the spike.</p></div></details></li>`;
 
+  const alt = (o) => { const x = o.replace(/ \(([^)]*)\)/, " [$1]"); return x.charAt(0).toUpperCase() + x.slice(1); };
+  const verdict = (v) => {
+    let m = v.match(/^no clear difference \(([-\d.]+), ([^)]*)\)/);
+    if (m) return `No clear difference (${m[1]} WP; ${m[2]})`;
+    m = v.match(/^the data favours (.*?) by ([\d.]+) win points \(([^)]*)\)/);
+    return m ? `The data favours ${alt(m[1]).charAt(0).toLowerCase() + alt(m[1]).slice(1)} by ${m[2]} WP (${m[3]})` : v;
+  };
   const card = (mo, n) => {
     const lead1 = mo.lead_change == null ? null : +(mo.lead0 + mo.lead_change).toFixed(2);
     const leadTxt = (v) => (v === 0 ? "level" : `${v > 0 ? mo.team : mo.foe} +${Math.abs(v).toFixed(2)}`);
-    return `<article class="rp-card" style="border-left-color:${C[mo.team]}">
-      <header><span class="rp-num" style="border-color:${C[mo.team]};color:${C[mo.team]}">${n}</span>
+    return `<article class="rp-card" id="rp-m-${mo.t}" style="border-left-color:${C[mo.team]}">
+      <header><span class="rp-num" style="border-color:${MOMENT};color:${MOMENT}">${n}</span>
         <b>${clock(mo.t)} · Flag: ${esc(mo.scenario)} · ${esc(mo.team)} decides</b></header>
       <p class="rp-lead">${esc(mo.event)}</p>
       <dl class="rp-dl">
@@ -49,14 +56,16 @@ export async function renderReport(view, [rid] = []) {
         <dt>Decision</dt><dd><b>${esc(mo.decision)}</b></dd>
         <dt>Result, 180 s on</dt><dd><ul class="rp-res">
           ${mo.result.map((x) => `<li>${esc(x)}</li>`).join("")}
-          ${lead1 == null ? "" : `<li>Flag lead: ${esc(leadTxt(mo.lead0))} → ${esc(leadTxt(lead1))} <span class="muted">(a flag in hand counts towards the tally)</span></li>`}
+          ${lead1 == null ? "" : `<li>Flag lead: ${esc(leadTxt(mo.lead0))} → ${esc(leadTxt(lead1))} ${mo.in_hand.length ? `(${mo.in_hand.map((t) => `${esc(t)}'s next flag in hand`).join("; ")})` : ""}</li>`}
           ${mo.deaths_n ? `<li>Deaths in window: ${esc(mo.deaths_n[0])} ${mo.deaths_n[1]}, ${esc(mo.deaths_n[2])} ${mo.deaths_n[3]}</li>` : ""}
           ${mo.boosts_n ? `<li>Boosts in window: ${esc(mo.boosts_n[0])} ${mo.boosts_n[1]}, ${esc(mo.boosts_n[2])} ${mo.boosts_n[3]}</li>` : ""}</ul></dd>
         <dt>Win chance</dt><dd><b>${esc(mo.team)} ${mo.chance[0]}% to ${mo.chance[1]}% (${mo.chance[2] > 0 ? "+" : ""}${mo.chance[2]} WP)</b></dd>
       </dl>
-      ${mo.deaths.length ? `<h4>Deaths in this window</h4><ul class="rp-deaths">${mo.deaths.map((i) => death(r.deaths[i])).join("")}</ul>` : ""}
-      <div class="rp-alt"><h4>Alternatives from similar spots <span class="muted">(a reading, not advice yet)</span></h4>
-        <p>${esc(mo.similar)}</p></div>
+      ${mo.deaths.length ? `<h4>Deaths in this window</h4><ul class="rp-deaths">${mo.deaths.map((i) => death(r.deaths[i], i)).join("")}</ul>` : ""}
+      <div class="rp-alt"><h4>Alternatives (similar spots) <span class="muted">a reading, not advice yet</span></h4>
+        <p>${esc(mo.alt_head.replace(/^180 s on, /, "180 s on "))}:</p>
+        <ul class="rp-res">${mo.alts.map(([o, v, n]) => `<li>${esc(alt(o))} ${esc(v)} WP (${n} cases)</li>`).join("")}
+          <li><b>${esc(verdict(mo.alt_verdict))}</b></li></ul></div>
     </article>`;
   };
 
@@ -66,12 +75,12 @@ export async function renderReport(view, [rid] = []) {
     const traps = typeof r.outline.traps === "string" ? JSON.parse(r.outline.traps) : r.outline.traps;
     const pad = 300, Y = (y) => -y, R = (x1 - x0) / 90;
     const d = traps.map(([a, b, yt, c, e, yb]) => `M${a} ${Y(yt)}L${b} ${Y(yt)}L${e} ${Y(yb)}L${c} ${Y(yb)}Z`).join("");
-    const dot = (dd) => { const [x, y] = dd.at, col = C[dd.team]; return `<g><title>${clock(dd.t)} ${esc(dd.team)}'s ${esc(dd.who)} dies</title>
+    const dot = (dd, i) => { const [x, y] = dd.at, col = C[dd.team]; return `<g class="rp-go" data-go="rp-d-${i}"><circle cx="${x}" cy="${Y(y)}" r="${R * 1.4}" fill="transparent"/><title>${clock(dd.t)} ${esc(dd.team)}'s ${esc(dd.who)} dies</title>
       <path d="M${x - R} ${Y(y) - R}L${x + R} ${Y(y) + R}M${x + R} ${Y(y) - R}L${x - R} ${Y(y) + R}" stroke="${col}" stroke-width="${R * 0.45}"/></g>`; };
-    const mk = (mo, i) => mo.at ? `<g><circle cx="${mo.at[0]}" cy="${Y(mo.at[1])}" r="${R * 1.7}" fill="#fff" stroke="${C[mo.team]}" stroke-width="${R * 0.4}"/>
-      <text x="${mo.at[0]}" y="${Y(mo.at[1]) + R * 0.75}" text-anchor="middle" font-size="${R * 2.1}" fill="${C[mo.team]}" font-weight="600">${i + 1}</text></g>` : "";
+    const mk = (mo, i) => mo.at ? `<g class="rp-go" data-go="rp-m-${mo.t}"><title>${clock(mo.t)}: ${esc(mo.event)}</title><circle cx="${mo.at[0]}" cy="${Y(mo.at[1])}" r="${R * 1.7}" fill="#fff" stroke="${MOMENT}" stroke-width="${R * 0.4}"/>
+      <text x="${mo.at[0]}" y="${Y(mo.at[1]) + R * 0.75}" text-anchor="middle" font-size="${R * 2.1}" fill="${MOMENT}" font-weight="600">${i + 1}</text></g>` : "";
     return `<svg viewBox="${x0 - pad} ${Y(y1) - pad} ${x1 - x0 + 2 * pad} ${y1 - y0 + 2 * pad}" class="rp-map" role="img" aria-label="${esc(r.map)}: where the key moments and deaths happened">
-      <path d="${d}" fill="#e9e9e5" stroke="#cfcfca" stroke-width="${R * 0.15}"/>
+      <path d="${d}" fill="#e6e6e1" stroke="#e6e6e1" stroke-width="${R * 0.5}" stroke-linejoin="round"/>
       ${r.deaths.map(dot).join("")}${key.map(mk).join("")}</svg>`;
   };
 
@@ -90,9 +99,9 @@ export async function renderReport(view, [rid] = []) {
       <text x="${L0 - 6}" y="${Y(0)}" text-anchor="end" class="rp-ax" style="fill:${C[B.tag]}">${esc(B.tag)}</text>
       <line x1="${X(0)}" x2="${X(first[0])}" y1="${Y(first[1])}" y2="${Y(first[1])}" stroke="#999" stroke-width="1.6" stroke-dasharray="3 4"/>
       <polyline points="${pts.map(([t, v]) => `${X(t).toFixed(1)},${Y(v).toFixed(1)}`).join(" ")}" fill="none" stroke="#111" stroke-width="2"/>
-      ${r.deaths.map((d) => `<line x1="${X(d.t)}" x2="${X(d.t)}" y1="${Y(0) - 7}" y2="${Y(0)}" stroke="${C[d.team]}" stroke-width="2"><title>${clock(d.t)} ${esc(d.team)}'s ${esc(d.who)} dies</title></line>`).join("")}
-      ${key.map((m, i) => `<g><circle cx="${X(m.t)}" cy="${Y(m.a_before)}" r="10" fill="#fff" stroke="${C[m.team]}" stroke-width="2"/>
-        <text x="${X(m.t)}" y="${Y(m.a_before) + 4}" text-anchor="middle" class="rp-ax" style="fill:${C[m.team]};font-weight:600">${i + 1}</text></g>`).join("")}</svg>`;
+      ${r.deaths.map((d, i) => `<line class="rp-go" data-go="rp-d-${i}" x1="${X(d.t)}" x2="${X(d.t)}" y1="${Y(0) - 7}" y2="${Y(0)}" stroke="${C[d.team]}" stroke-width="2"><title>${clock(d.t)} ${esc(d.team)}'s ${esc(d.who)} dies</title></line>`).join("")}
+      ${key.map((m, i) => `<g class="rp-go" data-go="rp-m-${m.t}"><circle cx="${X(m.t)}" cy="${Y(m.a_before)}" r="10" fill="#fff" stroke="${MOMENT}" stroke-width="2"/>
+        <text x="${X(m.t)}" y="${Y(m.a_before) + 4}" text-anchor="middle" class="rp-ax" style="fill:${MOMENT};font-weight:600">${i + 1}</text></g>`).join("")}</svg>`;
   };
 
   const draw = () => {
@@ -120,14 +129,19 @@ export async function renderReport(view, [rid] = []) {
     <div class="rp-cols"><div>
       <h3 class="rp-h">${esc(A.tag)}'s Win Chance</h3>
       <div id="rp-chart"></div>
-      <p class="muted rp-note">Numbered circles are the key moments; ticks along the bottom are deaths, in the colour of the team that lost the player.</p>
       <div class="rp-cut"><label for="rp-cutr">Key moments: win chance moved by at least</label>
         <input type="range" id="rp-cutr" min="0" max="25" step="1" value="${cut}"><span id="rp-cutv"></span></div></div>
-      <div><h3 class="rp-h">${esc(r.map)}</h3><div id="rp-map"></div>
-      <p class="muted rp-note">Circles: where the deciding team stood at each key moment. Crosses: where each player died.</p></div></div>
+      <div><h3 class="rp-h">${esc(r.map)}</h3><div id="rp-map"></div></div></div>
     <div id="rp-key"></div>
-    ${r.lone_deaths.length ? `<h3 class="rp-h">Deaths outside the key moments</h3><ul class="rp-deaths">${r.lone_deaths.map((i) => death(r.deaths[i])).join("")}</ul>` : ""}
+    ${r.lone_deaths.length ? `<h3 class="rp-h">Deaths outside the key moments</h3><ul class="rp-deaths">${r.lone_deaths.map((i) => death(r.deaths[i], i)).join("")}</ul>` : ""}
     <details id="rp-rest" class="rp-rest"></details>`;
   view.querySelector("#rp-cutr").addEventListener("input", (e) => { cut = +e.target.value; draw(); });
+  view.addEventListener("click", (e) => {
+    const g = e.target.closest(".rp-go"); if (!g) return;
+    const el = document.getElementById(g.dataset.go); if (!el) return;
+    el.querySelector("details")?.setAttribute("open", "");
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.classList.remove("rp-flash"); void el.offsetWidth; el.classList.add("rp-flash");
+  });
   draw();
 }
