@@ -17,18 +17,29 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Rulings Denning gave in an Opus chat, to be filed by Fable (numbering stays with Fable):
   - Family 5 (engage or wait) is dropped: the opening is captured in the flag family (R-520, R-590, R-611).
   - The one-click match report (his wish of 2026-11-23) to be added to REDESIGN.md as a planned item after step 3.
-- Match report (Opus's, spec in the Docs artifact "GvG Info: match report spec"; prototype on branch `report-prototype`):
-  the death account should name every prot and heal ready and in reach, by monk, with energy; and three readings it
-  needs, at your pace: Shadow Shroud on the target (tagged, read by nothing), their monks disabled or cast-prevented
-  at the spike itself (now only over a pressure window), and the weapon set the target was in.
-  Also asked (Denning, 2026-11-27): for each missed prot and heal, the latest start that would still have saved him
-  (`prot_would` already walks the hits by his rule for each skill); the prototype works it out for heals only.
+- The match report is parked (Denning, 2026-11-27): nothing to do for it until he starts it; its asks of Fable are under
+  "Parked" below and move here then.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
 - Full run for stages 1 to 4 at `bundle-4` 97bac17 (Denning, 2026-11-27): what HANDOFF "Next" 2 lists (`cases.py
   pressure`, `attempts`, `execution`: do the three kinds still pass, prot and heal as they read now, Spirit Bond a
   prot; each new kind checked once: the chances on a pressure attempt, the Deep Wound left, the stance, the triggers,
   balling; pact kills left out of "killed"; R-782's no attempt made; the key, the truths, main's `execution_rows.json`).
+
+## Parked (Denning starts each; neither chat acts on these until he asks)
+- The match report (his one-click report on a match). Spec: the Docs artifact "GvG Info: match report spec" (layout
+  agreed on the prototype, 2026-11-27). Prototype: branch `report-prototype` (`#/report/<match id>`; page
+  `assets/js/pages/report.js`, data builder `tools/report/proto_build.py`, sample `data/report_proto/51683de9.json`,
+  Men v Crew). When he starts it, in order:
+  1. Opus builds the exporter (outside `tools/replay_analysis/`) from the output of the latest full run: one file per
+     counted match on a `reports` branch; the page reads it in place of the prototype's file.
+  2. Then, to "For Fable" above: Shadow Shroud on the target; their monks disabled or cast-prevented at the spike
+     itself; the target's weapon set; every prot and heal ready and in reach named on a death, with energy; for a
+     missed prot or heal what it would have stopped and the latest start that still saves him (`prot_would`); each
+     death's change in win chance and the win chance at 0:00 if the run output lacks them. Then one review of the
+     exporter by Fable.
+  3. The page onto main, with buttons on Recent matches and a guild's results. Opus's pushes to main widen to the
+     site pages it owns for this (Denning to confirm then).
 
 ## Ground rules for Opus
 - Never edit: engine files on `bundle-4`, HANDOFF.md, RULINGS.md, DEFINITIONS.md, CHANGELOG.md, ENGINE_NOTES.md,
@@ -62,6 +73,6 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
-- 2026-11-27: match report: spec agreed with Denning (Docs), prototype page on `report-prototype` (not main); the
-  exporter of per-match files from a full run's output is next.
+- 2026-11-27: match report: spec agreed with Denning (Docs), prototype on `report-prototype` (not main); parked until
+  he starts it (see "Parked").
 - 2026-11-27: set up (Denning's go-ahead). Plan of the remaining work: the Docs artifact "GvG Info: the road ahead".
