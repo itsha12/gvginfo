@@ -86,7 +86,7 @@ export async function renderHome(view) {
           <td><b>${esc(w.guild || "?")}</b> <span class="muted">[${esc(w.tag || "")}]</span></td>
           <td>${esc(l.guild || "?")} <span class="muted">[${esc(l.tag || "")}]</span></td>
           <td>${esc(m.map || "")}</td><td class="num">${fmtDur(m.dur || 0)}</td><td>${esc(RESULT[m.result] || "")}</td></tr>
-          ${open === m.id ? `<tr><td colspan="7" class="wrap">${lineups(m)}</td></tr>` : ""}`;
+          ${open === m.id ? `<tr><td colspan="7" class="wrap"><p style="margin:0 0 .6rem"><a class="btn small" href="#/report/${esc(m.id)}">Match report</a></p>${lineups(m)}</td></tr>` : ""}`;
       }).join("")}</tbody></table></div>
     ${filtered.length > shown.length ? `<button class="btn" id="more" style="margin-top:1rem">Show ${Math.min(60, filtered.length - shown.length)} more</button>` : ""}
     </section><aside>

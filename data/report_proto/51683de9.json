@@ -1,0 +1,727 @@
+{
+ "prototype": true,
+ "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+ "made_from": "flag_cards.json, execution_rows.json, game_reviews.json on main (prototype only)",
+ "teams": [
+  {
+   "tag": "Men",
+   "guild": "Handsome",
+   "won": false,
+   "deaths": 15,
+   "players": [
+    {
+     "pos": 1,
+     "role": "\"The Power Is Yours!\" P/W",
+     "p": "Paragon",
+     "s": "Warrior",
+     "bar": [
+      1782,
+      1779,
+      1597,
+      1774,
+      1557,
+      3028,
+      2075,
+      3442
+     ],
+     "deaths": 3
+    },
+    {
+     "pos": 2,
+     "role": "Avatar of Balthazar D/Rt",
+     "p": "Dervish",
+     "s": "Ritualist",
+     "bar": [
+      1518,
+      3366,
+      1537,
+      3468,
+      1768,
+      3467,
+      2872,
+      1545
+     ],
+     "deaths": 3
+    },
+    {
+     "pos": 3,
+     "role": "Hundred Blades W/Rt",
+     "p": "Warrior",
+     "s": "Assassin",
+     "bar": [
+      3444,
+      384,
+      382,
+      851,
+      3443,
+      319,
+      2010,
+      985
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 4,
+     "role": "Psychic Instability Me/Rt",
+     "p": "Mesmer",
+     "s": "Ritualist",
+     "bar": [
+      3185,
+      69,
+      932,
+      23,
+      68,
+      2872,
+      81,
+      62
+     ],
+     "deaths": 2
+    },
+    {
+     "pos": 5,
+     "role": "Practiced Stance R/N",
+     "p": "Ranger",
+     "s": "Necromancer",
+     "bar": [
+      449,
+      435,
+      399,
+      1727,
+      426,
+      3141,
+      908,
+      391
+     ],
+     "deaths": 2
+    },
+    {
+     "pos": 6,
+     "role": "Blessed Light Mo/A",
+     "p": "Monk",
+     "s": "Warrior",
+     "bar": [
+      941,
+      299,
+      2892,
+      3454,
+      2063,
+      2857,
+      371,
+      0
+     ],
+     "deaths": 2
+    },
+    {
+     "pos": 7,
+     "role": "Healer's Covenant Mo/A",
+     "p": "Monk",
+     "s": "Assassin",
+     "bar": [
+      1394,
+      254,
+      283,
+      2061,
+      292,
+      1037,
+      286,
+      2065
+     ],
+     "deaths": 2
+    },
+    {
+     "pos": 8,
+     "role": "Blessed Light Mo/A",
+     "p": "Monk",
+     "s": "Assassin",
+     "bar": [
+      941,
+      3453,
+      293,
+      258,
+      2892,
+      991,
+      929,
+      0
+     ],
+     "deaths": 1
+    }
+   ]
+  },
+  {
+   "tag": "Crew",
+   "guild": "Savant",
+   "won": true,
+   "deaths": 0,
+   "players": [
+    {
+     "pos": 1,
+     "role": "Shadow Shroud Me/A",
+     "p": "Mesmer",
+     "s": "Assassin",
+     "bar": [
+      3452,
+      51,
+      69,
+      1646,
+      3453,
+      932,
+      785,
+      61
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 2,
+     "role": "Invoke Lightning E/P",
+     "p": "Elementalist",
+     "s": "Paragon",
+     "bar": [
+      1664,
+      225,
+      3375,
+      2059,
+      222,
+      198,
+      3037,
+      0
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 3,
+     "role": "Invoke Lightning E/P",
+     "p": "Elementalist",
+     "s": "Paragon",
+     "bar": [
+      1664,
+      225,
+      3375,
+      222,
+      198,
+      3037,
+      232,
+      224
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 4,
+     "role": "Mind Freeze E/Mo",
+     "p": "Elementalist",
+     "s": "Monk",
+     "bar": [
+      2803,
+      238,
+      208,
+      233,
+      846,
+      3375,
+      2060,
+      204
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 5,
+     "role": "Invoke Lightning E/P",
+     "p": "Elementalist",
+     "s": "Necromancer",
+     "bar": [
+      1664,
+      225,
+      3375,
+      2059,
+      222,
+      198,
+      162,
+      141
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 6,
+     "role": "Invoke Lightning E/Rt",
+     "p": "Elementalist",
+     "s": "Ritualist",
+     "bar": [
+      1664,
+      3375,
+      225,
+      222,
+      232,
+      176,
+      198,
+      0
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 7,
+     "role": "Blessed Light Mo/A",
+     "p": "Monk",
+     "s": "Assassin",
+     "bar": [
+      941,
+      258,
+      299,
+      2892,
+      3454,
+      2063,
+      1037,
+      2857
+     ],
+     "deaths": 0
+    },
+    {
+     "pos": 8,
+     "role": "Healing Burst Mo/A",
+     "p": "Monk",
+     "s": "Assassin",
+     "bar": [
+      1118,
+      2061,
+      258,
+      3454,
+      1037,
+      1691,
+      292,
+      0
+     ],
+     "deaths": 0
+    }
+   ]
+  }
+ ],
+ "map": "Isle of Jade",
+ "occ": "AT-C",
+ "date": "2026-10-03",
+ "dur": 1694,
+ "result": "Crew won on Lord damage",
+ "start_chance": null,
+ "moments": [
+  {
+   "kind": "flag",
+   "t": 241,
+   "team": "Crew",
+   "head": "Men's AoB Derv sets off for a flag (single run). Crew holds the stand, boost in 73 s.",
+   "spot": "main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at the stand; morale Crew no death penalty or boost, Men -60 (the eight summed; a death is -15); Crew ahead on flags by 0.5; base res in 119 s; Crew's chance of winning 33%.",
+   "answer": "Crew sends nobody in the next three minutes.",
+   "followed": "What followed, 180 s on: Men's flag does not get in (returned, 4:18); flag lead -0.58 for Crew; deaths Crew 0, Men 2; boosts Crew 1, Men 0; Crew's chance of winning 33% to 50% (+17.4).",
+   "similar": "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.0 (90 cases); a runner out by 15 s +0.7 (90 cases): no clear difference (0.3, -3.2 to +3.8). Crew held off: no clear difference either way.",
+   "verdict": "no clear difference either way",
+   "a_before": 67,
+   "a_after": 50,
+   "swing": -17.4,
+   "deaths": [
+    5,
+    6
+   ]
+  },
+  {
+   "kind": "flag",
+   "t": 293,
+   "team": "Crew",
+   "head": "Men's Ranger sets off for a flag (single run). Crew holds the stand, boost in 21 s.",
+   "spot": "main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew no death penalty or boost, Men -90 (the eight summed; a death is -15); flags level; base res in 67 s; Crew's chance of winning 41%.",
+   "answer": "Crew sends nobody in the next three minutes.",
+   "followed": "What followed, 180 s on: Men's flag in at 11:36; flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.8).",
+   "similar": "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.1 (90 cases); a runner out by 15 s +2.2 (90 cases): the data favours holding off (no runner out at 15 s) by 3.9 win points (+0.3 to +7.5). Crew held off: the answer the data favours.",
+   "verdict": "the answer the data favours",
+   "a_before": 59,
+   "a_after": 50,
+   "swing": -8.8,
+   "deaths": []
+  },
+  {
+   "kind": "flag",
+   "t": 692,
+   "team": "Men",
+   "head": "Crew's Water Ele sets off for a flag (single run). Crew holds the stand (Men caps 4 s later), boost in 102 s.",
+   "spot": "main fight Men 4 v Crew 5 (Crew up by 1); Men's main team at the stand, Crew's at the stand; morale Men -90, Crew +80 (the eight summed; a death is -15); flags level; base res in 28 s; Men's chance of winning 51%.",
+   "answer": "Men sends its Ranger 11 s later.",
+   "followed": "What followed, 180 s on: Crew's flag in at 12:23; Men's does not get in; flag lead -0.74 for Men; deaths Men 0, Crew 0; boosts Men 0, Crew 1; Men's chance of winning 51% to 46% (-4.9).",
+   "similar": "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.6 (90 cases); holding off (no runner out at 15 s) -0.5 (90 cases): the data favours a runner out by 15 s by 8.1 win points (+5.0 to +11.2). Men had a runner out: the answer the data favours.",
+   "verdict": "the answer the data favours",
+   "a_before": 51,
+   "a_after": 46,
+   "swing": -4.9,
+   "deaths": []
+  },
+  {
+   "kind": "flag",
+   "t": 743,
+   "team": "Crew",
+   "head": "Crew's flag goes in while Men's Ranger is still on his way with theirs (he set off at 11:43). Run again, or not?",
+   "spot": "main fight Crew 8 v Men 8 (even); Crew's main team at the stand, Men's at Men's footmen; morale Crew +80, Men -90 (the eight summed; a death is -15); Men ahead on flags by 0.9; base res in 97 s; Crew's chance of winning 45%.",
+   "answer": "Crew sends its Water Ele 54 s later.",
+   "followed": "What followed, 180 s on: Men's flag does not get in (returned, 17:14); Crew's does not get in; flag lead +1.46 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 45% to 54% (+9.6).",
+   "similar": "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.6 (90 cases); holding off (no runner out at 15 s) +2.1 (90 cases): no clear difference (2.5, -1.2 to +6.2). Crew held off: no clear difference either way.",
+   "verdict": "no clear difference either way",
+   "a_before": 55,
+   "a_after": 46,
+   "swing": -9.6,
+   "deaths": []
+  },
+  {
+   "kind": "flag",
+   "t": 1248,
+   "team": "Crew",
+   "head": "Men's AoB Derv sets off for a flag (single run). Crew holds the stand, boost in 95 s.",
+   "spot": "main fight Crew 8 v Men 8 (even); Crew's main team at Men's door, Men's at Men's door; morale Crew +80, Men -90 (the eight summed; a death is -15); Crew ahead on flags by 0.6; base res in 72 s; Crew's chance of winning 65%.",
+   "answer": "Crew sends nobody in the next three minutes.",
+   "followed": "What followed, 180 s on: Men's flag does not get in (returned, 21:56); flag lead +0.52 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 65% to 73% (+7.7).",
+   "similar": "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.2 (90 cases); a runner out by 15 s -1.1 (90 cases): no clear difference (0.9, -2.7 to +4.5). Crew held off: no clear difference either way.",
+   "verdict": "no clear difference either way",
+   "a_before": 35,
+   "a_after": 27,
+   "swing": -7.7,
+   "deaths": []
+  },
+  {
+   "kind": "flag",
+   "t": 1436,
+   "team": "Crew",
+   "head": "Men's Warrior sets off for a flag (single run). Crew holds the stand, boost in 27 s.",
+   "spot": "main fight Crew 7 v Men 4 (Crew up by 3); Crew's main team at the stand, Men's at Men's door; morale Crew +80, Men -90 (the eight summed; a death is -15); Crew ahead on flags by 1.1; base res in 4 s; Crew's chance of winning 72%.",
+   "answer": "Crew sends nobody in the next three minutes.",
+   "followed": "What followed, 180 s on: Men's flag does not get in (not capped, 24:21); flag lead +0.09 for Crew; deaths Crew 0, Men 5; boosts Crew 2, Men 0; Crew's chance of winning 72% to 93% (+20.9).",
+   "similar": "Similar spots, 180 s on, from the same position: a runner out by 15 s +0.6 (90 cases); holding off (no runner out at 15 s) -0.4 (90 cases): no clear difference (1.0, -2.5 to +4.4). Crew held off: no clear difference either way.",
+   "verdict": "no clear difference either way",
+   "a_before": 28,
+   "a_after": 7,
+   "swing": -20.9,
+   "deaths": [
+    7,
+    8,
+    9,
+    10,
+    11
+   ]
+  }
+ ],
+ "deaths": [
+  {
+   "t": 42.3,
+   "team": "Men",
+   "who": "7 Monk",
+   "spike": true,
+   "lines": [
+    "0:42 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 412 in 3 s.",
+    "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning, Lightning Strike 4 times, Enervating Charge, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished).",
+    "Done in time by a team mate, so no fault (R-715): a heal."
+   ]
+  },
+  {
+   "t": 124.7,
+   "team": "Men",
+   "who": "Ranger",
+   "spike": false,
+   "lines": [
+    "2:04 Men's Ranger dies with no spike on him (under 400 inside 3 s): 589 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 1:58, the start of the heaviest 2 s on him, and his death.",
+    "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+    "Done in time by a team mate, so no fault (R-715): a heal."
+   ]
+  },
+  {
+   "t": 140.9,
+   "team": "Men",
+   "who": "Mesmer",
+   "spike": true,
+   "lines": [
+    "2:20 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 544 in 3 s.",
+    "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Rust) with 2 interrupts ready and in range: Mesmer had Complicate, Power Spike."
+   ]
+  },
+  {
+   "t": 221.3,
+   "team": "Men",
+   "who": "Mesmer",
+   "spike": true,
+   "lines": [
+    "3:41 Men's Mesmer dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3): 547 in 3 s.",
+    "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot.",
+    "Done in time by a team mate, so no fault (R-715): a heal."
+   ]
+  },
+  {
+   "t": 221.3,
+   "team": "Men",
+   "who": "AoB Derv",
+   "spike": false,
+   "lines": [
+    "3:41 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 100 from Crew (Air Ele 4) between 3:32, the start of the heaviest 2 s on him, and his death.",
+    "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, a heal: Prot had Blessed Light ready, in reach, his hands free; 7 Monk had Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; 8 Monk had Blessed Light, Spirit Bond ready, in reach, his hands free; not cast on him."
+   ]
+  },
+  {
+   "t": 245.7,
+   "team": "Men",
+   "who": "Prot",
+   "spike": true,
+   "lines": [
+    "4:05 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 542 in 3 s.",
+    "Missed by Men, a prot: 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 4 times, Mind Freeze) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot.",
+    "Done in time by a team mate, so no fault (R-715): a heal."
+   ]
+  },
+  {
+   "t": 253.9,
+   "team": "Men",
+   "who": "Paragon",
+   "spike": true,
+   "lines": [
+    "4:13 Men's Paragon dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 476 in 3 s.",
+    "Missed by Men, an interrupt on a spike skill: 5 of the spike's skills went off (Invoke Lightning 3 times, Mind Freeze, Shell Shock) with 2 interrupts ready and in range: Ranger had Distracting Shot, Savage Shot."
+   ]
+  },
+  {
+   "t": 1440.2,
+   "team": "Men",
+   "who": "AoB Derv",
+   "spike": true,
+   "lines": [
+    "24:00 Men's AoB Derv dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4): 430 in 3 s.",
+    "No checked chance missed by Men (a prot, a heal or an interrupt on a spike skill)."
+   ]
+  },
+  {
+   "t": 1490.6,
+   "team": "Men",
+   "who": "7 Monk",
+   "spike": true,
+   "lines": [
+    "24:50 Men's 7 Monk dies to a spike by Crew (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 472 in 3 s.",
+    "Missed by Men, a prot: Prot had Shielding Hands ready, in reach, his hands free; 8 Monk had Guardian ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, an interrupt on a spike skill: 7 of the spike's skills went off (Invoke Lightning 3 times, Lightning Strike 2 times, Mind Freeze, Steam) with 4 interrupts ready and in range: Mesmer had Complicate, Power Spike; Ranger had Distracting Shot, Savage Shot.",
+    "Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+   ]
+  },
+  {
+   "t": 1519.6,
+   "team": "Men",
+   "who": "Paragon",
+   "spike": true,
+   "lines": [
+    "25:19 Men's Paragon dies to a spike by Crew (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4): 451 in 3 s.",
+    "Missed by Men, an interrupt on a spike skill: 6 of the spike's skills went off (Shatter Enchantment, Shell Shock, Invoke Lightning 3 times, Mind Freeze) with 3 interrupts ready and in range: Mesmer had Power Spike; Ranger had Distracting Shot, Savage Shot."
+   ]
+  },
+  {
+   "t": 1608.0,
+   "team": "Men",
+   "who": "Prot",
+   "spike": true,
+   "lines": [
+    "26:48 Men's Prot dies to a spike by Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4): 520 in 3 s.",
+    "Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit ready, in reach, his hands free; not cast on him.",
+    "Missed by Men, an interrupt on a spike skill: 4 of the spike's skills went off (Invoke Lightning 4 times) with 3 interrupts ready and in range: Mesmer had Complicate; Ranger had Distracting Shot, Savage Shot."
+   ]
+  },
+  {
+   "t": 1611.9,
+   "team": "Men",
+   "who": "Ranger",
+   "spike": false,
+   "lines": [
+    "26:51 Men's Ranger dies with no spike on him (under 400 inside 3 s): 418 from Crew (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4) between 26:48, the start of the heaviest 2 s on him, and his death.",
+    "Missed by Men, a heal: 7 Monk had Vigorous Spirit, Infuse Health, Patient Spirit, Dwayna's Kiss, Heal Other ready, in reach, his hands free; not cast on him."
+   ]
+  },
+  {
+   "t": 1626.0,
+   "team": "Men",
+   "who": "AoB Derv",
+   "spike": false,
+   "lines": [
+    "27:06 Men's AoB Derv dies with no spike on him (under 400 inside 3 s): 151 from Crew (Water Ele) between 27:02, the start of the heaviest 2 s on him, and his death.",
+    "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+   ]
+  },
+  {
+   "t": 1632.4,
+   "team": "Men",
+   "who": "Paragon",
+   "spike": false,
+   "lines": [
+    "27:12 Men's Paragon dies with no spike on him (under 400 inside 3 s): 74 from Crew (Water Ele) between 27:12, the start of the heaviest 2 s on him, and his death.",
+    "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+   ]
+  },
+  {
+   "t": 1640.6,
+   "team": "Men",
+   "who": "8 Monk",
+   "spike": false,
+   "lines": [
+    "27:20 Men's 8 Monk dies with no spike on him (under 400 inside 3 s): 275 from Crew (Air Ele 2, Water Ele) between 27:17, the start of the heaviest 2 s on him, and his death.",
+    "No checked chance missed by Men (a prot or a heal; with no spike there is no spike skill to interrupt)."
+   ]
+  }
+ ],
+ "lone_deaths": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  12,
+  13,
+  14
+ ],
+ "other_moments": [
+  {
+   "kind": "numbers",
+   "t": 142,
+   "reads": "Men down on numbers in the main fight (7 v 8, the greater stand area), from kills; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "numbers",
+   "t": 218,
+   "reads": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50; then 4 v 8 from 4:14), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "boost",
+   "t": 283,
+   "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall to footmen"
+  },
+  {
+   "kind": "numbers",
+   "t": 330,
+   "reads": "Men down on numbers in the main fight (6 v 8, the greater stand area), from kills; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "numbers",
+   "t": 400,
+   "reads": "Men down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "boost",
+   "t": 403,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+  },
+  {
+   "kind": "numbers",
+   "t": 498,
+   "reads": "Men down on numbers in the main fight (6 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "boost",
+   "t": 523,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+  },
+  {
+   "kind": "boost",
+   "t": 643,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen"
+  },
+  {
+   "kind": "boost",
+   "t": 833,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+  },
+  {
+   "kind": "numbers",
+   "t": 864,
+   "reads": "Men down on numbers in the main fight (2 v 8, the flag stand), from players on their way to it (in neither fight); Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "numbers",
+   "t": 910,
+   "reads": "Men down on numbers in the main fight (2 v 8, the greater stand area), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "boost",
+   "t": 953,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen"
+  },
+  {
+   "kind": "boost",
+   "t": 1073,
+   "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall back into the base"
+  },
+  {
+   "kind": "boost",
+   "t": 1193,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base"
+  },
+  {
+   "kind": "numbers",
+   "t": 1210,
+   "reads": "Men up on numbers in the main fight (8 v 7, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their back door)"
+  },
+  {
+   "kind": "boost",
+   "t": 1313,
+   "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base"
+  },
+  {
+   "kind": "numbers",
+   "t": 1354,
+   "reads": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay on the enemy's side)"
+  },
+  {
+   "kind": "numbers",
+   "t": 1410,
+   "reads": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay at the stand)"
+  },
+  {
+   "kind": "boost",
+   "t": 1433,
+   "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base"
+  },
+  {
+   "kind": "numbers",
+   "t": 1474,
+   "reads": "Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), from kills; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their base)"
+  },
+  {
+   "kind": "pinned",
+   "t": 1488,
+   "reads": "Men is held in its own base or pit by Crew's main team (K2 A2 B1 alive; base res in 72 s)"
+  },
+  {
+   "kind": "base res",
+   "t": 1540,
+   "reads": "Crew has 8 in Men's base at the base res (6 defending, 2 coming back): 8 stay"
+  },
+  {
+   "kind": "boost",
+   "t": 1553,
+   "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base"
+  },
+  {
+   "kind": "numbers",
+   "t": 1590,
+   "reads": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 5 v 7 from 26:42; then 4 v 6 from 26:58; then 4 v 8 from 27:46), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | Crew: push in"
+  },
+  {
+   "kind": "split",
+   "t": 1602,
+   "reads": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2)"
+  },
+  {
+   "kind": "lord",
+   "t": 1623,
+   "reads": "Men pushes Crew's Guild Lord with 3 in the base (1 monk, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage"
+  },
+  {
+   "kind": "pinned",
+   "t": 1636,
+   "reads": "Men is held in its own base or pit by Crew's main team (K0 A2 B1 alive; base res in 44 s)"
+  },
+  {
+   "kind": "lord",
+   "t": 1640,
+   "reads": "Crew pushes Men's Guild Lord with 8 in the base (2 monks) against 3 pit NPCs: more attackers than pit NPCs; playing for Lord damage"
+  },
+  {
+   "kind": "base res",
+   "t": 1660,
+   "reads": "Crew has 8 in Men's base at the base res (4 defending, 4 coming back): 8 stay"
+  }
+ ]
+}

@@ -7,8 +7,9 @@ import { renderBuilds } from "./pages/builds.js";
 import { renderPlayers } from "./pages/players.js";
 import { renderSchedule } from "./pages/schedule.js";
 import { renderGuilds } from "./pages/guilds.js";
+import { renderReport } from "./pages/report.js";
 
-const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, players: renderPlayers, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings };
+const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, players: renderPlayers, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings, report: renderReport };
 const view = document.getElementById("view");
 
 function route() {
