@@ -2,13 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
-## 2026-11-27, late afternoon (a new chat): R-794 to R-800 filed; a monk's own chance on himself; taken means landed
+## 2026-11-27, late afternoon (a new chat): R-794 to R-802 filed; a monk's own chance on himself; taken means landed; too late
 - Rulings filed: R-794 (a block stays at the average attack), R-795 ("would he have lived" stays literal), R-796 (a monk's own prot or heal on himself is a chance), R-797 (taken only if it landed before the death; amends R-715), R-798 (Divine Favor's heal stays counted), and from an Opus chat R-799 (family 5 dropped) and R-800 (the one-click match report planned after step 3; REDESIGN.md).
 - Found on his question about Men v Crew 4:05: a monk's distance to himself, nought, was read as unknown, so no monk's own skill on himself was ever a chance; the Prot's own Spirit Bond, 0.45 s after the first big hit, was the answer there, not the 8 Monk's Guardian.
 - `bundle-4` 3111449, one bundled change: `Forensics.chances` reads the dying monk himself (`self`, `can_self`); `outcome`, `landed`, `taken_in_time(.., end)`, `begun`; `chance_tests` and X3's `taken` want a finished cast; `prot_would` counts Divine Favor on a monk's own cast; a death's `begun` and its sentence.
 - Development set (82 matches): 6,935 plays identical to 97bac17, 323 Classic rows pass. Deaths with a prot fault 525 (387), a heal fault 344 (245); 209 deaths carry a row on the dying monk himself; 192 have a cast begun that never landed. Spikes killed 15.3% where a prot landed, 50.5% where it was missed (19.1% and 47.5% before).
 - No full run: Opus's run at 97bac17 does not hold the change; prot, heal and the Deep Wound left are read again at stage 5's full run.
-- Put to Denning: the reaction is 200 ms on file for interrupts too (he wrote 250); whether a monk whose cast came too late is himself at fault.
+- His answers the same hour: R-801 (the reaction stays 200 ms) and R-802 (a prot or heal that came too late is its caster's fault where he had an earlier moment). `bundle-4` 6ebb141: `chances(.., died)`, `too_late`; 99 rows on 87 deaths; deaths with a prot fault 539, a heal fault 389; plays identical, 323 Classic rows pass.
 
 ## 2026-11-27, afternoon (a new chat): his answers filed (R-785 to R-793); what a missed prot would have stopped, built
 - Rulings filed: R-785 (the prot plan approved), R-786 (the burst stays at two thirds and 200), R-787 (balling by adjacent, nearby and in-the-area casts), R-788 (Aggressive Refrain is context), R-789 (a cast caught is a fault only at a death; elsewhere context, every player counted), R-790 (a monk under R-711's pressure is not available), R-791 (the rule for each prot, and the five recommendations), R-792 and R-793 (Claude's readings of R-746, R-787, R-789 and R-790 confirmed).

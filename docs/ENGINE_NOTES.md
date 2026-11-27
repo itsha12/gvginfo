@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-798; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-802; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1288,6 +1288,14 @@ index pointing here. Read the section for a reading before changing it, and keep
   rows 1,709 on spikes (270 his own) and 1,871 on pressure attempts (420); missed heals 652 (153) and 619 (154); Deep Wound left 289 (58) and 295 (72).
   Of 384 deaths with a prot fault told, a prot would have outlasted what landed on 343, none on 41 (141 not told). R-798: Guardian keeps a player
   alive by Divine Favor alone on 29 of 1,491 deaths (29 to 45 healed, 1 to 45 over), kept as built.
+- Too late, built 2026-11-27 (`bundle-4` 6ebb141; R-801, R-802). `Forensics.chances(.., died)`: where the player died at `end`, a monk whose cast of that
+  kind on him was cut off by the death (cancelled within `CUT_S`, 0.3 s, of it, or finished after it) and none of whose casts landed is read for a moment
+  before the cast he did begin at which that same skill, cast then, would have landed, by the reading of any chance: a chance row with `too_late` (the
+  second he did begin it), said "Too late by <team>"; where there is no such moment he gets no row and no "no chance" (he acted; the cast is in `begun`,
+  which now holds every cast on him to the death that never landed). An interrupted cast is never this (R-789). The reaction stays `REACT_S` 0.2 (R-801).
+  On the 82 matches (6,935 plays identical, 323 Classic rows pass): 99 rows on 87 deaths (59 heals, 40 prots; 13 the dying monk's own; Blessed Light 26,
+  Infuse Health 20, Spirit Bond 8), begun a middle 1.3 s after the start where 0.2 s was open. Deaths with a prot fault 539 (525), a heal fault 389
+  (344), faults 2,236 (2,137). Spikes killed 51.4% where a prot was missed and 62.6% where a heal was (15.3% and 13.8% where it landed).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

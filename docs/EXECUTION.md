@@ -135,6 +135,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 36. **Taken means landed** (R-797, amending R-715): a prot or heal begun in time that was interrupted, cancelled, or
     cut off by his death is not the chance taken; it is said beside the death as context, and the other monks'
     chances are listed. Built.
+37. **Too late** (R-802): a monk whose prot or heal was cut off by the death is himself at fault where he had an
+    earlier moment at which the same cast would have landed; otherwise his cast is context. Built.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -172,7 +174,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | Out of energy | Yes: gvg.report's model, out under 20 (R-681) | |
 | Busy on another player under pressure (R-711) | Yes | |
 | Prot or heal ready and not cast | Yes, with Rule 1 (stage 1); his own on himself too (Rule 35) | |
-| Prot or heal begun in time that never landed (Rule 36) | Yes: context beside the death, no fault of its own | Whether the monk who began it late had an earlier moment (put to him) |
+| Prot or heal begun that never landed (Rule 36) | Yes: context beside the death | |
+| Prot or heal begun too late, cut off by the death (Rule 37) | Yes: a fault where he had an earlier moment at which the same cast would have landed | |
 | Prot cast too early, ended before the spike landed | No | Each prot's end against the first big hit |
 | Both monks on the same player while another died | No | Each monk's targets during the attempt |
 | Wrong kind of prot for the damage | Partly: death accounts | Each prot's effect on each damage type, from skill text |
