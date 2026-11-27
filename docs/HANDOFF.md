@@ -10,11 +10,11 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, midday: rulings to R-784; execution stages X1 to X4 built; the catalogue's stages 1 to 4 built)
+## State (2026-11-27, early afternoon: rulings to R-790; execution stages X1 to X4 built; the catalogue's stages 1 to 4 built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   No workflow run in progress. Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-784). The catalogue, `docs/EXECUTION.md`, is the brief:
+- Execution (the micro answer) is the block of work (R-701 to R-790). The catalogue, `docs/EXECUTION.md`, is the brief:
   a death is a sum, every why one part of it; 34 rules (rule n is R-(715+n) up to 28), sections A to D, five stages.
   Built before he checks anything: his marks on the Execution view (stage X5; 46 deaths on the site) wait (R-752).
 - His answers on stage 4 are built (`bundle-4` 25047ff; ENGINE_NOTES section 44): the pressure line at 225 health
@@ -33,10 +33,11 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   `execution_rows.json`. `cache` untouched. No new kind is checked on unseen matches yet.
 
 ## Next (in order, R-766): the catalogue, `docs/EXECUTION.md` "Order of work" (ENGINE_NOTES section 44)
-1. His answers to "Open for Denning" 1 to 4 below, filed as rulings; then, if he says go, what a missed prot would
-   have stopped (R-784): each prot's own rule over the hits that landed (blocks as an expected number, Aegis, hybrid
-   prots, ally buffs, uncounted reductions, heal-only prots such as Spirit Bond), `is_prot` moved to the tags, the
-   answer "would he have lived" from the sum walked again. The rules per skill go to him as a list first.
+1. One bundled build once he approves the rule for each prot (the list is with him, "Open" 1): what a missed prot
+   would have stopped (R-784, R-785: each prot's own rule over the hits that landed, `is_prot` moved to the tags,
+   "would he have lived" from the sum walked again); balling by nearby and in-the-area casts as faults (R-787); casts
+   caught a fault only inside the kill attempt of a death, every player's count kept as context (R-789); a monk
+   under R-711's pressure not available (R-790). Then the development set, the key, `compare.py`.
 2. The one full run for stages 1 to 4 (R-766), the machine to itself: `cases.py pressure`, `attempts` and
    `execution` (do the three kinds still pass; each new kind checked once: the chances on a pressure attempt, the
    Deep Wound left, the stance, the triggers, balling; pact kills left out of "killed"; R-782's no attempt made),
@@ -50,16 +51,16 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-27 (midday), each set out in the chat: (a) the plan for the prot amounts (R-784) and the list
-   of skills in each of his seven kinds; (b) the burst's share and floor (two thirds, 200): the bursts are two thirds
-   of all spikes, many on players near full health hit for just under 400; (c) a cast that reaches nearby foes
-   (Energy Surge, Lamentation) hitting two or more: balling or not; (d) Aggressive Refrain up during an attempt: a
-   fault or context (R-775); (e) an even 6v6 and below: no row, as built.
-2. Put to him 2026-11-27 (stage 1): casts caught are 13 a match. Each a fault (R-743 as built), or only at a death?
-3. R-746, Claude's reading, his to correct: crits while moving and the extra damage of Protector's Strike, Harrier's
-   Haste and Weaken Knees are context; "should have kited" is not told against Bull's Strike or Harrier's Grasp ready.
-4. R-747 as built takes little (5 deaths, development set). Is a monk under R-711's 250 in 2 s also not available?
-5. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
+1. Put to him 2026-11-27 (early afternoon), set out in the chat: the one-line rule for each prot skill (33 tagged
+   as stopping damage on an ally, with Spirit Bond, Ballad of Restoration, Aura of Stability and Vital Weapon), and
+   which of them are worth a missed chance at all. His answer starts the build ("Next" 1).
+2. Claude's readings, his to correct: "at a death" (R-789) is inside the kill attempt that killed a player of the
+   caster's team; the pressed monk's heals are left out as his prots are (R-790); a lasting ground effect stays
+   "standing in area damage" (R-735), not balling (R-787). An even 6v6 and below has no row, as built.
+3. R-746, set out again in full (he had forgotten it), Claude's reading: crits while moving and the extra damage of
+   Protector's Strike, Harrier's Haste and Weaken Knees are context; "should have kited" is not told against Bull's
+   Strike or Harrier's Grasp ready.
+4. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the

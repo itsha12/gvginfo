@@ -627,19 +627,22 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Time to react (R-716, R-748): a chance counts only if 200 ms of reaction and the skill's cast time fit before the
   outcome. The clock starts at the cast's start for an interrupt and at the first big hit for a prot or a heal; a prot
   cast before the hits is taken (R-085). A caster inside his own aftercast or knocked down cannot act; Daze doubles his
-  cast time. A monk who is himself under a spike is not available to another player (R-747), as a busy monk (R-711).
+  cast time. A monk who is himself under a spike (R-747) or under pressure (250 or more in the 2 s before, R-790) is not
+  available to another player, as a busy monk (R-711).
 - An interrupt is a chance only on a skill worth interrupting (R-727: the approved lists, `docs/EXECUTION.md`, the
   engine's copy `data/model/interrupt_worth.json`), by an interrupt that can stop that kind of skill, where the skill
   took at least the 200 ms and the interrupt's own time to land (R-742, R-750): a spell's cast time; half an attack's
   activation or swing (Distracting Shot and Savage Shot a quarter second, arrow flight left out). How long the skill
   took is the replay's own record of that cast (an attack skill lands halfway through its swing).
-- Casting into a ready interrupt is a fault only if the cast was interrupted, the skill is on the list, and generally
-  only for the backline (R-743). As read: a backline monk's cast of a listed skill, stopped by an interrupt that was
-  ready and in range when the cast began; listed on the play's row with its count (R-745).
+- Casting into a ready interrupt is a fault only at a death (R-789, amending R-743): the cast was interrupted, the
+  skill is on the list, and it was caught inside the kill attempt that killed a player of the caster's team (*the
+  last part Claude's reading, his to correct*). Elsewhere it is context: counted for every player over the match,
+  non-monks included, for the report. (As built until the next build: a backline monk's, each one listed, R-745.)
 - Moving and kiting (R-746): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp are faults; kiting
   is otherwise no fault ("Coward!" too, R-719, R-078); standing still when he should have kited a melee player is a
   fault. Crits and extra damage while moving are context (*Claude's reading of R-746, his to correct*).
-- Faults by his ruling (R-744): balling, more than 1 player hit by one adjacent-damage cast (R-722); Flail up over 2 s
+- Faults by his ruling (R-744): balling, more than 1 player hit by one cast that reaches adjacent foes, nearby foes or foes in the area (R-722,
+  R-787); Flail up over 2 s
   with nothing in melee reach (R-724); standing in area damage (R-735); attacking with Empathy on (the warrior's when
   defensive, the monk's for not removing it when offensive, R-736); casting with Backfire on (the midline; never with
   Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy,
@@ -650,7 +653,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   apart from our faults (R-733). Cut-offs (too deep, monk following, nothing in melee reach, the floor of a burst on a
   hurt player) are set from the data (R-741); the pressure line is his (R-779).
 - A spike (R-780): 400 or more on one player inside 3 s, or a burst inside 3 s that takes most of the health he had as
-  it began (as read: two thirds of it or more, and 200 or more, the share and the floor from the data; what a hex did
+  it began (two thirds of it or more, and 200 or more, the share and the floor from the data, kept by R-786; what a hex did
   to him for attacking or casting through it is left out).
 - A pact kill (R-783): the caster of Death Pact Signet dies the next time the player he resurrected with it dies
   inside 120 s. His death is a why of its own, read from that player's death; no chance is read on it. A death with nothing landed on
@@ -676,8 +679,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   spells finished through Backfire (no fault for a backline monk, never with Spirit Bond on); a spell lost to Shame, a
   skill used into Diversion; Daze on a backline monk with a removal ready on another and none cast; more than one
   player hit in one tenth by one cast that reaches adjacent foes or by one scythe attack (a cast that reaches nearby
-  foes is counted apart: *his to say whether it is a fault*); Frenzy, Frenzied Defense or Primal Rage up while hits
-  of a kill attempt landed (Aggressive Refrain as context, R-775); Deep Wound still on a target at the outcome with a
+  foes or foes in the area is a fault too, R-787: counted apart until the next build); Frenzy, Frenzied Defense or
+  Primal Rage up while hits of a kill attempt landed (Aggressive Refrain is context, R-788); Deep Wound still on a target at the outcome with a
   removal ready on a backline monk in reach. Whys, never faults: what a spike went into (blocks, spell immunity),
   Deep Wound against the first big hit, a damage player in reach who hit another player.
 - Question 3 is asked where a play's job is to kill and on every numbers advantage from the side that has it (R-732),

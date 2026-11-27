@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-790. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -75,7 +75,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 5. **Extra damage while moving** (R-720 as amended by R-746): the knockdown from Bull's Strike stays a fault. The
    extra damage of Protector's Strike, Harrier's Haste and Weaken Knees is counted as context, never a fault.
 6. **The Cripple from Harrier's Grasp** is never acceptable (R-721, R-746).
-7. **Balling** (R-722): a team should almost never have more than 1 player hit by one adjacent-damage cast.
+7. **Balling** (R-722, R-787): a team should almost never have more than 1 player hit by one cast that reaches
+   adjacent foes, nearby foes or foes in the area.
 8. **Crits while moving** (R-723 as amended by R-746): melee only, on a player moving away from the attacker; counted
    over the play against the number standing still would give, as context, never a fault.
 9. **Flail lock** (R-724): a warrior in Flail for more than 2 s with nothing in melee reach is a fault.
@@ -115,15 +116,17 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     Shot a quarter second; arrow flight left out for now). An attack skill lands halfway through its swing, shortened
     by attack speed boosts. An interrupt counts as ready only if it can stop that kind of skill: a spell-only
     interrupt such as Power Spike stops no signet, ritual, touch skill or attack.
-28. **Casting into a ready interrupt** (R-743) is a fault only if the cast was interrupted, the skill is on the list,
-    and generally only for the backline.
+28. **Casting into a ready interrupt** (R-743 as amended by R-789) is a fault only at a death, where the cast was
+    interrupted and the skill is on the list. Elsewhere it is context, counted for every player over the match
+    (non-monks too), for the report.
 29. **A fault he rules by name stands** whatever the check on unseen matches shows; the check is shown beside it, and
     a ruled kind that reads backwards is brought to him (R-744). A kind nobody ruled is told only if it passes (R-713).
 30. **Play-level faults are always listed** (R-745); a missed chance on an attempt is listed by its outcome (R-714).
 31. **Moving and kiting** (R-746): Bull's knockdown and Harrier's Cripple are faults; kiting is otherwise no fault;
     standing still when he should have kited a melee player is a fault. *Draft, his to correct:* not told against an
     attacker with Bull's Strike or Harrier's Grasp ready, where moving is itself the fault.
-32. **A monk who is himself the spike's target** is not available to another player (R-747), as a busy monk (R-711).
+32. **A monk who is himself the spike's target** (R-747), or himself under pressure (250 or more in 2 s, R-790), is
+    not available to another player, as a busy monk (R-711).
 33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749). Built.
 34. **Built before he checks** (R-752): his marks on the Execution view wait for the catalogue's readings.
 
@@ -135,16 +138,16 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 |---|---|---|
 | Pushed too deep, away from his monks | Partly: distance to the nearest monk | Distance past his own team's front line, the cut-off from data (Rule 26) |
 | Pushed too deep, pulling a monk into pressure after him | No | The monk's position and the pressure he took, against the player he followed |
-| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | A cast that reaches nearby foes (Energy Surge, Lamentation) is counted apart: a fault or not is his |
+| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | A cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is a fault too (R-787): counted apart until the next build |
 | Standing in area damage (Rule 20): Chaos Storm, Symbol of Wrath and the like | No | Each skill's area from its text; repeated hits joined to the cast |
 | Knocked down by Bull's Strike (Rule 5) | Yes (stage 3): the knockdown record names the skill | |
 | Crippled by Harrier's Grasp (Rule 6) | Yes (stage 3): a Cripple at a hit by an attacker with Harrier's Grasp up, no other Cripple skill cast on him then | |
 | Crits and extra damage while moving (Rules 5, 8, 31): context only | No | Melee hits flagged critical on a player moving away, against the standing rate |
-| In a stance that raises damage taken during an attempt (Rule 25) | Yes (stage 3): on every spike and pressure attempt, what landed while it was up and the share the skill added | Aggressive Refrain is context until he says (R-775) |
+| In a stance that raises damage taken during an attempt (Rule 25) | Yes (stage 3): on every spike and pressure attempt, what landed while it was up and the share the skill added | Aggressive Refrain is context (R-788) |
 | Fighting in reach of their NPCs when not pushing their pit | No | NPC damage taken, against his position and the team's job |
 | Standing still when he should have kited a melee player (Rule 31) | Partly: kiting measured | Kiting as a missed chance, not only a measure |
 | Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | Yes (stage 3): each hit the hex did to him, told by the hex's own amounts; a spell lost to Shame; a skill used as Diversion went | |
-| Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1): an interrupted cast of a listed skill by a backline monk, the interrupt that stopped it ready when the cast began; listed on the play's row | |
+| Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1): an interrupted cast of a listed skill by a backline monk, the interrupt that stopped it ready when the cast began; listed on the play's row | To change (R-789): a fault only inside the kill attempt of a death; every player's count over the match kept as context |
 | Wrong weapon set when under attack | Partly: on each attempt's sum, what landed off his shield set and what a shield would have stopped (stage 4) | As a missed chance, checked once; the set he swapped to |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
 | Fell back too late, or not to his monks | No | Movement towards safety once the attempt starts, against the time he had |
@@ -313,7 +316,7 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
   its recharge alone. The replays spell eleven skills without their punctuation ("Harriers Grasp"): read by id.
 - What a missed prot would have stopped is to be worked out from each prot's own rule over the hits that landed
   (R-784: blocks, Aegis, hybrid prots, ally buffs, uncounted reductions, straight prots, heal-only prots); the plan is
-  put to him first. The engine's own test of what is a prot still reads the skill data and misses Aegis, Life Sheath,
+  approved (R-785) and the rule for each skill is with him. The engine's own test of what is a prot still reads the skill data and misses Aegis, Life Sheath,
   Shield of Absorption, Aura of Faith, Shield of Regeneration, Shield of Deflection, Mark of Protection and Spell
   Breaker: it moves to the tags with that build.
 - Armour and insignias are left out: a player cannot change them in a match. Out of reach: ping, line of sight around

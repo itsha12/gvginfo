@@ -2,6 +2,11 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-27, early afternoon (a new chat): his answers filed (R-785 to R-790); the prot rules put to him
+- Rulings filed: R-785 (the plan for what a missed prot would have stopped, approved), R-786 (the burst stays at two thirds and 200), R-787 (balling by adjacent, nearby and in-the-area casts), R-788 (Aggressive Refrain is context), R-789 (a cast caught is a fault only at a death; elsewhere context, every player counted), R-790 (a monk under R-711's pressure is not available to prot).
+- Main only: RULINGS (the amended rulings marked where they stand), DEFINITIONS, `docs/EXECUTION.md` (Rules 7, 28 and 32 and their "Read" rows), the handoff. No engine change: R-787, R-789 and R-790 are built with the prot amounts in one bundled change.
+- Put to Denning: the one-line rule for each prot skill; R-746's reading again, in full; Claude's readings of "at a death" and of the pressed monk's heals.
+
 ## 2026-11-27, midday (a new chat): his answers on stage 4 built; stage 3 of the catalogue built with the tag file (R-769 to R-784)
 - Rulings filed: R-769 to R-778 (his review of the stage 3 tags, as the tag file lists them) and R-779 to R-784 (his answers to the six questions of stage 4).
 - `bundle-4` 25047ff: the pressure line at 225 (R-779); a burst that takes most of a player's health is a spike (R-780: two thirds and 200 or more, from the data); the even 7v7's row (R-781); pact kills and no fault where nothing landed (R-783).
