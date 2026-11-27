@@ -21,6 +21,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   the death account should name every prot and heal ready and in reach, by monk, with energy; and three readings it
   needs, at your pace: Shadow Shroud on the target (tagged, read by nothing), their monks disabled or cast-prevented
   at the spike itself (now only over a pressure window), and the weapon set the target was in.
+  Also asked (Denning, 2026-11-27): for each missed prot and heal, the latest start that would still have saved him
+  (`prot_would` already walks the hits by his rule for each skill); the prototype works it out for heals only.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
 - Full run for stages 1 to 4 at `bundle-4` 97bac17 (Denning, 2026-11-27): what HANDOFF "Next" 2 lists (`cases.py
