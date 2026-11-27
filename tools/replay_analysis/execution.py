@@ -498,7 +498,8 @@ def _ready(F, a, sid, sd, t, hands=True): return F.ready(a, sid, sd, t, hands)  
 
 
 def attempts(E):
-    """Every spike of both teams (`events._spikes`: 400 or more on one player inside 3 s) as a kill attempt, read to its own outcome (R-710): the package
+    """Every spike of both teams (`Forensics.spikes`: 400 or more on one player inside 3 s, or a burst that takes most of a hurt player's health, R-780: two
+    thirds of it and 200 or more, `hurt` his health as it began) as a kill attempt, read to its own outcome (R-710): the package
     (R-708: how its big hits landed, the strip on the target, pressure on the target's monks) and the chances each side missed (R-713). A record: no play reads it."""
     import events as EV
     from common import CAST_R
@@ -513,8 +514,9 @@ def attempts(E):
     out = []
     for tm in (1, 2):
         mine, theirs = F.players(tm), F.players(3 - tm)
-        for t, tgt, dmg, win, died in EV._spikes(F, tm):
+        for t, tgt, dmg, win, died, hurt in F.spikes(tm):
             end = next((d for d in deaths[tgt] if t <= d <= t + ATT_AFTER_S), t + ATT_AFTER_S)
+            pk = F.pact_kill(tgt, end) if died and end < t + ATT_AFTER_S else None
             ld = EV._landing(win)
             first = ([x for x in win if x[3] >= 60] or win)[0][0]
             att = sorted({x[1] for x in win})
@@ -578,7 +580,8 @@ def attempts(E):
                 if x["kind"] == "strip" and led.get("stopped") is not None:
                     up = {k.replace(" PvP", "") for k in prots_up}
                     x["amount"] = sum(b[2] for b in led["stopped"]["by"] if b[1] and b[1].replace(" PvP", "") in up)
-            out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "kind": "spike", "state": target_state, "target_class": "healer" if tgt in E.healer else "other",
+            out.append({"t": round(first, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "kind": "spike", "hurt": None if hurt is None else round(hurt),
+                        "pact": None if pk is None else m.roles[pk[0]], "state": target_state, "target_class": "healer" if tgt in E.healer else "other",
                         "dmg": round(dmg), "killed": bool(died and end < t + ATT_AFTER_S), "s": round(end - first, 1), "attackers": [m.roles[a] for a in att],
                         "spread": ld["spread_s"], "in_1s": ld["in_1s"],
                         "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips),
@@ -596,8 +599,10 @@ def say_attempt(r):
     """A kill attempt in sentences (R-329): what landed together, and every missed chance of both sides, none ranked (R-713)."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     foe = "their" if r["tm"] else ""
-    L = [f"{clk(r['t'])} {r['team']} spike on the {r['target']} ({', '.join(r['attackers'])}): {r['dmg']} in 3 s, "
+    L = [f"{clk(r['t'])} {r['team']} spike on the {r['target']} ({', '.join(r['attackers'])}): {r['dmg']} in 3 s"
+         + (f", a burst on a hurt player (he stood at {r['hurt']} health: most of it, R-780), " if r.get("hurt") else ", ")
          + ("killed him" if r["killed"] else "he lived") + f" (read over {r['s']} s)."]
+    if r.get("pact"): L.append(f"He died as the {r['pact']}, who had resurrected him with Death Pact Signet, died: a pact kill (R-783), not this spike's.")
     L.append(f"Big hits landed over {r['spread']} s ({100 * r['in_1s']:.0f}% of the damage in the first second).")
     st = r["strip"]
     L.append("No strip on him." if not st["n"] else f"{st['n']} strip(s) on him, the first {abs(st['lead'])} s {'before' if st['lead'] < 0 else 'after'} the first big hit"
@@ -794,6 +799,7 @@ def pressure(E, atts):
             missed = [_amounts(E, x) for x in F.chances(tgt, t0, t1, {"prot": is_prot, "heal": is_heal}, monks=monks)]
             out.append({"t": round(t0, 1), "told": round(ep["told"], 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "kind": "pressure",
                         "target_class": "healer" if tgt in E.healer else "other", "killed": bool(ep["died"]), "how": ep["how"], "s": round(t1 - t0, 1),
+                        "pact": (lambda pk: None if pk is None else m.roles[pk[0]])(F.pact_kill(tgt, t1) if ep["died"] else None),
                         "attackers": [m.roles[a] for a, _ in by.most_common()], "dmg": round(sum(tk.values())),
                         "spikes": [r["t"] for r in sp], "after_spike": next((r["t"] for r in sp if r["t"] <= ep["told"] <= r["t"] + r["s"]), None),
                         "prots_up": prots_up, "prots_cast": [[F.sname(c[1]), round(c[2] - t0, 1), c[4]] for c in on_tgt if is_prot(F.sdata(c[1]))],
@@ -810,6 +816,7 @@ def say_pressure(r):
     how = {"died": "he died", "escaped": f"his health came back above {DANGER_HP}", "left alone": "they left him alone", "the match ended": "the match ended"}[r["how"]]
     L = [f"{clk(r['t'])} {r['team']} keep the {r['target']} in danger (at or under {DANGER_HP} health for {DANGER_KEPT_S} s or longer, with damage landing on him) for {r['s']} s: {how}"
          + (f" ({', '.join(r['attackers'][:5])})." if r["attackers"] else " (degen and NPCs only).")]
+    if r.get("pact"): L.append(f"He died as the {r['pact']}, who had resurrected him with Death Pact Signet, died: a pact kill (R-783).")
     if r.get("after_spike") is not None: L.append(f"It follows their spike on him at {clk(r['after_spike'])}: one attempt going on, not a second.")
     elif r["spikes"]: L.append("Their spike" + ("s" if len(r["spikes"]) > 1 else "") + " on him inside it: " + ", ".join(clk(t) for t in r["spikes"]) + ".")
     L.append(say_ledger(r["ledger"]))
@@ -826,6 +833,7 @@ def say_pressure(r):
 
 # ------------------------------------------------------------------ the even 8v8's row (the catalogue's stage 4; R-731)
 EVEN_GAP_S = 4              # one reading missed (the fights are read every other second) does not end an even 8v8
+EVEN_N = (8, 7)             # the even fights that get a row: 8v8 (R-731) and 7v7 (R-781)
 
 
 def even_rows(E, plays, ATT=None, PRS=None, D=None, FL=None, CT=None):
@@ -841,20 +849,25 @@ def even_rows(E, plays, ATT=None, PRS=None, D=None, FL=None, CT=None):
     step = EXEC_STEP
     P1, P2 = set(M.st.players[1]), set(M.st.players[2])
     if len(P1) != 8 or len(P2) != 8: return []
-    ok = []
+    # R-781: an even 7v7 is covered as the even 8v8 is ("if both teams leave a player waiting back for several minutes, the 7v7 objective is the same as the
+    # 8v8 objective"): the largest fight on the map with seven or eight a side, the same number on both. A stretch is read at one number: an 8v8 that
+    # becomes a 7v7 is two stretches, each JOIN_S or longer by itself.
+    ok = collections.defaultdict(list)
     for t in range(0, int(min(M.T, M.over)) + 1, step):
-        g = next((g for g in M.fights(t) if g["n"][1] == 8 and g["n"][2] == 8), None)
-        if g is not None and M.standoff_at(P1 | P2, t) is None: ok.append(t)
-    runs, cur = [], None
-    for t in ok:
-        if cur is not None and t - cur[1] <= EVEN_GAP_S: cur[1] = t
-        else:
-            if cur is not None: runs.append(cur)
-            cur = [t, t]
-    if cur is not None: runs.append(cur)
+        g = next((g for g in M.fights(t) if g["n"][1] == g["n"][2] and g["n"][1] in EVEN_N), None)
+        if g is not None and M.standoff_at((P1 | P2) if g["n"][1] == 8 else (g["ids"][1] | g["ids"][2]), t) is None: ok[g["n"][1]].append(t)
+    runs = []
+    for k in sorted(ok, reverse=True):
+        cur = None
+        for t in ok[k]:
+            if cur is not None and t - cur[1] <= EVEN_GAP_S: cur[1] = t
+            else:
+                if cur is not None: runs.append(cur)
+                cur = [t, t, k]
+        if cur is not None: runs.append(cur)
     covered = sorted((int(p["t0"]), int(p["t1"]), p["play"]) for p in plays)
     out = []
-    for a, b in runs:
+    for a, b, k in runs:
         b += step
         if b - a < JOIN_S: continue
         free, u, under = [], a, set()
@@ -867,7 +880,7 @@ def even_rows(E, plays, ATT=None, PRS=None, D=None, FL=None, CT=None):
         for t0, t1 in free:
             if t1 - t0 < JOIN_S: continue
             rid = m.o["meta"]["id"]
-            row = {"id": f"{rid[:8]}-even_8v8-{t0}", "rid": rid, "play": "even 8v8", "t0": t0, "t1": t1, "s": t1 - t0, "fight": [a, b], "under": sorted(under),
+            row = {"id": f"{rid[:8]}-even_{k}v{k}-{t0}", "rid": rid, "play": f"even {k}v{k}", "n": k, "t0": t0, "t1": t1, "s": t1 - t0, "fight": [a, b], "under": sorted(under),
                    "objective": "offence", "teams": [m.tag[1], m.tag[2]], "sides": {}}
             for tm, X, Y in ((1, P1, P2), (2, P2, P1)):
                 sd = {"measures": E.side(X, Y, t0, t1, "offence")}
@@ -1008,11 +1021,22 @@ def deaths(E, atts, prs=None):
             taken = F.taken_in_time(a, bt, kinds)
             faults = [{"kind": c["kind"], "by": c["by"], "skills": c["skills"], "at": c["at"], "amounts": c.get("amounts")} for c in ch if c["chance"] and c["kind"] not in taken]
             other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked")]
+        # R-783: a death with nothing landed on him in the record lists no fault (the record does not show what killed him); and a pact kill (he died as
+        # the player who resurrected him with Death Pact Signet died) is a why of its own: no chance of his team's is read on it
+        pk = F.pact_kill(a, td)
+        if pk is not None: d["pact"] = {"by": m.roles[pk[0]], "id": pk[0], "cast": round(pk[1], 1)}
+        if r is None and not d["dmg"] and not (d.get("ledger") or {}).get("landed"): d["nothing_landed"] = True
+        if d.get("pact") or d.get("nothing_landed"): faults, taken, other = [], [], []
+        if r is not None: d["hurt"] = r.get("hurt")
         d["faults"] = faults
         d["taken"] = sorted(set(taken))
         d["no_chance"] = [{"kind": x["kind"], "by": x["by"], **({"busy_on": x["busy_on"]} if x.get("busy_on") else {"spiked": True} if x.get("spiked") else {"out_of_energy": True})}
                           for x in other if x["kind"] in FAULT_KINDS]
         out.append(d)
+    for d in out:                                          # on the death of a pact's caster: who he took with him
+        if d.get("pact"):
+            c = next((x for x in out if x["id"] == d["pact"]["id"] and abs(x["t"] - d["t"]) <= .2), None)
+            if c is not None: c.setdefault("took", []).append(d["who"])
     return sorted(out, key=lambda d: d["t"])
 
 
@@ -1119,10 +1143,16 @@ def death_lines(d):
     nm = lambda s_: s_.replace(" PvP", "")
     mine = lambda s_: nm(s_[len(d["team"]) + 1:] if s_.startswith(d["team"] + " ") else s_)      # a team mate is said by his role alone
     who = (", ".join(d["attackers"]) or "nobody recorded")
-    if d["spike"]: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies to a spike by {d['by']} ({who}): {d['dmg']} in 3 s, the first big hit at {clk(d['first'])}, the big hits over {d['spread']} s."]
-    elif d.get("kept"): L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him (under 400 inside 3 s), kept in danger by {d['by']} from {clk(d['first'])} (at or under {DANGER_HP} health with damage landing on him, R-749): {d['dmg']} landed on him, hits and degen ({who})."]
-    else: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him (under 400 inside 3 s) and without being kept in danger first: {d['dmg']} landed on him from {d['by']} ({who}) between {clk(d['first'])}, the first thing landed on him after he was last above {DANGER_HP} health, and his death."]
+    if d.get("pact"):                                    # R-783: a pact kill is a why of its own; nothing else is read on it
+        return [f"{clk(d['t'])} {d['team']}'s {d['who']} dies as the {d['pact']['by']} dies: a pact kill (R-783). The {d['pact']['by']} had resurrected him with Death Pact Signet "
+                f"{round(d['t'] - d['pact']['cast'])} s before, and the signet's target dies if its caster dies within 120 s. The why is the {d['pact']['by']}'s death; no chance is read on this one."]
+    if d["spike"]: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies to a spike by {d['by']} ({who}): {d['dmg']} in 3 s"
+                        + (f" on a hurt player (he stood at {d['hurt']} health: most of it, R-780)" if d.get("hurt") else "") + f", the first big hit at {clk(d['first'])}, the big hits over {d['spread']} s."]
+    elif d.get("kept"): L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him, kept in danger by {d['by']} from {clk(d['first'])} (at or under {DANGER_HP} health with damage landing on him, R-749): {d['dmg']} landed on him, hits and degen ({who})."]
+    else: L = [f"{clk(d['t'])} {d['team']}'s {d['who']} dies with no spike on him and without being kept in danger first: {d['dmg']} landed on him from {d['by']} ({who}) between {clk(d['first'])}, the first thing landed on him after he was last above {DANGER_HP} health, and his death."]
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
+    if d.get("took"): L.append(f"He took the {' and the '.join(d['took'])} with him: resurrected by his Death Pact Signet inside the last 120 s (a pact kill, R-783).")
+    if d.get("nothing_landed"): return L + ["No fault is listed where the record does not show what killed him (R-783)."]
     for kind in ("prot", "heal"):
         X = [x for x in d["faults"] if x["kind"] == kind]
         if X: L.append(f"Missed by {d['team']}, {FAULT_SAY[kind]}: " + "; ".join(f"{mine(x['by'])} had {', '.join(nm(k) for k in x['skills'])} ready, in reach, his hands free" + say_amounts(x) for x in X) + "; not cast on him in the time he had to see " + ("the hit" if d["spike"] else "it") + " and cast (R-716).")
@@ -1199,7 +1229,7 @@ def say_q3(team, foe, A, P, t0, t1, FL=None, brief=False):
     P = [q for q in P if q.get("after_spike") is None]
     n, k = len(A) + len(P), sum(1 for r in A + P if r["killed"])
     tg = len({r["id"] for r in A + P})
-    if not n: return f"Question 3 (R-732), {clk(t0)} to {clk(t1)}: {team} made no kill attempt: no spike (400 on one player inside 3 s) and nobody of {foe} kept in danger."
+    if not n: return f"Question 3 (R-732), {clk(t0)} to {clk(t1)}: {team} made no kill attempt: no spike (400 on one player inside 3 s, or most of a hurt player's health) and nobody of {foe} kept in danger."
     L = [f"Question 3 (R-732), {clk(t0)} to {clk(t1)}: {team} made {n} kill attempt{'s' if n != 1 else ''} on {tg} player{'s' if tg != 1 else ''} ({len(A)} spike{'s' if len(A) != 1 else ''}, "
          f"{len(P)} time{'s' if len(P) != 1 else ''} a player kept in danger), {k} killed."]
     by_t = {(d["t"], d["id"]): d for d in FL or ()}
@@ -1216,7 +1246,8 @@ def say_even(row, ATT, PRS, FL=None):
     """An even 8v8's row in sentences (R-731): both teams read as trying to kill, each by question 3."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
     a, b = row["teams"]
-    L = [f"{clk(row['t0'])} to {clk(row['t1'])}, an even 8v8 with no other job ({row['s']} s; execution only, no decision, R-731): both teams are read as trying to kill."]
+    k = row.get("n", 8)
+    L = [f"{clk(row['t0'])} to {clk(row['t1'])}, an even {k}v{k} with no other job ({row['s']} s; execution only, no decision, R-731" + (", R-781" if k != 8 else "") + "): both teams are read as trying to kill."]
     for team, foe in ((a, b), (b, a)):
         sd = row["sides"][team]
         L.append(say_q3(team, foe, [ATT[i] for i in sd.get("attempts", ())], [PRS[i] for i in sd.get("pressure", ())], row["t0"], row["t1"], FL))

@@ -50,13 +50,18 @@ REACT_S = 0.2               # R-716: the time to see a thing and act on it, befo
                             # a heal and at the cast's start for an interrupt (R-748)
 AFTERCAST_S = 0.75          # knowledge/casting.md: a finished spell, signet or ritual holds its caster this long (no aftercast on an attack skill, stance, shout or flash)
 SPIKE_DMG, SPIKE_S = 400, 3 # a spike as `events._spikes` reads it: a monk with one on himself (from its first hit) is not available to another player (R-747)
+# R-780: a burst that takes most of a hurt player's health is a spike too, above a floor ("if a player is at 50hp, a skill cast on him that does 50 damage is
+# not really a spike"). The share and the floor are the engine's, from the data (R-741; development set, 2026-11-27, 82 matches): at two thirds of his health
+# such a burst kills within 8 s about as often as a spike of 400 does (31 to 33% at every floor from 100 to 250, against 33%; at half his health 19 to 20%);
+# the floor is half a spike's 400, so that with the pressure line (R-779) a player under about 300 health is read by one or the other.
+HURT_SHARE, HURT_FLOOR = 2 / 3, 200
+PACT_S = 120                # Death Pact Signet: the player it resurrects dies if its caster dies within this long (the skill's text)
 BASE_HEALTH = 480           # a level 20 character's health before runes and weapons: morale and death penalty are a share of this (10% morale is 48 in every recap)
 DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DEEP_WOUND_LONGEST = 0.2, 100, 20    # knowledge/conditions.md: a fifth of his maximum, at most 100; an interval with no end recorded is read no longer than 20 s
-# The pressure attempt (R-741: "a player kept in danger for a while", the cut-offs set from the data; R-749). Set on the development set, 2026-11-27, by the
-# rule: of the lines at which a player kept there a second or longer dies within 8 s at least as often as a spike kills (33.3%), the one that holds the most
-# deaths with no spike. `cases.py pressure <plays file>` prints the table and says whether these still follow from it (ENGINE_NOTES section 44): 1,604
-# attempts on 82 matches, 34.9% dead within 8 s, 48.1% of the 1,275 deaths with no spike held. Read again at the full run for stages 1 to 4.
-DANGER_HP = 175             # at or under this many points of health ...
+# The pressure attempt (R-741: "a player kept in danger for a while"; R-749). The line is Denning's (R-779: 225 health, "slightly less than half health";
+# Claude's rule had read 175 from the data: as dangerous as a spike). The second and the 90 in 3 s stand as set on the development set, 2026-11-27.
+# `cases.py pressure <plays file>` prints the table: what every line on the grid gives, his among them (ENGINE_NOTES section 44).
+DANGER_HP = 225             # at or under this many points of health (R-779) ...
 DANGER_KEPT_S = 1           # ... for this long or longer (two samples running) ...
 DANGER_FIRE = (90, 3)       # ... with this much landed on him by the enemy, hits and degen, inside this many seconds
 DANGER_QUIET_S = 6          # nothing landed on him for this long ends it; two stretches on a player nearer than this are one (as `events._spikes` holds two spikes on a player 6 s apart)
@@ -432,15 +437,59 @@ class Forensics:
         tm = self.m.team(a)
         return [k for k, test in kinds.items() if any(c[5] == a and first - 3 <= c[2] <= first + CHANCE_S and test(self.sdata(c[1])) for h in self.players(tm) for c in self._by_agent.get(h, ()))]
 
+    def spikes(self, tm):
+        """Every spike by team tm, as `events._spikes` gives them, each with a sixth part: None for a spike of SPIKE_DMG inside SPIKE_S, and for a burst on a
+        hurt player (R-780) his health in points as it began. A burst on a hurt player: HURT_FLOOR or more inside SPIKE_S by their players' hits that is
+        HURT_SHARE or more of the health the replay last found him at before its first hit; none is read inside a spike's own reading (from its first hit
+        to 8 s after it) or in the 6 s before one (it is that spike coming), and two on a player are 6 s apart, as two spikes are. The spikes of 400 are
+        untouched by it: every reading built on them reads as before."""
+        if self._spk is None: self._spk = {}
+        if tm not in self._spk:
+            import events as EV
+            full = EV._spikes(self, tm)
+            hits, deaths = collections.defaultdict(list), collections.defaultdict(list)
+            for e in self.ev:
+                if e[1] == "dm" and e[2] in self.m.PL and e[3] in self.m.PL and self.m.team(e[2]) == tm and self.m.team(e[3]) != tm and (e[5] or 0) > 0:
+                    hits[e[3]].append((e[0] / 10, e[2], e[4], e[5]))
+                elif e[1] == "dt": deaths[e[2]].append(e[0] / 10)
+            out = [x + (None,) for x in full]
+            for tgt, H in hits.items():
+                sp, last = [x[0] for x in full if x[1] == tgt], -99
+                for i, h in enumerate(H):
+                    if h[0] - last < 6 or any(s_ - 6 < h[0] <= s_ + 8 for s_ in sp): continue
+                    win = [x for x in H[i:] if x[0] <= h[0] + SPIKE_S]
+                    n = sum(x[3] for x in win)
+                    if n < HURT_FLOOR or n >= SPIKE_DMG: continue
+                    hp = self.health(tgt, h[0] - .05)
+                    if not hp or n < HURT_SHARE * hp: continue
+                    last = h[0]
+                    out.append((h[0], tgt, n, win, any(h[0] <= d <= h[0] + 8 for d in deaths[tgt]), hp))
+            self._spk[tm] = sorted(out, key=lambda x: (x[0], x[1]))
+        return self._spk[tm]
+
+    def pact_kill(self, a, td):
+        """R-783: did a die at td because the player who resurrected him with Death Pact Signet died? The signet's text: its target dies if its caster dies
+        within PACT_S. Read as: a finished cast of it on him inside PACT_S before td, he has not died since, and its caster's death is recorded in the same
+        fifth of a second as his (checked on the development set, R-707: of 104 such casts whose caster died before the pacted player's next death, 61 are
+        at the very tenth of his death and one within 3 s of it). Returns (caster, the second the cast finished) or None."""
+        self.casts()
+        if getattr(self, "_dts", None) is None:
+            self._dts = collections.defaultdict(list)
+            for e in self.ev:
+                if e[1] == "dt" and e[0] is not None: self._dts[e[2]].append(e[0] / 10)
+        for h in self.players(self.m.team(a)):
+            for c in self._by_agent.get(h, ()):
+                if c[5] != a or h == a or c[4] != "finished" or c[3] is None or not td - PACT_S <= c[3] < td or "Death Pact" not in self.sname(c[1]): continue
+                if any(c[3] < d < td - .25 for d in self._dts.get(a, ())): continue
+                if any(abs(d - td) <= .2 for d in self._dts.get(h, ())): return h, c[3]
+        return None
+
     def killed_from(self, a, t):
         """Where the reading of the death of a at t begins, and what killed him: the first big hit of the spike that killed him (`events._spikes`, as his kill
-        attempt reads it, "spike"); else the start of the pressure that kept him in danger until he died ("pressure", R-749: in place of the heaviest 2 s
+        attempt reads it, "spike": a burst on a hurt player among them, R-780); else the start of the pressure that kept him in danger until he died ("pressure", R-749: in place of the heaviest 2 s
         on him, which read every death with no spike until the catalogue's stage 4); else, where he was not kept in danger, the first thing landed on him
         after he was last above the line ("neither"; `death_start`). The death account and the faults said on a death read a monk's chance from here."""
-        if self._spk is None:
-            import events as EV
-            self._spk = {tm: EV._spikes(self, tm) for tm in (1, 2)}
-        S = [x for x in self._spk.get(3 - self.m.team(a), ()) if x[1] == a and x[0] <= t <= x[0] + 8]
+        S = [x for x in self.spikes(3 - self.m.team(a)) if x[1] == a and x[0] <= t <= x[0] + 8]
         if S:
             win = S[-1][3]
             return ([x for x in win if x[3] >= 60] or win)[0][0], "spike"

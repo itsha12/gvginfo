@@ -4067,7 +4067,7 @@ def attempts_report(path, out_json=None):
 
 
 # ------------------------------------------------------------------ the pressure attempt's cut-offs, from the data (the catalogue's stage 4; R-741)
-PRESSURE_GRID = [(H, K, (X, 3)) for H in (100, 125, 150, 175, 200, 250, 300) for K in (0, 1, 2, 3) for X in (1, 30, 60, 90, 120)]
+PRESSURE_GRID = [(H, K, (X, 3)) for H in (100, 125, 150, 175, 200, 225, 250, 300) for K in (0, 1, 2, 3) for X in (1, 30, 60, 90, 120)]
 _PRESSURE_FC = {}
 
 
@@ -4127,8 +4127,10 @@ def pressure_report(path, out_json=None, jobs=2):
     now = (forensics.DANGER_HP, forensics.DANGER_KEPT_S, forensics.DANGER_FIRE[0])
     if best: print(f"\nBy the rule (kept a second or longer, dies within 8 s at least as often as a spike kills, holds the most deaths with no spike): health {best['health']}, kept {best['kept']} s, "
                    f"{best['landed']} landed in 3 s: {best['attempts']} attempts, {100 * best['die_8s']:.1f}% die within 8 s, {100 * best['held']:.1f}% of the deaths with no spike held."
-                   f" The engine reads health {now[0]}, kept {now[1]} s, {now[2]} landed" + (": the same." if now == (best["health"], best["kept"], best["landed"]) else ": NOT the same (forensics.DANGER_*)."))
-    if out_json: json.dump({"matches": len(rids), "spikes": na, "spike_killed": round(spike, 3), "deaths_no_spike": nsd, "rows": rows, "rule": best, "engine": list(now)}, open(out_json, "w"), indent=1)
+                   f" The engine reads health {now[0]}, kept {now[1]} s, {now[2]} landed: the line is Denning's (R-779), not the rule's.")
+    mine = next((r for r in rows if (r["health"], r["kept"], r["landed"]) == now), None)
+    if mine: print(f"At his line: {mine['attempts']} attempts, {100 * mine['die_8s']:.1f}% die within 8 s, {100 * mine['held']:.1f}% of the deaths with no spike held.")
+    if out_json: json.dump({"matches": len(rids), "spikes": na, "spike_killed": round(spike, 3), "deaths_no_spike": nsd, "rows": rows, "rule": best, "engine": list(now), "at_engine": mine}, open(out_json, "w"), indent=1)
 
 
 if __name__ == "__main__":
