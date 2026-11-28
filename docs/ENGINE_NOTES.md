@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-827; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-830; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1414,7 +1414,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   (Men v Crew 1:57.7 to 1:59.6), so they are missed: to be measured on the development set before `BALL_S` is touched. "Sufficient
   energy" of an interrupter is the model's where it reads him; Lyssa's Assault has no length in its text the parser reads.
 
-- **His marks of RACK v hdm and Men v NwAy actioned (2026-11-28; R-822 to R-827; `bundle-4`, one bundled change).** Ten deaths of RACK v hdm
+- **His marks of RACK v hdm and Men v NwAy actioned (2026-11-28; R-822 to R-830; `bundle-4` 805b894, then 90223ed on his rulings).** Ten deaths of RACK v hdm
   and 12 of Men v NwAy's 21 marked (14 correct, 5 partly, 3 incorrect), filed in the review key (set x1).
   **Cast times** (`forensics.cast_s`, the one reading): the skill data's activation, and the tag file's `cast_s` where the skill data has none
   (nine tagged skills, each 1.5 s: Shield Guardian, Ethereal Burden, Lava Font, Ice Spikes, Vapor Blade, Kitah's Burden, Smoldering Embers,
@@ -1439,7 +1439,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   from the hex in the effects record, which holds none where the hex landed and went inside one tenth. Checked (R-707): on the set the
   record names Shame on all 126 casts the hex told and on 47 more; 161 of the 173 are spells on an ally. `seen`: the seconds from the
   hex landing to the start of the cast (34 of 173 under 0.2 s, 84 a second or longer); `fault` only at 0.2 s or more (Rule 1; Claude's
-  reading, R-826). On a death: `shamed`, a monk's prot or heal on the dying player lost to Shame inside the kill attempt (8 deaths).
+  reading, R-826; replaced by R-830, below). On a death: `shamed`, a monk's prot or heal on the dying player lost to Shame inside the kill attempt (8 deaths).
   **Deep Wound left** (`removal_saves`): the sum walked again with the removal landed (his health and his maximum both rise by what Deep
   Wound took, then the removal's own heal: what a cast of it gave on average this match, else its caster's Divine Favor), from the monk's
   first chance on a grid of 0.1 s: lives, short by how much, the latest start. On the set's 159 deaths with it: 148 removals would have
@@ -1449,21 +1449,27 @@ index pointing here. Read the section for a reading before changing it, and keep
   **The sentences** (`death_lines`, `say_trigger` and `say_caught` with `plain`): no ruling number on a death's row; "Trigger Fault:",
   "Positioning:", "Context:", "Missed Deep Wound:" each on its own line; a burst's head with the damage inside 3 s; what was done for him
   one line a player, a prot's stopping said once after his last cast of it; "lost to Shame" under "Attempted, failed".
-  **Held, not built into the rows** (`TEAM_MATE_EXCUSES`, R-715 as it stands): his question on the Mesmer at 6:15 of RACK v hdm (the Prot's
-  Spirit Bond and Life Sheath were ready and unused, and are not listed because the 8 Monk's Shielding Hands landed). With the switch off
-  every monk is read for his own chance on a death and a cast begun too late names what else he had ready (`also_ready`): the code is
-  there and the rows do not use it until he rules. Off, on the set's 1,619 deaths (read once, outside the run): a prot line on 512
-  (413 with it on; 102 deaths gain one, 66 of them one that would have saved him), a heal line on 390 (354; 36 gain one, 27); 13 of
-  the 46 deaths of the three marked games gain a line, three of them rows he marked correct (RACK v hdm 7:07, 7:33, 7:44 the 8 Monk). Also his question on the Hammer at 2:04 of Men v NwAy: the front line is the most
-  forward team mate in the fight who is no backline monk, there a Mesmer (the Stand Mes 2 at 436 along the line; the AoB Derv at -124,
-  the Hammer at 1,445): whether it should be told from frontline characters alone is his.
+  **Every monk on his own at a death** (R-828, amending R-715; `bundle-4` 90223ed; first built behind a switch and held, then ruled: "Go with
+  B"). His question on the Mesmer at 6:15 of RACK v hdm: the Prot's Spirit Bond and Life Sheath were ready and unused, and were not listed
+  because the 8 Monk's Shielding Hands had landed. `deaths` now lists every monk's chance of a kind whatever a team mate landed (`taken`
+  still records it; the casts begun and not landed are said too), `death_rulings` keeps a prot only where it alone would have saved him
+  (R-812), and a cast begun too late names what else of that kind he had ready at his earlier moment (`also_ready`, `began`). The kill
+  attempts' own records are untouched: R-715 stands where the player lived. On the set's 1,619 deaths: a prot line on 512 (413 before;
+  102 deaths gain one, 66 of them one that would have saved him), a heal line on 390 (354; 36 gain one, 27); 13 of the 46 deaths of the
+  three marked games gain a line, three of them rows he had marked correct (RACK v hdm 7:07, 7:33, 7:44 the 8 Monk): said to him.
+  **Shame, the fault** (R-830, replacing the reading of R-826): `seen` is the time from the hex landing to his cast stopping, a fault at
+  0.2 s or longer ("only if monk could have cancelled"). Checked (R-707): 128 of the 173 casts stop in the tenth they begin (begun under
+  the hex), 45 ran 0.1 to 1.1 s (under way as it landed, failing as they would have finished); 142 are faults, 31 are not.
+  **The front line** (R-829): stays the most forward team mate in the fight who is no backline monk (the Hammer at 2:04 of Men v NwAy
+  stood at 1,445 along the line, the Stand Mes 2 at 436, the AoB Derv at -124): not told from frontline characters alone.
   **Run** (82 matches, against 92de38e): 6,935 plays and the moments identical to the digest of ccd0a55, `compare.py` finds no play
   changed, 323 Classic rows pass; beside the plays `attempts`, `pressure`, `deaths` (all matches), `triggers` (31), `execution` (20) and
   `fails` (11) differ. Of 1,619 deaths: a prot fault on 413 (455 before), a heal 354 (358), an interrupt 147 (147), Deep Wound 159
   (159); Shield Guardian listed 80 times (171), Patient Spirit 118 (127), Vigorous Spirit 44 (68); too fast 67 (57); Shame rows 173
   (126), 139 of them faults; a landed cast with an end heal on 89 deaths; Aura of Faith said by its rule on 52. On the attempts the
   missed prot rows go 1,633 to 1,537 and the heal rows 660 to 652 (the cast time, and Shield Guardian's aftercast), so the checks of
-  `cases.py attempts` are to be read again on the full run.
+  `cases.py attempts` are to be read again on the full run. **Run again at 90223ed** (R-828, R-830): plays and moments identical, 323
+  Classic rows pass; against 805b894 only `deaths` (78 matches) and `triggers` (19) differ, the attempts not at all.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
