@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-810; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-820; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1389,6 +1389,30 @@ index pointing here. Read the section for a reading before changing it, and keep
   deep 158 to 195, monk following 18 to 25 (the lower cut-off). 66 chances barred by a hex and 40 disabled on deaths; Shadow Shroud on 25
   deaths, a monk stopped on 198. **Not built**: an interrupter's energy (the model reads monks and the midline only); Shadow Shroud and the
   monks' state as missed chances of the attack's; the weapon set he swapped to.
+
+- **His marks of Men v Crew actioned (2026-11-27, night; R-811 to R-820; `bundle-4` c477e8c).** `Forensics.chances` rebuilt at
+  the moment of a chance: a hex or a disable is said only of a skill the monk could otherwise have cast then (in reach, in time, off
+  recharge, hands free); where none applies and he was in reach with a skill off recharge, the row says there was no time (`no_time`:
+  `fast`, the time to see the hit and the cast longer than the player lived; `hands`, a cast begun before he could have seen it, and
+  its aftercast). Shield Guardian is an enchantment like any other under Shadow Shroud, and `cast_on` no longer counts it on a
+  Shrouded player. `_disables` reads nine more skills by their own text (`DISABLE_ON_INTERRUPT`; after the skill's recharge where the
+  text says "additional"; Power Lock and Complicate are left as built), Diversion bars every skill (`barred(..., "skill")`), and
+  Arcane Thievery and Arcane Larceny are kept apart (`thieved`: the record names no spell). `intr_time` adds `ARROW_FLIGHT_S` 0.2 to a
+  bow interrupt. On an attempt: the interrupter's energy (no chance where gvg.report's model has him out), who landed an interrupt
+  (`by`, `done`), every spike skill cast (`spike_casts`), and a player who landed one or threw and missed comes off the other casts'
+  chances. `prot_would` counts Divine Favor only where the walk shows the prot itself healing. `monks_at` lists only monks in reach,
+  with the seconds each hex or disable was on them. `death_rulings` (on the death alone, so the checks of `cases.py attempts` on
+  attempts are untouched by it): the prots and heals that fall short dropped (`short`), two skills a monk, `in_reach`, `nearest`,
+  `too_fast`, the set's `held_s`, `shield_saves`, `stripped` (with `prot_would` from the strip for a prot), `hurt_before` (hits from a
+  cast aimed at a team mate, inside `AREA_LAG_S` 1.2 s of it, on a burst). `death_lines` rewritten in the match report's wording.
+  Tested on his fifteen marks (each comment answered in the row as rebuilt) and the development set: 6,935 plays and the moments
+  identical to the digest of ccd0a55, 323 Classic rows pass. Of 1,619 deaths: a prot fault on 455 (524 before), a heal 358 (368), an
+  interrupt 147 (155); 112 with a prot or heal dropped as short; too fast 57; no other monk in reach 608; an enchantment stripped on
+  390, a prot on 149, of which 65 would have saved him had it stayed; hurt before a burst by area damage 20; an interrupt landed 6,
+  thrown and missed 16; Arcane Thievery on a monk 25. **Found, not built**: balling (Rule 7) reads the hits of one cast on several
+  players inside 0.15 s of one another, but the record sets Invoke Lightning's hits on its other targets half a second apart each
+  (Men v Crew 1:57.7 to 1:59.6), so they are missed: to be measured on the development set before `BALL_S` is touched. "Sufficient
+  energy" of an interrupter is the model's where it reads him; Lyssa's Assault has no length in its text the parser reads.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

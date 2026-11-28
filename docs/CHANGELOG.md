@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-27, late night (a new chat): his marks of Men v Crew actioned; R-811 to R-820 filed
+- His 15 marks on Men v Crew (Execution view) read and filed in the review key (set x1, his words); rulings R-811 to R-820 from them and from the chat.
+- `bundle-4` c477e8c, one bundled change (ENGINE_NOTES section 44, last item): prots listed only where they would have saved, heals the same on spikes; Divine Favor only with a heal of the skill's own; Shield Guardian not counted under Shadow Shroud; the other disables; arrow flight 0.2 s; no monk in range and too fast before the hexes; one interrupt of a player on one spike; strips, area damage before a burst and the shield on a death; the sentences in the match report's wording.
+- Development set (82 matches): plays and moments identical to the digest of ccd0a55, 323 Classic rows pass. A prot fault on 455 deaths (524), a heal 358 (368), an interrupt 147 (155).
+- Main's `execution_rows.json` written again from c477e8c (Men v Crew, RACK v hdm, Men v NwAy: 46 deaths). Men v Crew's rows are written over the ones he marked; his marks keep the text he saw.
+- Opus's full run at ccd0a55 read (the interrupt on spikes fails one group short; a block reads backwards; stance fails): superseded by this change, to be read again on the next run.
+- Found, not built: balling misses Invoke Lightning's hits on its other targets (the record sets them half a second apart).
+
 ## 2026-11-27, night (a new chat): both Opus chats reviewed; R-805 to R-810 filed; the bundled change, the match report's readings and the sentences built
 - Reviewed: Opus's full run at f2b8796 (its report matches the pushed files; data files only) and the site merge 4c54818 to 2fdf15e (every page loads; the guild page overflows at phone width, the "Most played full lineups" block). R-799 and R-800 were already filed.
 - Rulings filed: R-805 (the interrupt on a spike skill is a fault on a spike only, never on a burst on a hurt player), R-806 (should have kited withdrawn), R-807 (standing in area damage set aside), R-808 (a monk past his front line told only where he followed a too-deep player), R-809 (an attacker on another target dropped), R-810 (the order: the bundle, the match report's readings, the sentences, one full run by Opus, the close).

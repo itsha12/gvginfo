@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review > Execution (R-713 to R-715, R-805 to R-810): every death of a player in the games picked, in the wording of the match report: what killed him, what applied at the spike (no shield, Shadow Shroud, a monk stopped), his own play, then each chance his team missed (a prot, a heal, an interrupt on a spike skill on a spike of 400 or more, Deep Wound left on him) with what it would have done and whether it would have saved him if begun by when, and what was done for him; none priced or ranked. Written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
  "generated": "2026-11-27",
- "engine": "0a8cca9",
+ "engine": "c477e8c",
  "kinds": [
   "prot",
   "heal",
@@ -33,19 +33,19 @@
        "team": "Men",
        "who": "7 Monk",
        "spike": true,
-       "faults": 7,
+       "faults": 5,
        "lines": [
-        "0:42 Men's 7 Monk dies to a spike by Crew: 412 in 1.6 s from the first big hit at 0:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 412 inside 3 s, the big hits over 0.9 s). Missed: interrupts, prots.",
-        "The sum: He had 265 health of 540; 412 landed (412 in hits); 0 stopped before it landed by gvg.report's estimate; 132 healed; he ended at 0. 272 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 66.",
-        "Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit.",
-        "Missed prot: Prot available to cast, in reach, Spirit Bond, Shield Guardian, Shielding Hands ready, sufficient energy (56 to 56 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 194 and saved him if begun within 1.3 s of the first big hit; Shield Guardian would have stopped about 0, not enough on its own to save him (15 short); Shielding Hands would have stopped about 75 and healed 38 and saved him if begun within 1.3 s of the first big hit (an upper bound, R-785).",
-        "Missed prot: 8 Monk available to cast, in reach, Spirit Bond, Guardian ready, sufficient energy (65 to 65 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 193 and saved him if begun within 1.3 s of the first big hit; Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (1x Invoke Lightning; 4x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished).",
-        "Success: his 8 Monk cast Signet of Devotion 2.4 s before the first big hit, healing for 113.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "0:42 Men's 7 Monk dies to a spike: 412 in 1.6 s; 412 inside 3 s. Missed: interrupts, prots.",
+        "Sum: 265 health of 540; 412 landed (412 in hits); 132 healed.",
+        "Shield set: wand + focus held for 1.6 s of the 1.6 s spike. A shield would have stopped 66 damage and saved the spike.",
+        "Missed Prot: Prot available to cast, Spirit Bond, Shielding Hands ready, sufficient energy (56 to 56). Spirit Bond would have healed 194 and saved the spike if cast within 0.7 s of the first big hit; Shielding Hands would have stopped 75 damage and saved the spike if cast within 1.2 s of the first big hit.",
+        "Missed Prot: 8 Monk available to cast, Spirit Bond ready, sufficient energy (65 to 65). Spirit Bond would have healed 193 and saved the spike if cast within 0.7 s of the first big hit.",
+        "Missed Interrupt: Mesmer threw Power Spike at Lightning Strike and missed; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 5 spike skills cast (1x Invoke Lightning; 4x Lightning Strike). Interrupt on 1 Lightning Strike would have prevented 69 damage and saved the spike.",
+        "Success: 8 Monk cast Signet of Devotion 2.4 s before the first big hit, healing for 113.",
+        "No fault: 7 Monk's Vigorous Spirit, Patient Spirit, in range and ready: he was casting Heal Other on the AoB Derv as it began and could not land a cast before the death."
        ],
        "also": [],
-       "text": "0:42 Men's 7 Monk dies to a spike by Crew: 412 in 1.6 s from the first big hit at 0:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 412 inside 3 s, the big hits over 0.9 s). Missed: interrupts, prots. The sum: He had 265 health of 540; 412 landed (412 in hits); 0 stopped before it landed by gvg.report's estimate; 132 healed; he ended at 0. 272 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 66. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Missed prot: Prot available to cast, in reach, Spirit Bond, Shield Guardian, Shielding Hands ready, sufficient energy (56 to 56 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 194 and saved him if begun within 1.3 s of the first big hit; Shield Guardian would have stopped about 0, not enough on its own to save him (15 short); Shielding Hands would have stopped about 75 and healed 38 and saved him if begun within 1.3 s of the first big hit (an upper bound, R-785). Missed prot: 8 Monk available to cast, in reach, Spirit Bond, Guardian ready, sufficient energy (65 to 65 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 193 and saved him if begun within 1.3 s of the first big hit; Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (1x Invoke Lightning; 4x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished). Success: his 8 Monk cast Signet of Devotion 2.4 s before the first big hit, healing for 113. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "0:42 Men's 7 Monk dies to a spike: 412 in 1.6 s; 412 inside 3 s. Missed: interrupts, prots. Sum: 265 health of 540; 412 landed (412 in hits); 132 healed. Shield set: wand + focus held for 1.6 s of the 1.6 s spike. A shield would have stopped 66 damage and saved the spike. Missed Prot: Prot available to cast, Spirit Bond, Shielding Hands ready, sufficient energy (56 to 56). Spirit Bond would have healed 194 and saved the spike if cast within 0.7 s of the first big hit; Shielding Hands would have stopped 75 damage and saved the spike if cast within 1.2 s of the first big hit. Missed Prot: 8 Monk available to cast, Spirit Bond ready, sufficient energy (65 to 65). Spirit Bond would have healed 193 and saved the spike if cast within 0.7 s of the first big hit. Missed Interrupt: Mesmer threw Power Spike at Lightning Strike and missed; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 5 spike skills cast (1x Invoke Lightning; 4x Lightning Strike). Interrupt on 1 Lightning Strike would have prevented 69 damage and saved the spike. Success: 8 Monk cast Signet of Devotion 2.4 s before the first big hit, healing for 113. No fault: 7 Monk's Vigorous Spirit, Patient Spirit, in range and ready: he was casting Heal Other on the AoB Derv as it began and could not land a cast before the death."
       },
       {
        "id": "x:124.7:Men:Ranger",
@@ -56,14 +56,15 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "2:04 Men's Ranger dies to a burst on a hurt player by Crew: 212 in 0.5 s from its first big hit at 2:04, most of the 186 health he had (Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 84 health of 465; 149 landed (149 in hits); 0 stopped before it landed by gvg.report's estimate; 131 healed; he ended at 0 (66 less than the parts give).",
-        "Success: his Prot cast Shield Guardian 1.9 s before the first big hit.",
-        "Success: his 7 Monk cast Infuse Health 0.1 s after the first big hit, healing for 131.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "2:04 Men's Ranger dies to a burst on a hurt player: 212 in 0.5 s, most of the 186 health he had. Nothing missed.",
+        "Sum: 84 health of 465; 149 landed (149 in hits); 131 healed; 66 less than the parts give.",
+        "Hurt before the burst: 307 of area damage from Invoke Lightning cast on the Paragon (3 hits, 5.5 to 4.6 s before the first big hit).",
+        "Success: Prot cast Shield Guardian 1.9 s before the first big hit.",
+        "Success: 7 Monk cast Infuse Health during the spike window, healing for 131.",
+        "No fault: 8 Monk's Guardian, Blessed Light, in range and ready: too fast for them."
        ],
        "also": [],
-       "text": "2:04 Men's Ranger dies to a burst on a hurt player by Crew: 212 in 0.5 s from its first big hit at 2:04, most of the 186 health he had (Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 84 health of 465; 149 landed (149 in hits); 0 stopped before it landed by gvg.report's estimate; 131 healed; he ended at 0 (66 less than the parts give). Success: his Prot cast Shield Guardian 1.9 s before the first big hit. Success: his 7 Monk cast Infuse Health 0.1 s after the first big hit, healing for 131. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "2:04 Men's Ranger dies to a burst on a hurt player: 212 in 0.5 s, most of the 186 health he had. Nothing missed. Sum: 84 health of 465; 149 landed (149 in hits); 131 healed; 66 less than the parts give. Hurt before the burst: 307 of area damage from Invoke Lightning cast on the Paragon (3 hits, 5.5 to 4.6 s before the first big hit). Success: Prot cast Shield Guardian 1.9 s before the first big hit. Success: 7 Monk cast Infuse Health during the spike window, healing for 131. No fault: 8 Monk's Guardian, Blessed Light, in range and ready: too fast for them."
       },
       {
        "id": "x:140.9:Men:Mesmer",
@@ -74,13 +75,13 @@
        "spike": true,
        "faults": 4,
        "lines": [
-        "2:20 Men's Mesmer dies to a spike by Crew: 518 in 0.3 s from the first big hit at 2:20 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 544 inside 3 s, the big hits over 0.3 s). Missed: interrupts.",
-        "The sum: He had 484 health of 570; 553 landed (544 in hits, 9 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0.",
-        "Shadow Shroud was on him from -0.7 s to 0.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault.",
-        "Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+        "2:20 Men's Mesmer dies to a spike: 518 in 0.3 s; 544 inside 3 s. Missed: interrupts.",
+        "Sum: 484 health of 570; 553 landed (544 in hits, 9 in degen).",
+        "Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy. 5 spike skills cast (1x Shell Shock; 4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
+        "No fault: too fast. The damage landed over 0.3 s; the fastest save needed 0.45 s to see the hit and cast."
        ],
        "also": [],
-       "text": "2:20 Men's Mesmer dies to a spike by Crew: 518 in 0.3 s from the first big hit at 2:20 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 544 inside 3 s, the big hits over 0.3 s). Missed: interrupts. The sum: He had 484 health of 570; 553 landed (544 in hits, 9 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Shadow Shroud was on him from -0.7 s to 0.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+       "text": "2:20 Men's Mesmer dies to a spike: 518 in 0.3 s; 544 inside 3 s. Missed: interrupts. Sum: 484 health of 570; 553 landed (544 in hits, 9 in degen). Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy. 5 spike skills cast (1x Shell Shock; 4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. No fault: too fast. The damage landed over 0.3 s; the fastest save needed 0.45 s to see the hit and cast."
       }
      ]
     },
@@ -98,20 +99,18 @@
        "team": "Men",
        "who": "Mesmer",
        "spike": true,
-       "faults": 7,
+       "faults": 4,
        "lines": [
-        "3:41 Men's Mesmer dies to a spike by Crew: 508 in 1.1 s from the first big hit at 3:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3; 547 inside 3 s, the big hits over 1.1 s). Missed: heals, interrupts, prots.",
-        "The sum: He had 459 health of 468; 547 landed (547 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 39 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 9.",
-        "His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).",
-        "Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault.",
-        "Missed prot: Prot available to cast, in reach, Shield Guardian ready, sufficient energy (59 to 59 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (88 short) (an upper bound, R-785).",
-        "Missed heal (begun too late, R-802): Prot started Blessed Light 0.9 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (59 to 59 by gvg.report's model). Blessed Light would have healed about 70, not enough on its own to save him (18 short) (an upper bound, R-785).",
-        "Missed heal (begun too late, R-802): 7 Monk started Infuse Health 0.9 s after the first big hit and the death cut it off; he had it ready 0.4 s after the first big hit, in reach, his hands free, sufficient energy (30 to 51 by gvg.report's model). Infuse Health would have healed about 192 and saved him if begun within 0.8 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range; Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
-        "Begun on him and never landed, so not done (R-797): Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
+        "3:41 Men's Mesmer dies to a spike: 508 in 1.1 s; 547 inside 3 s. Missed: heals, interrupts.",
+        "Sum: 459 health of 468; 547 landed (547 in hits).",
+        "His death took the AoB Derv with it (a pact kill).",
+        "Enchantment Prevention: Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit; no prot fault.",
+        "Missed Heal: 7 Monk started Infuse Health 0.2 s before he died, too late to land; he had it ready 0.4 s after the first big hit, sufficient energy (30 to 51). Infuse Health would have healed 192 and saved the spike if cast within 0.8 s of the first big hit.",
+        "Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot ready, sufficient energy. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
+        "Attempted, failed: Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
        ],
        "also": [],
-       "text": "3:41 Men's Mesmer dies to a spike by Crew: 508 in 1.1 s from the first big hit at 3:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3; 547 inside 3 s, the big hits over 1.1 s). Missed: heals, interrupts, prots. The sum: He had 459 health of 468; 547 landed (547 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 39 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 9. His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783). Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed prot: Prot available to cast, in reach, Shield Guardian ready, sufficient energy (59 to 59 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (88 short) (an upper bound, R-785). Missed heal (begun too late, R-802): Prot started Blessed Light 0.9 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (59 to 59 by gvg.report's model). Blessed Light would have healed about 70, not enough on its own to save him (18 short) (an upper bound, R-785). Missed heal (begun too late, R-802): 7 Monk started Infuse Health 0.9 s after the first big hit and the death cut it off; he had it ready 0.4 s after the first big hit, in reach, his hands free, sufficient energy (30 to 51 by gvg.report's model). Infuse Health would have healed about 192 and saved him if begun within 0.8 s of the first big hit (an upper bound, R-785). Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range; Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Begun on him and never landed, so not done (R-797): Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
+       "text": "3:41 Men's Mesmer dies to a spike: 508 in 1.1 s; 547 inside 3 s. Missed: heals, interrupts. Sum: 459 health of 468; 547 landed (547 in hits). His death took the AoB Derv with it (a pact kill). Enchantment Prevention: Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit; no prot fault. Missed Heal: 7 Monk started Infuse Health 0.2 s before he died, too late to land; he had it ready 0.4 s after the first big hit, sufficient energy (30 to 51). Infuse Health would have healed 192 and saved the spike if cast within 0.8 s of the first big hit. Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot ready, sufficient energy. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. Attempted, failed: Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
       },
       {
        "id": "x:221.3:Men:AoB Derv",
@@ -122,10 +121,10 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "3:41 Men's AoB Derv dies as the Mesmer dies: a pact kill (R-783). He had resurrected the Mesmer with Death Pact Signet 45 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Mesmer's death; no chance is read on this one."
+        "3:41 Men's AoB Derv dies as the Mesmer dies: he had resurrected the Mesmer 45 s before (a pact kill)."
        ],
        "also": [],
-       "text": "3:41 Men's AoB Derv dies as the Mesmer dies: a pact kill (R-783). He had resurrected the Mesmer with Death Pact Signet 45 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Mesmer's death; no chance is read on this one."
+       "text": "3:41 Men's AoB Derv dies as the Mesmer dies: he had resurrected the Mesmer 45 s before (a pact kill)."
       }
      ]
     },
@@ -143,24 +142,22 @@
        "team": "Men",
        "who": "Prot",
        "spike": true,
-       "faults": 7,
+       "faults": 4,
        "lines": [
-        "4:05 Men's Prot dies to a spike by Crew: 455 in 1.3 s from the first big hit at 4:04 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 542 inside 3 s, the big hits over 1.3 s). Missed: heals, interrupts, prots.",
-        "The sum: He had 540 health of 540; 563 landed (542 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 428 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104.",
-        "Shield set: he held Staff #1, a set with no shield, at the first big hit.",
-        "Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault.",
-        "Missed prot: Prot himself (R-796) available to cast, Shield Guardian ready, sufficient energy (63 to 63 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0 and healed 38 and saved him if begun within 1.2 s of the first big hit (an upper bound, R-785).",
-        "Missed heal (begun too late, R-802): Prot himself (R-796) started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, his hands free, sufficient energy (63 to 63 by gvg.report's model). Blessed Light would have healed about 70 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785).",
-        "Missed heal (begun too late, R-802): 8 Monk started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (55 to 55 by gvg.report's model). Blessed Light would have healed about 107 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (4x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
-        "Begun on him and never landed, so not done (R-797): Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled).",
-        "Not a chance (a heal): 7 Monk's Patient Spirit, Vigorous Spirit could not be cast (Shadow Shroud on the target: no enchantment can be cast on him).",
-        "Not a chance (a prot): 8 Monk's Guardian, Spirit Bond could not be cast (Shadow Shroud on the target: no enchantment can be cast on him)."
+        "4:05 Men's Prot dies to a spike: 455 in 1.3 s; 542 inside 3 s. Missed: heals, interrupts.",
+        "Sum: 540 health of 540; 563 landed (542 in hits, 21 in degen).",
+        "Shield set: staff held for 1.3 s of the 1.3 s spike. A shield would have stopped 104 damage and saved the spike.",
+        "Enchantment Prevention: Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit; no prot fault.",
+        "Missed Heal: Prot himself started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (63 to 63). Blessed Light would have healed 70 and saved the spike if cast within 0.5 s of the first big hit.",
+        "Missed Heal: 8 Monk started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (55 to 55). Blessed Light would have healed 107 and saved the spike if cast within 0.5 s of the first big hit.",
+        "Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 106 damage and saved the spike.",
+        "Attempted, failed: Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled).",
+        "No fault: 7 Monk's Infuse Health, Dwayna's Kiss, Heal Other, in range and ready: he was casting Vigorous Spirit on the Paragon as it began and could not land a cast before the death."
        ],
        "also": [
         "3:38 to 4:32: Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50..."
        ],
-       "text": "4:05 Men's Prot dies to a spike by Crew: 455 in 1.3 s from the first big hit at 4:04 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 542 inside 3 s, the big hits over 1.3 s). Missed: heals, interrupts, prots. The sum: He had 540 health of 540; 563 landed (542 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 428 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104. Shield set: he held Staff #1, a set with no shield, at the first big hit. Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed prot: Prot himself (R-796) available to cast, Shield Guardian ready, sufficient energy (63 to 63 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0 and healed 38 and saved him if begun within 1.2 s of the first big hit (an upper bound, R-785). Missed heal (begun too late, R-802): Prot himself (R-796) started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, his hands free, sufficient energy (63 to 63 by gvg.report's model). Blessed Light would have healed about 70 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed heal (begun too late, R-802): 8 Monk started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (55 to 55 by gvg.report's model). Blessed Light would have healed about 107 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (4x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Begun on him and never landed, so not done (R-797): Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled). Not a chance (a heal): 7 Monk's Patient Spirit, Vigorous Spirit could not be cast (Shadow Shroud on the target: no enchantment can be cast on him). Not a chance (a prot): 8 Monk's Guardian, Spirit Bond could not be cast (Shadow Shroud on the target: no enchantment can be cast on him)."
+       "text": "4:05 Men's Prot dies to a spike: 455 in 1.3 s; 542 inside 3 s. Missed: heals, interrupts. Sum: 540 health of 540; 563 landed (542 in hits, 21 in degen). Shield set: staff held for 1.3 s of the 1.3 s spike. A shield would have stopped 104 damage and saved the spike. Enchantment Prevention: Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit; no prot fault. Missed Heal: Prot himself started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (63 to 63). Blessed Light would have healed 70 and saved the spike if cast within 0.5 s of the first big hit. Missed Heal: 8 Monk started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (55 to 55). Blessed Light would have healed 107 and saved the spike if cast within 0.5 s of the first big hit. Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 106 damage and saved the spike. Attempted, failed: Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled). No fault: 7 Monk's Infuse Health, Dwayna's Kiss, Heal Other, in range and ready: he was casting Vigorous Spirit on the Paragon as it began and could not land a cast before the death."
       },
       {
        "id": "x:253.9:Men:Paragon",
@@ -169,16 +166,17 @@
        "team": "Men",
        "who": "Paragon",
        "spike": true,
-       "faults": 4,
+       "faults": 1,
        "lines": [
-        "4:13 Men's Paragon dies to a spike by Crew: 347 in 0.2 s from the first big hit at 4:13 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 476 inside 3 s, the big hits over 0.2 s). Missed: interrupts.",
-        "The sum: He had 440 health of 500; 476 landed (476 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0.",
-        "Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (3x Invoke Lightning; 1x Shell Shock). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+        "4:13 Men's Paragon dies to a spike: 347 in 0.2 s; 476 inside 3 s. Missed: interrupts.",
+        "Sum: 440 health of 500; 476 landed (476 in hits).",
+        "Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (3x Invoke Lightning; 1x Shell Shock). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
+        "No fault: too fast. The damage landed over 0.2 s; the fastest save needed 0.45 s to see the hit and cast."
        ],
        "also": [
         "3:38 to 4:32: Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50..."
        ],
-       "text": "4:13 Men's Paragon dies to a spike by Crew: 347 in 0.2 s from the first big hit at 4:13 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 476 inside 3 s, the big hits over 0.2 s). Missed: interrupts. The sum: He had 440 health of 500; 476 landed (476 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (3x Invoke Lightning; 1x Shell Shock). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+       "text": "4:13 Men's Paragon dies to a spike: 347 in 0.2 s; 476 inside 3 s. Missed: interrupts. Sum: 440 health of 500; 476 landed (476 in hits). Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (3x Invoke Lightning; 1x Shell Shock). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. No fault: too fast. The damage landed over 0.2 s; the fastest save needed 0.45 s to see the hit and cast."
       }
      ]
     },
@@ -198,13 +196,13 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "24:00 Men's AoB Derv dies to a spike by Crew: 340 in 0.8 s from the first big hit at 23:59 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4; 430 inside 3 s, the big hits over 0.8 s). Nothing the engine checks was missed.",
-        "The sum: He had 329 health of 530; 430 landed (430 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 430 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104.",
-        "Shield set: he held Staff #1, a set with no shield, at the first big hit.",
-        "Shadow Shroud was on him from -3.8 s to 0.8 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault."
+        "24:00 Men's AoB Derv dies to a spike: 340 in 0.8 s; 430 inside 3 s. Nothing missed.",
+        "Sum: 329 health of 530; 430 landed (430 in hits).",
+        "Shield set: staff held for 0.8 s of the 0.8 s spike. A shield would have stopped 104 damage and saved the spike.",
+        "No fault: no monk in range (the nearest, 7 Monk, at 4,310)."
        ],
        "also": [],
-       "text": "24:00 Men's AoB Derv dies to a spike by Crew: 340 in 0.8 s from the first big hit at 23:59 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4; 430 inside 3 s, the big hits over 0.8 s). Nothing the engine checks was missed. The sum: He had 329 health of 530; 430 landed (430 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 430 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104. Shield set: he held Staff #1, a set with no shield, at the first big hit. Shadow Shroud was on him from -3.8 s to 0.8 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault."
+       "text": "24:00 Men's AoB Derv dies to a spike: 340 in 0.8 s; 430 inside 3 s. Nothing missed. Sum: 329 health of 530; 430 landed (430 in hits). Shield set: staff held for 0.8 s of the 0.8 s spike. A shield would have stopped 104 damage and saved the spike. No fault: no monk in range (the nearest, 7 Monk, at 4,310)."
       }
      ]
     },
@@ -222,20 +220,19 @@
        "team": "Men",
        "who": "7 Monk",
        "spike": true,
-       "faults": 7,
+       "faults": 4,
        "lines": [
-        "24:50 Men's 7 Monk dies to a spike by Crew: 404 in 1.8 s from the first big hit at 24:48 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 472 inside 3 s, the big hits over 0.1 s). Missed: interrupts, prots.",
-        "The sum: He had 498 health of 498; 572 landed (472 in hits, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 30 healed; he ended at 0.",
-        "Missed prot: Prot available to cast, in reach, Shield Guardian, Shielding Hands ready, sufficient energy (60 to 60 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (44 short); Shielding Hands would have stopped about 45 and healed 38 and saved him if begun within 1.5 s of the first big hit (an upper bound, R-785).",
-        "Missed prot: 8 Monk available to cast, in reach, Guardian ready, sufficient energy (62 to 62 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.7 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (3x Invoke Lightning; 2x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
-        "Success: his 7 Monk cast Patient Spirit 0.9 s after the first big hit, healing for 30.",
-        "Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+        "24:50 Men's 7 Monk dies to a spike: 404 in 1.8 s; 472 inside 3 s. Missed: interrupts, prots.",
+        "Sum: 498 health of 498; 572 landed (472 in hits, 100 from Deep Wound); 30 healed.",
+        "Missed Prot: Prot available to cast, Shielding Hands ready, sufficient energy (60 to 60). Shielding Hands would have stopped 45 damage and saved the spike if cast within 0.9 s of the first big hit.",
+        "Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 7 spike skills cast (4x Invoke Lightning; 1x Shell Shock; 2x Lightning Strike). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 30.",
+        "Success: Mesmer interrupted Invoke Lightning with Complicate."
        ],
        "also": [
         "24:26 to 26:00: Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), fro..."
        ],
-       "text": "24:50 Men's 7 Monk dies to a spike by Crew: 404 in 1.8 s from the first big hit at 24:48 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 472 inside 3 s, the big hits over 0.1 s). Missed: interrupts, prots. The sum: He had 498 health of 498; 572 landed (472 in hits, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 30 healed; he ended at 0. Missed prot: Prot available to cast, in reach, Shield Guardian, Shielding Hands ready, sufficient energy (60 to 60 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (44 short); Shielding Hands would have stopped about 45 and healed 38 and saved him if begun within 1.5 s of the first big hit (an upper bound, R-785). Missed prot: 8 Monk available to cast, in reach, Guardian ready, sufficient energy (62 to 62 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.7 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (3x Invoke Lightning; 2x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Success: his 7 Monk cast Patient Spirit 0.9 s after the first big hit, healing for 30. Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill."
+       "text": "24:50 Men's 7 Monk dies to a spike: 404 in 1.8 s; 472 inside 3 s. Missed: interrupts, prots. Sum: 498 health of 498; 572 landed (472 in hits, 100 from Deep Wound); 30 healed. Missed Prot: Prot available to cast, Shielding Hands ready, sufficient energy (60 to 60). Shielding Hands would have stopped 45 damage and saved the spike if cast within 0.9 s of the first big hit. Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 7 spike skills cast (4x Invoke Lightning; 1x Shell Shock; 2x Lightning Strike). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. Success: 7 Monk cast Patient Spirit during the spike window, healing for 30. Success: Mesmer interrupted Invoke Lightning with Complicate."
       },
       {
        "id": "x:1519.6:Men:Paragon",
@@ -244,17 +241,18 @@
        "team": "Men",
        "who": "Paragon",
        "spike": true,
-       "faults": 4,
+       "faults": 2,
        "lines": [
-        "25:19 Men's Paragon dies to a spike by Crew: 412 in 0.9 s from the first big hit at 25:18 (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 451 inside 3 s, the big hits over 0.9 s). Missed: interrupts.",
-        "The sum: He had 428 health of 428; 472 landed (451 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 11 healed (8 more cast on him was overhealing); he ended at 0.",
-        "Monks stopped at the first big hit: his 7 Monk: knocked down (Gale, 0.3 s before the first big hit).",
-        "Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 121 damage (what a cast of it did for its caster on average this match) and saved him."
+        "25:19 Men's Paragon dies to a spike: 412 in 0.9 s; 451 inside 3 s. Missed: interrupts.",
+        "Sum: 428 health of 428; 472 landed (451 in hits, 21 in degen); 11 healed.",
+        "Disables: 7 Monk was knocked down (Gale) 0.3 s before the first big hit. No fault.",
+        "Stripped: Shatter Enchantment took Vigorous Spirit off him 0.1 s after the first big hit.",
+        "Missed Interrupt: Mesmer available to cast, Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 5 spike skills cast (1x Shatter Enchantment; 1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 100 damage and saved the spike."
        ],
        "also": [
         "24:26 to 26:00: Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), fro..."
        ],
-       "text": "25:19 Men's Paragon dies to a spike by Crew: 412 in 0.9 s from the first big hit at 25:18 (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 451 inside 3 s, the big hits over 0.9 s). Missed: interrupts. The sum: He had 428 health of 428; 472 landed (451 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 11 healed (8 more cast on him was overhealing); he ended at 0. Monks stopped at the first big hit: his 7 Monk: knocked down (Gale, 0.3 s before the first big hit). Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 121 damage (what a cast of it did for its caster on average this match) and saved him."
+       "text": "25:19 Men's Paragon dies to a spike: 412 in 0.9 s; 451 inside 3 s. Missed: interrupts. Sum: 428 health of 428; 472 landed (451 in hits, 21 in degen); 11 healed. Disables: 7 Monk was knocked down (Gale) 0.3 s before the first big hit. No fault. Stripped: Shatter Enchantment took Vigorous Spirit off him 0.1 s after the first big hit. Missed Interrupt: Mesmer available to cast, Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 5 spike skills cast (1x Shatter Enchantment; 1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 100 damage and saved the spike."
       }
      ]
     },
@@ -274,14 +272,15 @@
        "spike": true,
        "faults": 4,
        "lines": [
-        "26:48 Men's Prot dies to a spike by Crew: 520 in 0.5 s from the first big hit at 26:47 (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4; 520 inside 3 s, the big hits over 0.5 s). Missed: heals, interrupts.",
-        "The sum: He had 468 health of 468; 520 landed (520 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 137 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 33.",
-        "Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit.",
-        "Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Patient Spirit ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 0.2 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 0.2 s of the first big hit; Patient Spirit would have healed about 76 and saved him if begun within 0.2 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Mesmer available to cast, Complicate ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 3 spike skills cast (3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+        "26:48 Men's Prot dies to a spike: 520 in 0.5 s; 520 inside 3 s. Missed: heals, interrupts.",
+        "Sum: 468 health of 468; 520 landed (520 in hits).",
+        "Shield set: wand + focus held for 0.5 s of the 0.5 s spike. A shield would have stopped 33 damage, not enough on its own to save him.",
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (57 to 57). Infuse Health would have healed 192 and saved the spike if cast within 0.2 s of the first big hit; Patient Spirit would have healed 76 and saved the spike if cast within 0.2 s of the first big hit.",
+        "Missed Interrupt: Mesmer available to cast, Complicate ready, sufficient energy; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
+        "No fault: Prot's Spirit Bond, in range and ready: he was casting Blessed Light on the Warrior as it began and could not land a cast before the death."
        ],
        "also": [],
-       "text": "26:48 Men's Prot dies to a spike by Crew: 520 in 0.5 s from the first big hit at 26:47 (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4; 520 inside 3 s, the big hits over 0.5 s). Missed: heals, interrupts. The sum: He had 468 health of 468; 520 landed (520 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 137 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 33. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Patient Spirit ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 0.2 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 0.2 s of the first big hit; Patient Spirit would have healed about 76 and saved him if begun within 0.2 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Complicate ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 3 spike skills cast (3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him."
+       "text": "26:48 Men's Prot dies to a spike: 520 in 0.5 s; 520 inside 3 s. Missed: heals, interrupts. Sum: 468 health of 468; 520 landed (520 in hits). Shield set: wand + focus held for 0.5 s of the 0.5 s spike. A shield would have stopped 33 damage, not enough on its own to save him. Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (57 to 57). Infuse Health would have healed 192 and saved the spike if cast within 0.2 s of the first big hit; Patient Spirit would have healed 76 and saved the spike if cast within 0.2 s of the first big hit. Missed Interrupt: Mesmer available to cast, Complicate ready, sufficient energy; Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. No fault: Prot's Spirit Bond, in range and ready: he was casting Blessed Light on the Warrior as it began and could not land a cast before the death."
       },
       {
        "id": "x:1611.9:Men:Ranger",
@@ -292,15 +291,15 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "26:51 Men's Ranger dies to a burst on a hurt player by Crew: 418 in 3.9 s from its first big hit at 26:48, most of the 414 health he had (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: heals.",
-        "The sum: He had 414 health of 493; 418 landed (418 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0.",
-        "Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Dwayna's Kiss, Heal Other ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 3.6 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 3.6 s of the first big hit; Dwayna's Kiss would have healed about 97 and saved him if begun within 2.8 s of the first big hit; Heal Other would have healed about 110 and saved him if begun within 3.1 s of the first big hit (an upper bound, R-785)."
+        "26:51 Men's Ranger dies to a burst on a hurt player: 418 in 3.9 s, most of the 414 health he had. Missed: heals.",
+        "Sum: 414 health of 493; 418 landed (418 in hits).",
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Heal Other ready, sufficient energy (57 to 57). Infuse Health would have healed 192 and saved him if cast within 3.6 s of the first big hit; Heal Other would have healed 110 and saved him if cast within 3.1 s of the first big hit."
        ],
        "also": [
         "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
         "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
        ],
-       "text": "26:51 Men's Ranger dies to a burst on a hurt player by Crew: 418 in 3.9 s from its first big hit at 26:48, most of the 414 health he had (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: heals. The sum: He had 414 health of 493; 418 landed (418 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Dwayna's Kiss, Heal Other ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 3.6 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 3.6 s of the first big hit; Dwayna's Kiss would have healed about 97 and saved him if begun within 2.8 s of the first big hit; Heal Other would have healed about 110 and saved him if begun within 3.1 s of the first big hit (an upper bound, R-785)."
+       "text": "26:51 Men's Ranger dies to a burst on a hurt player: 418 in 3.9 s, most of the 414 health he had. Missed: heals. Sum: 414 health of 493; 418 landed (418 in hits). Missed Heal: 7 Monk available to cast, Infuse Health, Heal Other ready, sufficient energy (57 to 57). Infuse Health would have healed 192 and saved him if cast within 3.6 s of the first big hit; Heal Other would have healed 110 and saved him if cast within 3.1 s of the first big hit."
       },
       {
        "id": "x:1626.0:Men:AoB Derv",
@@ -311,16 +310,15 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "27:06 Men's AoB Derv dies with no spike on him, kept in danger by Crew from 27:02 (at or under 225 health with damage landing on him, R-749): 151 landed on him in 3.9 s, hits and degen (Water Ele). Nothing the engine checks was missed.",
-        "The sum: He had 196 health of 503; 151 landed (151 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0 (45 less than the parts give).",
-        "Monks stopped at its start: his 7 Monk: under Shame.",
-        "Begun on him and never landed, so not done (R-797): Spirit Bond 3.8 s after its start (cancelled)."
+        "27:06 Men's AoB Derv dies with no spike on him, kept at or under 225 health from 27:02: 151 landed in 3.9 s. Nothing missed.",
+        "Sum: 196 health of 503; 151 landed (151 in hits); 45 less than the parts give.",
+        "Attempted, failed: Spirit Bond 3.8 s after its start (cancelled)."
        ],
        "also": [
         "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
         "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
        ],
-       "text": "27:06 Men's AoB Derv dies with no spike on him, kept in danger by Crew from 27:02 (at or under 225 health with damage landing on him, R-749): 151 landed on him in 3.9 s, hits and degen (Water Ele). Nothing the engine checks was missed. The sum: He had 196 health of 503; 151 landed (151 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0 (45 less than the parts give). Monks stopped at its start: his 7 Monk: under Shame. Begun on him and never landed, so not done (R-797): Spirit Bond 3.8 s after its start (cancelled)."
+       "text": "27:06 Men's AoB Derv dies with no spike on him, kept at or under 225 health from 27:02: 151 landed in 3.9 s. Nothing missed. Sum: 196 health of 503; 151 landed (151 in hits); 45 less than the parts give. Attempted, failed: Spirit Bond 3.8 s after its start (cancelled)."
       },
       {
        "id": "x:1632.4:Men:Paragon",
@@ -331,14 +329,15 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "27:12 Men's Paragon dies with no spike on him, kept in danger by Crew from 27:03 (at or under 225 health with damage landing on him, R-749): 255 landed on him in 9.3 s, hits and degen (Water Ele). Nothing the engine checks was missed.",
-        "The sum: He had 214 health of 356; 255 landed (111 in hits, 144 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 24 healed; he ended at 0."
+        "27:12 Men's Paragon dies with no spike on him, kept at or under 225 health from 27:03: 255 landed in 9.3 s. Nothing missed.",
+        "Sum: 214 health of 356; 255 landed (111 in hits, 144 from their NPCs); 24 healed.",
+        "No fault: no monk in range (the nearest, 8 Monk, at 2,250)."
        ],
        "also": [
         "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
         "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
        ],
-       "text": "27:12 Men's Paragon dies with no spike on him, kept in danger by Crew from 27:03 (at or under 225 health with damage landing on him, R-749): 255 landed on him in 9.3 s, hits and degen (Water Ele). Nothing the engine checks was missed. The sum: He had 214 health of 356; 255 landed (111 in hits, 144 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 24 healed; he ended at 0."
+       "text": "27:12 Men's Paragon dies with no spike on him, kept at or under 225 health from 27:03: 255 landed in 9.3 s. Nothing missed. Sum: 214 health of 356; 255 landed (111 in hits, 144 from their NPCs); 24 healed. No fault: no monk in range (the nearest, 8 Monk, at 2,250)."
       },
       {
        "id": "x:1640.6:Men:8 Monk",
@@ -349,17 +348,16 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "27:20 Men's 8 Monk dies to a burst on a hurt player by Crew: 654 in 6.2 s from its first big hit at 27:14, most of the 209 health he had (Air Ele 2, Water Ele). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots.",
-        "The sum: He had 209 health of 550; 715 landed (514 in hits, 201 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 518 healed; he ended at 0 (49 less than the parts give).",
-        "Missed prot: 8 Monk himself (R-796) available to cast, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 96 and healed 45; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785).",
-        "Success: his 8 Monk cast Blessed Light 2.2 s before the first big hit, healing for 158.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "27:20 Men's 8 Monk dies to a burst on a hurt player: 654 in 6.2 s, most of the 209 health he had. Missed: prots.",
+        "Sum: 209 health of 550; 715 landed (514 in hits, 201 from their NPCs); 518 healed; 49 less than the parts give.",
+        "Missed Prot: 8 Monk himself available to cast, Guardian ready, sufficient energy (42 to 42). Guardian would have stopped 96 damage; whether that would have saved him is not told: the sum does not balance.",
+        "Success: 8 Monk cast Blessed Light 2.2 s before the first big hit, healing for 158."
        ],
        "also": [
         "26:49 to 27:54: The play for 28:00: Men sends 3 and keeps 4; Crew sends 8 and keeps nobody; set at 27:11, ...",
         "26:50 to 28:02: Men down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:4..."
        ],
-       "text": "27:20 Men's 8 Monk dies to a burst on a hurt player by Crew: 654 in 6.2 s from its first big hit at 27:14, most of the 209 health he had (Air Ele 2, Water Ele). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots. The sum: He had 209 health of 550; 715 landed (514 in hits, 201 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 518 healed; he ended at 0 (49 less than the parts give). Missed prot: 8 Monk himself (R-796) available to cast, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 96 and healed 45; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Success: his 8 Monk cast Blessed Light 2.2 s before the first big hit, healing for 158. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "27:20 Men's 8 Monk dies to a burst on a hurt player: 654 in 6.2 s, most of the 209 health he had. Missed: prots. Sum: 209 health of 550; 715 landed (514 in hits, 201 from their NPCs); 518 healed; 49 less than the parts give. Missed Prot: 8 Monk himself available to cast, Guardian ready, sufficient energy (42 to 42). Guardian would have stopped 96 damage; whether that would have saved him is not told: the sum does not balance. Success: 8 Monk cast Blessed Light 2.2 s before the first big hit, healing for 158."
       }
      ]
     }
@@ -374,7 +372,7 @@
    "map": "Isle of Meditation",
    "date": "2026-10-17",
    "deaths": 10,
-   "with_faults": 7,
+   "with_faults": 6,
    "groups": [
     {
      "n": 3,
@@ -392,19 +390,18 @@
        "spike": true,
        "faults": 3,
        "lines": [
-        "2:11 RACK's Hammer dies to a burst on a hurt player by hdm: 182 in 0.6 s from its first big hit at 2:10, most of the 272 health he had (Warrior). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: Deep Wound removal, heals, prots.",
-        "The sum: He had 272 health of 495; 299 landed (200 in hits, 99 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 10 healed; he ended at 0. 200 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 48.",
-        "Shield set: he held Hammer #1, a set with no shield, at the first big hit.",
-        "Monks stopped at the first big hit: his Prot: under Shame.",
+        "2:11 RACK's Hammer dies to a burst on a hurt player: 182 in 0.6 s, most of the 272 health he had. Missed: Deep Wound removal, heals, prots.",
+        "Sum: 272 health of 495; 299 landed (200 in hits, 99 from Deep Wound); 10 healed.",
+        "Shield set: hammer held for 0.6 s of the 0.6 s burst. A shield would have stopped 48 damage and saved him.",
+        "Disables: Prot had Shame from -1.1 s to 2.2 s. No fault.",
         "Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 99 health (a fault, R-725).",
-        "Missed prot: 7 Monk available to cast, in reach, Shield Guardian ready, sufficient energy (41 to 41 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 28 and healed 24 (at the usual rank, 13: his is not in gvg.report's record) and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785).",
-        "Missed heal: 7 Monk available to cast, in reach, Patient Spirit, Infuse Health ready, sufficient energy (41 to 41 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Patient Spirit would have healed about 102 and saved him if begun within 0.3 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 0.3 s of the first big hit (an upper bound, R-785).",
-        "Not a chance (a prot): Prot's Aegis, Life Sheath, Shield Guardian, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails)."
+        "Missed Prot: 7 Monk available to cast, Shield Guardian ready, sufficient energy (41 to 41). Shield Guardian would have stopped 28 damage and healed 24 (at the usual rank, 13) and saved him if cast within 0.5 s of the first big hit.",
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (41 to 41). Infuse Health would have healed 271 and saved him if cast within 0.3 s of the first big hit; Patient Spirit would have healed 102 and saved him if cast within 0.3 s of the first big hit."
        ],
        "also": [
         "0:56 to 4:42: hdm up on numbers in the main fight (5 v 4, RACK's front door; then 5 v 3 from 2:14; then ..."
        ],
-       "text": "2:11 RACK's Hammer dies to a burst on a hurt player by hdm: 182 in 0.6 s from its first big hit at 2:10, most of the 272 health he had (Warrior). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: Deep Wound removal, heals, prots. The sum: He had 272 health of 495; 299 landed (200 in hits, 99 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 10 healed; he ended at 0. 200 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 48. Shield set: he held Hammer #1, a set with no shield, at the first big hit. Monks stopped at the first big hit: his Prot: under Shame. Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 99 health (a fault, R-725). Missed prot: 7 Monk available to cast, in reach, Shield Guardian ready, sufficient energy (41 to 41 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 28 and healed 24 (at the usual rank, 13: his is not in gvg.report's record) and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed heal: 7 Monk available to cast, in reach, Patient Spirit, Infuse Health ready, sufficient energy (41 to 41 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Patient Spirit would have healed about 102 and saved him if begun within 0.3 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 0.3 s of the first big hit (an upper bound, R-785). Not a chance (a prot): Prot's Aegis, Life Sheath, Shield Guardian, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails)."
+       "text": "2:11 RACK's Hammer dies to a burst on a hurt player: 182 in 0.6 s, most of the 272 health he had. Missed: Deep Wound removal, heals, prots. Sum: 272 health of 495; 299 landed (200 in hits, 99 from Deep Wound); 10 healed. Shield set: hammer held for 0.6 s of the 0.6 s burst. A shield would have stopped 48 damage and saved him. Disables: Prot had Shame from -1.1 s to 2.2 s. No fault. Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 99 health (a fault, R-725). Missed Prot: 7 Monk available to cast, Shield Guardian ready, sufficient energy (41 to 41). Shield Guardian would have stopped 28 damage and healed 24 (at the usual rank, 13) and saved him if cast within 0.5 s of the first big hit. Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (41 to 41). Infuse Health would have healed 271 and saved him if cast within 0.3 s of the first big hit; Patient Spirit would have healed 102 and saved him if cast within 0.3 s of the first big hit."
       }
      ]
     },
@@ -424,19 +421,17 @@
        "spike": true,
        "faults": 3,
        "lines": [
-        "5:20 RACK's 8 Monk dies to a spike by hdm: 461 in 1.8 s from the first big hit at 5:18 (Paragon 1, Paragon 2, Monk 4 (WoC); 519 inside 3 s, the big hits over 1.5 s). Missed: Deep Wound removal, heals, interrupts.",
-        "The sum: He had 536 health of 570; 619 landed (519 in hits, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 103 healed; he ended at 0 (46 less than the parts give). 496 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 85.",
-        "Shield set: he held Staff #1, a set with no shield, at the first big hit.",
-        "Monks stopped at the first big hit: his Prot: under Shame.",
+        "5:20 RACK's 8 Monk dies to a spike: 461 in 1.8 s; 519 inside 3 s. Missed: Deep Wound removal, heals, interrupts.",
+        "Sum: 536 health of 570; 619 landed (519 in hits, 100 from Deep Wound); 103 healed; 46 less than the parts give.",
+        "Shield set: staff held for 1.8 s of the 1.8 s spike. A shield would have stopped 85 damage and saved the spike.",
+        "Disables: Prot had Shame from -0.7 s to 5.3 s. No fault.",
         "Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Blessed Light ready, in reach: taking it off gives back 100 health (a fault, R-725).",
-        "Missed heal: 8 Monk himself (R-796) available to cast, Blessed Light ready, sufficient energy (72 to 72 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Blessed Light would have healed about 95 and saved him if begun within 1.0 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Mesmer available to cast, Power Spike/Power Leak/Complicate ready and in range. 1 spike skill cast (1x Word of Censure). An interrupt on 1 Word of Censure would have prevented about 115 damage (what a cast of it did for its caster on average this match) and saved him.",
-        "Success: his 8 Monk cast Spirit Bond 0.7 s after the first big hit, healing for 34.",
-        "Done in time by a team mate, so no fault (R-715): a prot.",
-        "Not a chance (a prot): Prot's Aegis, Guardian, Life Sheath, Shield Guardian, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails)."
+        "Missed Heal: 8 Monk himself available to cast, Blessed Light ready, sufficient energy (72 to 72). Blessed Light would have healed 95 and saved the spike if cast within 1.0 s of the first big hit.",
+        "Missed Interrupt: Mesmer available to cast, Power Spike/Power Leak/Complicate ready, sufficient energy. 1 spike skill cast (1x Word of Censure). Interrupt on 1 Word of Censure would have prevented 115 damage and saved the spike.",
+        "Success: 8 Monk cast Spirit Bond during the spike window, healing for 34."
        ],
        "also": [],
-       "text": "5:20 RACK's 8 Monk dies to a spike by hdm: 461 in 1.8 s from the first big hit at 5:18 (Paragon 1, Paragon 2, Monk 4 (WoC); 519 inside 3 s, the big hits over 1.5 s). Missed: Deep Wound removal, heals, interrupts. The sum: He had 536 health of 570; 619 landed (519 in hits, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 103 healed; he ended at 0 (46 less than the parts give). 496 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 85. Shield set: he held Staff #1, a set with no shield, at the first big hit. Monks stopped at the first big hit: his Prot: under Shame. Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Blessed Light ready, in reach: taking it off gives back 100 health (a fault, R-725). Missed heal: 8 Monk himself (R-796) available to cast, Blessed Light ready, sufficient energy (72 to 72 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Blessed Light would have healed about 95 and saved him if begun within 1.0 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Power Spike/Power Leak/Complicate ready and in range. 1 spike skill cast (1x Word of Censure). An interrupt on 1 Word of Censure would have prevented about 115 damage (what a cast of it did for its caster on average this match) and saved him. Success: his 8 Monk cast Spirit Bond 0.7 s after the first big hit, healing for 34. Done in time by a team mate, so no fault (R-715): a prot. Not a chance (a prot): Prot's Aegis, Guardian, Life Sheath, Shield Guardian, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails)."
+       "text": "5:20 RACK's 8 Monk dies to a spike: 461 in 1.8 s; 519 inside 3 s. Missed: Deep Wound removal, heals, interrupts. Sum: 536 health of 570; 619 landed (519 in hits, 100 from Deep Wound); 103 healed; 46 less than the parts give. Shield set: staff held for 1.8 s of the 1.8 s spike. A shield would have stopped 85 damage and saved the spike. Disables: Prot had Shame from -0.7 s to 5.3 s. No fault. Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Blessed Light ready, in reach: taking it off gives back 100 health (a fault, R-725). Missed Heal: 8 Monk himself available to cast, Blessed Light ready, sufficient energy (72 to 72). Blessed Light would have healed 95 and saved the spike if cast within 1.0 s of the first big hit. Missed Interrupt: Mesmer available to cast, Power Spike/Power Leak/Complicate ready, sufficient energy. 1 spike skill cast (1x Word of Censure). Interrupt on 1 Word of Censure would have prevented 115 damage and saved the spike. Success: 8 Monk cast Spirit Bond during the spike window, healing for 34."
       }
      ]
     },
@@ -456,18 +451,18 @@
        "spike": true,
        "faults": 5,
        "lines": [
-        "6:15 RACK's Mesmer dies to a spike by hdm: 404 in 1.6 s from the first big hit at 6:14 (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 437 inside 3 s, the big hits over 1.6 s). Missed: Deep Wound removal, heals, interrupts.",
-        "The sum: He had 446 health of 490; 535 landed (437 in hits, 98 from Deep Wound); 51 stopped before it landed (Shielding Hands 51) by gvg.report's estimate; 72 healed; he ended at 0 (38 less than the parts give). 138 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 33.",
+        "6:15 RACK's Mesmer dies to a spike: 404 in 1.6 s; 437 inside 3 s. Missed: Deep Wound removal, heals, interrupts.",
+        "Sum: 446 health of 490; 535 landed (437 in hits, 98 from Deep Wound); 51 stopped; 72 healed; 38 less than the parts give.",
+        "Stripped: Shatter Enchantment took Shielding Hands off him 1.6 s after the first big hit; it would have stopped 17 damage, not enough on its own to save him.",
         "Missed by the defence: Deep Wound stayed on him to the end with RACK Prot holding Life Sheath ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725).",
-        "Missed heal: 7 Monk available to cast, in reach, Healing Burst, Infuse Health ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Healing Burst would have healed about 140 and saved him if begun within 0.8 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 1.3 s of the first big hit (an upper bound, R-785).",
-        "Missed interrupt: Mesmer available to cast, Complicate ready and in range. 1 spike skill cast (1x Word of Censure). An interrupt on 1 Word of Censure would have prevented about 115 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Complicate at Word of Censure (gvg.report's read: finished).",
-        "Success: his 8 Monk cast Shielding Hands 0.8 s after the first big hit, healing for 34, stopping 51 by gvg.report's estimate.",
-        "Done in time by a team mate, so no fault (R-715): a prot."
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Healing Burst ready, sufficient energy (47 to 47). Infuse Health would have healed 271 and saved the spike if cast within 1.3 s of the first big hit; Healing Burst would have healed 140 and saved the spike if cast within 0.8 s of the first big hit.",
+        "Missed Interrupt: Mesmer threw Complicate at Word of Censure and missed. 2 spike skills cast (1x Word of Censure; 1x Shatter Enchantment). Interrupt on 1 Word of Censure would have prevented 115 damage and saved the spike.",
+        "Success: 8 Monk cast Shielding Hands during the spike window, healing for 34, stopping 51."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "6:15 RACK's Mesmer dies to a spike by hdm: 404 in 1.6 s from the first big hit at 6:14 (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 437 inside 3 s, the big hits over 1.6 s). Missed: Deep Wound removal, heals, interrupts. The sum: He had 446 health of 490; 535 landed (437 in hits, 98 from Deep Wound); 51 stopped before it landed (Shielding Hands 51) by gvg.report's estimate; 72 healed; he ended at 0 (38 less than the parts give). 138 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 33. Missed by the defence: Deep Wound stayed on him to the end with RACK Prot holding Life Sheath ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed heal: 7 Monk available to cast, in reach, Healing Burst, Infuse Health ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Healing Burst would have healed about 140 and saved him if begun within 0.8 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 1.3 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Complicate ready and in range. 1 spike skill cast (1x Word of Censure). An interrupt on 1 Word of Censure would have prevented about 115 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Complicate at Word of Censure (gvg.report's read: finished). Success: his 8 Monk cast Shielding Hands 0.8 s after the first big hit, healing for 34, stopping 51 by gvg.report's estimate. Done in time by a team mate, so no fault (R-715): a prot."
+       "text": "6:15 RACK's Mesmer dies to a spike: 404 in 1.6 s; 437 inside 3 s. Missed: Deep Wound removal, heals, interrupts. Sum: 446 health of 490; 535 landed (437 in hits, 98 from Deep Wound); 51 stopped; 72 healed; 38 less than the parts give. Stripped: Shatter Enchantment took Shielding Hands off him 1.6 s after the first big hit; it would have stopped 17 damage, not enough on its own to save him. Missed by the defence: Deep Wound stayed on him to the end with RACK Prot holding Life Sheath ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 98 health (a fault, R-725). Missed Heal: 7 Monk available to cast, Infuse Health, Healing Burst ready, sufficient energy (47 to 47). Infuse Health would have healed 271 and saved the spike if cast within 1.3 s of the first big hit; Healing Burst would have healed 140 and saved the spike if cast within 0.8 s of the first big hit. Missed Interrupt: Mesmer threw Complicate at Word of Censure and missed. 2 spike skills cast (1x Word of Censure; 1x Shatter Enchantment). Interrupt on 1 Word of Censure would have prevented 115 damage and saved the spike. Success: 8 Monk cast Shielding Hands during the spike window, healing for 34, stopping 51."
       },
       {
        "id": "x:388.6:RACK:Hammer",
@@ -476,18 +471,16 @@
        "team": "RACK",
        "who": "Hammer",
        "spike": true,
-       "faults": 1,
+       "faults": 0,
        "lines": [
-        "6:28 RACK's Hammer dies to a burst on a hurt player by hdm: 341 in 2.0 s from its first big hit at 6:26, most of the 313 health he had (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots.",
-        "The sum: He had 313 health of 423; 359 landed (359 in hits); 0 stopped before it landed by gvg.report's estimate; 5 healed; he ended at 0. 18 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 4.",
-        "Monks stopped at the first big hit: his Prot: knocked down (Grapple, 0.4 s before the first big hit).",
-        "Missed prot: 7 Monk available to cast, in reach, Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 33 and healed 35 (at the usual rank, 12: his is not in gvg.report's record) and saved him if begun within 0.9 s of the first big hit (an upper bound, R-785).",
-        "Begun on him and never landed, so not done (R-797): Healing Burst 1.8 s after the first big hit (interrupted)."
+        "6:28 RACK's Hammer dies to a burst on a hurt player: 341 in 2.0 s, most of the 313 health he had. Nothing missed.",
+        "Sum: 313 health of 423; 359 landed (359 in hits); 5 healed.",
+        "Attempted, failed: Healing Burst 1.8 s after the first big hit (interrupted)."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "6:28 RACK's Hammer dies to a burst on a hurt player by hdm: 341 in 2.0 s from its first big hit at 6:26, most of the 313 health he had (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots. The sum: He had 313 health of 423; 359 landed (359 in hits); 0 stopped before it landed by gvg.report's estimate; 5 healed; he ended at 0. 18 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 4. Monks stopped at the first big hit: his Prot: knocked down (Grapple, 0.4 s before the first big hit). Missed prot: 7 Monk available to cast, in reach, Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 33 and healed 35 (at the usual rank, 12: his is not in gvg.report's record) and saved him if begun within 0.9 s of the first big hit (an upper bound, R-785). Begun on him and never landed, so not done (R-797): Healing Burst 1.8 s after the first big hit (interrupted)."
+       "text": "6:28 RACK's Hammer dies to a burst on a hurt player: 341 in 2.0 s, most of the 313 health he had. Nothing missed. Sum: 313 health of 423; 359 landed (359 in hits); 5 healed. Attempted, failed: Healing Burst 1.8 s after the first big hit (interrupted)."
       }
      ]
     },
@@ -507,19 +500,19 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "7:07 RACK's Prot dies to a spike by hdm: 568 in 3.6 s from the first big hit at 7:03 (Paragon 1, Paragon 2, Monk 4 (WoC); 434 inside 3 s, the big hits over 2.4 s). Missed: interrupts.",
-        "The sum: He had 329 health of 530; 568 landed (568 in hits); 76 stopped before it landed (Reversal of Fortune 76) by gvg.report's estimate; 265 healed; he ended at 0 (26 less than the parts give). 378 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 63.",
-        "Shield set: he held Staff #1, a set with no shield, at the first big hit.",
-        "Missed interrupt: Mesmer available to cast, Power Leak ready and in range. 1 spike skill cast (1x Castigation Signet). An interrupt on 1 Castigation Signet would have prevented about 40 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Power Leak at Castigation Signet (gvg.report's read: ineligible).",
-        "Success: his 7 Monk cast Shield Guardian 0.6 s after the first big hit.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.4 s after the first big hit, healing for 118, stopping 76 by gvg.report's estimate.",
-        "Success: his 8 Monk cast Blessed Light 0.8 s after the first big hit, healing for 147.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "7:07 RACK's Prot dies to a spike: 568 in 3.6 s; 434 inside 3 s. Missed: interrupts.",
+        "Sum: 329 health of 530; 568 landed (568 in hits); 76 stopped; 265 healed; 26 less than the parts give.",
+        "Shield set: staff held for 3.6 s of the 3.6 s spike. A shield would have stopped 63 damage and saved the spike.",
+        "Stripped: Shatter Storm took Shield Guardian off him 3.6 s after the first big hit; it would have stopped 25 damage and healed 24 and saved the spike.",
+        "Missed Interrupt: Mesmer threw Power Leak at Castigation Signet and missed. 3 spike skills cast (2x Word of Censure; 1x Castigation Signet). Interrupt on 1 Castigation Signet would have prevented 40 damage and saved the spike.",
+        "Success: 7 Monk cast Shield Guardian during the spike window.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 118, stopping 76.",
+        "Success: 8 Monk cast Blessed Light during the spike window, healing for 147."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "7:07 RACK's Prot dies to a spike by hdm: 568 in 3.6 s from the first big hit at 7:03 (Paragon 1, Paragon 2, Monk 4 (WoC); 434 inside 3 s, the big hits over 2.4 s). Missed: interrupts. The sum: He had 329 health of 530; 568 landed (568 in hits); 76 stopped before it landed (Reversal of Fortune 76) by gvg.report's estimate; 265 healed; he ended at 0 (26 less than the parts give). 378 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 63. Shield set: he held Staff #1, a set with no shield, at the first big hit. Missed interrupt: Mesmer available to cast, Power Leak ready and in range. 1 spike skill cast (1x Castigation Signet). An interrupt on 1 Castigation Signet would have prevented about 40 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Power Leak at Castigation Signet (gvg.report's read: ineligible). Success: his 7 Monk cast Shield Guardian 0.6 s after the first big hit. Success: his 8 Monk cast Reversal of Fortune 2.4 s after the first big hit, healing for 118, stopping 76 by gvg.report's estimate. Success: his 8 Monk cast Blessed Light 0.8 s after the first big hit, healing for 147. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "7:07 RACK's Prot dies to a spike: 568 in 3.6 s; 434 inside 3 s. Missed: interrupts. Sum: 329 health of 530; 568 landed (568 in hits); 76 stopped; 265 healed; 26 less than the parts give. Shield set: staff held for 3.6 s of the 3.6 s spike. A shield would have stopped 63 damage and saved the spike. Stripped: Shatter Storm took Shield Guardian off him 3.6 s after the first big hit; it would have stopped 25 damage and healed 24 and saved the spike. Missed Interrupt: Mesmer threw Power Leak at Castigation Signet and missed. 3 spike skills cast (2x Word of Censure; 1x Castigation Signet). Interrupt on 1 Castigation Signet would have prevented 40 damage and saved the spike. Success: 7 Monk cast Shield Guardian during the spike window. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 118, stopping 76. Success: 8 Monk cast Blessed Light during the spike window, healing for 147."
       },
       {
        "id": "x:446.1:RACK:Mesmer",
@@ -530,19 +523,20 @@
        "spike": true,
        "faults": 4,
        "lines": [
-        "7:26 RACK's Mesmer dies to a burst on a hurt player by hdm: 238 in 0.8 s from its first big hit at 7:25, most of the 301 health he had (Paragon 1, Paragon 2, Monk 4 (WoC)). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: Deep Wound removal, heals, prots.",
-        "The sum: He had 301 health of 418; 340 landed (257 in hits, 84 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 122 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 29.",
-        "His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).",
-        "Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit.",
-        "Monks stopped at the first big hit: his Prot: knocked down (Grapple, 0.8 s before the first big hit).",
+        "7:26 RACK's Mesmer dies to a burst on a hurt player: 238 in 0.8 s, most of the 301 health he had. Missed: Deep Wound removal, heals, prots.",
+        "Sum: 301 health of 418; 340 landed (257 in hits, 84 from Deep Wound).",
+        "His death took the AoB Derv with it (a pact kill).",
+        "Shield set: wand + focus held for 0.6 s of the 0.8 s burst. A shield would have stopped 29 damage, not enough on its own to save him.",
+        "Disables: Prot was knocked down (Grapple) 0.8 s before the first big hit. No fault.",
         "Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725).",
-        "Missed prot: 8 Monk available to cast, in reach, Shielding Hands, Reversal of Fortune, Spirit Bond ready, sufficient energy (13 to 37 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shielding Hands would have stopped about 34 and healed 42 and saved him if begun within 0.5 s of the first big hit; Reversal of Fortune would have stopped about 56 and healed 98 and saved him if begun within 0.5 s of the first big hit; Spirit Bond would have stopped about 0 and healed 214 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785).",
-        "Missed heal: 7 Monk available to cast, in reach, Patient Spirit, Infuse Health ready, sufficient energy (47 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Patient Spirit would have healed about 102 and saved him if begun within 0.5 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785)."
+        "Missed Prot: 8 Monk available to cast, Spirit Bond, Reversal of Fortune ready, sufficient energy (13 to 37). Spirit Bond would have healed 214 and saved him if cast within 0.5 s of the first big hit; Reversal of Fortune would have stopped 56 damage and healed 98 and saved him if cast within 0.5 s of the first big hit.",
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (47 to 57). Infuse Health would have healed 271 and saved him if cast within 0.5 s of the first big hit; Patient Spirit would have healed 102 and saved him if cast within 0.5 s of the first big hit.",
+        "No fault: 7 Monk's Guardian, in range and ready: too fast for it."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "7:26 RACK's Mesmer dies to a burst on a hurt player by hdm: 238 in 0.8 s from its first big hit at 7:25, most of the 301 health he had (Paragon 1, Paragon 2, Monk 4 (WoC)). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: Deep Wound removal, heals, prots. The sum: He had 301 health of 418; 340 landed (257 in hits, 84 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 122 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 29. His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783). Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Monks stopped at the first big hit: his Prot: knocked down (Grapple, 0.8 s before the first big hit). Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725). Missed prot: 8 Monk available to cast, in reach, Shielding Hands, Reversal of Fortune, Spirit Bond ready, sufficient energy (13 to 37 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shielding Hands would have stopped about 34 and healed 42 and saved him if begun within 0.5 s of the first big hit; Reversal of Fortune would have stopped about 56 and healed 98 and saved him if begun within 0.5 s of the first big hit; Spirit Bond would have stopped about 0 and healed 214 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed heal: 7 Monk available to cast, in reach, Patient Spirit, Infuse Health ready, sufficient energy (47 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Patient Spirit would have healed about 102 and saved him if begun within 0.5 s of the first big hit; Infuse Health would have healed about 271 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785)."
+       "text": "7:26 RACK's Mesmer dies to a burst on a hurt player: 238 in 0.8 s, most of the 301 health he had. Missed: Deep Wound removal, heals, prots. Sum: 301 health of 418; 340 landed (257 in hits, 84 from Deep Wound). His death took the AoB Derv with it (a pact kill). Shield set: wand + focus held for 0.6 s of the 0.8 s burst. A shield would have stopped 29 damage, not enough on its own to save him. Disables: Prot was knocked down (Grapple) 0.8 s before the first big hit. No fault. Missed by the defence: Deep Wound stayed on him to the end with RACK 7 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725). Missed by the defence: Deep Wound stayed on him to the end with RACK 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 84 health (a fault, R-725). Missed Prot: 8 Monk available to cast, Spirit Bond, Reversal of Fortune ready, sufficient energy (13 to 37). Spirit Bond would have healed 214 and saved him if cast within 0.5 s of the first big hit; Reversal of Fortune would have stopped 56 damage and healed 98 and saved him if cast within 0.5 s of the first big hit. Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (47 to 57). Infuse Health would have healed 271 and saved him if cast within 0.5 s of the first big hit; Patient Spirit would have healed 102 and saved him if cast within 0.5 s of the first big hit. No fault: 7 Monk's Guardian, in range and ready: too fast for it."
       },
       {
        "id": "x:446.1:RACK:AoB Derv",
@@ -553,13 +547,13 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "7:26 RACK's AoB Derv dies as the Mesmer dies: a pact kill (R-783). He had resurrected the Mesmer with Death Pact Signet 61 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Mesmer's death; no chance is read on this one."
+        "7:26 RACK's AoB Derv dies as the Mesmer dies: he had resurrected the Mesmer 61 s before (a pact kill)."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni...",
         "0:22 to 8:08: RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Mon..."
        ],
-       "text": "7:26 RACK's AoB Derv dies as the Mesmer dies: a pact kill (R-783). He had resurrected the Mesmer with Death Pact Signet 61 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Mesmer's death; no chance is read on this one."
+       "text": "7:26 RACK's AoB Derv dies as the Mesmer dies: he had resurrected the Mesmer 61 s before (a pact kill)."
       },
       {
        "id": "x:453.2:RACK:Prot",
@@ -570,20 +564,18 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "7:33 RACK's Prot dies to a spike by hdm: 586 in 1.4 s from the first big hit at 7:31 (Warrior, Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 618 inside 3 s, the big hits over 1.0 s). Nothing the engine checks was missed.",
-        "The sum: He had 410 health of 488; 752 landed (661 in hits, 92 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 331 healed; he ended at 0. 289 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 38.",
-        "Shield set: he held Double High, a set with no shield, at the first big hit.",
-        "Monks stopped at the first big hit: his 8 Monk: under Shame.",
-        "Success: his Prot cast Spirit Bond 0.7 s before the first big hit, healing for 38.",
-        "Success: his 7 Monk cast Patient Spirit 0.7 s before the first big hit, healing for 35.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot.",
-        "Not a chance (a prot): 8 Monk's Guardian, Reversal of Fortune, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails).",
-        "Not a chance (a heal): 8 Monk's Blessed Light could not be cast (Shame on the monk: his next spell on an ally fails)."
+        "7:33 RACK's Prot dies to a spike: 586 in 1.4 s; 618 inside 3 s. Nothing missed.",
+        "Sum: 410 health of 488; 752 landed (661 in hits, 92 from Deep Wound); 331 healed.",
+        "Shield set: double high held for 0.5 s of the 1.4 s spike. A shield would have stopped 38 damage and saved the spike.",
+        "Disables: 8 Monk had Shame from -4.4 s to 1.6 s. No fault.",
+        "Stripped: Shatter Enchantment took Spirit Bond off him 0.7 s after the first big hit.",
+        "Success: Prot cast Spirit Bond 0.7 s before the first big hit, healing for 38.",
+        "Success: 7 Monk cast Patient Spirit 0.7 s before the first big hit, healing for 35."
        ],
        "also": [
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "7:33 RACK's Prot dies to a spike by hdm: 586 in 1.4 s from the first big hit at 7:31 (Warrior, Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 618 inside 3 s, the big hits over 1.0 s). Nothing the engine checks was missed. The sum: He had 410 health of 488; 752 landed (661 in hits, 92 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 331 healed; he ended at 0. 289 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 38. Shield set: he held Double High, a set with no shield, at the first big hit. Monks stopped at the first big hit: his 8 Monk: under Shame. Success: his Prot cast Spirit Bond 0.7 s before the first big hit, healing for 38. Success: his 7 Monk cast Patient Spirit 0.7 s before the first big hit, healing for 35. Done in time by a team mate, so no fault (R-715): a heal, a prot. Not a chance (a prot): 8 Monk's Guardian, Reversal of Fortune, Shielding Hands, Spirit Bond could not be cast (Shame on the monk: his next spell on an ally fails). Not a chance (a heal): 8 Monk's Blessed Light could not be cast (Shame on the monk: his next spell on an ally fails)."
+       "text": "7:33 RACK's Prot dies to a spike: 586 in 1.4 s; 618 inside 3 s. Nothing missed. Sum: 410 health of 488; 752 landed (661 in hits, 92 from Deep Wound); 331 healed. Shield set: double high held for 0.5 s of the 1.4 s spike. A shield would have stopped 38 damage and saved the spike. Disables: 8 Monk had Shame from -4.4 s to 1.6 s. No fault. Stripped: Shatter Enchantment took Spirit Bond off him 0.7 s after the first big hit. Success: Prot cast Spirit Bond 0.7 s before the first big hit, healing for 38. Success: 7 Monk cast Patient Spirit 0.7 s before the first big hit, healing for 35."
       }
      ]
     },
@@ -603,18 +595,17 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "7:44 RACK's 8 Monk dies to a spike by hdm: 821 in 5.6 s from the first big hit at 7:39 (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 694 inside 3 s, the big hits over 3.0 s). Nothing the engine checks was missed.",
-        "The sum: He had 498 health of 498; 691 landed (691 in hits); 0 stopped before it landed by gvg.report's estimate; 295 healed; he ended at 0 (102 less than the parts give). 161 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 24.",
-        "Success: his 8 Monk cast Reversal of Fortune 1.5 s before the first big hit, healing for 42.",
-        "Success: his 7 Monk cast Healing Burst 2.0 s after the first big hit, healing for 148.",
-        "Success: his 8 Monk cast Blessed Light 0.9 s after the first big hit, healing for 147.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "7:44 RACK's 8 Monk dies to a spike: 821 in 5.6 s; 694 inside 3 s. Nothing missed.",
+        "Sum: 498 health of 498; 691 landed (691 in hits); 295 healed; 102 less than the parts give.",
+        "Success: 8 Monk cast Reversal of Fortune 1.5 s before the first big hit, healing for 42.",
+        "Success: 7 Monk cast Healing Burst during the spike window, healing for 148.",
+        "Success: 8 Monk cast Blessed Light during the spike window, healing for 147."
        ],
        "also": [
         "6:30 to 7:46: hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from player...",
         "0:22 to 8:08: RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Mon..."
        ],
-       "text": "7:44 RACK's 8 Monk dies to a spike by hdm: 821 in 5.6 s from the first big hit at 7:39 (Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer; 694 inside 3 s, the big hits over 3.0 s). Nothing the engine checks was missed. The sum: He had 498 health of 498; 691 landed (691 in hits); 0 stopped before it landed by gvg.report's estimate; 295 healed; he ended at 0 (102 less than the parts give). 161 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 24. Success: his 8 Monk cast Reversal of Fortune 1.5 s before the first big hit, healing for 42. Success: his 7 Monk cast Healing Burst 2.0 s after the first big hit, healing for 148. Success: his 8 Monk cast Blessed Light 0.9 s after the first big hit, healing for 147. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "7:44 RACK's 8 Monk dies to a spike: 821 in 5.6 s; 694 inside 3 s. Nothing missed. Sum: 498 health of 498; 691 landed (691 in hits); 295 healed; 102 less than the parts give. Success: 8 Monk cast Reversal of Fortune 1.5 s before the first big hit, healing for 42. Success: 7 Monk cast Healing Burst during the spike window, healing for 148. Success: 8 Monk cast Blessed Light during the spike window, healing for 147."
       },
       {
        "id": "x:464.9:RACK:7 Monk",
@@ -625,18 +616,17 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "7:44 RACK's 7 Monk dies to a spike by hdm: 436 in 1.4 s from the first big hit at 7:43 (Warrior, Paragon 1, Paragon 2, Mesmer; 476 inside 3 s, the big hits over 1.4 s). Missed: prots.",
-        "The sum: He had 461 health of 530; 476 landed (476 in hits); 0 stopped before it landed by gvg.report's estimate; 35 healed; he ended at 0 (20 less than the parts give). 453 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 93.",
-        "Shield set: he held Double High, a set with no shield, at the first big hit.",
-        "Missed prot: 8 Monk available to cast, in reach, Shielding Hands, Guardian, Reversal of Fortune, Spirit Bond ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shielding Hands would have stopped about 51 and healed 42 and saved him if begun within 1.1 s of the first big hit; Guardian would have stopped about 35 and healed 42 and saved him if begun within 0.4 s of the first big hit; Reversal of Fortune would have stopped about 42 and healed 84 and saved him if begun within 1.1 s of the first big hit; Spirit Bond would have stopped about 0 and healed 214 and saved him if begun within 1.1 s of the first big hit (an upper bound, R-785).",
-        "Success: his 7 Monk cast Patient Spirit 0.6 s before the first big hit, healing for 35.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "7:44 RACK's 7 Monk dies to a spike: 436 in 1.4 s; 476 inside 3 s. Missed: prots.",
+        "Sum: 461 health of 530; 476 landed (476 in hits); 35 healed; 20 less than the parts give.",
+        "Shield set: double high held for 1.4 s of the 1.4 s spike. A shield would have stopped 93 damage and saved the spike.",
+        "Missed Prot: 8 Monk available to cast, Spirit Bond, Reversal of Fortune ready, sufficient energy (47 to 47). Spirit Bond would have healed 214 and saved the spike if cast within 1.1 s of the first big hit; Reversal of Fortune would have stopped 42 damage and healed 84 and saved the spike if cast within 1.1 s of the first big hit.",
+        "Success: 7 Monk cast Patient Spirit 0.6 s before the first big hit, healing for 35."
        ],
        "also": [
         "6:30 to 7:46: hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from player...",
         "6:00 to 7:48: RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 kni..."
        ],
-       "text": "7:44 RACK's 7 Monk dies to a spike by hdm: 436 in 1.4 s from the first big hit at 7:43 (Warrior, Paragon 1, Paragon 2, Mesmer; 476 inside 3 s, the big hits over 1.4 s). Missed: prots. The sum: He had 461 health of 530; 476 landed (476 in hits); 0 stopped before it landed by gvg.report's estimate; 35 healed; he ended at 0 (20 less than the parts give). 453 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 93. Shield set: he held Double High, a set with no shield, at the first big hit. Missed prot: 8 Monk available to cast, in reach, Shielding Hands, Guardian, Reversal of Fortune, Spirit Bond ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shielding Hands would have stopped about 51 and healed 42 and saved him if begun within 1.1 s of the first big hit; Guardian would have stopped about 35 and healed 42 and saved him if begun within 0.4 s of the first big hit; Reversal of Fortune would have stopped about 42 and healed 84 and saved him if begun within 1.1 s of the first big hit; Spirit Bond would have stopped about 0 and healed 214 and saved him if begun within 1.1 s of the first big hit (an upper bound, R-785). Success: his 7 Monk cast Patient Spirit 0.6 s before the first big hit, healing for 35. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "7:44 RACK's 7 Monk dies to a spike: 436 in 1.4 s; 476 inside 3 s. Missed: prots. Sum: 461 health of 530; 476 landed (476 in hits); 35 healed; 20 less than the parts give. Shield set: double high held for 1.4 s of the 1.4 s spike. A shield would have stopped 93 damage and saved the spike. Missed Prot: 8 Monk available to cast, Spirit Bond, Reversal of Fortune ready, sufficient energy (47 to 47). Spirit Bond would have healed 214 and saved the spike if cast within 1.1 s of the first big hit; Reversal of Fortune would have stopped 42 damage and healed 84 and saved the spike if cast within 1.1 s of the first big hit. Success: 7 Monk cast Patient Spirit 0.6 s before the first big hit, healing for 35."
       }
      ]
     }
@@ -669,16 +659,16 @@
        "spike": false,
        "faults": 2,
        "lines": [
-        "2:04 Men's Hammer dies with no spike on him and without being kept in danger first: 142 landed on him from NwAy (7 Monk, AoB Derv, Prot, Stand Mes) between 2:02, the first thing landed on him after he was last above 225 health, and his death. Missed: heals, prots.",
-        "The sum: He had 240 health of 545; 242 landed (125 in hits, 17 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0.",
+        "2:04 Men's Hammer dies with no spike on him: 142 landed between 2:02 and his death. Missed: heals, prots.",
+        "Sum: 240 health of 545; 242 landed (125 in hits, 17 in degen, 100 from Deep Wound).",
         "He was too deep: 1010 past his own front line (the Stand Mes 2) at the first big hit, his nearest monk 1643 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713).",
-        "Missed prot: 7 Monk available to cast, in reach, Shield Guardian ready, sufficient energy (59 to 72 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Shield Guardian would have stopped about 9 and healed 24 (at the usual rank, 13: his is not in gvg.report's record) and saved him if begun within 1.5 s of its start (an upper bound, R-785).",
-        "Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Patient Spirit, Infuse Health ready, sufficient energy (59 to 72 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Vigorous Spirit would have healed about 106 and saved him if begun within 1.3 s of its start; Patient Spirit would have healed about 112 and saved him if begun within 1.3 s of its start; Infuse Health would have healed about 371 and saved him if begun within 1.3 s of its start (an upper bound, R-785)."
+        "Missed Prot: 7 Monk available to cast, Shield Guardian ready, sufficient energy (59 to 72). Shield Guardian would have stopped 9 damage and healed 24 (at the usual rank, 13) and saved him if cast within 1.5 s of its start.",
+        "Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (59 to 72). Infuse Health would have healed 371 and saved him if cast within 1.3 s of its start; Patient Spirit would have healed 112 and saved him if cast within 1.3 s of its start."
        ],
        "also": [
         "0:24 to 2:06: Men up on numbers in the main fight (5 v 4, NwAy's front door), from players split elsewhe..."
        ],
-       "text": "2:04 Men's Hammer dies with no spike on him and without being kept in danger first: 142 landed on him from NwAy (7 Monk, AoB Derv, Prot, Stand Mes) between 2:02, the first thing landed on him after he was last above 225 health, and his death. Missed: heals, prots. The sum: He had 240 health of 545; 242 landed (125 in hits, 17 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. He was too deep: 1010 past his own front line (the Stand Mes 2) at the first big hit, his nearest monk 1643 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Missed prot: 7 Monk available to cast, in reach, Shield Guardian ready, sufficient energy (59 to 72 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Shield Guardian would have stopped about 9 and healed 24 (at the usual rank, 13: his is not in gvg.report's record) and saved him if begun within 1.5 s of its start (an upper bound, R-785). Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Patient Spirit, Infuse Health ready, sufficient energy (59 to 72 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Vigorous Spirit would have healed about 106 and saved him if begun within 1.3 s of its start; Patient Spirit would have healed about 112 and saved him if begun within 1.3 s of its start; Infuse Health would have healed about 371 and saved him if begun within 1.3 s of its start (an upper bound, R-785)."
+       "text": "2:04 Men's Hammer dies with no spike on him: 142 landed between 2:02 and his death. Missed: heals, prots. Sum: 240 health of 545; 242 landed (125 in hits, 17 in degen, 100 from Deep Wound). He was too deep: 1010 past his own front line (the Stand Mes 2) at the first big hit, his nearest monk 1643 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Missed Prot: 7 Monk available to cast, Shield Guardian ready, sufficient energy (59 to 72). Shield Guardian would have stopped 9 damage and healed 24 (at the usual rank, 13) and saved him if cast within 1.5 s of its start. Missed Heal: 7 Monk available to cast, Infuse Health, Patient Spirit ready, sufficient energy (59 to 72). Infuse Health would have healed 371 and saved him if cast within 1.3 s of its start; Patient Spirit would have healed 112 and saved him if cast within 1.3 s of its start."
       }
      ]
     },
@@ -698,21 +688,22 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "4:14 NwAy's 7 Monk dies to a burst on a hurt player by Men: 578 in 5.1 s from its first big hit at 4:09, most of the 386 health he had (AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 386 health of 560; 944 landed (736 in hits, 108 in degen, 100 from Deep Wound); 0 stopped before it landed, 2 attacks blocked by gvg.report's estimate; 518 healed; he ended at 0. 520 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 36.",
-        "Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit.",
-        "Success: his Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69.",
-        "Success: his Prot cast Spirit Bond 0.3 s before the first big hit, healing for 35.",
-        "Success: his Prot cast Guardian 1.3 s after the first big hit, healing for 35.",
-        "Success: his 8 Monk cast Reversal of Fortune 4.8 s after the first big hit.",
-        "Success: his 7 Monk cast Patient Spirit 1.9 s before the first big hit, healing for 69.",
-        "Success: his 7 Monk cast Patient Spirit 1.7 s after the first big hit, healing for 35.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "4:14 NwAy's 7 Monk dies to a burst on a hurt player: 578 in 5.1 s, most of the 386 health he had. Nothing missed.",
+        "Sum: 386 health of 560; 944 landed (736 in hits, 108 in degen, 100 from Deep Wound); 518 healed.",
+        "Shield set: wand + focus held for 3.1 s of the 5.1 s burst. A shield would have stopped 36 damage, not enough on its own to save him.",
+        "Stripped: Shatter Enchantment took Spirit Bond off him 0.0 s after the first big hit.",
+        "Stripped: Air of Disenchantment took Guardian off him 3.9 s after the first big hit; it would have stopped 26 damage, not enough on its own to save him.",
+        "Success: Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69.",
+        "Success: Prot cast Spirit Bond 0.3 s before the first big hit, healing for 35.",
+        "Success: Prot cast Guardian during the spike window, healing for 35.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window.",
+        "Success: 7 Monk cast Patient Spirit 1.9 s before the first big hit, healing for 69.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 35."
        ],
        "also": [
         "3:40 to 4:30: NwAy has 8 in Men's base at the base res (6 defending, 1 coming back): 8 stay"
        ],
-       "text": "4:14 NwAy's 7 Monk dies to a burst on a hurt player by Men: 578 in 5.1 s from its first big hit at 4:09, most of the 386 health he had (AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 386 health of 560; 944 landed (736 in hits, 108 in degen, 100 from Deep Wound); 0 stopped before it landed, 2 attacks blocked by gvg.report's estimate; 518 healed; he ended at 0. 520 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 36. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Success: his Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69. Success: his Prot cast Spirit Bond 0.3 s before the first big hit, healing for 35. Success: his Prot cast Guardian 1.3 s after the first big hit, healing for 35. Success: his 8 Monk cast Reversal of Fortune 4.8 s after the first big hit. Success: his 7 Monk cast Patient Spirit 1.9 s before the first big hit, healing for 69. Success: his 7 Monk cast Patient Spirit 1.7 s after the first big hit, healing for 35. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "4:14 NwAy's 7 Monk dies to a burst on a hurt player: 578 in 5.1 s, most of the 386 health he had. Nothing missed. Sum: 386 health of 560; 944 landed (736 in hits, 108 in degen, 100 from Deep Wound); 518 healed. Shield set: wand + focus held for 3.1 s of the 5.1 s burst. A shield would have stopped 36 damage, not enough on its own to save him. Stripped: Shatter Enchantment took Spirit Bond off him 0.0 s after the first big hit. Stripped: Air of Disenchantment took Guardian off him 3.9 s after the first big hit; it would have stopped 26 damage, not enough on its own to save him. Success: Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69. Success: Prot cast Spirit Bond 0.3 s before the first big hit, healing for 35. Success: Prot cast Guardian during the spike window, healing for 35. Success: 8 Monk cast Reversal of Fortune during the spike window. Success: 7 Monk cast Patient Spirit 1.9 s before the first big hit, healing for 69. Success: 7 Monk cast Patient Spirit during the spike window, healing for 35."
       },
       {
        "id": "x:275.9:NwAy:Stand Mes",
@@ -723,19 +714,19 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "4:35 NwAy's Stand Mes dies with no spike on him, kept in danger by Men from 4:33 (at or under 225 health with damage landing on him, R-749): 348 landed on him in 2.7 s, hits and degen (AoB Derv, Stand Mes 1). Missed: a cast into a ready interrupt.",
-        "The sum: He had 113 health of 490; 348 landed (347 in hits, 1 in degen); 0 stopped before it landed by gvg.report's estimate; 141 healed; he ended at 0.",
-        "Cast into a ready interrupt inside this kill attempt, a fault at a death (R-789): 4:35 NwAy's 7 Monk cast Healing Burst on Stand Mes into a ready interrupt and was interrupted: Men Stand Mes 1 had Power Drain ready and in range when the cast began (R-743; inside the kill attempt of a death, so a fault, R-789).",
-        "Success: his Prot cast Guardian 1.2 s before its start, healing for 35.",
-        "Success: his 7 Monk cast Signet of Rejuvenation 0.8 s before its start, healing for 71.",
-        "Success: his 7 Monk cast Patient Spirit 1.5 s after its start, healing for 35.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "4:35 NwAy's Stand Mes dies with no spike on him, kept at or under 225 health from 4:33: 348 landed in 2.7 s. Missed: a cast into a ready interrupt.",
+        "Sum: 113 health of 490; 348 landed (347 in hits, 1 in degen); 141 healed.",
+        "Stripped: Air of Disenchantment took Patient Spirit off him 2.2 s after its start.",
+        "Cast into a ready interrupt inside this kill attempt: 4:35 NwAy's 7 Monk cast Healing Burst on Stand Mes into a ready interrupt and was interrupted: Men Stand Mes 1 had Power Drain ready and in range when the cast began (R-743; inside the kill attempt of a death, so a fault, R-789).",
+        "Success: Prot cast Guardian 1.2 s before its start, healing for 35.",
+        "Success: 7 Monk cast Signet of Rejuvenation 0.8 s before its start, healing for 71.",
+        "Success: 7 Monk cast Patient Spirit 1.5 s after its start, healing for 35."
        ],
        "also": [
         "4:32 to 6:12: Men up on numbers in the main fight (5 v 3, the greater stand area; then 7 v 6 from 4:50; ...",
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "4:35 NwAy's Stand Mes dies with no spike on him, kept in danger by Men from 4:33 (at or under 225 health with damage landing on him, R-749): 348 landed on him in 2.7 s, hits and degen (AoB Derv, Stand Mes 1). Missed: a cast into a ready interrupt. The sum: He had 113 health of 490; 348 landed (347 in hits, 1 in degen); 0 stopped before it landed by gvg.report's estimate; 141 healed; he ended at 0. Cast into a ready interrupt inside this kill attempt, a fault at a death (R-789): 4:35 NwAy's 7 Monk cast Healing Burst on Stand Mes into a ready interrupt and was interrupted: Men Stand Mes 1 had Power Drain ready and in range when the cast began (R-743; inside the kill attempt of a death, so a fault, R-789). Success: his Prot cast Guardian 1.2 s before its start, healing for 35. Success: his 7 Monk cast Signet of Rejuvenation 0.8 s before its start, healing for 71. Success: his 7 Monk cast Patient Spirit 1.5 s after its start, healing for 35. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "4:35 NwAy's Stand Mes dies with no spike on him, kept at or under 225 health from 4:33: 348 landed in 2.7 s. Missed: a cast into a ready interrupt. Sum: 113 health of 490; 348 landed (347 in hits, 1 in degen); 141 healed. Stripped: Air of Disenchantment took Patient Spirit off him 2.2 s after its start. Cast into a ready interrupt inside this kill attempt: 4:35 NwAy's 7 Monk cast Healing Burst on Stand Mes into a ready interrupt and was interrupted: Men Stand Mes 1 had Power Drain ready and in range when the cast began (R-743; inside the kill attempt of a death, so a fault, R-789). Success: Prot cast Guardian 1.2 s before its start, healing for 35. Success: 7 Monk cast Signet of Rejuvenation 0.8 s before its start, healing for 71. Success: 7 Monk cast Patient Spirit 1.5 s after its start, healing for 35."
       }
      ]
     },
@@ -755,21 +746,20 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "5:15 NwAy's Mes/A dies to a spike by Men: 405 in 2.9 s from the first big hit at 5:12 (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2; 452 inside 3 s, the big hits over 0.0 s). Nothing the engine checks was missed.",
-        "The sum: He had 299 health of 525; 456 landed (452 in hits, 4 in degen); 27 stopped before it landed (Reversal of Fortune 27) by gvg.report's estimate; 108 healed; he ended at 0.",
-        "Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility.",
+        "5:15 NwAy's Mes/A dies to a spike: 405 in 2.9 s; 452 inside 3 s. Nothing missed.",
+        "Sum: 299 health of 525; 456 landed (452 in hits, 4 in degen); 27 stopped; 108 healed.",
+        "Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -1.9 s to 11.1 s. No fault.",
+        "Stripped: Air of Disenchantment took Aegis off him 1.2 s after the first big hit.",
         "His own play in it: 5:12 the Mes/A is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720).",
-        "Success: his Prot cast Aura of Faith 1.7 s after the first big hit, healing for 46.",
-        "Success: his 8 Monk cast Reversal of Fortune 1.6 s before the first big hit, healing for 21, stopping 27 by gvg.report's estimate.",
-        "Success: his 7 Monk cast Signet of Rejuvenation 1.8 s before the first big hit, healing for 47.",
-        "Success: his 7 Monk cast Patient Spirit 1.3 s after the first big hit, healing for 23.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot.",
-        "Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+        "Success: Prot cast Aura of Faith during the spike window, healing for 46.",
+        "Success: 8 Monk cast Reversal of Fortune 1.6 s before the first big hit, healing for 21, stopping 27.",
+        "Success: 7 Monk cast Signet of Rejuvenation 1.8 s before the first big hit, healing for 47.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 23."
        ],
        "also": [
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "5:15 NwAy's Mes/A dies to a spike by Men: 405 in 2.9 s from the first big hit at 5:12 (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2; 452 inside 3 s, the big hits over 0.0 s). Nothing the engine checks was missed. The sum: He had 299 health of 525; 456 landed (452 in hits, 4 in degen); 27 stopped before it landed (Reversal of Fortune 27) by gvg.report's estimate; 108 healed; he ended at 0. Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility. His own play in it: 5:12 the Mes/A is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: his Prot cast Aura of Faith 1.7 s after the first big hit, healing for 46. Success: his 8 Monk cast Reversal of Fortune 1.6 s before the first big hit, healing for 21, stopping 27 by gvg.report's estimate. Success: his 7 Monk cast Signet of Rejuvenation 1.8 s before the first big hit, healing for 47. Success: his 7 Monk cast Patient Spirit 1.3 s after the first big hit, healing for 23. Done in time by a team mate, so no fault (R-715): a heal, a prot. Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+       "text": "5:15 NwAy's Mes/A dies to a spike: 405 in 2.9 s; 452 inside 3 s. Nothing missed. Sum: 299 health of 525; 456 landed (452 in hits, 4 in degen); 27 stopped; 108 healed. Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -1.9 s to 11.1 s. No fault. Stripped: Air of Disenchantment took Aegis off him 1.2 s after the first big hit. His own play in it: 5:12 the Mes/A is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: Prot cast Aura of Faith during the spike window, healing for 46. Success: 8 Monk cast Reversal of Fortune 1.6 s before the first big hit, healing for 21, stopping 27. Success: 7 Monk cast Signet of Rejuvenation 1.8 s before the first big hit, healing for 47. Success: 7 Monk cast Patient Spirit during the spike window, healing for 23."
       }
      ]
     },
@@ -789,18 +779,17 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "8:00 NwAy's Stand Mes dies to a spike by Men: 296 in 1.5 s from the first big hit at 7:59 (AoB Derv, Stand Mes 1, Stand Mes 2; 428 inside 3 s, the big hits over 1.0 s). Nothing the engine checks was missed.",
-        "The sum: He had 347 health of 418; 543 landed (428 in hits, 32 in degen, 84 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 194 healed; he ended at 0.",
+        "8:00 NwAy's Stand Mes dies to a spike: 296 in 1.5 s; 428 inside 3 s. Nothing missed.",
+        "Sum: 347 health of 418; 543 landed (428 in hits, 32 in degen, 84 from Deep Wound); 194 healed.",
         "Context, never a fault (R-746): 2 critical melee hits for 144 landed on him while he was moving (about 4 in 10 of such hits are critical anyway).",
-        "Success: his Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69.",
-        "Success: his Prot cast Guardian 0.5 s before the first big hit, healing for 23.",
-        "Success: his Prot cast Spirit Bond 1.3 s after the first big hit.",
-        "Success: his 7 Monk cast Healing Burst 1.3 s before the first big hit, healing for 148.",
-        "Success: his 7 Monk cast Patient Spirit 0.5 s after the first big hit, healing for 23.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "Success: Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69.",
+        "Success: Prot cast Guardian 0.5 s before the first big hit, healing for 23.",
+        "Success: Prot cast Spirit Bond during the spike window.",
+        "Success: 7 Monk cast Healing Burst 1.3 s before the first big hit, healing for 148.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 23."
        ],
        "also": [],
-       "text": "8:00 NwAy's Stand Mes dies to a spike by Men: 296 in 1.5 s from the first big hit at 7:59 (AoB Derv, Stand Mes 1, Stand Mes 2; 428 inside 3 s, the big hits over 1.0 s). Nothing the engine checks was missed. The sum: He had 347 health of 418; 543 landed (428 in hits, 32 in degen, 84 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 194 healed; he ended at 0. Context, never a fault (R-746): 2 critical melee hits for 144 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Success: his Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69. Success: his Prot cast Guardian 0.5 s before the first big hit, healing for 23. Success: his Prot cast Spirit Bond 1.3 s after the first big hit. Success: his 7 Monk cast Healing Burst 1.3 s before the first big hit, healing for 148. Success: his 7 Monk cast Patient Spirit 0.5 s after the first big hit, healing for 23. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "8:00 NwAy's Stand Mes dies to a spike: 296 in 1.5 s; 428 inside 3 s. Nothing missed. Sum: 347 health of 418; 543 landed (428 in hits, 32 in degen, 84 from Deep Wound); 194 healed. Context, never a fault (R-746): 2 critical melee hits for 144 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Success: Prot cast Aura of Faith 2.8 s before the first big hit, healing for 69. Success: Prot cast Guardian 0.5 s before the first big hit, healing for 23. Success: Prot cast Spirit Bond during the spike window. Success: 7 Monk cast Healing Burst 1.3 s before the first big hit, healing for 148. Success: 7 Monk cast Patient Spirit during the spike window, healing for 23."
       }
      ]
     },
@@ -820,20 +809,21 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "8:38 NwAy's Stand Mes dies to a spike by Men: 116 in 0.0 s from the first big hit at 8:38 (Hammer, AoB Derv, Stand Mes 1, Mes/A; 402 inside 3 s, the big hits over 0.0 s). Missed: interrupts.",
-        "The sum: He had 212 health of 316; 570 landed (417 in hits, 39 in degen, 114 from Deep Wound); 60 stopped before it landed (Reversal of Fortune 60), 4 attacks blocked by gvg.report's estimate; 204 healed (77 more cast on him was overhealing), 63 back as Deep Wound came off; he ended at 0. 97 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 13.",
-        "His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).",
-        "Monks stopped at the first big hit: his 7 Monk: knocked down (Hammer Bash, 1.9 s before the first big hit); Healing Burst disabled by Signet of Humility.",
-        "Missed interrupt: Stand Mes available to cast, Complicate ready and in range. 1 spike skill cast (1x Hammer Bash). An interrupt on 1 Hammer Bash would have prevented about 29 damage (what a cast of it did for its caster on average this match), not enough on its own to save him.",
-        "Success: his Prot cast Aegis 0.6 s before the first big hit, healing for 21.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.2 s before the first big hit, healing for 51, stopping 60 by gvg.report's estimate.",
-        "Done in time by a team mate, so no fault (R-715): a prot.",
-        "Begun on him and never landed, so not done (R-797): Signet of Rejuvenation 2.8 s before the first big hit (interrupted)."
+        "8:38 NwAy's Stand Mes dies to a spike: 116 in 0.0 s; 402 inside 3 s. Missed: interrupts.",
+        "Sum: 212 health of 316; 570 landed (417 in hits, 39 in degen, 114 from Deep Wound); 60 stopped; 204 healed.",
+        "His death took the AoB Derv with it (a pact kill).",
+        "Disables: 7 Monk was knocked down (Hammer Bash) 1.9 s before the first big hit; had Healing Burst disabled by Signet of Humility from -9.3 s to 3.7 s. No fault.",
+        "Stripped: Air of Disenchantment took Shielding Hands off him 2.2 s before the first big hit; it would have stopped 152 damage and saved the spike.",
+        "Missed Interrupt: Stand Mes available to cast, Complicate ready, sufficient energy. 1 spike skill cast (1x Hammer Bash). Interrupt on 1 Hammer Bash would have prevented 29 damage, not enough on its own to save him.",
+        "Success: Prot cast Aegis 0.6 s before the first big hit, healing for 21.",
+        "Success: 8 Monk cast Reversal of Fortune 2.2 s before the first big hit, healing for 51, stopping 60.",
+        "Attempted, failed: Signet of Rejuvenation 2.8 s before the first big hit (interrupted).",
+        "No fault: 7 Monk's Guardian, in range and ready: too fast for it."
        ],
        "also": [
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "8:38 NwAy's Stand Mes dies to a spike by Men: 116 in 0.0 s from the first big hit at 8:38 (Hammer, AoB Derv, Stand Mes 1, Mes/A; 402 inside 3 s, the big hits over 0.0 s). Missed: interrupts. The sum: He had 212 health of 316; 570 landed (417 in hits, 39 in degen, 114 from Deep Wound); 60 stopped before it landed (Reversal of Fortune 60), 4 attacks blocked by gvg.report's estimate; 204 healed (77 more cast on him was overhealing), 63 back as Deep Wound came off; he ended at 0. 97 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 13. His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783). Monks stopped at the first big hit: his 7 Monk: knocked down (Hammer Bash, 1.9 s before the first big hit); Healing Burst disabled by Signet of Humility. Missed interrupt: Stand Mes available to cast, Complicate ready and in range. 1 spike skill cast (1x Hammer Bash). An interrupt on 1 Hammer Bash would have prevented about 29 damage (what a cast of it did for its caster on average this match), not enough on its own to save him. Success: his Prot cast Aegis 0.6 s before the first big hit, healing for 21. Success: his 8 Monk cast Reversal of Fortune 2.2 s before the first big hit, healing for 51, stopping 60 by gvg.report's estimate. Done in time by a team mate, so no fault (R-715): a prot. Begun on him and never landed, so not done (R-797): Signet of Rejuvenation 2.8 s before the first big hit (interrupted)."
+       "text": "8:38 NwAy's Stand Mes dies to a spike: 116 in 0.0 s; 402 inside 3 s. Missed: interrupts. Sum: 212 health of 316; 570 landed (417 in hits, 39 in degen, 114 from Deep Wound); 60 stopped; 204 healed. His death took the AoB Derv with it (a pact kill). Disables: 7 Monk was knocked down (Hammer Bash) 1.9 s before the first big hit; had Healing Burst disabled by Signet of Humility from -9.3 s to 3.7 s. No fault. Stripped: Air of Disenchantment took Shielding Hands off him 2.2 s before the first big hit; it would have stopped 152 damage and saved the spike. Missed Interrupt: Stand Mes available to cast, Complicate ready, sufficient energy. 1 spike skill cast (1x Hammer Bash). Interrupt on 1 Hammer Bash would have prevented 29 damage, not enough on its own to save him. Success: Prot cast Aegis 0.6 s before the first big hit, healing for 21. Success: 8 Monk cast Reversal of Fortune 2.2 s before the first big hit, healing for 51, stopping 60. Attempted, failed: Signet of Rejuvenation 2.8 s before the first big hit (interrupted). No fault: 7 Monk's Guardian, in range and ready: too fast for it."
       },
       {
        "id": "x:518.0:NwAy:AoB Derv",
@@ -844,12 +834,12 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "8:38 NwAy's AoB Derv dies as the Stand Mes dies: a pact kill (R-783). He had resurrected the Stand Mes with Death Pact Signet 28 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Stand Mes's death; no chance is read on this one."
+        "8:38 NwAy's AoB Derv dies as the Stand Mes dies: he had resurrected the Stand Mes 28 s before (a pact kill)."
        ],
        "also": [
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "8:38 NwAy's AoB Derv dies as the Stand Mes dies: a pact kill (R-783). He had resurrected the Stand Mes with Death Pact Signet 28 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Stand Mes's death; no chance is read on this one."
+       "text": "8:38 NwAy's AoB Derv dies as the Stand Mes dies: he had resurrected the Stand Mes 28 s before (a pact kill)."
       }
      ]
     },
@@ -869,25 +859,25 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "9:20 NwAy's 7 Monk dies to a spike by Men: 894 in 6.2 s from the first big hit at 9:13 (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2; 402 inside 3 s, the big hits over 3.0 s). Missed: Deep Wound removal.",
-        "The sum: He had 386 health of 390; 1029 landed (826 in hits, 105 in degen, 98 from Deep Wound); 122 stopped before it landed (Reversal of Fortune 122) by gvg.report's estimate; 539 healed, 78 back as Deep Wound came off; he ended at 0.",
-        "Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility; Shield Guardian disabled by Complicate.",
+        "9:20 NwAy's 7 Monk dies to a spike: 894 in 6.2 s; 402 inside 3 s. Missed: Deep Wound removal.",
+        "Sum: 386 health of 390; 1029 landed (826 in hits, 105 in degen, 98 from Deep Wound); 122 stopped; 539 healed.",
+        "Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -12.6 s to 0.4 s; had Shield Guardian disabled by Complicate from -4.3 s to 6.7 s. No fault.",
+        "Stripped: Air of Disenchantment took Spirit Bond off him 5.7 s after the first big hit.",
         "Missed by the defence: Deep Wound stayed on him to the end with NwAy 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 78 health (a fault, R-725). He was too deep: 1375 past his own front line (the Mes/A) at the first big hit, his nearest monk 932 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713).",
-        "Success: his Prot cast Aura of Faith 1.4 s after the first big hit, healing for 55.",
-        "Success: his Prot cast Spirit Bond 4.7 s after the first big hit, healing for 28.",
-        "Success: his 8 Monk cast Reversal of Fortune 3.0 s before the first big hit, healing for 26, stopping 122 by gvg.report's estimate.",
-        "Success: his 8 Monk cast Reversal of Fortune 1.4 s after the first big hit, healing for 72, stopping 122 by gvg.report's estimate.",
-        "Success: his 8 Monk cast Reversal of Fortune 5.6 s after the first big hit, healing for 39, stopping 122 by gvg.report's estimate.",
-        "Success: his 7 Monk cast Healing Burst 2.1 s before the first big hit, healing for 126.",
-        "Success: his 7 Monk cast Patient Spirit 1.6 s after the first big hit, healing for 78.",
-        "Success: his 7 Monk cast Signet of Rejuvenation 3.7 s after the first big hit, healing for 54.",
-        "Success: his 8 Monk cast Healing Burst 1.5 s before the first big hit, healing for 112.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "Success: Prot cast Aura of Faith during the spike window, healing for 55.",
+        "Success: Prot cast Spirit Bond during the spike window, healing for 28.",
+        "Success: 8 Monk cast Reversal of Fortune 3.0 s before the first big hit, healing for 26, stopping 122.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 72, stopping 122.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 39, stopping 122.",
+        "Success: 7 Monk cast Healing Burst 2.1 s before the first big hit, healing for 126.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 78.",
+        "Success: 7 Monk cast Signet of Rejuvenation during the spike window, healing for 54.",
+        "Success: 8 Monk cast Healing Burst 1.5 s before the first big hit, healing for 112."
        ],
        "also": [
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "9:20 NwAy's 7 Monk dies to a spike by Men: 894 in 6.2 s from the first big hit at 9:13 (Hammer, AoB Derv, Stand Mes 1, Mes/A, Stand Mes 2; 402 inside 3 s, the big hits over 3.0 s). Missed: Deep Wound removal. The sum: He had 386 health of 390; 1029 landed (826 in hits, 105 in degen, 98 from Deep Wound); 122 stopped before it landed (Reversal of Fortune 122) by gvg.report's estimate; 539 healed, 78 back as Deep Wound came off; he ended at 0. Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility; Shield Guardian disabled by Complicate. Missed by the defence: Deep Wound stayed on him to the end with NwAy 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 78 health (a fault, R-725). He was too deep: 1375 past his own front line (the Mes/A) at the first big hit, his nearest monk 932 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Success: his Prot cast Aura of Faith 1.4 s after the first big hit, healing for 55. Success: his Prot cast Spirit Bond 4.7 s after the first big hit, healing for 28. Success: his 8 Monk cast Reversal of Fortune 3.0 s before the first big hit, healing for 26, stopping 122 by gvg.report's estimate. Success: his 8 Monk cast Reversal of Fortune 1.4 s after the first big hit, healing for 72, stopping 122 by gvg.report's estimate. Success: his 8 Monk cast Reversal of Fortune 5.6 s after the first big hit, healing for 39, stopping 122 by gvg.report's estimate. Success: his 7 Monk cast Healing Burst 2.1 s before the first big hit, healing for 126. Success: his 7 Monk cast Patient Spirit 1.6 s after the first big hit, healing for 78. Success: his 7 Monk cast Signet of Rejuvenation 3.7 s after the first big hit, healing for 54. Success: his 8 Monk cast Healing Burst 1.5 s before the first big hit, healing for 112. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "9:20 NwAy's 7 Monk dies to a spike: 894 in 6.2 s; 402 inside 3 s. Missed: Deep Wound removal. Sum: 386 health of 390; 1029 landed (826 in hits, 105 in degen, 98 from Deep Wound); 122 stopped; 539 healed. Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -12.6 s to 0.4 s; had Shield Guardian disabled by Complicate from -4.3 s to 6.7 s. No fault. Stripped: Air of Disenchantment took Spirit Bond off him 5.7 s after the first big hit. Missed by the defence: Deep Wound stayed on him to the end with NwAy 8 Monk holding Draw Conditions ready, in reach: taking it off gives back 78 health (a fault, R-725). He was too deep: 1375 past his own front line (the Mes/A) at the first big hit, his nearest monk 932 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Success: Prot cast Aura of Faith during the spike window, healing for 55. Success: Prot cast Spirit Bond during the spike window, healing for 28. Success: 8 Monk cast Reversal of Fortune 3.0 s before the first big hit, healing for 26, stopping 122. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 72, stopping 122. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 39, stopping 122. Success: 7 Monk cast Healing Burst 2.1 s before the first big hit, healing for 126. Success: 7 Monk cast Patient Spirit during the spike window, healing for 78. Success: 7 Monk cast Signet of Rejuvenation during the spike window, healing for 54. Success: 8 Monk cast Healing Burst 1.5 s before the first big hit, healing for 112."
       },
       {
        "id": "x:573.1:NwAy:Prot",
@@ -898,17 +888,17 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "9:33 NwAy's Prot dies to a spike by Men: 643 in 4.0 s from the first big hit at 9:29 (Hammer, AoB Derv, Stand Mes 1, Mes/A; 452 inside 3 s, the big hits over 1.4 s). Nothing the engine checks was missed.",
-        "The sum: He had 570 health of 570; 752 landed (628 in hits, 24 in degen, 100 from Deep Wound); 36 stopped before it landed (Reversal of Fortune 36) by gvg.report's estimate; 191 healed; he ended at 0 (9 less than the parts give).",
+        "9:33 NwAy's Prot dies to a spike: 643 in 4.0 s; 452 inside 3 s. Nothing missed.",
+        "Sum: 570 health of 570; 752 landed (628 in hits, 24 in degen, 100 from Deep Wound); 36 stopped; 191 healed; 9 less than the parts give.",
         "His own play in it: 9:29 the Prot is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720).",
-        "Success: his 8 Monk cast Guardian 2.8 s before the first big hit, healing for 32.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.4 s after the first big hit, healing for 68, stopping 36 by gvg.report's estimate.",
-        "Done in time by a team mate, so no fault (R-715): a prot."
+        "Success: 8 Monk cast Guardian 2.8 s before the first big hit, healing for 32.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 68, stopping 36.",
+        "No fault: 8 Monk's Healing Burst, in range and ready: he was casting Cure Hex on the Prot as it began and could not land a cast before the death."
        ],
        "also": [
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "9:33 NwAy's Prot dies to a spike by Men: 643 in 4.0 s from the first big hit at 9:29 (Hammer, AoB Derv, Stand Mes 1, Mes/A; 452 inside 3 s, the big hits over 1.4 s). Nothing the engine checks was missed. The sum: He had 570 health of 570; 752 landed (628 in hits, 24 in degen, 100 from Deep Wound); 36 stopped before it landed (Reversal of Fortune 36) by gvg.report's estimate; 191 healed; he ended at 0 (9 less than the parts give). His own play in it: 9:29 the Prot is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: his 8 Monk cast Guardian 2.8 s before the first big hit, healing for 32. Success: his 8 Monk cast Reversal of Fortune 2.4 s after the first big hit, healing for 68, stopping 36 by gvg.report's estimate. Done in time by a team mate, so no fault (R-715): a prot."
+       "text": "9:33 NwAy's Prot dies to a spike: 643 in 4.0 s; 452 inside 3 s. Nothing missed. Sum: 570 health of 570; 752 landed (628 in hits, 24 in degen, 100 from Deep Wound); 36 stopped; 191 healed; 9 less than the parts give. His own play in it: 9:29 the Prot is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: 8 Monk cast Guardian 2.8 s before the first big hit, healing for 32. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 68, stopping 36. No fault: 8 Monk's Healing Burst, in range and ready: he was casting Cure Hex on the Prot as it began and could not land a cast before the death."
       }
      ]
     },
@@ -928,17 +918,17 @@
        "spike": false,
        "faults": 2,
        "lines": [
-        "9:43 NwAy's 8 Monk dies with no spike on him, kept in danger by Men from 9:42 (at or under 225 health with damage landing on him, R-749): 178 landed on him in 1.3 s, hits and degen (AoB Derv, Mes/A). Missed: heals, prots.",
-        "The sum: He had 221 health of 460; 98 landed (87 in hits, 11 in degen); 40 stopped before it landed (Reversal of Fortune 40) by gvg.report's estimate; 0 healed; he ended at 0 (123 less than the parts give).",
+        "9:43 NwAy's 8 Monk dies with no spike on him, kept at or under 225 health from 9:42: 178 landed in 1.3 s. Missed: heals, prots.",
+        "Sum: 221 health of 460; 98 landed (87 in hits, 11 in degen); 40 stopped; 123 less than the parts give.",
         "He was too deep: 1302 past his own front line (the Mes/A) at the first big hit, no monk of his alive (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Context, never a fault (R-746): 1 critical melee hit for 69 landed on him while he was moving (about 4 in 10 of such hits are critical anyway).",
-        "Missed prot: 8 Monk himself (R-796) available to cast, Reversal of Fortune, Guardian, Shield Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Reversal of Fortune would have stopped about 18 and healed 50; whether that would have saved him is not told: the sum of this death does not balance; Guardian would have stopped about 0 and healed 32; whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 29 and healed 53; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785).",
-        "Missed heal: 8 Monk himself (R-796) available to cast, Healing Burst ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Healing Burst would have healed about 140; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785)."
+        "Missed Prot: 8 Monk himself available to cast, Shield Guardian, Reversal of Fortune ready, sufficient energy (47 to 47). Shield Guardian would have stopped 29 damage and healed 53; whether that would have saved him is not told: the sum does not balance; Reversal of Fortune would have stopped 18 damage and healed 50; whether that would have saved him is not told: the sum does not balance.",
+        "Missed Heal: 8 Monk himself available to cast, Healing Burst ready, sufficient energy (47 to 47). Healing Burst would have healed 140; whether that would have saved him is not told: the sum does not balance."
        ],
        "also": [
         "8:40 to 10:00: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 8:40: 2 of 2 kni...",
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "9:43 NwAy's 8 Monk dies with no spike on him, kept in danger by Men from 9:42 (at or under 225 health with damage landing on him, R-749): 178 landed on him in 1.3 s, hits and degen (AoB Derv, Mes/A). Missed: heals, prots. The sum: He had 221 health of 460; 98 landed (87 in hits, 11 in degen); 40 stopped before it landed (Reversal of Fortune 40) by gvg.report's estimate; 0 healed; he ended at 0 (123 less than the parts give). He was too deep: 1302 past his own front line (the Mes/A) at the first big hit, no monk of his alive (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Context, never a fault (R-746): 1 critical melee hit for 69 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Missed prot: 8 Monk himself (R-796) available to cast, Reversal of Fortune, Guardian, Shield Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Reversal of Fortune would have stopped about 18 and healed 50; whether that would have saved him is not told: the sum of this death does not balance; Guardian would have stopped about 0 and healed 32; whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 29 and healed 53; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Missed heal: 8 Monk himself (R-796) available to cast, Healing Burst ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see it and cast (R-716). Healing Burst would have healed about 140; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785)."
+       "text": "9:43 NwAy's 8 Monk dies with no spike on him, kept at or under 225 health from 9:42: 178 landed in 1.3 s. Missed: heals, prots. Sum: 221 health of 460; 98 landed (87 in hits, 11 in degen); 40 stopped; 123 less than the parts give. He was too deep: 1302 past his own front line (the Mes/A) at the first big hit, no monk of his alive (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Context, never a fault (R-746): 1 critical melee hit for 69 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Missed Prot: 8 Monk himself available to cast, Shield Guardian, Reversal of Fortune ready, sufficient energy (47 to 47). Shield Guardian would have stopped 29 damage and healed 53; whether that would have saved him is not told: the sum does not balance; Reversal of Fortune would have stopped 18 damage and healed 50; whether that would have saved him is not told: the sum does not balance. Missed Heal: 8 Monk himself available to cast, Healing Burst ready, sufficient energy (47 to 47). Healing Burst would have healed 140; whether that would have saved him is not told: the sum does not balance."
       }
      ]
     },
@@ -958,17 +948,17 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "10:14 Men's Stand Mes 1 dies to a burst on a hurt player by NwAy: 360 in 4.2 s from its first big hit at 10:09, most of the 197 health he had (AoB Derv, Mes/A). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 197 health of 658; 360 landed (282 in hits, 30 from their NPCs, 48 in degen); 0 stopped before it landed by gvg.report's estimate; 147 healed; he ended at 0.",
-        "Success: his 7 Monk cast Blessed Light 0.1 s after the first big hit, healing for 147.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "10:14 Men's Stand Mes 1 dies to a burst on a hurt player: 360 in 4.2 s, most of the 197 health he had. Nothing missed.",
+        "Sum: 197 health of 658; 360 landed (282 in hits, 30 from their NPCs, 48 in degen); 147 healed.",
+        "Success: 7 Monk cast Blessed Light during the spike window, healing for 147.",
+        "No fault: 7 Monk's Guardian, in range and ready: he was casting Blessed Light on the Stand Mes 1 as it began and could not land a cast before the death."
        ],
        "also": [
         "10:12 to 10:57: NwAy's boost is 30 s away; Men: no runner; the rest fall out",
         "9:40 to 10:30: Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay; the danger ...",
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "10:14 Men's Stand Mes 1 dies to a burst on a hurt player by NwAy: 360 in 4.2 s from its first big hit at 10:09, most of the 197 health he had (AoB Derv, Mes/A). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 197 health of 658; 360 landed (282 in hits, 30 from their NPCs, 48 in degen); 0 stopped before it landed by gvg.report's estimate; 147 healed; he ended at 0. Success: his 7 Monk cast Blessed Light 0.1 s after the first big hit, healing for 147. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "10:14 Men's Stand Mes 1 dies to a burst on a hurt player: 360 in 4.2 s, most of the 197 health he had. Nothing missed. Sum: 197 health of 658; 360 landed (282 in hits, 30 from their NPCs, 48 in degen); 147 healed. Success: 7 Monk cast Blessed Light during the spike window, healing for 147. No fault: 7 Monk's Guardian, in range and ready: he was casting Blessed Light on the Stand Mes 1 as it began and could not land a cast before the death."
       },
       {
        "id": "x:620.0:Men:Mes/A",
@@ -979,9 +969,10 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "10:20 Men's Mes/A dies to a burst on a hurt player by NwAy: 144 in 0.1 s from its first big hit at 10:19, most of the 341 health he had (AoB Derv, Stand Mes). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 341 health of 568; 387 landed (254 in hits, 33 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 254 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 36.",
-        "Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit."
+        "10:20 Men's Mes/A dies to a burst on a hurt player: 144 in 0.1 s, most of the 341 health he had. Nothing missed.",
+        "Sum: 341 health of 568; 387 landed (254 in hits, 33 in degen, 100 from Deep Wound).",
+        "Shield set: wand + focus held for 0.1 s of the 0.1 s burst. A shield would have stopped 36 damage, not enough on its own to save him.",
+        "No fault: too fast. The damage landed over 0.1 s; the fastest save needed 0.2 s to see the hit and cast."
        ],
        "also": [
         "10:12 to 10:57: NwAy's boost is 30 s away; Men: no runner; the rest fall out",
@@ -989,7 +980,7 @@
         "10:14 to 11:56: Men down on numbers in the main fight (4 v 6, NwAy's pit; then 4 v 5 from 10:48; then 6 v ...",
         "4:22 to 11:16: NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers..."
        ],
-       "text": "10:20 Men's Mes/A dies to a burst on a hurt player by NwAy: 144 in 0.1 s from its first big hit at 10:19, most of the 341 health he had (AoB Derv, Stand Mes). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 341 health of 568; 387 landed (254 in hits, 33 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 254 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 36. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit."
+       "text": "10:20 Men's Mes/A dies to a burst on a hurt player: 144 in 0.1 s, most of the 341 health he had. Nothing missed. Sum: 341 health of 568; 387 landed (254 in hits, 33 in degen, 100 from Deep Wound). Shield set: wand + focus held for 0.1 s of the 0.1 s burst. A shield would have stopped 36 damage, not enough on its own to save him. No fault: too fast. The damage landed over 0.1 s; the fastest save needed 0.2 s to see the hit and cast."
       }
      ]
     },
@@ -1009,16 +1000,16 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "12:06 NwAy's Stand Mes dies to a burst on a hurt player by Men: 251 in 1.1 s from its first big hit at 12:04, most of the 227 health he had (Hammer, AoB Derv). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 227 health of 273; 284 landed (261 in hits, 23 in degen); 62 stopped before it landed (Reversal of Fortune 62), 2 attacks blocked by gvg.report's estimate; 99 healed; he ended at 0 (41 less than the parts give).",
+        "12:06 NwAy's Stand Mes dies to a burst on a hurt player: 251 in 1.1 s, most of the 227 health he had. Nothing missed.",
+        "Sum: 227 health of 273; 284 landed (261 in hits, 23 in degen); 62 stopped; 99 healed; 41 less than the parts give.",
         "His own play in it: 12:04 the Stand Mes is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720).",
-        "Success: his 8 Monk cast Healing Burst 1.9 s before the first big hit, healing for 112.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "Success: 8 Monk cast Healing Burst 1.9 s before the first big hit, healing for 112.",
+        "No fault: 8 Monk's Reversal of Fortune, Shield Guardian, in range and ready: he was casting Cure Hex on the Stand Mes as it began and could not land a cast before the death."
        ],
        "also": [
         "11:40 to 12:30: NwAy has 8 in Men's base at the base res (3 defending, 2 coming back): 5 stay, 3 leave as ..."
        ],
-       "text": "12:06 NwAy's Stand Mes dies to a burst on a hurt player by Men: 251 in 1.1 s from its first big hit at 12:04, most of the 227 health he had (Hammer, AoB Derv). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 227 health of 273; 284 landed (261 in hits, 23 in degen); 62 stopped before it landed (Reversal of Fortune 62), 2 attacks blocked by gvg.report's estimate; 99 healed; he ended at 0 (41 less than the parts give). His own play in it: 12:04 the Stand Mes is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: his 8 Monk cast Healing Burst 1.9 s before the first big hit, healing for 112. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "12:06 NwAy's Stand Mes dies to a burst on a hurt player: 251 in 1.1 s, most of the 227 health he had. Nothing missed. Sum: 227 health of 273; 284 landed (261 in hits, 23 in degen); 62 stopped; 99 healed; 41 less than the parts give. His own play in it: 12:04 the Stand Mes is knocked down by the Hammer's Bull's Strike: he was moving as it hit (a fault, R-720). Success: 8 Monk cast Healing Burst 1.9 s before the first big hit, healing for 112. No fault: 8 Monk's Reversal of Fortune, Shield Guardian, in range and ready: he was casting Cure Hex on the Stand Mes as it began and could not land a cast before the death."
       }
      ]
     },
@@ -1038,24 +1029,23 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "14:23 NwAy's Mes/A dies to a spike by Men: 1007 in 7.5 s from the first big hit at 14:16 (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2; 476 inside 3 s, the big hits over 0.0 s). Nothing the engine checks was missed.",
-        "The sum: He had 347 health of 568; 1224 landed (988 in hits, 36 in degen, 200 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 747 healed, 100 back as Deep Wound came off; he ended at 0.",
+        "14:23 NwAy's Mes/A dies to a spike: 1007 in 7.5 s; 476 inside 3 s. Nothing missed.",
+        "Sum: 347 health of 568; 1224 landed (988 in hits, 36 in degen, 200 from Deep Wound); 747 healed.",
         "He was too deep: 2901 past his own front line (the Stand Mes) at the first big hit, his nearest monk 715 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713).",
-        "Success: his Prot cast Spirit Bond 0.2 s after the first big hit, healing for 35.",
-        "Success: his Prot cast Shielding Hands 4.0 s after the first big hit, healing for 23.",
-        "Success: his Prot cast Aura of Faith 6.3 s after the first big hit, healing for 46.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.9 s after the first big hit, healing for 59.",
-        "Success: his 7 Monk cast Signet of Rejuvenation 1.7 s before the first big hit, healing for 140.",
-        "Success: his 7 Monk cast Patient Spirit 1.2 s after the first big hit, healing for 35.",
-        "Success: his 7 Monk cast Healing Burst 3.8 s after the first big hit, healing for 98.",
-        "Success: his 7 Monk cast Patient Spirit 5.7 s after the first big hit, healing for 23.",
-        "Success: his 8 Monk cast Healing Burst 1.7 s after the first big hit, healing for 139.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot."
+        "Success: Prot cast Spirit Bond during the spike window, healing for 35.",
+        "Success: Prot cast Shielding Hands during the spike window, healing for 23.",
+        "Success: Prot cast Aura of Faith during the spike window, healing for 46.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 59.",
+        "Success: 7 Monk cast Signet of Rejuvenation 1.7 s before the first big hit, healing for 140.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 35.",
+        "Success: 7 Monk cast Healing Burst during the spike window, healing for 98.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 23.",
+        "Success: 8 Monk cast Healing Burst during the spike window, healing for 139."
        ],
        "also": [
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "14:23 NwAy's Mes/A dies to a spike by Men: 1007 in 7.5 s from the first big hit at 14:16 (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2; 476 inside 3 s, the big hits over 0.0 s). Nothing the engine checks was missed. The sum: He had 347 health of 568; 1224 landed (988 in hits, 36 in degen, 200 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 747 healed, 100 back as Deep Wound came off; he ended at 0. He was too deep: 2901 past his own front line (the Stand Mes) at the first big hit, his nearest monk 715 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Success: his Prot cast Spirit Bond 0.2 s after the first big hit, healing for 35. Success: his Prot cast Shielding Hands 4.0 s after the first big hit, healing for 23. Success: his Prot cast Aura of Faith 6.3 s after the first big hit, healing for 46. Success: his 8 Monk cast Reversal of Fortune 2.9 s after the first big hit, healing for 59. Success: his 7 Monk cast Signet of Rejuvenation 1.7 s before the first big hit, healing for 140. Success: his 7 Monk cast Patient Spirit 1.2 s after the first big hit, healing for 35. Success: his 7 Monk cast Healing Burst 3.8 s after the first big hit, healing for 98. Success: his 7 Monk cast Patient Spirit 5.7 s after the first big hit, healing for 23. Success: his 8 Monk cast Healing Burst 1.7 s after the first big hit, healing for 139. Done in time by a team mate, so no fault (R-715): a heal, a prot."
+       "text": "14:23 NwAy's Mes/A dies to a spike: 1007 in 7.5 s; 476 inside 3 s. Nothing missed. Sum: 347 health of 568; 1224 landed (988 in hits, 36 in degen, 200 from Deep Wound); 747 healed. He was too deep: 2901 past his own front line (the Stand Mes) at the first big hit, his nearest monk 715 away (R-741, R-804; a why: named a fault only once it passes on unseen matches, R-713). Success: Prot cast Spirit Bond during the spike window, healing for 35. Success: Prot cast Shielding Hands during the spike window, healing for 23. Success: Prot cast Aura of Faith during the spike window, healing for 46. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 59. Success: 7 Monk cast Signet of Rejuvenation 1.7 s before the first big hit, healing for 140. Success: 7 Monk cast Patient Spirit during the spike window, healing for 35. Success: 7 Monk cast Healing Burst during the spike window, healing for 98. Success: 7 Monk cast Patient Spirit during the spike window, healing for 23. Success: 8 Monk cast Healing Burst during the spike window, healing for 139."
       }
      ]
     },
@@ -1075,21 +1065,20 @@
        "spike": true,
        "faults": 1,
        "lines": [
-        "14:35 NwAy's Stand Mes dies to a burst on a hurt player by Men: 573 in 5.9 s from its first big hit at 14:29, most of the 317 health he had (Hammer, AoB Derv). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots.",
-        "The sum: He had 317 health of 317; 636 landed (502 in hits, 70 in degen, 63 from Deep Wound); 51 stopped before it landed (Reversal of Fortune 51) by gvg.report's estimate; 262 healed (254 more cast on him was overhealing); he ended at 0.",
-        "His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783).",
-        "Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility.",
-        "Missed prot: 7 Monk available to cast, in reach, Shield Guardian, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 38 and healed 23, not enough on its own to save him (57 short); Guardian would have stopped about 158 and healed 35 and saved him if begun within 4.1 s of the first big hit (an upper bound, R-785).",
-        "Success: his Prot cast Aura of Faith 2.1 s after the first big hit, healing for 69.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.1 s after the first big hit, healing for 83, stopping 51 by gvg.report's estimate.",
-        "Success: his 8 Monk cast Reversal of Fortune 5.7 s after the first big hit, stopping 51 by gvg.report's estimate.",
-        "Success: his 7 Monk cast Healing Burst 1.6 s after the first big hit, healing for 292.",
-        "Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+        "14:35 NwAy's Stand Mes dies to a burst on a hurt player: 573 in 5.9 s, most of the 317 health he had. Missed: prots.",
+        "Sum: 317 health of 317; 636 landed (502 in hits, 70 in degen, 63 from Deep Wound); 51 stopped; 262 healed.",
+        "His death took the AoB Derv with it (a pact kill).",
+        "Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -2.4 s to 10.6 s. No fault.",
+        "Missed Prot: 7 Monk available to cast, Guardian ready, sufficient energy (42 to 42). Guardian would have stopped 158 damage and saved him if cast within 3.8 s of the first big hit.",
+        "Success: Prot cast Aura of Faith during the spike window, healing for 69.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 83, stopping 51.",
+        "Success: 8 Monk cast Reversal of Fortune during the spike window, stopping 51.",
+        "Success: 7 Monk cast Healing Burst during the spike window, healing for 292."
        ],
        "also": [
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "14:35 NwAy's Stand Mes dies to a burst on a hurt player by Men: 573 in 5.9 s from its first big hit at 14:29, most of the 317 health he had (Hammer, AoB Derv). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots. The sum: He had 317 health of 317; 636 landed (502 in hits, 70 in degen, 63 from Deep Wound); 51 stopped before it landed (Reversal of Fortune 51) by gvg.report's estimate; 262 healed (254 more cast on him was overhealing); he ended at 0. His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783). Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility. Missed prot: 7 Monk available to cast, in reach, Shield Guardian, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 38 and healed 23, not enough on its own to save him (57 short); Guardian would have stopped about 158 and healed 35 and saved him if begun within 4.1 s of the first big hit (an upper bound, R-785). Success: his Prot cast Aura of Faith 2.1 s after the first big hit, healing for 69. Success: his 8 Monk cast Reversal of Fortune 2.1 s after the first big hit, healing for 83, stopping 51 by gvg.report's estimate. Success: his 8 Monk cast Reversal of Fortune 5.7 s after the first big hit, stopping 51 by gvg.report's estimate. Success: his 7 Monk cast Healing Burst 1.6 s after the first big hit, healing for 292. Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+       "text": "14:35 NwAy's Stand Mes dies to a burst on a hurt player: 573 in 5.9 s, most of the 317 health he had. Missed: prots. Sum: 317 health of 317; 636 landed (502 in hits, 70 in degen, 63 from Deep Wound); 51 stopped; 262 healed. His death took the AoB Derv with it (a pact kill). Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -2.4 s to 10.6 s. No fault. Missed Prot: 7 Monk available to cast, Guardian ready, sufficient energy (42 to 42). Guardian would have stopped 158 damage and saved him if cast within 3.8 s of the first big hit. Success: Prot cast Aura of Faith during the spike window, healing for 69. Success: 8 Monk cast Reversal of Fortune during the spike window, healing for 83, stopping 51. Success: 8 Monk cast Reversal of Fortune during the spike window, stopping 51. Success: 7 Monk cast Healing Burst during the spike window, healing for 292."
       },
       {
        "id": "x:875.4:NwAy:AoB Derv",
@@ -1100,12 +1089,12 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "14:35 NwAy's AoB Derv dies as the Stand Mes dies: a pact kill (R-783). He had resurrected the Stand Mes with Death Pact Signet 69 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Stand Mes's death; no chance is read on this one."
+        "14:35 NwAy's AoB Derv dies as the Stand Mes dies: he had resurrected the Stand Mes 69 s before (a pact kill)."
        ],
        "also": [
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "14:35 NwAy's AoB Derv dies as the Stand Mes dies: a pact kill (R-783). He had resurrected the Stand Mes with Death Pact Signet 69 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Stand Mes's death; no chance is read on this one."
+       "text": "14:35 NwAy's AoB Derv dies as the Stand Mes dies: he had resurrected the Stand Mes 69 s before (a pact kill)."
       },
       {
        "id": "x:895.2:NwAy:Prot",
@@ -1116,22 +1105,21 @@
        "spike": true,
        "faults": 3,
        "lines": [
-        "14:55 NwAy's Prot dies to a spike by Men: 331 in 2.1 s from the first big hit at 14:53 (Hammer, AoB Derv, Stand Mes 2; 422 inside 3 s, the big hits over 0.0 s). Missed: prots.",
-        "The sum: He had 282 health of 613; 761 landed (605 in hits, 56 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 327 healed, 100 back as Deep Wound came off; he ended at 0.",
-        "Monks stopped at the first big hit: his 7 Monk: Healing Burst disabled by Signet of Humility.",
+        "14:55 NwAy's Prot dies to a spike: 331 in 2.1 s; 422 inside 3 s. Missed: prots.",
+        "Sum: 282 health of 613; 761 landed (605 in hits, 56 in degen, 100 from Deep Wound); 327 healed.",
+        "Disables: 7 Monk had Healing Burst disabled by Signet of Humility from -2.1 s to 10.9 s. No fault.",
         "Context, never a fault (R-746): 1 critical melee hit for 38 landed on him while he was moving (about 4 in 10 of such hits are critical anyway).",
-        "Missed prot: Prot himself (R-796) available to cast, Guardian, Shielding Hands, Aura of Faith, Spirit Bond, Shield Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 19 and healed 35 (at the usual rank, 12: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Shielding Hands would have stopped about 34 and healed 35 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Aura of Faith would have stopped about 47 and healed 35 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Spirit Bond would have stopped about 0 and healed 121 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 38 and healed 67 (at the usual rank, 13: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785).",
-        "Missed prot: 7 Monk available to cast, in reach, Shield Guardian, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 38 and healed 23; whether that would have saved him is not told: the sum of this death does not balance; Guardian would have stopped about 38 and healed 35; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785).",
-        "Missed prot: 8 Monk available to cast, in reach, Reversal of Fortune, Shield Guardian ready, sufficient energy (29 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Reversal of Fortune would have stopped about 52 and healed 84; whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 35 and healed 26; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785).",
-        "Success: his 7 Monk cast Signet of Rejuvenation 2.7 s before the first big hit, healing for 54.",
-        "Success: his 7 Monk cast Patient Spirit 0.3 s after the first big hit, healing for 32.",
-        "Done in time by a team mate, so no fault (R-715): a heal."
+        "Missed Prot: Prot himself available to cast, Spirit Bond, Shield Guardian ready, sufficient energy (47 to 47). Spirit Bond would have healed 121 (at the usual rank, 14); whether that would have saved him is not told: the sum does not balance; Shield Guardian would have stopped 38 damage and healed 67 (at the usual rank, 13); whether that would have saved him is not told: the sum does not balance.",
+        "Missed Prot: 7 Monk available to cast, Shield Guardian, Guardian ready, sufficient energy (42 to 42). Shield Guardian would have stopped 38 damage and healed 23; whether that would have saved him is not told: the sum does not balance; Guardian would have stopped 38 damage; whether that would have saved him is not told: the sum does not balance.",
+        "Missed Prot: 8 Monk available to cast, Reversal of Fortune, Shield Guardian ready, sufficient energy (29 to 47). Reversal of Fortune would have stopped 52 damage and healed 84; whether that would have saved him is not told: the sum does not balance; Shield Guardian would have stopped 35 damage and healed 26; whether that would have saved him is not told: the sum does not balance.",
+        "Success: 7 Monk cast Signet of Rejuvenation 2.7 s before the first big hit, healing for 54.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 32."
        ],
        "also": [
         "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "14:55 NwAy's Prot dies to a spike by Men: 331 in 2.1 s from the first big hit at 14:53 (Hammer, AoB Derv, Stand Mes 2; 422 inside 3 s, the big hits over 0.0 s). Missed: prots. The sum: He had 282 health of 613; 761 landed (605 in hits, 56 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 327 healed, 100 back as Deep Wound came off; he ended at 0. Monks stopped at the first big hit: his 7 Monk: Healing Burst disabled by Signet of Humility. Context, never a fault (R-746): 1 critical melee hit for 38 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Missed prot: Prot himself (R-796) available to cast, Guardian, Shielding Hands, Aura of Faith, Spirit Bond, Shield Guardian ready, sufficient energy (47 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 19 and healed 35 (at the usual rank, 12: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Shielding Hands would have stopped about 34 and healed 35 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Aura of Faith would have stopped about 47 and healed 35 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Spirit Bond would have stopped about 0 and healed 121 (at the usual rank, 14: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 38 and healed 67 (at the usual rank, 13: his is not in gvg.report's record); whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Missed prot: 7 Monk available to cast, in reach, Shield Guardian, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 38 and healed 23; whether that would have saved him is not told: the sum of this death does not balance; Guardian would have stopped about 38 and healed 35; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Missed prot: 8 Monk available to cast, in reach, Reversal of Fortune, Shield Guardian ready, sufficient energy (29 to 47 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Reversal of Fortune would have stopped about 52 and healed 84; whether that would have saved him is not told: the sum of this death does not balance; Shield Guardian would have stopped about 35 and healed 26; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Success: his 7 Monk cast Signet of Rejuvenation 2.7 s before the first big hit, healing for 54. Success: his 7 Monk cast Patient Spirit 0.3 s after the first big hit, healing for 32. Done in time by a team mate, so no fault (R-715): a heal."
+       "text": "14:55 NwAy's Prot dies to a spike: 331 in 2.1 s; 422 inside 3 s. Missed: prots. Sum: 282 health of 613; 761 landed (605 in hits, 56 in degen, 100 from Deep Wound); 327 healed. Disables: 7 Monk had Healing Burst disabled by Signet of Humility from -2.1 s to 10.9 s. No fault. Context, never a fault (R-746): 1 critical melee hit for 38 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Missed Prot: Prot himself available to cast, Spirit Bond, Shield Guardian ready, sufficient energy (47 to 47). Spirit Bond would have healed 121 (at the usual rank, 14); whether that would have saved him is not told: the sum does not balance; Shield Guardian would have stopped 38 damage and healed 67 (at the usual rank, 13); whether that would have saved him is not told: the sum does not balance. Missed Prot: 7 Monk available to cast, Shield Guardian, Guardian ready, sufficient energy (42 to 42). Shield Guardian would have stopped 38 damage and healed 23; whether that would have saved him is not told: the sum does not balance; Guardian would have stopped 38 damage; whether that would have saved him is not told: the sum does not balance. Missed Prot: 8 Monk available to cast, Reversal of Fortune, Shield Guardian ready, sufficient energy (29 to 47). Reversal of Fortune would have stopped 52 damage and healed 84; whether that would have saved him is not told: the sum does not balance; Shield Guardian would have stopped 35 damage and healed 26; whether that would have saved him is not told: the sum does not balance. Success: 7 Monk cast Signet of Rejuvenation 2.7 s before the first big hit, healing for 54. Success: 7 Monk cast Patient Spirit during the spike window, healing for 32."
       },
       {
        "id": "x:909.0:NwAy:7 Monk",
@@ -1142,21 +1130,19 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "15:09 NwAy's 7 Monk dies to a burst on a hurt player by Men: 849 in 7.8 s from its first big hit at 15:01, most of the 526 health he had (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 526 health of 531; 950 landed (796 in hits, 54 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 312 healed, 100 back as Deep Wound came off; he ended at 0. 457 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 64.",
-        "Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility.",
+        "15:09 NwAy's 7 Monk dies to a burst on a hurt player: 849 in 7.8 s, most of the 526 health he had. Nothing missed.",
+        "Sum: 526 health of 531; 950 landed (796 in hits, 54 in degen, 100 from Deep Wound); 312 healed.",
+        "Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -4.0 s to 9.0 s. No fault.",
         "Context, never a fault (R-746): 1 critical melee hit for 52 landed on him while he was moving (about 4 in 10 of such hits are critical anyway).",
-        "Success: his 8 Monk cast Guardian 1.1 s after the first big hit, healing for 26.",
-        "Success: his 7 Monk cast Patient Spirit 0.9 s after the first big hit, healing for 26.",
-        "Success: his 7 Monk cast Signet of Rejuvenation 3.9 s after the first big hit, healing for 47.",
-        "Done in time by a team mate, so no fault (R-715): a heal, a prot.",
-        "Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+        "Success: 8 Monk cast Guardian during the spike window, healing for 26.",
+        "Success: 7 Monk cast Patient Spirit during the spike window, healing for 26.",
+        "Success: 7 Monk cast Signet of Rejuvenation during the spike window, healing for 47."
        ],
        "also": [
         "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "15:09 NwAy's 7 Monk dies to a burst on a hurt player by Men: 849 in 7.8 s from its first big hit at 15:01, most of the 526 health he had (Hammer, AoB Derv, Stand Mes 1, Stand Mes 2). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 526 health of 531; 950 landed (796 in hits, 54 in degen, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 312 healed, 100 back as Deep Wound came off; he ended at 0. 457 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 64. Monks stopped at the first big hit: his 8 Monk: Healing Burst disabled by Signet of Humility. Context, never a fault (R-746): 1 critical melee hit for 52 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Success: his 8 Monk cast Guardian 1.1 s after the first big hit, healing for 26. Success: his 7 Monk cast Patient Spirit 0.9 s after the first big hit, healing for 26. Success: his 7 Monk cast Signet of Rejuvenation 3.9 s after the first big hit, healing for 47. Done in time by a team mate, so no fault (R-715): a heal, a prot. Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+       "text": "15:09 NwAy's 7 Monk dies to a burst on a hurt player: 849 in 7.8 s, most of the 526 health he had. Nothing missed. Sum: 526 health of 531; 950 landed (796 in hits, 54 in degen, 100 from Deep Wound); 312 healed. Disables: 8 Monk had Healing Burst disabled by Signet of Humility from -4.0 s to 9.0 s. No fault. Context, never a fault (R-746): 1 critical melee hit for 52 landed on him while he was moving (about 4 in 10 of such hits are critical anyway). Success: 8 Monk cast Guardian during the spike window, healing for 26. Success: 7 Monk cast Patient Spirit during the spike window, healing for 26. Success: 7 Monk cast Signet of Rejuvenation during the spike window, healing for 47."
       },
       {
        "id": "x:923.1:NwAy:8 Monk",
@@ -1167,18 +1153,17 @@
        "spike": true,
        "faults": 0,
        "lines": [
-        "15:23 NwAy's 8 Monk dies to a burst on a hurt player by Men: 220 in 2.0 s from its first big hit at 15:21, most of the 292 health he had (Hammer, AoB Derv, Stand Mes 1). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed.",
-        "The sum: He had 292 health of 573; 508 landed (351 in hits, 57 in degen, 100 from Deep Wound); 33 stopped before it landed (Reversal of Fortune 33) by gvg.report's estimate; 132 healed; he ended at 0. 96 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 20.",
-        "Shield set: he held Double High, a set with no shield, at the first big hit.",
-        "Success: his 8 Monk cast Reversal of Fortune 2.8 s before the first big hit, healing for 32, stopping 33 by gvg.report's estimate.",
-        "Done in time by a team mate, so no fault (R-715): a prot.",
-        "Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+        "15:23 NwAy's 8 Monk dies to a burst on a hurt player: 220 in 2.0 s, most of the 292 health he had. Nothing missed.",
+        "Sum: 292 health of 573; 508 landed (351 in hits, 57 in degen, 100 from Deep Wound); 33 stopped; 132 healed.",
+        "Shield set: double high held for 1.1 s of the 2.0 s burst. A shield would have stopped 20 damage; whether that would have saved him is not told: the sum does not balance.",
+        "Success: 8 Monk cast Reversal of Fortune 2.8 s before the first big hit, healing for 32, stopping 33.",
+        "No fault: 8 Monk's Healing Burst disabled by Signet of Humility."
        ],
        "also": [
         "14:00 to 15:24: NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 kn...",
         "14:16 to 15:50: NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); n..."
        ],
-       "text": "15:23 NwAy's 8 Monk dies to a burst on a hurt player by Men: 220 in 2.0 s from its first big hit at 15:21, most of the 292 health he had (Hammer, AoB Derv, Stand Mes 1). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 292 health of 573; 508 landed (351 in hits, 57 in degen, 100 from Deep Wound); 33 stopped before it landed (Reversal of Fortune 33) by gvg.report's estimate; 132 healed; he ended at 0. 96 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 20. Shield set: he held Double High, a set with no shield, at the first big hit. Success: his 8 Monk cast Reversal of Fortune 2.8 s before the first big hit, healing for 32, stopping 33 by gvg.report's estimate. Done in time by a team mate, so no fault (R-715): a prot. Not a chance (a heal): 8 Monk's Healing Burst was disabled by Signet of Humility."
+       "text": "15:23 NwAy's 8 Monk dies to a burst on a hurt player: 220 in 2.0 s, most of the 292 health he had. Nothing missed. Sum: 292 health of 573; 508 landed (351 in hits, 57 in degen, 100 from Deep Wound); 33 stopped; 132 healed. Shield set: double high held for 1.1 s of the 2.0 s burst. A shield would have stopped 20 damage; whether that would have saved him is not told: the sum does not balance. Success: 8 Monk cast Reversal of Fortune 2.8 s before the first big hit, healing for 32, stopping 33. No fault: 8 Monk's Healing Burst disabled by Signet of Humility."
       }
      ]
     },
@@ -1198,12 +1183,12 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "15:46 NwAy's Hammer dies with no spike on him and without being kept in danger first: 0 landed on him from Men (nobody recorded) between 15:44, the first thing landed on him after he was last above 225 health, and his death.",
+        "15:46 NwAy's Hammer dies with no spike on him: 0 landed between 15:44 and his death.",
         "The sum cannot be set out: he had 637 health of 637 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him.",
-        "No fault is listed where the record does not show what killed him (R-783)."
+        "No fault: the record does not show what killed him."
        ],
        "also": [],
-       "text": "15:46 NwAy's Hammer dies with no spike on him and without being kept in danger first: 0 landed on him from Men (nobody recorded) between 15:44, the first thing landed on him after he was last above 225 health, and his death. The sum cannot be set out: he had 637 health of 637 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him. No fault is listed where the record does not show what killed him (R-783)."
+       "text": "15:46 NwAy's Hammer dies with no spike on him: 0 landed between 15:44 and his death. The sum cannot be set out: he had 637 health of 637 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him. No fault: the record does not show what killed him."
       },
       {
        "id": "x:946.0:NwAy:Dervish",
@@ -1214,12 +1199,12 @@
        "spike": false,
        "faults": 0,
        "lines": [
-        "15:46 NwAy's Dervish dies with no spike on him and without being kept in danger first: 0 landed on him from Men (nobody recorded) between 15:44, the first thing landed on him after he was last above 225 health, and his death.",
+        "15:46 NwAy's Dervish dies with no spike on him: 0 landed between 15:44 and his death.",
         "The sum cannot be set out: he had 533 health of 533 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him.",
-        "No fault is listed where the record does not show what killed him (R-783)."
+        "No fault: the record does not show what killed him."
        ],
        "also": [],
-       "text": "15:46 NwAy's Dervish dies with no spike on him and without being kept in danger first: 0 landed on him from Men (nobody recorded) between 15:44, the first thing landed on him after he was last above 225 health, and his death. The sum cannot be set out: he had 533 health of 533 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him. No fault is listed where the record does not show what killed him (R-783)."
+       "text": "15:46 NwAy's Dervish dies with no spike on him: 0 landed between 15:44 and his death. The sum cannot be set out: he had 533 health of 533 and nothing landed on him in the replay's record, and gvg.report has no recap of the death (not seen by the observer, life stolen, his own sacrifice): the record does not say what killed him. No fault: the record does not show what killed him."
       }
      ]
     }

@@ -10,44 +10,43 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, night: rulings to R-810; the catalogue built; the bundled change after the full run built)
+## State (2026-11-27, late night: rulings to R-820; his marks of Men v Crew actioned)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-810; `docs/EXECUTION.md`, 45 rules). Opus's full run
-  at f2b8796 reported (`docs/OPUS.md`); on it he ruled R-805 to R-809, and R-810 sets the order.
-- Built on `bundle-4` 0a8cca9 (ENGINE_NOTES section 44, last item): too deep at 1,000 and monk following at 450
-  (from the 564 matches); should have kited, standing in area damage and an attacker on another target are not read
-  (R-806, R-807, R-809); a death is a spike (400 inside 3 s) or a burst on a hurt player, and the interrupt is a
-  fault on a spike only (R-805, by his ruling: `FAULT_BY_RULING`); a skill the enemy disabled is not ready, no
-  enchantment on a target under Shadow Shroud, no spell from a monk under Shame; on every attempt the set held,
-  Shadow Shroud, his monks stopped, what landed for him; on every death what each missed prot, heal and interrupt
-  would have done and the latest start that still saves him; the death's sentences in the match report's wording.
-- `cases.py attempts` section H checks the stage 3 and 4 kinds; `cases.py winchance <file> --json <out>` gives the
-  win chance over each match, at 0:00 and each death's change (for the match report's exporter; not kept in the repo).
-- Last run: the development set at 0a8cca9 (82 matches): 6,935 plays and 5,420 records identical to f2b8796, 323
-  Classic rows pass. Main's `execution_rows.json` is from 0a8cca9 (three games, 46 deaths, none marked yet).
+- Execution (the micro answer) is the block of work (R-701 to R-820; `docs/EXECUTION.md`, 51 rules). Opus's full run
+  at ccd0a55 reported (`docs/OPUS.md`): plays identical, 1,000 stands for too deep, monk following 450 not steady,
+  the interrupt on spikes fails one group short (59 taken; 8/10), a block reads backwards, stance fails.
+- He marked Men v Crew's 15 deaths (Execution view); the marks are in the review key (set x1) and his comments and
+  the chat's are R-811 to R-820, built on `bundle-4` c477e8c (ENGINE_NOTES section 44, last item): a prot listed
+  only where it would have saved him, a heal the same on a spike; Divine Favor only with a heal of the skill's own;
+  Shield Guardian not counted under Shadow Shroud; nine more disables by their text, Shame and Diversion not cast
+  through, Arcane Thievery said on the monk; arrow flight 0.2 s; no monk in range and too fast before the hexes; one
+  interrupt of a player on one spike; strips, the shield and the area damage before a burst on a death; the
+  sentences in the match report's wording (`execution.death_lines`, `death_rulings`).
+- Last run: the development set at c477e8c (82 matches): plays and moments identical to the digest of ccd0a55, 323
+  Classic rows pass. Main's `execution_rows.json` is from c477e8c (three games, 46 deaths; Men v Crew's rows are
+  written over the ones he marked, said to him; RACK v hdm and Men v NwAy not marked yet).
 
 ## Next (in order, R-810)
-1. Full run wanted at ccd0a55 (Opus's; engine 0a8cca9 plus the digest tool): `moments.py all` (two workers fit
-   again); `tools/golden/digest.py check <file> data/model/plays_digest.json` (the 82 matches of the set must not
-   differ), then `digest.py make` for every match, pushed; the key, the truths; `cases.py positions`, `attempts`
-   (it should run to its end: read section G's interrupt on spikes alone, and every row of section H), `pressure`,
-   `execution`; `cases.py winchance` once, to see it runs on every match. Report: do 1,000 and 450 stand; does the
-   interrupt pass on spikes; which ruled kinds fail or read backwards (stance, Deep Wound left); a block, Shadow
-   Shroud, a monk stopped.
-2. Stage X5: his marks on the Execution view (46 deaths in three games; Model > Game review > Execution). The rows
-   are written and wait for him (R-752 is met: the catalogue is built). Bring him the full run's verdicts with them.
-3. On his marks and the report: one bundled change if they ask for one; then the flag readings shown again
-   (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new families beside the old kinds for one
-   rebuild (R-323), stand-in prices replaced, replaced kinds retired (`ask.py`, `learning.py` still import `tq.py`),
-   SPEC and METHODS rewritten, the readability test, his list of R-398 (items 1, 2, 3's remainder, 6, 7, 8, 10
-   left), the merge, one Train batch on the same 506 (he starts it).
+1. Stage X5: his marks on RACK v hdm and Men v NwAy (Model > Game review > Execution), and Men v Crew again if he
+   wishes, on the rows of c477e8c. File them in the review key (set x1, as Men v Crew's are) the same session.
+2. Full run wanted at c477e8c (Opus's), once his marks ask for no further change: `moments.py all`; `digest.py check`
+   (the plays must not differ from ccd0a55's digest), `cases.py positions`, `attempts` (section G: the interrupt on
+   spikes again, now with arrow flight and one interrupt a player; section H), `pressure`, `execution`. Then bring
+   him its verdicts: the interrupt on spikes if it still fails (R-744), stance, a block reading backwards.
+3. Balling and Invoke Lightning: measure on the development set how far apart the record sets the hits of one cast
+   on several players (`BALL_S` 0.15 misses Invoke's), then one change with his word (it moves play-level rows).
+4. Then the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new families
+   beside the old kinds for one rebuild (R-323), stand-in prices replaced, replaced kinds retired (`ask.py`,
+   `learning.py` still import `tq.py`), SPEC and METHODS rewritten, the readability test, his list of R-398 (items
+   1, 2, 3's remainder, 6, 7, 8, 10 left), the merge, one Train batch on the same 506 (he starts it).
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-27 (night): does a party-wide enchantment (Shield Guardian) land on a player under Shadow
-   Shroud? Read as landing, so a Shield Guardian not cast is still a missed prot under Shroud.
+1. Claude's readings in R-811 to R-817, his to correct: a Shield Guardian cast under Shroud is not a prot landed
+   either; each cast read alone; the two skills of a monk that give the most; Distracting Shot, Disrupting Chop,
+   Magebane Shot, Signet of Distraction and Lyssa's Assault read as disables with his list.
 2. A death's own change in win chance is small (about 2 points on the set: the death penalty alone). Said to him.
 3. An even 6v6 and below has no row, as built. Skills from the wiki: the sync fixed later (R-765). September's
    early matches (R-673): at R-398. R-576, R-575. The match report is parked (`docs/OPUS.md`); its readings are built.
@@ -69,7 +68,8 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   data/model/<name>.json`). Set `PYTHONDONTWRITEBYTECODE=1`; never edit an engine file while a run is going (workers
   are started afresh and read the code again). After a change: `tools/golden/review.py score <file> --key
   <main>/data/model/review_key.json`, then `tools/golden/compare.py <before> <after>` (or `digest.py check`).
-  The view's rows: `review.py execution <file> <main>/data/model/execution_rows.json 51683de9 d06ef3c7 c19f13e3`.
+  The view's rows: `review.py execution <file> <main>/data/model/execution_rows.json 51683de9 d06ef3c7 c19f13e3`;
+  one match's deaths in words: `execution.py deaths <report id>`.
   Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions

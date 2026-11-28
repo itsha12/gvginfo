@@ -36940,6 +36940,287 @@
      "why": "OG v cope 26:10 (draft row of the play for 28:00, Classic, correct), no words"
     }
    ]
+  },
+  {
+   "id": "x1-5168-1",
+   "set": "x1",
+   "row": 1,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    42,
+    42
+   ],
+   "type": "execution",
+   "death": "x:42.3:Men:7 Monk",
+   "shown": "0:42 Men's 7 Monk dies to a spike by Crew: 412 in 1.6 s from the first big hit at 0:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 412 inside 3 s, the big hits over 0.9 s). Missed: interrupts, prots. The sum: He had 265 health of 540; 412 landed (412 in hits); 0 stopped before it landed by gvg.report's estimate; 132 healed; he ended at 0. 272 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 66. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Missed prot: Prot available to cast, in reach, Spirit Bond, Shield Guardian, Shielding Hands ready, sufficient energy (56 to 56 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 194 and saved him if begun within 1.3 s of the first big hit; Shield Guardian would have stopped about 0, not enough on its own to save him (15 short); Shielding Hands would have stopped about 75 and healed 38 and saved him if begun within 1.3 s of the first big hit (an upper bound, R-785). Missed prot: 8 Monk available to cast, in reach, Spirit Bond, Guardian ready, sufficient energy (65 to 65 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Spirit Bond would have stopped about 0 and healed 193 and saved him if begun within 1.3 s of the first big hit; Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (1x Invoke Lightning; 4x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Thrown and missed: Mesmer with Power Spike at Lightning Strike (gvg.report's read: finished). Success: his 8 Monk cast Signet of Devotion 2.4 s before the first big hit, healing for 113. Done in time by a team mate, so no fault (R-715): a heal.",
+   "mark": "partly",
+   "his_words": "Repetition of the interrupt. You are correct that he threw and missed at lightnight strike, but that means it was not available for the spike.",
+   "engine": "0a8cca9",
+   "actioned": "R-816: an interrupt thrown and missed is said once; no other asked of that player on the spike.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-2",
+   "set": "x1",
+   "row": 2,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    124,
+    124
+   ],
+   "type": "execution",
+   "death": "x:124.7:Men:Ranger",
+   "shown": "2:04 Men's Ranger dies to a burst on a hurt player by Crew: 212 in 0.5 s from its first big hit at 2:04, most of the 186 health he had (Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Nothing the engine checks was missed. The sum: He had 84 health of 465; 149 landed (149 in hits); 0 stopped before it landed by gvg.report's estimate; 131 healed; he ended at 0 (66 less than the parts give). Success: his Prot cast Shield Guardian 1.9 s before the first big hit. Success: his 7 Monk cast Infuse Health 0.1 s after the first big hit, healing for 131. Done in time by a team mate, so no fault (R-715): a heal, a prot.",
+   "mark": "partly",
+   "his_words": "he took AoE damage from invoke, it should be reflected somewhere.",
+   "engine": "0a8cca9",
+   "actioned": "R-818: the area damage that hurt him before the burst is said (307 from Invoke Lightning cast on the Paragon).",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-3",
+   "set": "x1",
+   "row": 3,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    140,
+    140
+   ],
+   "type": "execution",
+   "death": "x:140.9:Men:Mesmer",
+   "shown": "2:20 Men's Mesmer dies to a spike by Crew: 518 in 0.3 s from the first big hit at 2:20 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 544 inside 3 s, the big hits over 0.3 s). Missed: interrupts. The sum: He had 484 health of 570; 553 landed (544 in hits, 9 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Shadow Shroud was on him from -0.7 s to 0.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
+   "mark": "partly",
+   "his_words": "Was 7 monk not in range for this? He had infuse available.",
+   "engine": "0a8cca9",
+   "actioned": "R-815: 7 Monk in range with Infuse Health ready; too fast (0.3 s against 0.45 s), said as that, before Shadow Shroud.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-4",
+   "set": "x1",
+   "row": 4,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    221,
+    221
+   ],
+   "type": "execution",
+   "death": "x:221.3:Men:Mesmer",
+   "shown": "3:41 Men's Mesmer dies to a spike by Crew: 508 in 1.1 s from the first big hit at 3:40 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3; 547 inside 3 s, the big hits over 1.1 s). Missed: heals, interrupts, prots. The sum: He had 459 health of 468; 547 landed (547 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 39 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 9. His death took the AoB Derv with it, who had resurrected him with Death Pact Signet inside the last 120 s (a pact kill, R-783). Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed prot: Prot available to cast, in reach, Shield Guardian ready, sufficient energy (59 to 59 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (88 short) (an upper bound, R-785). Missed heal (begun too late, R-802): Prot started Blessed Light 0.9 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (59 to 59 by gvg.report's model). Blessed Light would have healed about 70, not enough on its own to save him (18 short) (an upper bound, R-785). Missed heal (begun too late, R-802): 7 Monk started Infuse Health 0.9 s after the first big hit and the death cut it off; he had it ready 0.4 s after the first big hit, in reach, his hands free, sufficient energy (30 to 51 by gvg.report's model). Infuse Health would have healed about 192 and saved him if begun within 0.8 s of the first big hit (an upper bound, R-785). Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range; Mesmer available to cast, Complicate/Power Spike ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Begun on him and never landed, so not done (R-797): Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled).",
+   "mark": "correct",
+   "his_words": "",
+   "engine": "0a8cca9",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-5",
+   "set": "x1",
+   "row": 5,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    221,
+    221
+   ],
+   "type": "execution",
+   "death": "x:221.3:Men:AoB Derv",
+   "shown": "3:41 Men's AoB Derv dies as the Mesmer dies: a pact kill (R-783). He had resurrected the Mesmer with Death Pact Signet 45 s before, and the signet's caster dies the next time that player dies within 120 s. The why is the Mesmer's death; no chance is read on this one.",
+   "mark": "correct",
+   "his_words": "Very wordy though, I already know how death pact works, you can just say he resurected mesmer 45s before.",
+   "engine": "0a8cca9",
+   "actioned": "R-820: the pact kill in one short sentence.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-6",
+   "set": "x1",
+   "row": 6,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    245,
+    245
+   ],
+   "type": "execution",
+   "death": "x:245.7:Men:Prot",
+   "shown": "4:05 Men's Prot dies to a spike by Crew: 455 in 1.3 s from the first big hit at 4:04 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 542 inside 3 s, the big hits over 1.3 s). Missed: heals, interrupts, prots. The sum: He had 540 health of 540; 563 landed (542 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 428 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104. Shield set: he held Staff #1, a set with no shield, at the first big hit. Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault. Missed prot: Prot himself (R-796) available to cast, Shield Guardian ready, sufficient energy (63 to 63 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0 and healed 38 and saved him if begun within 1.2 s of the first big hit (an upper bound, R-785). Missed heal (begun too late, R-802): Prot himself (R-796) started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, his hands free, sufficient energy (63 to 63 by gvg.report's model). Blessed Light would have healed about 70 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed heal (begun too late, R-802): 8 Monk started Blessed Light 1.0 s after the first big hit and the death cut it off; he had it ready 0.2 s after the first big hit, in reach, his hands free, sufficient energy (55 to 55 by gvg.report's model). Blessed Light would have healed about 107 and saved him if begun within 0.5 s of the first big hit (an upper bound, R-785). Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (4x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Begun on him and never landed, so not done (R-797): Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled). Not a chance (a heal): 7 Monk's Patient Spirit, Vigorous Spirit could not be cast (Shadow Shroud on the target: no enchantment can be cast on him). Not a chance (a prot): 8 Monk's Guardian, Spirit Bond could not be cast (Shadow Shroud on the target: no enchantment can be cast on him).",
+   "mark": "partly",
+   "his_words": "tell me if shield would have saved him.why couldn't 7 monk use infuse to save this spike?",
+   "engine": "0a8cca9",
+   "actioned": "R-815, R-819: 7 Monk's hands were full (Vigorous Spirit on the Paragon, then its aftercast), said as that; a shield would have saved him, said.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-7",
+   "set": "x1",
+   "row": 7,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    253,
+    253
+   ],
+   "type": "execution",
+   "death": "x:253.9:Men:Paragon",
+   "shown": "4:13 Men's Paragon dies to a spike by Crew: 347 in 0.2 s from the first big hit at 4:13 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 476 inside 3 s, the big hits over 0.2 s). Missed: interrupts. The sum: He had 440 health of 500; 476 landed (476 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Missed interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (3x Invoke Lightning; 1x Shell Shock). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
+   "mark": "incorrect",
+   "his_words": "Isn't this too fast for interupt?",
+   "engine": "0a8cca9",
+   "actioned": "R-814: an arrow's flight of 0.2 s; one Invoke Lightning of 1.0 s was still there for the Ranger, so the interrupt stays.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-8",
+   "set": "x1",
+   "row": 8,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1440,
+    1440
+   ],
+   "type": "execution",
+   "death": "x:1440.2:Men:AoB Derv",
+   "shown": "24:00 Men's AoB Derv dies to a spike by Crew: 340 in 0.8 s from the first big hit at 23:59 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 4; 430 inside 3 s, the big hits over 0.8 s). Nothing the engine checks was missed. The sum: He had 329 health of 530; 430 landed (430 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 430 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 104. Shield set: he held Staff #1, a set with no shield, at the first big hit. Shadow Shroud was on him from -3.8 s to 0.8 s after the first big hit: no enchantment could be cast on him then, so an enchantment prot not cast under it is no fault.",
+   "mark": "incorrect",
+   "his_words": "this should be no fault because no monks in range (overrides the shadow shroud no fault).",
+   "engine": "0a8cca9",
+   "actioned": "R-815: no monk in range is the reason, before Shadow Shroud.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-9",
+   "set": "x1",
+   "row": 9,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1490,
+    1490
+   ],
+   "type": "execution",
+   "death": "x:1490.6:Men:7 Monk",
+   "shown": "24:50 Men's 7 Monk dies to a spike by Crew: 404 in 1.8 s from the first big hit at 24:48 (Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 472 inside 3 s, the big hits over 0.1 s). Missed: interrupts, prots. The sum: He had 498 health of 498; 572 landed (472 in hits, 100 from Deep Wound); 0 stopped before it landed by gvg.report's estimate; 30 healed; he ended at 0. Missed prot: Prot available to cast, in reach, Shield Guardian, Shielding Hands ready, sufficient energy (60 to 60 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Shield Guardian would have stopped about 0, not enough on its own to save him (44 short); Shielding Hands would have stopped about 45 and healed 38 and saved him if begun within 1.5 s of the first big hit (an upper bound, R-785). Missed prot: 8 Monk available to cast, in reach, Guardian ready, sufficient energy (62 to 62 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 0 and healed 45 and saved him if begun within 0.7 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Complicate/Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 5 spike skills cast (3x Invoke Lightning; 2x Lightning Strike). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him. Success: his 7 Monk cast Patient Spirit 0.9 s after the first big hit, healing for 30. Done in time by a team mate, so no fault (R-715): a heal, an interrupt on a spike skill.",
+   "mark": "incorrect",
+   "his_words": "mesmer DID hit an interupt on invoke lightning, this should be a success and no interrupt fault from the mesmer.",
+   "engine": "0a8cca9",
+   "actioned": "R-816: the Mesmer's Complicate on Invoke Lightning is a success; no other interrupt asked of him.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-10",
+   "set": "x1",
+   "row": 10,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1519,
+    1519
+   ],
+   "type": "execution",
+   "death": "x:1519.6:Men:Paragon",
+   "shown": "25:19 Men's Paragon dies to a spike by Crew: 412 in 0.9 s from the first big hit at 25:18 (Mesmer, Air Ele 1, Air Ele 2, Water Ele, Air Ele 3, Air Ele 4; 451 inside 3 s, the big hits over 0.9 s). Missed: interrupts. The sum: He had 428 health of 428; 472 landed (451 in hits, 21 in degen); 0 stopped before it landed by gvg.report's estimate; 11 healed (8 more cast on him was overhealing); he ended at 0. Monks stopped at the first big hit: his 7 Monk: knocked down (Gale, 0.3 s before the first big hit). Missed interrupt: Mesmer available to cast, Power Spike ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 121 damage (what a cast of it did for its caster on average this match) and saved him.",
+   "mark": "partly",
+   "his_words": "let's include shatters/strips in this to see if a life saving prot got removed.",
+   "engine": "0a8cca9",
+   "actioned": "R-819: strips on him are said (Vigorous Spirit, by Shatter Enchantment).",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-11",
+   "set": "x1",
+   "row": 11,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1608,
+    1608
+   ],
+   "type": "execution",
+   "death": "x:1608.0:Men:Prot",
+   "shown": "26:48 Men's Prot dies to a spike by Crew: 520 in 0.5 s from the first big hit at 26:47 (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4; 520 inside 3 s, the big hits over 0.5 s). Missed: heals, interrupts. The sum: He had 468 health of 468; 520 landed (520 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. 137 of the hits landed while he held a set with no shield and was not casting: a shield would have stopped about 33. Shield set: he held Wand #1 + Focus #1, a set with no shield, at the first big hit. Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Patient Spirit ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 0.2 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 0.2 s of the first big hit; Patient Spirit would have healed about 76 and saved him if begun within 0.2 s of the first big hit (an upper bound, R-785). Missed interrupt: Mesmer available to cast, Complicate ready and in range; Ranger available to cast, Distracting Shot/Savage Shot ready and in range. 3 spike skills cast (3x Invoke Lightning). An interrupt on 1 Invoke Lightning would have prevented about 128 damage (what a cast of it did for its caster on average this match) and saved him.",
+   "mark": "correct",
+   "his_words": "",
+   "engine": "0a8cca9",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-12",
+   "set": "x1",
+   "row": 12,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1611,
+    1611
+   ],
+   "type": "execution",
+   "death": "x:1611.9:Men:Ranger",
+   "shown": "26:51 Men's Ranger dies to a burst on a hurt player by Crew: 418 in 3.9 s from its first big hit at 26:48, most of the 414 health he had (Air Ele 1, Air Ele 2, Air Ele 3, Air Ele 4). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: heals. The sum: He had 414 health of 493; 418 landed (418 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0. Missed heal: 7 Monk available to cast, in reach, Vigorous Spirit, Infuse Health, Dwayna's Kiss, Heal Other ready, sufficient energy (57 to 57 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Vigorous Spirit would have healed about 59 and saved him if begun within 3.6 s of the first big hit; Infuse Health would have healed about 192 and saved him if begun within 3.6 s of the first big hit; Dwayna's Kiss would have healed about 97 and saved him if begun within 2.8 s of the first big hit; Heal Other would have healed about 110 and saved him if begun within 3.1 s of the first big hit (an upper bound, R-785).",
+   "mark": "correct",
+   "his_words": "if there are several heals, let's list no more than the first 2 from the same monk.",
+   "engine": "0a8cca9",
+   "actioned": "R-817: no more than two skills of one monk.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-13",
+   "set": "x1",
+   "row": 13,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1626,
+    1626
+   ],
+   "type": "execution",
+   "death": "x:1626.0:Men:AoB Derv",
+   "shown": "27:06 Men's AoB Derv dies with no spike on him, kept in danger by Crew from 27:02 (at or under 225 health with damage landing on him, R-749): 151 landed on him in 3.9 s, hits and degen (Water Ele). Nothing the engine checks was missed. The sum: He had 196 health of 503; 151 landed (151 in hits); 0 stopped before it landed by gvg.report's estimate; 0 healed; he ended at 0 (45 less than the parts give). Monks stopped at its start: his 7 Monk: under Shame. Begun on him and never landed, so not done (R-797): Spirit Bond 3.8 s after its start (cancelled).",
+   "mark": "incorrect",
+   "his_words": "we don't want to count shame on monks not in range.",
+   "engine": "0a8cca9",
+   "actioned": "R-815: Shame on a monk out of range is not counted.",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-14",
+   "set": "x1",
+   "row": 14,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1632,
+    1632
+   ],
+   "type": "execution",
+   "death": "x:1632.4:Men:Paragon",
+   "shown": "27:12 Men's Paragon dies with no spike on him, kept in danger by Crew from 27:03 (at or under 225 health with damage landing on him, R-749): 255 landed on him in 9.3 s, hits and degen (Water Ele). Nothing the engine checks was missed. The sum: He had 214 health of 356; 255 landed (111 in hits, 144 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 24 healed; he ended at 0.",
+   "mark": "correct",
+   "his_words": "",
+   "engine": "0a8cca9",
+   "checks": []
+  },
+  {
+   "id": "x1-5168-15",
+   "set": "x1",
+   "row": 15,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Isle of Jade",
+   "window": [
+    1640,
+    1640
+   ],
+   "type": "execution",
+   "death": "x:1640.6:Men:8 Monk",
+   "shown": "27:20 Men's 8 Monk dies to a burst on a hurt player by Crew: 654 in 6.2 s from its first big hit at 27:14, most of the 209 health he had (Air Ele 2, Water Ele). A burst, not a spike (R-780): no interrupt is asked of his team (R-805). Missed: prots. The sum: He had 209 health of 550; 715 landed (514 in hits, 201 from their NPCs); 0 stopped before it landed by gvg.report's estimate; 518 healed; he ended at 0 (49 less than the parts give). Missed prot: 8 Monk himself (R-796) available to cast, Guardian ready, sufficient energy (42 to 42 by gvg.report's model); not cast on him in the time he had to see the hit and cast (R-716). Guardian would have stopped about 96 and healed 45; whether that would have saved him is not told: the sum of this death does not balance (an upper bound, R-785). Success: his 8 Monk cast Blessed Light 2.2 s before the first big hit, healing for 158. Done in time by a team mate, so no fault (R-715): a heal.",
+   "mark": "correct",
+   "his_words": "",
+   "engine": "0a8cca9",
+   "checks": []
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
