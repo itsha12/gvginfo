@@ -134,6 +134,24 @@
     8070
    ]
   },
+  "D-let through": {
+   "missed (and not taken by anyone else)": [
+    219,
+    1853
+   ],
+   "missed by one, taken by another": [
+    20,
+    97
+   ],
+   "taken, nobody missed it": [
+    426,
+    1203
+   ],
+   "no chance either way": [
+    5006,
+    13908
+   ]
+  },
   "E": {
    "0": [
     1839,
@@ -154,16 +172,16 @@
   },
   "F": {
    "0": [
-    3905,
-    11565
+    3792,
+    10755
    ],
    "1": [
-    1690,
-    5176
+    1677,
+    4847
    ],
    "2+": [
-    76,
-    320
+    202,
+    1459
    ]
   }
  },
@@ -299,6 +317,32 @@
     1670,
     16.826347305389223
    ]
+  },
+  "let through": {
+   "side": "attack",
+   "words": "a prot or heal for the target on the list of skills worth interrupting that landed, with an interrupt of ours ready, in reach and with time to react (on a spike of 400 or more only, R-850)",
+   "verdict": "passes",
+   "taken": [
+    295,
+    37.6271186440678
+   ],
+   "missed": [
+    545,
+    16.88073394495413
+   ],
+   "difference": 12.228020609117607,
+   "range": [
+    6.700378510775346,
+    16.718238794346032
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "late": [
+    0,
+    NaN
+   ]
   }
  },
  "faults_told": [
@@ -307,7 +351,8 @@
   "interrupt"
  ],
  "faults_ruled": [
-  "strip"
+  "strip",
+  "let through"
  ],
  "faults_by_ruling": [
   "interrupt"
@@ -519,7 +564,7 @@
    ]
   },
   "H1. On the spikes and bursts | Shadow Shroud, against the same team's other spikes": {
-   "status": "context: the attack's good play",
+   "status": "the attack's good play (R-849)",
    "should": "kill more",
    "verdict": "fails",
    "with": [
@@ -540,6 +585,7 @@
     10
    ],
    "against": "no prots held level (none can be cast on him); the same teams in the same matches",
+   "by_name": "R-849",
    "against_all": {
     "without": [
      16734,

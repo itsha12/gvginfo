@@ -1,93 +1,8 @@
 {
  "attempts": 26944,
  "matches": 564,
- "cuts": {
-  "too deep": {
-   "rule": {
-    "cut": 1000,
-    "attempts": 1588,
-    "killed_past": 0.465,
-    "killed_short": 0.259
-   },
-   "engine": 1000,
-   "without_each_group": [
-    1000,
-    950,
-    1000,
-    1000,
-    950,
-    950,
-    950,
-    950,
-    1000,
-    1000
-   ]
-  },
-  "monk following": {
-   "rule": {
-    "cut": 450,
-    "attempts": 1670,
-    "killed_past": 0.485,
-    "killed_short": 0.293
-   },
-   "engine": 450,
-   "without_each_group": [
-    450,
-    0,
-    450,
-    0,
-    0,
-    0,
-    450,
-    0,
-    400,
-    450
-   ]
-  }
- },
+ "cuts": {},
  "kinds": {
-  "too deep": {
-   "with": [
-    2227,
-    48.7
-   ],
-   "without": [
-    24717,
-    30.9
-   ],
-   "spikes_with": 1283,
-   "difference": 1.8841233654018341,
-   "range": [
-    -0.336155677448024,
-    4.1507481967879825
-   ],
-   "groups_right": [
-    6,
-    10
-   ],
-   "verdict": "fails"
-  },
-  "monk following": {
-   "with": [
-    355,
-    39.7
-   ],
-   "without": [
-    26589,
-    32.2
-   ],
-   "spikes_with": 226,
-   "difference": 5.593609528515325,
-   "range": [
-    0.8446888127340015,
-    10.375593800856498
-   ],
-   "groups_right": [
-    7,
-    10
-   ],
-   "verdict": "fails"
-  },
   "the attack's frontline snared": {
    "with": [
     1724,
@@ -112,7 +27,8 @@
  },
  "position_faults": {
   "pass": [],
-  "engine": []
+  "engine": [],
+  "paused": true
  },
  "rows": {
   "flail": {
