@@ -1376,6 +1376,21 @@ index pointing here. Read the section for a reading before changing it, and keep
   Wound left with a removal ready passes (58.2% killed against 30.7%, +29.5); Deep Wound not on him in time passes as a why (-6.5); a block
   reads backwards (+5.6, 4 of 10); the stance fails; a monk stopped +5.7 (8 of 10); the interrupt on spikes alone has 12 taken (too few on
   the set). The full run decides each.
+  **The full run at 90223ed, and two tests set right** (2026-11-28; `bundle-4` d019748, `cases.py` only, no reading changes; plays and moments
+  identical to the digest on all 564). The interrupt on a spike passes (168 taken; -16.1, 10/10). A block read backwards (+2.7, 2/10) and the
+  stance failed (+1.8, 5/10) for faults of the test, not of the readings. A block: the situation held level counts the prots on him, and Guardian
+  is one of them, so a block was set against the other prots (Spirit Bond, Shielding Hands, Protective Spirit), not against no block. Left out of
+  that count (`_x3_situation`'s `leave`; the other prots still held level) it passes: 22.1% killed against 33.8%, -5.2 (-6.8 to -3.5), 10/10; no
+  other prot on either side -7.3, 10/10. By how much of the spike was attacks (scratch, not in the report): a third or less -0.9 (no difference),
+  a third to two thirds -5.1, two thirds or more -8.5 (10/10). The blocks: Guardian 1,389, Shield Guardian 813, Swirling Aura 104, Protector's
+  Defense 62, Mirage Cloak 45, Aegis 35. Spell immunity the same way: 37 rows, +1.6, no answer. The stance: a warrior in Frenzy was set against
+  every player who is no monk, and those who carry it are killed less whatever they do (the target's armour class added to the situation moves it
+  to +3.9 only: not the whole of it). Set against the same players in the same matches out of a stance (`same`): 282 at 24.1% killed against 351
+  at 19.1%, +11.8 (+7.0 to +17.1), 10/10. From the sum: 68 deaths with one up (Frenzy 221 attempts, Primal Rage 49, Frenzied Defense 12, the
+  last on monks); the skill's own share at the least 100 or more on 48 of them (middle 126). The plain test's figure is kept beside each
+  (`against_all`). Tried the same way and not changed: too deep (+5.3, 9/10 against the same players; +4.4, 8/10 among players seen both ways:
+  not steady) and monk following (+11.4, 8/10): the situation already holds his distance from his group. The burst's interrupt (H2) moved to
+  +7.9, 8/10 with one interrupt a player: one group short; not a fault by R-805.
   **The win chance over the match** (`Moments.position_series`, kept as `flag_cost[rid].series`; `cases.py winchance <file> --json <out>`):
   the position every 10 s and at each death, priced by the price of a result fitted without the match's group. A death's change is the
   price of its death penalty alone (15%, to the floor of 60%, by the game's rule: the replay writes the new figure late on one death in

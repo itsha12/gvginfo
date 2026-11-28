@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, morning (a new chat): the full run at 90223ed read; a block and the stance pass once their tests are set right
+- Opus's full run at 90223ed read (plays and moments identical on all 564; the interrupt on spikes passes, 168 taken, -16.1, 10/10). Fable ran its own full run at the same engine (29 min, two workers; identical to the digest) to find why a block read backwards and the stance failed.
+- A block: the situation the test holds level counted the block itself among the prots on him, so Guardian was set against Spirit Bond and Shielding Hands, not against no block. Left out of the count: 22.1% killed against 33.8%, -5.2 (-6.8 to -3.5), 10/10. Nothing where a third or less of the spike is attacks (-0.9), -8.5 where two thirds or more.
+- The stance: a warrior in Frenzy was set against every player who is no monk. Against the same players in the same matches out of a stance: 24.1% against 19.1%, +11.8 (+7.0 to +17.1), 10/10. Of 68 deaths with one up the skill's own share was 100 or more on 48.
+- `bundle-4` d019748: `cases.py` (section H: `leave`, `same`, the plain test's figure kept beside each) and `attempts_cases.json` made again; only the stance, block and immunity rows differ. No engine reading changed.
+- Tried the same way and left alone: too deep and monk following (not steady). Put to him: a block against a spike mostly of spells; Frenzied Defense on a monk.
+
 ## 2026-11-28, after midnight (a new chat): his marks of RACK v hdm and Men v NwAy actioned; R-822 to R-830 filed
 - His marks read and filed in the review key (set x1, his words): RACK v hdm 10 of 10 deaths (7 correct, 2 partly, 1 incorrect), Men v NwAy 12 of 21 (7, 3, 2).
 - `bundle-4` 805b894, one bundled change (ENGINE_NOTES section 44, last item): cast times from the tag file where the skill data has none (Shield Guardian 1.5 s); a heal that comes as its enchantment ends counted only inside the window, and counted in what a cast that landed gave (Patient Spirit's 114); a spell lost to Shame told from the interrupt record; Deep Wound left in the form of the other missed chances, with whether its removal would have saved him; what a prot that landed stopped or blocked (Aura of Faith by its own rule).
