@@ -125,8 +125,6 @@ export async function renderPlayers(view) {
 
   view.innerHTML = `
     <h2>Players</h2>
-    <p class="lede">Stats per character across recorded matches. ${esc(data.note)} Tick character names and assign them to a
-      player to group them; the Players view adds up each player's characters.</p>
     <div class="toolbar" id="filters">
       <label>Show<select name="view"><option value="chars"${chars ? " selected" : ""}>Characters</option><option value="people"${chars ? "" : " selected"}>Players (${people.length})</option></select></label>
       <label>Search<input type="search" name="q" value="${esc(f.q)}" placeholder="Character or player"></label>
