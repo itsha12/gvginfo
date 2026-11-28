@@ -332,3 +332,13 @@ tr.selected td { background: var(--accent-soft); }
 .chip-btn:hover { background: var(--bg-2); }
 .chip-btn[disabled] { opacity: .4; cursor: default; }
 .chip-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+/* profession icons (wiki tango icons over the profession's colour) */
+.pico { --pc: var(--p-none); display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; background: var(--pc); vertical-align: middle; }
+.pico img { width: 100%; height: 100%; display: block; background: var(--card); }
+.picos { display: inline-flex; gap: .3rem; vertical-align: middle; }
+.pico[data-p="Warrior"] { --pc: var(--p-warrior); } .pico[data-p="Ranger"] { --pc: var(--p-ranger); }
+.pico[data-p="Monk"] { --pc: var(--p-monk); } .pico[data-p="Necromancer"] { --pc: var(--p-necromancer); }
+.pico[data-p="Mesmer"] { --pc: var(--p-mesmer); } .pico[data-p="Elementalist"] { --pc: var(--p-elementalist); }
+.pico[data-p="Assassin"] { --pc: var(--p-assassin); } .pico[data-p="Ritualist"] { --pc: var(--p-ritualist); }
+.pico[data-p="Paragon"] { --pc: var(--p-paragon); } .pico[data-p="Dervish"] { --pc: var(--p-dervish); }

@@ -6,6 +6,23 @@ import { matchList, newFilters, guildSlug, charLink, personLink } from "./home.j
 const lists = new Map(); // search state per profile, kept while the site is open
 const picked = new Map(); // per player: the characters he narrowed the page to (none = all)
 
+// Profession icons: the Guild Wars Wiki's tango icons (File:<Profession>-tango-icon-200.png). If one fails to load,
+// the profession's colour square shows instead.
+const PROF_ICON = {
+  Warrior: "https://wiki.guildwars.com/images/8/88/Warrior-tango-icon-200.png",
+  Ranger: "https://wiki.guildwars.com/images/4/43/Ranger-tango-icon-200.png",
+  Monk: "https://wiki.guildwars.com/images/8/86/Monk-tango-icon-200.png",
+  Necromancer: "https://wiki.guildwars.com/images/a/a8/Necromancer-tango-icon-200.png",
+  Mesmer: "https://wiki.guildwars.com/images/c/cc/Mesmer-tango-icon-200.png",
+  Elementalist: "https://wiki.guildwars.com/images/3/3c/Elementalist-tango-icon-200.png",
+  Assassin: "https://wiki.guildwars.com/images/3/34/Assassin-tango-icon-200.png",
+  Ritualist: "https://wiki.guildwars.com/images/1/15/Ritualist-tango-icon-200.png",
+  Paragon: "https://wiki.guildwars.com/images/2/21/Paragon-tango-icon-200.png",
+  Dervish: "https://wiki.guildwars.com/images/b/bf/Dervish-tango-icon-200.png",
+};
+export const profIcon = (p) => !p ? "" : `<span class="pico" data-p="${esc(p)}" title="${esc(p)}">${PROF_ICON[p] ? `<img src="${PROF_ICON[p]}" alt="${esc(p)}" loading="lazy" onerror="this.remove()">` : ""}</span>`;
+const most = (xs) => { const c = new Map(); for (const x of xs) if (x) c.set(x, (c.get(x) || 0) + 1); return [...c.entries()].sort((a, b) => b[1] - a[1])[0]?.[0]; };
+
 const people = async () => ((await readJson("data/aliases.json", { people: {} })) || {}).people || {};
 const isAT = (occ) => /^AT-/.test(occ || "");
 const rate = (rows) => rows.length ? `${pct(rows.filter((r) => r.t.won).length, rows.length)}` : "–";
@@ -14,6 +31,7 @@ const rec = (rows) => `${rows.filter((r) => r.t.won).length}–${rows.filter((r)
 export async function renderPerson(view, [name = ""]) {
   const [recent, P] = await Promise.all([lazy("recent"), people()]);
   const chars = P[name];
+  picked.delete(`p:${name}`); // a player page always opens on all his characters
   if (!chars) {
     view.innerHTML = `<p><a href="#/players">← Players</a></p><h2>${esc(name)}</h2><div class="empty-state">No player of this name. Players are made on the Players page by assigning characters to a name.</div>`;
     return;
@@ -66,6 +84,11 @@ function draw(view, recent, o) {
     <h3>Recent matches</h3>
     <div id="list"></div>
 
+    ${perChar.length ? `<h3>Characters</h3>
+    <div class="scroll"><table class="data"><thead><tr><th style="width:1%">Professions</th><th>Character</th><th class="num">Games</th><th class="num">Won</th><th class="num">Last seen</th></tr></thead>
+    <tbody>${perChar.map((c) => { const pr = most(c.rows.map((r) => r.p.p)), sc = most(c.rows.filter((r) => r.p.p === pr).map((r) => r.p.s));
+      return `<tr><td><span class="picos">${profIcon(pr)}${profIcon(sc)}</span></td><td>${charLink(c.name)}</td><td class="num">${c.games}</td><td class="num">${pct(c.wins, c.games)}</td><td class="num">${esc(ago(c.last))}</td></tr>`; }).join("")}</tbody></table></div>` : ""}
+
     <h3>Builds played</h3>
     ${buildsHtml(builds)}
 
@@ -74,9 +97,7 @@ function draw(view, recent, o) {
     <tbody>${guilds.map((g) => `<tr><td><a href="#/guilds/${encodeURIComponent(g.key)}"><b>${esc(g.name || "?")}</b></a> <span class="muted">[${esc(g.tag || "")}]</span></td>
       <td class="num">${g.n}</td><td class="num">${pct(g.wins, g.n)}</td><td class="num">${esc(ago(g.last))}</td></tr>`).join("")}</tbody></table></div>
 
-    ${perChar.length ? `<h3>Characters</h3>
-    <div class="scroll"><table class="data"><thead><tr><th>Character</th><th class="num">Games</th><th class="num">Won</th><th class="num">Last seen</th></tr></thead>
-    <tbody>${perChar.map((c) => `<tr><td>${charLink(c.name)}</td><td class="num">${c.games}</td><td class="num">${pct(c.wins, c.games)}</td><td class="num">${esc(ago(c.last))}</td></tr>`).join("")}</tbody></table></div>` : ""}`;
+`;
 
   if (!lists.has(o.key)) lists.set(o.key, newFilters(20));
   matchList(view.querySelector("#list"), matches, lists.get(o.key), { allMatches: all });
