@@ -149,7 +149,8 @@ measurement cache key, so it belongs inside the one rebuild (R-322), not before.
 10. **Shadow Shroud** (R-838): context for now, read again with more matches.
 11. **Too deep and a monk following** (R-834): paused, kept on the records.
 12. **Stages 2 to 4 of the decision to split at all**: wait for more matches (R-570).
-13. **The match report** (R-800): parked until he starts it.
+13. **The match report** (R-800): no longer parked (2026-11-28): wanted before or with the first Train batch, so its
+    page lands with the close's merge; Opus builds it, Fable reviews it once.
 14. **The wiki sync's missing cast times** (R-765): later.
 
 ### No row or no reading yet

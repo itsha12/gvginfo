@@ -13,29 +13,32 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   match report is match review. The query tool (`ask.py`) is rewired to the new engine at the close (a match and a
   moment in; it imports `tq.py` today); the situation-without-a-match form is decided after family 4. Plan: the Docs
   "GvG Info: the road ahead".
-- Opus's drafts for R-398 items 2, 3 and 8 (rulings sorted, old files, all outstanding): `docs/opus/pre-training-drafts.md`.
+- Opus's drafts for R-398 items 2, 3 and 8 (rulings sorted, old files, all outstanding): `docs/opus/pre-training-drafts.md`;
+  start the close's R-398 review from it.
 - Full runs: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" first in HANDOFF's "Next"; Opus
   reports under "Run reports" and pushes only `data/model/*_cases.json` to `bundle-4` (fetch before every push there).
-- The match report is parked; its prototype now shows the engine's death lines word for word (report-prototype 69eee8a).
+- The match report is no longer parked (Denning, 2026-11-28): wanted before or with the first Train batch, so its page
+  lands with the close's merge (amends R-800's "after step 3"; see "Scheduled" below). Opus builds it; Fable reviews once.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
-(none)
+- From the full run at f7165b1 on: also run `cases.py winchance <plays> --json <file>` and keep the file with the run
+  for the match report's exporter (win chance at 0:00 and at each death; the engine says it is not kept in the repo).
 
-## Parked (Denning starts each; neither chat acts on these until he asks)
-- The match report (his one-click report on a match). Spec: the Docs artifact "GvG Info: match report spec" (layout
-  agreed on the prototype, 2026-11-27). Prototype: branch `report-prototype` (`#/report/<match id>`; page
+## Scheduled: the match report (Denning, 2026-11-28: wanted before training, or at the same time as it)
+- His one-click report on a match. Spec: the Docs artifact "GvG Info: match report spec" (layout agreed on the
+  prototype, 2026-11-27). Prototype: branch `report-prototype` (`#/report/<match id>`; page
   `assets/js/pages/report.js`, data builder `tools/report/proto_build.py`, sample `data/report_proto/51683de9.json`,
-  Men v Crew). When he starts it, in order:
+  Men v Crew; since 69eee8a its death lines are the engine's own, word for word). In order:
   1. Opus builds the exporter (outside `tools/replay_analysis/`) from the output of the latest full run: one file per
-     counted match on a `reports` branch; the page reads it in place of the prototype's file.
-  2. Then, to "For Fable" above: Shadow Shroud on the target; their monks disabled or cast-prevented at the spike
-     itself; the target's weapon set; every prot and heal ready and in reach named on a death, with energy; for a
-     missed prot or heal what it would have stopped and the latest start that still saves him (`prot_would`); each
-     death's change in win chance and the win chance at 0:00 if the run output lacks them. Then one review of the
-     exporter by Fable.
-  3. The page onto main. The Match report buttons are already on every match row (main 2fdf15e) and open
-     `#/report/<match id>`, for now a "not built yet" page (`home.js` `renderReportPending`); the real page takes
-     that route over.
+     counted match on a `reports` branch; the page reads it in place of the prototype's file. It can start on the
+     f7165b1 run's output while 4a goes on; it is run again on the full run after the merge.
+  2. The readings it asks of the engine are built (R-810; `bundle-4` 0a8cca9 on: the set held, Shadow Shroud, their
+     monks stopped, every prot, heal and interrupt ready with energy, what each would have done and the latest start
+     that saves). Each death's change in win chance comes from `cases.py winchance` (run at ccd0a55, not kept): run it
+     with every full run from now on (see "Queued"). Fable reviews the exporter once, at the close.
+  3. The page onto main with the close's merge, before or alongside the first Train batch. The Match report buttons
+     are already on every match row and open `#/report/<match id>`, for now a "not built yet" page (`home.js`
+     `renderReportPending`); the real page takes that route over.
 
 ## Ground rules for Opus
 - Never edit: engine files on `bundle-4`, HANDOFF.md, RULINGS.md, DEFINITIONS.md, CHANGELOG.md, ENGINE_NOTES.md,
@@ -173,6 +176,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - 2026-11-28, midday: the plan changed with Denning (no blind tests; step 3 dropped; the query tool rewired at the
   close); match report prototype on the engine's own death lines; guild page phone fix on `guild-phone` (his approval
   to merge); R-398 drafts in `docs/opus/`.
+- 2026-11-28, midday: guild page fix merged to main (f4bca1b, his approval); the match report scheduled before or
+  with training.
 - 2026-11-28, after midnight: full run at 90223ed reported; attempts report pushed (bundle-4 7797e59).
 - 2026-11-27, night: full run at ccd0a55 reported; outputs and the full digest pushed (bundle-4 0dbc722).
 - 2026-11-27: site look and pages (branch `site-look`, Denning's approval): parchment colours, clearer header, text
