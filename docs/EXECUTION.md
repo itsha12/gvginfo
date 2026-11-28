@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-820. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-821. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -187,7 +187,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 51. **Said on the death** (R-818, R-819, R-820): the area damage that hurt him before a burst (a cast aimed at another
     player); the enchantments stripped from him, and for a prot what it would have stopped had it stayed; how long of
     the spike he held a set with no shield, and whether a shield would have saved him; the sentences in the match
-    report's wording, with no ruling numbers. Built.
+    report's wording, with no ruling numbers; a cast begun too late to land reads "Late Heal:" or "Late Prot:" under
+    the same "Missed:" in the head (R-821). Built.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 

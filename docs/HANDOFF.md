@@ -10,28 +10,28 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, late night: rulings to R-820; his marks of Men v Crew actioned)
+## State (2026-11-27, late night: rulings to R-821; his marks of Men v Crew actioned)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-820; `docs/EXECUTION.md`, 51 rules). Opus's full run
+- Execution (the micro answer) is the block of work (R-701 to R-821; `docs/EXECUTION.md`, 51 rules). Opus's full run
   at ccd0a55 reported (`docs/OPUS.md`): plays identical, 1,000 stands for too deep, monk following 450 not steady,
   the interrupt on spikes fails one group short (59 taken; 8/10), a block reads backwards, stance fails.
 - He marked Men v Crew's 15 deaths (Execution view); the marks are in the review key (set x1) and his comments and
-  the chat's are R-811 to R-820, built on `bundle-4` c477e8c (ENGINE_NOTES section 44, last item): a prot listed
+  the chat's are R-811 to R-821, built on `bundle-4` c477e8c (92de38e adds R-821's words) (ENGINE_NOTES section 44, last item): a prot listed
   only where it would have saved him, a heal the same on a spike; Divine Favor only with a heal of the skill's own;
   Shield Guardian not counted under Shadow Shroud; nine more disables by their text, Shame and Diversion not cast
   through, Arcane Thievery said on the monk; arrow flight 0.2 s; no monk in range and too fast before the hexes; one
   interrupt of a player on one spike; strips, the shield and the area damage before a burst on a death; the
   sentences in the match report's wording (`execution.death_lines`, `death_rulings`).
 - Last run: the development set at c477e8c (82 matches): plays and moments identical to the digest of ccd0a55, 323
-  Classic rows pass. Main's `execution_rows.json` is from c477e8c (three games, 46 deaths; Men v Crew's rows are
+  Classic rows pass. Main's `execution_rows.json` is from 92de38e (three games, 46 deaths; Men v Crew's rows are
   written over the ones he marked, said to him; RACK v hdm and Men v NwAy not marked yet).
 
 ## Next (in order, R-810)
 1. Stage X5: his marks on RACK v hdm and Men v NwAy (Model > Game review > Execution), and Men v Crew again if he
-   wishes, on the rows of c477e8c. File them in the review key (set x1, as Men v Crew's are) the same session.
-2. Full run wanted at c477e8c (Opus's), once his marks ask for no further change: `moments.py all`; `digest.py check`
+   wishes, on the rows of 92de38e. File them in the review key (set x1, as Men v Crew's are) the same session.
+2. Full run wanted at 92de38e (Opus's), once his marks ask for no further change: `moments.py all`; `digest.py check`
    (the plays must not differ from ccd0a55's digest), `cases.py positions`, `attempts` (section G: the interrupt on
    spikes again, now with arrow flight and one interrupt a player; section H), `pressure`, `execution`. Then bring
    him its verdicts: the interrupt on spikes if it still fails (R-744), stance, a block reading backwards.

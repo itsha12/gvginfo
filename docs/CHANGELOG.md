@@ -9,6 +9,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - Main's `execution_rows.json` written again from c477e8c (Men v Crew, RACK v hdm, Men v NwAy: 46 deaths). Men v Crew's rows are written over the ones he marked; his marks keep the text he saw.
 - Opus's full run at ccd0a55 read (the interrupt on spikes fails one group short; a block reads backwards; stance fails): superseded by this change, to be read again on the next run.
 - Found, not built: balling misses Invoke Lightning's hits on its other targets (the record sets them half a second apart).
+- R-821 (`bundle-4` 92de38e, words only): a cast begun too late reads "Late Heal:" or "Late Prot:"; the rows written again from the same run's records (6 late heals in the three games).
 
 ## 2026-11-27, night (a new chat): both Opus chats reviewed; R-805 to R-810 filed; the bundled change, the match report's readings and the sentences built
 - Reviewed: Opus's full run at f2b8796 (its report matches the pushed files; data files only) and the site merge 4c54818 to 2fdf15e (every page loads; the guild page overflows at phone width, the "Most played full lineups" block). R-799 and R-800 were already filed.
