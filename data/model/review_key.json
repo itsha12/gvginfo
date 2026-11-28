@@ -37275,7 +37275,7 @@
    "mark": "partly",
    "his_words": "Missed Deep Wound: should be on separate lines like the others. Also say if the Deep Wound removal + healind/divine favour would have saved him. Also, could prot not have saved him here? He had SB and LS and no shame or knockdown.",
    "engine": "92de38e",
-   "actioned": "R-822, R-823: each monk's Deep Wound line on its own, with whether its removal would have saved him (all three would). R-824: the 8 Monk's Shielding Hands said with its end heal (72). His question on the Prot's Spirit Bond and Life Sheath: open. They are not listed because the 8 Monk's Shielding Hands landed (R-715); put to him in the chat with the line the row would gain (`TEAM_MATE_EXCUSES`).",
+   "actioned": "R-822, R-823: each monk's Deep Wound line on its own, with whether its removal would have saved him (all three would). R-824: the 8 Monk's Shielding Hands said with its end heal (72). R-828 (his ruling on his question, amending R-715): the Prot is listed: \"Late Prot: Prot started Shielding Hands 0.1 s before he died, too late to land; he had Spirit Bond, Life Sheath ready 0.2 s after the first big hit\", either of which would have saved the spike.",
    "checks": []
   },
   {
@@ -37294,7 +37294,7 @@
    "mark": "incorrect",
    "his_words": "Healing burst was blocked by shame, 7 Monk ate shame.",
    "engine": "92de38e",
-   "actioned": "R-826: Healing Burst said as lost to Shame (gvg.report's interrupt record names Shame as what stopped it). The hex landed in the same tenth of a second as the cast began, so no fault by Rule 1 (Claude's reading, his to correct).",
+   "actioned": "R-826: Healing Burst said as lost to Shame (gvg.report's interrupt record names Shame as what stopped it). R-830 (his ruling): a fault only where the monk could have cancelled with 0.2 s to react; here the hex landed 0.0 s before the spell failed, so no fault, said under \"Attempted, failed\".",
    "checks": []
   },
   {
@@ -37421,7 +37421,7 @@
    "mark": "partly",
    "his_words": "We don't need to give the rules for these things I review (e.g. remove R-741, R-804). Also label this as Positioning: Hammer is 1010 past his own frontline. Also, this is correct, he was too deep, but why was Stand Mes 2 selected as the frontline?",
    "engine": "92de38e",
-   "actioned": "R-822: no ruling numbers; \"Positioning: Hammer is 1010 past his own front line (the Stand Mes 2, his most forward team mate)\". R-825: Shield Guardian (1.5 s) is no longer a missed prot here. His question (why the Stand Mes 2): answered in the chat: the front line is the most forward team mate in the fight who is no backline monk, and the Stand Mes 2 stood ahead of the AoB Derv; whether it should be told from frontline characters alone is put to him.",
+   "actioned": "R-822: no ruling numbers; \"Positioning: Hammer is 1010 past his own front line (the Stand Mes 2, his most forward team mate)\". R-825: Shield Guardian (1.5 s) is no longer a missed prot here. His question (why the Stand Mes 2) answered in the chat, and ruled (R-829): the front line stays the most forward team mate in the fight who is no backline monk.",
    "checks": []
   },
   {
