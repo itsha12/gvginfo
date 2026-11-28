@@ -72,9 +72,22 @@ DANGER_FIRE = (90, 3)       # ... with this much landed on him by the enemy, hit
 DANGER_QUIET_S = 6          # nothing landed on him for this long ends it; two stretches on a player nearer than this are one (as `events._spikes` holds two spikes on a player 6 s apart)
 
 
+def cast_s(sd):
+    """A skill's cast time in seconds, the one reading of it: the skill data's activation; where the skill data has none, the tag file's `cast_s`
+    (`data/model/skill_tags.json`, reviewed by Denning: R-764's 1.5 s casts among them). The wiki sync leaves the cast time out of some skills (R-765:
+    Shield Guardian, Ethereal Burden, Lava Font, Obsidian Flame and others), and until 2026-11-28 those read as instant: a Shield Guardian was a chance
+    on a burst of 0.6 s (his mark on RACK v hdm, 2:11: "Shield Guardian cast time is 1.5s"; the replays agree: 2,775 of 4,092 casts took 1.4 to 1.6 s,
+    1,261 a half cast of 0.7 or 0.8). A skill with neither is instant (a stance, a shout, a flash enchantment)."""
+    a = sd.get("activation")
+    if a: return _act(a)
+    import execution as EX
+    tg = EX.tags().get((sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", ""))
+    return float(tg["cast_s"]) if tg and tg.get("cast_s") else 0.0
+
+
 def has_aftercast(sd):
     """Does a finished cast of this skill hold its caster for AFTERCAST_S? Spells, signets, rituals and the like; not attack skills, nor anything with no cast time."""
-    return "Attack" not in (sd.get("type") or "") and _act(sd.get("activation")) > 0
+    return "Attack" not in (sd.get("type") or "") and cast_s(sd) > 0
 
 
 def _act(s):
@@ -345,15 +358,16 @@ class Forensics:
         if self._casts is None:
             out, open_ = [], {}
             irs = collections.defaultdict(list)
-            for i in (self.m.o.get("interrupts") or []): irs[i[3]].append((i[0] / 10, i[4]))
+            self._stop = {}                                    # (agent, start of his cast) -> (who stopped it, with which skill id): `stopped_by`
+            for i in (self.m.o.get("interrupts") or []): irs[i[3]].append((i[0] / 10, i[4], i[1], i[2]))
             for e in self.ev:
                 c, a = e[1], e[2]
                 if c == "cs": open_[a] = [a, e[4], e[0] / 10, None, None, e[3] if e[3] is not None else a]
                 elif c in ("cf", "ir", "cx") and a in open_:
                     x = open_.pop(a); x[3] = e[0] / 10
-                    hit = [k for k, (t, sk) in enumerate(irs.get(a, [])) if abs(t - x[3]) <= .3 and (sk == x[1] or sk is None)]
+                    hit = [k for k, (t, sk, _by, _with) in enumerate(irs.get(a, [])) if abs(t - x[3]) <= .3 and (sk == x[1] or sk is None)]
                     if hit or c == "ir":
-                        if hit: irs[a].pop(hit[0])          # each recorded interrupt explains one cast only
+                        if hit: self._stop[(a, x[2])] = irs[a].pop(hit[0])[2:]          # each recorded interrupt explains one cast only
                         x[4] = "interrupted"
                     elif c == "cf": x[4] = "finished"
                     elif self.has(a, "c", "dazed", x[2]) and any(d[2] is None or self.is_attack(d[2]) for d in
@@ -365,6 +379,16 @@ class Forensics:
             self._use = collections.defaultdict(list); self._by_agent = collections.defaultdict(list)
             for x in out: self._use[(x[0], x[1])].append(x[2]); self._by_agent[x[0]].append(x)
         return self._casts
+
+    def stopped_by(self, c):
+        """What stopped an interrupted cast (a row of `casts`), by gvg.report's interrupt record: (the player who stopped it, the name of the skill that
+        did), or None where the record names none. The record names a hex as it does an interrupt: a spell on an ally that fails to Shame is a row whose
+        skill is Shame (checked against the raw record, R-707: ENGINE_NOTES section 44), also where the hex landed and went inside one tenth of a second
+        and the effects record holds no hex at all (RACK v hdm 6:28: his mark, "Healing burst was blocked by shame")."""
+        import pressure as PR
+        self.casts()
+        w = self._stop.get((c[0], c[2]))
+        return None if w is None or w[1] is None else (w[0], PR._base(self.sname(w[1])))
 
     def last_use(self, a, sid, t):
         self.casts(); L = self._use.get((a, sid), [])
@@ -529,7 +553,7 @@ class Forensics:
                     dz = 2 if self.dazed_at(h, u) else 1
                     reach = h == tgt or (self.dist(h, tgt, u) or 1e9) <= CAST_R      # his distance to himself is nought, which is no unknown distance
                     near = near or reach
-                    can = [(sid, sd) for sid, sd in sk if reach and u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6]
+                    can = [(sid, sd) for sid, sd in sk if reach and u + cast_s(sd) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6]
                     up = [(sid, sd) for sid, sd in can if self.ready(h, sid, sd, u, hands=False, dis=False)]
                     free = not self.casting_at(h, u) and not self.in_aftercast(h, u)
                     # a skill the enemy has disabled is no chance; nor an enchantment on a target under Shadow Shroud (one cast on the whole party, Shield
@@ -563,7 +587,7 @@ class Forensics:
                     u0 = first + REACT_S
                     cand = [(sid, sd) for sid, sd in sk if self.ready(h, sid, sd, u0, hands=False, dis=False)]
                     if cand:
-                        act = min(_act(sd.get("activation")) * ((2 if self.dazed_at(h, u0) else 1) if "Spell" in (sd.get("type") or "") else 1) for sid, sd in cand)
+                        act = min(cast_s(sd) * ((2 if self.dazed_at(h, u0) else 1) if "Spell" in (sd.get("type") or "") else 1) for sid, sd in cand)
                         occ = next((c for c in self._by_agent.get(h, ()) if c[2] <= end and c[1] is not None and (c[3] if c[3] is not None else c[2] + 1) + (AFTERCAST_S if c[4] == "finished" and has_aftercast(self.sdata(c[1])) else 0) > u0), None)
                         if u0 + act > end + 1e-6: nt = {"why": "fast", "need": round(REACT_S + act, 2), "had": round(end - first, 1)}
                         elif occ is not None: nt = {"why": "hands", "casting": self.sname(occ[1]), "on": self.name(occ[5]) if occ[5] in self.m.PL else None, "need": round(REACT_S + act, 2), "had": round(end - first, 1)}
@@ -1002,7 +1026,7 @@ class Forensics:
                     rng = self.bow_range(f, t) if "Bow" in (sd.get("type") or "") else CAST_R
                     last = self.last_use(f, sid, t - .01)
                     if d <= rng and t - last >= _act(sd.get("recharge")): ready.append(f"{self.name(f)} {self.sname(sid)}")
-            rows.append({"t": round(t, 1), "skill": self.sname(c[1]), "activation": _act(self.sdata(c[1]).get("activation")),
+            rows.append({"t": round(t, 1), "skill": self.sname(c[1]), "activation": cast_s(self.sdata(c[1])),
                          "outcome": c[4], "dazed": dazed, "ready_interrupts": ready})
         risky = [r for r in rows if r["ready_interrupts"]]
         n = len(rows) or 1
@@ -1460,6 +1484,23 @@ def is_heal(sd):
     if prot_rule(sd) is not None or not ("Healing" in (sd.get("causes") or []) and "all" in (sd.get("target") or "").lower() and not is_prot(sd)): return False
     d = (sd.get("desc") or "").lower()
     return not (sd.get("removes") or []) or d.find("heal") < d.find("remov")       # Blessed Light heals first; Dismiss Condition heals only on a removal
+
+
+_AFTER = {}
+def heal_after(sd):
+    """How long after it lands a heal's own healing comes, by the skill's text: nought for a heal that heals as it lands; for one that heals "when the
+    enchantment ends" the seconds the text gives it (Patient Spirit: 2); -1 for an enchantment that heals only as something sets it off ("each time
+    target ally attacks or casts a spell": Vigorous Spirit; "the next time ...": Watchful Intervention), which has no set time. Only the caster's
+    Divine Favor comes with the cast. His mark on RACK v hdm, 2:11 ("make sure we are not counting the end effect healing unless it falls within the
+    window"): until 2026-11-28 a missed Patient Spirit or Vigorous Spirit was read as healing in full as it landed. A prot's own end heal (Shielding
+    Hands) is its rule's `end_heal` in PROT_RULES."""
+    import re
+    k = sd.get("name")
+    if k not in _AFTER:
+        d = sd.get("desc") or ""
+        g = re.search(r"For (\d+) seconds?,.*healed for .{0,40}?when (?:the|this) enchantment ends", d)
+        _AFTER[k] = float(g.group(1)) if g else -1.0 if "Enchantment" in (sd.get("type") or "") and re.search(r"(each time|the next time|whenever)\b.*\bhealed", d) else 0.0
+    return _AFTER[k]
 
 
 def lines(ans):
