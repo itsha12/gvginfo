@@ -32,6 +32,21 @@ export const FLUX = ["Odran's Razor", "Amateur Hour", "Hidden Talent", "There Ca
   "Parting Gift (and Gift of Battle)"];
 const FLUX_CHANGE_HOUR_UTC = 7;
 
+// Monthly automated tournament: the third Saturday of each month (Guild Wars Wiki, "Upcoming changes and features").
+// The wiki gives no start time. Denning (2026-11-27): 11:00 a.m. Eastern now and noon during daylight time, i.e. a
+// fixed 16:00 UTC, which every MAT in the stored matches agrees with.
+export const MAT_HOUR_UTC = 16;
+export function matStart(y, mo) { // mo 1-12, UTC ms
+  const firstWd = new Date(Date.UTC(y, mo - 1, 1)).getUTCDay();
+  const firstSat = 1 + ((6 - firstWd + 7) % 7);
+  return Date.UTC(y, mo - 1, firstSat + 14, MAT_HOUR_UTC);
+}
+export function nextMat(now = Date.now()) {
+  const d = new Date(now);
+  const t = matStart(d.getUTCFullYear(), d.getUTCMonth() + 1);
+  return t > now ? t : matStart(d.getUTCMonth() === 11 ? d.getUTCFullYear() + 1 : d.getUTCFullYear(), ((d.getUTCMonth() + 1) % 12) + 1);
+}
+
 // ---------- time zone helpers (no libraries) ----------
 const partsFmt = {};
 function parts(ms, zone) {

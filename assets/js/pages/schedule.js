@@ -46,6 +46,7 @@ export function renderSchedule(view) {
       <div><span>Current flux</span><b class="flux">${esc(S.fluxFor(now))}</b><span>${esc(S.fluxFor(fluxChange + 3600000))} from ${esc(S.fmtDate(fluxChange))}, ${esc(S.fmtTime(fluxChange))}</span></div>
       ${tile("Next AT-A", next("A")?.at)}
       ${tile("Next AT-C", next("C")?.at)}
+      ${tile("Next MAT", S.nextMat(now))}
     </div>
 
     <div class="sched-grid">
