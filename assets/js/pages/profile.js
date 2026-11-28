@@ -72,7 +72,7 @@ function draw(view, recent, o) {
       const code = codeForPlayer(b.pick);
       return `<div class="lineup-slot">
         <span class="prof" data-p="${esc(b.pick.p)}">${esc(ABBR[b.pick.p] || b.pick.p)}/${esc(ABBR[b.pick.s] || "")}</span>
-        <div class="who"><b>${esc(b.build)}</b><div class="muted small">${b.n} games, ${pct(b.wins, b.n)} won</div></div>
+        <div class="who"><b>${esc(b.pick.build || b.build)}</b><div class="muted small">${b.n} game${b.n === 1 ? "" : "s"}, ${pct(b.wins, b.n)} won</div></div>
         ${skillBar(b.pick.bar, { attributes: b.pick.attrs }, true)}
         ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button>` : "<span></span>"}
       </div>`;
@@ -87,7 +87,7 @@ function draw(view, recent, o) {
     <div class="scroll"><table class="data"><thead><tr><th>Character</th><th class="num">Games</th><th class="num">Won</th><th class="num">Last seen</th></tr></thead>
     <tbody>${perChar.map((c) => `<tr><td>${charLink(c.name)}</td><td class="num">${c.games}</td><td class="num">${pct(c.wins, c.games)}</td><td class="num">${esc(ago(c.last))}</td></tr>`).join("")}</tbody></table></div>` : ""}`;
 
-  if (!lists.has(o.key)) lists.set(o.key, newFilters());
+  if (!lists.has(o.key)) lists.set(o.key, newFilters(20));
   matchList(view.querySelector("#list"), matches, lists.get(o.key), { allMatches: all });
   view.querySelectorAll(".lineup [data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
 }

@@ -4,7 +4,7 @@ const fmtDur = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`
 const RESULT = { flawless_victory: "Flawless", victory: "Victory" };
 let open = null;
 // Search state: terms (each matched in one field or anywhere), combined with all/any, plus quick filters.
-export const newFilters = () => ({ terms: [], mode: "all", occ: "", map: "", month: "", from: "", to: "", result: "", minLen: "", maxLen: "", limit: 60 });
+export const newFilters = (page = 60) => ({ terms: [], mode: "all", occ: "", map: "", month: "", from: "", to: "", result: "", minLen: "", maxLen: "", limit: page, page });
 const F = newFilters();
 const FIELDS = [["any", "Anything"], ["guild", "Guild or tag"], ["player", "Player"], ["skill", "Skill"], ["build", "Build"], ["prof", "Profession"], ["map", "Map"]];
 const norm = (x) => String(x ?? "").toLowerCase();
@@ -126,7 +126,7 @@ export function matchList(host, matches, F, opts = {}) {
           <td>${esc(m.map || "")}</td><td class="num">${fmtDur(m.dur || 0)}</td><td>${esc(RESULT[m.result] || "")}</td></tr>
           ${open === m.id ? `<tr><td colspan="7" class="wrap">${lineups(m)}</td></tr>` : ""}`;
       }).join("")}</tbody></table></div>
-    ${filtered.length > shown.length ? `<button class="btn" data-more style="margin-top:1rem">Show ${Math.min(60, filtered.length - shown.length)} more</button>` : ""}`;
+    ${filtered.length > shown.length ? `<button class="btn" data-more style="margin-top:1rem">Show ${Math.min(F.page || 60, filtered.length - shown.length)} more</button>` : ""}`;
 
   const rerender = () => matchList(host, matches, F, opts);
   const form = host.querySelector("form.search");
@@ -136,7 +136,7 @@ export function matchList(host, matches, F, opts = {}) {
     let field = form.field.value;
     if (field === "any" && /^\[.+\]$/.test(q)) field = "guild"; // "[tag]" searches guild tags
     if (field === "any" && state.skills.some((s) => s.name.toLowerCase() === q.toLowerCase())) field = "skill";
-    F.terms.push({ field, q }); F.limit = 60; rerender();
+    F.terms.push({ field, q }); F.limit = F.page || 60; rerender();
   };
   host.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { F.terms.splice(+b.dataset.rm, 1); rerender(); });
   host.querySelectorAll("[data-mode]").forEach((b) => b.onclick = () => { F.mode = b.dataset.mode; rerender(); });
@@ -146,9 +146,9 @@ export function matchList(host, matches, F, opts = {}) {
     F[e.target.name] = e.target.value;
     if (e.target.name === "month" && e.target.value) F.from = F.to = ""; // a month and a date range don't mix
     if ((e.target.name === "from" || e.target.name === "to") && e.target.value) F.month = "";
-    F.limit = 60; rerender();
+    F.limit = F.page || 60; rerender();
   });
-  host.querySelector("[data-more]")?.addEventListener("click", () => { F.limit += 60; rerender(); });
+  host.querySelector("[data-more]")?.addEventListener("click", () => { F.limit += F.page || 60; rerender(); });
   host.querySelectorAll("tr[data-match]").forEach((tr) => {
     const toggle = () => { open = open === tr.dataset.match ? null : tr.dataset.match; rerender(); };
     tr.onclick = toggle; tr.onkeydown = (e) => { if (e.key === "Enter") toggle(); };

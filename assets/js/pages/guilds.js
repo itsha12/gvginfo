@@ -117,7 +117,7 @@ function detail(view, g, data, recent, people) {
       <td class="num">${x.pos ?? "–"}</td><td class="num">${x.games}</td><td class="num">${pct(x.wins, x.games)}</td>
       <td>${[...x.builds.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, n]) => `${esc(k)}${n > 1 ? ` (${n})` : ""}`).join(", ")}</td></tr>`).join("")}</tbody></table></div>`;
 
-  if (!lists.has(g.id)) lists.set(g.id, newFilters());
+  if (!lists.has(g.id)) lists.set(g.id, newFilters(20));
   matchList(view.querySelector("#list"), games, lists.get(g.id), { allMatches: all });
   view.querySelector("#map").onchange = (e) => { f.map = e.target.value; detail(view, g, data, recent, people); };
   view.querySelectorAll(".lineup [data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
