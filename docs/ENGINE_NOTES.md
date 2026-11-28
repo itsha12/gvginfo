@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-842; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-847; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1571,6 +1571,37 @@ index pointing here. Read the section for a reading before changing it, and keep
   differ. Main's rows written again: eight change, seven in the order of the casts alone (RACK v hdm 7:33 the Prot, 7:44 the 8 Monk; Men
   v NwAy 5:15, 8:38, 9:20, 14:23, 14:35) and one gains "Enemy good play:" (Men v NwAy 4:35, the Stand Mes: Healing Burst stopped with
   Power Drain).
+
+- **Balling reads a cast that strikes its other foes one after another (2026-11-28, later; R-847; `bundle-4` 4d3866c, with the full run at it; the commit after it puts a comment's figures right and holds the run's report).**
+  **Measured first** (the development set, every finished cast of a tagged area skill on an enemy player, the caster's hits on other players
+  set against the hit on the target; the damage rows name no skill, so a hit is tied to a cast by its caster and its time): Energy Surge,
+  Lamentation, Mind Burn, Shell Shock, Lightning Touch and Meteor land on the others in the target's own tenth (Energy Surge 1,013 of its
+  hits there, 3 to 13 in any tenth after). Invoke Lightning and Chain Lightning do not: of 1,326 casts that hit their target, 3 hits on
+  another player in his tenth, 314 at 0.4 to 0.6 s and 111 at 0.9 to 1.1 s, 18 elsewhere in the 1.3 s; each of a spell's size (the
+  middle one the same as the target's hit). Their text is "target foe and up to two other foes near your target are struck": the record
+  sets each next foe half a second after the one before. Death Blossom's second strike (0.4 s) is its own hit and is left as it was.
+  **Built at the root** (`balling`; `CHAIN_STEP_S` 0.5, `CHAIN_N`): no wider `BALL_S`, which would take in the caster's other hits. A cast
+  whose text strikes "up to N other foes" is read at each of its N steps after the target's hit, inside `BALL_S` of the step, on players
+  other than the target; `chain` on the row names the steps that landed on a player. A step is read without the one before it (a foe
+  struck between may be an NPC or a spirit, which has no row here: 14 of 111 second steps on the set have no first). The count N is read
+  from the skill's own text, never from a list of names. The words are unchanged (`say_balled`: "they stood within its reach, nearby").
+  **Run**: the development set against the run before it (both made the same day, `compare` by key): plays, moments and every record
+  identical but `balled` and each play's places in it, in the 18 matches with such a bar; 1,838 rows become 2,164 (Invoke Lightning 1 to
+  261, Chain Lightning 2 to 68; no row lost, 2 gain a player); 323 Classic rows pass. The full run (564, no errors; 37 minutes on this
+  machine): the digest agrees on all 564 (33,089 plays, 26,199 moments), 323 Classic rows pass, the self-check 6 times in 4 matches as
+  before; balling 11,947 rows (nearby 7,008, adjacent 4,893, in the area 46): Energy Surge 4,100, a scythe attack 3,741, Lamentation
+  1,310, Invoke Lightning 1,127, Mind Burn 578, Chain Lightning 451, in 147 matches with such a row. Main's `execution_rows.json` written
+  again and the same row for row (its engine stamp alone moved): nothing written over his marks.
+  **A late part of the spike against its own like** (`cases.py attempts`, section I; `_x3_diff_alive`; a report, no reading moves). The
+  run at f7165b1 read the strip of a prot at 3 s or later after the first big hit as killing less (-6.2) and the first interrupt on his
+  monks at 1.5 to 3 s and later the same (-5.1, -22.0). Opus's reading, checked and right: a part can land late only on a target who has
+  lived that long, and it was set against every attempt with the part ready and not done, the targets dead inside a second among them.
+  Now each attempt is set against those whose target was still alive when its own part landed (`s`, the first big hit to the outcome);
+  the old figure is kept beside it (`plain`). On the full run: the strip +3.7 at 0.5 to 1 s, +4.5 at 1 to 1.5 s, +7.6 (+3.0 to +11.6)
+  at 1.5 to 3 s, +9.4 (+5.1 to +14.0) at 3 s or later; the interrupt on his monks +3.0, +3.2, +8.0 (+5.3 to +10.8) and +1.5 (-0.0 to
+  +3.0). Nothing in section I reads backwards. Only `together` differs in `attempts_cases.json`. The strip before a burst (section H):
+  its plain test reads backwards (-6.0, 2 groups of 10) and its own like does not (+2.2, 6 of 10, fails): the plain test holds level
+  the prots on him, which is what the strip changes, so it is not its test (the rule of f7165b1); it stays not kept (R-842).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

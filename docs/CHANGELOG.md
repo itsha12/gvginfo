@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, later (a new chat): R-843 to R-847 filed; balling reads Invoke Lightning; a full run at 4d3866c
+- Rulings filed: R-843 (no blind tests), R-844 (REDESIGN's step 3 dropped: each family's own card, the match report is the match review), R-845 (`ask.py` rewired at the close), R-846 (the match report with the close's merge, before or with the first Train batch), all from `docs/OPUS.md`; R-847 (balling reads Invoke Lightning, his word to build it). R-274, R-284 and R-800 marked; REDESIGN.md amended.
+- Measured on the development set: the record sets the hits of Invoke Lightning and Chain Lightning on their other foes half a second apart each (314 at 0.4 to 0.6 s, 111 at 0.9 to 1.1 s), every other area skill in the target's own tenth.
+- `bundle-4` 4d3866c: `balling` reads a cast whose text strikes "up to N other foes" at each step (`CHAIN_STEP_S`); `BALL_S` unchanged. Development set against the run before: only `balled` and each play's places in it differ (1,838 rows to 2,164).
+- `cases.py attempts`, section I: a part landing after the first big hit is set against the attempts whose target was still alive when it landed (`_x3_diff_alive`); the old figure kept beside it.
+- Full run at 4d3866c (Fable, in the chat): 564 matches, no errors, the digest agrees on all 564, 323 Classic rows pass; balling 11,947 rows (Invoke Lightning 1,127, Chain Lightning 451). Section I no longer reads backwards: the strip at 3 s or later +9.4 (was -6.2), the interrupt on his monks at 1.5 to 3 s +8.0 (was -5.1) and later +1.5 (was -22.0). `attempts_cases.json` on `bundle-4` 16935c2.
+- Main's `execution_rows.json` written again: the same row for row, its engine stamp alone moved.
+- Put to him: whether every kind that fails its check waits until family 4 (to be filed as R-848), and what is next (the flag readings again, then the close).
+
 ## 2026-11-28, afternoon (a new chat): R-839 to R-842 filed and built; a full run wanted at f7165b1
 - Rulings filed: R-839 (a strip dealing no damage counts during a spike where it takes a prot or heal), R-840 (a damaging strip that took neither is damage like any other, no strip), R-841 (the spike thrown said on the play's row), R-842 (the strip before the first big hit on a spike and a monk down as the spike lands kept by name; the bar stays 9 of 10; a strip before a burst not kept). R-835's broken sentence: nothing to add.
 - `bundle-4` f7165b1, one bundled change: `strip_effective` by what the strip took; `BY_NAME` and its line in `cases.py attempts` section H; `record` and `say_faults` say the spikes thrown on the play's row; `thrown` keeps `died` and section J sets Aegis against targets still alive; `good` on a pressure attempt and on a death by pressure.

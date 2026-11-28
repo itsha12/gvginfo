@@ -10,60 +10,60 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-28, afternoon: rulings to R-842; his answers on the strip built, a full run wanted)
+## State (2026-11-28, later: rulings to R-847; balling reads Invoke Lightning; a full run made at 4d3866c)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-842; `docs/EXECUTION.md`, 68 rules). His marks are
+- Execution (the micro answer) is the block of work (R-701 to R-847; `docs/EXECUTION.md`, 68 rules). His marks are
   in the review key (set x1): Men v Crew 15 deaths, RACK v hdm 10, Men v NwAy 12 of 21 (R-811 to R-830).
-- `bundle-4` f7165b1 (one bundled change on 59c47b0; ENGINE_NOTES section 44's last item holds every figure). On the
-  development set: plays and moments identical to the run before and to the digest, 323 Classic rows pass. No full
-  run at it yet: `attempts_cases.json` on the branch is still 59c47b0's, main's `execution_rows.json` is f7165b1's.
-- Built: a strip counts by what it took, damaging or not (R-839, R-840); the spike thrown on the play's row (R-841)
-  and its time of death; the strip before the first big hit on a spike and a monk down as the spike lands kept by
-  name (R-842: the bar stays 9 of 10 for all else; a strip before a burst is not kept); the attack's good play on a
-  death by pressure; the casts in "Success:" in the order cast (a loose `else` of 59c47b0 put right).
-- The checks at 59c47b0, to be read again: the strip before the first big hit +5.8, 7/10 (spikes +9.4, 8/10; bursts
-  +2.2, 6/10); during it +8.3 on spikes, +3.7 on bursts, both 9/10. A monk down +8.1, 7/10. Shroud waits (R-838).
-- A kind is tested against its own like: never with what it changes held level; a strip against what it could take.
+- `bundle-4` 16935c2: the engine is 4d3866c (16935c2 puts a comment right and holds the run's report). Fable made
+  the full run at 4d3866c in this chat: 564 matches, no errors, plays and moments identical to the digest, 323 Classic
+  rows pass. `attempts_cases.json` is that run's (only section I differs from f7165b1's); main's `execution_rows.json`
+  is the same row for row. Not made again, nothing in them moved: the other `cases.py` reports, the digest, winchance.
+- Built (R-847; ENGINE_NOTES section 44's last item holds every figure): balling reads a cast that strikes "up to N
+  other foes" at each half-second step after the target's hit (Invoke Lightning 1,127 rows and Chain Lightning 451 on
+  the 564; only `balled` and each play's places in it moved). Section I of `cases.py attempts` sets a late part of
+  the spike against targets still alive when it landed: nothing there reads backwards now.
+- Filed from `docs/OPUS.md` (REDESIGN.md amended): R-843 no blind tests, R-844 step 3 dropped, R-845 `ask.py` rewired
+  at the close, R-846 the match report with the close's merge.
+- A kind is tested against its own like: never with what it changes held level.
 
 ## Next (in order, R-810)
-1. Full run wanted at f7165b1: plays and moments against the digest on all 564; then `cases.py attempts` kept as
-   `attempts_cases.json`, read for section G's strip row, section H's strip rows (before on spikes and on bursts,
-   during, the strip dealing none, a damaging strip that took neither), the two rows kept by name, and section J
-   (Aegis coming during a spike against targets still alive). Fable then reads the report and puts to him anything
-   that reads backwards (R-744, R-842).
+1. His answer on what fails (put to him 2026-11-28; to be filed as R-848): Claude's view is to agree that every kind
+   that fails its check waits, built no further, until family 4's bundle, read again on each full run; three things
+   never wait: a reading that is wrong (R-494), one that reads backwards (R-744), a ruling by name.
 2. His marks on the nine deaths of Men v NwAy not yet marked, if he wishes; into the review key the same session.
-3. Balling and Invoke Lightning: measure on the development set how far apart the record sets the hits of one cast
-   on several players (`BALL_S` 0.15 misses Invoke's), then one change with his word (it moves play-level rows).
-4. Then the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new families
-   beside the old kinds for one rebuild (R-323), stand-in prices replaced, replaced kinds retired (`ask.py`,
-   `learning.py` still import `tq.py`), SPEC and METHODS rewritten, the readability test, his list of R-398 (items
-   1, 2, 3's remainder, 6, 7, 8, 10 left), the merge, one Train batch on the same 506 (he starts it).
+3. Then the flag readings shown again (sections 15, 22: the Flag advice cards written again on this engine, his
+   earlier marks beside them), then the close (sections 37, 38, 34, 35, 41): new families beside the old kinds for
+   one rebuild (R-323), stand-in prices replaced, replaced kinds retired (`ask.py` rewired, R-845; `learning.py`
+   still imports `tq.py`), the blind test page retired (R-843), SPEC and METHODS rewritten, the readability test,
+   his list of R-398 (items 1, 2, 3's remainder, 6, 7, 8, 10 left; start from `docs/opus/pre-training-drafts.md`),
+   Fable's one review of the match report's exporter (R-846), the merge, one Train batch on the same 506 (he
+   starts it). Set the close's approach out for him before starting it.
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Claude's readings in R-811 to R-817, R-822 to R-830, R-832, R-835, R-837, R-840 and R-841, his to correct. Rows
-   written over ones he marked, all said to him (the list: ENGINE_NOTES section 44, its last item, and R-828's).
-2. Not ruled: a prot or heal let through with an interrupt ready as a fault of the attack's (+6.0, 8/10; not built).
-3. An even 6v6 and below has no row. The wiki sync: later (R-765). September's early matches (R-673): at R-398.
-   R-576, R-575. The match report is parked (`docs/OPUS.md`); its readings are built.
+1. Claude's readings in R-811 to R-817, R-822 to R-830, R-832, R-835, R-837, R-840, R-841 and R-847, his to correct.
+   Rows written over ones he marked, all said to him (the list: ENGINE_NOTES section 44, and R-828's).
+2. Not ruled: a prot or heal let through with an interrupt ready as a fault of the attack's (+6.0, 8/10; not built);
+   put to him with "Next" 1 as one of the things that wait.
+3. No row for an even 6v6 and below. The wiki sync: later (R-765). At R-398: September's early matches (R-673), R-576, R-575.
 
 ## For Opus (Fable never edits `docs/OPUS.md`)
 - The guild page scrolls sideways at phone width (390 wide, about 85 px over): the "Most played full lineups"
-  block (`.comp`). The two "For Fable" lines on family 5 and the match report are done (R-799, R-800).
+  block (`.comp`).
 - The Execution view's "How to read and mark a row" (`review.js`) is out of date (three kinds, the heaviest 2 s).
-- A full run is wanted at f7165b1 ("Next" 1 says what to check). `attempts_cases.json` on `bundle-4` is 59c47b0's.
-- Full runs: `moments.py all` now writes a match at a time and goes on where it stopped (run the same command
-  again; `--fresh` starts over); a worker that dies stops it with an error. Use `digest.py` in place of a second
-  full run for the comparison. A "Full run" GitHub workflow is offered to Denning, not built.
+- "For Fable" lines acted on, to remove: the plan change (filed, R-843 to R-846) and the f7165b1 run's report (read;
+  nothing reads backwards against its own like). Kept for the close: the R-398 drafts, the match report review.
+- No full run is wanted (Fable's at 4d3866c). The exporter can use the f7165b1 run's files: balling is in neither.
+- Full runs as before: `moments.py all` goes on where it stopped (`--fresh` starts over); `digest.py` compares.
 
 ## Running it
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays` (the files beside the
   replays come with it; about 150 MB). `jobs.py`, `moments.py`, `casting.py`, the gate, the line-up and
   `confidence.py` need only Python; `cases.py` needs numpy and scikit-learn (no cache for its reports). On 2 cores and
-  7 GB: the development set about 5.5 minutes (`moments.py all <file> --dev`), workers near 150 MB each; a full run
-  should be near 35 with two workers and the machine to itself (not yet timed on the new code), `cases.py execution`
+  7 GB: the development set about 6.5 minutes (`moments.py all <file> --dev`), workers near 150 MB each; a full run
+  25 to 37 with two workers and the machine to itself, `cases.py attempts` 1, `cases.py execution`
   about 30 on its own, the other reports about 20 together (`ladder` before `test`, R-545; each kept with `--json
   data/model/<name>.json`). Set `PYTHONDONTWRITEBYTECODE=1`; never edit an engine file while a run is going (workers
   are started afresh and read the code again). After a change: `tools/golden/review.py score <file> --key

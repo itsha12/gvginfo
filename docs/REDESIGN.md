@@ -21,8 +21,8 @@ labels ("pushed, fell back"), up to 16 a pick.
 ## Agreed with Denning
 - A choice is read over 20 to 30 s; outcomes at 90 s and about 3 minutes, hard results beside win points.
 - At most five options a pick, in a player's words, plus "Other".
-- Blind picks are chosen for leverage, are mostly moments where the model differs from the usual play, and are scored
-  cumulatively with a range.
+- No blind tests (R-843): the test of the advice is the held-out advice test, with his sealed judgement lines as the
+  test of verdicts.
 - A call gets one of three verdicts: right, wrong, no clear difference. Execution is read before the result, and the
   enemy's execution is scored too.
 - The decision card replaces the TQs. Round 3 is void.
@@ -85,9 +85,12 @@ offence_or_defence becomes part of the objective layer of a fight.
   numbers are straight lines and know no teleporters; this is fixed with the step 2 rebuild, not before.
 
 ## The decision card
-One format for the blind test, match review and query tool:
+(R-844: there is no one card built everywhere. The card is each family's own, at its fourth stage, the Flag advice card
+the first; the match report is the match review; the query tool is rewired at the close, R-845. What follows is the form
+those keep to.)
+One format for match review and the query tool:
 1. Situation (family, scenario, positions by named zone, flags and holders, stand and boost, morale, NPCs, Lord damage,
-   builds, map, replay link). 2. Options (at most five; the blind test stops here and asks). 3. What the team did (call
+   builds, map, replay link). 2. Options (at most five). 3. What the team did (call
    and shape). 4. What followed (the consequence record at 90 s and about 3 min for the whole map, then win points with
    their range). 5. Verdict on the call, with evidence as rates; the shape is judged where the call was right.
 6. Own execution: objective, then mechanics against the role benchmark and as a percentile among teams that made the
@@ -104,8 +107,8 @@ fix; no number without its cases.
 | 1 (done) | none | round 3 void, rounds paused, blind page fixes, the map page | Denning labels the most played halls |
 | 2 | one (bundle 4) | zones and path distance, the reading (records and story), families 1 to 3, calls read as allocations, the consequence record, the plays and their jobs | the reading gate (R-380, R-383, R-396); the decision gate (R-394); the review key, each kind of play at the mark he sets (R-450); advice test no worse |
 | 2, within it (R-451) | none (on the branch) | the flag decision taken to the end first: its plays through similar cases to the held-out advice test, before splits, numbers and the Lord push are finished | the flag plays pass the review key; the advice test on unseen matches is read with him, whatever it shows |
-| 3 | none | the decision card in the blind test, match review and query tool; TQs retired | readability test; Denning approves mock picks |
-| after 3 | none | the one-click match report (R-800) | Denning approves the layout |
+| 3 (dropped, R-843, R-844) | none | no blind test and no card built everywhere: each family's card at its fourth stage; the query tool rewired at the close (R-845); TQs retired at the close | |
+| with the close (R-846) | none | the one-click match report (R-800): its page lands with the close's merge, before or with the first Train batch | Denning approves the layout (agreed on the prototype, 2026-11-27) |
 | 4 | one (bundle 5) | family 4 (family 5 dropped, R-799), win model stability, speed | as step 2 |
 
 ### Step 2 items (build order)
@@ -129,21 +132,21 @@ the reading is ready (R-494, R-496), the held-out advice test is no worse than b
 readability test passes. The end goal has not been measured since the redesign began; R-451 brings that test forward
 for one family so that the approach is checked before the whole of step 2 is built.
 
-### Step 3
-`card.py` (report layer) builds the card. Blind test: five picks a round, at least three where the model differs from
-the usual play, win chance 25 to 75% before the moment, two or more options with enough cases; reveal = the full card;
-scored cumulatively, on matches that played no part in choosing the picks; no verdict before roughly 50 to 100
-disagreement picks; each reason filed as a candidate variable or ruling request. The TQ section leaves the report;
-forensics stay as the mechanics evidence.
+### Step 3 (dropped, R-843 to R-845)
+No blind tests and no `card.py`: a family's card is its own, at its fourth stage (the sentence for one match moment;
+the Flag advice card is the first), and the match report is the match review. `ask.py` is rewired to the new engine at
+the close (a match and a moment in); its form for a situation with no match is decided after family 4. The TQ section
+leaves the report at the close; forensics stay as the mechanics evidence.
 
-### After step 3: the match report (R-800; planned, not to be built yet)
+### The match report (R-800, R-846: with the close's merge, before or with the first Train batch)
 One click on the site makes a report on one match: the teams, the builds with skill images (as gvg.report shows
 them), the map, the line-up, each team's chance of winning at the start, then the significant moments, decisions or
 executions, that changed the win chance: what was done, the alternatives, how much the win chance moved, and what
 the alternative would have looked like. Nothing of it is saved to the repository and there is no public store of
 reports; it does not have to be a PDF. The engine may write a per-match moments file (unlisted engine output) after a
 full run, and the button turns that file into the report in the browser. It starts with the families already built.
-The layout is worked out with him in Opus chats; Fable checks the work.
+The layout is worked out with him in Opus chats; Opus builds it (`docs/OPUS.md`, "Scheduled") and Fable reviews the
+exporter once, at the close.
 
 ### Step 2: where it stands (branch `bundle-4`, R-322)
 | Stage | Items | State |
@@ -212,8 +215,8 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
       his grades and not kept (`tools/golden/stake.py`).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
    test, the list below, the merge, then one rebuild.
-8. Training chunks and Discovery resume; then step 3 (the decision card, the blind test, the sealed judgement lines as
-   the test of verdicts) and step 4 (families 4 and 5).
+8. Training chunks and Discovery resume; then the sealed judgement lines as the test of verdicts (step 3 is dropped,
+   R-843, R-844) and step 4 (family 4; family 5 is dropped, R-799).
 
 ### Before the next training run (R-398)
 After the engine is built and before the rebuild, Claude goes through this with Denning:
@@ -323,7 +326,7 @@ checked kind is then listed. Execution is read over the whole play, each kill at
   and reads the same call (228 such calls filed; the pass rate is set when first measured).
 - **Verdicts**: his sealed judgement lines (R-372; 65 filed) test the decision card's verdicts in step 3. Never fed
   in as rules.
-- Held-out advice test; readability test (also the blind page and the card); mock picks; the cumulative blind test.
+- Held-out advice test; readability test (also the cards). No blind test (R-843).
 
 ## Rulings
 Confirmed by Denning on 2026-11-09 and appended to `docs/RULINGS.md` as R-292 to R-305 (R-296 widened to a player

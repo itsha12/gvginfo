@@ -75,8 +75,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 5. **Extra damage while moving** (R-720 as amended by R-746): the knockdown from Bull's Strike stays a fault. The
    extra damage of Protector's Strike, Harrier's Haste and Weaken Knees is counted as context, never a fault.
 6. **The Cripple from Harrier's Grasp** is never acceptable (R-721, R-746).
-7. **Balling** (R-722, R-787): a team should almost never have more than 1 player hit by one cast that reaches
-   adjacent foes, nearby foes or foes in the area.
+7. **Balling** (R-722, R-787, R-847): a team should almost never have more than 1 player hit by one cast that reaches
+   adjacent foes, nearby foes or foes in the area; Invoke Lightning and Chain Lightning are such casts.
 8. **Crits while moving** (R-723 as amended by R-746): melee only, on a player moving away from the attacker; counted
    over the play against the number standing still would give, as context, never a fault.
 9. **Flail lock** (R-724): a warrior in Flail for more than 2 s with nothing in melee reach is a fault.
@@ -258,7 +258,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 |---|---|---|
 | Pushed too deep, away from his monks | Read and kept, said nowhere: paused (R-834). As built, a why until it passes: at the first big hit, 1,200 or more past his own front line (the most forward team mate in the fight who is no backline monk), with his nearest monk's distance | |
 | Pushed too deep, pulling a monk into pressure after him | Read and kept, said nowhere: paused (R-834). As built, a why until it passes: said on the kill attempt on the monk who followed (section B) | The same said on the deep player's own row |
-| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | Built (R-787): a cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is the same fault; an effect on the ground never (R-793) |
+| Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | Built (R-787): a cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is the same fault; an effect on the ground never (R-793). A cast that strikes "up to two other foes near your target" (Invoke Lightning, Chain Lightning) lands on them one after another, half a second apart in the record: read at each step (R-847) |
 | Standing in area damage (Rules 20, 38, 42): Chaos Storm, Symbol of Wrath, Ray of Judgment, Lava Font and the like | No: set aside for now (R-807). Built and read backwards on the full run (88 attempts with it kill 13.6% against 32.4%); `execution.area_hits` is kept | His word to bring it back |
 | Knocked down by Bull's Strike (Rule 5) | Yes (stage 3): the knockdown record names the skill | |
 | Crippled by Harrier's Grasp (Rule 6) | Yes (stage 3): a Cripple at a hit by an attacker with Harrier's Grasp up, no other Cripple skill cast on him then | |

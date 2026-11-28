@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review > Execution (R-713 to R-715, R-805 to R-827): every death of a player in the games picked, in the wording of the match report: what killed him, what applied at the spike (no shield, Shadow Shroud, a monk stopped), his own play (Trigger Fault, Positioning, Context), then each chance his team missed (Deep Wound left on him, a prot, a heal, an interrupt on a spike skill on a spike of 400 or more) with what it would have done and whether it would have saved him if begun by when, and what was done for him, one line a player; none priced or ranked. Written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
  "generated": "2026-11-28",
- "engine": "f7165b1",
+ "engine": "4d3866c",
  "kinds": [
   "prot",
   "heal",
