@@ -388,11 +388,12 @@ class Forensics:
                 if e[2] == "c" and e[7] == "dazed" and e[0] is not None: self._dazed[e[5]].append((e[0] / 10, e[1] / 10 if e[1] is not None else 1e9))
         return any(s_ <= t <= e_ for s_, e_ in self._dazed.get(a, ()))
 
-    def ready(self, a, sid, sd, t, hands=True):
-        """Skill sid off recharge for a at t, a alive, not knocked down and (hands) not already casting."""
+    def ready(self, a, sid, sd, t, hands=True, dis=True):
+        """Skill sid off recharge for a at t, a alive, not knocked down and (hands) not already casting; `dis` False leaves the enemy's disables out, so that
+        a skill ready but for a disable can be told apart (`chances`)."""
         if not self.alive(a, t) or (hands and self.casting_at(a, t)): return False
         if any(k[0] <= t <= k[0] + 2 for k in self.kds_on(a, t - 3, t)): return False
-        if self.disabled(a, sid, t): return False              # disabled by an enemy's skill: no chance, whatever its recharge says
+        if dis and self.disabled(a, sid, t): return False      # disabled by an enemy's skill: no chance, whatever its recharge says
         return t - self.last_use(a, sid, t - .01) >= _act(sd.get("recharge"))
 
     # ---- a skill disabled by the enemy; enchantments and spells barred by a hex (the catalogue's sections B and D; the match report's readings)
@@ -404,17 +405,25 @@ class Forensics:
         the added time)."""
         if self._dis is None:
             import pressure as PR, movepower
+            self._thief = collections.defaultdict(list)
             m, pl, out = self.m, set(self.m.PL), collections.defaultdict(list)
             base = lambda sid: PR._base(self.sname(sid))
             dur = lambda src, sd, prefer: float(movepower._duration(sd, PR._rank(m, src, sd) if src in pl else movepower.DEFAULT_RANK, prefer) or 0)
             foe = lambda a, b: a in pl and b in pl and m.team(a) != m.team(b)
             for i in m.o.get("interrupts") or []:
-                if i[0] is None or not foe(i[1], i[3]) or i[4] is None: continue
+                if i[0] is None or i[4] is None or not (foe(i[1], i[3]) or (i[3] in pl and base(i[2]) == "Disrupting Lunge")): continue      # a pet is no player: its Disrupting Lunge is read all the same
                 nm, t, tgt = base(i[2]), i[0] / 10, i[3]
                 if nm == "Power Block":
                     at = self.sdata(i[4]).get("attr")
                     out[tgt].append((t, t + dur(i[1], self.sdata(i[2]), "disable"), {b for b in (m.A[tgt].get("bar") or []) if b and (b == i[4] or (at and self.sdata(b).get("attr") == at))}, nm))
                 elif nm in ("Power Lock", "Complicate"): out[tgt].append((t, t + dur(i[1], self.sdata(i[2]), "disable" if nm == "Power Lock" else "duration"), {i[4]}, nm))
+                elif nm in DISABLE_ON_INTERRUPT:               # R-813: a skill whose own text disables the skill it interrupts, for as long as that text gives
+                    sd_i, sd_x = self.sdata(i[2]), self.sdata(i[4])
+                    if DISABLE_ON_INTERRUPT[nm] and "Spell" not in (sd_x.get("type") or ""): continue
+                    if nm == "Lyssa's Assault" and not any(e[2] == "e" and e[5] == i[1] and e[0] is not None and e[0] <= i[0] and (e[1] is None or e[1] >= i[0]) for e in m.o.get("effects") or ()): continue
+                    n_ = sum(1 for b in (m.A[i[1]].get("bar") or []) if b and "Signet" in (self.sdata(b).get("type") or "")) if nm == "Signet of Distraction" and i[1] in pl else 1
+                    d_ = dur(i[1], sd_i, "disab") * n_
+                    if d_: out[tgt].append((t, t + d_ + (_act(sd_x.get("recharge")) if "additional" in (sd_i.get("desc") or "") else 0), {i[4]}, nm))
             prr = self._prr if self._prr is not None else PR.record(self.rid)
             for t, src, tgt, secs, nm in prr.get("disable") or ():
                 if nm == "Blackout" and tgt in pl and secs: out[tgt].append((t, t + secs / 8, None, nm))
@@ -424,6 +433,8 @@ class Forensics:
                 if base(c[1]) == "Signet of Humility" and foe(c[0], c[5]):
                     el = {b for b in (m.A[c[5]].get("bar") or []) if b and self.sdata(b).get("elite")}
                     if el: out[c[5]].append((c[3], c[3] + dur(c[0], self.sdata(c[1]), "duration"), el, "Signet of Humility"))
+                if base(c[1]) in ("Arcane Thievery", "Arcane Larceny") and foe(c[0], c[5]):      # R-813: one spell of his, the record does not say which (`thieved`)
+                    self._thief[c[5]].append((c[3], c[3] + dur(c[0], self.sdata(c[1]), "duration"), base(c[1])))
             for e in m.o.get("effects") or []:                    # Diversion: a hex that ended as he used a skill (as `pressure.py` reads a cast-prevention hex set off)
                 if e[2] != "h" or e[0] is None or e[1] is None or e[5] not in pl or base(e[3]) != "Diversion" or (e[1] - e[0]) / 10 >= 5.5: continue
                 s1 = e[1] / 10
@@ -432,13 +443,27 @@ class Forensics:
             self._dis = out
         return self._dis
 
+    def thieved(self, a, t):
+        """R-813: Arcane Thievery or Arcane Larceny on a at t: one of his spells is disabled and the record does not say which (the thief's bar is not in
+        it, and he need never cast what he took). (the skill, from, to) or None: said beside the monk, never read as a skill of his disabled."""
+        self._disables()
+        return next(((nm, t0, t1) for t0, t1, nm in self._thief.get(a, ()) if t0 <= t <= t1), None)
+
+    def in_reach(self, h, tgt, t0, t1):
+        """Was h alive and within cast range of tgt at any tenth from t0 to t1? (A monk out of reach of the target is no part of the reading of his death.)"""
+        u = t0
+        while u <= t1 + 1e-6:
+            if self.alive(h, u) and (self.dist(h, tgt, u) or 1e9) <= CAST_R: return True
+            u += .1
+        return False
+
     def disabled(self, a, sid, t):
         """The enemy skill that has a's skill sid disabled at t (`_disables`), or None."""
         return next((nm for t0, t1, ids, nm in self._disables().get(a, ()) if t0 <= t <= t1 and (ids is None or sid in ids)), None)
 
     def barred(self, a, what, t):
         """A hex on a at t that bars `what`: "enchant" (Shadow Shroud: he cannot be the target of enchantments, so no enchantment prot can be cast on him) or
-        "ally spell" (Shame: his next spell that targets an ally fails). The hex's name, or None. A hex with no end recorded is read to the longest its text
+        "ally spell" (Shame: his next spell that targets an ally fails) or "skill" (Diversion: a monk does not cast through it, R-813). The hex's name, or None. A hex with no end recorded is read to the longest its text
         gives (Shadow Shroud 7 s, Shame 6 s)."""
         if self._bar is None:
             import pressure as PR
@@ -446,7 +471,7 @@ class Forensics:
             for e in self.m.o.get("effects") or []:
                 if e[2] != "h" or e[0] is None: continue
                 nm = PR._base(self.sname(e[3]))
-                k, cap = {"Shadow Shroud": ("enchant", 7), "Shame": ("ally spell", 6)}.get(nm, (None, 0))
+                k, cap = {"Shadow Shroud": ("enchant", 7), "Shame": ("ally spell", 6), "Diversion": ("skill", 6)}.get(nm, (None, 0))
                 if k: self._bar[(e[5], k)].append((e[0] / 10, e[1] / 10 if e[1] is not None else e[0] / 10 + cap, nm))
         return next((nm for t0, t1, nm in self._bar.get((a, what), ()) if t0 <= t <= t1), None)
 
@@ -498,21 +523,27 @@ class Forensics:
                 # R-747: the spikes on the monk himself (SPIKE_DMG inside SPIKE_S from a hit on him), each from its first hit to SPIKE_S after it
                 hits = self.damage_on(h, first - SPIKE_S, first + CHANCE_S + SPIKE_S) if h != tgt else ()
                 own = [x[0] for x in hits if sum(d[3] for d in hits if x[0] <= d[0] <= x[0] + SPIKE_S) >= SPIKE_DMG]
+                near = False
                 for u in moments:
                     if late is not None and u >= late[2] - 1e-6: break       # only a moment before the cast he did begin
                     dz = 2 if self.dazed_at(h, u) else 1
-                    can = [(sid, sd) for sid, sd in sk if u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6
-                           and (h == tgt or (self.dist(h, tgt, u) or 1e9) <= CAST_R)]      # his distance to himself is nought, which is no unknown distance
-                    # a skill the enemy has disabled is no chance; nor an enchantment on a target under Shadow Shroud, nor a spell from a monk under Shame
-                    shr, shm = self.barred(tgt, "enchant", u), self.barred(h, "ally spell", u)
-                    dis = [(self.sname(sid), self.disabled(h, sid, u)) for sid, sd in can if self.disabled(h, sid, u)]
-                    # (an enchantment cast on the whole party, Shield Guardian, has no target and is read as landing on him all the same: Claude's reading, his to correct)
-                    ench = lambda sd: "Enchantment" in (sd.get("type") or "") and not (prot_rule(sd) or {}).get("party")
-                    hexd = [(self.sname(sid), shr if shr and ench(sd) else shm) for sid, sd in can if (shr and ench(sd)) or (shm and "Spell" in (sd.get("type") or ""))]
-                    if dis: dsb = dsb or dis
-                    if hexd: bar = bar or hexd
-                    out_ = {n_ for n_, _ in hexd}
-                    ok = [self.sname(sid) for sid, sd in can if self.sname(sid) not in out_ and self.ready(h, sid, sd, u, hands=False)]
+                    reach = h == tgt or (self.dist(h, tgt, u) or 1e9) <= CAST_R      # his distance to himself is nought, which is no unknown distance
+                    near = near or reach
+                    can = [(sid, sd) for sid, sd in sk if reach and u + _act(sd.get("activation")) * (dz if "Spell" in (sd.get("type") or "") else 1) <= end + 1e-6]
+                    up = [(sid, sd) for sid, sd in can if self.ready(h, sid, sd, u, hands=False, dis=False)]
+                    free = not self.casting_at(h, u) and not self.in_aftercast(h, u)
+                    # a skill the enemy has disabled is no chance; nor an enchantment on a target under Shadow Shroud (one cast on the whole party, Shield
+                    # Guardian, included: R-811), nor a spell on an ally from a monk under Shame, nor any skill from a monk under Diversion (R-813). Each is
+                    # said only of a skill he could otherwise have cast at that moment (in reach, in time, off recharge, his hands free): where his hands
+                    # were full, that is the reason (`no_time` below), not the hex.
+                    shr, shm, dvr = self.barred(tgt, "enchant", u), self.barred(h, "ally spell", u), self.barred(h, "skill", u)
+                    ench = lambda sd: "Enchantment" in (sd.get("type") or "")
+                    hexd = [(self.sname(sid), shr if shr and ench(sd) else (dvr or shm)) for sid, sd in up if (shr and ench(sd)) or dvr or (shm and "Spell" in (sd.get("type") or ""))]
+                    dis = [(self.sname(sid), self.disabled(h, sid, u)) for sid, sd in up if self.disabled(h, sid, u)]
+                    if free and dis: dsb = dsb or dis
+                    if free and hexd: bar = bar or hexd
+                    out_ = {n_ for n_, _ in hexd} | {n_ for n_, _ in dis}
+                    ok = [self.sname(sid) for sid, sd in up if self.sname(sid) not in out_]
                     if not ok: continue
                     if self.casting_at(h, u):
                         b_ = self.busy(h, tgt, u)
@@ -524,6 +555,19 @@ class Forensics:
                     ex = En.at(h, u) if En.ok else None
                     if ex is not None and ex["out"] == "yes": out_e = out_e or ok; continue
                     chance, en = (u, ok), (None if ex is None else [round(ex["lo"]), round(ex["hi"])]); break
+                # R-815: in reach with a skill off recharge and no chance for none of the reasons above: there was no time. Either the hits themselves
+                # were too fast (the time to see them and the cast are longer than he lived: `fast`), or his hands were full with a cast begun before he
+                # could have seen it, and its aftercast (`hands`: the cast, and whom it was for). Said on the death as no fault.
+                nt = None
+                if not (chance or late is not None or busy or spk or prs or out_e or bar or dsb) and near:
+                    u0 = first + REACT_S
+                    cand = [(sid, sd) for sid, sd in sk if self.ready(h, sid, sd, u0, hands=False, dis=False)]
+                    if cand:
+                        act = min(_act(sd.get("activation")) * ((2 if self.dazed_at(h, u0) else 1) if "Spell" in (sd.get("type") or "") else 1) for sid, sd in cand)
+                        occ = next((c for c in self._by_agent.get(h, ()) if c[2] <= end and c[1] is not None and (c[3] if c[3] is not None else c[2] + 1) + (AFTERCAST_S if c[4] == "finished" and has_aftercast(self.sdata(c[1])) else 0) > u0), None)
+                        if u0 + act > end + 1e-6: nt = {"why": "fast", "need": round(REACT_S + act, 2), "had": round(end - first, 1)}
+                        elif occ is not None: nt = {"why": "hands", "casting": self.sname(occ[1]), "on": self.name(occ[5]) if occ[5] in self.m.PL else None, "need": round(REACT_S + act, 2), "had": round(end - first, 1)}
+                        if nt: nt["skills"] = [self.sname(sid) for sid, sd in cand]
                 if chance: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": chance[1], "at": round(chance[0] - first, 1), "chance": True,
                                        "energy": en, **me})       # his energy at that moment, least and most by gvg.report's model (None where it has none)
                 elif late is not None: continue            # no earlier moment: his cast is context (`begun`), and no "no chance" is said of a monk who acted
@@ -533,6 +577,7 @@ class Forensics:
                 elif out_e: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": out_e, "out_of_energy": True, "chance": False})
                 elif bar: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": sorted({n_ for n_, _ in bar}), "barred": sorted({b_ for _, b_ in bar}), "chance": False})
                 elif dsb: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": sorted({n_ for n_, _ in dsb}), "disabled": sorted({b_ for _, b_ in dsb}), "chance": False})
+                elif nt: out.append({"kind": kind, "side": "defence", "by": self.name(h), "id": h, "skills": nt.pop("skills"), "no_time": nt, "chance": False, **me})
         return out
 
     def taken_in_time(self, a, first, kinds, end=None):
@@ -557,7 +602,8 @@ class Forensics:
         cast on nobody) by a team mate within earshot of him as it began."""
         if c[5] == tgt: return True
         r = prot_rule(self.sdata(c[1]))
-        return bool(r and r.get("party") and c[0] in self.m.PL and tgt in self.m.PL and self.m.team(c[0]) == self.m.team(tgt) and (c[0] == tgt or (self.dist(c[0], tgt, c[2]) or 1e9) <= EARSHOT_R))
+        return bool(r and r.get("party") and c[0] in self.m.PL and tgt in self.m.PL and self.m.team(c[0]) == self.m.team(tgt) and (c[0] == tgt or (self.dist(c[0], tgt, c[2]) or 1e9) <= EARSHOT_R)
+                    and not self.barred(tgt, "enchant", c[3] if c[3] is not None else c[2]))      # R-811: not on a player under Shadow Shroud as it lands
 
     def hits_on(self, a):
         """Every hit on player a by the other team's players and NPCs, in time order, each told as an attack, a spell or neither (R-791: a block stops
@@ -1375,6 +1421,10 @@ def prot_rule(sd):
     return PROT_RULES.get((sd.get("name") or "").replace(" (PvP)", "").replace(" PvP", ""))
 
 
+# R-813: the skills whose own text disables the skill they interrupt, beside Power Block, Power Lock and Complicate (`Forensics._disables`): True where
+# only a spell is disabled. The length is the text's at the interrupter's rank, after the skill's own recharge where the text says "additional".
+DISABLE_ON_INTERRUPT = {"Distracting Shot": False, "Disrupting Chop": False, "Disrupting Lunge": False, "Magebane Shot": True, "Disrupting Stab": True, "Simple Thievery": False,
+                        "Signet of Distraction": True, "Lyssa's Assault": False, "Psychic Distraction": False}
 CUT_S = 0.3                 # R-802: a cast cancelled within this long of the death of the player it was for was cut off by that death (the record's tenths, and the
                             # 0.3 s a death is matched to its kill attempt by)
 LATE = "after he died"      # R-797: how a cast ended which finished only after the player it was for had died (beside the record's finished, cancelled, interrupted)
