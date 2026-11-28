@@ -837,7 +837,7 @@ def prot_would(E, h, skill, tgt, cast_at, died, led):
     if rule.get("ends_on_attack"): off = min(off, next((u for u in E.att.get(tgt, ()) if u > land), off))
     fx = _fx(E)
     # an enchantment does not stack with itself: while the same skill is already on him (a team mate's cast of it, by the effects record) this cast adds
-    # nothing (Shield Guardian read at its 1.5 s made two monks' casts of one skill overlap more often; it matters most with `TEAM_MATE_EXCUSES` False)
+    # nothing (it matters since R-828: a monk is read for his own chance beside a team mate's prot that landed)
     same = [(x[0], x[1]) for x in fx.get(tgt, ()) if x[2] == name and x[0] < s1 and x[1] > land]
     hexed = any(x[4] == "h" and x[0] <= land <= x[1] for x in fx.get(tgt, ()))
     if rule.get("needs") == "hex" and not hexed: off = land - 1
@@ -1348,7 +1348,7 @@ STANCE_FAULT = ("Frenzy", "Frenzied Defense", "Primal Rage")     # R-740, R-768:
 STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
                             # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
                             # rank, which the replay does not hold), "take double damage" (half), -20 armour (hits 1.41 times as hard: 29% of what landed)
-SHAME_LAG_S = 0.15          # the record writes the end of Shame's cast and the start of the cast it stops up to a tenth apart either way (17 of 173 on the development set a tenth before)
+SHAME_LAG_S = 0.15          # the record writes the end of Shame's cast and the stop of the cast it fails up to a tenth apart either way
 TRIGGER_JOIN_S = 0.3        # a trigger's own damage lands inside this long of the attack or cast that set it off
 BALL_S = 0.15               # the hits of one cast on several players land inside this long of one another (the same tenth)
 BALL_LAND_S = 1.0           # ... the first of them no later than this after the cast finished (4,860 of 4,968 in the tenth it finished; a projectile's flight the rest)
@@ -1408,8 +1408,8 @@ def triggers(E):
       clumsiness, ineptitude   an attack started with the hex on him (R-739)
       backfire    spells finished with Backfire on him and no Spirit Bond (R-737: a fault for the midline, not for a backline monk; `spirit_bond` counts
                   the casts made with Spirit Bond on him, never a fault)
-      shame       a spell on an ally that failed to Shame, by the interrupt record's own skill (R-739; `seen`: how long the hex had been on him; `fault`
-                  only where that is the time to react or longer, Rule 1); diversion: a skill used as Diversion went (R-739)
+      shame       a spell on an ally that failed to Shame, by the interrupt record's own skill (R-739; `seen`: how long the hex had been on him when
+                  his cast stopped; `fault` only where he could have cancelled, R-830: the time to react or longer); diversion: a skill used as Diversion went (R-739)
       daze_left   a backline monk Dazed with a condition removal ready on another backline monk in reach, and no removal came (R-725)
     Spiteful Spirit and Visions of Regret are left out (R-739). `fault`: is it one by his rulings; `n` how many times, `amount` what it cost in damage."""
     import re
@@ -1452,16 +1452,17 @@ def triggers(E):
                 if c is not None: row(c[3], a, "diversion", by=role.get(by), n=1, skill=tname(F, c[1]), fault=True)
     # R-739: a spell lost to Shame, told by gvg.report's interrupt record, which names the hex as the skill that stopped the cast (`Forensics.stopped_by`).
     # Until 2026-11-28 it was told from the hex in the effects record, which holds none where the hex landed and went inside one tenth: on the development
-    # set the record names Shame on all 126 casts the hex told and on 47 more. `seen`: the seconds from the hex landing on him (its caster's cast
-    # finishing) to the start of the cast it stopped. Rule 1 (R-716): a fault only where he had the time to see it (REACT_S); a cast begun as the hex
-    # landed is no fault (`fault` False: Claude's reading of Rule 1, his to correct, R-826)
+    # set the record names Shame on all 126 casts the hex told and on 47 more. R-830 ("Fault only if monk could have cancelled with 0.2s reaction time"):
+    # `seen` is how long the hex had been on him (from its caster's cast finishing) when his own cast stopped; a fault at REACT_S or longer. A spell begun
+    # under the hex stops in the tenth it begins (128 of the 173), so there it is the time he had not to begin it; one under way as the hex landed
+    # fails as it would have finished (45), and he could have cancelled it where the hex landed REACT_S or more before that
     for a in pl:
         for c in F._by_agent.get(a, ()):
             if c[4] != "interrupted" or c[3] is None or c[3] >= E.M.over: continue
             w = F.stopped_by(c)
             if not w or w[1] != "Shame" or w[0] not in pl: continue
-            cf = max((x[3] for x in F._by_agent.get(w[0], ()) if x[4] == "finished" and x[3] is not None and x[5] == a and tname(F, x[1]) == "Shame" and x[3] <= c[2] + SHAME_LAG_S), default=None)
-            seen = None if cf is None else round(c[2] - cf, 1)
+            cf = max((x[3] for x in F._by_agent.get(w[0], ()) if x[4] == "finished" and x[3] is not None and x[5] == a and tname(F, x[1]) == "Shame" and x[3] <= c[3] + SHAME_LAG_S), default=None)
+            seen = None if cf is None else max(0.0, round(c[3] - cf, 1))
             row(c[3], a, "shame", by=role.get(w[0]), n=1, skill=tname(F, c[1]), fault=bool(seen is None or seen >= REACT_S), seen=seen, began=round(c[2], 1),
                 **({"on": role[c[5]], "on_id": c[5]} if c[5] in pl and c[5] != a and m.team(c[5]) == m.team(a) else {}))
     # R-725: Daze left on another monk (the one condition fault for monks beside Deep Wound on a spike target)
@@ -1497,7 +1498,7 @@ def say_trigger(r, objective=None, plain=False):
     if k == "shame":
         on = f" on the {r['on']}" if r.get("on") else ""
         if r.get("fault", True): return f"{clk(r['t'])} the {r['who']} casts {nm(r['skill'])}{on} into the {r['by']}'s Shame and loses it" + rule(" (a fault, R-739)") + "."
-        return f"{clk(r['t'])} the {r['who']} loses {nm(r['skill'])}{on} to the {r['by']}'s Shame, which landed as he began the cast: no time to see it" + rule(" (no fault, R-716)") + "."
+        return f"{clk(r['t'])} the {r['who']} loses {nm(r['skill'])}{on} to the {r['by']}'s Shame, which landed {r['seen']} s before the spell failed: no time to cancel" + rule(" (no fault, R-830)") + "."
     if k == "diversion": return f"{clk(r['t'])} the {r['who']} uses {nm(r['skill'])} into the {r['by']}'s Diversion" + rule(" (a fault, R-739)") + "."
     if k == "daze_left": return f"{clk(r['t'])} the {r['who']} is Dazed for {r['s']} s with a removal ready ({'; '.join(nm(b) for b in r['by'])}: {', '.join(nm(s) for s in r['skills'])}) and none comes" + rule(" (a fault, R-725)") + "."
     return ""
@@ -2073,8 +2074,11 @@ def deaths(E, atts, prs=None, trig=None):
     interrupt chance is defined on a spike's skills). Where he died without having been kept in danger (`kept` False: he fell from above the line and died
     inside a second, or with too little landing on him) the reading starts at the first thing the enemy landed on him after the replay last found him above
     the line (`Forensics.death_start`). Each death carries the sum (`ledger`, R-734) and each fault what it would have stopped or added (`_amounts`).
-    A kind a team mate took in time is no fault and is not listed against the player who held back (R-715; `TEAM_MATE_EXCUSES`: his question on the Mesmer of
-    RACK v hdm at 6:15 is open, see the constant). Deep Wound left on him: each monk's removal with what it would have done (`removal_saves`). A monk's prot or
+    R-828 (amending R-715, on the Mesmer of RACK v hdm at 6:15: "could prot not have saved him here? He had SB and LS and no shame or knockdown"; "Go with B"):
+    a prot or heal a team mate landed did not save a player who died, so it excuses no other monk: every monk who landed none of that kind on him is read
+    for his own chance, and listed where his cast alone would have saved him (R-812, `death_rulings`); `taken` still records what landed. A monk whose
+    cast came too late (R-802) is listed with what else of that kind he had ready at his earlier moment (`began`: the one he began; `also_ready`). R-715
+    stands where the player lived (the kill attempts' own records and their checks are untouched). Deep Wound left on him: each monk's removal with what it would have done (`removal_saves`). A monk's prot or
     heal on him lost to Shame inside the kill attempt (`shamed`: places in `trig`, the match's trigger rows). The record holds what was there; its words are `say_death`. Beside the faults, what was no chance: a monk busy on a player under pressure (R-711) or out of energy (R-681). The deaths recorded as
     the match ends are none (`Moments.over`)."""
     from forensics import is_prot, is_heal
@@ -2098,9 +2102,9 @@ def deaths(E, atts, prs=None, trig=None):
                 if kind not in FAULT_KINDS: continue
                 tk, mi, _ = T[kind]
                 if tk(r): taken.append(kind)
-                if not tk(r) or not TEAM_MATE_EXCUSES:
-                    faults += [{"kind": kind, "by": x["by"], "id": x.get("id"), "skills": list(x["skills"]), "at": x["at"], "energy": x.get("energy"), "amounts": dict(x.get("amounts") or {}), **{k_: x[k_] for k_ in ("self", "too_late") if k_ in x}} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
-                    begun += [[kind, n_, d_, o_] for n_, d_, o_ in r[{"prot": "prots_cast", "heal": "heals_cast"}[kind]] if o_ != "finished"]
+                # R-828 (amending R-715): he died, so a cast of this kind a team mate landed excuses no other monk: each is read for his own chance
+                faults += [{"kind": kind, "by": x["by"], "id": x.get("id"), "skills": list(x["skills"]), "at": x["at"], "energy": x.get("energy"), "amounts": dict(x.get("amounts") or {}), **{k_: x[k_] for k_ in ("self", "too_late") if k_ in x}} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
+                begun += [[kind, n_, d_, o_] for n_, d_, o_ in r[{"prot": "prots_cast", "heal": "heals_cast"}[kind]] if o_ != "finished"]
             if "interrupt" in FAULT_KINDS and r.get("hurt") is None:       # R-805: a fault on a spike only, never on a burst on a hurt player
                 for x in r["missed"]:
                     if x["kind"] != "interrupt" or x.get("at", 0) > CHANCE_S: continue
@@ -2120,8 +2124,8 @@ def deaths(E, atts, prs=None, trig=None):
             kinds = {k: f for k, f in (("prot", is_prot), ("heal", is_heal)) if k in FAULT_KINDS}
             ch = [_amounts(E, c, (a, bt, True, d["ledger"])) for c in F.chances(a, bt, td, kinds, died=True)]
             taken = F.taken_in_time(a, bt, kinds, td)
-            begun = [b_ for b_ in F.begun(a, bt, kinds, td) if b_[0] not in taken or not TEAM_MATE_EXCUSES]
-            faults = [{"kind": c["kind"], "by": c["by"], "id": c.get("id"), "skills": list(c["skills"]), "at": c["at"], "energy": c.get("energy"), "amounts": dict(c.get("amounts") or {}), **{k_: c[k_] for k_ in ("self", "too_late") if k_ in c}} for c in ch if c["chance"] and (c["kind"] not in taken or not TEAM_MATE_EXCUSES)]
+            begun = F.begun(a, bt, kinds, td)
+            faults = [{"kind": c["kind"], "by": c["by"], "id": c.get("id"), "skills": list(c["skills"]), "at": c["at"], "energy": c.get("energy"), "amounts": dict(c.get("amounts") or {}), **{k_: c[k_] for k_ in ("self", "too_late") if k_ in c}} for c in ch if c["chance"]]      # R-828, as on a spike
             other = [c for c in ch if c.get("busy_on") or c.get("out_of_energy") or c.get("spiked") or c.get("pressed") or c.get("barred") or c.get("disabled") or c.get("no_time")]
         # R-783: a death with nothing landed on him in the record lists no fault (the record does not show what killed him); and a pact kill (he died as
         # the player he had resurrected with Death Pact Signet died: the signet kills its caster) is a why of its own: no chance of his team's is read on it
@@ -2163,7 +2167,7 @@ def deaths(E, atts, prs=None, trig=None):
                 d["monks"], d["landed"] = monks_at(E, [h for h in F.players(tm) if h in E.monk], a, d["first"], td), landed_casts(E, on_a, a, d["first"], td, True)
             for x in faults:
                 if x["kind"] in ("prot", "heal") and x.get("id") is not None:
-                    if "too_late" in x and not TEAM_MATE_EXCUSES:      # the cast he began too late, and what else of that kind he had ready at his earlier moment (with the open question)
+                    if "too_late" in x:                    # the cast he began too late, and what else of that kind he had ready at his earlier moment (R-828)
                         x["began"] = x["skills"][0]
                         for nm_ in also_ready(E, x["id"], a, {"prot": is_prot, "heal": is_heal}[x["kind"]], d["first"] + x["at"], td, x["skills"]):
                             x["skills"].append(nm_)
@@ -2182,14 +2186,6 @@ def deaths(E, atts, prs=None, trig=None):
             c = next((x for x in out if x["id"] == d["pact"]["id"] and abs(x["t"] - d["t"]) <= .2), None)
             if c is not None: c.setdefault("took", []).append(d["who"])
     return sorted(out, key=lambda d: d["t"])
-
-
-TEAM_MATE_EXCUSES = True    # R-715: a prot or heal a team mate landed in time is the team's chance taken: no other monk is listed for that kind, on a death as on a save.
-                            # Open for Denning (his mark on the Mesmer of RACK v hdm, 6:15: "could prot not have saved him here? He had SB and LS and no shame or
-                            # knockdown": the 8 Monk's Shielding Hands had landed, so the Prot's Spirit Bond and Life Sheath were not listed). False reads every monk
-                            # for his own chance on a death, whatever a team mate landed, and names beside a cast begun too late (R-802) what else of that kind he
-                            # had ready (`also_ready`); R-812 still lists a prot only where it alone would have saved him. Built and held until he rules: on the 82
-                            # matches of the development set it changes the deaths with a prot fault and a heal fault as ENGINE_NOTES section 44 gives them
 
 
 def also_ready(E, h, tgt, test, u, end, skip=()):
@@ -2544,7 +2540,7 @@ def death_lines(d, trig=None):
     for who_, what, skill in d.get("interrupted") or (): L.append(f"Success: {mine(who_)} interrupted {nm(skill)} with {nm(what)}.")
     if d.get("begun"):                                     # a cast the interrupt record gives to Shame is said as lost to Shame, not as interrupted (his mark on RACK v hdm, 6:28)
         lost = lambda n_, d_: next((w for w in shamed + ([trig[i] for i in d.get("walked") or ()] if trig is not None else []) if w["kind"] == "shame" and w["skill"] == nm(n_) and abs(d["first"] + d_ - w["began"]) <= .15), None)
-        how = lambda n_, d_, o_: o_ if o_ != "interrupted" or lost(n_, d_) is None else "lost to Shame" + ("" if lost(n_, d_).get("fault", True) else ", which landed as he began the cast")
+        how = lambda n_, d_, o_: o_ if o_ != "interrupted" or lost(n_, d_) is None else "lost to Shame" + ("" if lost(n_, d_).get("fault", True) else f", which landed {lost(n_, d_)['seen']} s before it failed: no time to cancel")
         L.append("Attempted, failed: " + "; ".join(f"{nm(n_)} {ba(d_)} {start} ({how(n_, d_, o_)})" for _k, n_, d_, o_ in d["begun"]) + ".")
     # what was no fault, and why (R-815): no monk in range before all else, then too fast, then each monk's own reason
     if not d.get("in_reach") and "in_reach" in d and not any(x.get("self") for x in d["faults"]) and not d["no_chance"]:
