@@ -673,10 +673,10 @@ def execution_rows(path, out, picks):
         groups.sort(key=lambda g: (min(DT[i]["t"] for i in g["deaths"]), g["t0"]))
         for g in groups:
             g["deaths"] = [{"id": f"x:{DT[i]['t']}:{DT[i]['team']}:{DT[i]['who']}", "t": DT[i]["t"], "first": DT[i]["first"], "team": DT[i]["team"], "who": DT[i]["who"], "spike": DT[i]["spike"],
-                            "faults": len(DT[i]["faults"]), "lines": EX.death_lines(DT[i]), "also": others.get(i, []), "text": EX.say_death(DT[i])} for i in g["deaths"]]
+                            "faults": len(DT[i]["faults"]), "lines": EX.death_lines(DT[i], fc.get("triggers")), "also": others.get(i, []), "text": EX.say_death(DT[i], fc.get("triggers"))} for i in g["deaths"]]
         games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "deaths": len(DT), "with_faults": sum(1 for d in DT if d["faults"]), "groups": groups})
     commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
-    json.dump({"about": "The rows of Model > Game review > Execution (R-713 to R-715): every death of a player in the games picked, with the checked chances his team missed (a prot, a heal, an interrupt on a spike skill: the kinds that passed on unseen matches), none priced or ranked, written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
+    json.dump({"about": "The rows of Model > Game review > Execution (R-713 to R-715, R-805 to R-810): every death of a player in the games picked, in the wording of the match report: what killed him, what applied at the spike (no shield, Shadow Shroud, a monk stopped), his own play, then each chance his team missed (a prot, a heal, an interrupt on a spike skill on a spike of 400 or more, Deep Wound left on him) with what it would have done and whether it would have saved him if begun by when, and what was done for him; none priced or ranked. Written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
                "generated": datetime.date.today().isoformat(), "engine": commit, "kinds": list(EX.FAULT_KINDS), "games": games}, open(out, "w"), ensure_ascii=False, indent=1)
     print("; ".join(f"{' v '.join(g['teams'])}: {g['deaths']} deaths, {g['with_faults']} with a missed chance, under {len(g['groups'])} situations" for g in games))
 

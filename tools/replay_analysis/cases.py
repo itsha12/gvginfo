@@ -3265,7 +3265,7 @@ def exec_say(path, pre, at=None, bench_file=None):
         x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
         sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
         fc = D["flag_cost"][rid]
-        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught"), fc.get("attempts"), fc.get("pressure")) if x and "deaths" in x else None
+        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught"), fc.get("attempts"), fc.get("pressure"), fc.get("triggers"), fc.get("balled"), fc.get("positions")) if x and "deaths" in x else None
         if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}" + (f"\n   Faults (R-713, R-714). {flt}" if flt else ""))
 
 
@@ -3882,15 +3882,73 @@ def x3_attempts(A, pr, res):
     res["faults_ruled"] = list(EX.RULED_KINDS)            # told as faults by his ruling whatever this test says, its verdict beside them (R-744; `execution.ruled_check` reads it here)
     back = [k for k in EX.RULED_KINDS if res["x3"].get(k, {}).get("verdict") == "reads backwards"]
     pr(f"   Told as faults by his ruling whatever the check shows (R-744): {', '.join(EX.RULED_KINDS)}" + (f"; reading backwards, to bring to him: {', '.join(back)}." if back else "."))
-    if set(ok) != set(EX.FAULT_KINDS):                    # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees, the report stops (R-460)
+    byr = [k for k in EX.FAULT_KINDS if k in EX.FAULT_BY_RULING]
+    for k in byr:                                         # R-805: the interrupt on a spike skill is a fault on a spike by his ruling; the check stands beside it and a failing one is brought to him
+        v = res["x3"].get(k, {}).get("verdict")
+        pr(f"   Told as a fault on a spike by his ruling (R-805), the check beside it: {k}: {v}" + ("." if v == "passes" else ": to bring to him (R-744)." if v in ("fails", "reads backwards") else " on this file (a full run decides)."))
+    res["faults_by_ruling"] = byr
+    if set(ok) - set(EX.FAULT_KINDS) or set(EX.FAULT_KINDS) - set(ok) - set(byr):       # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees on a checked kind, the report stops (R-460)
         res["faults_differ"] = f"the engine tells {', '.join(EX.FAULT_KINDS)} as faults (execution.FAULT_KINDS) and this test passes {', '.join(ok) or 'none'}"
         pr(f"   FAULT: {res['faults_differ']}: set execution.FAULT_KINDS to the kinds that pass and run again.")
+
+
+def x3_parts(A, D, pr, res):
+    """Section H: the kinds of stages 3 and 4 and of the match report's readings, each checked once on unseen matches by the same yardstick as section G
+    (killed less the kill expected from the situation, fitted without the attempt's group of matches; passes as there: the range clear and the sign it
+    should have in every group of matches but X3_BUT). Each row is the attempts with the thing named against those without it, and says which way it
+    should read if it matters (kills more, or kills less). A fault by his ruling stands whatever this shows, the result beside it (R-744); a why
+    nobody ruled a fault is only ever a why. On the spikes and bursts, then on the times a player was kept in danger (their situation is thinner: that
+    record keeps no health or healers at the start)."""
+    import execution as EX
+    CH = EX.CHANCE_S
+    raw = lambda L: 100 * float(np.mean([r["killed"] for r in L])) if L else float("nan")
+    res["parts"] = {}
+    def rows(title, L, kinds):
+        pr(f"\n{title}")
+        pr(f"   {'':52} {'should':>11} {'with it':>18} {'without it':>18} {'like with like, points':>28} {'groups':>7}  verdict")
+        for name, status, want, has, hasnt in kinds:
+            T, O = [r for r in L if has(r)], [r for r in L if hasnt(r)]
+            key = f"{title.split(':')[0]} | {name}"
+            if len(T) < MIN_PLAYS or len(O) < MIN_PLAYS:
+                res["parts"][key] = {"status": status, "verdict": "too few", "n": [len(T), len(O)]}
+                pr(f"   {name:52} too few ({len(T)} with it, {len(O)} without it)"); continue
+            d, lo, hi, signs = _x3_diff(T, O)
+            w = _x3_word(d, lo, hi, signs, want); right = sum(1 for s_ in signs if s_ * want > 0)
+            res["parts"][key] = {"status": status, "should": "kill more" if want > 0 else "kill less", "verdict": w, "with": [len(T), raw(T)], "without": [len(O), raw(O)], "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)]}
+            pr(f"   {name:52} {'kill more' if want > 0 else 'kill less':>11} {len(T):6} {raw(T):5.1f}% killed {len(O):6} {raw(O):5.1f}% {d:+8.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}  [{status}]")
+    dw_missed = lambda r: any(x["kind"] == "deep wound" and x.get("chance") for x in r["missed"])
+    dw_in_time = lambda r: bool((r.get("deep_wound") or {}).get("on")) or ((r.get("deep_wound") or {}).get("at") is not None and r["deep_wound"]["at"] <= CH)
+    it = lambda r: r.get("into") or {}
+    S = [r for r in A if r.get("pact") is None]
+    rows("H1. On the spikes and bursts: the target's own play, what the spike went into, Deep Wound, Shadow Shroud, his monks stopped", S, (
+        ("a damage-raising stance up on him (R-740)", "a fault by his ruling", +1, lambda r: any(x["fault"] for x in r.get("stance") or ()), lambda r: not any(x["fault"] for x in r.get("stance") or ())),
+        ("a block up on him, the spike with attacks in it", "a why of the attack's", -1, lambda r: bool(it(r).get("attacks") and it(r).get("blocks")), lambda r: bool(it(r).get("attacks") and not it(r).get("blocks"))),
+        ("spell immunity up on him, the spike with spells in it", "a why of the attack's", -1, lambda r: bool(it(r).get("spells") and it(r).get("immune")), lambda r: bool(it(r).get("spells") and not it(r).get("immune"))),
+        ("Deep Wound carried and not on him in time (R-751)", "a why of the attack's", -1, lambda r: bool((r.get("deep_wound") or {}).get("missing")), dw_in_time),
+        ("Deep Wound left on him, a removal ready (R-725)", "a fault by his ruling", +1, dw_missed, lambda r: r.get("dw") in ("off", "left") and not dw_missed(r)),
+        ("Shadow Shroud on him at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud")),
+        ("a monk of his stopped at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("monks")), lambda r: not r.get("monks"))))
+    B = [r for r in A if r.get("hurt") is not None]
+    ints = lambda r: [x for x in r["missed"] if x["kind"] == "interrupt" and x.get("at", 0) <= CH]
+    rows("H2. The interrupt on a burst on a hurt player: not asked, never a fault (R-805); kept as evidence", B, (
+        ("an interrupt ready and the skill went off", "not a fault (R-805)", +1, lambda r: any(x.get("chance") for x in ints(r)), lambda r: any(x.get("taken") for x in ints(r)) and not any(x.get("chance") for x in ints(r))),))
+    P = [dict(r, rid=rid) for rid, fc in D["flag_cost"].items() for r in (fc.get("pressure") or []) if r.get("after_spike") is None and r.get("pact") is None]
+    if P:
+        _x3_expected(P)
+        tk = lambda key: (lambda r: any(d <= CH and o == "finished" for _, d, o in r[key]))
+        ms = lambda kind: (lambda r: any(x["kind"] == kind and x.get("chance") for x in r["missed"]))
+        rows(f"H3. On the {len(P):,} times a player was kept in danger: a prot, a heal, Deep Wound left on him", P, (
+            ("a prot ready and not cast on him", "a fault (checked)", +1, lambda r: ms("prot")(r) and not tk("prots_cast")(r), tk("prots_cast")),
+            ("a heal ready and not cast on him", "a fault (checked)", +1, lambda r: ms("heal")(r) and not tk("heals_cast")(r), tk("heals_cast")),
+            ("Deep Wound left on him, a removal ready (R-725)", "a fault by his ruling", +1, dw_missed, lambda r: r.get("dw") in ("off", "left") and not dw_missed(r))))
+    back = [k for k, v in res["parts"].items() if v.get("verdict") == "reads backwards" and "ruling" in v["status"]]
+    pr("   A fault by his ruling stands whatever this shows (R-744)" + (f"; reading backwards, to bring to him: {'; '.join(back)}." if back else "; none of them reads backwards."))
 
 
 def x3_together(A, pr, res):
     """R-708: how close together the parts of the package must land, measured: by when the strip (of a prot) and the first interrupt on his monks landed against the
     first big hit, killed less expected against the attempts where that part was ready and not done at all (needs `_x3_expected` first)."""
-    pr("\nH. The spike package together (R-708): by when the part landed against the first big hit, killed less expected against the same attempts with the part ready")
+    pr("\nI. The spike package together (R-708): by when the part landed against the first big hit, killed less expected against the same attempts with the part ready")
     pr("   and not done (points, 90% range over whole matches); blank under the floor of attempts")
     res["together"] = {}
     for part in ("strip", "pressure"):
@@ -4059,7 +4117,7 @@ def attempts_report(path, out_json=None):
     busy = sum(1 for r in A for x in r["missed"] if x.get("busy_on")); oe = sum(1 for r in A for x in r["missed"] if x.get("out_of_energy"))
     pr(f"\nNot counted as chances: {busy:,} times a monk with a prot or heal ready was busy on another player under pressure (R-711); {oe:,} times he was out of energy (R-681).")
     res["busy"], res["out_of_energy"] = busy, oe
-    x3_attempts(A, pr, res); x3_together(A, pr, res)
+    x3_attempts(A, pr, res); x3_parts(A, D, pr, res); x3_together(A, pr, res)
     if out_json:
         with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
         pr(f"written: {out_json}")
@@ -4161,8 +4219,8 @@ def positions_report(path, out_json=None):
     players who are no backline monk, monk following on the attempts on backline monks by the monk's own distance past the front line. Then, beside the
     engine's own constants, each kind on the attempts: how often an attempt with it kills against one without, and on the spikes like with like (killed
     less the kill expected from the situation at the first big hit, fitted without the attempt's group of matches: stage X3's test). Too deep and monk
-    following are whys nobody ruled a fault: told as one only if they pass (R-713). Standing in area damage and should have kited are faults by his ruling
-    whatever this shows (R-744); a snared frontline is a why, not a fault (R-804)."""
+    following are whys nobody ruled a fault: told as one only if they pass (R-713). A snared frontline is a why, not a fault (R-804). Standing in area
+    damage is set aside (R-807) and should have kited withdrawn (R-806): neither is read here."""
     import execution as EX
     from cache import fold_of, FOLDS
     D = json.load(open(path))
@@ -4195,9 +4253,8 @@ def positions_report(path, out_json=None):
         pr(f"   The engine reads {eng}: {k(at)}; short of it {k([r for r in L if r['place']['past'] < eng])}." + ("" if b and b[1] == eng else "  NOT the rule's cut-off on this file: set the engine's constant from a full run, or say why not."))
     # each kind, checked once
     has = {"too deep": lambda r: bool(r["place"] and r["place"].get("too_deep")), "monk following": lambda r: bool(r.get("followed")),
-           "standing in area damage": lambda r: any(x["kind"] == "area" for x in r.get("stood") or ()), "should have kited": lambda r: any(x["kind"] == "stood" for x in r.get("stood") or ()),
            "the attack's frontline snared": lambda r: bool(r.get("snared"))}
-    want = {"too deep": +1, "monk following": +1, "standing in area damage": +1, "should have kited": +1, "the attack's frontline snared": -1}
+    want = {"too deep": +1, "monk following": +1, "the attack's frontline snared": -1}
     _x3_expected(S)
     pr(f"\nB. Each kind on the kill attempts, and on the spikes like with like (points of killed less expected, 90% range over whole matches; passes as in stage X3: the range clear and the right sign in every group of matches but {X3_BUT}).")
     pr(f"   {'':32} {'with it':>20} {'without':>20} {'spikes with it':>16} {'like with like':>26} {'groups':>7}  verdict")
@@ -4212,7 +4269,7 @@ def positions_report(path, out_json=None):
         w = _x3_word(d, lo_, hi_, signs, want[name]); right = sum(1 for s_ in signs if s_ * want[name] > 0)
         o.update({"spikes_with": len(Ts), "difference": d, "range": [lo_, hi_], "groups_right": [right, len(signs)], "verdict": w})
         pr(f"   {name:32} {k(T):>20} {k(O):>20} {len(Ts):>16} {d:+8.1f} ({lo_:+6.1f} to {hi_:+6.1f})    {right:2}/{len(signs):<2}  {w}")
-    pr("   Too deep and monk following are told as faults only if they pass (R-713); the two his rulings name stand whatever this shows, and one that reads backwards is brought to him (R-744).")
+    pr("   Too deep and monk following are told as faults only if they pass (R-713). Standing in area damage is set aside (R-807) and should have kited withdrawn (R-806): neither is read.")
     ok = tuple(n for n in ("too deep", "monk following") if res["kinds"][n].get("verdict") == "passes")
     res["position_faults"] = {"pass": list(ok), "engine": list(EX.POSITION_FAULTS)}
     if set(ok) != set(EX.POSITION_FAULTS): pr(f"   The engine names {', '.join(EX.POSITION_FAULTS) or 'neither'} a fault (execution.POSITION_FAULTS) and this file passes {', '.join(ok) or 'neither'}: set it from a full run.")
@@ -4225,16 +4282,66 @@ def positions_report(path, out_json=None):
         amt = f"{sum(x['s'] for x in L):,.0f} s" if kind == "flail" else f"{sum(x['n'] for x in L):,} hits, {sum(x['amount'] for x in L):,} damage"
         res["rows"][kind] = {"rows": len(L), "matches": len({x["rid"] for x in L}), "amount": sum(x["s"] for x in L) if kind == "flail" else sum(x["amount"] for x in L)}
         pr(f"   {words}: {len(L):,} rows in {len({x['rid'] for x in L})} matches, {amt}"
-           + (f"; by skill: {', '.join(f'{n} {c}' for n, c in collections.Counter(x['skill'] for x in L).most_common())}; knocked down at a counted hit on {sum(1 for x in L if x['down'])} rows, slowed on {sum(1 for x in L if x['snared'])}" if kind == "area" and L else "") + ".")
+           + ".")
     if out_json:
         with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
         pr(f"written: {out_json}")
     return res
 
 
+def winchance(path, out_json=None):
+    """`cases.py winchance <plays file> [--json out]`: the win chance over each match, from the position kept every 10 s and at every death
+    (`Moments.position_series`) and the price of a result (section 1 above: one small model of a position, fitted without the match's group of matches;
+    the stand-in for the win model until the close). For the match report (R-800, R-810): the chance at 0:00, the line over the match, and what each
+    death did to it. A death's change is the price of that death alone: the position at the second before it with the dead player's death penalty
+    added (15%, to the floor of 60%), everything else held (two deaths in one second are two changes, and a boost landing beside it is not in it).
+    Written per match: {"team": the team the line is for, "start": its chance at 0:00, "series": [[second, chance %]], "deaths": [[second, team,
+    role, his team's chance before, after, the change]]}. A reading of the position, not advice."""
+    import bisect
+    D, M = load(path); B, P = prices(D, M)
+    out, n_d, cost, starts = {}, 0, [], []
+    for rid, fc in D["flag_cost"].items():
+        S = fc.get("series")
+        if S is None: raise ValueError("the plays file carries no position series: run moments.py all again on this engine (R-460)")
+        m = M[rid]; beta = B[m["fold"]]
+        a, b = m["teams"]
+        gap = m["gap"][S["team"]]
+        def x_of(r, dp_shift=(0, 0)):
+            if r[1] is None: return None
+            lord = (r[8] - r[9]) if r[8] is not None and r[9] is not None else 0.0
+            aggr = (r[10] - r[11]) if r[10] is not None and r[11] is not None else 0.0
+            return [gap, r[1], (r[2] + dp_shift[0]) - (r[3] + dp_shift[1]), r[4] - r[5], r[7] - r[6], lord, aggr]
+        ser = [[r[0], None if x_of(r) is None else round(100 * chance(beta, x_of(r)), 1)] for r in S["rows"]]
+        secs = [r[0] for r in S["rows"]]
+        dl = []
+        for td, k, role, m0, m1 in S["deaths"]:
+            r = S["rows"][max(0, bisect.bisect_right(secs, td) - 1)]
+            x0 = x_of(r)
+            team = S["team"] if k == 1 else next(t for t in m["teams"] if t != S["team"])
+            if x0 is None: dl.append([td, team, role, None, None, None]); continue
+            add = -min(15, 60 + min(m0, 0))                     # what the death adds to his death penalty by the game's rule: 15%, to a floor of 60% (the replay writes the new figure up to several seconds late on one death in eight, so it is not read from there)
+            x1 = x_of(r, (add, 0) if k == 1 else (0, add))
+            p0, p1 = chance(beta, x0), chance(beta, x1)
+            if k == 2: p0, p1 = 1 - p0, 1 - p1                 # his own team's chance
+            dl.append([td, team, role, round(100 * p0, 1), round(100 * p1, 1), round(100 * (p1 - p0), 1)])
+            n_d += 1; cost.append(100 * (p1 - p0))
+        out[rid] = {"team": S["team"], "start": ser[0][1] if ser else None, "series": ser, "deaths": dl}
+        if ser and ser[0][1] is not None: starts.append(ser[0][1])
+    print(f"The win chance over the match (the price of a result, fitted without the match's group; a reading, not advice): {len(out)} matches, {sum(len(v['series']) for v in out.values()):,} positions, {n_d:,} deaths priced.")
+    if starts: print(f"   At 0:00, for the first team named: middle {float(np.median(starts)):.0f}%, from {min(starts):.0f}% to {max(starts):.0f}% (the strength gap alone, with the flag lead the hall gives at the gates).")
+    if cost: print(f"   A death moves its team's chance by {float(np.mean(cost)):+.1f} points on average (middle {float(np.median(cost)):+.1f}; nine in ten between {float(np.percentile(cost, 5)):+.1f} and {float(np.percentile(cost, 95)):+.1f}).")
+    blank = sum(1 for v in out.values() for s_ in v["series"] if s_[1] is None)
+    if blank: print(f"   {blank:,} positions have no flag lead read (a hall whose walks cannot be read): left blank, never a nought (R-460).")
+    if out_json:
+        with open(out_json, "w") as fh: json.dump({"about": "The win chance over each match, at 0:00 and at each death: cases.py winchance (a reading of the position by the price of a result, not advice). For the match report's exporter; not kept in the repository.", "matches": out}, fh, ensure_ascii=False)
+        print(f"written: {out_json}")
+    return out
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    if len(a) >= 2 and a[0] == "winchance": winchance(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 4 and a[0] == "case": case(a[1], a[2], a[3])
     elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None, a[a.index("--site") + 1] if "--site" in a else None)
     elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)

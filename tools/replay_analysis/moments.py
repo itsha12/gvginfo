@@ -36,7 +36,8 @@ The records (R-362: the record is the work; story.py only prints them): attempts
   and way_out (a team going out of its base by a door, R-417).
 
 Usage:  python3 moments.py <report id> [family]      the match's moments in order
-        python3 moments.py all <out.json> [--jobs N]  every counted match, compact (for counts and golden picks)
+        python3 moments.py all <out.json> [--jobs N] [--fresh]  every counted match, compact (for counts and golden picks); a run that
+                                                      stopped goes on where it stopped, unless --fresh
         python3 moments.py counts <out.json>          cases by family, scenario and call
         python3 moments.py after <out.json>           what followed each call at 90 s, on average (stage D: the consequence record)
         python3 moments.py runner <out.json>          what running a flag costs in players at the main fight (R-412)
@@ -3447,6 +3448,27 @@ class Moments:
         k, sd = collections.Counter(self.place_at(a, t) for a in g).most_common(1)[0][0]
         return self._ladder(tm, k, sd), self.place_words(k, sd)
 
+    def position_series(self, step=None):
+        """The position of the match's first team (`m.tag[1]`) as the price of a result reads it (`cases.position`), every `step` seconds from 0:00 to
+        the end, and every player's death: what `cases.py winchance` turns into the win chance over the match, at 0:00 and at each death (the match
+        report, R-800, R-810). The model prices a position; this only keeps the positions, so the run's output holds them at more than the decision moments.
+        `rows`: [second, flag lead, death penalty of team 1 and of team 2 (the eight summed, nought or below), morale boost of each (nought or above), pit
+        NPCs lost by each, each Lord's health as a share (None where the damage on him was not seen), each team's aggressiveness]. `deaths`: [second, the
+        dead player's team (1 or 2), his role, his morale before and after it]."""
+        st, T, step = self.st, self.T, step or SERIES_STEP
+        LR, unseen, nd = self.lord_record(), self.lord_unseen(), self._npc_deaths()
+        def lh(k, u):
+            v = None if 3 - k in unseen else LR.health(k, u)
+            return None if v is None or not v[1] else round(v[0] / v[1], 3)
+        def row(u):
+            mp = [[sum(min(st.morale(a, u), 0) for a in st.players[k]), sum(max(st.morale(a, u), 0) for a in st.players[k])] for k in (1, 2)]
+            lost = [sum(1 for x, k2, kd in nd if k2 == k and x <= u and kd in ("knight", "archer", "bodyguard")) for k in (1, 2)]
+            return [u, self.lead_value(1, u), mp[0][0], mp[1][0], mp[0][1], mp[1][1], lost[0], lost[1], lh(1, u), lh(2, u), self.aggr(1, u), self.aggr(2, u)]
+        secs = sorted(set(range(0, T + 1, step)) | {T})
+        deaths = sorted([round(td, 1), k, st.m.roles[a], st.morale(a, max(td - 1, 0)), st.morale(a, min(td + 1, T))] for k in (1, 2) for a in st.players[k]
+                        for td in st.death_times.get(a, []) if td < self.over)
+        return {"team": st.m.tag[1], "step": step, "rows": [row(u) for u in secs], "deaths": deaths}
+
     def consequence(self, tm, t, horizons=CONSEQ_S):
         """What followed a moment, over the whole map, at each of CONSEQ_S (90 s and about 3 min, R-294): hard
         results only, each as [own, enemy] from the deciding team's side. Deaths; NPCs lost (by kind); each Guild
@@ -3570,18 +3592,20 @@ def match_records(rid):
     EX_ = execution.Exec(M, rid)
     ATT_ = execution.attempts(EX_); PRS_ = execution.pressure(EX_, ATT_)     # every kill attempt (stage X2), each with its sum (R-734), and the pressure attempts beside the spikes (R-741, R-749)
     TRG_, BAL_ = execution.triggers(EX_), execution.balling(EX_)             # stage 3: the triggers walked into and the balling (R-745), tied to no kill attempt
-    execution.tagged_parts(EX_, ATT_, PRS_, TRG_)                            # stage 3 on every kill attempt: stances, the block or immunity it went into, Deep Wound, an attacker elsewhere (R-751, R-725)
-    POS_ = execution.positions(EX_)                                          # stage 5: the readings from positions tied to no kill attempt (Flail lock, standing in area damage, should have kited; R-745)
-    execution.position_parts(EX_, ATT_, PRS_, POS_)                          # stage 5 on every kill attempt: the target's place against his own front line, the monk who followed, his own rows, the attack's snared frontline
+    execution.tagged_parts(EX_, ATT_, PRS_, TRG_)                            # stage 3 on every kill attempt: stances, the block or immunity it went into, Deep Wound (R-751, R-725)
+    POS_ = execution.positions(EX_)                                          # stage 5: the reading from positions tied to no kill attempt (Flail lock; R-745, R-806, R-807)
+    execution.position_parts(EX_, ATT_, PRS_, POS_)                          # stage 5 on every kill attempt: the target's place against his own front line, the monk who followed, the attack's snared frontline
     DTH_ = execution.deaths(EX_, ATT_, PRS_)                                 # every death with the checked chances missed (stage X4), a death with no spike read from its pressure attempt
     FLS_, CGT_ = execution.fails(EX_, ATT_), EX_.caught()                    # every spike that did not kill with the strip missed (R-729, R-744), and the casts into a ready interrupt (R-743)
     EVN_ = execution.even_rows(EX_, P, ATT_, PRS_, DTH_, FLS_, CGT_)         # the even 8v8's execution-only rows (R-731): no play and no job, both teams read as trying to kill
     EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": P, "execution": execution.record(M, rid, P, EX_, DTH_, FLS_, CGT_, ATT_, PRS_, TRG_, BAL_, POS_), "triggers": TRG_, "balled": BAL_, "positions": POS_, "untagged": execution.untagged(EX_), "attempts": ATT_, "pressure": PRS_, "even": EVN_, "deaths": DTH_, "fails": FLS_, "caught": CGT_, "caught_by_player": execution.caught_by_player(CGT_), "casting": {str(k): v for k, v in __import__("casting").record(M.m, rid)["monks"].items()}, "split_ticks": ticks, "flag_ends": M.flag_ends(), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": spots, "flag_hands": jobs.flag_hands(M), "end_play": M.end_play() if M.hall is not None else None,
                   "energy": energy.record(M, P, ticks, spots), "excuse": energy.excuse(M, P), "split_holds": jobs.split_holds(M, P),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
+    EXTRA[rid]["series"] = M.position_series()               # the position every 10 s and at every death, for the win chance over the match (`cases.py winchance`)
     return recs
 
 
+SERIES_STEP = 10 # the position series keeps the match's position this often (the match report's win chance line; `Moments.position_series`)
 EXTRA = {}       # report id -> the runner cost rows of the match last read (R-412), kept beside the records by `all`
 
 
@@ -3611,37 +3635,101 @@ def dev_ids():
     return [r for r in want if r in have]
 
 
-def run_all(path, jobs=2, ids=None):
-    import multiprocessing, common
-    ids, out, bad, extra = (ids if ids is not None else common.replay_ids()), {}, {}, {}
+def _engine_key():
+    """A short hash of the engine as it stands (every .py file of this folder and the two tag files it reads): the parts of a run stopped half way are
+    kept only for the same engine."""
+    import hashlib, glob, os
+    here = os.path.dirname(os.path.abspath(__file__))
+    h = hashlib.sha1()
+    for f in sorted(glob.glob(os.path.join(here, "*.py"))) + [os.path.join(os.path.dirname(os.path.dirname(here)), "data", "model", n) for n in ("skill_tags.json", "interrupt_worth.json")]:
+        if os.path.exists(f): h.update(os.path.basename(f).encode()); h.update(open(f, "rb").read())
+    return h.hexdigest()[:16]
+
+
+def _one_part(arg):
+    """One match read and written to a file of its own (`run_all`): nothing but its id and how it went comes back to the parent."""
+    import os
+    rid, parts = arg
+    rid, rec, ex = _one(rid)
+    if isinstance(rec, dict): return rid, rec["error"]
+    if rec is None: return rid, None
+    tmp = os.path.join(parts, rid + ".tmp")
+    with open(tmp, "w") as f: json.dump({"rec": rec, "ex": ex}, f, default=list)
+    os.replace(tmp, os.path.join(parts, rid + ".json"))
+    return rid, True
+
+
+def run_all(path, jobs=2, ids=None, fresh=False):
+    """Every counted match (or `ids`) read, the plays file written to `path`.
+    Each match's result goes to a file of its own as it is read (`<path>.parts/`), and the plays file is put together from those files one match at a
+    time: the run never holds more than the matches being read. (Until 2026-11-27 the parent held every result at once: the development set's 82 matches
+    are 117 MB as written and a full run's 564 several GB in memory, so a second worker was killed for memory half an hour in and the pool waited for
+    ever.) A run that stops is taken up where it stopped: a match whose file is there, written by this same engine (`_engine_key`), is not read again
+    (`--fresh` reads every match again). A worker that dies stops the run with an error, said aloud (R-460): the parts stay, and the same command goes on.
+    A worker is replaced every four matches (one kept for a whole run grows by about 30 MB a minute)."""
+    import concurrent.futures as cf, multiprocessing, common, os, shutil
+    from concurrent.futures.process import BrokenProcessPool
+    ids = ids if ids is not None else common.replay_ids()
     idx = common.replay_index()
-    # a worker is replaced every 32 matches: one kept for a whole run grows by about 30 MB a minute, and on a machine with 6 GB two of them beside the
-    # results are killed for memory some thirty minutes in, after which the run hangs without a word (2026-11-24)
-    with multiprocessing.Pool(jobs, maxtasksperchild=8) as pool:
-        for rid, rec, ex in pool.imap_unordered(_one, ids, chunksize=4):
-            if isinstance(rec, dict): bad[rid] = rec["error"]
-            elif rec is not None: out[rid] = rec; extra[rid] = ex
-    json.dump({"matches": {r: {"map": idx[r]["map"], "date": idx[r]["date"][:10], "teams": idx[r]["teams"]} for r in out},
-               "records": [x for r in sorted(out) for x in out[r]], "plays": [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])],
-               "flag_cost": {r: {k: v for k, v in (extra[r] or {}).items() if k != "plays"} for r in out}, "errors": bad}, open(path, "w"), default=list)
-    print(len(out), "matches,", sum(len(v) for v in out.values()), "moments,", len(bad), "errors", list(bad.items())[:3])
-    fm = collections.Counter()
-    for r in out:
-        for k, v in ((extra[r] or {}).get("flag_moments") or {}).items(): fm[k] += v
+    parts, key = path + ".parts", _engine_key()
+    kf = os.path.join(parts, "ENGINE")
+    if os.path.isdir(parts) and (fresh or not os.path.exists(kf) or open(kf).read().strip() != key): shutil.rmtree(parts)
+    os.makedirs(parts, exist_ok=True)
+    with open(kf, "w") as f: f.write(key)
+    bf, nf = os.path.join(parts, "errors.json"), os.path.join(parts, "none.json")
+    bad = {} if not os.path.exists(bf) else {r: e for r, e in json.load(open(bf)).items() if r in ids}
+    none = set(json.load(open(nf))) if os.path.exists(nf) else set()
+    have = {f[:-5] for f in os.listdir(parts) if f.endswith(".json") and f not in ("errors.json", "none.json")}
+    todo = [r for r in ids if r not in have and r not in none and r not in bad]
+    if len(todo) < len(ids): print(f"taken up where it stopped: {len(ids) - len(todo)} of {len(ids)} matches already read by this engine, {len(todo)} to read", flush=True)
+    try:
+        with cf.ProcessPoolExecutor(max_workers=jobs, mp_context=multiprocessing.get_context("spawn"), max_tasks_per_child=4) as pool:
+            for n, (rid, how) in enumerate(pool.map(_one_part, [(r, parts) for r in todo]), 1):
+                if how is None:
+                    none.add(rid)
+                    with open(nf, "w") as f: json.dump(sorted(none), f)
+                elif how is not True:
+                    bad[rid] = how
+                    with open(bf, "w") as f: json.dump(bad, f)
+                if n % 50 == 0: print(f"  {n} of {len(todo)} read", flush=True)
+    except BrokenProcessPool:
+        done = len([f for f in os.listdir(parts) if f.endswith(".json") and f not in ("errors.json", "none.json")])
+        sys.exit(f"STOPPED (R-460): a worker died while reading a match, most likely killed for memory. {done} matches are kept in {parts}: run the same command again "
+                 f"to go on from there, with --jobs 1 if it stops again.")
+    out = sorted(r for r in ids if os.path.exists(os.path.join(parts, r + ".json")))
+    def part(r):
+        with open(os.path.join(parts, r + ".json")) as f: return json.load(f)
+    fm, fe, ep, ut, ut_m, sc, n_rec = collections.Counter(), collections.Counter(), [], collections.Counter(), 0, [], 0
+    with open(path, "w") as f:                               # written a match at a time: the three lists of the file are three passes over the parts
+        f.write('{"matches": ' + json.dumps({r: {"map": idx[r]["map"], "date": idx[r]["date"][:10], "teams": idx[r]["teams"]} for r in out}) + ', "records": [')
+        first = True
+        for r in out:
+            for x in part(r)["rec"]: f.write(("" if first else ", ") + json.dumps(x)); first = False; n_rec += 1
+        f.write('], "plays": [')
+        first = True
+        for r in out:
+            for x in (part(r)["ex"] or {}).get("plays", []): f.write(("" if first else ", ") + json.dumps(x)); first = False
+        f.write('], "flag_cost": {')
+        for i, r in enumerate(out):
+            ex = part(r)["ex"] or {}
+            f.write(("" if not i else ", ") + json.dumps(r) + ": " + json.dumps({k: v for k, v in ex.items() if k != "plays"}))
+            for k, v in (ex.get("flag_moments") or {}).items(): fm[k] += v
+            for k, v in (ex.get("flag_ends") or {}).items(): fe[k] += v
+            if ex.get("end_play") and not ex["end_play"].get("short"): ep.append(ex["end_play"])
+            for n_ in ex.get("untagged") or []: ut[n_] += 1
+            ut_m += bool(ex.get("untagged"))
+            sc += [(r, c) for c in ex.get("selfcheck") or []]
+        f.write('}, "errors": ' + json.dumps(bad) + "}")
+    print(len(out), "matches,", n_rec, "moments,", len(bad), "errors", list(bad.items())[:3])
     print("flag runs set off for, by how the moment is read (R-461):", dict(fm))
-    fe = collections.Counter()
-    for r in out:
-        for k, v in ((extra[r] or {}).get("flag_ends") or {}).items(): fe[k] += v
     print("flag lives by how they ended, from gvg.report's flag objects (R-481):", dict(fe))
-    ep = [(extra[r] or {}).get("end_play") for r in out]; ep = [o for o in ep if o and not o.get("short")]
     print(f"the end of the match (Moments.end_play): {sum(1 for o in ep if (o.get('told') or {}).get('play') is not None)} plays for 28:00; {sum(1 for o in ep if o.get('kind') == 'push before it')} pushes before it, "
           f"{sum(1 for o in ep if o.get('kind') == 'push before it' and not (o.get('told') or {}).get('lines'))} of them with no row to be told on (R-460); "
           f"{sum(1 for o in ep if o.get('kind') != 'push before it' and (o.get('told') or {}).get('lines'))} matches with a Lord line before their play for 28:00; {sum(1 for o in ep if o.get('kind') is None)} in which nobody is sent")
-    ut = collections.Counter(n for r in out for n in (extra[r] or {}).get("untagged") or [])
-    print(f"untagged skills on a bar (R-767: counted and listed, never read as doing nothing): {len(ut)} skills in {sum(1 for r in out if (extra[r] or {}).get('untagged'))} matches" + (": " + ", ".join(f"{n} {k}" for n, k in ut.most_common(40)) if ut else ""))
-    sc = [(r, c) for r in sorted(out) for c in (extra[r] or {}).get("selfcheck") or []]
+    print(f"untagged skills on a bar (R-767: counted and listed, never read as doing nothing): {len(ut)} skills in {ut_m} matches" + (": " + ", ".join(f"{n} {k}" for n, k in ut.most_common(40)) if ut else ""))
     print(f"self-check (R-488): {len(sc)} times a player is counted in two fights at once for {JOIN_S} s or longer, in {len({r for r, _ in sc})} matches")
-    if blanks([x for r in sorted(out) for x in out[r]], [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])]): sys.exit(1)
+    if blanks((x for r in out for x in part(r)["rec"]), (p for r in out for p in (part(r)["ex"] or {}).get("plays", []))): sys.exit(1)
+    shutil.rmtree(parts)                                     # the run is whole: the parts have served
 
 
 def blanks(records, plays):
@@ -3730,7 +3818,7 @@ def runner(path):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2, dev_ids() if "--dev" in a else None)
+    if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2, dev_ids() if "--dev" in a else None, fresh="--fresh" in a)
     elif a and a[0] == "counts": counts(a[1])
     elif a and a[0] == "after": after(a[1])
     elif a and a[0] == "runner": runner(a[1])
