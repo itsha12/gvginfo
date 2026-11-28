@@ -1,4 +1,4 @@
-import { state, esc, skillBar, copy, lazy, runWorkflow, codeForPlayer, ago, toast, saveToTemplates, canSave, ABBR } from "../core.js";
+import { state, esc, skillBar, copy, lazy, runWorkflow, codeForPlayer, ago, toast, saveToTemplates, ABBR } from "../core.js";
 
 const fmtDur = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 const RESULT = { flawless_victory: "Flawless", victory: "Victory" };
@@ -64,7 +64,6 @@ export async function renderHome(view) {
   view.querySelector("#upd-wiki").onclick = () => {
     if (confirm("Pull the latest skill data from the wiki? Your own skill notes are kept.")) start("update-wiki.yml", "Wiki update");
   };
-  if (!canSave()) status.textContent = "Add your GitHub key in Settings to use the update buttons.";
 
   if (location.hash.endsWith("/changes") && lastWiki) {
     view.querySelector("#changes").innerHTML = `<div class="detail"><b>Changes in the last wiki pull (${esc(lastWiki.at.slice(0, 10))})</b>
@@ -116,15 +115,15 @@ export function matchList(host, matches, F, opts = {}) {
     </div>
     <p class="muted small">${filtered.length} of ${matches.length} matches${filtered.length > shown.length ? `, showing ${shown.length}` : ""}.</p>
     <div class="scroll"><table class="data">
-      <thead><tr><th>Date</th><th>Event</th><th>Winner</th><th>Loser</th><th>Map</th><th class="num">Length</th><th></th></tr></thead>
+      <thead><tr><th>Date</th><th>Event</th><th>Winner</th><th>Loser</th><th>Map</th><th class="num">Length</th><th></th><th></th></tr></thead>
       <tbody>${shown.map((m) => {
         const w = m.teams.find((t) => t.won) || m.teams[0], l = m.teams.find((t) => t !== w) || {};
         return `<tr class="clickable" data-match="${m.id}" tabindex="0">
           <td>${esc(m.date)}</td><td>${esc(m.occ)}</td>
           <td><b>${esc(w.guild || "?")}</b> <span class="muted">[${esc(w.tag || "")}]</span></td>
           <td>${esc(l.guild || "?")} <span class="muted">[${esc(l.tag || "")}]</span></td>
-          <td>${esc(m.map || "")}</td><td class="num">${fmtDur(m.dur || 0)}</td><td>${esc(RESULT[m.result] || "")}</td></tr>
-          ${open === m.id ? `<tr><td colspan="7" class="wrap">${lineups(m)}</td></tr>` : ""}`;
+          <td>${esc(m.map || "")}</td><td class="num">${fmtDur(m.dur || 0)}</td><td>${esc(RESULT[m.result] || "")}</td><td class="num"><a class="btn small" href="#/report/${esc(m.id)}" data-report title="The match report for this game">Match report</a></td></tr>
+          ${open === m.id ? `<tr><td colspan="8" class="wrap">${lineups(m)}</td></tr>` : ""}`;
       }).join("")}</tbody></table></div>
     ${filtered.length > shown.length ? `<button class="btn" data-more style="margin-top:1rem">Show ${Math.min(F.page || 60, filtered.length - shown.length)} more</button>` : ""}`;
 
@@ -148,6 +147,7 @@ export function matchList(host, matches, F, opts = {}) {
     if ((e.target.name === "from" || e.target.name === "to") && e.target.value) F.month = "";
     F.limit = F.page || 60; rerender();
   });
+  host.querySelectorAll("[data-report]").forEach((a) => a.onclick = (e) => e.stopPropagation());
   host.querySelector("[data-more]")?.addEventListener("click", () => { F.limit += F.page || 60; rerender(); });
   host.querySelectorAll("tr[data-match]").forEach((tr) => {
     const toggle = () => { open = open === tr.dataset.match ? null : tr.dataset.match; rerender(); };
@@ -170,4 +170,17 @@ export function lineups(m) {
         ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button>` : ""}
 </div>`;
     }).join("")}</div>`).join("")}</div>`;
+}
+
+// #/report/<match id>: the match report (parked, docs/OPUS.md). Until it is built, the button lands here.
+export async function renderReportPending(view, [id = ""]) {
+  const recent = await lazy("recent");
+  const m = recent?.matches?.find((x) => x.id === id);
+  const w = m && (m.teams.find((t) => t.won) || m.teams[0]), l = m && m.teams.find((t) => t !== w);
+  view.innerHTML = `<p><a href="#/matches">← Recent matches</a></p>
+    <h2>Match report</h2>
+    ${m ? `<p class="lede"><b>${esc(w.guild || "?")}</b> <span class="muted">[${esc(w.tag || "")}]</span> beat ${esc(l?.guild || "?")} <span class="muted">[${esc(l?.tag || "")}]</span>
+      on ${esc(m.map || "?")}, ${esc(m.occ || "")} ${esc(m.date || "")}, ${fmtDur(m.dur || 0)}.
+      <a href="https://gvg.report/report/${esc(m.id)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>.</p>` : ""}
+    <div class="empty-state">The match report isn't built yet. This button will open it once it is.</div>`;
 }

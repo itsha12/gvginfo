@@ -1,5 +1,5 @@
 import { loadData, installTooltips } from "./core.js";
-import { renderHome } from "./pages/home.js";
+import { renderHome, renderReportPending } from "./pages/home.js";
 import { renderSkills } from "./pages/skills.js";
 import { renderKnowledge, renderModel } from "./pages/knowledge.js";
 import { renderSettings } from "./pages/settings.js";
@@ -9,14 +9,14 @@ import { renderSchedule } from "./pages/schedule.js";
 import { renderGuilds } from "./pages/guilds.js";
 import { renderPerson, renderCharacter } from "./pages/profile.js";
 
-const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, players: renderPlayers, player: renderPerson, character: renderCharacter, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings };
+const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, report: renderReportPending, guilds: renderGuilds, builds: renderBuilds, players: renderPlayers, player: renderPerson, character: renderCharacter, skills: renderSkills, knowledge: renderKnowledge, model: renderModel, settings: renderSettings };
 const view = document.getElementById("view");
 
 function route() {
   const [, page = "", ...rest] = location.hash.replace(/^#/, "").split("/");
   document.querySelectorAll(".top nav a").forEach((a) => {
     const target = a.getAttribute("href").replace(/^#\//, "");
-    const here = page === "schedule" ? "" : page === "home" ? "matches" : page === "player" || page === "character" ? "players" : page;
+    const here = page === "schedule" ? "" : page === "home" ? "matches" : page === "player" || page === "character" ? "players" : page === "report" ? "matches" : page;
     if (target === here) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
   (routes[page] || renderSchedule)(view, rest.map(decodeURIComponent));
