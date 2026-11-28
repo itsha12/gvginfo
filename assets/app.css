@@ -369,5 +369,6 @@ tr.selected td { background: var(--accent-soft); }
 .rp-go { cursor: pointer; }
 .rp-miss { color: var(--bad); }
 .rp-ok { color: var(--good); }
+.rp-info { color: var(--ink-2); }
 @keyframes rp-flash { from { background: #ece6fa; } to { background: transparent; } }
 .rp-flash { animation: rp-flash 2s ease-out; }

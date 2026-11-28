@@ -93,6 +93,9 @@ def items(txt):  # "Prot had Shielding Hands ready, in reach, his hands free; 8 
     return [(m_[1], [n.strip() for n in m_[2].split(",")]) for m_ in re.finditer(r"(?:^|; )([\w/ ]+?) had (.+?) ready", txt)]
 maxhp = {}
 for t in (mm.get("teams") or []): pass
+FAULT = ("Missed ", "Late ", "Trigger Fault", "Shield set", "Cast into a ready interrupt", "Positioning")
+GOOD = ("Success", "No fault")
+def KIND(l): return "miss" if l.startswith(FAULT) else ("ok" if l.startswith(GOOD) else "info")
 deaths = []
 for g in er["groups"]:
     for d in g["deaths"]:
@@ -105,64 +108,13 @@ for g in er["groups"]:
         hp_max = next((q.get("hp") for q in mm.get("players", []) if q["n"] == ag[v]["n"]), None) or 0
         k = tr[str(v)]; j = max((i for i, x in enumerate(k["t"]) if x <= f10), default=0)
         hp_first = round(k["hp"][j] / 100 * hp_max) if hp_max else None
-        lines = []
-        for l in d["lines"][1:]:
-            if l.startswith("Missed by") and (" a prot:" in l or " a heal:" in l):
-                kind = "Prot" if " a prot:" in l else "Heal"
-                for role, names in items(l.split(": ", 1)[1]):
-                    a_ = role_agent(tm, role, names)
-                    if a_ is not None: ROLE[a_] = role
-                    en = enough(a_, names, f10) if a_ is not None else "energy not known"
-                    tail = "Would have stopped: from the engine's file." if kind == "Prot" else (heal_save(v, f10, t10, hp_first, a_, names) if hp_first else "Would have healed: not known.")
-                    lines.append(["miss", f"Missed {kind}: {role} available to cast, {'/'.join(names)} ready, {en}. {tail}"])
-            elif l.startswith("Missed by") and "interrupt" in l:
-                sk = re.search(r"went off \(([^)]*)\)", l)[1]
-                parts = []
-                for x in sk.split(", "):
-                    mt = re.match(r"(.+?) (\d+) times$", x); parts.append((mt[1], int(mt[2])) if mt else (x, 1))
-                n_sk = sum(n for _, n in parts)
-                # the biggest single cast of the spike on him, from the replay
-                want = {nm for nm, _ in parts}
-                casts = collections.defaultdict(float)
-                for e in rp["ev"]:
-                    if e[1] == "dm" and e[3] == v and f10 - 30 <= e[0] <= t10:
-                        k_ = skill_of(e)
-                        if k_ in want: casts[(e[2], k_, e[0] // 5)] += e[5] or 0
-                best = max(casts.items(), key=lambda kv: kv[1], default=None)
-                saved = None
-                if best and hp_first is not None: saved = dmg - best[1] < hp_first
-                for role, names in items_any(l.split("in range: ", 1)[1]):
-                    a_ = role_agent(tm, role, names)
-                    if a_ is not None: ROLE[a_] = role
-                    en = enough(a_, names, f10) if a_ is not None else "energy not known"
-                    txt = f"Missed Interrupt: {role} available to cast, {'/'.join(names)} ready, {en}. {n_sk} spike skills cast ({'; '.join(f'{n}x {nm}' for nm, n in parts)})."
-                    if best: txt += f" Interrupt on 1 {best[0][1]} would have prevented {round(best[1])} damage" + ("" if saved is None else (" and saved the spike." if saved else ", not enough on its own to save him."))
-                    lines.append(["miss", txt])
-            elif l.startswith("Done in time"):
-                # the team mates' casts on him in the spike window, and what each healed
-                cast = collections.defaultdict(list); healed = collections.defaultdict(float)
-                for e in rp["ev"]:
-                    if e[3] == v and e[2] is not None and e[2] != v and ag[e[2]].get("team") == tm and f10 - 10 <= e[0] <= t10:
-                        if e[1] == "cs" and e[4]: cast[e[2]].append(skname.get(e[4], "a skill"))
-                        elif e[1] == "hl":
-                            healed[e[2]] += e[5] or 0
-                            k_ = skill_of(e)
-                            if k_: cast[e[2]].append(k_)
-                for a_ in sorted(set(cast) | set(healed), key=lambda x: ROLE.get(x, "")):
-                    nm = ", ".join(dict.fromkeys(cast[a_])) or "a heal"
-                    amt = round(healed[a_])
-                    if amt: lines.append(["ok", f"Success: {ROLE.get(a_, ag[a_]['n'])} cast {nm} during spike window, healing for {amt}."])
-                    else:
-                        st = max(e[0] for e in rp["ev"] if e[1] == "cs" and e[2] == a_ and e[3] == v and f10 - 10 <= e[0] <= t10)
-                        lines.append(["miss", f"Missed Heal: {ROLE.get(a_, ag[a_]['n'])} started {nm} {(t10 - st) / 10:.1f} s before he died, too late to land. "
-                                      + (heal_save(v, f10, t10, hp_first, a_, list(dict.fromkeys(cast[a_]))) if hp_first else "")])
-                if "interrupt" in l: lines.append(["ok", "Success: an interrupt on a spike skill in time."])
-                if not cast and not healed and "interrupt" not in l: lines.append(["ok", "Success: a team mate's heal landed in time."])
-            elif l.startswith("No checked chance"):
-                lines.append(["ok", "No missed chance."])
-        missed = sorted({re.match(r"Missed (\w+)", l_)[1].lower() for k_, l_ in lines if k_ == "miss"})
+        # the engine's own lines, word for word (stage X4 writes them in the report's wording); only their colour is set here
+        lines = [[KIND(l), l] for l in d["lines"][1:]]
+        head = d["lines"][0]
+        mh = re.search(r"Missed: ([^.]+)\.", head)
+        missed = [x.strip() for x in mh[1].split(",")] if mh else []
         deaths.append({"t": d["t"], "team": d["team"], "who": d["who"], "name": ag[v]["n"], "spike": d["spike"], "first": d["first"],
-                       "dur": round(d["t"] - d["first"], 1), "dmg": dmg, "missed": missed, "lines": lines, "at": pos(v, t10)})
+                       "dur": round(d["t"] - d["first"], 1), "dmg": dmg, "missed": missed, "head": head, "lines": lines, "at": pos(v, t10)})
 deaths.sort(key=lambda d: d["t"])
 
 def reason(t, tag_up):

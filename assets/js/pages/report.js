@@ -25,13 +25,12 @@ export async function renderReport(view, [rid] = []) {
         <td>${skillBar(p.bar, null, true)}</td><td class="muted rp-d">${p.deaths ?? ""}${p.deaths != null ? " d" : ""}</td></tr>`).join("")}</table></section>`;
 
   // one death: a line that opens into the full breakdown
-  const death = (d, i) => `<li id="rp-d-${i}"><details><summary><b>${clock(d.t)}</b> ${esc(d.team)}'s ${esc(d.who)} dies ${d.spike ? "to a spike" : "under pressure"}:
-        ${d.dmg} in ${d.dur} s. ${d.missed.length ? `<span class="rp-fault">Missed: ${d.missed.map((k) => MISSED[k] || k).join(", ")}</span>` : `<span class="muted">No missed chance.</span>`}
+  const death = (d, i) => `<li id="rp-d-${i}"><details><summary><b>${clock(d.t)}</b> ${d.head ? esc(d.head.replace(/^\d+:\d\d /, "").replace(/ Missed: [^.]+\.$/, "")) : `${esc(d.team)}'s ${esc(d.who)} dies ${d.spike ? "to a spike" : "under pressure"}: ${d.dmg} in ${d.dur} s.`}
+        ${d.missed.length ? `<span class="rp-fault">Missed: ${d.missed.map((k) => MISSED[k] || k).join(", ")}</span>` : `<span class="muted">No missed chance.</span>`}
         <span class="rp-swing">win chance: engine file</span></summary>
       <div class="rp-break">
         <p><span class="muted">Player:</span> ${esc(d.name)} (${esc(d.who)})</p>
-        <p><span class="muted">Damage:</span> ${d.dmg} in ${d.dur} s</p>
-        ${d.lines.map(([k, l]) => `<p class="${k === "miss" ? "rp-miss" : "rp-ok"}">${esc(l)}</p>`).join("")}
+        ${d.lines.map(([k, l]) => `<p class="${k === "miss" ? "rp-miss" : k === "ok" ? "rp-ok" : "rp-info"}">${esc(l)}</p>`).join("")}
       </div></details></li>`;
 
   const alt = (o) => { const x = o.replace(/ \(([^)]*)\)/, " [$1]"); return x.charAt(0).toUpperCase() + x.slice(1); };
