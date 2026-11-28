@@ -16,26 +16,21 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
 - Execution (the micro answer) is the block of work (R-701 to R-834; `docs/EXECUTION.md`, 63 rules). His marks are
   in the review key (set x1): Men v Crew 15 deaths, RACK v hdm 10, Men v NwAy 12 of 21 (R-811 to R-830).
-- The full run at 90223ed is read (ENGINE_NOTES section 44, "The full run at 90223ed" and "His answers and the four
-  that still failed"). Pass: the interrupt on spikes; a block (R-831: said above a third of attacks; -6.4, 10/10);
-  the stance against the same players (+11.8, 10/10; R-832: Frenzied Defense only where spells landed). Too deep and
-  monk following are paused (R-834: kept on the records, said nowhere, no work). R-833: as built.
+- The full run at 90223ed is read. Pass: the interrupt on spikes; a block (R-831: said above a third of attacks);
+  the stance against the same players (R-832: Frenzied Defense only where spells landed). Too deep and monk
+  following are paused (R-834: kept on the records, said nowhere, no work). R-833: as built.
 - `bundle-4` 9ff24ab (one bundled change: R-831, R-832, R-834 and section H's evidence rows): development set plays
   and moments identical to the digest, 323 Classic rows pass. `attempts_cases.json` is from the full run's records
   at 90223ed with 9ff24ab's `cases.py`. Main's `execution_rows.json` is 9ff24ab's (four rows lost a Positioning
   line; written over rows he marked, said to him).
-- Why the four fail: the strip's test leaves out the strips that left no prot and holds level a count the strip
-  already lowered (before the first big hit +6.8, 7/10; after it +0.3); pressure on their monks asks for an
-  interrupt where the monks cast nothing (a prot or heal for the target interrupted +10.0, 10/10; a monk knocked
-  down +6.0, 10/10); Shadow Shroud +10.1, 8/10 against the same teams (38 teams: too few); spell immunity is Aegis
-  alone, and a spike Aegis stops is no attempt (41 seen of 7,065 casts).
+- Why the four fail (ENGINE_NOTES section 44, last item): the strip before the first big hit +6.8, 7/10, after it
+  +0.3; a prot or heal of the monks' interrupted +10.0, 10/10; Shroud +10.1, 8/10; immunity is Aegis, unseen.
 
 ## Next (in order, R-810)
-1. His answers to "Open for Denning" 1, then one bundled change: the strip (`chance_tests`: a strip before the first
-   big hit that left no prot counts as done in time, an engine fault whatever he answers; "or during it" by his
-   answer), the monks' interrupted prot or heal and knockdown as the attack's good play, and if he says so the
-   spike thrown (Aegis: from the casts aimed at him while it was up; check the raw record first, R-707). Then
-   "Full run wanted at <commit>" for Opus.
+1. His answers to "Open for Denning" 1, then one bundled change: the strip (`chance_tests`: one before the first
+   big hit that left no prot counts as done in time, an engine fault whatever he answers), the monks' interrupted
+   prot or heal and knockdown as good play, and at his word the spike thrown (Aegis, from the casts aimed at him;
+   the raw record first, R-707). Then "Full run wanted at <commit>" for Opus.
 2. His marks on the nine deaths of Men v NwAy not yet marked, and on any row again, if he wishes; file them in the
    review key (set x1) the same session.
 3. Balling and Invoke Lightning: measure on the development set how far apart the record sets the hits of one cast
