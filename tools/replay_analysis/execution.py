@@ -1345,6 +1345,9 @@ def say_pressure(r, trig=None):
 # hex's caster on the attacker inside TRIGGER_JOIN_S (attack skills set it off too, so its hits are counted, not the attacks: `Forensics.trigger_rows`);
 # 85% of spells finished under Backfire; the hits of one cast land in the tenth its cast finishes.
 STANCE_FAULT = ("Frenzy", "Frenzied Defense", "Primal Rage")     # R-740, R-768: by name. Aggressive Refrain raises damage taken too (R-775): context until he says
+STANCE_BLOCKS = ("Frenzied Defense",)    # R-832: a block and double damage at once: a fault only where spells landed while it was up (against attacks it stops more than it
+                            # adds), and its own doing is then half of what those spells landed. A signet or a touch skill counts with the spells (no block stops them)
+BLOCK_SHARE = 1 / 3         # R-831: a block is said, and tested, only where more than a third of the spike is attacks (his cut-off: no difference in kills at a third or less)
 STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
                             # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
                             # rank, which the replay does not hold), "take double damage" (half), -20 armour (hits 1.41 times as hard: 29% of what landed)
@@ -1585,13 +1588,16 @@ def tagged_parts(E, atts, prs, trig):
     for r in list(atts) + list(prs):
         tgt, t0, t1, tm = r["id"], r["t"], r["t"] + r["s"], r["tm"]
         rows = F.taken(tgt, t0 - .05, t1)[1]
-        st = collections.OrderedDict()
+        st, sp = collections.OrderedDict(), {}
         for x0, x1, name, _by, _fam, _how, _sid in fx.get(tgt, ()):
             tg = tags().get(name)
             if not tg or not tg.get("takes_more") or x1 < t0 or x0 > t1: continue
             n = sum(q[1] for q in rows if q[2] != "degen" and x0 <= q[0] <= x1)
             if n: st[name] = st.get(name, 0) + n
-        r["stance"] = [{"skill": k, "landed": round(v), "extra": [round(v * STANCE_EXTRA.get(k, (0, 0))[0]), round(v * STANCE_EXTRA.get(k, (0, 0))[1])], "fault": k in STANCE_FAULT} for k, v in st.items()]
+            if n and name in STANCE_BLOCKS:               # R-832: what spells landed while it was up (`Forensics.hits_on` tells a hit as an attack, a spell or neither)
+                sp[name] = sp.get(name, 0) + sum(x[1] for x in F.hits_on(tgt) if max(x0, t0 - .05) <= x[0] <= min(x1, t1) and x[3] in ("spell", "skill"))
+        r["stance"] = [{"skill": k, "landed": round(v), "spells": round(sp.get(k, 0)), "extra": [round(sp.get(k, 0) / 2)] * 2, "fault": sp.get(k, 0) > 0} if k in STANCE_BLOCKS else
+                       {"skill": k, "landed": round(v), "extra": [round(v * STANCE_EXTRA.get(k, (0, 0))[0]), round(v * STANCE_EXTRA.get(k, (0, 0))[1])], "fault": k in STANCE_FAULT} for k, v in st.items()]
         r["walked"] = [i for i, x in enumerate(trig) if x["id"] == tgt and t0 - ATT_BEFORE_S <= x["t"] <= t1]
         on = [(s_, e_) for s_, e_ in dw_fx.get(tgt, ()) if s_ <= t1 and e_ >= t0]
         r["dw"] = "none" if not on else "left" if any(e_ >= t1 - .05 for _s, e_ in on) else "off"      # Deep Wound on him in the attempt: still on him at its outcome, or off before it
@@ -1622,21 +1628,39 @@ def tagged_parts(E, atts, prs, trig):
     return atts, prs
 
 
+def into_block(it):
+    """R-831: the blocks a spike went into, said and tested only where more than BLOCK_SHARE of the spike is attacks (`into`'s `attacks` and `spells`: what it
+    threw at him); a record older than those counts says them as before."""
+    if not it or not it.get("blocks"): return None
+    if "attacks" not in it: return it["blocks"]
+    a, n = it["attacks"], it["attacks"] + (it.get("spells") or 0)
+    return it["blocks"] if n and a > BLOCK_SHARE * n else None
+
+
+def stance_words(s_):
+    """A damage-raising stance in words, without its head or its status: what landed while it was up and the skill's own share (R-832 for a stance that blocks)."""
+    lo, hi = s_["extra"]
+    if "spells" in s_:
+        return (f"{s_['skill']} up while {s_['spells']} from spells landed; about {lo} of that is the skill's own doing" if s_["fault"]
+                else f"{s_['skill']} up while {s_['landed']} landed, none of it from spells")
+    return f"{s_['skill']} up while {s_['landed']} of it landed; about {lo if lo == hi else f'{lo} to {hi}'} of that is the skill's own doing"
+
+
 def say_parts(r, trig=None):
     """Stage 3's parts of a kill attempt in sentences: said in the sum, after the amounts (`say_attempt`, `say_pressure`, `say_fail`, a death)."""
     nm = lambda s_: (s_ or "").replace(" PvP", "")
     L = []
     for s_ in r.get("stance") or ():
-        lo, hi = s_["extra"]
-        L.append(f"He had {s_['skill']} up while {s_['landed']} of it landed: about {lo if lo == hi else f'{lo} to {hi}'} of that is the skill's own doing"
-                 + (" (a fault: a skill that raises the damage he takes, up during a kill attempt on him, R-740)." if s_["fault"] else " (context: it cannot be dropped at will, R-775)."))
+        L.append("He had " + stance_words(s_)
+                 + (" (a fault: a skill that raises the damage he takes, up during a kill attempt on him, R-740)." if s_["fault"]
+                    else " (context: against attacks it blocks more than it adds, R-832)." if "spells" in s_ else " (context: it cannot be dropped at will, R-775)."))
     if trig is not None:
         for i in r.get("walked") or (): L.append("His own play in it: " + say_trigger(trig[i]))
     for x in r.get("missed") or ():
         if x["kind"] != "deep wound": continue
         if x.get("chance"): L.append(f"Missed by the defence: Deep Wound stayed on him to the end with {nm(x['by'])} holding {', '.join(nm(k) for k in x['skills'])} ready, in reach: taking it off gives back {x['gives']} health (a fault, R-725).")
     it = r.get("into") or {}
-    bl, im = (it.get("blocks") if it.get("attacks", 1) else None), (it.get("immune") if it.get("spells", 1) else None)      # a block against a spike of spells alone is no why
+    bl, im = into_block(it), (it.get("immune") if it.get("spells", 1) else None)      # a block only where more than a third of the spike is attacks (R-831); immunity only against spells
     if bl or im:
         L.append("The spike went into " + " and ".join(p for p in ((f"{', '.join(bl)} (attacks blocked; {it['attacks']} attack{'s' if it['attacks'] != 1 else ''} in the spike)" if bl and "attacks" in it else f"{', '.join(bl)} (attacks blocked)" if bl else ""),
                                                                   (f"{', '.join(im)} (no enemy spell can target him)" if im else "")) if p)
@@ -1661,6 +1685,8 @@ FOLLOW_PAST = 450           # monk following (R-741, R-804, R-808): a backline m
                             # the attempts on backline monks, by the monk's own distance past the front line: 48.5% of those at or past it kill, 29.3% short of it. Not
                             # steady: without each group of matches in turn the rule gives 450 or 400 in five and nought in five (any monk level with his front line)
 SNARED_MIN_S = 1.0          # a frontline attacker snared and out of melee reach of the target for less than this is not said
+POSITIONS_PAUSED = True     # R-834 (2026-11-28): too deep and monk following are read and kept on every record as before, and said nowhere and shown in no report
+                            # until he takes them up again ("too messy for now"); set False to bring both back as they were
 POSITION_FAULTS = ()        # too deep and monk following are whys nobody ruled a fault: named a fault only once they pass the check on unseen matches (R-713;
                             # `cases.py positions`, section B). On the 564 counted matches neither passes (too deep +3.1 points like with like, +0.5 to +5.5, the
                             # right sign in 6 groups of 10; monk following +5.6, -0.1 to +11.8, 7 of 10). Flail lock is a fault by his ruling (R-744). Standing in
@@ -1893,10 +1919,10 @@ def say_place(r, who="He"):
     L = []
     pa = r.get("place")
     status = lambda k: "a fault" if k in POSITION_FAULTS else "a why: named a fault only once it passes on unseen matches, R-713"
-    if pa and pa.get("too_deep"):
+    if pa and pa.get("too_deep") and not POSITIONS_PAUSED:
         L.append(f"{who} was too deep: {pa['past']} past his own front line (the {pa['front']}) at the first big hit"
                  + (f", his nearest monk {pa['monk']} away" if pa.get("monk") is not None else ", no monk of his alive") + f" (R-741, R-804; {status('too deep')}).")
-    fo = r.get("followed")
+    fo = None if POSITIONS_PAUSED else r.get("followed")
     if fo: L.append(f"{who} had followed the {fo['who']}, who was too deep ({fo['past']} past the rest of the front line): the monk stood {fo['monk_past']} past it himself, {fo['dist']} from him "
                     f"(monk following, R-804; {status('monk following')}).")
     for x in r.get("snared") or ():
@@ -2453,13 +2479,13 @@ def death_lines(d, trig=None):
     # where it is none: a monk casting through Backfire, a spell lost to a Shame that landed as he began it), where he stood is Positioning, crits while
     # moving are Context
     for s_ in d.get("stance") or ():
-        lo, hi = s_["extra"]
-        L.append(("Trigger Fault: " if s_["fault"] else "Context: ") + f"he had {s_['skill']} up while {s_['landed']} of it landed; about {lo if lo == hi else f'{lo} to {hi}'} of that is the skill's own doing"
-                 + ("." if s_["fault"] else " (it cannot be dropped at will)."))
+        L.append(("Trigger Fault: " if s_["fault"] else "Context: ") + "he had " + stance_words(s_)
+                 + ("." if s_["fault"] else " (against attacks it blocks more than it adds)." if "spells" in s_ else " (it cannot be dropped at will)."))
     for w in ([trig[i] for i in d.get("walked") or ()] if trig is not None else []) + shamed:
         if w["kind"] == "shame" and not w.get("fault", True): continue      # no fault: said where the cast is, under "Attempted, failed"
         L.append(("Trigger Fault: " if w.get("fault", True) else "Context: ") + say_trigger(w, plain=True))
     pa, fo, cm = d.get("place"), d.get("followed"), d.get("crits_moving")
+    if POSITIONS_PAUSED: pa = fo = None                   # R-834
     if pa and pa.get("too_deep"):
         L.append(f"Positioning: {d['who']} is {pa['past']} past his own front line (the {pa['front']}, his most forward team mate)"
                  + (f", his nearest monk {pa['monk']} away." if pa.get("monk") is not None else ", no monk of his alive."))

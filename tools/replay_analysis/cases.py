@@ -3801,25 +3801,26 @@ X3_LEADS = ((-3.0, -1.5), (-1.5, -0.5), (-0.5, 0.0), (0.0, 0.5), (0.5, 1.0), (1.
 _x3_bare = lambda n: n.replace(" (PvP)", "").replace(" PvP", "")
 
 
-def _x3_situation(r, leave=None):
+def _x3_situation(r, prots=None):
     """The kill attempt's situation at the first big hit, nothing after it (a prot or heal cast changes the damage that lands, so the damage is not here):
     who the target is, prots on him, his health and its ceiling, his healers in range, hexes, distance from his group, how many attack him.
-    `leave(r)`: names of prots on him left out of the count, for a kind which is itself one of them (a block, spell immunity): held level with the rest, the
-    kind would be set against the other prots, not against no such prot (found 2026-11-28: a block read backwards for that reason alone)."""
+    `prots(r)`: the count of prots to hold level in place of those on him at the first big hit, for a kind which itself changes that count: a block or
+    spell immunity (itself one of them: held level with the rest it is set against the other prots, not against no such prot; a block read backwards for
+    that alone), a strip before the first big hit (the prot it took is gone by then: the prots before the strip are held level) and Shadow Shroud (no
+    enchantment can be cast on him: none held level). Found 2026-11-28, after the full run at 90223ed."""
     z = r.get("state") or {}
     hp = z.get("health_pct")
-    out = {_x3_bare(n) for n in leave(r)} if leave else ()
-    return [1.0 if r["target_class"] == "healer" else 0.0, min(sum(1 for n in r["prots_up"] if _x3_bare(n) not in out), 2), (hp if hp is not None else 100) / 100.0, 1.0 if hp is None else 0.0,
+    return [1.0 if r["target_class"] == "healer" else 0.0, min(prots(r) if prots else len(r["prots_up"]), 2), (hp if hp is not None else 100) / 100.0, 1.0 if hp is None else 0.0,
             z.get("ceiling", 1.0), min(z.get("healers_in_range", 0), 4), min(z.get("hexes", 0), 3), 1.0 if z.get("from_group") else 0.0,
             math.log1p(z.get("from_group") or 0) / 7.0, min(len(r["attackers"]), 5)]
 
 
-def _x3_expected(A, key="_exp", leave=None):
+def _x3_expected(A, key="_exp", prots=None):
     """Each attempt's expected kill from its situation alone, by a model fitted without its group of matches (`_exp`): like with like on unseen matches.
-    `leave` as in `_x3_situation`, the expectation then kept under `key`."""
+    `prots` as in `_x3_situation`, the expectation then kept under `key`."""
     from sklearn.linear_model import LogisticRegression
     from cache import fold_of, FOLDS
-    X = np.array([_x3_situation(r, leave) for r in A]); y = np.array([r["killed"] for r in A], dtype=float); g = np.array([fold_of(r["rid"]) for r in A])
+    X = np.array([_x3_situation(r, prots) for r in A]); y = np.array([r["killed"] for r in A], dtype=float); g = np.array([fold_of(r["rid"]) for r in A])
     e = np.zeros(len(A))
     for k in range(FOLDS):
         te = g == k
@@ -3907,7 +3908,11 @@ def x3_parts(A, D, pr, res):
     a prot which is itself the thing named (a block, spell immunity) is left out of the situation's count of prots (`exp`: else it is set against the other
     prots, and a block read backwards); the target's own play (a stance) is set against the same players in the same matches out of it (`same`: else a
     warrior in Frenzy is set against every player who is no monk, and the players who carry it are killed less than the rest whatever they do). The
-    figure against every attempt is kept beside it (`against_all`). A fault by his ruling stands whatever this shows, the result beside it (R-744); a why
+    figure against every attempt is kept beside it (`against_all`). The rows on the strip, on their monks and on Shadow Shroud (2026-11-28, his ask: why do
+    these fail) are evidence beside the kinds of section G, which stand as they are: a strip by when it came (before the first big hit, the prots before it
+    held level and a strip that left no prot counted; or in the 1.5 s after it), a prot or heal of the monks' for the target interrupted (against cast and
+    none interrupted: an interrupt can only land on a monk who casts, and where the monks cast nothing the spike kills anyway), a monk knocked down, and
+    Shadow Shroud against the same team's other spikes with no prots held level. A fault by his ruling stands whatever this shows, the result beside it (R-744); a why
     nobody ruled a fault is only ever a why. On the spikes and bursts, then on the times a player was kept in danger (their situation is thinner: that
     record keeps no health or healers at the start)."""
     import execution as EX
@@ -3922,8 +3927,9 @@ def x3_parts(A, D, pr, res):
             T, O = [r for r in L if has(r)], [r for r in L if hasnt(r)]
             ek, allp = how.get("exp", "_exp"), None
             if how.get("same"):
-                who = {(r["rid"], r["id"]) for r in T}
-                allp, O = O, [r for r in O if (r["rid"], r["id"]) in who]
+                sk = how["same"] if callable(how["same"]) else (lambda r: (r["rid"], r["id"]))         # the same players, or the same team, in the same matches
+                who = {sk(r) for r in T}
+                allp, O = O, [r for r in O if sk(r) in who]
             key = f"{title.split(':')[0]} | {name}"
             if len(T) < MIN_PLAYS or len(O) < MIN_PLAYS:
                 res["parts"][key] = {"status": status, "verdict": "too few", "n": [len(T), len(O)]}
@@ -3937,24 +3943,41 @@ def x3_parts(A, D, pr, res):
                 a_ = O if allp is None else allp
                 d2, lo2, hi2, s2 = _x3_diff(T, a_)
                 o["against_all"] = {"without": [len(a_), raw(a_)], "difference": d2, "range": [lo2, hi2], "groups_right": [sum(1 for s_ in s2 if s_ * want > 0), len(s2)], "verdict": _x3_word(d2, lo2, hi2, s2, want)}
-                pr(f"   {'':52} (the plain test, {'against every attempt without it' if allp is not None else 'the prot named counted among the prots on him'}: {len(a_):6} {raw(a_):5.1f}% {d2:+6.1f} ({lo2:+6.1f} to {hi2:+6.1f}), {o['against_all']['groups_right'][0]}/{len(s2)}, {o['against_all']['verdict']})")
+                pr(f"   {'':52} (the plain test, {'against every attempt without it' if allp is not None else 'the prots on him at the first big hit held level, as for the other kinds'}: {len(a_):6} {raw(a_):5.1f}% {d2:+6.1f} ({lo2:+6.1f} to {hi2:+6.1f}), {o['against_all']['groups_right'][0]}/{len(s2)}, {o['against_all']['verdict']})")
     dw_missed = lambda r: any(x["kind"] == "deep wound" and x.get("chance") for x in r["missed"])
     dw_in_time = lambda r: bool((r.get("deep_wound") or {}).get("on")) or ((r.get("deep_wound") or {}).get("at") is not None and r["deep_wound"]["at"] <= CH)
     it = lambda r: r.get("into") or {}
     S = [r for r in A if r.get("pact") is None]
-    _x3_expected(A, "_exp_block", lambda r: it(r).get("blocks") or ())
-    _x3_expected(A, "_exp_immune", lambda r: it(r).get("immune") or ())
+    others = lambda r, names: sum(1 for n in r["prots_up"] if _x3_bare(n) not in {_x3_bare(x) for x in names})
+    _x3_expected(A, "_exp_block", lambda r: others(r, it(r).get("blocks") or ()))
+    _x3_expected(A, "_exp_immune", lambda r: others(r, it(r).get("immune") or ()))
+    mostly = lambda r: bool(it(r).get("attacks")) and it(r)["attacks"] > EX.BLOCK_SHARE * (it(r)["attacks"] + (it(r).get("spells") or 0))       # R-831
+    pst = lambda r: [a for a, prot in r["strip"].get("at", []) if prot]                       # when each strip of a prot came, against the first big hit
+    before = lambda r: len(r["prots_up"]) + sum(1 for a in pst(r) if a < 0)                   # the prots on him before any strip
+    no_strip = lambda r: before(r) > 0 and not any(a <= CH for a in pst(r)) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"])
+    _x3_expected(A, "_exp_strip", before)
+    _x3_expected(A, "_exp_noprot", lambda r: 0)
+    cast = lambda r: [o for _n, d_, o in r["prots_cast"] + r["heals_cast"] if d_ <= CH]       # how each prot or heal his monks began for him in time ended
+    down = lambda r: any(a <= CH for a in r["pressure"].get("knockdowns_at", []))
     rows("H1. On the spikes and bursts: the target's own play, what the spike went into, Deep Wound, Shadow Shroud, his monks stopped", S, (
         ("a damage-raising stance up on him (R-740)", "a fault by his ruling", +1, lambda r: any(x["fault"] for x in r.get("stance") or ()), lambda r: not any(x["fault"] for x in r.get("stance") or ()),
          {"same": True, "say": "against the same players in the same matches, out of a stance"}),
-        ("a block up on him, the spike with attacks in it", "a why of the attack's", -1, lambda r: bool(it(r).get("attacks") and it(r).get("blocks")), lambda r: bool(it(r).get("attacks") and not it(r).get("blocks")),
+        ("a block up on him, over a third of the spike attacks", "a why of the attack's (R-831)", -1, lambda r: bool(mostly(r) and it(r).get("blocks")), lambda r: bool(mostly(r) and not it(r).get("blocks")),
          {"exp": "_exp_block", "say": "the block itself left out of the prots held level; the other prots on him still are"}),
         ("spell immunity up on him, the spike with spells in it", "a why of the attack's", -1, lambda r: bool(it(r).get("spells") and it(r).get("immune")), lambda r: bool(it(r).get("spells") and not it(r).get("immune")),
          {"exp": "_exp_immune", "say": "the immunity itself left out of the prots held level"}),
         ("Deep Wound carried and not on him in time (R-751)", "a why of the attack's", -1, lambda r: bool((r.get("deep_wound") or {}).get("missing")), dw_in_time),
         ("Deep Wound left on him, a removal ready (R-725)", "a fault by his ruling", +1, dw_missed, lambda r: r.get("dw") in ("off", "left") and not dw_missed(r)),
         ("Shadow Shroud on him at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud")),
-        ("a monk of his stopped at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("monks")), lambda r: not r.get("monks"))))
+        ("a monk of his stopped at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("monks")), lambda r: not r.get("monks")),
+        ("Shadow Shroud, against the same team's other spikes", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud"),
+         {"exp": "_exp_noprot", "same": lambda r: (r["rid"], r["tm"]), "say": "no prots held level (none can be cast on him); the same teams in the same matches"}),
+        ("a prot stripped before the first big hit", "evidence for the strip (R-729)", +1, lambda r: any(a < 0 for a in pst(r)), no_strip,
+         {"exp": "_exp_strip", "say": "against prots on him, a strip ready and none in time; the prots before the strip held level"}),
+        ("a prot stripped in the 1.5 s after the first big hit", "evidence for the strip (R-729)", +1, lambda r: bool(r["prots_up"]) and not any(a < 0 for a in pst(r)) and any(a <= CH for a in pst(r)), no_strip,
+         {"exp": "_exp_strip", "say": "against the same"}),
+        ("a prot or heal of his monks' for him interrupted", "evidence for pressure on their monks", +1, lambda r: "interrupted" in cast(r), lambda r: bool(cast(r)) and "interrupted" not in cast(r)),
+        ("one of his monks knocked down at the spike", "evidence for pressure on their monks", +1, down, lambda r: not down(r))))
     B = [r for r in A if r.get("hurt") is not None]
     ints = lambda r: [x for x in r["missed"] if x["kind"] == "interrupt" and x.get("at", 0) <= CH]
     rows("H2. The interrupt on a burst on a hurt player: not asked, never a fault (R-805); kept as evidence", B, (
@@ -4264,7 +4287,8 @@ def positions_report(path, out_json=None):
        f"{sum(1 for r in A if not r['place']):,} are in no fight or without a position.")
     N, Mk = [r for r in G if not r["place"]["backline"]], [r for r in G if r["place"]["backline"]]
     res["cuts"] = {}
-    for name, L, eng, lo in (("too deep (players who are no backline monk)", N, EX.DEEP_PAST, 0), ("monk following (backline monks, the monk's own distance past the front line)", Mk, EX.FOLLOW_PAST, -1000)):
+    if EX.POSITIONS_PAUSED: pr("\nToo deep and monk following are paused (R-834): read and kept on every record, shown in no report until he takes them up again.")
+    for name, L, eng, lo in (() if EX.POSITIONS_PAUSED else (("too deep (players who are no backline monk)", N, EX.DEEP_PAST, 0), ("monk following (backline monks, the monk's own distance past the front line)", Mk, EX.FOLLOW_PAST, -1000))):
         pr(f"\nA. {name}: {k(L)}")
         pr("   past the front line      attempts in the step          at or past it")
         for c in range(lo if lo < 0 else 0, 2400, 200):
@@ -4281,6 +4305,7 @@ def positions_report(path, out_json=None):
     # each kind, checked once
     has = {"too deep": lambda r: bool(r["place"] and r["place"].get("too_deep")), "monk following": lambda r: bool(r.get("followed")),
            "the attack's frontline snared": lambda r: bool(r.get("snared"))}
+    if EX.POSITIONS_PAUSED: has = {k_: v_ for k_, v_ in has.items() if k_ not in ("too deep", "monk following")}
     want = {"too deep": +1, "monk following": +1, "the attack's frontline snared": -1}
     _x3_expected(S)
     pr(f"\nB. Each kind on the kill attempts, and on the spikes like with like (points of killed less expected, 90% range over whole matches; passes as in stage X3: the range clear and the right sign in every group of matches but {X3_BUT}).")
@@ -4297,9 +4322,9 @@ def positions_report(path, out_json=None):
         o.update({"spikes_with": len(Ts), "difference": d, "range": [lo_, hi_], "groups_right": [right, len(signs)], "verdict": w})
         pr(f"   {name:32} {k(T):>20} {k(O):>20} {len(Ts):>16} {d:+8.1f} ({lo_:+6.1f} to {hi_:+6.1f})    {right:2}/{len(signs):<2}  {w}")
     pr("   Too deep and monk following are told as faults only if they pass (R-713). Standing in area damage is set aside (R-807) and should have kited withdrawn (R-806): neither is read.")
-    ok = tuple(n for n in ("too deep", "monk following") if res["kinds"][n].get("verdict") == "passes")
-    res["position_faults"] = {"pass": list(ok), "engine": list(EX.POSITION_FAULTS)}
-    if set(ok) != set(EX.POSITION_FAULTS): pr(f"   The engine names {', '.join(EX.POSITION_FAULTS) or 'neither'} a fault (execution.POSITION_FAULTS) and this file passes {', '.join(ok) or 'neither'}: set it from a full run.")
+    ok = tuple(n for n in ("too deep", "monk following") if res["kinds"].get(n, {}).get("verdict") == "passes")
+    res["position_faults"] = {"pass": list(ok), "engine": list(EX.POSITION_FAULTS), "paused": bool(EX.POSITIONS_PAUSED)}
+    if set(ok) != set(EX.POSITION_FAULTS) and not EX.POSITIONS_PAUSED: pr(f"   The engine names {', '.join(EX.POSITION_FAULTS) or 'neither'} a fault (execution.POSITION_FAULTS) and this file passes {', '.join(ok) or 'neither'}: set it from a full run.")
     # the rows tied to no attempt
     Q = [dict(x, rid=rid) for rid, fc in D["flag_cost"].items() for x in (fc.get("positions") or [])]
     pr(f"\nC. The rows tied to no kill attempt, always listed on the play's row (R-745): {len(Q):,} in {len({x['rid'] for x in Q})} matches.")
