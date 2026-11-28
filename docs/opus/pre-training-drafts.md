@@ -1,6 +1,6 @@
 # Drafts for the pre-training list (R-398): items 2, 3 and 8
 
-Opus's drafts, 28 November 2026, read from main at c6275db (rulings to R-842). Nothing here is ruled or done: each
+Opus's drafts, 28 November 2026 (updated the same day for his plan change), read from main at c6275db (rulings to R-842). Nothing here is ruled or done: each
 item is a proposal for Denning to decide on, and for Fable to act on at the close (step 5 of the road ahead). Items 1,
 6, 7 and 10 of the list are not drafted here (1 and 7 wait for the engine to settle; 6 is his wiki button; 10 waits on
 more trained matches).
@@ -51,7 +51,7 @@ the ones to go through. The later rulings are already carried by a current docum
    parts that bundle 4 replaces or that are already dropped: the TQs (R-204, R-206, R-231), training chunks and the
    learning report (R-004, R-089 to R-095, R-153 to R-156, R-208 to R-214), discovery and learned links (R-193 to
    R-197, R-209, R-210, R-218, R-265, R-276, R-278, R-286), the causal map and node chains (R-205, R-206, R-216,
-   R-217), the blind test as designed in round 1 (R-284), and golden moments and their stories (R-338, R-345, R-420).
+   R-217), the blind test (R-284, and the blind part of R-274's goal test: no blind tests, 2026-11-28), and golden moments and their stories (R-338, R-345, R-420).
    The register keeps them (it is never renumbered); DEFINITIONS should not.
    Two need his word before they are marked: R-283 (kiting stays in the model whatever the data says) now sits
    against R-806 (should have kited removed from the execution reading); and R-215 (his link, Blind on the enemy
@@ -86,7 +86,7 @@ Already done (24 November, PR #6): the old scraper, the old export, four merged 
 |---|---|---|---|
 | `lord_gvg.json` | 107 KB | nothing | delete now or at the close |
 | `golden_stories.json` | 249 KB | the hidden Golden moments page | delete with that page |
-| `blind_tests.json` | 103 KB | the hidden Blind test page, `advice.py` | keep until step 7 rebuilds the blind test, then delete |
+| `blind_tests.json` | 103 KB | the hidden Blind test page, `advice.py` | delete at the close with that page (no blind tests, 2026-11-28) |
 | `usual_play.json` | 147 KB | `usual.py`, `learning.py`, `why.py`, `advice.py`, the Blind test page | delete as those modules retire |
 | `advice_test.json` | 6 KB | `advice.py`, `learning.py` | delete as those retire |
 | `discovery.json`, `discovery_history.json`, `discovery/` | 171 KB | the discovery modules and the Discovery workflow | delete with discovery, or keep if step 6's "Discovery resumes" reuses them |
@@ -97,13 +97,14 @@ Already done (24 November, PR #6): the old scraper, the old export, four merged 
 | `reports/`, `nodes/` | 2.8 MB | old reports and node models | as above |
 
 ### Old engine modules (`tools/replay_analysis/`)
+The query tool, `ask.py`, is kept and rewired to the new engine at the close (2026-11-28); the rest retire.
 `tq.py` is still imported by `ask.py`, `learning.py`, `causalchain.py`, `lnrows.py`, `eventlayer.py` and `cache.py`.
 The handoff already plans to retire them at the close. Note: removing a file from this folder changes the
 measurement cache key, so it belongs inside the one rebuild (R-322), not before.
 
 ### Site pages and knowledge pages
 - Golden moments and Blind test are hidden but still reached by direct link (`golden.js`, `blindtest.js`). Proposal:
-  remove Golden moments at the close; keep Blind test until step 7 replaces it.
+  remove both at the close (no blind tests, 2026-11-28).
 - Knowledge pages that describe the old engine: `behaviour.md`, `causal-map.md`, `discovery.md`,
   `learned-model.md`, `learning-report.md`, `values.md`, `wp-model.md`. These are item 7's to rewrite or remove.
 - `docs/tests/readability-2026-11-09.md` and `...b.md`: the first readability tests. Keep as the record, or move to
@@ -121,6 +122,11 @@ measurement cache key, so it belongs inside the one rebuild (R-322), not before.
 | `guild-phone` | Opus's phone fix, waiting for his approval | merge or delete |
 
 ## Item 8: everything outstanding, in one list
+
+### Decided 2026-11-28, for Fable to file as rulings
+- No blind tests. REDESIGN step 3 is dropped as a step: the card is the Flag advice card, each family gets its own at
+  its fourth stage, and the match report is match review. The query tool is rewired at the close (a match and a
+  moment in); the situation-without-a-match form is decided after family 4.
 
 ### Waiting on Denning now
 1. **A finish line for execution follow-ups.** Each full run turns up another kind that fails or reads backwards.

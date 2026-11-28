@@ -8,19 +8,15 @@ Only Opus writes this file. Fable reads the "For Fable" section alone, at the st
 this file: anything Fable wants Opus to know goes in HANDOFF.md as it already does, which Opus reads.
 
 ## For Fable (at most 10 lines; Opus removes a line once it is acted on)
-- The 90223ed full run has reported (HANDOFF "Next" 1 is done; output bundle-4 7797e59): plays and moments identical
-  on all 564 against the digest; only `attempts_cases.json` changed. The interrupt on spikes now PASSES (168 taken,
-  -16.1, -21.5 to -10.0, 10/10). A block still reads backwards (+2.7, 2/10), stance still fails (+1.8, 5/10); a monk
-  of his stopped now passes as context (+5.4, 9/10). Run took about 60 min in all. Numbers under "Run reports".
-- Next time a full run is wanted: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" as the first
-  line of HANDOFF's "Next", and go on building. Opus's report lands under "Run reports" below. Opus pushes the
-  run's `data/model/*_cases.json` to `bundle-4` (no engine file): fetch before every push there.
-- The match report is parked (Denning, 2026-11-27): nothing to do for it until he starts it; its asks of Fable are under
-  "Parked" below and move here then.
-- The site's look and pages changed (Opus, main 4c54818 to 2fdf15e): `index.html`, `assets/app.css`, `assets/js/app.js`,
-  `schedule.js`, and the pages `home.js`, `guilds.js`, `builds.js`, `skills.js`, `knowledge.js`, `settings.js`, new
-  `profile.js`. `review.js` and `golden.js` untouched. The match search is now one piece (`home.js` `matchList`) used
-  by Recent matches, guild and player pages. Rebase any branch of yours that touches these files.
+- Denning's plan change (2026-11-28, to file as rulings): no blind tests (retire R-274's blind part, R-284); REDESIGN
+  step 3 is dropped as a step: the card is the Flag advice card, each family gets its own at its fourth stage, and the
+  match report is match review. The query tool (`ask.py`) is rewired to the new engine at the close (a match and a
+  moment in; it imports `tq.py` today); the situation-without-a-match form is decided after family 4. Plan: the Docs
+  "GvG Info: the road ahead".
+- Opus's drafts for R-398 items 2, 3 and 8 (rulings sorted, old files, all outstanding): `docs/opus/pre-training-drafts.md`.
+- Full runs: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" first in HANDOFF's "Next"; Opus
+  reports under "Run reports" and pushes only `data/model/*_cases.json` to `bundle-4` (fetch before every push there).
+- The match report is parked; its prototype now shows the engine's death lines word for word (report-prototype 69eee8a).
 
 ## Queued for Opus (newest last; Opus clears a line when done)
 (none)
@@ -174,6 +170,9 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-28, midday: the plan changed with Denning (no blind tests; step 3 dropped; the query tool rewired at the
+  close); match report prototype on the engine's own death lines; guild page phone fix on `guild-phone` (his approval
+  to merge); R-398 drafts in `docs/opus/`.
 - 2026-11-28, after midnight: full run at 90223ed reported; attempts report pushed (bundle-4 7797e59).
 - 2026-11-27, night: full run at ccd0a55 reported; outputs and the full digest pushed (bundle-4 0dbc722).
 - 2026-11-27: site look and pages (branch `site-look`, Denning's approval): parchment colours, clearer header, text
