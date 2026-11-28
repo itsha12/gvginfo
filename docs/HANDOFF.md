@@ -48,11 +48,9 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
 1. Put to him 2026-11-27 (night): does a party-wide enchantment (Shield Guardian) land on a player under Shadow
    Shroud? Read as landing, so a Shield Guardian not cast is still a missed prot under Shroud.
-2. A death's own change in win chance is small (about 2 points on the set: the death penalty alone, by the stand-in
-   prices); the swing of the moment around it is on the decision cards. Said to him; his to change for the report.
-3. An even 6v6 and below has no row, as built.
-4. Skills from the wiki: the sync fixed later (R-765). September's early matches (R-673): at R-398. R-576, R-575.
-   The match report is parked until he starts it (`docs/OPUS.md` "Parked"); its readings are built (R-810).
+2. A death's own change in win chance is small (about 2 points on the set: the death penalty alone). Said to him.
+3. An even 6v6 and below has no row, as built. Skills from the wiki: the sync fixed later (R-765). September's
+   early matches (R-673): at R-398. R-576, R-575. The match report is parked (`docs/OPUS.md`); its readings are built.
 
 ## For Opus (Fable never edits `docs/OPUS.md`)
 - The guild page scrolls sideways at phone width (390 wide, about 85 px over): the "Most played full lineups"
