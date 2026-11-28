@@ -15,14 +15,14 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   "GvG Info: the road ahead".
 - Opus's drafts for R-398 items 2, 3 and 8 (rulings sorted, old files, all outstanding): `docs/opus/pre-training-drafts.md`;
   start the close's R-398 review from it.
-- Full runs: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" first in HANDOFF's "Next"; Opus
-  reports under "Run reports" and pushes only `data/model/*_cases.json` to `bundle-4` (fetch before every push there).
+- The f7165b1 full run has reported (HANDOFF "Next" 1's run is done; bundle-4 c2551bb): plays and moments identical on
+  all 564; only `attempts_cases.json` changed. Read backwards, for you to put to him: the burst strip's plain test (-6.0,
+  2/10) and section I's late parts (strip at +3 to +8 s -6.2; interrupts on his monks after +1.5 s -5.1, -22.0).
 - The match report is no longer parked (Denning, 2026-11-28): wanted before or with the first Train batch, so its page
   lands with the close's merge (amends R-800's "after step 3"; see "Scheduled" below). Opus builds it; Fable reviews once.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
-- From the full run at f7165b1 on: also run `cases.py winchance <plays> --json <file>` and keep the file with the run
-  for the match report's exporter (win chance at 0:00 and at each death; the engine says it is not kept in the repo).
+(none)
 
 ## Scheduled: the match report (Denning, 2026-11-28: wanted before training, or at the same time as it)
 - His one-click report on a match. Spec: the Docs artifact "GvG Info: match report spec" (layout agreed on the
@@ -55,7 +55,8 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 1. Take the commit named under "Queued for Opus" or in HANDOFF ("Full run wanted at ..."), in a worktree of its own: the run reads that commit,
    never a branch that moves under it. Fetch the replays branch as HANDOFF's "Running it" says.
 2. Run what HANDOFF names, one at a time (each needs the machine to itself): `moments.py all`, then the `cases.py`
-   reports, the key (`review.py score` with main's key), the truths, and the rows for main's views. Compare with the
+   reports, `cases.py winchance` (its file kept with the run for the match report's exporter, outside the repository:
+   sent to Denning in the chat), the key (`review.py score` with main's key), the truths, and the rows for main's views. Compare with the
    last full run (`compare.py`). About 1.5 h in all on 2 cores. A chat's background job stops a few minutes after
    its reply ends, so the run stays inside one turn: started in the background, waited on in the foreground.
 3. The output files go back where Fable would have put them: the `data/model/*_cases.json` reports to `bundle-4`
@@ -66,6 +67,31 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
    reported, never fixed: the decision is Fable's and Denning's.
 
 ## Run reports (newest first)
+### Full run at `bundle-4` f7165b1 (2026-11-28, midday, Opus; R-839 to R-842)
+- Outputs: `attempts_cases.json` (bundle-4 c2551bb, data only; made at f7165b1). Main's `execution_rows.json` not made
+  again: Fable made it at f7165b1. `winchance.json` made and sent to Denning in the chat (not in the repository): 564
+  matches, 47,917 positions, 10,215 deaths priced; a death -1.9 points on average; 400 positions blank; as at ccd0a55.
+- Plays: 564 matches, no errors; 33,089 plays and 26,199 moments; `digest.py check`: all 564 identical (plays and
+  moments). Key: 323 Classic rows pass (6 history rows do not hold, as before). Truths: 15 of 15 hold. Self-check
+  (R-488): 6 times in 4 matches. 134 untagged skills in 112 matches. `moments.py all --jobs 2` 25 min; attempts 1 min.
+- Against 59c47b0's attempts file, only these changed: section G's strip, and the rows f7165b1 adds. G: prot, heal and
+  interrupt as before (all pass); strip fails (714 taken at 32.1% killed, 648 missed at 23.5%; +5.6, +1.9 to +9.1,
+  6/10; was +5.8, 7/10; late 1,880 at 28.3%, was 1,142); pressure on their monks fails (-1.1, 5/10).
+- H strip rows: before the first big hit on a spike fails on the groups (+9.4, +2.8 to +17.1, 8/10; kept by name, R-842;
+  plain test -1.6, 4/10); before a burst fails (+2.2, -1.8 to +6.2, 6/10; plain test READS BACKWARDS, -6.0, 2/10);
+  during, on spikes passes (+8.3, 9/10), on bursts passes (+3.7, 9/10); the strip dealing damage passes (+7.7, 9/10);
+  the strip dealing none passes (116; +14.5, +8.5 to +20.1, 9/10; now counted, R-839); a damaging strip that took
+  neither fails, as it should for evidence only (276 at 37.3% against 3,068 at 38.2%; +0.0, 5/10, R-840).
+- Kept by name (R-842): a prot stripped before the first big hit on a spike (above, +9.4, 8/10); one of his monks knocked
+  down at the spike (598; +8.1, +4.8 to +11.8, 7/10). Others in H1: stance passes against the same players (+11.8,
+  10/10); a block passes as the attack's why (R-831; -6.4, 10/10); a prot or heal for him interrupted passes (+10.0,
+  10/10); Deep Wound rows, Shadow Shroud, a monk of his stopped (+5.4, 9/10), H2 and H3: as at 90223ed.
+- J (the spike thrown, R-837): 6,478 in 508 matches, 25.5% killed. Aegis coming during it passes (347, 1.7% killed;
+  -27.1, 10/10), and against targets still alive 1.9 s after the first skill passes too (-21.5, -23.5 to -19.5,
+  10/10; 22.9% of those 4,631 died after it). A block at its start passes (-10.3, 10/10).
+- Section I (when each part landed): the strip at +3.0 to +8.1 s reads clear the wrong way (139; -6.2), as do
+  interrupts on his monks at +1.5 to +3.0 s (-5.1) and +3.0 to +8.1 s (1,099; -22.0); likely because only a target
+  still alive by then can have a part that late (Opus's reading, not checked).
 ### Full run at `bundle-4` 90223ed (2026-11-28, after midnight, Opus; R-828, R-830 and the cast times of 805b894)
 - Outputs: `attempts_cases.json` (bundle-4 7797e59, data only; made at 90223ed). `positions_cases.json`,
   `pressure_cases.json`, `execution_cases.json` and `plays_digest.json` came out byte for byte the same as ccd0a55's,
@@ -173,6 +199,7 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-28, midday: full run at f7165b1 reported; attempts report pushed (bundle-4 c2551bb); winchance sent to Denning.
 - 2026-11-28, midday: the plan changed with Denning (no blind tests; step 3 dropped; the query tool rewired at the
   close); match report prototype on the engine's own death lines; guild page phone fix on `guild-phone` (his approval
   to merge); R-398 drafts in `docs/opus/`.
