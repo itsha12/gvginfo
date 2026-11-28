@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-821, on his marks of RACK v hdm and Men v NwAy R-822 to R-830, after the full run at 90223ed R-831 to R-834. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-821, on his marks of RACK v hdm and Men v NwAy R-822 to R-830, after the full run at 90223ed R-831 to R-838. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -228,6 +228,20 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     spell was for another player. As built.
 63. **Too deep and monk following are paused** (R-834): read and kept on every record, said nowhere and shown in
     no report, no work on them until he takes them up again. Built (`execution.POSITIONS_PAUSED`).
+64. **The strip that matters** (R-835, amending Rule 14's "or during it"): on a spike, a strip that takes a prot off
+    the target before the first big hit, or a strip that deals damage (Shatter Enchantment and its like) landing
+    during the spike; on a burst on a hurt player, a strip that takes a prot or a heal (Patient Spirit) before or
+    during it, or deals damage during it. Before = the 3 s before the first big hit, during = to 3 s after it. A strip
+    before the spike that left no prot on him counts. Built (`strip_effective`); the missed strip stays a prot on him,
+    a strip ready and none at all.
+65. **The attack's good play on their monks** (R-836): a prot or heal of a monk's for the target that the attack
+    stopped (who stopped it, with what), and a monk in reach knocked down as the spike lands, casting or not. Said on
+    the death as "Enemy good play:". Built. A prot or heal let through with an interrupt ready is no fault: not built.
+66. **The spike thrown, and Aegis** (R-837): skills and attacks aimed at one player whose usual damage adds to 400 or
+    more inside 3 s, whatever landed, each skill at what a cast of it did for its caster this match. Aegis is read on
+    these, no longer than 3.6 s from its cast: the spells that stopped on it, what landed, whether he died. A record
+    and its sentence (`execution.thrown`, `say_thrown`); not yet said on a play's row or the site.
+67. **Shadow Shroud** (R-838): stays context, the attack's good play; read again with more matches.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -298,13 +312,13 @@ for a second or longer with 90 or more landing on him in 3 s, hits and degen; Ru
 | Why | Read | What it needs |
 |---|---|---|
 | Damage off-timed, not landing together | Yes | |
-| Strip missing or off-timed (Rule 14) | Yes (stage 1): listed on each spike that did not kill, the check's result beside it; a strip in time said as good play; which strips are thrown on demand is read from the tags (stage 3, R-773). Evidence: before the first big hit +6.8 points killed (7/10), in the 1.5 s after it +0.3 | His answer on "or during it" (R-729); a strip before the spike that left no prot is not yet counted as done in time |
+| Strip missing or off-timed (Rule 14) | Yes (stage 1): listed on each spike that did not kill, the check's result beside it; a strip in time said as good play; which strips are thrown on demand is read from the tags (stage 3, R-773). The strip that matters is Rule 64 (R-835). The check: before the first big hit +5.8 points killed (+2.1 to +9.4, 7/10; on spikes alone +9.4, 8/10); a strip taking a prot or heal that landed during it, against one that landed and stayed, +8.3 on spikes and +3.7 on bursts (both 9/10) | His answers: a strip dealing no damage during a spike (+14.5, 9/10: not counted by Rule 64); a damaging strip that took neither a prot nor a heal (counted today) |
 | Deep Wound missing or off-timed on the spike (R-751) | Yes (stage 3), a why: on him at the first big hit, when it came, who in reach carried it | Whether the skill was ready: adrenaline is not in the replays |
 | A damage player with his skill ready who hit another target (R-751) | No: dropped for now (R-809). Built and read backwards (spikes with it killed 4.7 points more, in every group of ten) | His word to bring it back |
 | Enchantment prevention not used: Shadow Shroud | Partly: where it was used is kept on every attempt (Rule 44) and checked once as the attack's good play (+10.1 points killed against the same teams' other spikes, 8/10: 38 teams, too few for the bar) | As a missed chance of the attack's: carried, ready, in reach and not cast |
-| Their monks not pressured: interrupts, knockdowns, Daze | Yes (the missed chance fails the check: never a fault). Evidence: a prot or heal for the target interrupted +10.0 points killed (10/10), a monk knocked down +6.0 (10/10) | His answer: said as the attack's good play, and whether a prot or heal let through with an interrupt ready is a fault |
+| Their monks not pressured: interrupts, knockdowns, Daze | Yes (the missed chance fails the check: never a fault). Said as the attack's good play (Rule 65, R-836): a prot or heal for the target stopped +10.0 points killed (10/10); a monk in reach down as the spike lands +8.1 (+4.8 to +11.8, 7/10) | A prot or heal let through with an interrupt ready as a fault: not built |
 | Their monks not disabled, cast-prevented or drained | Partly: each of the target's monks knocked down, Dazed, disabled or hexed at the first big hit is kept on the attempt (Rule 44) and checked once | As a missed chance of the attack's; energy drained |
-| Spiked into a block or spell immunity (Aegis, Guardian, Mirage Cloak, Spell Breaker, Obsidian Flesh) | Yes (stage 3), a why: his enchantments, stances and weapon spells at the first big hit whose text blocks attacks or bars enemy spells; a block is said only where more than a third of the spike is attacks (R-831), immunity only against a spike with spells. A block passes the check (-6.4 points killed, 10/10). Immunity is Aegis alone (41 attempts against 7,065 casts): a spike Aegis stops lands nothing and is no attempt, so the check cannot see it | Aegis read from the casts aimed at him while it was up (not built) |
+| Spiked into a block or spell immunity (Aegis, Guardian, Mirage Cloak, Spell Breaker, Obsidian Flesh) | Yes (stage 3), a why: his enchantments, stances and weapon spells at the first big hit whose text blocks attacks or bars enemy spells; a block is said only where more than a third of the spike is attacks (R-831), immunity only against a spike with spells. A block passes the check (-6.4 points killed, 10/10). Immunity is Aegis alone, read on the spikes thrown (Rule 66, R-837): 368 thrown into it, 315 spells stopped on it; where it came during the spike 1.7% died against 22.4% of the spikes with neither Aegis nor a block whose target was still alive at that moment; a block at its start -10.3 points killed (10/10) | Said on the play's row and on the site; the time of death on the record |
 | Spiked into a ward or a spirit (Ward Against Melee, Shelter, Union, Displacement) (R-751) | No: not in the records (the limits) | A ward's place and length from its cast; a spirit has no position in the replays |
 | Wrong target: frontline over monks when trying to kill | Partly: over the play | Per attempt |
 | Frontline hampered: Empathy, Faintheartedness, Blurred Vision, Insidious Parasite; also Clumsiness, Sum of All Fears, Shadow of Fear, Ineptitude, Price of Failure, Spiteful Spirit, Blind, Weakness | No | Their hexes and conditions on our attackers during the attempt, and whether they were removed (a why; a fault only where Rules 21 and 24 say) |

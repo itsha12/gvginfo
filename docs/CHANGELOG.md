@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, midday (the same chat): R-835 to R-838 filed; the strip that matters, the attack's good play on their monks, the spike thrown and Aegis built
+- Rulings filed: R-835 (his definition of a strip that matters, on a spike and on a burst), R-836 (a monk's prot or heal stopped and a monk knocked down are the attack's good play; the knockdown casting or not), R-837 (Aegis built from the spike thrown), R-838 (Shadow Shroud stays context, read again with more matches).
+- `bundle-4` 59c47b0, one bundled change: `strip.rows` and `strip_effective`; `good` and `down_by`, said as "Enemy good play:" on a death; `execution.thrown` (every spike thrown, whatever landed), `say_thrown`, `execution.py thrown`; `cases.py attempts` sections G (the strip's own row), H and J.
+- Fable's full run at it (30 min): plays and moments identical to the digest on all 564; 323 Classic rows pass on the development set. `attempts_cases.json` from it.
+- The strip: before the first big hit +5.8 (+2.1 to +9.4), 7/10 (spikes +9.4, 8/10). During the spike, against an enchantment that landed and stayed: spikes +8.3, bursts +3.7, both 9/10; a strip dealing no damage +14.5. Against the wrong like it had read nought and backwards.
+- Their monks: a prot or heal for the target stopped +10.0, 10/10; a monk in reach down as the spike lands +8.1, 7/10.
+- The spike thrown: 6,478 in 508 matches. Aegis coming during it: 347, 1.7% died against 22.4% of plain spikes whose target was still alive then; 315 spells stopped on Aegis. A block at its start -10.3, 10/10. The raw record checked first: a spell on a player under Aegis is a cast that stops (46 of 56 against 13 of 320).
+- Main's `execution_rows.json` written again from 59c47b0: four rows gained an "Enemy good play" line; five changed only in the order of casts in a line (found: the order is not the same from run to run).
+
 ## 2026-11-28, late morning (the same chat): R-831 to R-834 filed and built; why the strip, their monks, Shadow Shroud and spell immunity fail
 - Rulings filed: R-831 (a block said only where more than a third of the spike is attacks, his cut-off), R-832 (Frenzied Defense a fault only where spells landed), R-833 (a dying monk's own spell lost to Shame is a Trigger Fault on his row: as built), R-834 (too deep and monk following paused: kept on the records, said nowhere, no work).
 - `bundle-4` 9ff24ab, one bundled change: `into_block`, `stance_words` and a blocking stance's `spells`, `POSITIONS_PAUSED`; `cases.py attempts` section H gains evidence rows. Development set: plays and moments identical to the digest, 323 Classic rows pass; a block line on 305 spikes (389); 9 of 10 Frenzied Defense rows still faults.

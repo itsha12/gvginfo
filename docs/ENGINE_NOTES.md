@@ -1416,6 +1416,37 @@ index pointing here. Read the section for a reading before changing it, and keep
   or Obsidian Flesh on a bar). 7,065 Aegis casts in the stored matches against 41 attempts with it up: a spike it stops lands nothing, and an
   attempt is 400 landed, so the check sees only the spikes that got through (gvg.report credits it 0.6 prevented a cast for the same
   reason). Needs a reading from the casts aimed at him while it was up (a spike thrown, not a spike landed): not built, put to him.
+  **R-835 to R-838 built** (2026-11-28, midday; `bundle-4` 59c47b0, one bundled change; Fable's full run at it: plays and moments identical
+  to the digest on all 564, 323 Classic rows pass on the set, `attempts_cases.json` from that run).
+  **The strip that matters** (R-835; `strip_effective`, in `chance_tests`). Each strip on an attempt is kept with what it took (`strip.rows`:
+  s against the first big hit, the enchantment, the strip, a prot, a heal by `is_prot` and `is_heal` on the enchantment's own skill data via
+  `ench_off`, and whether the strip deals damage, `STRIP_HITS`). On the set 1,780 strips: Shatter Enchantment 1,085, Shatter Storm 316, Drain
+  Enchantment 115; taken most: Patient Spirit, Spirit Bond, Shielding Hands, Guardian. The check, each part against its own like. Before the
+  first big hit (section G's row; against a prot on him before, a strip ready and none): 715 at 32.3% killed against 648 at 23.5%, +5.8 (+2.1
+  to +9.4), 7/10; spikes alone +9.4 (+2.8 to +17.1), 8/10; bursts +2.2, 6/10. During it: a strip can only take what the monks put on, so it
+  is set against the attempts where an enchantment prot or heal landed on him during it and stayed (`during`, `took`): spikes 19.3% against
+  14.2%, +8.3 (+5.8 to +10.5), 9/10; with a damaging strip +7.7, 9/10; with a strip dealing none +14.5 (116 rows), 9/10; bursts +3.7 (+2.4 to
+  +5.1), 9/10. Set against a prot on him before and no strip (the first try) a strip during read nought on spikes and backwards on bursts:
+  the wrong like, the same fault as the block's. Left for his word: a strip dealing no damage during a spike is not counted (it reads
+  strongest), and a damaging strip counts whatever it took (1,586 spikes so counted, 1,083 of them took a prot or heal).
+  **The attack's good play on their monks** (R-836; `monks_stopped` kept as `good`, `monks_at`'s `down_by`; "Enemy good play:" on a death).
+  A prot or heal for the target stopped: 252 on the set (Power Spike 74, Complicate 30, Shame 28, Power Leak 21); +10.0, 10/10. A monk in
+  reach down as the spike lands (his words: casting or not): 598 attempts, +8.1 (+4.8 to +11.8), 7/10; any of his monks knocked down from 3
+  s before to 1.5 s after: 2,496, +6.0, 10/10. Not on a death read from a pressure attempt (no `good` there yet).
+  **The spike thrown** (R-837; `thrown`, kept as `flag_cost[rid].thrown`; `say_thrown`; `python3 execution.py thrown <report id> [m:ss]
+  [aegis]`; `cases.py attempts` section J). Checked against the raw record first (R-707, 16 matches, 303 Aegis): of the spells and hexes
+  aimed at a player that end while Aegis is on him 46 of 56 stop with no interrupt recorded, against 13 of 320 in the 3 s either side; a
+  signet lands, an attack skill is recorded finished. The record's end of Aegis is gvg.report's simulation (4 s on 125 of 163, 6 s on 14): read
+  no longer than 3.6 s from its start (`AEGIS_MAX_S`). Pricing a cast from gvg.report's summary or from the replay's own hits agrees. 6,478
+  thrown in 508 matches, 25.5% killed; 71% landed as a kill attempt, and of the landed spikes of 400 about 55% are found thrown (the pricing
+  is the low side: a skill that never did damage in the match has no price). Aegis on him as the first skill lands: 21 (a spell cannot be
+  begun on him). Aegis coming during it: 347, 1.7% killed against 29.0% with neither Aegis nor a block (-27.1, 10/10 like with like, which
+  flatters it: Aegis can only come to a player still alive); against the plain spikes whose target was still alive when it came 22.4% died
+  after that moment (scratch: the record keeps no time of death; add it). 315 spells stopped on Aegis in 196 of the 368 spikes. A block at
+  its start, no Aegis: 1,083, 16.8% against 29.0%, -10.3 (-12.5 to -8.1), 10/10 (on the attempts -6.4: the spikes a block stops outright
+  are counted here).
+  **Found, not fixed**: the casts in a death's "Success:" line come in a different order from one run to the next (the same sentences): five
+  rows of main's view changed so.
   **The win chance over the match** (`Moments.position_series`, kept as `flag_cost[rid].series`; `cases.py winchance <file> --json <out>`):
   the position every 10 s and at each death, priced by the price of a result fitted without the match's group. A death's change is the
   price of its death penalty alone (15%, to the floor of 60%, by the game's rule: the replay writes the new figure late on one death in
