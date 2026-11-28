@@ -401,7 +401,7 @@ class Exec:
 ATT_BEFORE_S = 3            # a strip, pressure on his monks or a prot this long before the spike's first big hit belongs to the attempt (Claude's draft: the window
                             # in which each part counts as "together" is measured in stage X3 from these records, R-708; this only bounds what is kept)
 ATT_AFTER_S = 8             # an attempt is read to the target's death, or this long after its first hit where he lives (the old spike reading's 8 s)
-from forensics import CHANCE_S, PRESSED, REACT_S, DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DANGER_HP, _act, cast_s, outcome   # a monk's chance to prot or heal, when he is busy (R-711) and the time to react (R-716): one reading, in forensics.py
+from forensics import CHANCE_S, PRESSED, REACT_S, DEEP_WOUND_SHARE, DEEP_WOUND_MAX, DANGER_HP, SPIKE_DMG, SPIKE_S, _act, cast_s, outcome   # a monk's chance to prot or heal, when he is busy (R-711) and the time to react (R-716): one reading, in forensics.py
 MISSED_KINDS = (            # each kind of missed chance (R-713), the side that missed it, and its words; stage X3 checks each on unseen matches
     ("prot", "defence", "a prot ready on a monk in reach who was not busy, not cast on the target"),
     ("heal", "defence", "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome"),
@@ -540,6 +540,9 @@ def attempts(E):
             near = lambda a, u: (F.dist(a, tgt, u) or 1e9) <= CAST_R
             # the package (R-708)
             strips = [r for r in E.R.get("strips", ()) if r["team"] == m.tag[tm] and r["target"] == m.roles[tgt] and first - ATT_BEFORE_S <= r["t"] <= end]
+            srows = sorted([round(r["t"] - first, 1), tname(F, off[0]) if off else r["enchantment"], (r["skill"] or "").replace(" PvP", ""), bool(off and is_prot(F.sdata(off[0]))),
+                            bool(off and is_heal(F.sdata(off[0]))), (r["skill"] or "").replace(" PvP", "") in STRIP_HITS]
+                           for r in strips for off in [ench_off(E).get((tgt, round(r["t"] * 10), r["enchantment"]))])
             monks = [h for h in theirs if h in E.monk]
             pr_i = [(i[0] / 10) for i in (m.o.get("interrupts") or []) if i[0] is not None and i[3] in monks and i[1] in mine and first - ATT_BEFORE_S <= i[0] / 10 <= end]
             pr_k = [k[0] for h in monks for k in F.kds_on(h, first - ATT_BEFORE_S, end)]
@@ -614,7 +617,8 @@ def attempts(E):
                         "dmg": round(dmg), "killed": bool(died and end < t + ATT_AFTER_S), "s": round(end - first, 1), "attackers": [m.roles[a] for a in att],
                         "spread": ld["spread_s"], "in_1s": ld["in_1s"],
                         "strip": {"n": len(strips), "lead": round(min(r["t"] for r in strips) - first, 1) if strips else None, "prot_off": any(r.get("prot") for r in strips),
-                                  "at": sorted([round(r["t"] - first, 1), bool(r.get("prot"))] for r in strips)},
+                                  "at": sorted([round(r["t"] - first, 1), bool(r.get("prot"))] for r in strips),
+                                  "rows": srows},          # R-835: each strip as [s against the first big hit, the enchantment it took, the strip, a prot, a heal, a strip that deals damage]
                         "pressure": {"interrupts": len(pr_i), "knockdowns": len(pr_k), "dazed": len(pr_d),
                                      "lead": round(min(pr_i + pr_k) - first, 1) if pr_i or pr_k else None,
                                      "interrupts_at": sorted(round(x - first, 1) for x in pr_i), "knockdowns_at": sorted(round(x - first, 1) for x in pr_k)},
@@ -622,6 +626,7 @@ def attempts(E):
                         "heals_cast": [[F.sname(c[1]), round(c[2] - first, 1), outcome(c, end if died and end < t + ATT_AFTER_S else None)] for c in heal_cast],
                         "missed": missed, "ledger": led, "spike_casts": dict(went),
                         # the match report's readings (R-810): the set he held at the first big hit, Shadow Shroud on him, what stopped his monks at the spike itself, what landed for him
+                        "good": monks_stopped(E, mine, prot_cast + heal_cast, first),      # R-836: his monks' prots and heals for him that the attack stopped
                         "set": target_set(E, tgt, first), "shroud": shroud_on(E, tgt, first, min(end, first + CHANCE_S)), "monks": monks_at(E, monks, tgt, first, end),
                         "landed": landed_casts(E, prot_cast + heal_cast, tgt, first, end, bool(died and end < t + ATT_AFTER_S))})
     return sorted(out, key=lambda r: r["t"])
@@ -999,6 +1004,110 @@ def target_set(E, tgt, t):
     return {"label": w["label"], "shield": "Shield" in w["label"], "has_shield": any("Shield" in s_["label"] for s_ in E.F.sets.get(tgt, []))}
 
 
+AEGIS_MAX_S = 3.6           # an effect that bars hostile spells is read no longer than this from its start: Aegis (PvP) lasts 1 to 3 s, a fifth longer on an
+                            # enchanting set, and the record's end for it is gvg.report's own simulation (4 s on 125 of 163, 6 s on 14: checked 2026-11-28, R-707)
+THROWN_GAP_S = 6            # two spikes thrown at one player are this far apart, as two spikes landed are (`events._spikes`)
+
+
+def thrown(E, atts):
+    """R-837, the spike thrown: every time one team aimed at one player skills and attacks whose usual damage adds to SPIKE_DMG or more inside SPIKE_S,
+    whatever landed. A kill attempt (`attempts`) is told by what landed, so a spike that Aegis, a block or a prot stops outright is no attempt and no
+    reading of the attempts can see it (found 2026-11-28: 41 attempts with Aegis up against 7,065 casts of it). What is aimed: the other team's players'
+    casts on him of skills that did damage for them this match, each at what a cast of it did for its caster on average (`Exec.per_use`, gvg.report's
+    summary; a skill that hits several players is priced at all it hit: the limit), read at the cast's end whether it finished, was stopped or was
+    interrupted; and their attacks begun on him, each at that attacker's average attack (`Forensics.attack_avg`). Checked against the raw record (R-707,
+    16 matches, 303 Aegis): of the spells and hexes aimed at a player that end while Aegis is on him 46 of 56 stop with no interrupt recorded, against
+    13 of 320 in the 3 s either side of it: a spell on a player who cannot be its target is a cast that stops.
+    A row: `usual` (the damage aimed), `by`, `n`, `spells` and `attacks` (how many of each; a signet or a touch skill with the spells), `failed` (spells
+    that stopped with no interrupt), `interrupted`, `landed` (what that team's players did land on him from the first to SPIKE_S after it), `killed`
+    (dead inside ATT_AFTER_S, as an attempt reads it), `attempt` (a kill attempt of that team on him inside SPIKE_S of it: the spike did land),
+    `aegis` (an effect on him whose text bars hostile spells, overlapping it: [from, to] in s against its first skill, and who cast it), `blocks` (his
+    effects that block attacks, up at its start), `health` and `healer` for setting like with like. A record: no play reads it."""
+    import re
+    F, m = E.F, E.m
+    F.casts()
+    fx = _fx(E)
+    immune = re.compile(r"cannot be the target of (enemy|hostile) spells", re.I)
+    block = re.compile(r"block|attacks against .{0,40}fail", re.I)
+    deaths, landed = collections.defaultdict(list), collections.defaultdict(list)
+    for e in F.ev:
+        if e[1] == "dt" and e[0] / 10 < E.M.over: deaths[e[2]].append(e[0] / 10)
+        elif e[1] == "dm" and e[2] in m.PL and e[3] in m.PL and (e[5] or 0) > 0: landed[(m.team(e[2]), e[3])].append((e[0] / 10, e[5]))
+    out = []
+    for tm in (1, 2):
+        mine = set(F.players(tm))
+        ev = collections.defaultdict(list)                # target -> [(second it lands, usual damage, attack / spell, who, skill, how it ended)]
+        for a in mine:
+            for c in F._by_agent.get(a, ()):
+                if c[5] not in m.PL or m.team(c[5]) == tm or c[3] is None: continue
+                u = E.per_use(a, c[1])
+                if not u or not u.get("damage"): continue
+                ev[c[5]].append((c[3], u["damage"], "attack" if F.is_attack(c[1]) else "spell", a, tname(F, c[1]), c[4]))
+        for e in F.ev:
+            if e[1] == "at" and e[2] in mine and e[3] in m.PL and m.team(e[3]) != tm:
+                av = F.attack_avg(e[2])
+                if av: ev[e[3]].append((e[0] / 10, av, "attack", e[2], None, "attack"))
+        mine_att = [r for r in atts if r["tm"] == tm]
+        for tgt, L in ev.items():
+            L.sort(key=lambda x: x[0]); last = -99
+            for i, x in enumerate(L):
+                if x[0] - last < THROWN_GAP_S: continue
+                win = [y for y in L[i:] if y[0] <= x[0] + SPIKE_S]
+                n = sum(y[1] for y in win)
+                if n < SPIKE_DMG or not F.alive(tgt, x[0]): continue
+                last, t = x[0], x[0]
+                up = [q for q in fx.get(tgt, ()) if q[4] != "h" and q[0] <= t + SPIKE_S and q[1] >= t]
+                ae = [(q[0], min(q[1], q[0] + AEGIS_MAX_S)) + tuple(q[2:]) for q in up if immune.search(F.sdata(q[6]).get("desc") or "")]
+                ae = [q for q in ae if q[1] >= t]
+                hp = (m.snap(tgt, round(t * 10)) or {}).get("hp")
+                out.append({"t": round(t, 1), "tm": tm, "team": m.tag[tm], "target": m.roles[tgt], "id": tgt, "usual": round(n), "n": len(win),
+                            "by": sorted({m.roles[y[3]] for y in win}), "spells": sum(1 for y in win if y[2] == "spell"), "attacks": sum(1 for y in win if y[2] == "attack"),
+                            "failed": [y[4] for y in win if y[2] == "spell" and y[5] == "cancelled"], "interrupted": sum(1 for y in win if y[5] == "interrupted"),
+                            "landed": round(sum(v for u_, v in landed.get((tm, tgt), ()) if t - .05 <= u_ <= t + SPIKE_S)),
+                            "killed": any(t <= d <= t + ATT_AFTER_S for d in deaths[tgt]),
+                            "attempt": any(r["id"] == tgt and abs(r["t"] - t) <= SPIKE_S for r in mine_att),
+                            "aegis": None if not ae else [round(min(q[0] for q in ae) - t, 1), round(max(q[1] for q in ae) - t, 1), m.roles.get(ae[0][3])],
+                            "blocks": sorted({q[2] for q in up if q[0] <= t and block.search(F.sdata(q[6]).get("desc") or "")}),
+                            "health": hp, "healer": tgt in E.healer})
+    return sorted(out, key=lambda r: r["t"])
+
+
+def say_thrown(r):
+    """A spike thrown, in a sentence (R-837)."""
+    clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
+    w = (f"{clk(r['t'])} {r['team']} threw a spike at the {r['target']} ({', '.join(r['by'])}): {r['n']} skills and attacks worth about {r['usual']} inside {SPIKE_S} s "
+         f"({r['spells']} spell{'s' if r['spells'] != 1 else ''}, {r['attacks']} attack{'s' if r['attacks'] != 1 else ''}); {r['landed']} landed and he {'died' if r['killed'] else 'lived'}.")
+    if r.get("aegis"):
+        w += (f" Into Aegis" + (f" from the {r['aegis'][2]}" if r['aegis'][2] else "") + f" ({r['aegis'][0]} s to {r['aegis'][1]} s against the first skill)"
+              + (f": {len(r['failed'])} spell{'s' if len(r['failed']) != 1 else ''} could not land ({', '.join(r['failed'])})." if r["failed"] else ": no spell is recorded stopping on it."))
+    elif r.get("blocks"): w += f" A block was up on him ({', '.join(r['blocks'])})."
+    return w
+
+
+def ench_off(E):
+    """Every enchantment a strip took off a player, by (player, tenth of a second, its name as the strip record spells it): [its skill id] (the replay's
+    effects whose end is `enchantment_removed_lifo`). The strip record (`eventlayer`) names the enchantment; this gives its skill data, so a strip can be
+    read by what it took (R-835)."""
+    if getattr(E, "_off", None) is None:
+        E._off = {}
+        for e in E.m.o.get("effects") or []:
+            if e[2] == "e" and e[6] == "enchantment_removed_lifo" and e[1] is not None: E._off.setdefault((e[5], e[1], E.F.sname(e[3])), [e[3]])
+    return E._off
+
+
+def monks_stopped(E, mine, casts, first):
+    """R-836, the attack's good play on the target's monks: each prot or heal a monk began for the target, by CHANCE_S after the first big hit, that the
+    attack stopped: [the player who stopped it and with what (None where the record names none), the monk, his skill, s against the first big hit].
+    A knockdown is on the monk's own row (`monks_at`'s `down`, with `down_by`): he need not have been casting (his words)."""
+    F, m, out = E.F, E.m, []
+    for c in casts:
+        if c[4] != "interrupted" or c[2] - first > CHANCE_S: continue
+        by = F.stopped_by(c)
+        if by is not None and by[0] not in mine: continue
+        out.append([m.roles[by[0]] if by else None, (by[1] or "").replace(" PvP", "") if by else None, m.roles[c[0]], tname(F, c[1]), round(c[2] - first, 1)])
+    return out
+
+
 def shroud_on(E, tgt, t0, t1):
     """Shadow Shroud on the target between t0 and t1 (he cannot be the target of enchantments: no enchantment prot can be cast on him, and a prot not
     cast under it is no fault, `Forensics.chances`): [from, to] in seconds from t0, or None."""
@@ -1024,7 +1133,9 @@ def monks_at(E, monks, tgt, first, end=None):
         if h == tgt or not F.alive(h, first) or not F.in_reach(h, tgt, first, t1): continue
         row, spans = {}, {}
         kd = [k for k in F.kds_on(h, first - 2, first + CHANCE_S) if k[0] + 2 >= first]
-        if kd: row["down"] = [round(kd[0][0] - first, 1), kd[0][2]]
+        if kd:
+            row["down"] = [round(kd[0][0] - first, 1), kd[0][2]]
+            if kd[0][1] in m.PL: row["down_by"] = m.roles[kd[0][1]]
         if F.dazed_at(h, u): row["dazed"] = True
         dis = collections.OrderedDict()
         for sid in (m.A[h].get("bar") or []):
@@ -1347,6 +1458,8 @@ def say_pressure(r, trig=None):
 STANCE_FAULT = ("Frenzy", "Frenzied Defense", "Primal Rage")     # R-740, R-768: by name. Aggressive Refrain raises damage taken too (R-775): context until he says
 STANCE_BLOCKS = ("Frenzied Defense",)    # R-832: a block and double damage at once: a fault only where spells landed while it was up (against attacks it stops more than it
                             # adds), and its own doing is then half of what those spells landed. A signet or a touch skill counts with the spells (no block stops them)
+STRIP_HITS = ("Shatter Enchantment", "Chilblains", "Pain of Disenchantment", "Test of Faith", "Hex Eater Vortex")      # R-835: the strips that deal damage as they
+                            # land (the tags' strips that add damage; Rip Enchantment and Corrupt Enchantment, which leave Bleeding or degen, are not: Claude's list)
 BLOCK_SHARE = 1 / 3         # R-831: a block is said, and tested, only where more than a third of the spike is attacks (his cut-off: no difference in kills at a third or less)
 STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
                             # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
@@ -2068,6 +2181,18 @@ RULED_KINDS = ("strip",)    # the kinds of missed chance he rules by name (R-744
                             # R-714 it is listed on a spike that failed (R-729). Pressure on the target's monks is ruled by nobody and fails the check: never told.
 
 
+def strip_effective(r):
+    """R-835, his definition of a strip that matters. On a spike: it takes a prot off the target before the first big hit, or it is a strip that deals
+    damage (STRIP_HITS: Shatter Enchantment and its like) landing during the spike. On a burst on a hurt player, which runs a little longer: it takes a
+    prot or a heal (Patient Spirit) off him before or during it, or deals damage during it. Claude's readings, his to correct: before = in the
+    ATT_BEFORE_S before the first big hit; during = from the first big hit to SPIKE_S after it; a prot or a heal = `forensics.is_prot`, `is_heal` on the
+    enchantment taken; a damaging strip counts whatever it took. A record older than the strip's rows reads as it did."""
+    rows = r["strip"].get("rows")
+    if rows is None: return bool(r["prots_up"]) and any(prot and a <= CHANCE_S for a, prot in r["strip"].get("at", []))
+    if r.get("hurt") is not None: return any(lead <= SPIKE_S and (prot or heal or (hits and lead >= 0)) for lead, _e, _s, prot, heal, hits in rows)
+    return any((prot and lead < 0) or (hits and 0 <= lead <= SPIKE_S) for lead, _e, _s, prot, _h, hits in rows)
+
+
 def chance_tests():
     """Each kind of missed chance as (taken, missed, late), each a test on a kill attempt, all read over the same seconds (from 3 s before the first big hit to
     CHANCE_S after it, the seconds a monk's chance is looked for): a spike that kills ends at the death and one that fails is read for 8 s, so anything counted
@@ -2083,9 +2208,9 @@ def chance_tests():
         out[kind] = (tk, (lambda tk, has: lambda r: has(r) and not tk(r))(tk, has), lambda r: False)
     mi = lambda r: any(x.get("chance") for x in ints(r))
     out["interrupt"] = (lambda r: any(x.get("taken") for x in ints(r)) and not mi(r), mi, lambda r: False)
-    st = lambda r: bool(r["prots_up"]) and any(prot and a <= CH for a, prot in r["strip"].get("at", []))
+    st = strip_effective                                  # R-835: by what the strip took and when (replaces a prot stripped by CHANCE_S with a prot still on him at the first big hit)
     out["strip"] = (st, lambda r: not st(r) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"]),
-                    lambda r: bool(r["prots_up"]) and r["strip"]["n"] > 0 and not st(r))
+                    lambda r: r["strip"]["n"] > 0 and not st(r))
     pt = lambda r: any(a <= CH for a in r["pressure"].get("interrupts_at", []))
     out["pressure"] = (pt, lambda r: not pt(r) and any(x["kind"] == "pressure" and x.get("chance") for x in r["missed"]),
                        lambda r: r["pressure"]["interrupts"] > 0 and not pt(r))
@@ -2187,6 +2312,7 @@ def deaths(E, atts, prs=None, trig=None):
         if not d.get("pact") and not d.get("nothing_landed"):
             d["span"] = {"dmg": round(sum(F.taken(a, d["first"] - .05, td)[0].values())), "s": round(td - d["first"], 1)}
             if src is not None: d["set"], d["shroud"], d["monks"], d["landed"] = (dict(src["set"]) if src.get("set") else None), src.get("shroud"), src.get("monks") or [], src.get("landed") or []
+            if src is not None and src.get("good"): d["good"] = src["good"]
             else:
                 on_a = [c for h in F.players(tm) for c in F._by_agent.get(h, ()) if F.cast_on(c, a) and d["first"] - ATT_BEFORE_S <= c[2] <= td]
                 d["set"], d["shroud"] = target_set(E, a, d["first"]), shroud_on(E, a, d["first"], min(td, d["first"] + CHANCE_S))
@@ -2471,6 +2597,9 @@ def death_lines(d, trig=None):
             + ([f"had an unknown spell disabled by {q['thief'][0]} at {q['thief'][1]} s; returns at {q['thief'][2]} s"] if q.get("thief") else [])
         said |= {(q["who"], k) for k in list(q.get("hexed") or ()) + [by for by, _ in q.get("disabled") or ()]}
         L.append(f"Disables: {q['who']} " + "; ".join(P) + ". No fault.")
+    gp = [f"{'the ' + by if by else 'an enemy'} stopped {mk}'s {sk}" + (f" with {w}" if w else "") + f" {ba(at)} {start}" for by, w, mk, sk, at in d.get("good") or ()] \
+         + [f"the {q['down_by']} knocked down {q['who']} ({nm(q['down'][1])}) {ba(q['down'][0])} {start}" for q in d.get("monks") or () if q.get("down") and q.get("down_by")]
+    if gp: L.append("Enemy good play: " + "; ".join(gp) + ".")      # R-836: the attack's credit, apart from our faults (Rule 18)
     for q in d.get("stripped") or ():
         w = q.get("would")
         L.append(f"Stripped: {nm(q['skill'])} took {nm(q['enchantment'])} off him {ba(q['at'])} {start}"
@@ -2807,6 +2936,17 @@ if __name__ == "__main__":
         for r in sorted(A_ + P_, key=lambda r: r["t"]):
             w = say_place(r)
             if r["t"] >= frm and w: print(f"{int(r['t'] // 60)}:{int(r['t'] % 60):02d} {r['team']} on the {r['target']} ({'spike' if r.get('kind') != 'pressure' else 'kept in danger'}, {'killed' if r['killed'] else 'he lived'}): {w}")
+        sys.exit()
+    if a[0] == "thrown":                                  # python3 execution.py thrown <report id> [m:ss] [aegis]: the spikes thrown (R-837); with "aegis", only those into Aegis
+        import moments
+        from scoreboard import Scoreboard
+        st = GameState(Match.from_branch(a[1])); M = moments.Moments(st, Scoreboard(st))
+        frm = (lambda s: int(s.split(":")[0]) * 60 + int(s.split(":")[1]))(a[2]) if len(a) > 2 and ":" in a[2] else 0
+        E_ = Exec(M, a[1])
+        T_ = thrown(E_, attempts(E_))
+        print(f"{len(T_)} spikes thrown; {sum(1 for r in T_ if r['attempt'])} landed as a spike; {sum(1 for r in T_ if r['aegis'])} into Aegis; {sum(1 for r in T_ if r['killed'])} killed")
+        for r in T_:
+            if r["t"] >= frm and ("aegis" not in a or r["aegis"]): print(say_thrown(r))
         sys.exit()
     if a[0] in ("triggers", "balled"):                   # python3 execution.py triggers|balled <report id> [m:ss]: the triggers walked into; more than one player hit by one cast (stage 3)
         import moments

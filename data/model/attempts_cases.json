@@ -250,28 +250,28 @@
   },
   "strip": {
    "side": "attack",
-   "words": "a prot on the target with a strip of ours ready and in range, and none came",
+   "words": "a prot on the target with a strip of ours ready and in range, and none came (taken: the strip before the first big hit; a strip during it is read in section H against its own like)",
    "verdict": "fails",
    "taken": [
-    1560,
-    23.333333333333332
+    715,
+    32.30769230769231
    ],
    "missed": [
     648,
     23.456790123456788
    ],
-   "difference": 0.11044416193644359,
+   "difference": 5.791134106275983,
    "range": [
-    -2.7931512130198315,
-    3.0881828350128053
+    2.100292318113843,
+    9.388659051384519
    ],
    "groups_right": [
-    6,
+    7,
     10
    ],
    "late": [
-    1202,
-    22.04658901830283
+    1142,
+    23.117338003502628
    ]
   },
   "pressure": {
@@ -318,17 +318,17 @@
    "should": "kill more",
    "verdict": "passes",
    "with": [
-    282,
-    24.113475177304963
+    279,
+    24.014336917562723
    ],
    "without": [
     351,
     19.08831908831909
    ],
-   "difference": 11.792480255840719,
+   "difference": 11.755316174075281,
    "range": [
-    7.023251315335669,
-    17.109866526836345
+    6.663132948974124,
+    17.057672376034432
    ],
    "groups_right": [
     10,
@@ -337,13 +337,13 @@
    "against": "against the same players in the same matches, out of a stance",
    "against_all": {
     "without": [
-     16767,
-     33.3452615256158
+     16770,
+     33.34525939177102
     ],
-    "difference": 1.8455165099232924,
+    "difference": 1.8024340066752125,
     "range": [
-     -3.1327052992569895,
-     6.85666307971351
+     -3.131020808542815,
+     6.89499702054858
     ],
     "groups_right": [
      5,
@@ -557,37 +557,37 @@
     "verdict": "fails"
    }
   },
-  "H1. On the spikes and bursts | a prot stripped before the first big hit": {
-   "status": "evidence for the strip (R-729)",
+  "H1. On the spikes and bursts | a spike: a prot stripped before the first big hit": {
+   "status": "the strip that matters (R-835)",
    "should": "kill more",
    "verdict": "fails",
    "with": [
-    539,
-    30.983302411873844
+    264,
+    39.39393939393939
    ],
    "without": [
-    648,
-    23.456790123456788
+    175,
+    28.57142857142857
    ],
-   "difference": 6.843705045749402,
+   "difference": 9.377329519595541,
    "range": [
-    2.787932768964451,
-    11.039136544716127
+    2.788138252197584,
+    17.11055176969781
    ],
    "groups_right": [
-    7,
+    8,
     10
    ],
-   "against": "against prots on him, a strip ready and none in time; the prots before the strip held level",
+   "against": "against prots on him before, a strip ready and none that matters; the prots before the strip held level",
    "against_all": {
     "without": [
-     648,
-     23.456790123456788
+     175,
+     28.57142857142857
     ],
-    "difference": -3.0909905748560744,
+    "difference": -1.643562622761359,
     "range": [
-     -7.026015305675201,
-     1.012908008613491
+     -8.285981099785927,
+     6.017180148613399
     ],
     "groups_right": [
      4,
@@ -596,47 +596,201 @@
     "verdict": "fails"
    }
   },
-  "H1. On the spikes and bursts | a prot stripped in the 1.5 s after the first big hit": {
-   "status": "evidence for the strip (R-729)",
+  "H1. On the spikes and bursts | a burst: a prot or heal stripped before it": {
+   "status": "the strip that matters (R-835)",
    "should": "kill more",
    "verdict": "fails",
    "with": [
-    1413,
-    23.637650389242744
+    447,
+    27.740492170022375
    ],
    "without": [
-    648,
-    23.456790123456788
+    473,
+    21.56448202959831
    ],
-   "difference": 0.31533391352847484,
+   "difference": 2.2201461514672225,
    "range": [
-    -2.919822587967956,
-    3.2059866422407857
+    -1.7851634014971678,
+    6.232837474849156
    ],
    "groups_right": [
     6,
     10
    ],
-   "against": "against the same",
+   "against": "against the same, on bursts",
    "against_all": {
     "without": [
-     648,
-     23.456790123456788
+     473,
+     21.56448202959831
     ],
-    "difference": 0.3968575520837486,
+    "difference": -6.001230902413368,
     "range": [
-     -2.845992818038897,
-     3.2617553795544936
+     -9.954708535181627,
+     -1.7945600364442822
     ],
     "groups_right": [
-     6,
+     2,
      10
     ],
-    "verdict": "fails"
+    "verdict": "reads backwards"
+   }
+  },
+  "H1. On the spikes and bursts | a spike: a strip took a prot or heal that landed during it": {
+   "status": "the strip that matters (R-835)",
+   "should": "kill more",
+   "verdict": "passes",
+   "with": [
+    1199,
+    19.26605504587156
+   ],
+   "without": [
+    2219,
+    14.195583596214512
+   ],
+   "difference": 8.345591746287015,
+   "range": [
+    5.81386079935041,
+    10.464877967493186
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "against": "against an enchantment prot or heal that landed on him during it and no strip took: a strip can only take what the monks put on",
+   "against_all": {
+    "without": [
+     2219,
+     14.195583596214512
+    ],
+    "difference": 8.677157133805421,
+    "range": [
+     6.106937309966851,
+     10.769489799851254
+    ],
+    "groups_right": [
+     9,
+     10
+    ],
+    "verdict": "passes"
+   }
+  },
+  "H1. On the spikes and bursts | a spike:   ... the strip dealing damage (Shatter)": {
+   "status": "the strip that matters (R-835)",
+   "should": "kill more",
+   "verdict": "passes",
+   "with": [
+    1083,
+    18.467220683287167
+   ],
+   "without": [
+    2219,
+    14.195583596214512
+   ],
+   "difference": 7.690375033960276,
+   "range": [
+    5.272876552105911,
+    10.340804875302435
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "against_all": {
+    "without": [
+     2219,
+     14.195583596214512
+    ],
+    "difference": 8.00084934024223,
+    "range": [
+     5.588014303513213,
+     10.707906072207889
+    ],
+    "groups_right": [
+     9,
+     10
+    ],
+    "verdict": "passes"
+   }
+  },
+  "H1. On the spikes and bursts | a spike:   ... the strip dealing none": {
+   "status": "not counted by R-835 on a spike",
+   "should": "kill more",
+   "verdict": "passes",
+   "with": [
+    116,
+    26.72413793103448
+   ],
+   "without": [
+    2219,
+    14.195583596214512
+   ],
+   "difference": 14.462830534647866,
+   "range": [
+    8.50782675995737,
+    20.14364869850541
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "against_all": {
+    "without": [
+     2219,
+     14.195583596214512
+    ],
+    "difference": 14.991306620261769,
+    "range": [
+     9.01290738928664,
+     20.703483346135542
+    ],
+    "groups_right": [
+     9,
+     10
+    ],
+    "verdict": "passes"
+   }
+  },
+  "H1. On the spikes and bursts | a burst: a strip took a prot or heal that landed during it": {
+   "status": "the strip that matters (R-835)",
+   "should": "kill more",
+   "verdict": "passes",
+   "with": [
+    2001,
+    13.74312843578211
+   ],
+   "without": [
+    4937,
+    12.578488960907434
+   ],
+   "difference": 3.673807103927512,
+   "range": [
+    2.3697208618276195,
+    5.06329265915071
+   ],
+   "groups_right": [
+    9,
+    10
+   ],
+   "against": "against the same, on bursts",
+   "against_all": {
+    "without": [
+     4937,
+     12.578488960907434
+    ],
+    "difference": 4.127764744642362,
+    "range": [
+     2.8289510656647128,
+     5.518551816567961
+    ],
+    "groups_right": [
+     9,
+     10
+    ],
+    "verdict": "passes"
    }
   },
   "H1. On the spikes and bursts | a prot or heal of his monks' for him interrupted": {
-   "status": "evidence for pressure on their monks",
+   "status": "the attack's good play (R-836)",
    "should": "kill more",
    "verdict": "passes",
    "with": [
@@ -658,24 +812,24 @@
    ]
   },
   "H1. On the spikes and bursts | one of his monks knocked down at the spike": {
-   "status": "evidence for pressure on their monks",
+   "status": "the attack's good play (R-836)",
    "should": "kill more",
-   "verdict": "passes",
+   "verdict": "fails",
    "with": [
-    2496,
-    39.82371794871795
+    598,
+    32.94314381270903
    ],
    "without": [
-    14553,
-    32.05524634096062
+    16451,
+    33.20162908029907
    ],
-   "difference": 5.978264724501662,
+   "difference": 8.143332400848017,
    "range": [
-    4.578279944288978,
-    7.402191904850925
+    4.7915343971658055,
+    11.775191252527268
    ],
    "groups_right": [
-    10,
+    7,
     10
    ]
   },
@@ -906,6 +1060,52 @@
      -20.171417124633873
     ]
    ]
+  }
+ },
+ "thrown": {
+  "spikes": 6478,
+  "matches": 508,
+  "killed": 25.45538746526706,
+  "landed_as_an_attempt": 71.11762889780796,
+  "rows": {
+   "Aegis on him as the first skill lands": {
+    "verdict": "too few",
+    "n": 21
+   },
+   "Aegis coming during it": {
+    "n": 347,
+    "killed": 1.729106628242075,
+    "landed_middle": 301.0,
+    "attempt": 46.68587896253602,
+    "failed_spells": 303,
+    "difference": -27.09595078209319,
+    "range": [
+     -29.303681255342024,
+     -24.609957307380455
+    ],
+    "groups_right": [
+     10,
+     10
+    ],
+    "verdict": "passes"
+   },
+   "a block on him at its start, no Aegis": {
+    "n": 1083,
+    "killed": 16.80517082179132,
+    "landed_middle": 338.0,
+    "attempt": 67.31301939058172,
+    "failed_spells": 122,
+    "difference": -10.266209288472478,
+    "range": [
+     -12.531313584030737,
+     -8.12366488000296
+    ],
+    "groups_right": [
+     10,
+     10
+    ],
+    "verdict": "passes"
+   }
   }
  }
 }

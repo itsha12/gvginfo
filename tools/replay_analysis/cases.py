@@ -3815,6 +3815,17 @@ def _x3_situation(r, prots=None):
             math.log1p(z.get("from_group") or 0) / 7.0, min(len(r["attackers"]), 5)]
 
 
+def _x3_strips(r):
+    """The strips of a prot on an attempt as [s against the first big hit, ...]: the strip's rows (R-835) where the record has them, else the older `at`."""
+    rows = r["strip"].get("rows")
+    return [x for x in rows if x[3]] if rows is not None else [[a] for a, prot in r["strip"].get("at", []) if prot]
+
+
+def _x3_before(r):
+    """The prots on him before any strip: those at the first big hit and those a strip took before it."""
+    return len(r["prots_up"]) + sum(1 for x in _x3_strips(r) if x[0] < 0)
+
+
 def _x3_expected(A, key="_exp", prots=None):
     """Each attempt's expected kill from its situation alone, by a model fitted without its group of matches (`_exp`): like with like on unseen matches.
     `prots` as in `_x3_situation`, the expectation then kept under `key`."""
@@ -3871,13 +3882,17 @@ def x3_attempts(A, pr, res):
     pr(f"   {'':10} {'side':8} {'taken':>16} {'missed':>16} {'like with like, points':>30} {'groups':>7}  verdict          late (apart)")
     raw = lambda L: 100 * float(np.mean([r["killed"] for r in L])) if L else float("nan")
     res["x3"] = {}
+    _x3_expected(A, "_exp_strip", _x3_before)             # the strip is set against the prots on him before any strip (a strip before the first big hit has lowered the count by then)
     for kind, side, words in EX.MISSED_KINDS:
         tk, mi, late = x3_kinds()[kind]
         T = [r for r in A if tk(r)]; Mi = [r for r in A if mi(r)]; L = [r for r in A if late(r)]
+        if kind == "strip" and any("rows" in r["strip"] for r in A):      # R-835: the missed chance is a prot on him before the spike and no strip, so its like is the strip that
+            T = [r for r in T if any((x[3] or x[4]) and x[0] < 0 for x in r["strip"]["rows"])]      # took a prot (a heal too on a burst) before the first big hit; a strip during it is set
+            words = words + " (taken: the strip before the first big hit; a strip during it is read in section H against its own like)"      # against an enchantment that landed and stayed (section H)
         want = -1 if side == "defence" else +1
         if len(T) < MIN_PLAYS or len(Mi) < MIN_PLAYS:
             res["x3"][kind] = {"verdict": "too few", "n": [len(T), len(Mi)]}; pr(f"   {kind:10} {side:8} too few ({len(T)} taken, {len(Mi)} missed)"); continue
-        d, lo, hi, signs = _x3_diff(T, Mi)
+        d, lo, hi, signs = _x3_diff(T, Mi, key="_exp_strip" if kind == "strip" else "_exp")
         w = _x3_word(d, lo, hi, signs, want)
         right = sum(1 for s in signs if s * want > 0)
         res["x3"][kind] = {"side": side, "words": words, "verdict": w, "taken": [len(T), raw(T)], "missed": [len(Mi), raw(Mi)], "difference": d, "range": [lo, hi],
@@ -3895,7 +3910,7 @@ def x3_attempts(A, pr, res):
         v = res["x3"].get(k, {}).get("verdict")
         pr(f"   Told as a fault on a spike by his ruling (R-805), the check beside it: {k}: {v}" + ("." if v == "passes" else ": to bring to him (R-744)." if v in ("fails", "reads backwards") else " on this file (a full run decides)."))
     res["faults_by_ruling"] = byr
-    if set(ok) - set(EX.FAULT_KINDS) or set(EX.FAULT_KINDS) - set(ok) - set(byr):       # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees on a checked kind, the report stops (R-460)
+    if set(ok) - set(EX.FAULT_KINDS) - set(EX.RULED_KINDS) or set(EX.FAULT_KINDS) - set(ok) - set(byr):       # a kind he rules by name is told whatever this shows: its passing is no difference       # the engine lists the kinds in execution.FAULT_KINDS (stage X4): where this test no longer agrees on a checked kind, the report stops (R-460)
         res["faults_differ"] = f"the engine tells {', '.join(EX.FAULT_KINDS)} as faults (execution.FAULT_KINDS) and this test passes {', '.join(ok) or 'none'}"
         pr(f"   FAULT: {res['faults_differ']}: set execution.FAULT_KINDS to the kinds that pass and run again.")
 
@@ -3952,13 +3967,18 @@ def x3_parts(A, D, pr, res):
     _x3_expected(A, "_exp_block", lambda r: others(r, it(r).get("blocks") or ()))
     _x3_expected(A, "_exp_immune", lambda r: others(r, it(r).get("immune") or ()))
     mostly = lambda r: bool(it(r).get("attacks")) and it(r)["attacks"] > EX.BLOCK_SHARE * (it(r)["attacks"] + (it(r).get("spells") or 0))       # R-831
-    pst = lambda r: [a for a, prot in r["strip"].get("at", []) if prot]                       # when each strip of a prot came, against the first big hit
-    before = lambda r: len(r["prots_up"]) + sum(1 for a in pst(r) if a < 0)                   # the prots on him before any strip
-    no_strip = lambda r: before(r) > 0 and not any(a <= CH for a in pst(r)) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"])
-    _x3_expected(A, "_exp_strip", before)
+    rows_ = lambda r: r["strip"].get("rows") or []                                            # R-835: [s against the first big hit, enchantment, strip, a prot, a heal, deals damage]
+    spk, bst = (lambda r: r.get("hurt") is None), (lambda r: r.get("hurt") is not None)
+    no_strip = lambda r: _x3_before(r) > 0 and not EX.strip_effective(r) and any(x["kind"] == "strip" and x.get("chance") for x in r["missed"])
     _x3_expected(A, "_exp_noprot", lambda r: 0)
+    from common import skill_row
+    is_ench = lambda n: "Enchantment" in ((skill_row(None, n) or {}).get("type") or "")
+    # a strip during the spike can only take what the monks put on him, so it is set against the attempts where an enchantment prot or heal landed on him during
+    # it (begun from 1 s before the first big hit to SPIKE_S after it, finished) and no strip had taken one before; `took`: the prots and heals a strip took then
+    during = lambda r: any(o == "finished" and -1 <= d_ <= EX.SPIKE_S and is_ench(n) for n, d_, o in r["prots_cast"] + r["heals_cast"]) and not any(x[0] < 0 and (x[3] or x[4]) for x in rows_(r))
+    took = lambda r: [x for x in rows_(r) if 0 <= x[0] <= EX.SPIKE_S and (x[3] or x[4])]
     cast = lambda r: [o for _n, d_, o in r["prots_cast"] + r["heals_cast"] if d_ <= CH]       # how each prot or heal his monks began for him in time ended
-    down = lambda r: any(a <= CH for a in r["pressure"].get("knockdowns_at", []))
+    down = lambda r: any(q.get("down") for q in r.get("monks") or ())                         # R-836: a monk in reach knocked down as the spike lands, casting or not
     rows("H1. On the spikes and bursts: the target's own play, what the spike went into, Deep Wound, Shadow Shroud, his monks stopped", S, (
         ("a damage-raising stance up on him (R-740)", "a fault by his ruling", +1, lambda r: any(x["fault"] for x in r.get("stance") or ()), lambda r: not any(x["fault"] for x in r.get("stance") or ()),
          {"same": True, "say": "against the same players in the same matches, out of a stance"}),
@@ -3972,12 +3992,18 @@ def x3_parts(A, D, pr, res):
         ("a monk of his stopped at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("monks")), lambda r: not r.get("monks")),
         ("Shadow Shroud, against the same team's other spikes", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud"),
          {"exp": "_exp_noprot", "same": lambda r: (r["rid"], r["tm"]), "say": "no prots held level (none can be cast on him); the same teams in the same matches"}),
-        ("a prot stripped before the first big hit", "evidence for the strip (R-729)", +1, lambda r: any(a < 0 for a in pst(r)), no_strip,
-         {"exp": "_exp_strip", "say": "against prots on him, a strip ready and none in time; the prots before the strip held level"}),
-        ("a prot stripped in the 1.5 s after the first big hit", "evidence for the strip (R-729)", +1, lambda r: bool(r["prots_up"]) and not any(a < 0 for a in pst(r)) and any(a <= CH for a in pst(r)), no_strip,
-         {"exp": "_exp_strip", "say": "against the same"}),
-        ("a prot or heal of his monks' for him interrupted", "evidence for pressure on their monks", +1, lambda r: "interrupted" in cast(r), lambda r: bool(cast(r)) and "interrupted" not in cast(r)),
-        ("one of his monks knocked down at the spike", "evidence for pressure on their monks", +1, down, lambda r: not down(r))))
+        ("a spike: a prot stripped before the first big hit", "the strip that matters (R-835)", +1, lambda r: spk(r) and any(x[3] and x[0] < 0 for x in rows_(r)), lambda r: spk(r) and no_strip(r),
+         {"exp": "_exp_strip", "say": "against prots on him before, a strip ready and none that matters; the prots before the strip held level"}),
+        ("a burst: a prot or heal stripped before it", "the strip that matters (R-835)", +1, lambda r: bst(r) and any((x[3] or x[4]) and x[0] < 0 for x in rows_(r)), lambda r: bst(r) and no_strip(r),
+         {"exp": "_exp_strip", "say": "against the same, on bursts"}),
+        ("a spike: a strip took a prot or heal that landed during it", "the strip that matters (R-835)", +1, lambda r: spk(r) and during(r) and bool(took(r)), lambda r: spk(r) and during(r) and not took(r),
+         {"exp": "_exp_strip", "say": "against an enchantment prot or heal that landed on him during it and no strip took: a strip can only take what the monks put on"}),
+        ("a spike:   ... the strip dealing damage (Shatter)", "the strip that matters (R-835)", +1, lambda r: spk(r) and during(r) and any(x[5] for x in took(r)), lambda r: spk(r) and during(r) and not took(r), {"exp": "_exp_strip"}),
+        ("a spike:   ... the strip dealing none", "not counted by R-835 on a spike", +1, lambda r: spk(r) and during(r) and bool(took(r)) and not any(x[5] for x in took(r)), lambda r: spk(r) and during(r) and not took(r), {"exp": "_exp_strip"}),
+        ("a burst: a strip took a prot or heal that landed during it", "the strip that matters (R-835)", +1, lambda r: bst(r) and during(r) and bool(took(r)), lambda r: bst(r) and during(r) and not took(r),
+         {"exp": "_exp_strip", "say": "against the same, on bursts"}),
+        ("a prot or heal of his monks' for him interrupted", "the attack's good play (R-836)", +1, lambda r: "interrupted" in cast(r), lambda r: bool(cast(r)) and "interrupted" not in cast(r)),
+        ("one of his monks knocked down at the spike", "the attack's good play (R-836)", +1, down, lambda r: not down(r))))
     B = [r for r in A if r.get("hurt") is not None]
     ints = lambda r: [x for x in r["missed"] if x["kind"] == "interrupt" and x.get("at", 0) <= CH]
     rows("H2. The interrupt on a burst on a hurt player: not asked, never a fault (R-805); kept as evidence", B, (
@@ -4119,6 +4145,45 @@ def x3_measures(C, pr, res, outcomes, shuffles=3):
                 if P_: pr(f"      {said(side)}, {word}: " + "; ".join(f"{k} ({v['difference']:+.1f}, {v['range'][0]:+.1f} to {v['range'][1]:+.1f}, {v['groups_right'][0]}/{v['groups_right'][1]})" for k, v in P_))
 
 
+def x3_thrown(D, pr, res):
+    """Section J (R-837): the spikes thrown (`execution.thrown`: skills and attacks aimed at one player whose usual damage adds to 400 or more inside 3 s,
+    whatever landed), and Aegis read on them, which no reading of the kill attempts can see (a spike Aegis stops lands nothing and is no attempt). Each
+    row is the thrown spikes with the thing named against those with neither Aegis nor a block, like with like on unseen matches as elsewhere (killed
+    less the kill expected from who the target is, his health, the damage aimed and how many aimed it, fitted without the spike's group of matches)."""
+    from sklearn.linear_model import LogisticRegression
+    from cache import fold_of, FOLDS
+    T = [dict(r, rid=rid) for rid, fc in D["flag_cost"].items() for r in (fc.get("thrown") or [])]
+    pr("\nJ. The spike thrown (R-837): what was aimed at a player, whatever landed")
+    if not T:
+        res["thrown"] = None; pr("   not in this plays file (made before the record): run moments.py all again on this engine."); return
+    sit = lambda r: [1.0 if r["healer"] else 0.0, (r["health"] if r["health"] is not None else 100) / 100.0, 1.0 if r["health"] is None else 0.0, min(r["usual"], 1200) / 1000.0, min(len(r["by"]), 5)]
+    X = np.array([sit(r) for r in T]); y = np.array([r["killed"] for r in T], dtype=float); g = np.array([fold_of(r["rid"]) for r in T])
+    for k in range(FOLDS):
+        te = g == k
+        if te.any():
+            e = LogisticRegression(max_iter=2000).fit(X[~te], y[~te]).predict_proba(X[te])[:, 1]
+            for r, v in zip([r for r, f in zip(T, te) if f], e): r["_exp"] = float(v)
+    raw = lambda L: 100 * float(np.mean([r["killed"] for r in L])) if L else float("nan")
+    med = lambda L, k: float(np.median([r[k] for r in L])) if L else float("nan")
+    res["thrown"] = {"spikes": len(T), "matches": len({r["rid"] for r in T}), "killed": raw(T), "landed_as_an_attempt": 100 * float(np.mean([r["attempt"] for r in T])), "rows": {}}
+    pr(f"   {len(T):,} in {res['thrown']['matches']} matches; {raw(T):.1f}% killed; {res['thrown']['landed_as_an_attempt']:.0f}% landed as a kill attempt (400 landed inside 3 s, or a burst on a hurt player).")
+    plain = [r for r in T if not r["aegis"] and not r["blocks"]]
+    pr(f"   {'':46} {'spikes':>7} {'killed':>8} {'landed, middle':>15} {'an attempt':>11} {'like with like against neither':>34} {'groups':>7}  verdict")
+    pr(f"   {'neither Aegis nor a block on him':46} {len(plain):7} {raw(plain):7.1f}% {med(plain, 'landed'):15.0f} {100 * np.mean([r['attempt'] for r in plain]):10.0f}%")
+    for name, f in (("Aegis on him as the first skill lands", lambda r: bool(r["aegis"]) and r["aegis"][0] <= 0),
+                    ("Aegis coming during it", lambda r: bool(r["aegis"]) and r["aegis"][0] > 0),
+                    ("a block on him at its start, no Aegis", lambda r: not r["aegis"] and bool(r["blocks"]))):
+        L = [r for r in T if f(r)]
+        if len(L) < MIN_PLAYS:
+            res["thrown"]["rows"][name] = {"verdict": "too few", "n": len(L)}; pr(f"   {name:46} {len(L):7}   too few"); continue
+        d, lo, hi, signs = _x3_diff(L, plain); w = _x3_word(d, lo, hi, signs, -1); right = sum(1 for s_ in signs if s_ < 0)
+        res["thrown"]["rows"][name] = {"n": len(L), "killed": raw(L), "landed_middle": med(L, "landed"), "attempt": 100 * float(np.mean([r["attempt"] for r in L])),
+                                       "failed_spells": sum(len(r["failed"]) for r in L), "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)], "verdict": w}
+        pr(f"   {name:46} {len(L):7} {raw(L):7.1f}% {med(L, 'landed'):15.0f} {100 * np.mean([r['attempt'] for r in L]):10.0f}% {d:+14.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}")
+    ae = [r for r in T if r["aegis"]]
+    pr(f"   Into Aegis: {len(ae):,} spikes thrown, {sum(len(r['failed']) for r in ae):,} spells that stopped on it ({sum(1 for r in ae if r['failed'])} spikes with one or more); against {sum(len(r['failed']) for r in plain):,} stopping with no interrupt on the {len(plain):,} with neither.")
+
+
 def attempts_report(path, out_json=None):
     """The kill attempts (stage X2, R-708, R-713): every spike of both teams read to its own outcome, how often it killed by how its package landed and by
     each kind of missed chance. A first look for stage X3, which tests each kind on unseen matches: nothing here is a finding, a fault or advice."""
@@ -4167,7 +4232,7 @@ def attempts_report(path, out_json=None):
     busy = sum(1 for r in A for x in r["missed"] if x.get("busy_on")); oe = sum(1 for r in A for x in r["missed"] if x.get("out_of_energy"))
     pr(f"\nNot counted as chances: {busy:,} times a monk with a prot or heal ready was busy on another player under pressure (R-711); {oe:,} times he was out of energy (R-681).")
     res["busy"], res["out_of_energy"] = busy, oe
-    x3_attempts(A, pr, res); x3_parts(A, D, pr, res); x3_together(A, pr, res)
+    x3_attempts(A, pr, res); x3_parts(A, D, pr, res); x3_together(A, pr, res); x3_thrown(D, pr, res)
     if out_json:
         with open(out_json, "w") as fh: json.dump(res, fh, ensure_ascii=False, indent=1)
         pr(f"written: {out_json}")
