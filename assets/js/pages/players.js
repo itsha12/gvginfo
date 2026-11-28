@@ -1,4 +1,5 @@
 import { esc, lazy, pct, ago, readJson, writeJson, canSave, toast } from "../core.js";
+import { charLink, personLink } from "./home.js";
 
 // Characters are grouped into people with data/aliases.json: { "people": { "Person name": ["Character", ...] } }.
 const f = { q: "", min: 3, sort: "games", desc: true, open: null, view: "chars", sel: new Set(), picker: false };
@@ -143,12 +144,12 @@ export async function renderPlayers(view) {
     <tbody>${shown.map((p) => `
       <tr class="clickable${f.sel.has(p.n) && chars ? " selected" : ""}" data-p="${esc(p.n)}" tabindex="0">
       ${chars ? `<td><input type="checkbox" data-sel="${esc(p.n)}" aria-label="Select ${esc(p.n)}" ${f.sel.has(p.n) ? "checked" : ""}></td>` : ""}
-      ${chars ? `<td>${personOf.get(p.n) ? `<b>${esc(personOf.get(p.n))}</b>` : `<span class="muted">–</span>`}</td><td>${esc(p.n)}</td>`
-        : `<td><b>${esc(p.n)}</b></td>`}
+      ${chars ? `<td>${personOf.get(p.n) ? `<b>${personLink(personOf.get(p.n))}</b>` : `<span class="muted">–</span>`}</td><td>${charLink(p.n)}</td>`
+        : `<td><b>${personLink(p.n)}</b></td>`}
       ${chars ? `<td class="muted">${esc(profOf(p))}</td>` : ""}
       ${cols.map((c) => cell(c, p)).join("")}</tr>
       ${f.open === p.n ? `<tr><td colspan="${cols.length + (chars ? 4 : 1)}" class="wrap"><div class="detail" style="margin:4px 0">
-        ${p.chars?.length > 1 ? `<p><b>Characters:</b> ${p.chars.map(esc).join(", ")}</p>` : ""}
+        ${p.chars?.length > 1 ? `<p><b>Characters:</b> ${p.chars.map(charLink).join(", ")}</p>` : ""}
         <p>${p.games} games, ${Math.round(p.sec / 60)} minutes, last seen ${ago(p.last)}. Totals: ${p.kd} knockdowns, ${p.intr} interrupts, ${p.cond} conditions and ${p.hexr} hexes removed, ${p.deaths} deaths.</p>
         <p>Plays ${p.profs.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}. Guilds: ${p.guilds.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}.</p>
         <p>Builds: ${p.fams.map((x) => `<a href="#/builds/${encodeURIComponent(x.k)}">${esc(famName[x.k] || x.k)}</a> (${x.n})`).join(", ") || "none grouped yet"}.</p>
@@ -179,7 +180,7 @@ export async function renderPlayers(view) {
   view.querySelector("#col-reset")?.addEventListener("click", () => { colKeys = [...DEFAULT_COLS]; saveCols(colKeys); rerender(); });
   view.querySelectorAll("[data-sort]").forEach((th) => th.onclick = () => { if (f.sort === th.dataset.sort) f.desc = !f.desc; else { f.sort = th.dataset.sort; f.desc = !["n", "person", "prof", "chars"].includes(th.dataset.sort); } rerender(); });
   view.querySelectorAll("tr[data-p]").forEach((tr) => {
-    const t = (e) => { if (e.target.closest("input")) return; f.open = f.open === tr.dataset.p ? null : tr.dataset.p; rerender(); };
+    const t = (e) => { if (e.target.closest("input, a")) return; f.open = f.open === tr.dataset.p ? null : tr.dataset.p; rerender(); };
     tr.onclick = t; tr.onkeydown = (e) => e.key === "Enter" && t(e);
   });
   view.querySelectorAll("[data-sel]").forEach((cb) => cb.onchange = () => { cb.checked ? f.sel.add(cb.dataset.sel) : f.sel.delete(cb.dataset.sel); rerender(); });
