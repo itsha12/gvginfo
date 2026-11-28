@@ -173,54 +173,5 @@
   "file": "model.md",
   "group": "Structure",
   "tab": "model"
- },
- {
-  "id": "learned-model",
-  "title": "What the model has learned",
-  "file": "learned-model.md",
-  "group": "Structure",
-  "tab": "model"
- },
- {
-  "id": "wp-model",
-  "title": "Win-probability model",
-  "file": "wp-model.md",
-  "group": "Structure",
-  "tab": "model"
- },
- {
-  "id": "causal-map",
-  "title": "Causal map",
-  "file": "causal-map.md",
-  "group": "Structure",
-  "tab": "model"
- },
- {
-  "id": "learning-report",
-  "title": "Learning report (latest)",
-  "file": "learning-report.md",
-  "group": "Results",
-  "tab": "model"
- },
- {
-  "id": "values",
-  "title": "What results and causes are worth",
-  "file": "values.md",
-  "group": "Results",
-  "tab": "model"
- },
- {
-  "id": "behaviour",
-  "title": "What teams actually do",
-  "file": "behaviour.md",
-  "group": "Finding new variables",
-  "tab": "model"
- },
- {
-  "id": "discovery",
-  "title": "What discovery found",
-  "file": "discovery.md",
-  "group": "Finding new variables",
-  "tab": "model"
  }
 ]

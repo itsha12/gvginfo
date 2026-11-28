@@ -1,11 +1,9 @@
 import { state, esc, settings } from "../core.js";
-import { renderBlindTest } from "./blindtest.js";
 import { renderMaps } from "./maps.js";
-import { renderGolden } from "./golden.js";
 import { renderReview } from "./review.js";
 
 // Two tabs share this page: Mechanics (#/knowledge, pages without a tab) and Model (#/model, pages with tab "model",
-// plus the Blind test, Guild hall maps and Golden moments pages, which are built from data rather than a markdown file).
+// plus the Guild hall maps and Game review pages, which are built from data rather than a markdown file).
 const TABS = {
   mechanics: {
     route: "knowledge", title: "Mechanics and rules",
@@ -15,10 +13,9 @@ const TABS = {
   model: {
     route: "model", title: "The analysis model",
     lede: "",
-    docs: () => [...state.knowledge.filter((d) => d.tab === "model"), { id: "blind-test", title: "Blind test", group: "Your calls", custom: renderBlindTest, hidden: true },
+    docs: () => [...state.knowledge.filter((d) => d.tab === "model"),
       { id: "maps", title: "Guild hall maps", group: "Your labels", custom: renderMaps },
-      { id: "game-review", title: "Game review", group: "Your labels", custom: renderReview },
-      { id: "golden-moments", title: "Golden moments", group: "Your labels", custom: renderGolden, hidden: true }],
+      { id: "game-review", title: "Game review", group: "Your labels", custom: renderReview }],
   },
 };
 
