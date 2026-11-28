@@ -1478,6 +1478,11 @@ SHAME_LAG_S = 0.15          # the record writes the end of Shame's cast and the 
 TRIGGER_JOIN_S = 0.3        # a trigger's own damage lands inside this long of the attack or cast that set it off
 BALL_S = 0.15               # the hits of one cast on several players land inside this long of one another (the same tenth)
 BALL_LAND_S = 1.0           # ... the first of them no later than this after the cast finished (4,860 of 4,968 in the tenth it finished; a projectile's flight the rest)
+CHAIN_STEP_S = 0.5          # a cast that strikes "up to N other foes" (Invoke Lightning, Chain Lightning) strikes them one after another: the record sets each
+                            # next foe this long after the one before (the development set, 1,353 casts that hit their target: of the caster's hits on other
+                            # players in the 1.3 s after, 315 at 0.4 to 0.6 s and 112 at 0.9 to 1.1 s, 48 elsewhere, 3 in the target's own tenth; each
+                            # of a spell's size, the median the same as the target's hit). Read inside BALL_S of each step.
+CHAIN_N = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
 CRIPPLE_CAST_S = 1.5        # a Cripple with another Cripple skill cast on him inside this long before it is that skill's, not Harrier's Grasp's
 DW_LOOK_S = 20              # Deep Wound on the target is looked for from this long before the first big hit (it lasts up to 20 s)
 HG = "Harrier's Grasp"
@@ -1637,16 +1642,23 @@ def balling(E):
     one tenth; and every scythe attack that did (a player who carries a scythe attack: his hits on two or more players in one tenth, outside those
     casts). An effect that stays on the ground (a storm, Ray of Judgment) is standing in area damage (R-735) and never balling too (R-793). A row is
     the team that was hit (`tm`): the players, the skill, `reach` (adjacent, nearby or in the area), `amount` what landed on the players beyond the
-    cast's own target. Every reach is the fault (R-787; until then the adjacent reach alone, his rule naming adjacent damage)."""
+    cast's own target. Every reach is the fault (R-787; until then the adjacent reach alone, his rule naming adjacent damage).
+    A cast whose text strikes "up to N other foes" lands on them one after another (`CHAIN_STEP_S`): its hits on other players are read at each step
+    after the target's, as many steps as its text gives (`chain` on the row: the steps that landed on a player; a step on an NPC or a spirit has no
+    row here, so a later step is read without the one before it)."""
+    import re
     F, m = E.F, E.m
     F.casts()
     pl, role, out = set(m.PL), m.roles, []
     by_src = collections.defaultdict(list)
     for t, s, g, n in E.dm: by_src[s].append((t, g, n))
-    def add(t, a, target, hit, skill, reach):
+    def add(t, a, target, hit, skill, reach, chain=None):
         tm = m.team(target)
         out.append({"t": round(t, 1), "tm": tm, "team": m.tag[tm], "ids": sorted(hit), "who": sorted(role[x] for x in hit), "n": len(hit), "kind": "balled", "skill": skill, "by": role[a],
-                    "target": role[target], "reach": reach, "amount": round(sum(v for k, v in hit.items() if k != target)), "fault": True})
+                    "target": role[target], "reach": reach, "amount": round(sum(v for k, v in hit.items() if k != target)), "fault": True, **({"chain": chain} if chain else {})})
+    def steps(sid):
+        x = re.search(r"up to (\w+) other foes", F.sdata(sid).get("desc") or "")
+        return CHAIN_N.get(x.group(1), 0) if x else 0
     for a in pl:
         rows = by_src.get(a) or []
         ts, used = [r[0] for r in rows], set()
@@ -1663,7 +1675,12 @@ def balling(E):
             hit = collections.defaultdict(float)
             for r in win:
                 if abs(r[0] - first) <= BALL_S: hit[r[1]] += r[2]; used.add(round(r[0] * 10))
-            if len(hit) >= 2: add(first, a, c[5], hit, tname(F, c[1]), reach)
+            chain = []
+            for k in range(1, steps(c[1]) + 1):                # the foes struck after the target, a step apart: other players only (the target's own later hits are another skill's)
+                at = first + k * CHAIN_STEP_S
+                for r in rows[bisect.bisect_left(ts, at - BALL_S):bisect.bisect_right(ts, at + BALL_S)]:
+                    if r[1] != c[5] and r[1] not in hit: hit[r[1]] += r[2]; used.add(round(r[0] * 10)); chain.append(k)
+            if len(hit) >= 2: add(first, a, c[5], hit, tname(F, c[1]), reach, sorted(set(chain)))
         if any("Scythe" in (F.sdata(sid).get("type") or "") for sid in (m.A[a].get("bar") or []) if sid):
             tenth = collections.defaultdict(lambda: collections.defaultdict(float))
             for t, g, n in rows:

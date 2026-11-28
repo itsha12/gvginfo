@@ -3856,6 +3856,28 @@ def _x3_diff(T, Mi, n=400, key="_exp"):
     return d(rids), float(np.percentile(bs, 5)), float(np.percentile(bs, 95)), signs
 
 
+def _x3_diff_alive(T, Mi, at, n=400, key="_exp"):
+    """As `_x3_diff`, each attempt of T set against those of Mi whose target was still alive when its own part landed (`at(r)`, seconds after the first
+    big hit; `s` is the first big hit to the outcome): a part can land late only on a target who has lived that long, so set against every attempt a late
+    part reads as killing less whatever it did. Killed less expected, points, its 90% range over whole matches, and the sign in each group of matches."""
+    from cache import fold_of
+    rids = sorted({r["rid"] for r in T} | {r["rid"] for r in Mi}); ix = {x: i for i, x in enumerate(rids)}
+    Ms = sorted(Mi, key=lambda r: -r["s"])                                    # the longest lived first: those alive at u are a run from the start
+    ms, mv, mr = np.array([r["s"] for r in Ms]), np.array([r["killed"] - r[key] for r in Ms], float), np.array([ix[r["rid"]] for r in Ms])
+    tu, tv, tr = np.array([at(r) for r in T], float), np.array([r["killed"] - r[key] for r in T], float), np.array([ix[r["rid"]] for r in T])
+    upto = np.searchsorted(-ms, -tu, side="right")                            # how many of Mi were alive at each landing
+    def d(w):
+        wm, wt = w[mr], w[tr]
+        cw, cv = np.concatenate(([0.], np.cumsum(wm))), np.concatenate(([0.], np.cumsum(wm * mv)))
+        ok = (cw[upto] > 0) & (wt > 0)
+        return 100 * float(np.sum(wt[ok] * (tv[ok] - cv[upto][ok] / cw[upto][ok])) / np.sum(wt[ok])) if ok.any() else None
+    rng = np.random.default_rng(7)
+    bs = [x for x in (d(np.bincount(rng.integers(0, len(rids), len(rids)), minlength=len(rids)).astype(float)) for _ in range(n)) if x is not None]
+    folds = np.array([fold_of(x) for x in rids])
+    signs = [v for v in (d((folds == k).astype(float)) for k in sorted(set(folds))) if v is not None]
+    return d(np.ones(len(rids))), float(np.percentile(bs, 5)), float(np.percentile(bs, 95)), signs
+
+
 def _x3_word(d, lo, hi, signs, want):
     """passes, reads backwards (R-285: never a fault), or fails; want is +1 or -1."""
     if lo * want > 0 and hi * want > 0 and sum(1 for s in signs if s * want > 0) >= len(signs) - X3_BUT: return "passes"
@@ -4028,9 +4050,14 @@ def x3_parts(A, D, pr, res):
 
 def x3_together(A, pr, res):
     """R-708: how close together the parts of the package must land, measured: by when the strip (of a prot) and the first interrupt on his monks landed against the
-    first big hit, killed less expected against the attempts where that part was ready and not done at all (needs `_x3_expected` first)."""
+    first big hit, killed less expected against the attempts where that part was ready and not done at all (needs `_x3_expected` first).
+    A part that landed after the first big hit is tested against its own like (`_x3_diff_alive`): the attempts with it ready and not done whose target
+    was still alive when it landed (`s`, the first big hit to the outcome). A part can land late only on a target who has lived that long, so against
+    every such attempt a late part reads as killing less whatever it did (at f7165b1: the strip at 3 s or later -6.2, the interrupt on his monks -22.0).
+    The figure against every attempt is kept beside it (`plain`)."""
     pr("\nI. The spike package together (R-708): by when the part landed against the first big hit, killed less expected against the same attempts with the part ready")
-    pr("   and not done (points, 90% range over whole matches); blank under the floor of attempts")
+    pr("   and not done; after the first big hit, against those of them whose target was still alive when it landed (points, 90% range over whole matches; in brackets")
+    pr("   the figure against every such attempt, which a late part cannot be set against); blank under the floor of attempts")
     res["together"] = {}
     for part in ("strip", "pressure"):
         if part == "strip":
@@ -4043,10 +4070,16 @@ def x3_together(A, pr, res):
         pr(f"   {'the strip of a prot' if part == 'strip' else 'the first interrupt on his monks'}, against {len(none)} attempts with it ready and not done")
         for lo_, hi_ in X3_LEADS:
             T = [r for r in A if first(r) is not None and lo_ <= first(r) < hi_]
-            if len(T) < MIN_PLAYS or len(none) < MIN_PLAYS: o["rows"].append([lo_, hi_, len(T), None]); pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}"); continue
-            d, lo, hi, _ = _x3_diff(T, none)
-            o["rows"].append([lo_, hi_, len(T), d, lo, hi])
-            pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}   {d:+6.1f} ({lo:+.1f} to {hi:+.1f}){'' if lo <= 0 <= hi else '  clear'}")
+            like = none if lo_ <= 0 else [r for r in none if r["s"] >= lo_]            # the floor: those still alive as the stretch begins
+            if len(T) < MIN_PLAYS or len(like) < MIN_PLAYS: o["rows"].append([lo_, hi_, len(T), None]); pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}"); continue
+            plain = ""
+            if lo_ > 0:
+                d, lo, hi, _ = _x3_diff_alive(T, none, first)
+                d0, lo0, hi0, _ = _x3_diff(T, none)
+                plain = f"   [{d0:+.1f} against all {len(none)}]"
+            else: d, lo, hi, _ = _x3_diff(T, none)
+            o["rows"].append([lo_, hi_, len(T), d, lo, hi] + ([{"plain": [d0, lo0, hi0]}] if lo_ > 0 else []))
+            pr(f"     {lo_:+5.1f} to {hi_:+5.1f} s {len(T):6}   {d:+6.1f} ({lo:+.1f} to {hi:+.1f}){'' if lo <= 0 <= hi else '  clear'}{plain}")
 
 
 def _x3_split(X, side, key):
