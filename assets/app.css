@@ -321,10 +321,16 @@ tr.selected td { background: var(--accent-soft); }
 .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
 
 /* guild profile: most played full lineups, one block per lineup */
-.comps { display: grid; grid-template-columns: repeat(auto-fill, minmax(34rem, 1fr)); gap: 1.4rem 2.4rem; }
+.comps { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(34rem, 100%), 1fr)); gap: 1.4rem 2.4rem; }
 .comp { border-top: 1px solid var(--ink); padding-top: .6rem; min-width: 0; overflow-x: auto; }
 .comp-head { margin-bottom: .2rem; }
 .comp .lineup-row .pname { width: 11rem; }
+@media (max-width: 600px) {
+  .comp .lineup-row { flex-wrap: wrap; gap: .3rem .6rem; }
+  .comp .lineup-row .pname { width: auto; flex: 1; }
+  .comp .lineup-row .skillbar { display: flex; width: 100%; }
+  .comp .lineup-row .slot { width: auto; height: auto; flex: 1 1 0; min-width: 0; aspect-ratio: 1; }
+}
 
 /* player profile: pick characters to narrow the page */
 .char-pick { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: 0 0 1.6rem; }
