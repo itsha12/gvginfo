@@ -639,24 +639,36 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Casting into a ready interrupt is a fault only at a death (R-789, amending R-743): the cast was interrupted, the
   skill is on the list, and it was caught inside the kill attempt that killed a player of the caster's team (R-793). Elsewhere it is context: counted for every player over the match,
   non-monks included, for the report. As read: the fault is a backline monk's (R-743), said on that death.
-- Moving and kiting (R-746): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp are faults; kiting
-  is otherwise no fault ("Coward!" too, R-719, R-078); standing still when he should have kited a melee player is a
-  fault, never told while the attacker has Bull's Strike or Harrier's Grasp ready. Crits and extra damage while
-  moving are context (R-792).
+- Moving and kiting (R-746 as amended by R-806): the knockdown from Bull's Strike and the Cripple from Harrier's Grasp
+  are faults; kiting is otherwise no fault ("Coward!" too, R-719, R-078). Should have kited is not read: withdrawn
+  (R-806, with R-792). Crits and extra damage while moving are context.
 - Faults by his ruling (R-744): balling, more than 1 player hit by one cast that reaches adjacent foes, nearby foes or foes in the area (R-722,
-  R-787; a lasting effect on the ground is standing in area damage, never balling too, R-793); Flail up over 2 s
-  with nothing in melee reach (R-724); standing in area damage (R-735); attacking with Empathy on (the warrior's when
+  R-787; a lasting effect on the ground is never balling, R-793); Flail up over 2 s
+  with nothing in melee reach (R-724); attacking with Empathy on (the warrior's when
   defensive, the monk's for not removing it when offensive, R-736); casting with Backfire on (the midline; never with
   Spirit Bond on, R-737); casting into Shame or Diversion, attacking into Clumsiness or Ineptitude (R-739); Frenzy,
   Frenzied Defense or Primal Rage up during an attempt (R-740, R-768; Healing Signet's armour penalty is context); Deep Wound not removed on a spike target or to prevent a death, Daze
-  left on another monk (R-725); any condition left by a non-monk who carries removal (R-726).
+  left on another monk (R-725); any condition left by a non-monk who carries removal (R-726). Standing in area damage
+  (R-735, R-803) is set aside for now and not read (R-807).
 - An even 8v8 or 7v7 with no other job: both teams are read as trying to kill (R-731, R-781). Question 3 (why a team that should have
   killed did not) is read over the whole numbers advantage (R-732). The enemy doing well is shown as their credit,
   apart from our faults (R-733). Cut-offs (too deep, monk following, nothing in melee reach, the floor of a burst on a
   hurt player) are set from the data (R-741); the pressure line is his (R-779).
-- A spike (R-780): 400 or more on one player inside 3 s, or a burst inside 3 s that takes most of the health he had as
-  it began (two thirds of it or more, and 200 or more, the share and the floor from the data, kept by R-786; what a hex did
-  to him for attacking or casting through it is left out).
+- A kill attempt by damage is a spike or a burst (R-780 as amended by R-805). A spike: 400 or more on one player inside
+  3 s. A burst on a hurt player: a burst inside 3 s that takes most of the health he had as it began (two thirds of it
+  or more, and 200 or more, the share and the floor from the data, kept by R-786; what a hex did to him for attacking
+  or casting through it is left out). Both are read for the prot and the heal; a missed interrupt on a spike skill is
+  a fault on a spike only (R-805), and a death is told as the one or the other.
+- Position readings (R-804, R-808, R-809): too deep is 1,000 or more past his own front line (from the 564 counted
+  matches, R-741); a backline monk past his front line is told only where he followed a too-deep player, himself 450
+  or more past it; both are whys, never faults, until they pass on unseen matches. An attacker on another target is
+  not read as a why of a failed spike (R-809).
+- At the spike itself (the catalogue's section B; the match report's readings, R-810): a skill the enemy has disabled
+  (Power Block, Power Lock, Complicate, Blackout, Signet of Humility, Diversion's longer recharge) is not ready; no
+  enchantment can be cast on a target under Shadow Shroud, so an enchantment prot not cast under it is no fault (a
+  party-wide enchantment, Shield Guardian, is read as landing all the same: Claude's reading); a monk under Shame has
+  no spell on an ally. Each missed prot and heal is told with what it would have done and the latest start that would
+  still have saved him.
 - A pact kill (R-783): the caster of Death Pact Signet dies the next time the player he resurrected with it dies
   inside 120 s. His death is a why of its own, read from that player's death; no chance is read on it. A death with nothing landed on
   the player in the record lists no fault (R-783).

@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -62,7 +62,7 @@ kill (R-731), on an execution-only row for the fight (not a decision family, R-5
 Built: eight or seven a side in the largest fight, no stand-off, 12 s or longer, the seconds no play covers. Question 3 is said on every play whose job is
 to kill and on every numbers advantage, attempt by attempt, with the enemy's credit apart (R-732, R-733).
 
-## The rules (rule n is R-(715+n); 29 on are the review's)
+## The rules (rule n is R-(715+n) up to 28; 29 on are the review's and later rulings')
 
 1. **Time to react** (R-716, R-748). A chance counts only if there was time to see it and act: 200 ms of reaction plus
    the skill's cast time. The clock starts at the cast's start for an interrupt and at the first big hit for a prot or
@@ -85,7 +85,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 11. **Removal by non-monks** (R-726): where the build carries condition removal on a non-monk (a smiting monk
     included), any condition left unremoved is a fault.
 12. **Interrupts** count only on the skills worth interrupting (the lists below), offensive and defensive apart;
-    snares on a flag runner are read on the flag play (R-727).
+    snares on a flag runner are read on the flag play (R-727). A missed interrupt on a spike skill is a fault on a
+    spike only (400 or more inside 3 s), never on a burst on a hurt player (R-805, Rule 40).
 13. **The frontline on defence** can stop their midline as well as their frontline (R-728, R-702).
 14. **Strips** (R-729, R-744): a strip shortly before the spike or during it is the strip taken. A strip ready and
     not used on a protted target is a fault on a spike that failed, by his ruling; the check's result is shown beside
@@ -95,7 +96,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 17. **Question 3's window** is the whole numbers advantage (R-732).
 18. **The enemy's credit** is shown apart from our faults (R-733).
 19. **Amounts shown** (R-734): each missed chance with what it would have stopped or added, measured, not ranked.
-20. **Area damage**: standing in it is a fault (R-735).
+20. **Area damage**: standing in it is a fault (R-735). Set aside for now and not read (R-807, Rule 42).
 21. **Empathy** (R-736): attacking with it on is the warrior's fault when his team is defensive; when it is offensive,
     the monk's, for not removing it.
 22. **Backfire** (R-737): casting with it on is a fault for the midline; generally not for the backline; never with
@@ -107,7 +108,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 25. **Damage-raising stances** (R-740, R-768): Frenzy, Frenzied Defense or Primal Rage up during a spike or pressure
     attempt is a fault. The armour penalty of Healing Signet is context.
 26. **Cut-offs** ("too deep", "monk following", the pressure attempt, Flail's "nothing in melee reach") are set by
-    the engine from the data (R-741). Too deep: 1,200 past his own front line; monk following: the monk 400 past it;
+    the engine from the data (R-741). Too deep: 1,000 past his own front line; monk following: the monk 450 past it
+    (both from the 564 counted matches, the full run at f2b8796; the second is not steady, 0 in five groups of ten);
     melee reach 250 (`cases.py positions` prints the first two from any plays file). The pressure line is his: at or under 225 health (R-779), for a second or
     longer with 90 or more landing in 3 s. The floor of a burst on a hurt player is the engine's (R-780): two thirds
     of his health and 200 or more, where such a burst kills about as often as a spike of 400.
@@ -123,9 +125,8 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 29. **A fault he rules by name stands** whatever the check on unseen matches shows; the check is shown beside it, and
     a ruled kind that reads backwards is brought to him (R-744). A kind nobody ruled is told only if it passes (R-713).
 30. **Play-level faults are always listed** (R-745); a missed chance on an attempt is listed by its outcome (R-714).
-31. **Moving and kiting** (R-746): Bull's knockdown and Harrier's Cripple are faults; kiting is otherwise no fault;
-    standing still when he should have kited a melee player is a fault, not told against an attacker with Bull's
-    Strike or Harrier's Grasp ready, where moving is itself the fault (R-792).
+31. **Moving and kiting** (R-746 as amended by R-806): Bull's knockdown and Harrier's Cripple are faults; kiting is
+    otherwise no fault. Should have kited is withdrawn and not read (R-806, Rule 41; R-792 with it).
 32. **A monk who is himself the spike's target** (R-747), or himself under pressure (250 or more in 2 s, R-790), is
     not available to another player, as a busy monk (R-711).
 33. **The pressure attempt replaces** the reading of a death with no spike from the heaviest 2 s (R-749). Built.
@@ -139,12 +140,33 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 37. **Too late** (R-802): a monk whose prot or heal was cut off by the death is himself at fault where he had an
     earlier moment at which the same cast would have landed; otherwise his cast is context. Built.
 38. **Area damage from the third hit** (R-803): the first hit cannot be avoided, the second lets him finish his cast;
-    a knockdown or a snare on him at the counted hits is context beside the fault, not an excuse. Built.
-39. **The readings from positions** (R-804): too deep is the distance past his own team's front line; monk following
-    is a monk who takes pressure having moved up behind a player who was too deep; a snared frontline is a why, not a
-    fault; should have kited is a player not of the frontline standing still, not casting, under a melee attacker
-    with no Bull's Strike or Harrier's Grasp ready. Built. Too deep and monk following are named faults only once
-    they pass on unseen matches (R-713).
+    a knockdown or a snare on him at the counted hits is context beside the fault, not an excuse. Set aside with
+    Rule 20 (R-807): `execution.area_hits` is kept, nothing reads it.
+39. **The readings from positions** (R-804, R-808): too deep is the distance past his own team's front line; monk
+    following is a monk who takes pressure having moved up behind a player who was too deep, and a monk past his
+    front line is told only then (R-808); a snared frontline is a why, not a fault. Built. Too deep and monk
+    following are named faults only once they pass on unseen matches (R-713): on the 564 counted matches neither does.
+40. **Spikes and bursts apart** (R-805, amending R-780): a spike is 400 or more on one player inside 3 s; a burst on a
+    hurt player is most of the health he had (two thirds and 200 or more). Both are kill attempts, read for the prot
+    and the heal. The interrupt on a spike skill is a fault on a spike only, by his ruling: its check is read on the
+    spikes alone and stands beside it. A death is told as a spike or as a burst. Built.
+41. **Should have kited is withdrawn** (R-806). Not read.
+42. **Standing in area damage is set aside for now** (R-807). Not read; balling (Rule 7) is the area reading that stays.
+43. **An attacker on another target is dropped for now** as a why of a failed spike (R-809). Not read.
+44. **At the spike itself** (R-810, the match report's readings; section B). A skill the enemy has disabled is not
+    ready: Power Block (the interrupted skill and its attribute's), Power Lock and Complicate (the interrupted
+    skill), Blackout (all), Signet of Humility (the elite), Diversion (the skill used under it, for its recharge
+    and the added time). No enchantment can be cast on a target under Shadow Shroud: an enchantment prot not cast
+    under it is no fault (a party-wide one, Shield Guardian, is read as landing all the same: Claude's reading, his
+    to correct). A monk under Shame has no spell on an ally. Each is said as "not a chance" on the death. On every
+    attempt: the set the target held, Shadow Shroud on him, and each of his monks knocked down, Dazed, disabled or
+    hexed at the first big hit. Built.
+45. **What a missed chance would have done, and by when** (R-734, R-810). Beside each missed prot and heal on a
+    death: what it would have stopped and healed (a prot by its own rule, R-784; a heal by what a cast of it gave him
+    on average this match), whether that would have saved him, and the latest start that still does, found by
+    walking the sum of the death again with the cast added (a tenth of a second at a time). Beside a missed
+    interrupt: what one cast of the skill did on average, and whether that much less would have saved him. Not told
+    where the sum of the death does not balance (R-460). An upper bound (R-785). Built.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -155,16 +177,16 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | Pushed too deep, away from his monks | Yes (stage 5), a why until it passes: at the first big hit, 1,200 or more past his own front line (the most forward team mate in the fight who is no backline monk), with his nearest monk's distance | |
 | Pushed too deep, pulling a monk into pressure after him | Yes (stage 5), a why until it passes: said on the kill attempt on the monk who followed (section B) | The same said on the deep player's own row |
 | Balled up (Rule 7): Mind Burn, Teinai's Wind, scythe attacks; rarely Earth Shaker, Mark of Pain | Yes (stage 3): two or more players hit in one tenth by one cast that reaches adjacent foes, or by one scythe attack; listed on the play's row | Built (R-787): a cast that reaches nearby foes (Energy Surge, Lamentation) or foes in the area is the same fault; an effect on the ground never (R-793) |
-| Standing in area damage (Rules 20, 38): Chaos Storm, Symbol of Wrath, Ray of Judgment, Lava Font and the like | Yes (stage 5): the hits of one cast that stays on the ground on one player, from his third on; the hits joined to the cast by its beat and their one amount | A skill outside the tag file (R-767) |
+| Standing in area damage (Rules 20, 38, 42): Chaos Storm, Symbol of Wrath, Ray of Judgment, Lava Font and the like | No: set aside for now (R-807). Built and read backwards on the full run (88 attempts with it kill 13.6% against 32.4%); `execution.area_hits` is kept | His word to bring it back |
 | Knocked down by Bull's Strike (Rule 5) | Yes (stage 3): the knockdown record names the skill | |
 | Crippled by Harrier's Grasp (Rule 6) | Yes (stage 3): a Cripple at a hit by an attacker with Harrier's Grasp up, no other Cripple skill cast on him then | |
 | Crits and extra damage while moving (Rules 5, 8, 31): context only | Yes (stage 5), context on each attempt: the critical melee hits on the target while he was moving | The extra damage of Protector's Strike, Harrier's Haste and Weaken Knees (no skill on a hit) |
 | In a stance that raises damage taken during an attempt (Rule 25) | Yes (stage 3): on every spike and pressure attempt, what landed while it was up and the share the skill added | Aggressive Refrain is context (R-788) |
 | Fighting in reach of their NPCs when not pushing their pit | No | NPC damage taken, against his position and the team's job |
-| Standing still when he should have kited a melee player (Rules 31, 39) | Yes (stage 5): a melee hit on a player not of the frontline, standing still and not casting, another having landed on him 0.2 to 3 s before; never with Bull's Strike or Harrier's Grasp ready on the attacker. Reads backwards on the development set: put to him (R-744) | |
+| Standing still when he should have kited a melee player (Rules 31, 41) | No: withdrawn (R-806). It read backwards on every counted match (28.1% killed against 32.5%) | |
 | Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | Yes (stage 3): each hit the hex did to him, told by the hex's own amounts; a spell lost to Shame; a skill used as Diversion went | |
 | Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1; R-789): an interrupted cast of a listed skill, the interrupt that stopped it ready when the cast began. Every player's is kept as context by player; a backline monk's inside the kill attempt that killed a player of his team is the fault, said on that death | |
-| Wrong weapon set when under attack | Partly: on each attempt's sum, what landed off his shield set and what a shield would have stopped (stage 4) | As a missed chance, checked once; the set he swapped to |
+| Wrong weapon set when under attack | Yes: the set he held at the first big hit, on every attempt and death (Rule 44), and on the sum what landed off his shield set and what a shield would have stopped (stage 4); said on a death only where a shield would have stopped something | As a missed chance, checked once; the set he swapped to |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
 | Fell back too late, or not to his monks | No | Movement towards safety once the attempt starts, against the time he had |
 
@@ -177,18 +199,18 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | Knocked down and could not cast | Yes | |
 | Dazed, or inside his own aftercast (Rule 1) | Yes (stage 1) | |
 | Himself the spike's target (Rule 32) | Yes (stage 1) | |
-| Disabled (Power Block, Complicate, Blackout) or under Shame or Diversion | No | Read at the attempt; measured for the play now |
+| Disabled (Power Block, Power Lock, Complicate, Blackout, Signet of Humility, Diversion) or under Shame | Yes (Rule 44): a disabled skill is not ready, a monk under Shame has no spell on an ally; said as "not a chance", and each monk's state at the first big hit is kept on the attempt | Complicate's reach to the foes in the area; Diversion on him before he has used a skill is context only |
 | Backfire or Visions of Regret making his casts costly | No | Trigger tags; his casts while hexed |
 | Out of energy | Yes: gvg.report's model, out under 20 (R-681) | |
 | Busy on another player under pressure (R-711) | Yes | |
-| Prot or heal ready and not cast | Yes, with Rule 1 (stage 1); his own on himself too (Rule 35) | |
+| Prot or heal ready and not cast | Yes, with Rule 1 (stage 1); his own on himself too (Rule 35); every ready skill named, with the monk's energy, what each would have done and the latest start that still saves him (Rule 45) | An interrupter's energy (the model reads monks and the midline) |
 | Prot or heal begun that never landed (Rule 36) | Yes: context beside the death | |
 | Prot or heal begun too late, cut off by the death (Rule 37) | Yes: a fault where he had an earlier moment at which the same cast would have landed | |
 | Prot cast too early, ended before the spike landed | No | Each prot's end against the first big hit |
 | Both monks on the same player while another died | No | Each monk's targets during the attempt |
 | Wrong kind of prot for the damage | Partly: death accounts | Each prot's effect on each damage type, from skill text |
 | Prots wasted on players nobody attacked | No | Prots cast against the damage that followed on that player |
-| Shadow Shroud on the target: a missed prot under it is no fault | No | Tag Shadow Shroud; read it on the target at each attempt |
+| Shadow Shroud on the target: a missed prot under it is no fault | Yes (Rule 44): no enchantment is a chance while it is on him; kept on the attempt with its seconds | Whether a party-wide enchantment (Shield Guardian) lands on a Shrouded player (his to say) |
 | Air of Disenchantment or Mark of Insecurity not removed or interrupted | Partly: hex removal over the play | Removal and an interrupt on the cast, as missed chances on the attempt |
 | Barbs left on the target | Partly: hex removal over the play | A missed chance on the attempt |
 | No Aura of Stability against a hammer warrior | Partly: death accounts | A missed chance on the attempt |
@@ -217,16 +239,16 @@ for a second or longer with 90 or more landing on him in 3 s, hits and degen; Ru
 | Damage off-timed, not landing together | Yes | |
 | Strip missing or off-timed (Rule 14) | Yes (stage 1): listed on each spike that did not kill, the check's result beside it; a strip in time said as good play; which strips are thrown on demand is read from the tags (stage 3, R-773) | |
 | Deep Wound missing or off-timed on the spike (R-751) | Yes (stage 3), a why: on him at the first big hit, when it came, who in reach carried it | Whether the skill was ready: adrenaline is not in the replays |
-| A damage player with his skill ready who hit another target (R-751) | Yes (stage 3), a why: in reach, a damage skill off recharge, his damage on another player in those seconds | Adrenaline, as above |
-| Enchantment prevention not used: Shadow Shroud | No | Tag the skill; read on the attempt |
+| A damage player with his skill ready who hit another target (R-751) | No: dropped for now (R-809). Built and read backwards (spikes with it killed 4.7 points more, in every group of ten) | His word to bring it back |
+| Enchantment prevention not used: Shadow Shroud | Partly: where it was used is kept on every attempt (Rule 44) and checked once as the attack's good play | As a missed chance of the attack's: carried, ready, in reach and not cast |
 | Their monks not pressured: interrupts, knockdowns, Daze | Yes (fails the check: never a fault) | |
-| Their monks not disabled, cast-prevented or drained | No | Added to the spike package; the check run again |
-| Spiked into a block or spell immunity (Aegis, Guardian, Mirage Cloak, Spell Breaker, Obsidian Flesh) | Yes (stage 3), a why: his enchantments, stances and weapon spells at the first big hit whose text blocks attacks or bars enemy spells | |
+| Their monks not disabled, cast-prevented or drained | Partly: each of the target's monks knocked down, Dazed, disabled or hexed at the first big hit is kept on the attempt (Rule 44) and checked once | As a missed chance of the attack's; energy drained |
+| Spiked into a block or spell immunity (Aegis, Guardian, Mirage Cloak, Spell Breaker, Obsidian Flesh) | Yes (stage 3), a why: his enchantments, stances and weapon spells at the first big hit whose text blocks attacks or bars enemy spells; a block is said only against a spike with attacks in it, immunity only against one with spells | |
 | Spiked into a ward or a spirit (Ward Against Melee, Shelter, Union, Displacement) (R-751) | No: not in the records (the limits) | A ward's place and length from its cast; a spirit has no position in the replays |
 | Wrong target: frontline over monks when trying to kill | Partly: over the play | Per attempt |
 | Frontline hampered: Empathy, Faintheartedness, Blurred Vision, Insidious Parasite; also Clumsiness, Sum of All Fears, Shadow of Fear, Ineptitude, Price of Failure, Spiteful Spirit, Blind, Weakness | No | Their hexes and conditions on our attackers during the attempt, and whether they were removed (a why; a fault only where Rules 21 and 24 say) |
 | Frontline snared and could not reach the target | Yes (stage 5), a why, not a fault (R-804): each frontline attacker Crippled or under a slowing hex and out of melee reach of the target for a second or longer of the attempt (Rule 23's skills left out) | |
-| Flail lock (Rule 9) | Yes (stage 5): in Flail for more than 2 s with no enemy player or NPC within 250, listed on the play's row | Said on the attempt it cost |
+| Flail lock (Rule 9) | Yes (stage 5): in Flail for more than 2 s with no enemy player or NPC within 250, listed on the play's row (the one reading from positions tied to no attempt, after R-806 and R-807) | Said on the attempt it cost |
 | Attackers knocked down, interrupted or out of range | Partly: from the victim's side | The same read from the attackers' side |
 | Time lost chasing a kiting target | Partly: kiting measured | Per attempt |
 | Switched targets too early | No | Damage on a target against how low he was when they left him |
@@ -356,4 +378,5 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 | 4. The ledger and the pressure attempt | Built (2026-11-27): each part of the sum a measured amount on every attempt, for both teams (Rule 19), and an amount beside each missed chance (a missed prot's by its own rule, R-784 to R-791, with whether he would have lived); the pressure attempt beside the spike, its cut-off from data, degen counted; the even 8v8's row; question 3 on every play to kill and every numbers advantage, the enemy's credit apart. No full run of its own (R-766) | question 3 read attempt by attempt; the heaviest 2 s retired (Rule 33): both done; development set and key pass, plays unchanged |
 | 5. Readings from positions | Built (2026-11-27): too deep and monk following on every kill attempt and death (whys until they pass), Flail lock, standing in area damage and should have kited on the play's row, the snared frontline as a why on the attempt, crits while moving as context; `cases.py positions` reads the cut-offs and checks each kind once | cut-offs set from data (Rule 26); development set and key pass; the full run checks each kind |
 | The runs (R-766) | Built in the order 1's remainder, 4, 3. Then one full run with every check for stages 1 to 4 together: `cases.py attempts` and `execution` (do the kinds still pass on unseen matches?), the key, the truths, `execution_rows.json`. Stage 5 has its own full run, before X4's sentences | the three built kinds still pass on unseen matches; each new kind checked once |
-| Then | The faults said on each play and death (stage X4 again on the full list); his marks on the Execution view (stage X5) | his Classic execution rows read as he reads them |
+| The bundled change (R-805 to R-810) | Built (2026-11-27, evening): the cut-offs from the full run; should have kited, standing in area damage and an attacker elsewhere out; the interrupt on a spike only; Rules 44 and 45; the tests of the stage 3 and 4 kinds in `cases.py attempts` (section H); the win chance over the match (`cases.py winchance`). The faults said on each death in the match report's wording (stage X4), the Execution view's rows on main | development set and key pass, plays unchanged (they do); one full run by Opus |
+| Then | His marks on the Execution view (stage X5); the full run's verdicts brought to him | his Classic execution rows read as he reads them |

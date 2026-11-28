@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-804; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-810; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1341,6 +1341,54 @@ index pointing here. Read the section for a reading before changing it, and keep
   but the new keys (`positions`, `place`, `followed`, `stood`, `snared`, `crits_moving`); deaths with a prot fault 539, a heal fault 389, as before.
   **Not built**: the three readings the match report asks for (Shadow Shroud on the target, their monks disabled at the spike itself, the weapon
   set the target was in: parked with the report, `docs/OPUS.md`); X4's sentences in `cases.py` do not pass the stage 3 or stage 5 rows to `say_faults` yet (X4 again, after the full run).
+
+- **The bundled change after the full run, and the match report's readings** (2026-11-27, evening; `bundle-4` 0a8cca9; R-805 to R-810).
+  **Out**: should have kited (withdrawn, R-806), standing in area damage (set aside, R-807: `area_hits` and `area_skill` are kept, nothing
+  reads them), an attacker on another target (dropped, R-809). `positions` now holds Flail lock alone; the attempts and deaths lose `stood`
+  and `elsewhere`. **Cut-offs** from the 564 counted matches (the full run at f2b8796): `DEEP_PAST` 1,000 (1,000 or 950 leaving each tenth
+  out), `FOLLOW_PAST` 450 (not steady: nought in five tenths; told only behind a too-deep player, R-808). The development set's own rule still
+  gives 1,200 and 400, so `cases.py positions` says "not the rule's cut-off on this file" there: the full run is the one that sets them.
+  **Spikes and bursts apart** (R-805): the record's `hurt` tells a burst on a hurt player; `chance_tests` reads the interrupt on spikes only,
+  `deaths` lists it on a spike only, and the death is said as a spike or a burst. The interrupt is a fault on a spike by his ruling
+  (`FAULT_BY_RULING`): `cases.py attempts` shows its check beside it and no longer stops on it. Of the set's 940 deaths by damage inside 3 s,
+  344 are spikes and 596 bursts; deaths with an interrupt fault 371 to 155.
+  **At the spike itself** (the catalogue's section B; `Forensics._disables`, `disabled`, `barred`, read inside `ready` and `chances`): a skill
+  the enemy disabled is not ready (Power Block: the interrupted skill and its attribute's on his bar; Power Lock, Complicate: the interrupted
+  skill; Blackout: all, its target as `pressure.py` reads it; Signet of Humility: his elite; Diversion: the skill used as the hex ended, for its
+  recharge and the added time; each for as long as the skill's text gives at its caster's rank). No enchantment is a chance on a target under
+  Shadow Shroud (a party-wide prot, `PROT_RULES`' `party`, is left a chance: Claude's reading); no spell from a monk under Shame. A monk left
+  with nothing says so (`barred`, `disabled` on the row; "Not a chance" on the death). `ready` is the one reading, so interrupts and strips
+  take a disabled skill as not ready too (the trigger rows of two matches moved). On every attempt: `set` (the set he held at the first big
+  hit, `has_shield`), `shroud` (its seconds from the first big hit), `monks` (each of his monks knocked down, Dazed, with prots or heals
+  disabled, or under Shame or Diversion), `landed` (the prots and heals that landed for him, a heal with the healing the replay records),
+  `dw` (Deep Wound on him: none, left, off), and `into` gains `attacks` and `spells` (a block is said and tested only against a spike with
+  attacks in it). A chance carries the monk's `energy` (least and most, gvg.report's model).
+  **What a missed chance would have done, and by when** (`saves`, `interrupt_saves`): the sum of the death walked again (`_sum_events`,
+  `_sum_walk`, the ledger's own events) with the cast added at each tenth of a second from the monk's first chance to the death: a prot by
+  `prot_would`, a heal by what a cast of it gave him on average this match, an interrupt by what one cast of the skill did. Lives, short by
+  how much, and the latest start that still saves him; not told where the sum does not balance (`WOULD_BALANCE`). On the set: prots 1,107
+  would have saved, 217 not enough, 429 not told; heals 494, 42, 208; interrupts 245, 72, 65.
+  **The sentences** (`death_lines`, the match report's wording): the head (what killed him, the damage from the first big hit to the death,
+  what was missed by kind), the sum, what applied at the spike, his own play, a line for each missed chance, what was done for him, what was
+  no chance. `review.py execution` passes the trigger rows; `cases.exec_say` passes the stage 3 and stage 5 rows to `say_faults`.
+  **Checked once** (`cases.py attempts`, section H, in the engine now: stance, block, immunity, Deep Wound in time, Deep Wound left, Shadow
+  Shroud, a monk stopped, the interrupt on a burst, and prot, heal and Deep Wound on the times a player was kept in danger). On the set: Deep
+  Wound left with a removal ready passes (58.2% killed against 30.7%, +29.5); Deep Wound not on him in time passes as a why (-6.5); a block
+  reads backwards (+5.6, 4 of 10); the stance fails; a monk stopped +5.7 (8 of 10); the interrupt on spikes alone has 12 taken (too few on
+  the set). The full run decides each.
+  **The win chance over the match** (`Moments.position_series`, kept as `flag_cost[rid].series`; `cases.py winchance <file> --json <out>`):
+  the position every 10 s and at each death, priced by the price of a result fitted without the match's group. A death's change is the
+  price of its death penalty alone (15%, to the floor of 60%, by the game's rule: the replay writes the new figure late on one death in
+  eight): -2.0 points on average on the set. For the match report's exporter; the output is not kept in the repository.
+  **The full run** (`moments.run_all`): each match is written to a file of its own (`<out>.parts/`) and the plays file put together from
+  them, so the parent holds nothing (82 matches are 120 MB as written; 564 held at once was what killed a worker). A run that stops goes on
+  where it stopped (same engine, by a hash of the code); a worker that dies stops the run with an error (R-460). Workers peak near 150 MB.
+  **Run** (82 matches, 0a8cca9 against f2b8796): 6,935 plays and 5,420 records identical, 323 Classic rows pass; beside the plays only
+  `attempts`, `pressure`, `deaths`, `fails`, `positions`, `series`, the trigger rows of two matches, and the plays' places in `positions`
+  differ. Deaths with a prot fault 539 to 524, a heal fault 389 to 368 (disabled skills, Shadow Shroud, Shame), Deep Wound 168 to 159; too
+  deep 158 to 195, monk following 18 to 25 (the lower cut-off). 66 chances barred by a hex and 40 disabled on deaths; Shadow Shroud on 25
+  deaths, a monk stopped on 198. **Not built**: an interrupter's energy (the model reads monks and the midline only); Shadow Shroud and the
+  monks' state as missed chances of the attack's; the weapon set he swapped to.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

@@ -40,7 +40,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   wiki.guildwars.com/wiki/Automated_tournament (AT-A/AT-C start times in UTC by weekday, monthly map rotation) and
   wiki.guildwars.com/wiki/Flux (flux by month, changes 07:00 UTC on the 1st). Times stay in UTC and are shown in
   Eastern time only (no UTC shown). No AT-B. Don't use gvg.report for schedule data. Rows are "evenings": a start
-  between midnight and 6 a.m. is listed on the previous day's row (Denning's preference).
+  between midnight and 6 a.m. is listed on the previous day's row (Denning's preference). The Next MAT tile: the third
+  Saturday of the month (the wiki), at 16:00 UTC (Denning's own time, 11 a.m. Eastern, noon in daylight time: the wiki
+  gives none; July 2026's later start in the stored matches is left alone, R-810).
 - Build themes (`theme` in builds.json): core = skills on 70%+ of a family's bars, optional = the rest on 5%+.
 - Guild usual lineup (`guilds.json`): a lineup the guild actually played, chosen as the one sharing the most builds with
   their other games (per map too), so it never shows combinations they never ran; plus their most played full lineups.
@@ -93,7 +95,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
     so far), each line citing its rulings (R-452). Read it instead of hunting through the register; when a ruling
     changes a definition, replace the line here in the same session and mark the amended ruling where it stands.
   - `docs/EXECUTION.md`: the execution catalogue: every why of a kill or a death, the rules Denning set for each
-    (R-716 to R-804), the skill tags, the skills worth interrupting, the limits of the data and the order of work. Read it before any
+    (R-716 to R-810), the skill tags, the skills worth interrupting, the limits of the data and the order of work. Read it before any
     execution work; replaced in place, its "Read" column kept current.
   - `docs/CHANGELOG.md`: dated session log, newest first, at most ten lines per session. Never read it whole.
   - `knowledge/model.md`: generated each run, the structural reference (every fitted node, rows, inputs by kind,
@@ -237,7 +239,7 @@ The full rules, with how each reading is built and the games it is tested agains
 - 39. Guild hall maps
 - 42. A backline monk, told by his bar (R-698)
 - 43. Monk casting efficiency (R-689, piece 4)
-- 44. Execution, the build (R-701 to R-804; the catalogue is `docs/EXECUTION.md`)
+- 44. Execution, the build (R-701 to R-810; the catalogue is `docs/EXECUTION.md`)
 - 40. The TQs
 - 41. The causal map and the old node models
 
