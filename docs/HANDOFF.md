@@ -10,26 +10,29 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-28, midday: rulings to R-838; the strip, their monks and Aegis built and checked on a full run)
+## State (2026-11-28, afternoon: rulings to R-842; his answers on the strip built, a full run wanted)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-838; `docs/EXECUTION.md`, 67 rules). His marks are
+- Execution (the micro answer) is the block of work (R-701 to R-842; `docs/EXECUTION.md`, 68 rules). His marks are
   in the review key (set x1): Men v Crew 15 deaths, RACK v hdm 10, Men v NwAy 12 of 21 (R-811 to R-830).
-- `bundle-4` 59c47b0, with Fable's own full run at it (plays and moments identical to the digest on all 564; 323
-  Classic rows pass on the set; `attempts_cases.json` and main's `execution_rows.json` are from it). ENGINE_NOTES
-  section 44's last three items hold every figure. Built today: a block said above a third of attacks (R-831);
-  Frenzied Defense only where spells landed (R-832); too deep and monk following paused (R-834); the strip that
-  matters (R-835); the attack's good play on their monks (R-836); the spike thrown and Aegis (R-837).
-- The checks: the interrupt on spikes, a block, the stance, a monk's cast stopped (+10.0) pass. The strip: before
-  the first big hit +5.8, 7/10; taking a prot or heal that landed during it +8.3 on spikes, +3.7 on bursts, both
-  9/10. A monk down +8.1, 7/10. Aegis coming during a spike thrown: 1.7% died against 22.4%. Shroud waits (R-838).
+- `bundle-4` f7165b1 (one bundled change on 59c47b0; ENGINE_NOTES section 44's last item holds every figure). On the
+  development set: plays and moments identical to the run before and to the digest, 323 Classic rows pass. No full
+  run at it yet: `attempts_cases.json` on the branch is still 59c47b0's, main's `execution_rows.json` is f7165b1's.
+- Built: a strip counts by what it took, damaging or not (R-839, R-840); the spike thrown on the play's row (R-841)
+  and its time of death; the strip before the first big hit on a spike and a monk down as the spike lands kept by
+  name (R-842: the bar stays 9 of 10 for all else; a strip before a burst is not kept); the attack's good play on a
+  death by pressure; the casts in "Success:" in the order cast (a loose `else` of 59c47b0 put right).
+- The checks at 59c47b0, to be read again: the strip before the first big hit +5.8, 7/10 (spikes +9.4, 8/10; bursts
+  +2.2, 6/10); during it +8.3 on spikes, +3.7 on bursts, both 9/10. A monk down +8.1, 7/10. Shroud waits (R-838).
 - A kind is tested against its own like: never with what it changes held level; a strip against what it could take.
 
 ## Next (in order, R-810)
-1. His answers to "Open for Denning" 1, built with: the time of death on a spike thrown (so section J reads Aegis
-   against targets still alive), `good` on a death read from a pressure attempt, the spike thrown said on the
-   play's row, the "Success:" line's order made the same from run to run. Then "Full run wanted at <commit>".
+1. Full run wanted at f7165b1: plays and moments against the digest on all 564; then `cases.py attempts` kept as
+   `attempts_cases.json`, read for section G's strip row, section H's strip rows (before on spikes and on bursts,
+   during, the strip dealing none, a damaging strip that took neither), the two rows kept by name, and section J
+   (Aegis coming during a spike against targets still alive). Fable then reads the report and puts to him anything
+   that reads backwards (R-744, R-842).
 2. His marks on the nine deaths of Men v NwAy not yet marked, if he wishes; into the review key the same session.
 3. Balling and Invoke Lightning: measure on the development set how far apart the record sets the hits of one cast
    on several players (`BALL_S` 0.15 misses Invoke's), then one change with his word (it moves play-level rows).
@@ -40,12 +43,9 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-28 (midday), not answered: (a) on a spike a strip dealing no damage that takes a prot or heal
-   during it is not counted by R-835 and reads strongest (+14.5, 9/10): count it (recommended); (b) a damaging
-   strip counts today whatever it took: only where it took a prot or heal (recommended); (c) where the spike
-   thrown is to be said (the play's row, a row of its own on the Execution view); (d) his sentence that broke off.
-2. Claude's readings in R-811 to R-817, R-822 to R-830, R-832, R-835 and R-837, his to correct. Three rows he marked
-   correct in RACK v hdm gained a line by R-828 (7:07, 7:33, 7:44 the 8 Monk): said to him.
+1. Claude's readings in R-811 to R-817, R-822 to R-830, R-832, R-835, R-837, R-840 and R-841, his to correct. Rows
+   written over ones he marked, all said to him (the list: ENGINE_NOTES section 44, its last item, and R-828's).
+2. Not ruled: a prot or heal let through with an interrupt ready as a fault of the attack's (+6.0, 8/10; not built).
 3. An even 6v6 and below has no row. The wiki sync: later (R-765). September's early matches (R-673): at R-398.
    R-576, R-575. The match report is parked (`docs/OPUS.md`); its readings are built.
 
@@ -53,7 +53,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 - The guild page scrolls sideways at phone width (390 wide, about 85 px over): the "Most played full lineups"
   block (`.comp`). The two "For Fable" lines on family 5 and the match report are done (R-799, R-800).
 - The Execution view's "How to read and mark a row" (`review.js`) is out of date (three kinds, the heaviest 2 s).
-- "For Fable" line 1 is acted on; `attempts_cases.json` on `bundle-4` is 59c47b0's (Fable's run). No run wanted yet.
+- A full run is wanted at f7165b1 ("Next" 1 says what to check). `attempts_cases.json` on `bundle-4` is 59c47b0's.
 - Full runs: `moments.py all` now writes a match at a time and goes on where it stopped (run the same command
   again; `--fresh` starts over); a worker that dies stops it with an error. Use `digest.py` in place of a second
   full run for the comparison. A "Full run" GitHub workflow is offered to Denning, not built.

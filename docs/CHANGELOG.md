@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, afternoon (a new chat): R-839 to R-842 filed and built; a full run wanted at f7165b1
+- Rulings filed: R-839 (a strip dealing no damage counts during a spike where it takes a prot or heal), R-840 (a damaging strip that took neither is damage like any other, no strip), R-841 (the spike thrown said on the play's row), R-842 (the strip before the first big hit on a spike and a monk down as the spike lands kept by name; the bar stays 9 of 10; a strip before a burst not kept). R-835's broken sentence: nothing to add.
+- `bundle-4` f7165b1, one bundled change: `strip_effective` by what the strip took; `BY_NAME` and its line in `cases.py attempts` section H; `record` and `say_faults` say the spikes thrown on the play's row; `thrown` keeps `died` and section J sets Aegis against targets still alive; `good` on a pressure attempt and on a death by pressure.
+- A slip of 59c47b0 put right: a loose `else` in `deaths` read most deaths twice, which is what moved the order of the casts in "Success:"; `landed_casts` now gives them in the order cast.
+- Development set: plays and moments identical to the run before and to the digest, 323 Classic rows pass. 64 spikes and 117 bursts lose the strip, 40 spikes gain it; 80 deaths gain "Enemy good play:"; 67 rows change in the order of casts alone.
+- Main's `execution_rows.json` written again from f7165b1 (eight rows: seven in the order of casts, one gains "Enemy good play:"; written over rows he marked, said to him).
+- No full run yet: the strip's checks, the rows kept by name and section J are to be read on it.
+
 ## 2026-11-28, midday (the same chat): R-835 to R-838 filed; the strip that matters, the attack's good play on their monks, the spike thrown and Aegis built
 - Rulings filed: R-835 (his definition of a strip that matters, on a spike and on a burst), R-836 (a monk's prot or heal stopped and a monk knocked down are the attack's good play; the knockdown casting or not), R-837 (Aegis built from the spike thrown), R-838 (Shadow Shroud stays context, read again with more matches).
 - `bundle-4` 59c47b0, one bundled change: `strip.rows` and `strip_effective`; `good` and `down_by`, said as "Enemy good play:" on a death; `execution.thrown` (every spike thrown, whatever landed), `say_thrown`, `execution.py thrown`; `cases.py attempts` sections G (the strip's own row), H and J.

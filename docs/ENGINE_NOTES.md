@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-830; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-842; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1446,7 +1446,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   its start, no Aegis: 1,083, 16.8% against 29.0%, -10.3 (-12.5 to -8.1), 10/10 (on the attempts -6.4: the spikes a block stops outright
   are counted here).
   **Found, not fixed**: the casts in a death's "Success:" line come in a different order from one run to the next (the same sentences): five
-  rows of main's view changed so.
+  rows of main's view changed so. (Fixed at f7165b1, below.)
   **The win chance over the match** (`Moments.position_series`, kept as `flag_cost[rid].series`; `cases.py winchance <file> --json <out>`):
   the position every 10 s and at each death, priced by the price of a result fitted without the match's group. A death's change is the
   price of its death penalty alone (15%, to the floor of 60%, by the game's rule: the replay writes the new figure late on one death in
@@ -1541,6 +1541,36 @@ index pointing here. Read the section for a reading before changing it, and keep
   missed prot rows go 1,633 to 1,537 and the heal rows 660 to 652 (the cast time, and Shield Guardian's aftercast), so the checks of
   `cases.py attempts` are to be read again on the full run. **Run again at 90223ed** (R-828, R-830): plays and moments identical, 323
   Classic rows pass; against 805b894 only `deaths` (78 matches) and `triggers` (19) differ, the attempts not at all.
+- **R-839 to R-842 built (2026-11-28, afternoon; `bundle-4` f7165b1, one bundled change; the development set only: a full run is wanted).**
+  **A strip counts by what it took** (R-839, R-840; `strip_effective`): on a spike a prot taken before the first big hit, or a prot or a
+  heal taken during it; on a burst a prot or a heal before or during it; whether the strip deals damage decides nothing (`STRIP_HITS` stays
+  on each row as evidence). On the set's 1,034 spikes 296 strips stay effective, 64 no longer are (a damaging strip that took neither) and
+  40 newly are (a strip dealing none that took a prot or heal during it); on its 1,944 bursts 552 stay and 117 no longer are. Section H:
+  the row for a strip dealing no damage now reads "the strip that matters (R-839)", and a new evidence row sets a damaging strip that took
+  neither against the spikes with no strip at all (on the set 23.4% killed against 37.7%, -10.9, reads backwards: not its like, the
+  full run to say). A strip in time that took nothing that counts is said so on the failed spike (`say_fail`).
+  **Kept by name** (R-842; `execution.BY_NAME`, by the names of the rows of section H): a spike's prot stripped before the first big hit
+  and one of his monks knocked down at the spike print "kept by his ruling, R-842, whatever the groups bar says", carry `by_name` in
+  `attempts_cases.json`, and say "READS BACKWARDS: to bring to him" where they do. `X3_BUT` is unchanged. A strip before a burst is not
+  in the list (his words).
+  **The spike thrown on the play's row** (R-841; `record`'s `thrown`, `say_faults`'s `threw`): each play's record names the spikes thrown
+  inside it by its own players on the enemy it met and by them (places in `flag_cost[rid].thrown`); the row says how many, how many landed
+  too little to be a kill attempt, and each into Aegis (`say_thrown`, six at most). **The time of death** (`died`, s against the first
+  skill): section J's new row sets Aegis coming during a spike against the plain spikes whose target was still alive at the middle of when
+  Aegis came, both read for dying after it: on the set 58 at 1.7% against 855 at 21.5%, -19.4 (-23.8 to -15.1), 9 groups of 9.
+  **The attack's good play on a death by pressure** (`pressure`'s `good`, `monks_stopped(until=)`): a pressure attempt has no first big
+  hit, so the monks' prots and heals for him that the attack stopped are read from 3 s before its start to its end; a death with no attempt
+  of its own reads them the same way. On the set's 1,619 deaths 80 gain an "Enemy good play:" line.
+  **A slip found and put right** (59c47b0): in `deaths` the `else` that reads a death with no attempt of its own had come loose from its
+  `if`, so every death whose attempt held no `good` was read a second time by the other path. Nothing differed but the order of the casts
+  in "Success:" (a kill attempt gives the prots before the heals, the death's own reading player by player): the order that moved "from
+  one run to the next". `landed_casts` now returns them in the order they were cast, whoever asks; 67 rows of the set change in that
+  order alone.
+  **Run** (82 matches, against 59c47b0): 6,935 plays and the moments identical (`compare.py`: no play changed; the digest agrees on all
+  82); 323 Classic rows pass; beside the plays `attempts`, `pressure`, `execution` (all matches), `thrown` (75), `deaths` (65) and `fails` (58)
+  differ. Main's rows written again: eight change, seven in the order of the casts alone (RACK v hdm 7:33 the Prot, 7:44 the 8 Monk; Men
+  v NwAy 5:15, 8:38, 9:20, 14:23, 14:35) and one gains "Enemy good play:" (Men v NwAy 4:35, the Stand Mes: Healing Burst stopped with
+  Power Drain).
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
