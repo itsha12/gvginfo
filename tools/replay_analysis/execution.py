@@ -408,6 +408,7 @@ MISSED_KINDS = (            # each kind of missed chance (R-713), the side that 
     ("interrupt", "defence", "a spike skill cast with an interrupt of ours ready and in range, and it went off (on a spike of 400 or more only, R-805)"),
     ("strip", "attack", "a prot on the target with a strip of ours ready and in range, and none came"),
     ("pressure", "attack", "an interrupt of ours ready on one of their monks in reach of the target, and none landed on their monks"),
+    ("let through", "attack", "a prot or heal for the target on the list of skills worth interrupting that landed, with an interrupt of ours ready, in reach and with time to react (on a spike of 400 or more only, R-850)"),
 )
 
 
@@ -595,6 +596,32 @@ def attempts(E):
                 ready = [f"{F.name(a)} {F.sname(sid)} on {F.name(h)}" for a in mine for sid, sd in _role_skills(F, a, lambda x: intr_kind(x) in ("spell", "any")) for h in monks
                          if near(h, first) and (F.dist(a, h, first) or 1e9) <= intr_range(F, a, sd, first) and _ready(F, a, sid, sd, first)]
                 if ready: missed.append({"kind": "pressure", "side": "attack", "by": ready[:3], "chance": True})
+            # attack: a prot or heal for the target let through with an interrupt ready (R-850, the attack's fault by name; his four points, 2026-11-28: "Yes, I
+            # agree with your four conditions"). The mirror of the defence's interrupt on a spike skill, read the same way: (1) a fault on a spike only (R-805
+            # for the defence's; kept on a burst as evidence, `chance_tests`); (2) only a prot or heal for the target that landed (R-797: it finished, and
+            # before he died), begun in the seconds a chance is looked for; (3) the interrupter with the skill ready, in reach and with time to react (Rule 1,
+            # R-716, R-742, R-750: an interrupt that can stop that kind of skill, the cast as long as the reaction and the interrupt's own time to land, off
+            # recharge, hands free, his own aftercast over, not out of energy by gvg.report's model); (4) only a skill on the list of skills worth
+            # interrupting, its offensive side (R-727: the heals, prots and removal on our target). One interrupt is asked of a player on one spike (R-816):
+            # a player who stopped a prot or heal for the target, or threw at one and missed, is asked for no other
+            died_at = end if died and end < t + ATT_AFTER_S else None
+            for c in sorted(prot_cast + heal_cast, key=lambda c: c[2]):
+                sd_c = F.sdata(c[1])
+                if (sd_c.get("name") or "").replace(" (PvP)", "") not in worth("offensive") or outcome(c, died_at) != "finished" or c[2] - first > CHANCE_S: continue
+                took, u = (c[3] - c[2] if c[3] is not None else None), c[2] + REACT_S
+                ready = [f"{F.name(a)} {F.sname(sid)}" for a in mine for sid, sd in _role_skills(F, a, is_intr)
+                         if can_stop(sd, sd_c) and took is not None and took + 1e-6 >= REACT_S + intr_time(sd)
+                         and (F.dist(a, c[0], u) or 1e9) <= intr_range(F, a, sd, u) and _ready(F, a, sid, sd, u) and not F.in_aftercast(a, u)
+                         and not (En.ok and (En.at(a, u) or {}).get("out") == "yes")]
+                tried = [r for r in E.ia if r[2] == c[0] and r[1] in mine and c[2] - 0.5 <= r[0] <= (c[3] or c[2] + 1)]
+                row = {"kind": "let through", "side": "attack", "skill": F.sname(c[1]), "monk": m.roles[c[0]], "caster": c[0], "at": round(c[2] - first, 1), "prot": bool(is_prot(sd_c)), "chance": True}
+                if tried: missed.append(dict(row, by=[F.name(r[1]) + " " + F.sname(r[5]) for r in tried][:3], tried=[r[4] for r in tried]))      # thrown and missed: a chance not taken all the same
+                elif ready: missed.append(dict(row, by=ready[:3]))
+            stoppers = {by[0] for c in prot_cast + heal_cast if c[4] == "interrupted" for by in [F.stopped_by(c)] if by is not None and by[0] in mine}
+            acted = {F.name(a) for a in stoppers} | {n_ for x in missed if x["kind"] == "let through" and x.get("tried") for b_ in x["by"] for n_ in (F.name(a) for a in mine) if b_.startswith(n_ + " ")}
+            for x in [x for x in missed if x["kind"] == "let through" and not x.get("tried")]:
+                x["by"] = [b_ for b_ in x["by"] if not any(b_.startswith(n_ + " ") for n_ in acted)]
+                if not x["by"]: missed.remove(x)
             # what the old kill conversion node read (knowledge/model.md, "kill conversion"), at the first big hit: state of the target, never a fault
             from state import d as _d
             S_ = E.M.st
@@ -627,7 +654,7 @@ def attempts(E):
                         "missed": missed, "ledger": led, "spike_casts": dict(went),
                         # the match report's readings (R-810): the set he held at the first big hit, Shadow Shroud on him, what stopped his monks at the spike itself, what landed for him
                         "good": monks_stopped(E, mine, prot_cast + heal_cast, first),      # R-836: his monks' prots and heals for him that the attack stopped
-                        "set": target_set(E, tgt, first), "shroud": shroud_on(E, tgt, first, min(end, first + CHANCE_S)), "monks": monks_at(E, monks, tgt, first, end),
+                        "set": target_set(E, tgt, first), "shroud": shroud_on(E, tgt, first, min(end, first + CHANCE_S)), "shroud_by": shroud_by(E, tgt, first, min(end, first + CHANCE_S)), "monks": monks_at(E, monks, tgt, first, end),
                         "landed": landed_casts(E, prot_cast + heal_cast, tgt, first, end, bool(died and end < t + ATT_AFTER_S))})
     return sorted(out, key=lambda r: r["t"])
 
@@ -667,6 +694,10 @@ def say_attempt(r, trig=None):
         elif x["kind"] in ("prot", "heal"): L.append(f"Missed by the defence: {who} had {', '.join(x['skills'])} ready, not cast on him{say_amounts(x)}.")
         elif x["kind"] == "strip": L.append(f"Missed by the attack: prot(s) up ({', '.join(x['prots'])}) and a strip ready ({who}), none came{say_amounts(x)}.")
         elif x["kind"] == "pressure": L.append(f"Missed by the attack: an interrupt ready on his monks ({who}), none landed.")
+        elif x["kind"] == "let through" and r.get("hurt") is not None: continue      # R-850: asked on a spike only, as the defence's interrupt is
+        elif x["kind"] == "let through" and x.get("tried"):
+            L.append(f"Missed by the attack: the {x['monk']}'s {x['skill']} landed for him; an interrupt was thrown at it and missed ({who}; gvg.report's read: {', '.join(str(v) for v in x['tried'])}).")
+        elif x["kind"] == "let through": L.append(f"Missed by the attack: the {x['monk']}'s {x['skill']} landed for him with an interrupt ready ({who}).")
     for x in r["missed"]:
         if x["kind"] == "deep wound": continue
         if x.get("busy_on"): L.append(f"Not a chance: {x['by']} was busy on {x['busy_on']} (R-711).")
@@ -1118,6 +1149,20 @@ def shroud_on(E, tgt, t0, t1):
     return [round(min(a for a, _ in R) - t0, 1), round(max(b for _, b in R) - t0, 1)] if R else None
 
 
+def shroud_by(E, tgt, t0, t1):
+    """Who put the Shadow Shroud of `shroud_on` on the target (R-849: said as the attack's good play, with the player who did it as the other parts of the
+    attack's good play are): the enemy player whose cast of it on him finished nearest the hex's start, inside a second of it; None where the record has no
+    such cast."""
+    import pressure as PR
+    F, m = E.F, E.m
+    F.barred(tgt, "enchant", t0); F.casts()
+    R = [a for a, b, _n in F._bar.get((tgt, "enchant"), ()) if a <= t1 and b >= t0]
+    if not R: return None
+    C = [(abs((c[3] if c[3] is not None else c[2]) - min(R)), c[0]) for h in m.PL if m.team(h) != m.team(tgt) for c in F._by_agent.get(h, ())
+         if c[5] == tgt and c[4] == "finished" and c[1] is not None and PR._base(F.sname(c[1])) == "Shadow Shroud"]
+    return m.roles[min(C)[1]] if C and min(C)[0] <= 1.0 else None
+
+
 def monks_at(E, monks, tgt, first, end=None):
     """What stopped each of the target's backline monks at the spike itself (the catalogue's section B; the match report: "their monks disabled or
     cast-prevented at the spike itself"), read at the first big hit and the time to react after it: `down` (knocked down inside the seconds his chance is
@@ -1421,7 +1466,7 @@ def pressure(E, atts):
                         "heals_cast": [[F.sname(c[1]), round(c[2] - t0, 1), outcome(c, t1 if ep["died"] else None)] for c in on_tgt if is_heal(F.sdata(c[1]))],
                         "missed": missed, "ledger": led,
                         "good": monks_stopped(E, F.players(tm), [c for c in on_tgt if is_prot(F.sdata(c[1])) or is_heal(F.sdata(c[1]))], t0, t1 - t0),      # R-836, as on a spike: read to its end
-                        "set": target_set(E, tgt, t0), "shroud": shroud_on(E, tgt, t0, min(t1, t0 + CHANCE_S)), "monks": monks_at(E, monks, tgt, t0),
+                        "set": target_set(E, tgt, t0), "shroud": shroud_on(E, tgt, t0, min(t1, t0 + CHANCE_S)), "shroud_by": shroud_by(E, tgt, t0, min(t1, t0 + CHANCE_S)), "monks": monks_at(E, monks, tgt, t0),
                         "landed": landed_casts(E, on_tgt, tgt, t0, t1, bool(ep["died"]))})
     return sorted(out, key=lambda r: r["t"])
 
@@ -1465,11 +1510,14 @@ STANCE_BLOCKS = ("Frenzied Defense",)    # R-832: a block and double damage at o
 STRIP_HITS = ("Shatter Enchantment", "Chilblains", "Pain of Disenchantment", "Test of Faith", "Hex Eater Vortex")      # R-835: the strips that deal damage as they
                             # land (the tags' strips that add damage; Rip Enchantment and Corrupt Enchantment, which leave Bleeding or degen, are not: Claude's list).
                             # Kept on each strip's row as evidence; since R-840 it decides nothing: a strip counts by what it took (`strip_effective`)
-BY_NAME = {"a spike: a prot stripped before the first big hit": "R-842", "one of his monks knocked down at the spike": "R-842"}
+BY_NAME = {"a spike: a prot stripped before the first big hit": "R-842", "one of his monks knocked down at the spike": "R-842",
+           "Shadow Shroud, against the same team's other spikes": "R-849"}
                             # R-842: the readings he keeps by name though they fall short of the groups bar (range clear; 8 and 7 groups of 10 on the full run at
                             # 59c47b0), by the names of their rows in `cases.py attempts` section H. The bar stays as it is for everything else (`cases.X3_BUT`);
                             # the check is read again on every full run and said beside them, and one that reads backwards is brought to him (R-744). A strip
-                            # before a burst is not among them (6 groups of 10: "I don't want to over rule on strip before burst so leave that one for now")
+                            # before a burst is not among them (6 groups of 10: "I don't want to over rule on strip before burst so leave that one for now").
+                            # R-849 (2026-11-28): Shadow Shroud is kept the same way, on its row against the same teams' other spikes (+10.1 points, 8 groups
+                            # of 10; no enchantment can be cast under it, so no prots are held level), and is said on a death as the attack's good play
 BLOCK_SHARE = 1 / 3         # R-831: a block is said, and tested, only where more than a third of the spike is attacks (his cut-off: no difference in kills at a third or less)
 STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
                             # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
@@ -2203,9 +2251,11 @@ FAULT_BY_RULING = ("interrupt",)   # R-805: the interrupt on a spike skill is a 
                                    # fails there it is brought to him (R-744) without stopping the report
 
 
-RULED_KINDS = ("strip",)    # the kinds of missed chance he rules by name (R-744): told as faults whatever the check on unseen matches shows, the check's result said beside
+RULED_KINDS = ("strip", "let through")
+                            # the kinds of missed chance he rules by name (R-744): told as faults whatever the check on unseen matches shows, the check's result said beside
                             # them (`ruled_check`), and brought to him where they read backwards. A strip ready and not used on a protted target is the attack's, so by
-                            # R-714 it is listed on a spike that failed (R-729). Pressure on the target's monks is ruled by nobody and fails the check: never told.
+                            # R-714 it is listed on a spike that failed (R-729). A prot or heal let through with an interrupt ready is the attack's too (R-850,
+                            # "built now and kept by name"; on a spike only). Pressure on the target's monks is ruled by nobody and fails the check: never told.
 
 
 def strip_effective(r):
@@ -2244,6 +2294,11 @@ def chance_tests():
     pt = lambda r: any(a <= CH for a in r["pressure"].get("interrupts_at", []))
     out["pressure"] = (pt, lambda r: not pt(r) and any(x["kind"] == "pressure" and x.get("chance") for x in r["missed"]),
                        lambda r: r["pressure"]["interrupts"] > 0 and not pt(r))
+    # R-850: a prot or heal for the target let through with an interrupt ready, on a spike only. Taken is the attack's good play of R-836, a prot or heal
+    # for him that the attack stopped in those seconds (`good`), with none let through; missed, one that landed with an interrupt ready (or thrown and
+    # missed). Both have a monk casting for him: an interrupt can only land on a monk who casts
+    lets = lambda r: [x for x in r["missed"] if x["kind"] == "let through" and x.get("chance") and x.get("at", 0) <= CH] if r.get("hurt") is None else []
+    out["let through"] = (lambda r: r.get("hurt") is None and any(g[4] <= CH for g in r.get("good") or ()) and not lets(r), lambda r: bool(lets(r)), lambda r: False)
     return out
 
 
@@ -2343,10 +2398,12 @@ def deaths(E, atts, prs=None, trig=None):
             d["span"] = {"dmg": round(sum(F.taken(a, d["first"] - .05, td)[0].values())), "s": round(td - d["first"], 1)}
             if src is not None:
                 d["set"], d["shroud"], d["monks"], d["landed"] = (dict(src["set"]) if src.get("set") else None), src.get("shroud"), src.get("monks") or [], src.get("landed") or []
+                d["shroud_by"] = src.get("shroud_by")
                 if src.get("good"): d["good"] = src["good"]      # R-836: from the spike that killed him, or from the pressure attempt
             else:                                              # no attempt of its own (he was not kept in danger first): read here, the same way
                 on_a = [c for h in F.players(tm) for c in F._by_agent.get(h, ()) if F.cast_on(c, a) and d["first"] - ATT_BEFORE_S <= c[2] <= td]
                 d["set"], d["shroud"] = target_set(E, a, d["first"]), shroud_on(E, a, d["first"], min(td, d["first"] + CHANCE_S))
+                d["shroud_by"] = shroud_by(E, a, d["first"], min(td, d["first"] + CHANCE_S))
                 d["monks"], d["landed"] = monks_at(E, [h for h in F.players(tm) if h in E.monk], a, d["first"], td), landed_casts(E, on_a, a, d["first"], td, True)
                 g_ = monks_stopped(E, F.players(3 - tm), [c for c in on_a if is_prot(F.sdata(c[1])) or is_heal(F.sdata(c[1]))], d["first"], td - d["first"])
                 if g_: d["good"] = g_
@@ -2503,6 +2560,9 @@ def fails(E, atts):
         for kind in RULED_KINDS:
             tk, mi, lt = T[kind]
             if tk(r): taken.append(kind)
+            elif mi(r) and kind == "let through":                # R-850: each prot or heal that landed for him with an interrupt ready, in the seconds a chance is looked for
+                faults += [{"kind": kind, "by": [who_what(b_) for b_ in x["by"]], "skill": x["skill"], "monk": x["monk"], "at": x["at"], **({"tried": x["tried"]} if x.get("tried") else {})}
+                           for x in r["missed"] if x["kind"] == kind and x.get("chance") and x.get("at", 0) <= CHANCE_S]
             elif mi(r): faults += [{"kind": kind, "by": [who_what(b_) for b_ in x["by"]], "prots": x.get("prots") or [], "amount": x.get("amount")} for x in r["missed"] if x["kind"] == kind and x.get("chance")]
             elif lt(r): late.append({"kind": kind, "at": min((a_ for a_, _p in r[kind].get("at", [])), default=None), "prot_off": bool(r[kind].get("prot_off"))})
         d.update(faults=faults, taken=taken, late=late)
@@ -2526,8 +2586,8 @@ def ruled_check(kind):
     return (v["verdict"], round(v["difference"], 1)) if v else None
 
 
-RULED_SAY = {"strip": "a strip on a protted target"}
-RULED_BY = {"strip": "R-729, R-744"}
+RULED_SAY = {"strip": "a strip on a protted target", "let through": "a prot or heal let through with an interrupt ready"}
+RULED_BY = {"strip": "R-729, R-744", "let through": "R-850"}
 
 
 def say_fail(d, trig=None):
@@ -2538,13 +2598,22 @@ def say_fail(d, trig=None):
          + (f"; on him at the first big hit: {', '.join(nm(k) for k in d['prots_up'])}." if d["prots_up"] else "; no prot on him at the first big hit.")]
     for kind in RULED_KINDS:
         X = [x for x in d["faults"] if x["kind"] == kind]
-        if X:
+        own = lambda w: w[len(d['team']) + 1:] if w.startswith(d['team'] + ' ') else w
+        if X and kind == "let through":                    # R-850: one sentence a prot or heal that landed, with who could have stopped it and with what
             ck = ruled_check(kind)
-            L.append(f"Missed by {d['team']}, {RULED_SAY[kind]} (a fault by his ruling, {RULED_BY[kind]}): " + "; ".join(f"{w[len(d['team']) + 1:] if w.startswith(d['team'] + ' ') else w} had {nm(v)}" for x in X for w, v in x["by"])
+            ba = lambda v: f"{abs(v)} s {'before' if v < 0 else 'after'} the first big hit"
+            L.append(f"Missed by {d['team']}, {RULED_SAY[kind]} (a fault by his ruling, {RULED_BY[kind]}): "
+                     + "; ".join(f"the {x['monk']}'s {nm(x['skill'])} landed for him, begun {ba(x['at'])}, " + ("and " + " and ".join(f"the {own(w)}'s {nm(v)}" for w, v in x["by"]) + " was thrown at it and missed" if x.get("tried")
+                                 else "with " + " and ".join(f"the {own(w)}'s {nm(v)}" for w, v in x["by"]) + " ready, in reach and with time to react") for x in X) + "."
+                     + (f" The check on unseen matches: {ck[0]} (stopped against let through, {ck[1]:+.1f} points of spikes that killed)." if ck else " The check on unseen matches: not yet run on this reading."))
+        elif X:
+            ck = ruled_check(kind)
+            L.append(f"Missed by {d['team']}, {RULED_SAY[kind]} (a fault by his ruling, {RULED_BY[kind]}): " + "; ".join(f"{own(w)} had {nm(v)}" for x in X for w, v in x["by"])
                      + " ready and in range, and none came from 3 s before the first big hit to 1.5 s after it"
                      + "".join(say_amounts({"kind": kind, "amount": x.get("amount")}) for x in X[:1]) + "."
                      + (f" The check on unseen matches: {ck[0]} (the strip taken against missed, {ck[1]:+.1f} points of spikes that killed)." if ck else " The check on unseen matches: not yet run on this reading."))
-        elif kind in d["taken"]: L.append(f"Done in time by {d['team']} (good play, R-729): {RULED_SAY[kind]}.")
+        elif kind in d["taken"] and kind == "strip": L.append(f"Done in time by {d['team']} (good play, R-729): {RULED_SAY[kind]}.")
+        elif kind in d["taken"]: L.append(f"Done in time by {d['team']} (good play, R-836): a prot or heal of his monks' for him stopped, none let through with an interrupt ready.")
         for x in d["late"]:
             if x["kind"] != kind or x.get("at") is None: continue
             L.append(f"{d['team']}'s strip came in time ({x['at']:+.1f} s from the first big hit) but took off no prot or heal that counts (R-835, R-840)." if x["at"] <= CHANCE_S
@@ -2632,6 +2701,10 @@ def death_lines(d, trig=None):
         L.append(f"Disables: {q['who']} " + "; ".join(P) + ". No fault.")
     gp = [f"{'the ' + by if by else 'an enemy'} stopped {mk}'s {sk}" + (f" with {w}" if w else "") + f" {ba(at)} {start}" for by, w, mk, sk, at in d.get("good") or ()] \
          + [f"the {q['down_by']} knocked down {q['who']} ({nm(q['down'][1])}) {ba(q['down'][0])} {start}" for q in d.get("monks") or () if q.get("down") and q.get("down_by")]
+    if d.get("shroud"):                                  # R-849: kept by name, the attack's good play (no enchantment could be cast on him while it was on)
+        who_ = "the " + d["shroud_by"] if d.get("shroud_by") else "an enemy"
+        gp.append(f"{who_} put the Shadow Shroud on him" if any("Shadow Shroud" in (x.get("barred") or ()) for x in d["no_chance"])      # its seconds are on the line above
+                  else f"{who_} had Shadow Shroud on him from {d['shroud'][0]} s to {d['shroud'][1]} s after {start}: no enchantment could be cast on him")
     if gp: L.append("Enemy good play: " + "; ".join(gp) + ".")      # R-836: the attack's credit, apart from our faults (Rule 18)
     for q in d.get("stripped") or ():
         w = q.get("would")
@@ -2783,8 +2856,10 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
         L = [FL[i] for i in (x.get("fails") or {}).get(sd, ())] if FL is not None else []
         if not L: return ""
         W = [d for d in L if d["faults"] or d["late"]]
-        return (f" {name}'s spikes that did not kill: {len(L)}, {sum(1 for d in L if d['faults'])} with a strip missed (a fault by his ruling, R-744)"
-                + f", {sum(1 for d in L if d['taken'])} with the strip in time." + (" " + " ".join(say_fail(d) for d in W) if W else ""))
+        has = lambda d, k: any(x["kind"] == k for x in d["faults"])
+        return (f" {name}'s spikes that did not kill: {len(L)}, {sum(1 for d in L if has(d, 'strip'))} with a strip missed (a fault by his ruling, R-744)"
+                + f", {sum(1 for d in L if 'strip' in d['taken'])} with the strip in time, {sum(1 for d in L if has(d, 'let through'))} with a prot or heal let through, an interrupt ready (R-850)."
+                + (" " + " ".join(say_fail(d) for d in W) if W else ""))
     def threw(sd, name):                                   # R-841: the spikes thrown, said on the play's row: how many, how many landed too little to be a kill
         L = [THR[i] for i in (x.get("thrown") or {}).get(sd, ())] if THR is not None else []      # attempt (no other line of the row holds those), and each one that met Aegis
         if not L: return ""

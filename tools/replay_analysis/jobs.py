@@ -131,16 +131,31 @@ def _flag_rows(M):
     pin = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in pinned(M))
     splits = [x for x in M.attempts() if x["kind"] == "split"]
     others = [tuple(x["pts"][0]) for x in (M.hall.labels or []) if x.get("type") == "Flag stand" and x.get("pts") and d(tuple(x["pts"][0]), M.hall.stand) > 500]
+    first_leg = {}                                                        # ... and, for a second runner told from his going back (R-485), the flag he left his team mate capping
+    from_start = set()                                                    # ... and the flags that are a double run from their start (the pair is one run, told when it starts)
     second = set()                                                        # a double run is a pair of runs (his marks, cope v Team 2:43: "derv 1 going back for next flag before 2 warrior has even capped"): the flag its second player goes back for is part of it
     for f in M.flags_record():
-        if not (f["form"] or "").startswith("double"): continue
+        by_form = (f["form"] or "").startswith("double")
+        if not by_form and f["how"] != "captured": continue
         r2 = min((q for q in M.run_starts() if q["tm"] == f["tm"] and q["pickup"] > int(f["end"]) - 2), key=lambda q: q["pickup"], default=None)
         went_at = r2 and next((v for v in (r2["set_off"], r2["waited"], r2["pickup"]) if v is not None), None)
+        if not by_form:
+            # A double run is told from when its second player goes back (R-485; R-472: "a second player goes back to run the next flag while the first is
+            # still capping"), whatever the flag's own record says of its form: that record (`flag_lives`) asks where the next runner stood at the capture,
+            # nearer his spawn than the stand, and a player who turned for home a few seconds before the cap still stands nearer the stand. So a team mate
+            # of the capper who walked back for the next flag (`set_off`: more than 1,500 to his spawn, going for good, his team not held in its base) by
+            # the cap is its second runner, and the pair is a double run from that second (his word, 2026-11-28, on the 62 plays whose runner had set off
+            # before the moment he was told to answer: "My earlier rulings are correct so proceed with those"). xxx v NwAy 3:02: xxx's Dervish goes back
+            # 10 s before its Mesmer caps at 3:12. A capper who goes back himself is a single run (R-472; `run_starts` reads his set-off no earlier than
+            # his own cap), and a player who was at home already, and takes the next flag, is told by the form as before (DOUBLE_NEXT_S)
+            if r2 is None or r2["set_off"] is None or M.m.roles[r2["a"]] == f["capper"] or M.not_run(r2) or pin(f["tm"], r2["set_off"]) or pin(f["tm"], r2["pickup"]): continue
+            went_at = r2["set_off"]
         # ... a second player who goes back to run the next flag (his account of hdm v hook 5:52 to 7:24: hook's Mesmer "already on the way"); a player who is home because he came back from a split is not one (R-472)
         if r2 is not None and not any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])):
             # ... and at the opening, where the first flag is one decision from the gates to its cap (R-479), a second player who turns back for the next flag before that
             # cap makes it a double run (his mark, Men v RACK 0:00, Classic: "Men double ran with warrior waiting back": Hammer A turns back at 0:04 and waits at the spawn from 0:12, the first flag capped at 0:30)
-            if went_at <= int(f["start"]) + SPLIT_STEP or (f["pregame"] and went_at <= int(f["end"]) + SPLIT_STEP): second.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
+            if went_at <= int(f["start"]) + SPLIT_STEP or (f["pregame"] and went_at <= int(f["end"]) + SPLIT_STEP): second.add((f["tm"], int(f["start"]))); from_start.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
+            if went_at <= int(f["end"]) + SPLIT_STEP and not by_form: first_leg[(f["tm"], int(r2["pickup"]))] = {"runner": f["capper"] or f["runner"], "e": int(f["end"])}
             if went_at <= int(f["end"]) + SPLIT_STEP: second.add((f["tm"], int(r2["pickup"])))                     # ... and it is a double run only from then (R-484; his mark, RJT v RACK 1:41: "derv single runs twice"): the first run of the pair is a single run when the other team decides against it. The second player has to have gone back by the cap (R-472: "while the first is still capping"; his mark, Men v Crew 11:32, "a single run half run for Men": the AoB Derv caps at 11:36 and the Ranger sets off at 11:43)
     for f in M.flags_record():
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
@@ -148,6 +163,7 @@ def _flag_rows(M):
         off = None                                                        # the second its runner turned for home, when he went back for it (R-498)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         dbl = any((f["tm"], int(f["start"]) + dt) in second for dt in (0, -1, 1))
+        lead_ = next((first_leg[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in first_leg), None)
         pre_row, left_at = f["pregame"], None                             # this row is the opening's first flag (R-479), unless the flag was left on the field (R-581: since when)
         if r is not None and f["pregame"]:                               # who held the flag before the gates opened did not carry it in the match (Men v RACK 0:00: Hammer A, who then waits back for the next one)
             ids = [a for a in ids if any(c[0] == a and (c[2] is None or c[2] > 0) for c in r["carries"])] or ids
@@ -202,6 +218,7 @@ def _flag_rows(M):
             p = M.P[carries[-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
         out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh, pregame=pre_row, left_at=left_at,
+                        first_leg=lead_ if dbl else None, from_start=bool(dbl and any((f["tm"], int(f["start"]) + dt) in from_start for dt in (0, -1, 1))),
                         waited_back=bool(r is not None and r.get("waited_back") and r.get("waited") is not None), waited=r and r.get("waited")))
     M._frows = out
     return out
@@ -348,7 +365,7 @@ def flag_plays(M, K, pinned_at):
         # ... and within this play's own clock: a flag of theirs that is held for minutes is answered by what we do in the FLAG_JOB_MAX_S the play runs, not by a run of
         # ours five minutes on (his mark on Men v Crew 5:52, Classic: Men's AoB Derv holds the flag until 11:36 and Crew's Water Ele sets off at 11:32: "crew does not run a flag")
         new = next((g for g in mine if not first(g) and go(g) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
-        inhand = None
+        inhand = our_cap = capped = None; told = []
         if earlier:
             # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40), and waiting there. A team that holds the stand cannot cap its flag until the other team
             # caps (R-483), so its flag at the stand is in hand; a team that does not hold the stand can cap on arrival, so its flag is in hand only if it is still uncapped
@@ -364,8 +381,29 @@ def flag_plays(M, K, pinned_at):
                 # Once ours is in, with theirs still on its way, we answer theirs in turn: we run again before it gets in, or we stay (his mark, RJT v RACK 6:32:
                 # "RJT does not run again and does not answer run"); that decision is ours from our cap. A flag of ours still out when theirs gets in left us none
                 if not (earlier["how"] == "captured" and earlier["e"] < w1): continue
-                w0 = max(w0, earlier["e"])
-                new = next((g for g in mine if g is not earlier and earlier["e"] - 2 <= g["s0"] and g.get("off", g["s0"]) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
+                our_cap, capped = int(earlier["e"]), earlier
+                # ... unless the runner of our next flag had already turned for home before that cap: running again was not decided at our cap. Three cases:
+                # (1) our flag is a double run from its start (R-479, R-485): its second runner is part of that run, told with it (R-521), and no decision of
+                #     his own; from our cap the play is as before, without him as its answer (HC v cope 0:30, Classic: both teams double run from the gates
+                #     and "HC stays" against cope's second flag, HC's own second runner being the opening's);
+                # (2) he went back after their runner set off: a double run from that second (R-485: told from when its second player goes back; his word of
+                #     2026-11-28 on the plays whose runner had set off before the moment he was told to answer, "My earlier rulings are correct so proceed
+                #     with those"). The play is told from that second, on one clock with its position, and the cap that lands seconds later is said with it
+                #     (R-547). xxx v NwAy 3:02: xxx's Dervish goes back 10 s before its Mesmer caps;
+                # (3) he went back before their runner set off: we sent first twice (whoever sets off first is sending, by however little), their run answers
+                #     both, and when our first flag goes in we have nothing to decide. The decision is ours from the cap of that next flag, if it is in
+                #     before theirs; else we have none against this run (a play here stated "a decision point for something that has already happened",
+                #     his words on hold v RACK 3:58; MBP v Team 1:07: Team's Mes/A had turned for home 12 s before MBP's Ranger set off)
+                gone = lambda: [g for g in mine if g is not capped and g["pick"] >= our_cap - 2 and g["e"] > our_cap and go(g) < our_cap]
+                while our_cap is not None and not capped.get("from_start"):
+                    ahead = min((g for g in gone() if go(g) < fo), key=go, default=None)
+                    if ahead is None: break
+                    our_cap, capped = (int(ahead["e"]), ahead) if (ahead["how"] == "captured" and ahead["e"] < w1) else (None, capped)
+                if our_cap is None: continue
+                told = gone() if capped.get("from_start") else []
+                sec = None if told else min((g for g in gone() if go(g) >= fo), key=go, default=None)
+                w0 = max(w0, our_cap if sec is None else go(sec))
+                new = sec if sec is not None else next((g for g in mine if g is not capped and not any(g is x_ for x_ in told) and our_cap - 2 <= g["s0"] and g.get("off", g["s0"]) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
                 if w1 - w0 < 10: continue
             # else ours never gets in (carried off on a split, put down) and we set off again while theirs is out: that run is our answer
         theirs = "double run" if f["double"] else "single run"
@@ -375,6 +413,7 @@ def flag_plays(M, K, pinned_at):
         # each side is named with what it does and who does it (his words on HC v Team: "Team single run (Monk 5 (WoC)); HC single run (Mes/A)", not "They ...")
         def both(x_, names):                                              # a double run is two players (R-472, R-485): one caps a flag while the other is already back for the next. Both are named (his words)
             if not x_["double"]: return names
+            if x_.get("first_leg") is not None: return f"first runner {x_['first_leg']['runner']}, capping the flag before; second runner {names}, back for this one"
             prev = max((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] < x_["s0"] and (y.get("form") or "").startswith("double")), key=lambda y: y["s0"], default=None)
             if prev is not None and x_["s0"] - prev["e"] <= 60: return f"first runner {prev.get('capper') or prev['runner']}, capping the flag before; second runner {names}, back for this one"
             nxt = min((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] >= x_["s0"]), key=lambda y: y["s0"], default=None)
@@ -426,6 +465,7 @@ def flag_plays(M, K, pinned_at):
         o_ = int(f.get("off", f["s0"]))
         from_cap = int(w0) > int(f["s0"]) + 2
         anc = int(w0) if from_cap else min(o_, int(w0))
+        cap_t = int(w0) if our_cap is None else our_cap               # our own cap, where the decision is ours from it; the play is told before it where our next runner had gone back by then (`before_cap`)
         kw["state"], kw["after"] = M._state(A, anc), M.consequence(A, anc, FLAG_AFTER_S)
         # ... and the position FLAG_BEFORE_S before that second, read the same way, so that a call can be tested against what came before it (SPEC 5, rule 4: a call
         # that goes with the team's fortunes before it was made marks the situation and is no advice; 2026-11-19, the teams that sent nobody were already winning)
@@ -436,7 +476,7 @@ def flag_plays(M, K, pinned_at):
         # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
         # the usual carry for the hall and side; from where he stands when he already carries it)
         lead_ = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]                # the player who sets off with it
-        nxt_ = min((x_ for x_ in mine if (x_["s0"] >= w0 - 2 if from_cap else not first(x_))), key=go, default=None)
+        nxt_ = min((x_ for x_ in mine if (x_["s0"] >= w0 - 2 and x_ is not capped and not any(x_ is y_ for y_ in told) if from_cap else not first(x_))), key=go, default=None)
         a_ = next(iter(lead_(f)), None); u_ = min(anc, T); eta = None
         if a_ is not None and M.hall is not None and M.P[a_][u_]:
             if M.carrying(a_, u_): w_ = M.hall.walk(M.P[a_][u_], M.hall.stand); eta = w_ / CARRY_SPEED if w_ else None
@@ -445,10 +485,14 @@ def flag_plays(M, K, pinned_at):
                 eta = (w_ / RUN_SPEED + us_) if (w_ is not None and us_) else None
         kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"]),
                        "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"], "anchor": anc, "from_cap": from_cap,
+                       "before_cap": cap_t if (from_cap and cap_t > int(w0)) else None,
                        "their_waited_back": f.get("waited") if f.get("waited_back") else None, "their_pick": int(f["pick"]),
-                       "cap_over": (lambda own_: int(own_[1]) if from_cap and own_[0] == B and not any(h == A and u < w0 - 2 for u, h in M.st.caps) else None)(M.st.stand_owner(max(int(w0) - 2, 0)))}
+                       "cap_over": (lambda own_: int(own_[1]) if from_cap and own_[0] == B and not any(h == A and u < cap_t - 2 for u, h in M.st.caps) else None)(M.st.stand_owner(max(cap_t - 2, 0)))}
         # (`their_waited_back`: their runner had waited back at his flag spawn since the gates, from that second, and did not set off; `their_pick`: when he took the
-        # flag up; `cap_over`: our cap is our first flag of the match and goes in over theirs, in since that second: they capped first)
+        # flag up; `cap_over`: our cap is our first flag of the match and goes in over theirs, in since that second: they capped first; `before_cap`: the play is
+        # told from the second our next runner went back, before our own flag was in, and this is the second it then goes in, R-485)
+        if from_cap and kw["clock"]["our_off"] is not None and kw["clock"]["our_off"] < anc:      # as below: nobody answers before the second he is asked (R-460)
+            raise ValueError(f"flag play of team {A} at {w0}: its runner set off at {kw['clock']['our_off']}, before the second the play is told from ({anc})")
         # the answer to a run is never before the run (R-460: a fault here stops the run; the mirror card of 2026-11-19 came back once)
         if not from_cap and kw["clock"]["our_off"] is not None and kw["clock"]["our_off"] < o_ and not (f["pregame"] and nxt_["pregame"]):      # (the two first flags, from the gates, are the opening's)
             raise ValueError(f"flag play of team {A} at {w0}: its runner set off at {kw['clock']['our_off']}, before theirs at {o_}, yet he is told as the answer")

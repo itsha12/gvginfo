@@ -2354,7 +2354,8 @@ class Moments:
         go back for the flag" and "waits back at the flag spawn" lines print from this record."""
         if getattr(self, "_rs", None) is not None: return self._rs
         out, pr, hd = [], set(), set()
-        for L in self.flag_lives():
+        lives = self.flag_lives()
+        for L in lives:
             tm = L["team"]                                  # the life's first pickup at the spawn, serious or a short carry handed on (golden game 1, 6:51: hook's Monk 4 to the 8 Monk)
             at_sp = [c for c in L["carries"] if d(self.P[c[0]][min(max(int(c[1]), 0), self.T)], self.spawn[tm]) < SPAWN_R or c[1] < 2]      # a flag picked up before the gates counts (golden hold v Apes: the WoC holds it from the start)
             c = next((c for c in at_sp if c[0] in L["serious"]), at_sp[0] if at_sp else None)          # the first serious carrier to pick it up there; a brief pickup (R-339) only if nobody serious did
@@ -2392,6 +2393,11 @@ class Moments:
             # 10:49, 2026-11-19: the Earth Ele was read turning for home 2 s before his own cap at 10:51, which made one player's two single runs, R-485, look like a
             # second player gone back before the cap)
             let_go = [e_ for s_, e_ in self.carry.get(a, ()) if s_ < tp - 1 and e_ <= tp]
+            # ... nor before a capture of his own that the observer recorded on no carry (he had put the flag down and took it up again unseen: the flag's life
+            # closes that carry at the capture, `flag_lives`, and `self.carry` does not hold it). hold v RACK 2:16 (2026-11-28): the Earth Ele puts his first
+            # flag down at 0:33 and caps it at 2:16; his walk to the stand to cap was read as setting off for the next flag at 2:11, 5 s before his own cap,
+            # so that his two single runs (R-472: "a runner who caps and goes back himself is a single run") stood as a runner gone before the cap
+            let_go += [c2[2] for L2 in lives if L2["team"] == tm and L2 is not L for c2 in L2["carries"] if c2[0] == a and c2[2] is not None and c2[1] < tp - 1 and c2[2] <= tp]
             if let_go and u < max(let_go): u = min(tp, int(-(-max(let_go) // 1)))
             runner = L["capper"] if L.get("capper") in L["serious"] else L["serious"][-1]     # who ran it in: the capper, else the last serious carrier (a brief pickup handed on is not a runner: golden hdm v One 17:24)
             # when the flag is under way: it first stands off its own base and pit in the carry that takes it in, counting the carries before that one from which it was

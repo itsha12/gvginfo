@@ -825,7 +825,13 @@ def card(s, i, K, M):
     if c["from_cap"]:
         way = f"he waited back at his flag spawn from {at(wb)} and took it up at {at(k['their_pick'])}" if wb is not None else f"he set off at {at(k['their_off'])}"
         goes = f"{us}'s first flag goes in, over {them}'s (in since {at(k['cap_over'])})," if k.get("cap_over") is not None else f"{us}'s flag goes in"
-        L = [f"{at(k['anchor'])}  {goes} while {them}'s {tr} is still on his way with theirs ({way}). Run again, or not?{up_}"]
+        if k.get("before_cap") is not None:
+            # our next runner went back before our own flag was in: the decision to run again was made then (R-485), and the card is told from that second, with
+            # who holds the stand at it and the cap about to land (R-547), never from the cap that follows
+            sec_ = f"its {c['our_runner']['role']}" if c.get("our_runner") else "a runner"
+            L = [f"{at(k['anchor'])}  {us}'s flag is {k['before_cap'] - k['anchor']} s from going in (at {at(k['before_cap'])}) and {them}'s {tr} is still on his way with theirs ({way}). Run again, or not? "
+                 f"{us} sends {sec_} back for its next flag now, before its own is in" + (": a double run" if k["our_double"] else "") + f". {hold}{boost}."]      # (the flag "already up" at this second is the one about to go in: said above)
+        else: L = [f"{at(k['anchor'])}  {goes} while {them}'s {tr} is still on his way with theirs ({way}). Run again, or not?{up_}"]
     elif wb is not None: L = [f"{at(k['anchor'])}  {them}'s {tr}, who waits back at his flag spawn from {at(wb)}, takes up a flag at {at(k['their_pick'])} ({c['their']}). {hold}{boost}.{up_}"]
     else: L = [f"{at(k['anchor'])}  {them}'s {tr} sets off for a flag ({c['their']}). {hold}{boost}.{up_}"]
     L.append(f"    The spot: main fight {us} {x[2]:.0f} v {them} {x[3]:.0f} ({up}); {us}'s main team {place(mo[1], us, them)}, {them}'s {place(mo[2], them, us)}; morale {us} {morale_(x[4])}, {them} {morale_(x[5])} (the eight summed; a death is -15); "
@@ -833,6 +839,7 @@ def card(s, i, K, M):
     d = _delay(c); who = (c.get("our_runner") or {}).get("role")
     if d is None or d > 180: did = f"{us} sends nobody in the next three minutes."
     elif d < 0: raise ValueError(f"card {c['id']}: {us}'s runner set off {-d} s before the run he is told to answer (R-460: whoever set off first is sending; jobs.flag_plays)")
+    elif k.get("before_cap") is not None: did = f"{us} runs again, its {'second runner' if k['our_double'] else 'runner'} gone before its flag was in" + (" (a double run)" if k["our_double"] else "") + "."
     else: did = f"{us} sends {('its ' + who) if who else 'a runner'} {d} s later" + (" (a double run)" if k["our_double"] else "") + "."
     L.append(f"    The answer: {did}")
     h = c["hard"]["180"]; tf = c["their_flag"]
@@ -4015,7 +4022,7 @@ def x3_parts(A, D, pr, res):
         ("Deep Wound left on him, a removal ready (R-725)", "a fault by his ruling", +1, dw_missed, lambda r: r.get("dw") in ("off", "left") and not dw_missed(r)),
         ("Shadow Shroud on him at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud")),
         ("a monk of his stopped at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("monks")), lambda r: not r.get("monks")),
-        ("Shadow Shroud, against the same team's other spikes", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud"),
+        ("Shadow Shroud, against the same team's other spikes", "the attack's good play (R-849)", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud"),
          {"exp": "_exp_noprot", "same": lambda r: (r["rid"], r["tm"]), "say": "no prots held level (none can be cast on him); the same teams in the same matches"}),
         ("a spike: a prot stripped before the first big hit", "the strip that matters (R-835)", +1, lambda r: spk(r) and any(x[3] and x[0] < 0 for x in rows_(r)), lambda r: spk(r) and no_strip(r),
          {"exp": "_exp_strip", "say": "against prots on him before, a strip ready and none that matters; the prots before the strip held level"}),
@@ -4269,7 +4276,8 @@ def attempts_report(path, out_json=None):
     CH = __import__("execution").CHANCE_S          # taken in the same seconds a chance is looked for, so the two sides of a row cover the same time
     taken = {"prot": lambda r: any(d <= CH and o == "finished" for _, d, o in r["prots_cast"]), "heal": lambda r: any(d <= CH and o == "finished" for _, d, o in r["heals_cast"]),
              "interrupt": lambda r: any(x["kind"] == "interrupt" and x.get("taken") for x in r["missed"]),
-             "strip": lambda r: bool(r["prots_up"]) and r["strip"]["prot_off"], "pressure": lambda r: r["pressure"]["interrupts"] > 0}
+             "strip": lambda r: bool(r["prots_up"]) and r["strip"]["prot_off"], "pressure": lambda r: r["pressure"]["interrupts"] > 0,
+             "let through": lambda r: any(g[4] <= CH for g in r.get("good") or ())}       # R-850: its taken is a prot or heal for him that the attack stopped (R-836)
     for kind, side, words in __import__("execution").MISSED_KINDS:
         has = lambda r: any(x["kind"] == kind and x.get("chance") for x in r["missed"])
         tk = taken[kind]
