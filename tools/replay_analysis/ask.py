@@ -1,109 +1,92 @@
-"""The query tool: the engine's end product (Denning, November 2026 review; docs/SPEC.md section 7).
+"""The query tool (R-272, rewired to the new engine at the close, R-845): a match and a moment in, the engine's reading of it out.
 
-A match and a moment in; out: the state, the decisions the team made around the moment with the usual play and the
-data-favoured choice (the advice built from the other matches, with the cases behind it), the macro answer (was the
-call right), the micro answer (given the call, what went wrong in execution, from the execution node that covers the
-moment), and what the enemy did (described, never a cause). Everything comes from models that never saw the match.
+    python3 ask.py <report id> <m:ss> [team tag] [--plays <plays file from `moments.py all`>] [--within N]
 
-Usage:  python3 ask.py <report id> <m:ss> [team tag]        (team defaults to the team with a decision nearest the moment)
-        python3 ask.py kinds                                  the decision kinds the tool can answer about
-A situation without a match ("builds X against Y, flag lead +30, 8v7 at main, 12:00") is the next form: it needs a
-situation row built without a replay; the pieces (usual.py's situation columns, advice.advise) are in place.
-Report layer: no cache key."""
-import json, os, sys
-from common import REPO
+What it says, for the team named (else both), each part from the engine's own records and in their words:
+  1. The position at that second (the state a call is made from: flags, the stand and its boost, players alive and at the main
+     fight, the base res, NPCs lost).
+  2. The decisions around the moment: every play that covers it or starts within N seconds of it (60 by default), with what each team
+     did, the play's job and whether its tests were met (`jobs.plays`; a job met is a result, never a verdict on the call).
+  3. How it was carried out: every death in those seconds with the chances missed and what was done (`execution.deaths`), and every
+     spike that did not kill with the attack's ruled misses (`execution.fails`).
+  4. With `--plays`: for the flag or boost decision nearest the moment, its card with the nearest cases (`cases.case`). That needs
+     the plays file of a full run, since similar cases come from every other match; a verdict there is a reading, not advice, until
+     the held-out test shows a gain for its scenario.
+The form that takes a situation with no match is decided after family 4 (R-845). It reads the engine and writes nothing: a report
+module, in no cache key."""
+import sys
 
-NEAR_S = 45          # decisions within this many seconds of the moment are "around" it
-# which execution node reads which decision kind's moment
-EXEC_NODE = {"power_play": ("power_play", True), "offence_or_defence": ("fight_outcome", True), "eight_v_eight_or_flag": ("fight_outcome", True),
-             "split_in_base": ("pit_npc_loss", False), "who_defends": ("collapse", True), "enemy_pickup": ("run_defence", False),
-             "boost_clock": ("run_outcome", True), "runner_choice": ("run_outcome", True), "split_or_stay": ("split_effect", True),
-             "after_wipe": ("pit_npc_loss", False), "npcs_or_dp": ("pit_npc_loss", False), "play_for_28_or_lord": ("fight_outcome", True)}
+NEAR_S = 60          # the seconds either side of the moment that count as "around" it
 
 
 def clock(t): return f"{int(t // 60)}:{int(t % 60):02d}"
 
 
 def parse_clock(s):
-    if ":" in s: m, s_ = s.split(":"); return int(m) * 60 + float(s_)
-    return float(s)
+    m, _, x = s.partition(":")
+    return int(m) * 60 + int(float(x or 0))
 
 
-def _recs():
-    import usual as U
-    src = "/tmp/ga"
-    if not os.path.isdir(src): raise SystemExit("analysis files missing: run analyze.py --all --out /tmp/ga first")
-    return U.wp_change(U.load(src))
+def position_lines(M, tm, t):
+    """The position of team tm at second t, in a sentence or two (`Moments._state`)."""
+    s, tag, foe = M._state(tm, t), M.m.tag[tm], M.m.tag[3 - tm]
+    lead = s["flag_lead"]
+    flags = "flag lead not read on this hall" if lead is None else "flags level" if abs(lead) < 0.35 else f"{tag if lead > 0 else foe} ahead on flags by {abs(lead):.1f}"
+    stand = {"own": f"{tag} holds the stand", "enemy": f"{foe} holds the stand", "nobody": "nobody holds the stand"}[s["stand"]]
+    boost = "" if s["boost_in"] is None else f", boost in {s['boost_in']} s"
+    flag = [f"{k} has a flag in hand" for k, v in ((tag, s["own_flag"]), (foe, s["enemy_flag"])) if v]
+    return [f"{clock(t)}  {tag}: {flags}; {stand}{boost}; alive {tag} {s['alive'][0]} v {foe} {s['alive'][1]}, at the main fight {s['main'][0]} v {s['main'][1]}; "
+            f"base res in {s['res_in']} s; pit NPCs lost {tag} {s['npcs_lost'][0][0]} v {foe} {s['npcs_lost'][1][0]}" + ("; " + "; ".join(flag) if flag else "") + "."]
 
 
-def state_lines(rid, team, t):
-    import tq
-    a = tq._analysis(rid)
-    sb = a["scoreboard"]
-    row = max((r for r in sb if r["t"] <= t), key=lambda r: r["t"], default=None)
-    if not row: return ["- no scoreboard row"]
-    foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != team][0]
-    me, en = row[team], row[foe]
-    owner = row["stand"]["owner"]
-    return [f"- At {clock(row['t'])}: {team} {me['alive']} alive ({me['main']} at main) against {foe} {en['alive']} ({en['main']}); flag lead {me['flag_lead']:+} s, "
-            f"stand {'own' if owner == team else ('enemy' if owner == foe else 'nobody')}, boost in {row['stand'].get('boost_in')} s; morale {me['morale_sum']:+} v {en['morale_sum']:+}; "
-            f"pit NPC value {me['npc_value']} v {en['npc_value']}; Lord damage {me['lord_damage_dealt']} v {en['lord_damage_dealt']}."]
-
-
-def answer(rid, t, team=None):
-    import advice as ADV, usual as U, tq, learnednodes as LN
-    recs = _recs()
-    mine = [r for r in recs if r["match"] == rid]
-    if not mine: return [f"No decision records for {rid} (is it analysed and trained on?)."]
-    near = sorted((r for r in mine if abs(r["t"] - t) <= NEAR_S), key=lambda r: abs(r["t"] - t))
-    if team is None:
-        team = near[0]["team"] if near else mine[0]["team"]
-    near = [r for r in near if r["team"] == team]
-    a = tq._analysis(rid)
-    L = [f"# {team} at {clock(t)} in {a['meta']['teams'][0]['tag']} v {a['meta']['teams'][1]['tag']} ({rid[:8]})", "", "## State"] + state_lines(rid, team, t) + [""]
-    if not near:
-        L += ["## Decisions", "", f"- No recorded decision of {team} within {NEAR_S} s of {clock(t)}. Kinds the engine recognizes: " + ", ".join(sorted({r['kind'] for r in recs})) + ".", ""]
-    seen_nodes = set()
-    for r in near[:3]:
-        kind = r["kind"]
-        p = ADV._prep(recs, kind)
-        L += [f"## Decision: {kind.replace('_', ' ')} at {clock(r['t'])}", ""]
-        choice = U.refine(r)
-        L.append(f"- Chosen: **{choice}**. Win chance over the window: {r.get('wp_change', 0):+} points (a model that never saw the match).")
-        if p:
-            Lk, choices, ZN, ZA, y = p
-            i = next((j for j, x in enumerate(Lk) if x["match"] == rid and x["team"] == team and x["t"] == r["t"]), None)
-            if i is not None:
-                import numpy as np
-                tr = np.array([j for j in range(len(Lk)) if Lk[j]["match"] != rid])
-                best, usual, n = ADV.advise(i, tr, Lk, ZN, y)
-                d = np.sqrt(((ZN[tr] - ZN[i]) ** 2).sum(1)); nearest = [tr[j] for j in np.argsort(d)[:ADV.K]]
-                by = {}
-                for j in nearest: by.setdefault(Lk[j]["choice2"], []).append(y[j])
-                tbl = ", ".join(f"{c}: {np.mean(v):+.1f} ({len(v)})" for c, v in sorted(by.items(), key=lambda kv: -len(kv[1])))
-                L.append(f"- **Macro**: among the {len(nearest)} most similar decisions in other matches the usual play is **{usual}**; the data favours **{best}**"
-                         + (f" ({n} cases, {ADV.MARGIN:g}+ points better than the usual play)" if best != usual else " (nothing beats it by the margin)")
-                         + f". Mean win change by choice there: {tbl}.")
-                L.append("- Verdict: " + ("the call matched the data-favoured choice." if choice == best else f"the data favoured **{best}** over the chosen **{choice}**."))
-            else: L.append("- Macro: this decision isn't in the usual-play set (too few cases of its kind).")
-        else: L.append("- Macro: not enough decisions of this kind yet to compare.")
-        node, good_high = EXEC_NODE.get(kind, (None, None))
-        if node and node in LN.SPEC and node not in seen_nodes:
-            seen_nodes.add(node)
-            L.append(f"- **Micro** ({node.replace('_', ' ')} node):")
-            try:
-                ex, faults = tq.execution_lines(node, rid, team, r["t"], good_high=good_high, window=NEAR_S)
-                L += ["  " + x for x in ex]
-            except Exception as ex_: L.append(f"  - not read: {ex_}")
-        L.append("")
-    return L
+def answer(rid, t, team=None, plays_file=None, within=NEAR_S):
+    from replaylib import Match
+    from state import GameState
+    from scoreboard import Scoreboard
+    import common, moments, jobs, execution as EX
+    rid = next((r for r in common.replay_ids() if r.startswith(rid)), rid)
+    st = GameState(Match.from_branch(rid))
+    M = moments.Moments(st, Scoreboard(st))
+    tags = [M.m.tag[k] for k in (1, 2)]
+    if team is not None and team not in tags: raise SystemExit(f"no team {team} in this match: {' v '.join(tags)}")
+    tms = [k for k in (1, 2) if team is None or M.m.tag[k] == team]
+    t = min(max(int(t), 0), M.T)
+    L = [f"{' v '.join(tags)}, {clock(t)}: https://gvg.report/report/{rid}#map", "", "1. The position"]
+    for k in tms: L += ["   " + x for x in position_lines(M, k, t)]
+    # the decisions: the plays that cover the moment, or start within `within` s of it
+    P = [p for p in jobs.plays(M) if (p["t0"] <= t <= p["t1"] or abs(p["t0"] - t) <= within) and (team is None or p["team"] == team)]
+    L += ["", f"2. The decisions around it ({len(P)} play{'s' if len(P) != 1 else ''}; a job met is a result, not a verdict on the call)"]
+    for p in sorted(P, key=lambda p: (p["t0"], p["tm"])):
+        tests = "; ".join(f"{k}: {'yes' if v else 'no'}" for k, v in list(p["tests"].items()) + list(p["any_of"].items()))
+        L.append(f"   {clock(p['t0'])} to {clock(p['t1'])}  {p['team']}, {p['play']}: {p['scenario']}")
+        L.append(f"      job: {p['job']}. {'Met' if p['met'] else 'Not met'}" + (f" ({tests})." if tests else "."))
+    if not P: L.append("   No play of the engine's covers this moment.")
+    # how it was carried out: the deaths and the spikes that did not kill, in those seconds
+    E = EX.Exec(M, rid)
+    A = EX.attempts(E); PR = EX.pressure(E, A); TR = EX.triggers(E)
+    EX.tagged_parts(E, A, PR, TR); EX.position_parts(E, A, PR, EX.positions(E))
+    D = [d for d in EX.deaths(E, A, PR, TR) if abs(d["t"] - t) <= within and (team is None or d["team"] == team)]
+    F = [f for f in EX.fails(E, A) if abs(f["t"] - t) <= within and (f["faults"] or f["taken"]) and (team is None or f["team"] == team)]
+    L += ["", f"3. How it was carried out ({len(D)} death{'s' if len(D) != 1 else ''}" + ("" if team is None else f" of {team}'s")
+          + f", {len(F)} spike{'s' if len(F) != 1 else ''} that did not kill with a ruled miss or its good play, within {within} s)"]
+    for d in D: L += ["   " + x for x in EX.death_lines(d, TR)] + [""]
+    for f in F: L += ["   " + EX.say_fail(f, TR), ""]
+    if not D and not F: L.append("   Nobody died and no failed spike carries a ruled miss in those seconds.")
+    out = "\n".join(L).rstrip() + "\n"
+    if plays_file:                                         # the flag or boost decision nearest the moment, as its card with the nearest cases
+        import contextlib, io, cases
+        buf = io.StringIO()
+        try:
+            with contextlib.redirect_stdout(buf): cases.case(plays_file, rid, clock(t))
+            out += "\n4. The nearest flag or boost decision, with similar cases (a reading, not advice, until the held-out test shows a gain for its scenario)\n" + "\n".join("   " + x for x in buf.getvalue().splitlines()) + "\n"
+        except SystemExit as e: out += f"\n4. No card: {e}\n"
+    else: out += "\n4. Similar cases: pass --plays <the plays file of a full run> for the card of the nearest flag or boost decision.\n"
+    return out
 
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if a[:1] == ["kinds"]:
-        import decisions as D
-        for k, v in D.KINDS.items(): print(f"{k:24} {v['moment']}: {v['choices']} [{v['source']}]")
-    elif len(a) >= 2:
-        print("\n".join(answer(a[0], parse_clock(a[1]), a[2] if len(a) > 2 else None)))
+    opt = lambda k: a[a.index(k) + 1] if k in a else None
+    pos = [x for i, x in enumerate(a) if not x.startswith("--") and (i == 0 or a[i - 1] not in ("--plays", "--within"))]
+    if len(pos) >= 2: print(answer(pos[0], parse_clock(pos[1]), pos[2] if len(pos) > 2 else None, opt("--plays"), int(opt("--within") or NEAR_S)), end="")
     else: print(__doc__)
