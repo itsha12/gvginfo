@@ -22,8 +22,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 - `bundle-4` 9ff24ab (one bundled change: R-831, R-832, R-834, section H's evidence rows): the development set's
   plays and moments identical to the digest, 323 Classic rows pass. `attempts_cases.json`: the 90223ed run's records,
   9ff24ab's `cases.py`. Main's `execution_rows.json` is 9ff24ab's (four rows he marked lost a Positioning line).
-- Why the four fail (ENGINE_NOTES section 44, last item): the strip before the first big hit +6.8, 7/10, after it
-  +0.3; a prot or heal of the monks' interrupted +10.0, 10/10; Shroud +10.1, 8/10; immunity is Aegis, unseen.
+- Why the four fail (section 44, last item): strip before the hit +6.8, after +0.3; a monk's cast interrupted +10.0.
 
 ## Next (in order, R-810)
 1. His answers to "Open for Denning" 1, then one bundled change: the strip (`chance_tests`: one before the first
