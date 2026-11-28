@@ -833,9 +833,35 @@ index pointing here. Read the section for a reading before changing it, and keep
   its job and tests (`jobs.plays`), every death in those seconds in the match report's wording and every failed spike with a ruled miss or
   its good play (`execution.deaths`, `fails`), and with `--plays` the card of the nearest flag or boost decision with its nearest cases
   (`cases.case`: the similar cases need a full run's plays file). A report module: no reading moves. The form with no match waits for
-  family 4. Still to do of Fable's part, in order: the new families beside the old kinds in the Train batch workflow and the learning report
-  for the one rebuild (R-323); the stand-in prices of `cases.py` replaced by the win model's; then, after that rebuild is read, the old kinds
-  retired (`decisions.py`, `usual.py`, `advice.py`, `tq.py`; `learning.py` still imports `tq.py`) with their data files (R-398 item 3).
+  family 4.
+- **The rest of Fable's part of the close: the approach as set out to him on 2026-11-28 (proposed; his word on its two questions first).**
+  Nothing here changes a reading of `bundle-4` (R-322: the engine as run at 04310c3 is what lands).
+  **(a) Side by side for the one rebuild** (R-323). The rebuild is the Train batch workflow on the same 506 matches (`add_batch` no), started by
+  him after the merge. Today it runs only the old engine (`analyze.py --all`, the node rows, `learning.py part ...` and `finish`; the old
+  kinds' advice test is `advice.advice_test`, called from `learning.s_usual`). To add: one job, `families`, beside `prepare`: `moments.py
+  all` on the runner's cores, the key and the truths as gates (a failing Classic row or truth fails the job, R-460), the digest checked
+  against `plays_digest.json` (it must agree: the same engine as 04310c3), then the `cases.py` reports of this chat's script (ladder before
+  test, R-545; execution last), their JSON to `data/model/`; and one section of the learning report, "The new families beside the old kinds",
+  which prints each family's held-out advice test from those files beside the old kinds' test and the old kinds' reading before (6 of 13
+  clear at 506: `data/model/advice_test.json` as it stands on main is that reading, kept as `advice_test_before.json`). The old engine's
+  measurement modules are in the cache key and `bundle-4` changed files in that folder, so the rebuild is a full one (hours): that is the
+  comparison R-323 asks for (do the old kinds read as before on the new code). The workflow cannot be run in a chat: every command of the new
+  job is run in the chat first (as on 2026-11-28), the report section against those files, and a `trial` input lets him start the new job
+  alone from the branch, committing nothing (question 1).
+  **(b) The stand-in prices replaced.** `cases.py` prices a position with a small logistic on seven quantities (`PRICE`, `fit_prices`,
+  `chance`, fitted without each group of matches). The win model reads a match every 5 s (`features.table`, `WPModel.heldout`). To build: the
+  `prepare` job writes each trained match's held-out win chance every 5 s (`winmodel_series`, an artifact, not in the repository);
+  `cases.py --prices model` reads the chance at the decision's second and at 60, 90 and 180 s after it from that file in place of
+  `chance(beta, position(...))`; for the one rebuild both are printed, the stand-in beside the win model's, and the win model's is kept if
+  the families' held-out tests are no worse on it (REDESIGN's adoption line). Tried in the chat against main's cache of the 506 (the old
+  code's models: enough to test the plumbing). Matches counted and not trained (58 of the 564) have no held-out win model: they keep the
+  stand-in and are said so. The cards' "data favours" lines can move with the prices: written again after the rebuild, no marking round.
+  **(c) The old kinds retired**, only after the rebuild is read with him: `decisions.py`, `usual.py`, `advice.py`, `tq.py` and their sections
+  of `learning.py` (`s_usual`, `s_tqs`; `learning.py` imports `tq.py`), the workflow's `tqs` and `blind` inputs and its blind test step, and
+  the data files of R-398 item 3. `decisions.py` and `usual.py` are in the measurement key: the first Train batch after the retirement
+  rebuilds the prepared data once more (it is the next batch of new matches, so nothing is run twice for it).
+  **Order**: (a) and (b) on `bundle-4` in one chat, tried there; word to him, and Opus drafts SPEC and METHODS and runs the readability test;
+  his list of R-398; the merge at his explicit word; he starts the Train batch; the report read with him; (c).
 
 ### 38. Before the next training run (R-398)
 - Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
@@ -964,7 +990,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-855; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-856; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,

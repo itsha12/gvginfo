@@ -254,7 +254,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     the defence's interrupt on a spike skill. On a spike only; only a prot or heal for the target that landed (begun
     by 1.5 s after the first big hit, on the list of skills worth interrupting, its offensive side); the interrupter
     with a skill that can stop it ready, in reach and with time to react (Rule 1), not out of energy; an interrupt
-    thrown at it and missed counts and is said so; one interrupt a player a spike (R-816). Listed on a spike
+    thrown at it and missed counts and is said so; one interrupt a player a spike (R-816; both confirmed, R-856). Listed on a spike
     that did not kill (R-714), with the check beside it. Built (`let through`, `execution.RULED_KINDS`); on the full
     run a prot or heal stopped kills 37.6% of 295 spikes against 16.9% of 545 where one was let through: +12.2
     points (+6.7 to +16.7), 9/10: it passes on its own.

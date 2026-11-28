@@ -123,7 +123,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   when the second player goes back: until then the first run of the pair is a single run (R-485). The test is
   whether a team mate of the capper walked back for the next flag by the cap, not where he stood at the capture; a
   capper's own set-off is never read before his cap; a double run from its start is one run, told when it starts
-  (R-854). A hand-off and a double run are told apart afterwards, by what the players go on to do (R-340); in the
+  (R-854). There is no minimum lead: a second runner gone 1 s before the cap counts (R-856). A hand-off and a double run are told apart afterwards, by what the players go on to do (R-340); in the
   flag grid a hand-off counts as a single run (R-426).
 - A flag returned (R-620, R-622): a flag put down goes back only when an enemy player picks it up, never by itself;
   its cost is the delay of the next cap, the boost it can lose and the player sent back, and what is measured is
