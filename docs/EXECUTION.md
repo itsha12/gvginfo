@@ -238,19 +238,26 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 65. **The attack's good play on their monks** (R-836): a prot or heal of a monk's for the target that the attack
     stopped (who stopped it, with what), and a monk in reach knocked down as the spike lands, casting or not. Said on
     the death as "Enemy good play:", on a death by a spike and on one by pressure (read to the death). Built. A prot
-    or heal let through with an interrupt ready is a fault of the attack's, by name (R-850): to be built, what counts
-    as let through put to him first.
+    or heal let through with an interrupt ready is the attack's fault (Rule 69).
 66. **The spike thrown, and Aegis** (R-837): skills and attacks aimed at one player whose usual damage adds to 400 or
     more inside 3 s, whatever landed, each skill at what a cast of it did for its caster this match. Aegis is read on
     these, no longer than 3.6 s from its cast: the spells that stopped on it, what landed, whether he died and when.
     A record and its sentence (`execution.thrown`, `say_thrown`), said on the play's row (R-841): how many each side
     threw, how many landed too little to be a kill attempt, and each one that met Aegis. Not on the site.
 67. **Shadow Shroud** (R-838, R-849): the attack's good play, kept by name on its check against the same teams' other
-    spikes (+10.1, 8/10); to be built into `BY_NAME` with the next bundled change.
+    spikes (+10.1, 8/10). Built (`BY_NAME`): said on a death under "Enemy good play:", with the player who cast it.
 68. **Kept by name** (R-842): the strip before the first big hit on a spike (+9.4, 8/10) and a monk in reach down as
     the spike lands (+8.1, 7/10) stand though short of the groups bar (`execution.BY_NAME`). The bar stays 9 of 10
     for everything else; the check is said beside them after every full run; one that reads backwards goes to him.
     A strip before a burst (+2.2, 6/10) is not kept by name.
+69. **A prot or heal let through with an interrupt ready** (R-850, R-853): the attack's fault, by name, the mirror of
+    the defence's interrupt on a spike skill. On a spike only; only a prot or heal for the target that landed (begun
+    by 1.5 s after the first big hit, on the list of skills worth interrupting, its offensive side); the interrupter
+    with a skill that can stop it ready, in reach and with time to react (Rule 1), not out of energy; an interrupt
+    thrown at it and missed counts and is said so; one interrupt a player a spike (R-816). Listed on a spike
+    that did not kill (R-714), with the check beside it. Built (`let through`, `execution.RULED_KINDS`); on the full
+    run a prot or heal stopped kills 37.6% of 295 spikes against 16.9% of 545 where one was let through: +12.2
+    points (+6.7 to +16.7), 9/10: it passes on its own.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -325,7 +332,7 @@ for a second or longer with 90 or more landing on him in 3 s, hits and degen; Ru
 | Deep Wound missing or off-timed on the spike (R-751) | Yes (stage 3), a why: on him at the first big hit, when it came, who in reach carried it | Whether the skill was ready: adrenaline is not in the replays |
 | A damage player with his skill ready who hit another target (R-751) | No: dropped for now (R-809). Built and read backwards (spikes with it killed 4.7 points more, in every group of ten) | His word to bring it back |
 | Enchantment prevention not used: Shadow Shroud | Partly: where it was used is kept on every attempt (Rule 44) and checked once as the attack's good play (+10.1 points killed against the same teams' other spikes, 8/10: 38 teams, too few for the bar); kept by name (R-849), to be built | As a missed chance of the attack's: carried, ready, in reach and not cast |
-| Their monks not pressured: interrupts, knockdowns, Daze | Yes (the missed chance fails the check: never a fault). Said as the attack's good play (Rule 65, R-836): a prot or heal for the target stopped +10.0 points killed (10/10); a monk in reach down as the spike lands +8.1 (+4.8 to +11.8, 7/10), kept by name (Rule 68) | A prot or heal let through with an interrupt ready as a fault: ruled by name (R-850), to be built |
+| Their monks not pressured: interrupts, knockdowns, Daze | Yes (the missed chance fails the check: never a fault). Said as the attack's good play (Rule 65, R-836): a prot or heal for the target stopped +10.0 points killed (10/10); a monk in reach down as the spike lands +8.1 (+4.8 to +11.8, 7/10), kept by name (Rule 68) | Built: a prot or heal let through with an interrupt ready is the attack's fault (Rule 69, R-850, R-853): +12.2 points, 9/10 |
 | Their monks not disabled, cast-prevented or drained | Partly: each of the target's monks knocked down, Dazed, disabled or hexed at the first big hit is kept on the attempt (Rule 44) and checked once | As a missed chance of the attack's; energy drained |
 | Spiked into a block or spell immunity (Aegis, Guardian, Mirage Cloak, Spell Breaker, Obsidian Flesh) | Yes (stage 3), a why: his enchantments, stances and weapon spells at the first big hit whose text blocks attacks or bars enemy spells; a block is said only where more than a third of the spike is attacks (R-831), immunity only against a spike with spells. A block passes the check (-6.4 points killed, 10/10). Immunity is Aegis alone, read on the spikes thrown (Rule 66, R-837): 368 thrown into it, 315 spells stopped on it; where it came during the spike 1.7% died against 22.4% of the spikes with neither Aegis nor a block whose target was still alive at that moment; a block at its start -10.3 points killed (10/10). Said on the play's row (R-841); the record keeps the time of death, and section J sets Aegis coming during a spike against the targets still alive then | On the site |
 | Spiked into a ward or a spirit (Ward Against Melee, Shelter, Union, Displacement) (R-751) | No: not in the records (the limits) | A ward's place and length from its cast; a spirit has no position in the replays |

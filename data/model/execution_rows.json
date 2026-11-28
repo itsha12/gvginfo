@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review > Execution (R-713 to R-715, R-805 to R-827): every death of a player in the games picked, in the wording of the match report: what killed him, what applied at the spike (no shield, Shadow Shroud, a monk stopped), his own play (Trigger Fault, Positioning, Context), then each chance his team missed (Deep Wound left on him, a prot, a heal, an interrupt on a spike skill on a spike of 400 or more) with what it would have done and whether it would have saved him if begun by when, and what was done for him, one line a player; none priced or ranked. Written by tools/golden/review.py execution on the engine branch. His marks are in execution_row_marks.json, never here.",
  "generated": "2026-11-28",
- "engine": "4d3866c",
+ "engine": "04310c3",
  "kinds": [
   "prot",
   "heal",
@@ -81,11 +81,12 @@
        "lines": [
         "2:20 Men's Mesmer dies to a spike: 518 in 0.3 s; 544 inside 3 s. Missed: interrupts.",
         "Sum: 484 health of 570; 553 landed (544 in hits, 9 in degen).",
+        "Enemy good play: the Mesmer had Shadow Shroud on him from -0.7 s to 0.3 s after the first big hit: no enchantment could be cast on him.",
         "Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy. 5 spike skills cast (1x Shell Shock; 4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
         "No fault: too fast. The damage landed over 0.3 s; the fastest save needed 0.45 s to see the hit and cast."
        ],
        "also": [],
-       "text": "2:20 Men's Mesmer dies to a spike: 518 in 0.3 s; 544 inside 3 s. Missed: interrupts. Sum: 484 health of 570; 553 landed (544 in hits, 9 in degen). Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy. 5 spike skills cast (1x Shell Shock; 4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. No fault: too fast. The damage landed over 0.3 s; the fastest save needed 0.45 s to see the hit and cast."
+       "text": "2:20 Men's Mesmer dies to a spike: 518 in 0.3 s; 544 inside 3 s. Missed: interrupts. Sum: 484 health of 570; 553 landed (544 in hits, 9 in degen). Enemy good play: the Mesmer had Shadow Shroud on him from -0.7 s to 0.3 s after the first big hit: no enchantment could be cast on him. Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy. 5 spike skills cast (1x Shell Shock; 4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. No fault: too fast. The damage landed over 0.3 s; the fastest save needed 0.45 s to see the hit and cast."
       }
      ]
     },
@@ -109,12 +110,13 @@
         "Sum: 459 health of 468; 547 landed (547 in hits).",
         "His death took the AoB Derv with it (a pact kill).",
         "Enchantment Prevention: Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit; no prot fault.",
+        "Enemy good play: the Mesmer put the Shadow Shroud on him.",
         "Late Heal: 7 Monk started Infuse Health 0.2 s before he died, too late to land; he had it ready 0.4 s after the first big hit, sufficient energy (30 to 51). Infuse Health would have healed 192 and saved the spike if cast within 0.8 s of the first big hit.",
         "Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot ready, sufficient energy. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike.",
         "Attempted, failed: Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
        ],
        "also": [],
-       "text": "3:41 Men's Mesmer dies to a spike: 508 in 1.1 s; 547 inside 3 s. Missed: heals, interrupts. Sum: 459 health of 468; 547 landed (547 in hits). His death took the AoB Derv with it (a pact kill). Enchantment Prevention: Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit; no prot fault. Late Heal: 7 Monk started Infuse Health 0.2 s before he died, too late to land; he had it ready 0.4 s after the first big hit, sufficient energy (30 to 51). Infuse Health would have healed 192 and saved the spike if cast within 0.8 s of the first big hit. Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot ready, sufficient energy. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. Attempted, failed: Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
+       "text": "3:41 Men's Mesmer dies to a spike: 508 in 1.1 s; 547 inside 3 s. Missed: heals, interrupts. Sum: 459 health of 468; 547 landed (547 in hits). His death took the AoB Derv with it (a pact kill). Enchantment Prevention: Shadow Shroud was on him from -0.6 s to 1.1 s after the first big hit; no prot fault. Enemy good play: the Mesmer put the Shadow Shroud on him. Late Heal: 7 Monk started Infuse Health 0.2 s before he died, too late to land; he had it ready 0.4 s after the first big hit, sufficient energy (30 to 51). Infuse Health would have healed 192 and saved the spike if cast within 0.8 s of the first big hit. Missed Interrupt: Mesmer available to cast, Complicate/Power Spike ready, sufficient energy; Ranger available to cast, Distracting Shot ready, sufficient energy. 4 spike skills cast (1x Shell Shock; 3x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 128 damage and saved the spike. Attempted, failed: Blessed Light 0.9 s after the first big hit (cancelled); Infuse Health 0.9 s after the first big hit (cancelled)."
       },
       {
        "id": "x:221.3:Men:AoB Derv",
@@ -152,6 +154,7 @@
         "Sum: 540 health of 540; 563 landed (542 in hits, 21 in degen).",
         "Shield set: staff held for 1.3 s of the 1.3 s spike. A shield would have stopped 104 damage and saved the spike.",
         "Enchantment Prevention: Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit; no prot fault.",
+        "Enemy good play: the Mesmer put the Shadow Shroud on him.",
         "Late Heal: Prot himself started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (63 to 63). Blessed Light would have healed 70 and saved the spike if cast within 0.5 s of the first big hit.",
         "Late Heal: 8 Monk started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (55 to 55). Blessed Light would have healed 107 and saved the spike if cast within 0.5 s of the first big hit.",
         "Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 106 damage and saved the spike.",
@@ -161,7 +164,7 @@
        "also": [
         "3:38 to 4:32: Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50..."
        ],
-       "text": "4:05 Men's Prot dies to a spike: 455 in 1.3 s; 542 inside 3 s. Missed: heals, interrupts. Sum: 540 health of 540; 563 landed (542 in hits, 21 in degen). Shield set: staff held for 1.3 s of the 1.3 s spike. A shield would have stopped 104 damage and saved the spike. Enchantment Prevention: Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit; no prot fault. Late Heal: Prot himself started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (63 to 63). Blessed Light would have healed 70 and saved the spike if cast within 0.5 s of the first big hit. Late Heal: 8 Monk started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (55 to 55). Blessed Light would have healed 107 and saved the spike if cast within 0.5 s of the first big hit. Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 106 damage and saved the spike. Attempted, failed: Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled). No fault: 7 Monk's Infuse Health, Dwayna's Kiss, Heal Other, in range and ready: he was casting Vigorous Spirit on the Paragon as it began and could not land a cast before the death."
+       "text": "4:05 Men's Prot dies to a spike: 455 in 1.3 s; 542 inside 3 s. Missed: heals, interrupts. Sum: 540 health of 540; 563 landed (542 in hits, 21 in degen). Shield set: staff held for 1.3 s of the 1.3 s spike. A shield would have stopped 104 damage and saved the spike. Enchantment Prevention: Shadow Shroud was on him from -0.2 s to 1.3 s after the first big hit; no prot fault. Enemy good play: the Mesmer put the Shadow Shroud on him. Late Heal: Prot himself started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (63 to 63). Blessed Light would have healed 70 and saved the spike if cast within 0.5 s of the first big hit. Late Heal: 8 Monk started Blessed Light 0.3 s before he died, too late to land; he had it ready 0.2 s after the first big hit, sufficient energy (55 to 55). Blessed Light would have healed 107 and saved the spike if cast within 0.5 s of the first big hit. Missed Interrupt: Ranger available to cast, Distracting Shot/Savage Shot ready, sufficient energy. 4 spike skills cast (4x Invoke Lightning). Interrupt on 1 Invoke Lightning would have prevented 106 damage and saved the spike. Attempted, failed: Blessed Light 1.0 s after the first big hit (cancelled); Blessed Light 1.0 s after the first big hit (cancelled). No fault: 7 Monk's Infuse Health, Dwayna's Kiss, Heal Other, in range and ready: he was casting Vigorous Spirit on the Paragon as it began and could not land a cast before the death."
       },
       {
        "id": "x:253.9:Men:Paragon",
@@ -203,10 +206,11 @@
         "24:00 Men's AoB Derv dies to a spike: 340 in 0.8 s; 430 inside 3 s. Nothing missed.",
         "Sum: 329 health of 530; 430 landed (430 in hits).",
         "Shield set: staff held for 0.8 s of the 0.8 s spike. A shield would have stopped 104 damage and saved the spike.",
+        "Enemy good play: the Mesmer had Shadow Shroud on him from -3.8 s to 0.8 s after the first big hit: no enchantment could be cast on him.",
         "No fault: no monk in range (the nearest, 7 Monk, at 4,310)."
        ],
        "also": [],
-       "text": "24:00 Men's AoB Derv dies to a spike: 340 in 0.8 s; 430 inside 3 s. Nothing missed. Sum: 329 health of 530; 430 landed (430 in hits). Shield set: staff held for 0.8 s of the 0.8 s spike. A shield would have stopped 104 damage and saved the spike. No fault: no monk in range (the nearest, 7 Monk, at 4,310)."
+       "text": "24:00 Men's AoB Derv dies to a spike: 340 in 0.8 s; 430 inside 3 s. Nothing missed. Sum: 329 health of 530; 430 landed (430 in hits). Shield set: staff held for 0.8 s of the 0.8 s spike. A shield would have stopped 104 damage and saved the spike. Enemy good play: the Mesmer had Shadow Shroud on him from -3.8 s to 0.8 s after the first big hit: no enchantment could be cast on him. No fault: no monk in range (the nearest, 7 Monk, at 4,310)."
       }
      ]
     },

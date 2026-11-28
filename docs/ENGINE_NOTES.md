@@ -399,13 +399,44 @@ index pointing here. Read the section for a reading before changing it, and keep
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
   gain for its scenario: say so whenever one is shown to him.
-- **Found 2026-11-28, not fixed: the cards cannot be written on `bundle-4` 4d3866c.** `cases.py cards <full run> f1 --site` stops (R-460) on
-  hold v RACK at 2:16 (d492aa6c): hold's first flag goes in at 2:16 with RACK's still 40 s out, the play asks hold "run again, or not?"
-  from that cap (`from_cap`), and hold's Earth Ele had set off for the next flag at 2:11, 5 s before it. On the 564: 41 of 1,107 such
-  plays have the runner off before the cap (the middle one 2 s before, the longest 33), and 21 of 3,632 answers to a run have him off
-  before theirs; one of the 62 is in the graded games. No card of main's `flag_cards.json` (written at e480706, 2026-11-22) is at that
-  moment. To be put right at the root in `jobs.flag_plays` with the next bundled change (a player going back before his team's flag is
-  in is the second runner of a double run by R-485 and R-547: his word on it first); it moves those plays, so the digest is made again.
+- **A runner gone before his team's flag is in (2026-11-28, built on `bundle-4` 04310c3; R-854, his word on R-472, R-485 and R-547: "My earlier
+  rulings are correct so proceed with those").** Found: `cases.py cards <full run> f1 --site` stopped (R-460) on hold v RACK at 2:16 (d492aa6c),
+  a play asking hold "run again, or not?" from its cap with its Earth Ele "set off" 5 s before it; on the 564, 41 of 1,107 such plays had the
+  runner off before the cap (the longest 33 s). Three roots, each put right where it lay, with no new threshold:
+  **(1) One player's own cap** (`moments.run_starts`): hold's Earth Ele put his first flag down at 0:33 and capped it at 2:16, a capture the
+  observer recorded on no carry; his walk to the stand to cap was read as setting off for the next flag. A set-off is now never before a
+  capture of the runner's own, read from the flag's life (`flag_lives` closes that carry at the capture; `self.carry` does not hold it): a capper
+  who goes back himself is a single run (R-472).
+  **(2) A second player gone back by the cap** (`jobs._flag_rows`): the pair was a double run only where the flag's own record said so, and that
+  record asks where the next runner stood at the capture (nearer his spawn than the stand, R-340), so a player who turned for home a few
+  seconds before the cap was no second runner. Now a team mate of the capper who walked back for the next flag (`set_off`: more than 1,500 to
+  his spawn, going for good, his team not held in its base, not home from a split) by the cap is the second runner, whatever the form says; a
+  player already at home who takes the next flag is told by the form as before (`DOUBLE_NEXT_S`). `first_leg` names the two runners in the
+  words; `from_start` marks a pair that is a double run from its start.
+  **(3) The play's own second** (`jobs.flag_plays`, the branch "once ours is in, with theirs still on its way"): where our next runner had
+  turned for home before our cap, (a) a double run from its start is one run told when it starts, its second runner no new decision, and the
+  play from our cap is as it was without him as its answer (HC v cope 0:30, Classic: "HC stays"; the first try told him again and failed that
+  row); (b) gone after their runner set off, the play is told from the second he went back (`clock.before_cap` holds the cap that follows; its
+  position, windows and reads are on that second, and the card says the stand's holder then and the cap about to land, R-547); (c) gone before
+  their runner set off, he was sent first too, their run answers both flags, and we decide nothing until that next flag is in (MBP v Team
+  1:07: the play is no longer told). A from-cap play whose runner is off before its own second now stops the run (R-460), as an answer does.
+  **Runs**: the development set against the run before: 323 Classic rows pass; only flag plays move (67 gone, 69 new, 85 changed of 6,935; every
+  flag play gains `clock.before_cap`), with the two opening plays of hold v RACK (the next flag's set-off) and each moment's `alloc` (it names
+  plays); our double runs 57 to 133 of 1,028 flag plays, their double runs 168 to 235, stays 364 to 314, 60 plays told before the cap. Two
+  history rows no longer hold (RJT v RACK 1:41 and 2:23, both marked wrong). The full run (564, no errors, 25 minutes): 33,106 plays (33,089),
+  5,269 flag plays, 1,190 told from our cap or before it, 228 of those from the second runner's going back (214 double runs; the middle one 13
+  s before the cap, half of them 8 to 20 s, 18 under 3 s, the longest 54); no play has a runner off before its second but the 21 pairs of first
+  flags from the gates, which are the opening's (R-541); our double runs 671 and theirs 1,184 of the 5,269.
+  **The reports on it**: every known truth holds; the held-out advice test of `cases.py test`: their boost as before (+6.4 at 90 s); the
+  answer to their run at 15 s, 60 s on +0.9 (+0.1 to +1.7; was +1.6), 90 s on +0.6, no clear difference (was +1.5, better); run again, read
+  15 s on, with the double runs now told as such: 90 s on +2.0 (+0.4 to +3.7) and 180 s on +3.3 (+0.5 to +6.2), both better (were +0.8 and
+  +0.1, no clear difference), 60 s on +1.3 (-0.2 to +2.4) with the 60 s before reading the other way (-1.6: it marks the situation there).
+  **The cards written again** (R-852; main's `flag_cards.json` at 04310c3, 63 cards): by this change alone, on the twelve graded games the
+  engine before it could write, 47 cards are the same, 4 are told differently (a run now a double run at HC v Team 8:53 and 10:23 and Dz v
+  Team 4:37; Men v RACK told from 1:08, 19 s before Men's cap) and 2 are no longer written (옷옷옷옷 v hdm 3:21 and HC v Team 11:35: the
+  next runner had gone before theirs set off); hold v RACK's are written again. Against the cards he marked on 2026-11-22 (written at
+  e480706, six days of engine changes before): 40 of his 55 marked cards carry `changed` (18 told differently, 12 that and the first look, 10
+  the first look alone; most of the tellings a figure a second or two apart) and 6 are under `gone`. Set out to him; no marking round.
 
 ### 23. The split family and the main fight while a split is out
 - The split family (R-558; the split plays are ready, R-564), the answer to a split, on the branch. Every split play carries `split`, the record of its
@@ -796,6 +827,15 @@ index pointing here. Read the section for a reading before changing it, and keep
   `split_plays`); flags carried by a player with Shadow of Haste are set aside (`soh`). `moments.py all <file>` then `jobs.py
   summary <file>`, `moments.py after|runner <file>`; `jobs.py <report id>` prints a match's plays. Thresholds marked
   "Claude's draft" in `common.py` are his to confirm.
+- **The close, begun 2026-11-28 (R-855: Fable's part in the chat of the last bundled change). The query tool rewired (R-845; `bundle-4` 5db24a4).**
+  `ask.py <report id> <m:ss> [team] [--plays <plays file>] [--within N]` reads the new engine alone (it no longer imports `tq`, `usual`,
+  `advice` or `decisions`): the position at that second (`Moments._state`), every play that covers the moment or starts within N s of it with
+  its job and tests (`jobs.plays`), every death in those seconds in the match report's wording and every failed spike with a ruled miss or
+  its good play (`execution.deaths`, `fails`), and with `--plays` the card of the nearest flag or boost decision with its nearest cases
+  (`cases.case`: the similar cases need a full run's plays file). A report module: no reading moves. The form with no match waits for
+  family 4. Still to do of Fable's part, in order: the new families beside the old kinds in the Train batch workflow and the learning report
+  for the one rebuild (R-323); the stand-in prices of `cases.py` replaced by the win model's; then, after that rebuild is read, the old kinds
+  retired (`decisions.py`, `usual.py`, `advice.py`, `tq.py`; `learning.py` still imports `tq.py`) with their data files (R-398 item 3).
 
 ### 38. Before the next training run (R-398)
 - Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
@@ -924,7 +964,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-851; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-855; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1609,6 +1649,31 @@ index pointing here. Read the section for a reading before changing it, and keep
   +3.0). Nothing in section I reads backwards. Only `together` differs in `attempts_cases.json`. The strip before a burst (section H):
   its plain test reads backwards (-6.0, 2 groups of 10) and its own like does not (+2.2, 6 of 10, fails): the plain test holds level
   the prots on him, which is what the strip changes, so it is not its test (the rule of f7165b1); it stays not kept (R-842).
+
+- **Shadow Shroud kept by name; a prot or heal let through with an interrupt ready (2026-11-28, evening; R-849, R-850, R-853; `bundle-4` 04310c3, with the full run at it).**
+  **Shadow Shroud** (`BY_NAME`; `shroud_by`): its row "against the same team's other spikes" in `cases.py attempts` section H prints "kept by
+  his ruling, R-849", carries `by_name`, and is brought to him if it reads backwards. On a death it joins "Enemy good play:" with the player
+  who cast it (`shroud_by`: the enemy whose cast of it on him finished inside a second of the hex's start; named on all 70 attempts of the
+  development set that have it), in short where the "Enchantment Prevention:" line above already gives its seconds. 25 of the set's 1,619
+  deaths carry it; on the full run 132 of 10,218, the caster named on 312 of 315 attempts. Main's `execution_rows.json` written again: four
+  rows of Men v Crew gain the line (2:20, 3:41, 4:05, 24:00; written over rows he marked, said to him), the other 42 the same. The full run: 315 spikes, 40.3% killed against 36.6% of the same teams' other spikes, +10.1 (+5.5 to +15.6), 8/10, as before.
+  **Let through** (`attempts`: a `missed` row of kind `let through`, the attack's; `chance_tests`; `RULED_KINDS`; `fails`, `say_fail`,
+  `say_attempt`, `say_faults`). His four points as built: read on every attempt and asked on a spike only (a burst's rows are evidence); each
+  prot or heal for the target on the offensive side of the list of skills worth interrupting that landed (R-797), begun by `CHANCE_S` after
+  the first big hit; an interrupter of the attack's with a skill that can stop that kind of skill (`can_stop`), the cast as long as the
+  reaction and the interrupt's own time to land (`REACT_S`, `intr_time`), in its range of the monk, off recharge with hands free and his own
+  aftercast over, not out of energy by gvg.report's model; the same reading as the defence's interrupt on a spike skill, turned round. An
+  interrupt thrown at the cast and missed (gvg.report's attempts record) is a row with `tried`. One interrupt a player a spike (R-816): a
+  player who stopped a prot or heal for the target, or threw at one, is taken off the other rows, and a row left with nobody is none. Taken, for
+  the check, is the attack's good play of R-836 (`good`: a prot or heal for him stopped in those seconds) with none let through: both sides
+  have a monk casting for him. A ruled kind (R-744): listed on the spike that did not kill, one sentence a cast with who could have stopped
+  it and with what, the check's result beside it (`ruled_check`); where one was stopped and none let through the row says "Done in time".
+  **Run**: the development set: 101 rows on spikes (4 thrown and missed) and 236 on bursts (evidence); of 2,031 spikes that did not kill 73
+  list it and 31 say the stop. The full run: 616 rows on spikes (13 thrown and missed), 1,613 on bursts; of 11,390 spikes that did not kill
+  453 list it and 184 say the stop. Section G: stopped 295 spikes, 37.6% killed, against 545 with one let through, 16.9%: +12.2
+  points (+6.7 to +16.7), 9 groups of 10: it passes on its own (the scratch figure had been +6.0, 8/10, against every cast for him not
+  stopped with an interrupt ready, bursts among them). Prot, heal and the interrupt on spikes as before (-26.8, -44.5, -16.1, all 10/10); the
+  strip +5.6, 6/10 and pressure on their monks -1.1, 5/10 still fail (R-848); nothing reads backwards. `attempts_cases.json` is this run's.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 

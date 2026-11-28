@@ -120,9 +120,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A double run is never two players sent to the spawn together; its three forms are in R-305. It takes a second player
   who goes back to run the next flag while the first is still capping; a runner who caps and goes back himself is a
   single run, and a player home from a split who picks up the next flag is no second runner (R-472). It is told from
-  when the second player goes back: until then the first run of the pair is a single run (R-485). A hand-off and a
-  double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
-  as a single run (R-426).
+  when the second player goes back: until then the first run of the pair is a single run (R-485). The test is
+  whether a team mate of the capper walked back for the next flag by the cap, not where he stood at the capture; a
+  capper's own set-off is never read before his cap; a double run from its start is one run, told when it starts
+  (R-854). A hand-off and a double run are told apart afterwards, by what the players go on to do (R-340); in the
+  flag grid a hand-off counts as a single run (R-426).
 - A flag returned (R-620, R-622): a flag put down goes back only when an enemy player picks it up, never by itself;
   its cost is the delay of the next cap, the boost it can lose and the player sent back, and what is measured is
   the flag difference that follows a returned hand-off, since the tally already holds the boost and the player
@@ -272,7 +274,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   match and the monks left out; five or more splits and 35% of those counted. (With the monks counted it is the
   8 Monk for nearly every guild.)
 - A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
-  gone back for the next flag by the time the first caps (R-472, R-485).
+  gone back for the next flag by the time the first caps (R-472, R-485, R-854).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
   moment falls just after their cap (R-498). A stay ends when their flag is in (R-501).
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
@@ -486,7 +488,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   set-off, the second he turned for home (R-498). The page tells a run by the hall's rule (R-461), which can be
   later; that is the play's own time, not the decision's clock.
 - A team whose own runner was already out when theirs set off does not answer a run. From its cap, with their flag
-  still on its way, it decides whether to run again: another decision, counted from its own cap (R-546).
+  still on its way, it decides whether to run again: another decision, counted from its own cap (R-546). Where its
+  next runner went back before that cap, with their runner out, the play is told from the second he went back, a
+  double run, with the cap about to land said with it; where he went back before their runner set off, he was sent
+  first too, and the team decides nothing until that next flag is in (R-854).
 - The stand at a second is its holder once a cap recorded within that second has landed (R-546).
 - Who holds the stand is read at the moment; a cap about to land within seconds is said with it, as context (R-547).
 - A runner has not set off for a flag while he still carries the one before: his set-off is no earlier than his cap

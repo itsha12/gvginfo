@@ -10,52 +10,51 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-28, end of the chat: rulings to R-851; nothing running; `bundle-4` 16935c2, main as pushed)
+## State (2026-11-28, evening: rulings to R-855; nothing running; `bundle-4` 5db24a4, main as pushed)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds. No workflow is running.
-- Execution (R-701 to R-851; `docs/EXECUTION.md`, 68 rules): his marking is done for now (R-851; set x1: Men v Crew
-  15 deaths, RACK v hdm 10, Men v NwAy 12 of 21). What fails its check waits until family 4 (R-848).
-- `bundle-4` 16935c2: the engine is 4d3866c (balling reads Invoke Lightning and Chain Lightning, R-847). Full run at
-  4d3866c made by Fable: 564 matches, no errors, the digest agrees on all, 323 Classic rows pass; `attempts_cases.json`
-  is that run's; main's `execution_rows.json` the same row for row. The other reports and winchance: unmoved.
-- Filed from `docs/OPUS.md` (REDESIGN.md amended): R-843 no blind tests, R-844 step 3 dropped, R-845 `ask.py` rewired
-  at the close, R-846 the match report with the close's merge. The blind test page is hidden, not yet removed.
+- The last bundled change is built (`bundle-4` 04310c3; ENGINE_NOTES sections 44 and 22, their last items): Shadow
+  Shroud kept by name (R-849); a prot or heal let through with an interrupt ready, the attack's fault (R-850, R-853:
+  +12.2 points, 9 groups of 10, it passes on its own); a runner gone before his team's flag is in (R-854: a second
+  player gone back by the cap is a double run, told from the second he went; a capper's own set-off never before
+  his cap; 228 plays told before the cap, our double runs 671 of 5,269 flag plays).
+- Full run at 04310c3 (Fable, in the chat; 130e76f holds its files): 564 matches, no errors, 33,106 plays, 323
+  Classic rows pass, every truth holds, nothing newly reads backwards. Every `cases.py` report and the digest are
+  this run's. Its win chance file went to him in the chat (for the match report's exporter; not in the repo).
+- Flag advice cards written again once (R-852; main's `flag_cards.json` at 04310c3): 40 of his 55 marked cards carry
+  `changed` and 6 are under `gone`, nearly all from the six days of changes before today's; no marking round. Main's
+  `execution_rows.json` again: four rows of Men v Crew gain a Shadow Shroud line (said to him).
+- The close is begun (R-855): `ask.py` is rewired (R-845; 5db24a4; ENGINE_NOTES section 37, last item).
 
-## Next (in order; the approach was set out to him on 2026-11-28, his answers to its questions come first)
-1. One bundled engine change on `bundle-4`, three parts (ENGINE_NOTES sections 44 and 22, their last items):
-   a. Shadow Shroud kept by name (R-849): into `BY_NAME`, its check the row against the same teams' other spikes.
-   b. A prot or heal let through with an interrupt ready, the attack's fault by name (R-850): new. Put to him: on
-      spikes only (as R-805 has the defence's interrupt), only a prot or heal for the target that landed, the
-      interrupter with the skill ready, in reach and time to react (Rule 1), only skills on the interrupt list.
-   c. The flag play whose runner set off before the moment he is told to answer (62 plays of 5,252; hold v RACK
-      2:16 stops `cases.py cards`): at the root in `jobs.flag_plays`. Put to him: a double run (R-485, R-547)?
-   Then the development set, the key, `compare.py` (only c moves plays), and one full run with every report, the
-   digest made again, winchance (Opus, or Fable in the chat: 37 minutes).
-2. The Flag advice cards written again once (`cases.py cards <run> f1 --site`): proposed to him, no marking round;
-   only a card he marked that now says something else is shown to him. The held cards stay held (R-554).
-3. The close (sections 37, 38, 34, 35, 41), set out to him in four parts: (i) Fable: new families beside the old
-   kinds for one rebuild (R-323), stand-in prices replaced, old kinds retired (`learning.py` imports `tq.py`),
-   `ask.py` rewired (R-845); (ii) Opus: SPEC and METHODS drafts, the blind test and golden pages removed, the old
-   knowledge pages, the readability test, the match report (Fable reviews its exporter once, R-846); (iii) his
-   list of R-398 (items 1, 2, 3's remainder, 6, 7, 8, 10; from `docs/opus/pre-training-drafts.md`), his word on
-   each; (iv) the merge only at his explicit word, then one Train batch on the same 506 (he starts it).
+## Next (the close; sections 37, 38, 34, 35, 41; no engine reading changes from here: R-322)
+1. Fable, in order: (a) the new families beside the old kinds for the one rebuild (R-323): the Train batch workflow
+   and `learning.py` run `moments.py all` and the `cases.py` family reports beside the old kinds' advice test, the
+   old kinds set against their reading before (6 of 13 clear at 506); (b) the stand-in prices of `cases.py`
+   replaced by the win model's; (c) after that rebuild is read with him, the old kinds retired (`decisions.py`,
+   `usual.py`, `advice.py`, `tq.py`; `learning.py` imports `tq.py`) and their data files (R-398 item 3). Set the
+   approach to (a) and (b) out to him first: the workflow cannot be tried in a chat.
+2. Opus, now (told to him 2026-11-28): the match report's exporter and page on a full run at 04310c3 (its own
+   `moments.py all`; the win chance file from him); the Blind test and Golden moments pages removed (R-843, R-454);
+   the old knowledge pages. After Fable's 1 (a) and (b): the SPEC and METHODS drafts; then the readability test.
+3. His list of R-398 (items 1, 2, 3's remainder, 6, 7, 8, 10; from `docs/opus/pre-training-drafts.md`), his word on
+   each. Then the merge only at his explicit word, and one Train batch on the same 506 (he starts it).
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Put to him 2026-11-28, unanswered: no new marking round of the flag cards; R-850's four points; the runner who
-   goes back before his team's flag is in; which chat does which part of the close.
-2. Claude's readings in R-811 to R-817, R-822 to R-830, R-832, R-835, R-837, R-840, R-841, R-847 and R-849, his to
-   correct. Rows written over ones he marked, all said to him (ENGINE_NOTES section 44, and R-828's).
+1. Claude's readings in R-853 (let through: thrown and missed counts; one interrupt a player) and R-854 (a) to (e),
+   his to correct; with those of R-811 to R-817, R-822 to R-830, R-832, R-835, R-837, R-840, R-841, R-847, R-849.
+2. Put to him 2026-11-28 (evening): run again, with the double runs told as such, shows a gain on unseen matches
+   at 90 and 180 s (+2.0, +3.3): a reading he has not yet looked at spot by spot (`cases.py test`, section 5).
 3. No row for an even 6v6 and below. The wiki sync: later (R-765). At R-398: September's early matches (R-673), R-576, R-575.
 
 ## For Opus (Fable never edits `docs/OPUS.md`)
 - The guild page scrolls sideways at phone width (390 wide, about 85 px over): the "Most played full lineups"
   block (`.comp`).
 - The Execution view's "How to read and mark a row" (`review.js`) is out of date (three kinds, the heaviest 2 s).
-- "For Fable" lines acted on, to remove: the plan change (filed, R-843 to R-846) and the f7165b1 run's report (read;
-  nothing reads backwards against its own like). Kept for the close: the R-398 drafts, the match report review.
-- No full run is wanted (Fable's at 4d3866c). The exporter can use the f7165b1 run's files: balling is in neither.
+- "For Fable" lines acted on, to remove: the plan change (filed, R-843 to R-846) and the f7165b1 run's report.
+- The exporter: a death's "Enemy good play:" can now hold Shadow Shroud (`shroud_by`); a failed spike's faults can
+  be of kind `let through` (`skill`, `monk`, `at`, `by`, `tried`); a flag play's clock has `before_cap`.
 - Full runs as before: `moments.py all` goes on where it stopped (`--fresh` starts over); `digest.py` compares.
 
 ## Running it
