@@ -8,19 +8,13 @@ Only Opus writes this file. Fable reads the "For Fable" section alone, at the st
 this file: anything Fable wants Opus to know goes in HANDOFF.md as it already does, which Opus reads.
 
 ## For Fable (at most 10 lines; Opus removes a line once it is acted on)
-- The ccd0a55 full run has reported (HANDOFF "Next" 1 is done; outputs bundle-4 0dbc722, digest for all 564 matches):
-  plays identical on the 82 of the digest; too deep 1,000 stands (1,000 or 950 in every group) but fails as a why
-  (+1.9, 6/10); monk following 450 is unstable again (0 in five groups) and fails (+5.6, 7/10); `attempts` now runs to
-  its end; the interrupt on spikes fails narrowly (59 taken, -15.5, -23.3 to -6.5, 8/10: one group short), for
-  Denning by R-744; a block reads backwards, stance fails; Deep Wound left passes. Numbers under "Run reports".
-- Two workers fit again: `moments.py all --jobs 2` took 30 min, workers near 290 MB, no kill. `cases.py pressure`
-  10 min, `execution` 25 min, the rest under a minute each.
+- The 90223ed full run has reported (HANDOFF "Next" 1 is done; output bundle-4 7797e59): plays and moments identical
+  on all 564 against the digest; only `attempts_cases.json` changed. The interrupt on spikes now PASSES (168 taken,
+  -16.1, -21.5 to -10.0, 10/10). A block still reads backwards (+2.7, 2/10), stance still fails (+1.8, 5/10); a monk
+  of his stopped now passes as context (+5.4, 9/10). Run took about 60 min in all. Numbers under "Run reports".
 - Next time a full run is wanted: push `bundle-4`, write "Full run wanted at <commit>: <what to check>" as the first
   line of HANDOFF's "Next", and go on building. Opus's report lands under "Run reports" below. Opus pushes the
   run's `data/model/*_cases.json` to `bundle-4` (no engine file): fetch before every push there.
-- Rulings Denning gave in an Opus chat, to be filed by Fable (numbering stays with Fable):
-  - Family 5 (engage or wait) is dropped: the opening is captured in the flag family (R-520, R-590, R-611).
-  - The one-click match report (his wish of 2026-11-23) to be added to REDESIGN.md as a planned item after step 3.
 - The match report is parked (Denning, 2026-11-27): nothing to do for it until he starts it; its asks of Fable are under
   "Parked" below and move here then.
 - The site's look and pages changed (Opus, main 4c54818 to 2fdf15e): `index.html`, `assets/app.css`, `assets/js/app.js`,
@@ -73,6 +67,26 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
    reported, never fixed: the decision is Fable's and Denning's.
 
 ## Run reports (newest first)
+### Full run at `bundle-4` 90223ed (2026-11-28, after midnight, Opus; R-828, R-830 and the cast times of 805b894)
+- Outputs: `attempts_cases.json` (bundle-4 7797e59, data only; made at 90223ed). `positions_cases.json`,
+  `pressure_cases.json`, `execution_cases.json` and `plays_digest.json` came out byte for byte the same as ccd0a55's,
+  so not pushed again. Main's `execution_rows.json` not made again: Fable made it at 90223ed.
+- Plays: 564 matches, no errors; 33,089 plays and 26,199 moments; `digest.py check`: all 564 identical (plays and
+  moments). Key: 323 Classic rows pass (6 history rows do not hold, as before). Truths: 15 of 15 hold. Self-check
+  (R-488): 6 times in 4 matches, as before. 134 untagged skills in 112 matches. `moments.py all --jobs 2` 27 min.
+- Positions: as at ccd0a55 (too deep 1,000 stands; monk following 450 with 0 in five groups; too deep fails +1.9,
+  6/10; monk following fails +5.6, 7/10; the attack's frontline snared passes -12.3, 10/10; Flail lock 413 rows).
+- Attempts (section G): prot passes (8,620 taken at 15.8% killed, 4,260 missed at 47.7%; -26.8, -28.3 to -25.2,
+  10/10; was 4,523 missed, -28.0); heal passes (8,119 at 14.1%, 2,835 at 62.1%; -44.5, 10/10); the interrupt on a
+  spike of 400 or more now PASSES (168 taken at 19.0%, 2,793 missed at 29.7%; -16.1, -21.5 to -10.0, 10/10; was 59
+  taken, -15.5, 8/10); strip fails (+0.1, 6/10; a fault by R-744); pressure on their monks fails (-1.1, 5/10).
+  H1: stance fails (+1.8, 5/10); a block against attacks reads backwards (2,369; +2.7, +1.0 to +4.3, 2/10); spell
+  immunity fails (37; +10.2); Deep Wound carried and not on him in time passes (-5.8, 10/10); Deep Wound left passes
+  (+26.2, 10/10); Shadow Shroud fails (+3.6, 5/10; context); a monk of his stopped at the spike now passes (2,148;
+  +5.4, +3.6 to +7.1, 9/10; context; was +4.6, 8/10). H2: the interrupt on a hurt-player burst fails (+7.9, 8/10;
+  not a fault by R-805; was +0.1). H3: prot passes (+19.3), heal passes (+30.6), Deep Wound left passes (+18.1).
+- Pressure line: as before (the rule 150, 1 s, 1 landed; his 225 holds 56.4%). Execution (C): as before, 135 pass,
+  720 fail, 102 read backwards, 59 mark the situation, 240 no direction, 248 too few (2, 16, 10 by chance).
 ### Full run at `bundle-4` ccd0a55 (2026-11-27, night, Opus; engine 0a8cca9 plus the digest tool)
 - Outputs: `positions_cases.json`, `attempts_cases.json`, `execution_cases.json`, `plays_digest.json` for all 564
   matches (bundle-4 0dbc722, data only; `pressure_cases.json` came out identical). Main's `execution_rows.json` not
@@ -160,6 +174,7 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-28, after midnight: full run at 90223ed reported; attempts report pushed (bundle-4 7797e59).
 - 2026-11-27, night: full run at ccd0a55 reported; outputs and the full digest pushed (bundle-4 0dbc722).
 - 2026-11-27: site look and pages (branch `site-look`, Denning's approval): parchment colours, clearer header, text
   removed, Next MAT, date range, player and character profiles, guild page reworked, Match report buttons; merged
