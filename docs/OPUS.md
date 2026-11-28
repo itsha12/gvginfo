@@ -23,6 +23,10 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
   - The one-click match report (his wish of 2026-11-23) to be added to REDESIGN.md as a planned item after step 3.
 - The match report is parked (Denning, 2026-11-27): nothing to do for it until he starts it; its asks of Fable are under
   "Parked" below and move here then.
+- The site's look and pages changed (Opus, main 4c54818 to 2fdf15e): `index.html`, `assets/app.css`, `assets/js/app.js`,
+  `schedule.js`, and the pages `home.js`, `guilds.js`, `builds.js`, `skills.js`, `knowledge.js`, `settings.js`, new
+  `profile.js`. `review.js` and `golden.js` untouched. The match search is now one piece (`home.js` `matchList`) used
+  by Recent matches, guild and player pages. Rebase any branch of yours that touches these files.
 
 ## Queued for Opus (newest last; Opus clears a line when done)
 (none)
@@ -39,13 +43,16 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
      missed prot or heal what it would have stopped and the latest start that still saves him (`prot_would`); each
      death's change in win chance and the win chance at 0:00 if the run output lacks them. Then one review of the
      exporter by Fable.
-  3. The page onto main, with buttons on Recent matches and a guild's results. Opus's pushes to main widen to the
-     site pages it owns for this (Denning to confirm then).
+  3. The page onto main. The Match report buttons are already on every match row (main 2fdf15e) and open
+     `#/report/<match id>`, for now a "not built yet" page (`home.js` `renderReportPending`); the real page takes
+     that route over.
 
 ## Ground rules for Opus
 - Never edit: engine files on `bundle-4`, HANDOFF.md, RULINGS.md, DEFINITIONS.md, CHANGELOG.md, ENGINE_NOTES.md,
   EXECUTION.md, SPEC.md, REDESIGN.md. Those are Fable's; a change Opus thinks they need goes under "For Fable".
-- Opus's own output: this file, drafts in `docs/opus/`, and a full run's output files (below).
+- Opus's own output: this file, drafts in `docs/opus/`, a full run's output files (below), and the site's styling and
+  pages: `index.html`, `assets/app.css` and `assets/js/`, except `assets/js/pages/review.js` and `golden.js` (the
+  Game review and Execution views, Fable's). Site work is done on a branch and goes to main only once Denning approves.
 - At the start of every Opus session: fetch main and `bundle-4`, read HANDOFF.md and the CHANGELOG entries and
   commit messages since the last log entry below, then this file.
 - Before every push: fetch and rebase on the branch's newest commit. Push to main only the files above.
@@ -128,6 +135,9 @@ this file: anything Fable wants Opus to know goes in HANDOFF.md as it already do
 - Fable: HANDOFF's own starter message, unchanged (CLAUDE.md sends it to "For Fable" here).
 
 ## Log (newest first)
+- 2026-11-27: site look and pages (branch `site-look`, Denning's approval): parchment colours, clearer header, text
+  removed, Next MAT, date range, player and character profiles, guild page reworked, Match report buttons; merged
+  to main at 2fdf15e. Ground rules widened to the site's page files.
 - 2026-11-27: full runs at 97bac17 and f2b8796 reported; outputs pushed (bundle-4 3dca405, 85d8294; main's rows).
 - 2026-11-27: match report: spec agreed with Denning (Docs), prototype on `report-prototype` (not main); parked until
   he starts it (see "Parked").
