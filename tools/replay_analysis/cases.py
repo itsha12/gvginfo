@@ -3265,7 +3265,7 @@ def exec_say(path, pre, at=None, bench_file=None):
         x = D["flag_cost"][rid]["execution"].get(p["id"]) if kind else None
         sen = exec_sentence(bench, kind, x, p["team"], next(t for t in teams if t != p["team"])) if x else None
         fc = D["flag_cost"][rid]
-        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught"), fc.get("attempts"), fc.get("pressure"), fc.get("triggers"), fc.get("balled"), fc.get("positions")) if x and "deaths" in x else None
+        flt = EX.say_faults(p, x, fc.get("deaths") or [], teams, fc.get("fails"), fc.get("caught"), fc.get("attempts"), fc.get("pressure"), fc.get("triggers"), fc.get("balled"), fc.get("positions"), fc.get("thrown")) if x and "deaths" in x else None
         if sen: print(f"\n{cl(p['t0'])} {p['scenario']}\n   {sen}" + (f"\n   Faults (R-713, R-714). {flt}" if flt else ""))
 
 
@@ -3954,6 +3954,9 @@ def x3_parts(A, D, pr, res):
             o = res["parts"][key] = {"status": status, "should": "kill more" if want > 0 else "kill less", "verdict": w, "with": [len(T), raw(T)], "without": [len(O), raw(O)], "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)]}
             pr(f"   {name:52} {'kill more' if want > 0 else 'kill less':>11} {len(T):6} {raw(T):5.1f}% killed {len(O):6} {raw(O):5.1f}% {d:+8.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}  [{status}]")
             if how.get("say"): o["against"] = how["say"]; pr(f"   {'':52} ({how['say']})")
+            if name in EX.BY_NAME:                           # R-842: kept by his name though short of the groups bar; the check beside it, and brought to him where it reads backwards (R-744)
+                o["by_name"] = EX.BY_NAME[name]
+                pr(f"   {'':52} (kept by his ruling, {EX.BY_NAME[name]}, whatever the groups bar says" + ("; READS BACKWARDS: to bring to him (R-744))" if w == "reads backwards" else ")"))
             if allp is not None or ek != "_exp":         # the figure the plain test gives, kept beside it: against every attempt without it, the situation as for the other kinds
                 a_ = O if allp is None else allp
                 d2, lo2, hi2, s2 = _x3_diff(T, a_)
@@ -3999,7 +4002,9 @@ def x3_parts(A, D, pr, res):
         ("a spike: a strip took a prot or heal that landed during it", "the strip that matters (R-835)", +1, lambda r: spk(r) and during(r) and bool(took(r)), lambda r: spk(r) and during(r) and not took(r),
          {"exp": "_exp_strip", "say": "against an enchantment prot or heal that landed on him during it and no strip took: a strip can only take what the monks put on"}),
         ("a spike:   ... the strip dealing damage (Shatter)", "the strip that matters (R-835)", +1, lambda r: spk(r) and during(r) and any(x[5] for x in took(r)), lambda r: spk(r) and during(r) and not took(r), {"exp": "_exp_strip"}),
-        ("a spike:   ... the strip dealing none", "not counted by R-835 on a spike", +1, lambda r: spk(r) and during(r) and bool(took(r)) and not any(x[5] for x in took(r)), lambda r: spk(r) and during(r) and not took(r), {"exp": "_exp_strip"}),
+        ("a spike:   ... the strip dealing none", "the strip that matters (R-839)", +1, lambda r: spk(r) and during(r) and bool(took(r)) and not any(x[5] for x in took(r)), lambda r: spk(r) and during(r) and not took(r), {"exp": "_exp_strip"}),
+        ("a spike: a damaging strip during it that took neither", "damage like any other, no strip (R-840)", +1, lambda r: spk(r) and not EX.strip_effective(r) and any(x[5] and 0 <= x[0] <= EX.SPIKE_S for x in rows_(r)),
+         lambda r: spk(r) and not rows_(r), {"say": "against the spikes with no strip at all; evidence only: its damage is in the spike's own sum"}),
         ("a burst: a strip took a prot or heal that landed during it", "the strip that matters (R-835)", +1, lambda r: bst(r) and during(r) and bool(took(r)), lambda r: bst(r) and during(r) and not took(r),
          {"exp": "_exp_strip", "say": "against the same, on bursts"}),
         ("a prot or heal of his monks' for him interrupted", "the attack's good play (R-836)", +1, lambda r: "interrupted" in cast(r), lambda r: bool(cast(r)) and "interrupted" not in cast(r)),
@@ -4180,6 +4185,19 @@ def x3_thrown(D, pr, res):
         res["thrown"]["rows"][name] = {"n": len(L), "killed": raw(L), "landed_middle": med(L, "landed"), "attempt": 100 * float(np.mean([r["attempt"] for r in L])),
                                        "failed_spells": sum(len(r["failed"]) for r in L), "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)], "verdict": w}
         pr(f"   {name:46} {len(L):7} {raw(L):7.1f}% {med(L, 'landed'):15.0f} {100 * np.mean([r['attempt'] for r in L]):10.0f}% {d:+14.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}")
+    # Aegis coming during a spike can only come to a player still alive, so the row above flatters it. Set against its own like: the plain spikes whose
+    # target was still alive at the moment Aegis usually comes (the middle of its leads), both sides read for dying after that moment (`died`, R-837)
+    name = "Aegis coming during it, against targets still alive"
+    L = [r for r in T if r["aegis"] and r["aegis"][0] > 0]
+    if any("died" not in r for r in T): pr(f"   {name:46} the record keeps no time of death (made before it): run moments.py all again on this engine.")
+    elif len(L) >= MIN_PLAYS:
+        at = float(np.median([r["aegis"][0] for r in L]))
+        La = [r for r in L if r["died"] is None or r["died"] > r["aegis"][0]]
+        Pa = [r for r in plain if r["died"] is None or r["died"] > at]
+        d, lo, hi, signs = _x3_diff(La, Pa); w = _x3_word(d, lo, hi, signs, -1); right = sum(1 for s_ in signs if s_ < 0)
+        res["thrown"]["rows"][name] = {"n": len(La), "killed": raw(La), "at": at, "against": [len(Pa), raw(Pa)], "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)], "verdict": w}
+        pr(f"   {name:46} {len(La):7} {raw(La):7.1f}% {'':15} {'':11} {d:+14.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}")
+        pr(f"   {'':46} (against the {len(Pa):,} plain spikes whose target was alive {at:.1f} s after the first skill, the middle of when Aegis came: {raw(Pa):.1f}% died after it)")
     ae = [r for r in T if r["aegis"]]
     pr(f"   Into Aegis: {len(ae):,} spikes thrown, {sum(len(r['failed']) for r in ae):,} spells that stopped on it ({sum(1 for r in ae if r['failed'])} spikes with one or more); against {sum(len(r['failed']) for r in plain):,} stopping with no interrupt on the {len(plain):,} with neither.")
 

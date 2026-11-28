@@ -1020,7 +1020,7 @@ def thrown(E, atts):
     13 of 320 in the 3 s either side of it: a spell on a player who cannot be its target is a cast that stops.
     A row: `usual` (the damage aimed), `by`, `n`, `spells` and `attacks` (how many of each; a signet or a touch skill with the spells), `failed` (spells
     that stopped with no interrupt), `interrupted`, `landed` (what that team's players did land on him from the first to SPIKE_S after it), `killed`
-    (dead inside ATT_AFTER_S, as an attempt reads it), `attempt` (a kill attempt of that team on him inside SPIKE_S of it: the spike did land),
+    (dead inside ATT_AFTER_S, as an attempt reads it) and `died` (when, in s against its first skill), `attempt` (a kill attempt of that team on him inside SPIKE_S of it: the spike did land),
     `aegis` (an effect on him whose text bars hostile spells, overlapping it: [from, to] in s against its first skill, and who cast it), `blocks` (his
     effects that block attacks, up at its start), `health` and `healer` for setting like with like. A record: no play reads it."""
     import re
@@ -1065,6 +1065,7 @@ def thrown(E, atts):
                             "failed": [y[4] for y in win if y[2] == "spell" and y[5] == "cancelled"], "interrupted": sum(1 for y in win if y[5] == "interrupted"),
                             "landed": round(sum(v for u_, v in landed.get((tm, tgt), ()) if t - .05 <= u_ <= t + SPIKE_S)),
                             "killed": any(t <= d <= t + ATT_AFTER_S for d in deaths[tgt]),
+                            "died": next((round(d - t, 1) for d in deaths[tgt] if t <= d <= t + ATT_AFTER_S), None),      # s against its first skill: Aegis coming during it is set against the targets still alive then
                             "attempt": any(r["id"] == tgt and abs(r["t"] - t) <= SPIKE_S for r in mine_att),
                             "aegis": None if not ae else [round(min(q[0] for q in ae) - t, 1), round(max(q[1] for q in ae) - t, 1), m.roles.get(ae[0][3])],
                             "blocks": sorted({q[2] for q in up if q[0] <= t and block.search(F.sdata(q[6]).get("desc") or "")}),
@@ -1095,13 +1096,14 @@ def ench_off(E):
     return E._off
 
 
-def monks_stopped(E, mine, casts, first):
+def monks_stopped(E, mine, casts, first, until=CHANCE_S):
     """R-836, the attack's good play on the target's monks: each prot or heal a monk began for the target, by CHANCE_S after the first big hit, that the
     attack stopped: [the player who stopped it and with what (None where the record names none), the monk, his skill, s against the first big hit].
-    A knockdown is on the monk's own row (`monks_at`'s `down`, with `down_by`): he need not have been casting (his words)."""
+    A knockdown is on the monk's own row (`monks_at`'s `down`, with `down_by`): he need not have been casting (his words). `until`: on a player kept in
+    danger, who has no first big hit, the casts are read to the end of it (his death, or his escape)."""
     F, m, out = E.F, E.m, []
     for c in casts:
-        if c[4] != "interrupted" or c[2] - first > CHANCE_S: continue
+        if c[4] != "interrupted" or c[2] - first > until: continue
         by = F.stopped_by(c)
         if by is not None and by[0] not in mine: continue
         out.append([m.roles[by[0]] if by else None, (by[1] or "").replace(" PvP", "") if by else None, m.roles[c[0]], tname(F, c[1]), round(c[2] - first, 1)])
@@ -1212,7 +1214,8 @@ def landed_casts(E, casts, tgt, first, end, died):
                 if v < 1: row["did"] = {"stopped": round(hit * v / (1 - v)), "share": round(100 * v), **({"usual": True} if usual else {})}
         row["healed"] = round(got) if got else None
         out.append(row)
-    return out
+    return sorted(out, key=lambda r_: (r_["at"], r_["who"], r_["skill"]))      # in the order they were cast, whoever asks (a kill attempt gives the prots before the heals, a death read on
+                                                                               # its own gives them player by player: until 2026-11-28 the "Success:" line's order moved with which of the two read it)
 
 
 def removal_saves(E, row, tgt, first, end, led):
@@ -1417,6 +1420,7 @@ def pressure(E, atts):
                         "prots_up": prots_up, "prots_cast": [[F.sname(c[1]), round(c[2] - t0, 1), outcome(c, t1 if ep["died"] else None)] for c in on_tgt if is_prot(F.sdata(c[1]))],
                         "heals_cast": [[F.sname(c[1]), round(c[2] - t0, 1), outcome(c, t1 if ep["died"] else None)] for c in on_tgt if is_heal(F.sdata(c[1]))],
                         "missed": missed, "ledger": led,
+                        "good": monks_stopped(E, F.players(tm), [c for c in on_tgt if is_prot(F.sdata(c[1])) or is_heal(F.sdata(c[1]))], t0, t1 - t0),      # R-836, as on a spike: read to its end
                         "set": target_set(E, tgt, t0), "shroud": shroud_on(E, tgt, t0, min(t1, t0 + CHANCE_S)), "monks": monks_at(E, monks, tgt, t0),
                         "landed": landed_casts(E, on_tgt, tgt, t0, t1, bool(ep["died"]))})
     return sorted(out, key=lambda r: r["t"])
@@ -1459,7 +1463,13 @@ STANCE_FAULT = ("Frenzy", "Frenzied Defense", "Primal Rage")     # R-740, R-768:
 STANCE_BLOCKS = ("Frenzied Defense",)    # R-832: a block and double damage at once: a fault only where spells landed while it was up (against attacks it stops more than it
                             # adds), and its own doing is then half of what those spells landed. A signet or a touch skill counts with the spells (no block stops them)
 STRIP_HITS = ("Shatter Enchantment", "Chilblains", "Pain of Disenchantment", "Test of Faith", "Hex Eater Vortex")      # R-835: the strips that deal damage as they
-                            # land (the tags' strips that add damage; Rip Enchantment and Corrupt Enchantment, which leave Bleeding or degen, are not: Claude's list)
+                            # land (the tags' strips that add damage; Rip Enchantment and Corrupt Enchantment, which leave Bleeding or degen, are not: Claude's list).
+                            # Kept on each strip's row as evidence; since R-840 it decides nothing: a strip counts by what it took (`strip_effective`)
+BY_NAME = {"a spike: a prot stripped before the first big hit": "R-842", "one of his monks knocked down at the spike": "R-842"}
+                            # R-842: the readings he keeps by name though they fall short of the groups bar (range clear; 8 and 7 groups of 10 on the full run at
+                            # 59c47b0), by the names of their rows in `cases.py attempts` section H. The bar stays as it is for everything else (`cases.X3_BUT`);
+                            # the check is read again on every full run and said beside them, and one that reads backwards is brought to him (R-744). A strip
+                            # before a burst is not among them (6 groups of 10: "I don't want to over rule on strip before burst so leave that one for now")
 BLOCK_SHARE = 1 / 3         # R-831: a block is said, and tested, only where more than a third of the spike is attacks (his cut-off: no difference in kills at a third or less)
 STANCE_EXTRA = {"Frenzy": (1 / 3, 1 / 2), "Primal Rage": (1 / 3, 1 / 2), "Frenzied Defense": (1 / 2, 1 / 2), "Aggressive Refrain": (0.29, 0.29)}
                             # the share of what landed that the skill added, from its text: "take 200..150% damage" (a third to a half of what landed, by his
@@ -2182,15 +2192,18 @@ RULED_KINDS = ("strip",)    # the kinds of missed chance he rules by name (R-744
 
 
 def strip_effective(r):
-    """R-835, his definition of a strip that matters. On a spike: it takes a prot off the target before the first big hit, or it is a strip that deals
-    damage (STRIP_HITS: Shatter Enchantment and its like) landing during the spike. On a burst on a hurt player, which runs a little longer: it takes a
-    prot or a heal (Patient Spirit) off him before or during it, or deals damage during it. Claude's readings, his to correct: before = in the
-    ATT_BEFORE_S before the first big hit; during = from the first big hit to SPIKE_S after it; a prot or a heal = `forensics.is_prot`, `is_heal` on the
-    enchantment taken; a damaging strip counts whatever it took. A record older than the strip's rows reads as it did."""
+    """His definition of a strip that matters (R-835, amended by R-839 and R-840): a strip counts by what it took, whether or not it deals damage.
+    On a spike: it takes a prot off the target before the first big hit, or a prot or a heal off him during the spike (R-839: "a non-damaging strip
+    should definitely be counted"; it read strongest, +14.5 points killed in 9 groups of 10). On a burst on a hurt player, which runs a little longer:
+    it takes a prot or a heal (Patient Spirit) off him before or during it. A strip that deals damage (STRIP_HITS: Shatter Enchantment and its like)
+    and takes neither a prot nor a heal is no strip in this measure (R-840: "still good for damage, but it should just be counted like any other
+    damage spell"): its damage is in the spike's own sum. Claude's readings, his to correct: before = in the ATT_BEFORE_S before the first big hit;
+    during = from the first big hit to SPIKE_S after it; a prot or a heal = `forensics.is_prot`, `is_heal` on the enchantment taken. A record older
+    than the strip's rows reads as it did."""
     rows = r["strip"].get("rows")
     if rows is None: return bool(r["prots_up"]) and any(prot and a <= CHANCE_S for a, prot in r["strip"].get("at", []))
-    if r.get("hurt") is not None: return any(lead <= SPIKE_S and (prot or heal or (hits and lead >= 0)) for lead, _e, _s, prot, heal, hits in rows)
-    return any((prot and lead < 0) or (hits and 0 <= lead <= SPIKE_S) for lead, _e, _s, prot, _h, hits in rows)
+    if r.get("hurt") is not None: return any(lead <= SPIKE_S and (prot or heal) for lead, _e, _s, prot, heal, _hits in rows)
+    return any((prot and lead < 0) or ((prot or heal) and 0 <= lead <= SPIKE_S) for lead, _e, _s, prot, heal, _hits in rows)
 
 
 def chance_tests():
@@ -2311,12 +2324,15 @@ def deaths(E, atts, prs=None, trig=None):
         # the spike itself, what did land for him; and beside each missed prot, heal and interrupt whether it would have saved him and by when (`saves`)
         if not d.get("pact") and not d.get("nothing_landed"):
             d["span"] = {"dmg": round(sum(F.taken(a, d["first"] - .05, td)[0].values())), "s": round(td - d["first"], 1)}
-            if src is not None: d["set"], d["shroud"], d["monks"], d["landed"] = (dict(src["set"]) if src.get("set") else None), src.get("shroud"), src.get("monks") or [], src.get("landed") or []
-            if src is not None and src.get("good"): d["good"] = src["good"]
-            else:
+            if src is not None:
+                d["set"], d["shroud"], d["monks"], d["landed"] = (dict(src["set"]) if src.get("set") else None), src.get("shroud"), src.get("monks") or [], src.get("landed") or []
+                if src.get("good"): d["good"] = src["good"]      # R-836: from the spike that killed him, or from the pressure attempt
+            else:                                              # no attempt of its own (he was not kept in danger first): read here, the same way
                 on_a = [c for h in F.players(tm) for c in F._by_agent.get(h, ()) if F.cast_on(c, a) and d["first"] - ATT_BEFORE_S <= c[2] <= td]
                 d["set"], d["shroud"] = target_set(E, a, d["first"]), shroud_on(E, a, d["first"], min(td, d["first"] + CHANCE_S))
                 d["monks"], d["landed"] = monks_at(E, [h for h in F.players(tm) if h in E.monk], a, d["first"], td), landed_casts(E, on_a, a, d["first"], td, True)
+                g_ = monks_stopped(E, F.players(3 - tm), [c for c in on_a if is_prot(F.sdata(c[1])) or is_heal(F.sdata(c[1]))], d["first"], td - d["first"])
+                if g_: d["good"] = g_
             for x in faults:
                 if x["kind"] in ("prot", "heal") and x.get("id") is not None:
                     if "too_late" in x:                    # the cast he began too late, and what else of that kind he had ready at his earlier moment (R-828)
@@ -2514,7 +2530,7 @@ def say_fail(d, trig=None):
         elif kind in d["taken"]: L.append(f"Done in time by {d['team']} (good play, R-729): {RULED_SAY[kind]}.")
         for x in d["late"]:
             if x["kind"] != kind or x.get("at") is None: continue
-            L.append(f"{d['team']}'s strip came in time ({x['at']:+.1f} s from the first big hit) but took no prot off." if x["at"] <= CHANCE_S
+            L.append(f"{d['team']}'s strip came in time ({x['at']:+.1f} s from the first big hit) but took off no prot or heal that counts (R-835, R-840)." if x["at"] <= CHANCE_S
                      else f"Out of time (R-713): {d['team']}'s strip came only {x['at']:+.1f} s from the first big hit.")
     if d.get("ledger"): L.append(say_ledger(d["ledger"]))
     if d.get("parts"):
@@ -2729,7 +2745,7 @@ def death_lines(d, trig=None):
     return L
 
 
-def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None):
+def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None, THR=None):
     """The faults of a play in sentences (stage X4): the deaths of the team making the play with the checked chances it missed, then the enemy's apart (scored
     the same way, never a fix, R-299), each with its replay time; then the two measures that come close to the outcome itself, said as context and never as a
     fault (`spike_kill_share`, `dmg`). x is the play's execution record, D the match's deaths (`deaths`). None where the play has no record."""
@@ -2752,6 +2768,12 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
         W = [d for d in L if d["faults"] or d["late"]]
         return (f" {name}'s spikes that did not kill: {len(L)}, {sum(1 for d in L if d['faults'])} with a strip missed (a fault by his ruling, R-744)"
                 + f", {sum(1 for d in L if d['taken'])} with the strip in time." + (" " + " ".join(say_fail(d) for d in W) if W else ""))
+    def threw(sd, name):                                   # R-841: the spikes thrown, said on the play's row: how many, how many landed too little to be a kill
+        L = [THR[i] for i in (x.get("thrown") or {}).get(sd, ())] if THR is not None else []      # attempt (no other line of the row holds those), and each one that met Aegis
+        if not L: return ""
+        A = [r for r in L if r.get("aegis")]
+        return (f" {name}'s spikes thrown (R-837): {len(L)}, {sum(1 for r in L if not r['attempt'])} of them landing too little to be a kill attempt"
+                + f", {len(A)} into Aegis." + (" " + " ".join(say_thrown(r) for r in A[:6]) + (f" And {len(A) - 6} more." if len(A) > 6 else "") if A else ""))
     def play_level(sd, name):                              # faults tied to no kill attempt, always listed on the play's row by kind, with their count (R-745)
         out = ""                                           # a cast caught is a fault only at a death (R-789) and is said on that death (`death_lines`); the rest is context (`caught_by_player`)
         obj = x.get("objective") if sd == "own" else {"offence": "defence", "defence": "offence"}.get(x.get("objective"))
@@ -2777,8 +2799,8 @@ def say_faults(p, x, D, teams, FL=None, CT=None, ATT=None, PRS=None, TRG=None, B
     q3 = ""
     if asks_q3(p, x) and ATT is not None and PRS is not None and "attempts" in x:
         q3 = " " + say_q3(p["team"], foe, [ATT[i] for i in x["attempts"]["own"]], [PRS[i] for i in x["pressure"]["own"]], p["t0"], p["t0"] + x["s"], FL, brief=True)
-    return (side("own", p["team"]) + attack("own", p["team"]) + play_level("own", p["team"]) + q3
-            + " Apart, the enemy it met (never a fix, R-299): " + side("their", foe) + attack("their", foe) + play_level("their", foe)
+    return (side("own", p["team"]) + attack("own", p["team"]) + threw("own", p["team"]) + play_level("own", p["team"]) + q3
+            + " Apart, the enemy it met (never a fix, R-299): " + side("their", foe) + attack("their", foe) + threw("their", foe) + play_level("their", foe)
             + (" Context, not a fault: " + "; ".join(ctx) + "." if ctx else ""))
 
 
@@ -2823,11 +2845,12 @@ def say_even(row, ATT, PRS, FL=None):
     return "\n".join(L)
 
 
-def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None):
+def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, TRG=None, BAL=None, POS=None, THR=None):
     """{play id: its execution record} for the plays of one match (kept beside the plays; no play reads it). With the match's deaths (`deaths`), each record
     carries `deaths`: for the play's own players and for the enemy players it met, which deaths fell inside the play (their places in the deaths record), so
     the faults are said on the play (stage X4). With the kill attempts (`attempts`, `pressure`), each carries `attempts` and `pressure` the same way: the
-    attempts its own players made on the enemy it met and those made on them, over the whole play, so that question 3 is read attempt by attempt (R-732)."""
+    attempts its own players made on the enemy it met and those made on them, over the whole play, so that question 3 is read attempt by attempt (R-732).
+    With the spikes thrown (`thrown`, R-837), `thrown` the same way (R-841: said on the play's row)."""
     E, out = E or Exec(M, rid), {}
     for p in plays:
         r = E.play(p)
@@ -2842,7 +2865,7 @@ def record(M, rid, plays, E=None, D=None, FL=None, CT=None, ATT=None, PRS=None, 
                                              "their": [i for i, d in enumerate(FL) if d["tm"] == 3 - tm and d["id"] in Xs and t0 <= d["t"] <= t1]}
             if CT is not None: r["caught"] = {"own": [i for i, c in enumerate(CT) if c["fault"] and c["id"] in Xs and t0 <= c["t"] <= t1],       # the faults alone (R-789): `deaths` has set them
                                               "their": [i for i, c in enumerate(CT) if c["fault"] and c["id"] in Ys and t0 <= c["t"] <= t1]}
-        for key, L_ in (("attempts", ATT), ("pressure", PRS)):
+        for key, L_ in (("attempts", ATT), ("pressure", PRS), ("thrown", THR)):      # `thrown` (R-841): the spikes thrown inside the play, said on its row
             if L_ is None: continue
             X, Y, t0, t1 = E.players(p)
             Xs, Ys, tm = set(X), set(Y), p["tm"]
