@@ -2217,7 +2217,7 @@ def death_lines(d, trig=None):
     the head (what killed him, the damage from the first big hit to the death, the damage inside 3 s, what was missed by kind); the sum; on a burst what
     hurt him before it (R-818); what applied to him at the spike, each only where it applies (the set he held and for how long, and whether a shield would
     have saved him; enchantment prevention; his monks' disables, R-813; enchantments stripped, R-819); his own play; one line for each missed chance (Missed
-    Prot, Missed Heal, Missed Interrupt: who was available, what was ready, his energy, what it would have done and by when), none ranked (R-713); what was
+    Prot, Missed Heal, Missed Interrupt, and Late Prot or Late Heal for a cast begun too late to land, R-821: who was available, what was ready, his energy, what it would have done and by when), none ranked (R-713); what was
     done for him (Success) and what was tried and failed; then what was no fault and why (no monk in range, too fast, a monk's hands full, R-815). No ruling
     numbers in the words. Times are match times, and seconds are counted from the first big hit."""
     clk = lambda t: f"{int(t // 60)}:{int(t % 60):02d}"
@@ -2287,7 +2287,7 @@ def death_lines(d, trig=None):
             me, en = mine(x["by"]) + (" himself" if x.get("self") else ""), x.get("energy")
             e_ = f"sufficient energy ({en[0]} to {en[1]})" if en else "his energy not known"
             sk = ", ".join(nm(k) for k in x["skills"])
-            if "too_late" in x: h_ = f"Missed {kind.capitalize()}: {me} started {sk} {round(d['t'] - d['first'] - x['too_late'], 1)} s before he died, too late to land; he had it ready {x['at']} s after {start}, {e_}."
+            if "too_late" in x: h_ = f"Late {kind.capitalize()}: {me} started {sk} {round(d['t'] - d['first'] - x['too_late'], 1)} s before he died, too late to land; he had it ready {x['at']} s after {start}, {e_}."
             else: h_ = f"Missed {kind.capitalize()}: {me} available to cast, {sk} ready, {e_}."
             L.append(h_ + " " + "; ".join(would(x, k) for k in x["skills"]) + ".")
     X = [x for x in d["faults"] if x["kind"] == "interrupt"]
