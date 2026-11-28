@@ -316,29 +316,46 @@
   "H1. On the spikes and bursts | a damage-raising stance up on him (R-740)": {
    "status": "a fault by his ruling",
    "should": "kill more",
-   "verdict": "fails",
+   "verdict": "passes",
    "with": [
     282,
     24.113475177304963
    ],
    "without": [
-    16767,
-    33.3452615256158
+    351,
+    19.08831908831909
    ],
-   "difference": 1.8455165099232924,
+   "difference": 11.792480255840719,
    "range": [
-    -3.1327052992569895,
-    6.85666307971351
+    7.023251315335669,
+    17.109866526836345
    ],
    "groups_right": [
-    5,
+    10,
     10
-   ]
+   ],
+   "against": "against the same players in the same matches, out of a stance",
+   "against_all": {
+    "without": [
+     16767,
+     33.3452615256158
+    ],
+    "difference": 1.8455165099232924,
+    "range": [
+     -3.1327052992569895,
+     6.85666307971351
+    ],
+    "groups_right": [
+     5,
+     10
+    ],
+    "verdict": "fails"
+   }
   },
   "H1. On the spikes and bursts | a block up on him, the spike with attacks in it": {
    "status": "a why of the attack's",
    "should": "kill less",
-   "verdict": "reads backwards",
+   "verdict": "passes",
    "with": [
     2369,
     22.119037568594344
@@ -347,15 +364,32 @@
     11494,
     33.80024360535932
    ],
-   "difference": 2.6636333755889647,
+   "difference": -5.190371639719187,
    "range": [
-    1.0392415589429365,
-    4.28335344512637
+    -6.806915850325561,
+    -3.5432170147333206
    ],
    "groups_right": [
-    2,
+    10,
     10
-   ]
+   ],
+   "against": "the block itself left out of the prots held level; the other prots on him still are",
+   "against_all": {
+    "without": [
+     11494,
+     33.80024360535932
+    ],
+    "difference": 2.6636333755889647,
+    "range": [
+     1.0392415589429365,
+     4.28335344512637
+    ],
+    "groups_right": [
+     2,
+     10
+    ],
+    "verdict": "reads backwards"
+   }
   },
   "H1. On the spikes and bursts | spell immunity up on him, the spike with spells in it": {
    "status": "a why of the attack's",
@@ -369,15 +403,32 @@
     15447,
     32.36874474007898
    ],
-   "difference": 10.150907077929968,
+   "difference": 1.5942466970667435,
    "range": [
-    -2.1663620523552574,
-    20.819337214875432
+    -10.215895366720106,
+    12.379308768077527
    ],
    "groups_right": [
     5,
     10
-   ]
+   ],
+   "against": "the immunity itself left out of the prots held level",
+   "against_all": {
+    "without": [
+     15447,
+     32.36874474007898
+    ],
+    "difference": 10.150907077929968,
+    "range": [
+     -2.1663620523552574,
+     20.819337214875432
+    ],
+    "groups_right": [
+     5,
+     10
+    ],
+    "verdict": "fails"
+   }
   },
   "H1. On the spikes and bursts | Deep Wound carried and not on him in time (R-751)": {
    "status": "a why of the attack's",

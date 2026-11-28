@@ -3798,34 +3798,41 @@ X3_BUT = 1          # the bar: the 90% range over whole matches clear of no diff
 X3_LEADS = ((-3.0, -1.5), (-1.5, -0.5), (-0.5, 0.0), (0.0, 0.5), (0.5, 1.0), (1.0, 1.5), (1.5, 3.0), (3.0, 8.1))     # R-708: when a part of the package landed
 
 
-def _x3_situation(r):
+_x3_bare = lambda n: n.replace(" (PvP)", "").replace(" PvP", "")
+
+
+def _x3_situation(r, leave=None):
     """The kill attempt's situation at the first big hit, nothing after it (a prot or heal cast changes the damage that lands, so the damage is not here):
-    who the target is, prots on him, his health and its ceiling, his healers in range, hexes, distance from his group, how many attack him."""
+    who the target is, prots on him, his health and its ceiling, his healers in range, hexes, distance from his group, how many attack him.
+    `leave(r)`: names of prots on him left out of the count, for a kind which is itself one of them (a block, spell immunity): held level with the rest, the
+    kind would be set against the other prots, not against no such prot (found 2026-11-28: a block read backwards for that reason alone)."""
     z = r.get("state") or {}
     hp = z.get("health_pct")
-    return [1.0 if r["target_class"] == "healer" else 0.0, min(len(r["prots_up"]), 2), (hp if hp is not None else 100) / 100.0, 1.0 if hp is None else 0.0,
+    out = {_x3_bare(n) for n in leave(r)} if leave else ()
+    return [1.0 if r["target_class"] == "healer" else 0.0, min(sum(1 for n in r["prots_up"] if _x3_bare(n) not in out), 2), (hp if hp is not None else 100) / 100.0, 1.0 if hp is None else 0.0,
             z.get("ceiling", 1.0), min(z.get("healers_in_range", 0), 4), min(z.get("hexes", 0), 3), 1.0 if z.get("from_group") else 0.0,
             math.log1p(z.get("from_group") or 0) / 7.0, min(len(r["attackers"]), 5)]
 
 
-def _x3_expected(A):
-    """Each attempt's expected kill from its situation alone, by a model fitted without its group of matches (`_exp`): like with like on unseen matches."""
+def _x3_expected(A, key="_exp", leave=None):
+    """Each attempt's expected kill from its situation alone, by a model fitted without its group of matches (`_exp`): like with like on unseen matches.
+    `leave` as in `_x3_situation`, the expectation then kept under `key`."""
     from sklearn.linear_model import LogisticRegression
     from cache import fold_of, FOLDS
-    X = np.array([_x3_situation(r) for r in A]); y = np.array([r["killed"] for r in A], dtype=float); g = np.array([fold_of(r["rid"]) for r in A])
+    X = np.array([_x3_situation(r, leave) for r in A]); y = np.array([r["killed"] for r in A], dtype=float); g = np.array([fold_of(r["rid"]) for r in A])
     e = np.zeros(len(A))
     for k in range(FOLDS):
         te = g == k
         if te.any(): e[te] = LogisticRegression(max_iter=2000).fit(X[~te], y[~te]).predict_proba(X[te])[:, 1]
-    for r, v in zip(A, e): r["_exp"] = float(v)
+    for r, v in zip(A, e): r[key] = float(v)
 
 
-def _x3_diff(T, Mi, n=400):
+def _x3_diff(T, Mi, n=400, key="_exp"):
     """Taken against missed in killed less expected, points, with its 90% range over whole matches, and the groups of matches in which each sign fell."""
     from cache import fold_of
     by = collections.defaultdict(lambda: [[], []])
     for i, L in enumerate((T, Mi)):
-        for r in L: by[r["rid"]][i].append(r["killed"] - r["_exp"])
+        for r in L: by[r["rid"]][i].append(r["killed"] - r[key])
     rids = sorted(by); rng = np.random.default_rng(7)
     def d(R):
         a = [v for x in R for v in by[x][0]]; b = [v for x in R for v in by[x][1]]
@@ -3896,7 +3903,11 @@ def x3_parts(A, D, pr, res):
     """Section H: the kinds of stages 3 and 4 and of the match report's readings, each checked once on unseen matches by the same yardstick as section G
     (killed less the kill expected from the situation, fitted without the attempt's group of matches; passes as there: the range clear and the sign it
     should have in every group of matches but X3_BUT). Each row is the attempts with the thing named against those without it, and says which way it
-    should read if it matters (kills more, or kills less). A fault by his ruling stands whatever this shows, the result beside it (R-744); a why
+    should read if it matters (kills more, or kills less). Two kinds are set against what they should be (2026-11-28, after the full run at 90223ed):
+    a prot which is itself the thing named (a block, spell immunity) is left out of the situation's count of prots (`exp`: else it is set against the other
+    prots, and a block read backwards); the target's own play (a stance) is set against the same players in the same matches out of it (`same`: else a
+    warrior in Frenzy is set against every player who is no monk, and the players who carry it are killed less than the rest whatever they do). The
+    figure against every attempt is kept beside it (`against_all`). A fault by his ruling stands whatever this shows, the result beside it (R-744); a why
     nobody ruled a fault is only ever a why. On the spikes and bursts, then on the times a player was kept in danger (their situation is thinner: that
     record keeps no health or healers at the start)."""
     import execution as EX
@@ -3906,24 +3917,40 @@ def x3_parts(A, D, pr, res):
     def rows(title, L, kinds):
         pr(f"\n{title}")
         pr(f"   {'':52} {'should':>11} {'with it':>18} {'without it':>18} {'like with like, points':>28} {'groups':>7}  verdict")
-        for name, status, want, has, hasnt in kinds:
+        for name, status, want, has, hasnt, *how in kinds:
+            how = how[0] if how else {}
             T, O = [r for r in L if has(r)], [r for r in L if hasnt(r)]
+            ek, allp = how.get("exp", "_exp"), None
+            if how.get("same"):
+                who = {(r["rid"], r["id"]) for r in T}
+                allp, O = O, [r for r in O if (r["rid"], r["id"]) in who]
             key = f"{title.split(':')[0]} | {name}"
             if len(T) < MIN_PLAYS or len(O) < MIN_PLAYS:
                 res["parts"][key] = {"status": status, "verdict": "too few", "n": [len(T), len(O)]}
                 pr(f"   {name:52} too few ({len(T)} with it, {len(O)} without it)"); continue
-            d, lo, hi, signs = _x3_diff(T, O)
+            d, lo, hi, signs = _x3_diff(T, O, key=ek)
             w = _x3_word(d, lo, hi, signs, want); right = sum(1 for s_ in signs if s_ * want > 0)
-            res["parts"][key] = {"status": status, "should": "kill more" if want > 0 else "kill less", "verdict": w, "with": [len(T), raw(T)], "without": [len(O), raw(O)], "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)]}
+            o = res["parts"][key] = {"status": status, "should": "kill more" if want > 0 else "kill less", "verdict": w, "with": [len(T), raw(T)], "without": [len(O), raw(O)], "difference": d, "range": [lo, hi], "groups_right": [right, len(signs)]}
             pr(f"   {name:52} {'kill more' if want > 0 else 'kill less':>11} {len(T):6} {raw(T):5.1f}% killed {len(O):6} {raw(O):5.1f}% {d:+8.1f} ({lo:+6.1f} to {hi:+6.1f})     {right:2}/{len(signs):<2}  {w}  [{status}]")
+            if how.get("say"): o["against"] = how["say"]; pr(f"   {'':52} ({how['say']})")
+            if allp is not None or ek != "_exp":         # the figure the plain test gives, kept beside it: against every attempt without it, the situation as for the other kinds
+                a_ = O if allp is None else allp
+                d2, lo2, hi2, s2 = _x3_diff(T, a_)
+                o["against_all"] = {"without": [len(a_), raw(a_)], "difference": d2, "range": [lo2, hi2], "groups_right": [sum(1 for s_ in s2 if s_ * want > 0), len(s2)], "verdict": _x3_word(d2, lo2, hi2, s2, want)}
+                pr(f"   {'':52} (the plain test, {'against every attempt without it' if allp is not None else 'the prot named counted among the prots on him'}: {len(a_):6} {raw(a_):5.1f}% {d2:+6.1f} ({lo2:+6.1f} to {hi2:+6.1f}), {o['against_all']['groups_right'][0]}/{len(s2)}, {o['against_all']['verdict']})")
     dw_missed = lambda r: any(x["kind"] == "deep wound" and x.get("chance") for x in r["missed"])
     dw_in_time = lambda r: bool((r.get("deep_wound") or {}).get("on")) or ((r.get("deep_wound") or {}).get("at") is not None and r["deep_wound"]["at"] <= CH)
     it = lambda r: r.get("into") or {}
     S = [r for r in A if r.get("pact") is None]
+    _x3_expected(A, "_exp_block", lambda r: it(r).get("blocks") or ())
+    _x3_expected(A, "_exp_immune", lambda r: it(r).get("immune") or ())
     rows("H1. On the spikes and bursts: the target's own play, what the spike went into, Deep Wound, Shadow Shroud, his monks stopped", S, (
-        ("a damage-raising stance up on him (R-740)", "a fault by his ruling", +1, lambda r: any(x["fault"] for x in r.get("stance") or ()), lambda r: not any(x["fault"] for x in r.get("stance") or ())),
-        ("a block up on him, the spike with attacks in it", "a why of the attack's", -1, lambda r: bool(it(r).get("attacks") and it(r).get("blocks")), lambda r: bool(it(r).get("attacks") and not it(r).get("blocks"))),
-        ("spell immunity up on him, the spike with spells in it", "a why of the attack's", -1, lambda r: bool(it(r).get("spells") and it(r).get("immune")), lambda r: bool(it(r).get("spells") and not it(r).get("immune"))),
+        ("a damage-raising stance up on him (R-740)", "a fault by his ruling", +1, lambda r: any(x["fault"] for x in r.get("stance") or ()), lambda r: not any(x["fault"] for x in r.get("stance") or ()),
+         {"same": True, "say": "against the same players in the same matches, out of a stance"}),
+        ("a block up on him, the spike with attacks in it", "a why of the attack's", -1, lambda r: bool(it(r).get("attacks") and it(r).get("blocks")), lambda r: bool(it(r).get("attacks") and not it(r).get("blocks")),
+         {"exp": "_exp_block", "say": "the block itself left out of the prots held level; the other prots on him still are"}),
+        ("spell immunity up on him, the spike with spells in it", "a why of the attack's", -1, lambda r: bool(it(r).get("spells") and it(r).get("immune")), lambda r: bool(it(r).get("spells") and not it(r).get("immune")),
+         {"exp": "_exp_immune", "say": "the immunity itself left out of the prots held level"}),
         ("Deep Wound carried and not on him in time (R-751)", "a why of the attack's", -1, lambda r: bool((r.get("deep_wound") or {}).get("missing")), dw_in_time),
         ("Deep Wound left on him, a removal ready (R-725)", "a fault by his ruling", +1, dw_missed, lambda r: r.get("dw") in ("off", "left") and not dw_missed(r)),
         ("Shadow Shroud on him at the spike", "context: the attack's good play", +1, lambda r: bool(r.get("shroud")), lambda r: not r.get("shroud")),
