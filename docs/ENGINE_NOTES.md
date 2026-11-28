@@ -399,6 +399,13 @@ index pointing here. Read the section for a reading before changing it, and keep
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
   gain for its scenario: say so whenever one is shown to him.
+- **Found 2026-11-28, not fixed: the cards cannot be written on `bundle-4` 4d3866c.** `cases.py cards <full run> f1 --site` stops (R-460) on
+  hold v RACK at 2:16 (d492aa6c): hold's first flag goes in at 2:16 with RACK's still 40 s out, the play asks hold "run again, or not?"
+  from that cap (`from_cap`), and hold's Earth Ele had set off for the next flag at 2:11, 5 s before it. On the 564: 41 of 1,107 such
+  plays have the runner off before the cap (the middle one 2 s before, the longest 33), and 21 of 3,632 answers to a run have him off
+  before theirs; one of the 62 is in the graded games. No card of main's `flag_cards.json` (written at e480706, 2026-11-22) is at that
+  moment. To be put right at the root in `jobs.flag_plays` with the next bundled change (a player going back before his team's flag is
+  in is the second runner of a double run by R-485 and R-547: his word on it first); it moves those plays, so the digest is made again.
 
 ### 23. The split family and the main fight while a split is out
 - The split family (R-558; the split plays are ready, R-564), the answer to a split, on the branch. Every split play carries `split`, the record of its
@@ -917,7 +924,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-847; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-851; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
