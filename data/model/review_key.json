@@ -37238,6 +37238,7 @@
    "mark": "partly",
    "his_words": "We don't need to say (a fault, R-725) and we should use the same form \"Missed Deep Wound: Deep Wound stayed until death, with  7 Monk available to cast, Draw Conditions ready, in range, sufficient energy (41 to 41). Draw would have given back 99 health and healed for X and saved the spike.\" Also, for patient spirit and shielding hands, make sure we are not counting the end effect healing unless if falls within the window. Also, Shield Guardian cast time is 1.5s. The title does not say what the damage was inside 3s but it should.",
    "engine": "92de38e",
+   "actioned": "R-822: no ruling numbers; the burst's head gives the damage inside 3 s (200). R-823: the Deep Wound line in his form: Draw Conditions would have given back 99 and healed for 41 and saved him if cast within 0.3 s. R-824: Patient Spirit counted for its Divine Favor alone inside the 0.6 s (35; its own heal of 67 comes after his death). R-825: Shield Guardian read at 1.5 s: too fast for it, said as no fault.",
    "checks": []
   },
   {
@@ -37274,6 +37275,7 @@
    "mark": "partly",
    "his_words": "Missed Deep Wound: should be on separate lines like the others. Also say if the Deep Wound removal + healind/divine favour would have saved him. Also, could prot not have saved him here? He had SB and LS and no shame or knockdown.",
    "engine": "92de38e",
+   "actioned": "R-822, R-823: each monk's Deep Wound line on its own, with whether its removal would have saved him (all three would). R-824: the 8 Monk's Shielding Hands said with its end heal (72). His question on the Prot's Spirit Bond and Life Sheath: open. They are not listed because the 8 Monk's Shielding Hands landed (R-715); put to him in the chat with the line the row would gain (`TEAM_MATE_EXCUSES`).",
    "checks": []
   },
   {
@@ -37292,6 +37294,7 @@
    "mark": "incorrect",
    "his_words": "Healing burst was blocked by shame, 7 Monk ate shame.",
    "engine": "92de38e",
+   "actioned": "R-826: Healing Burst said as lost to Shame (gvg.report's interrupt record names Shame as what stopped it). The hex landed in the same tenth of a second as the cast began, so no fault by Rule 1 (Claude's reading, his to correct).",
    "checks": []
   },
   {
@@ -37418,6 +37421,7 @@
    "mark": "partly",
    "his_words": "We don't need to give the rules for these things I review (e.g. remove R-741, R-804). Also label this as Positioning: Hammer is 1010 past his own frontline. Also, this is correct, he was too deep, but why was Stand Mes 2 selected as the frontline?",
    "engine": "92de38e",
+   "actioned": "R-822: no ruling numbers; \"Positioning: Hammer is 1010 past his own front line (the Stand Mes 2, his most forward team mate)\". R-825: Shield Guardian (1.5 s) is no longer a missed prot here. His question (why the Stand Mes 2): answered in the chat: the front line is the most forward team mate in the fight who is no backline monk, and the Stand Mes 2 stood ahead of the AoB Derv; whether it should be told from frontline characters alone is put to him.",
    "checks": []
   },
   {
@@ -37436,6 +37440,7 @@
    "mark": "incorrect",
    "his_words": "Doesn't patient heal for 114 here?",
    "engine": "92de38e",
+   "actioned": "R-824: Patient Spirit's heal at its enchantment's end is counted: 183 and 149 (114 at the end each time). R-827: the Prot's Guardian blocked 2 attacks; Aura of Faith said by its own rule.",
    "checks": []
   },
   {
@@ -37454,6 +37459,7 @@
    "mark": "incorrect",
    "his_words": "Remove this part \"(R-743; inside the kill attempt of a death, so a fault, R-789).\" Did guardian block anything or no?",
    "engine": "92de38e",
+   "actioned": "R-822: the ruling numbers gone from the cast into a ready interrupt. R-827: the Prot's Guardian blocked nothing (gvg.report's recap of the death credits it with no block).",
    "checks": []
   },
   {
@@ -37472,6 +37478,7 @@
    "mark": "partly",
    "his_words": "Let's call his own play in it \"Trigger Fault\" and use the same language for e.g. attacking into empathy unnecessarily, eating Bull's strike, etc. Remove \": he was moving as it hit (a fault, R-720).\" Did AoF block any damage?",
    "engine": "92de38e",
+   "actioned": "R-822: \"Trigger Fault: 5:12 the Mes/A is knocked down by the Hammer's Bull's Strike.\" R-827: Aura of Faith said by its own rule (about 93 stopped: 47% off what landed while it was up, at the usual rank; gvg.report credits it with nothing).",
    "checks": []
   },
   {
@@ -37490,6 +37497,7 @@
    "mark": "correct",
    "his_words": "Good, just want to amend the wording: \"Context: 2 critical melee hits for 144 landed on him while he was moving.\"",
    "engine": "92de38e",
+   "actioned": "R-822: \"Context: 2 critical melee hits for 144 landed on him while he was moving.\"",
    "checks": []
   },
   {
@@ -37544,6 +37552,7 @@
    "mark": "partly",
    "his_words": "Can we group all of the successes by player? E.g. Success: Prot cast Aura of Faith during the spike window, healing for 55.  Prot cast Spirit Bond during the spike window, healing for 28.",
    "engine": "92de38e",
+   "actioned": "R-822: what was done for him is one line a player; Reversal of Fortune's 122 stopped is said once, after the 8 Monk's last cast of it. The too-deep line reads \"Positioning:\".",
    "checks": []
   },
   {

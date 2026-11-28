@@ -2,7 +2,7 @@
 
 The brief for the execution work on `bundle-4`: every why found so far for a kill attempt that succeeded or failed,
 whether the engine reads it, and what it needs. Worked through with Denning on 2026-11-25, reviewed and amended the
-same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-821. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
+same day (R-716 to R-752); the skill tags R-753 to R-765 and R-767 to R-778, the order of the stages R-766, his answers on stage 4 R-779 to R-784, on the questions after it R-785 to R-802, on stage 5 R-803 and R-804, after the full run at f2b8796 R-805 to R-810, on his marks of Men v Crew R-811 to R-821, on his marks of RACK v hdm and Men v NwAy R-822 to R-827. Replaced in place as the build goes: the "Read" column is kept current, nothing is appended
 with a date. The rulings are in `docs/RULINGS.md` and prevail; the build notes are ENGINE_NOTES section 44; the order
 of work is at the end of this page and in REDESIGN.md "Execution".
 
@@ -189,6 +189,28 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
     the spike he held a set with no shield, and whether a shield would have saved him; the sentences in the match
     report's wording, with no ruling numbers; a cast begun too late to land reads "Late Heal:" or "Late Prot:" under
     the same "Missed:" in the head (R-821). Built.
+52. **The wording of a death, further** (R-822). No ruling number and no explanation of a rule in a row he reviews.
+    Each on a line of its own, under its label: "Trigger Fault:" (his own play: Bull's knockdown, Harrier's Cripple,
+    Empathy, Clumsiness, Ineptitude, Backfire, Shame, Diversion, a damage-raising stance), "Positioning:" (too deep,
+    monk following), "Context:" (crits while moving; a trigger that is no fault). A burst's head says the damage
+    inside 3 s. What was done for him is one line a player. Built.
+53. **Deep Wound left, in the form of the others** (R-823): "Missed Deep Wound: Deep Wound stayed until death, with
+    7 Monk available to cast, Draw Conditions ready, in range, sufficient energy (41 to 41)", then what the removal
+    would have given back and healed, whether that would have saved him, and by when (the sum walked again with the
+    removal landed: his health and his maximum rise by what Deep Wound took). One line a monk. Built.
+54. **A heal that comes later** (R-824). A heal whose own healing comes as its enchantment ends (Patient Spirit, 2 s
+    after it lands) gives only its caster's Divine Favor with the cast; the rest counts only before he died. One that
+    heals only as something sets it off (Vigorous Spirit) gives its Divine Favor alone. What a cast that landed gave
+    counts the heal at its enchantment's end (Patient Spirit, Shielding Hands). Built.
+55. **Cast times** (R-825): the skill data's, and the tag file's where the skill data has none (nine skills, each
+    1.5 s: Shield Guardian and R-764's). One reading, `forensics.cast_s`. Built.
+56. **A spell lost to Shame** (R-826, with Rule 24): told from gvg.report's interrupt record, which names Shame as
+    the skill that stopped the cast, and said as lost to Shame. A monk's prot or heal on the dying player lost to it
+    inside the kill attempt is a Trigger Fault on that death where the hex had been on him 0.2 s or longer (Rule 1);
+    where it landed as he began the cast it is no fault, said under "Attempted, failed". Built.
+57. **What a prot that landed did** (R-827): gvg.report's recap of the death gives what a player's skill stopped and
+    the attacks it blocked; a prot that blocks and is credited with nothing reads "blocking nothing"; Aura of Faith
+    is said by its own rule. Built.
 
 "Read" below: Yes, Partly or No on `bundle-4` as it stands; "Rule n" is the list above.
 
@@ -206,7 +228,7 @@ to kill and on every numbers advantage, attempt by attempt, with the enemy's cre
 | In a stance that raises damage taken during an attempt (Rule 25) | Yes (stage 3): on every spike and pressure attempt, what landed while it was up and the share the skill added | Aggressive Refrain is context (R-788) |
 | Fighting in reach of their NPCs when not pushing their pit | No | NPC damage taken, against his position and the team's job |
 | Standing still when he should have kited a melee player (Rules 31, 41) | No: withdrawn (R-806). It read backwards on every counted match (28.1% killed against 32.5%) | |
-| Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | Yes (stage 3): each hit the hex did to him, told by the hex's own amounts; a spell lost to Shame; a skill used as Diversion went | |
+| Attacking through Empathy (Rule 21), Clumsiness or Ineptitude; casting into Backfire (Rule 22), Shame or Diversion (Rule 24) | Yes (stage 3): each hit the hex did to him, told by the hex's own amounts; a spell lost to Shame, by the interrupt record's own skill (Rule 56), with how long the hex had been on him; a skill used as Diversion went | |
 | Casting into a ready interrupt, not cancelling (Rule 28) | Yes (stage 1; R-789): an interrupted cast of a listed skill, the interrupt that stopped it ready when the cast began. Every player's is kept as context by player; a backline monk's inside the kill attempt that killed a player of his team is the fault, said on that death | |
 | Wrong weapon set when under attack | Yes: the set he held at the first big hit, on every attempt and death (Rule 44), and on the sum what landed off his shield set and what a shield would have stopped (stage 4); said on a death only where a shield would have stopped something | As a missed chance, checked once; the set he swapped to |
 | His own stance, escape or self-heal unused when ready | No | His own defensive skills ready at the attempt (Rule 1) |
@@ -363,7 +385,8 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 - 41 skills that are not attacks or instant have no cast time in `data/skills.json` (Fireball, Obsidian Flame,
   Phoenix, Arc Lightning, Ice Spikes, Ethereal Burden, Kitah's Burden, Sum of All Fears among them): a fault of the
   wiki sync, to be fixed there, later (R-765); eight of them cast in 1.5 s by his word and carry it in the tag file
-  (R-764). The interrupt reading does not lean on it: how long a cast took is the replay's own record.
+  (R-764). The interrupt reading does not lean on it: how long a cast took is the replay's own record. A prot's or a
+  heal's chance does: it reads the tag file's cast time where the skill data has none (Rule 55).
 - Health is in points: the weapon set in hand, 4.8 a point of morale or death penalty, less Deep Wound (within a point
   of gvg.report's recaps at 84%). Healing rows are heals as cast, overhealing in: what landed is read by walking the
   hits and heals in order. Deep Wound gives its health back as it ends (the sum balances only so).
@@ -401,4 +424,5 @@ of Shadow, and movement skills. Ethereal Burden and Kitah's Burden have no cast 
 | 5. Readings from positions | Built (2026-11-27): too deep and monk following on every kill attempt and death (whys until they pass), Flail lock, standing in area damage and should have kited on the play's row, the snared frontline as a why on the attempt, crits while moving as context; `cases.py positions` reads the cut-offs and checks each kind once | cut-offs set from data (Rule 26); development set and key pass; the full run checks each kind |
 | The runs (R-766) | Built in the order 1's remainder, 4, 3. Then one full run with every check for stages 1 to 4 together: `cases.py attempts` and `execution` (do the kinds still pass on unseen matches?), the key, the truths, `execution_rows.json`. Stage 5 has its own full run, before X4's sentences | the three built kinds still pass on unseen matches; each new kind checked once |
 | The bundled change (R-805 to R-810) | Built (2026-11-27, evening): the cut-offs from the full run; should have kited, standing in area damage and an attacker elsewhere out; the interrupt on a spike only; Rules 44 and 45; the tests of the stage 3 and 4 kinds in `cases.py attempts` (section H); the win chance over the match (`cases.py winchance`). The faults said on each death in the match report's wording (stage X4), the Execution view's rows on main | development set and key pass, plays unchanged (they do); one full run by Opus |
-| Then | His marks on the Execution view (stage X5); the full run's verdicts brought to him | his Classic execution rows read as he reads them |
+| His marks (stage X5) | Men v Crew (15 deaths, R-811 to R-821), RACK v hdm (10) and Men v NwAy (12 of 21; R-822 to R-827) marked and actioned, each in one bundled change; the rows written again after each | his marked rows read as he reads them (two questions of his open: HANDOFF) |
+| Then | The full run's verdicts brought to him | his Classic execution rows read as he reads them |

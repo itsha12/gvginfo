@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, after midnight (a new chat): his marks of RACK v hdm and Men v NwAy actioned; R-822 to R-827 filed
+- His marks read and filed in the review key (set x1, his words): RACK v hdm 10 of 10 deaths (7 correct, 2 partly, 1 incorrect), Men v NwAy 12 of 21 (7, 3, 2).
+- `bundle-4` 805b894, one bundled change (ENGINE_NOTES section 44, last item): cast times from the tag file where the skill data has none (Shield Guardian 1.5 s); a heal that comes as its enchantment ends counted only inside the window, and counted in what a cast that landed gave (Patient Spirit's 114); a spell lost to Shame told from the interrupt record; Deep Wound left in the form of the other missed chances, with whether its removal would have saved him; what a prot that landed stopped or blocked (Aura of Faith by its own rule).
+- The sentences: no ruling numbers; "Trigger Fault:", "Positioning:", "Context:", each on its own line; a burst's head with the damage inside 3 s; successes one line a player.
+- Each new join checked against the raw record or gvg.report's recaps first (R-707): Shield Guardian's casts, Patient Spirit's heal 2 s after the cast, the end heals against the recaps, Shame in the interrupt record (126 of 126 the hex told, and 47 more).
+- Development set (82 matches): plays and moments identical to the digest of ccd0a55, 323 Classic rows pass. A prot fault on 413 deaths (455), a heal 354 (358), an interrupt 147, Deep Wound 159; too fast 67 (57); Shame rows 173 (126).
+- Main's `execution_rows.json` written again from 805b894 (46 deaths); the rows of all three games are written over ones he marked (29 of them changed in words); his marks keep the text he saw.
+- Held for his word, built behind `TEAM_MATE_EXCUSES`: whether a prot or heal a team mate landed still excuses the other monks on a death (R-715; his question on the Mesmer at 6:15 of RACK v hdm). Put to him with it: whether the front line is told from frontline characters alone (the Hammer at 2:04 of Men v NwAy), and a Shame that lands as the cast begins.
+
 ## 2026-11-27, late night (a new chat): his marks of Men v Crew actioned; R-811 to R-820 filed
 - His 15 marks on Men v Crew (Execution view) read and filed in the review key (set x1, his words); rulings R-811 to R-820 from them and from the chat.
 - `bundle-4` c477e8c, one bundled change (ENGINE_NOTES section 44, last item): prots listed only where they would have saved, heals the same on spikes; Divine Favor only with a heal of the skill's own; Shield Guardian not counted under Shadow Shroud; the other disables; arrow flight 0.2 s; no monk in range and too fast before the hexes; one interrupt of a player on one spike; strips, area damage before a burst and the shield on a death; the sentences in the match report's wording.

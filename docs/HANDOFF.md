@@ -10,31 +10,29 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 > check out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-27, late night: rulings to R-821; his marks of Men v Crew actioned)
+## State (2026-11-28, after midnight: rulings to R-827; his marks of RACK v hdm and Men v NwAy actioned)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stages D and E) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored, each with its file beside it; 564 count (R-477); 506 trained.
   Baseline (R-491): `baseline-2026-11-15`. Thirteen games graded (set f1); R-570 holds.
-- Execution (the micro answer) is the block of work (R-701 to R-821; `docs/EXECUTION.md`, 51 rules). Opus's full run
+- Execution (the micro answer) is the block of work (R-701 to R-827; `docs/EXECUTION.md`, 57 rules). Opus's full run
   at ccd0a55 reported (`docs/OPUS.md`): plays identical, 1,000 stands for too deep, monk following 450 not steady,
   the interrupt on spikes fails one group short (59 taken; 8/10), a block reads backwards, stance fails.
-- He marked Men v Crew's 15 deaths (Execution view); the marks are in the review key (set x1) and his comments and
-  the chat's are R-811 to R-821, built on `bundle-4` c477e8c (92de38e adds R-821's words) (ENGINE_NOTES section 44, last item): a prot listed
-  only where it would have saved him, a heal the same on a spike; Divine Favor only with a heal of the skill's own;
-  Shield Guardian not counted under Shadow Shroud; nine more disables by their text, Shame and Diversion not cast
-  through, Arcane Thievery said on the monk; arrow flight 0.2 s; no monk in range and too fast before the hexes; one
-  interrupt of a player on one spike; strips, the shield and the area damage before a burst on a death; the
-  sentences in the match report's wording (`execution.death_lines`, `death_rulings`).
-- Last run: the development set at c477e8c (82 matches): plays and moments identical to the digest of ccd0a55, 323
-  Classic rows pass. Main's `execution_rows.json` is from 92de38e (three games, 46 deaths; Men v Crew's rows are
-  written over the ones he marked, said to him; RACK v hdm and Men v NwAy not marked yet).
+- His marks on the Execution view are in the review key (set x1): Men v Crew 15 deaths (R-811 to R-821), RACK v hdm
+  10 and Men v NwAy 12 of 21 (R-822 to R-827), built on `bundle-4` 805b894 (ENGINE_NOTES section 44, last item, and
+  EXECUTION.md Rules 52 to 57): cast times, heals that come later, Shame, Deep Wound left, what a prot did, the words.
+- Last run: the development set at 805b894 (82 matches): plays and moments identical to the digest of ccd0a55, 323
+  Classic rows pass; the attempts' prot and heal rows moved (the cast time). Main's `execution_rows.json` is from
+  805b894 (three games, 46 deaths; written over the rows he marked, said to him).
 
 ## Next (in order, R-810)
-1. Stage X5: his marks on RACK v hdm and Men v NwAy (Model > Game review > Execution), and Men v Crew again if he
-   wishes, on the rows of 92de38e. File them in the review key (set x1, as Men v Crew's are) the same session.
-2. Full run wanted at 92de38e (Opus's), once his marks ask for no further change: `moments.py all`; `digest.py check`
-   (the plays must not differ from ccd0a55's digest), `cases.py positions`, `attempts` (section G: the interrupt on
-   spikes again, now with arrow flight and one interrupt a player; section H), `pressure`, `execution`. Then bring
-   him its verdicts: the interrupt on spikes if it still fails (R-744), stance, a block reading backwards.
+1. His word on "Open for Denning" 1 to 3 (put to him in the chat of 2026-11-28). If a team mate's cast is no longer
+   to excuse the other monks on a death: set `TEAM_MATE_EXCUSES` False in `execution.py` (built), file the ruling as
+   amending R-715, run the development set, write the rows again, and change the page's "Done in time by a team
+   mate" line (`assets/js/pages/review.js`). Nine deaths of Men v NwAy are not marked: his, if he wishes.
+2. Then: "Full run wanted at <commit>" as the first line here (Opus's): `moments.py all`; `digest.py check` (the plays
+   must not differ from ccd0a55's digest), `cases.py positions`, `attempts` (sections G and H: the interrupt on
+   spikes, and prot and heal again, the cast time moved them), `pressure`, `execution`. Then bring him its verdicts:
+   the interrupt on spikes if it still fails (R-744), stance, a block reading backwards.
 3. Balling and Invoke Lightning: measure on the development set how far apart the record sets the hits of one cast
    on several players (`BALL_S` 0.15 misses Invoke's), then one change with his word (it moves play-level rows).
 4. Then the flag readings shown again (sections 15, 22), then the close (sections 37, 38, 34, 35, 41): new families
@@ -44,12 +42,14 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
 
 ## Open for Denning
 0. Held at his word (R-554): the cards for a flag in hand (R-553 to build) and a double run from the sender's side.
-1. Claude's readings in R-811 to R-817, his to correct: a Shield Guardian cast under Shroud is not a prot landed
-   either; each cast read alone; the two skills of a monk that give the most; Distracting Shot, Disrupting Chop,
-   Magebane Shot, Signet of Distraction and Lyssa's Assault read as disables with his list.
-2. A death's own change in win chance is small (about 2 points on the set: the death penalty alone). Said to him.
-3. An even 6v6 and below has no row, as built. Skills from the wiki: the sync fixed later (R-765). September's
-   early matches (R-673): at R-398. R-576, R-575. The match report is parked (`docs/OPUS.md`); its readings are built.
+1. R-715 on a death (the Mesmer at 6:15 of RACK v hdm: the Prot's Spirit Bond and Life Sheath are not listed, the 8
+   Monk's Shielding Hands having landed). Off, 102 of the set's 1,619 deaths gain a prot line and 36 a heal line.
+2. The front line (the Hammer at 2:04 of Men v NwAy): the most forward team mate in the fight who is no backline
+   monk, there a Mesmer. Whether it is told from frontline characters alone is his (the cut-off is then read again).
+3. A Shame that lands as the cast begins (the Hammer at 6:28 of RACK v hdm): no fault by Rule 1 as built (R-826).
+4. Claude's readings in R-811 to R-817 and R-822 to R-827, his to correct; a dying monk's own spell on another player
+   lost to Shame is a Trigger Fault on his row (new on Men v Crew 0:42). An even 6v6 and below has no row. The wiki
+   sync: later (R-765). September's early matches (R-673): at R-398. R-576, R-575. The match report is parked.
 
 ## For Opus (Fable never edits `docs/OPUS.md`)
 - The guild page scrolls sideways at phone width (390 wide, about 85 px over): the "Most played full lineups"
@@ -69,7 +69,7 @@ read `docs/EXECUTION.md` first: the catalogue of every why, its rules, and the o
   are started afresh and read the code again). After a change: `tools/golden/review.py score <file> --key
   <main>/data/model/review_key.json`, then `tools/golden/compare.py <before> <after>` (or `digest.py check`).
   The view's rows: `review.py execution <file> <main>/data/model/execution_rows.json 51683de9 d06ef3c7 c19f13e3`;
-  one match's deaths in words: `execution.py deaths <report id>`.
+  one match's deaths in words: `execution.py deaths <the whole report id>`.
   Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions

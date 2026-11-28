@@ -917,7 +917,7 @@ index pointing here. Read the section for a reading before changing it, and keep
   Covenant 14.2, Life Sheath 12.5; hit hardest against hit least, Blessed Light 16.5 against 15.1, Healing Burst 23.1
   against 19.9. Still to do (stage X2): into the execution measures and the death accounts.
 
-### 44. Execution, the build (R-701 to R-821; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
+### 44. Execution, the build (R-701 to R-827; plan: REDESIGN.md "Execution"; every why and its rule: `docs/EXECUTION.md`)
 - One reading, `execution.py`, for both teams; the death accounts in `forensics.py`. Stages X1 to X5 as in the plan.
   What the old engine carried that the record lacked on 2026-11-24 (from `learnednodes.EXPECTED` and
   `knowledge/model.md`): spike spread, casts while Dazed, Blind split by frontline and defensive, the right hex,
@@ -1413,6 +1413,57 @@ index pointing here. Read the section for a reading before changing it, and keep
   players inside 0.15 s of one another, but the record sets Invoke Lightning's hits on its other targets half a second apart each
   (Men v Crew 1:57.7 to 1:59.6), so they are missed: to be measured on the development set before `BALL_S` is touched. "Sufficient
   energy" of an interrupter is the model's where it reads him; Lyssa's Assault has no length in its text the parser reads.
+
+- **His marks of RACK v hdm and Men v NwAy actioned (2026-11-28; R-822 to R-827; `bundle-4`, one bundled change).** Ten deaths of RACK v hdm
+  and 12 of Men v NwAy's 21 marked (14 correct, 5 partly, 3 incorrect), filed in the review key (set x1).
+  **Cast times** (`forensics.cast_s`, the one reading): the skill data's activation, and the tag file's `cast_s` where the skill data has none
+  (nine tagged skills, each 1.5 s: Shield Guardian, Ethereal Burden, Lava Font, Ice Spikes, Vapor Blade, Kitah's Burden, Smoldering Embers,
+  Sum of All Fears, Obsidian Flame; a skill with neither stays instant, and no interrupt reads differently). Until now `_act("")` read them as instant, so Shield Guardian was a chance inside a 0.6 s burst and left
+  no aftercast. Checked against the replays (R-707): of 4,092 finished Shield Guardian casts on the development set 2,775 took 1.4 to 1.6 s
+  and 1,261 a half cast of 0.7 or 0.8. `has_aftercast`, `chances`, `prot_would`, `saves`, `intr_time` and the strips read it.
+  **A heal that comes later** (`forensics.heal_after`, from the skill's text): Patient Spirit heals 2 s after it lands; Vigorous Spirit and
+  Watchful Intervention only as something sets them off. In `saves` such a heal gives its caster's Divine Favor with the cast (his rank in
+  gvg.report's record; nothing where it has none) and the rest of what a cast of it gave on average only where it comes before the death
+  (`later`, `after` on the amount); `_sum_walk` takes a heal in parts. Checked (R-707): on the set Patient Spirit's later heal row comes 1.9
+  to 2.1 s after the cast finished on 8,188 of 8,579 casts. Shielding Hands' end heal was read by its rule already (`end_heal`).
+  **What a cast that landed gave** (`landed_casts`): the heal rows name no skill, so a row is tied to a cast by time: the healer's rows on the
+  target inside 0.3 s of the cast finishing, and for Patient Spirit and Shielding Hands his row inside `END_HEAL_S` 0.2 of the end the
+  effects record gives that enchantment (`_effect_of`), a row at the finish of another of his casts on the target left to that cast.
+  Checked against gvg.report's recaps (R-707), on the casts that fall whole inside a recap's 5 s, 40 matches: Patient Spirit within 5 of
+  the recap on 17 of 23 (12 before: the Divine Favor alone), Shielding Hands 6 of 7 (2 before); the misses sit at the edge of the recap's
+  window. On 25 matches 94% of Patient Spirit effects have such a row at their end; one stripped mostly has none, as its text says.
+  `did`: Aura of Faith, which the recaps never credit, by its own rule: what landed while it was up times share / (1 - share), at its
+  caster's rank or the usual one. `blocks` marks a prot that blocks: the recap's count of attacks blocked is said, or "blocking nothing".
+  **A spell lost to Shame** (`Forensics.stopped_by`, `triggers`): `casts` keeps who stopped an interrupted cast and with which skill
+  (gvg.report's interrupt record); the record names Shame where the hex made the spell fail. The trigger row is built from it and no longer
+  from the hex in the effects record, which holds none where the hex landed and went inside one tenth. Checked (R-707): on the set the
+  record names Shame on all 126 casts the hex told and on 47 more; 161 of the 173 are spells on an ally. `seen`: the seconds from the
+  hex landing to the start of the cast (34 of 173 under 0.2 s, 84 a second or longer); `fault` only at 0.2 s or more (Rule 1; Claude's
+  reading, R-826). On a death: `shamed`, a monk's prot or heal on the dying player lost to Shame inside the kill attempt (8 deaths).
+  **Deep Wound left** (`removal_saves`): the sum walked again with the removal landed (his health and his maximum both rise by what Deep
+  Wound took, then the removal's own heal: what a cast of it gave on average this match, else its caster's Divine Favor), from the monk's
+  first chance on a grid of 0.1 s: lives, short by how much, the latest start. On the set's 159 deaths with it: 148 removals would have
+  saved him, 7 not enough, 58 not told (the sum does not balance).
+  **`prot_would`**: a prot does not stack with itself: while the same skill is on him from a team mate (the effects record) the missed cast
+  adds nothing; and `death_rulings` drops a prot that would have stopped and healed nothing, told or not (R-812).
+  **The sentences** (`death_lines`, `say_trigger` and `say_caught` with `plain`): no ruling number on a death's row; "Trigger Fault:",
+  "Positioning:", "Context:", "Missed Deep Wound:" each on its own line; a burst's head with the damage inside 3 s; what was done for him
+  one line a player, a prot's stopping said once after his last cast of it; "lost to Shame" under "Attempted, failed".
+  **Held, not built into the rows** (`TEAM_MATE_EXCUSES`, R-715 as it stands): his question on the Mesmer at 6:15 of RACK v hdm (the Prot's
+  Spirit Bond and Life Sheath were ready and unused, and are not listed because the 8 Monk's Shielding Hands landed). With the switch off
+  every monk is read for his own chance on a death and a cast begun too late names what else he had ready (`also_ready`): the code is
+  there and the rows do not use it until he rules. Off, on the set's 1,619 deaths (read once, outside the run): a prot line on 512
+  (413 with it on; 102 deaths gain one, 66 of them one that would have saved him), a heal line on 390 (354; 36 gain one, 27); 13 of
+  the 46 deaths of the three marked games gain a line, three of them rows he marked correct (RACK v hdm 7:07, 7:33, 7:44 the 8 Monk). Also his question on the Hammer at 2:04 of Men v NwAy: the front line is the most
+  forward team mate in the fight who is no backline monk, there a Mesmer (the Stand Mes 2 at 436 along the line; the AoB Derv at -124,
+  the Hammer at 1,445): whether it should be told from frontline characters alone is his.
+  **Run** (82 matches, against 92de38e): 6,935 plays and the moments identical to the digest of ccd0a55, `compare.py` finds no play
+  changed, 323 Classic rows pass; beside the plays `attempts`, `pressure`, `deaths` (all matches), `triggers` (31), `execution` (20) and
+  `fails` (11) differ. Of 1,619 deaths: a prot fault on 413 (455 before), a heal 354 (358), an interrupt 147 (147), Deep Wound 159
+  (159); Shield Guardian listed 80 times (171), Patient Spirit 118 (127), Vigorous Spirit 44 (68); too fast 67 (57); Shame rows 173
+  (126), 139 of them faults; a landed cast with an end heal on 89 deaths; Aura of Faith said by its rule on 52. On the attempts the
+  missed prot rows go 1,633 to 1,537 and the heal rows 660 to 652 (the cast time, and Shield Guardian's aftercast), so the checks of
+  `cases.py attempts` are to be read again on the full run.
 
 ## The old engine (retired at the close, R-323): the TQs and the causal map
 
