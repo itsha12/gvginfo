@@ -1391,6 +1391,31 @@ index pointing here. Read the section for a reading before changing it, and keep
   (`against_all`). Tried the same way and not changed: too deep (+5.3, 9/10 against the same players; +4.4, 8/10 among players seen both ways:
   not steady) and monk following (+11.4, 8/10): the situation already holds his distance from his group. The burst's interrupt (H2) moved to
   +7.9, 8/10 with one interrupt a player: one group short; not a fault by R-805.
+  **His answers and the four that still failed** (2026-11-28, later the same morning; `bundle-4` 9ff24ab, one bundled change; development set:
+  plays and moments identical to the digest, 323 Classic rows pass). R-831: a block is said, and tested, only where more than a third of the
+  spike is attacks (`BLOCK_SHARE`, `into_block`; 305 spikes of the set's 389 keep the line; the check on those -6.4, -8.1 to -4.7, 10/10). R-832:
+  a stance that blocks (`STANCE_BLOCKS`, Frenzied Defense) keeps `spells`, what spells landed while it was up (`Forensics.hits_on`'s class, a
+  signet or touch skill with them), is a fault only where that is more than nought, and its own doing is half of it (9 of the set's 10 rows are
+  faults still). R-834: too deep and monk following are kept on every record and said nowhere (`POSITIONS_PAUSED`: `say_place`, a death's
+  "Positioning:" lines, `cases.py positions` sections A and B; 195 deaths of the set too deep, 25 followed). Main's rows written again (four
+  lost a Positioning line).
+  Why each of the four fails (evidence rows in section H; section G and `chance_tests` as they were, his rulings to come). **The strip**
+  (+0.1): the test asks for a prot on him at the first big hit, so a strip before it that left no prot (395 attempts, 35.4% killed) is in
+  neither group, and where a prot was left the count held level is already one lower. With the prots before the strip held level: a prot
+  stripped before the first big hit 31.0% killed against 23.5% (prots on him, a strip ready, none in time), +6.8 (+2.8 to +11.0), 7/10: the
+  range clear, two groups short; in the 1.5 s after it 23.6%, +0.3: nothing. After a strip in time a prot landed again on 1,164 of 1,955
+  (8.0% killed where it did, 52.0% where none did). Not yet changed: `chance_tests` still leaves the 395 out of "done in time" (an engine
+  fault, with his answer on R-729's "or during it"). **Pressure on their monks** (-1.1): an interrupt can only land on a monk who casts; on
+  4,582 spikes the monks began nothing for the target (63.2% killed), and those sit in the missed group (1,280 of 5,168) more than in the
+  taken (418 of 2,153). Read by what it stopped: a prot or heal for the target interrupted 34.3% killed against 20.8% (cast for him, none
+  interrupted), +10.0 (+8.0 to +11.9), 10/10; against those with an interrupt of the attack's ready +6.0 (+4.0 to +8.3), 8/10 (scratch); a
+  monk knocked down +6.0, 10/10; Dazed +10.1, 8/10 (155). **Shadow Shroud** (+3.6): no enchantment can be cast under it (a prot landed in time
+  on 20% against 48% of the same teams' other spikes), so the prots held level take its work out; with none held level and against the same
+  teams in the same matches 40.3% against 36.6%, +10.1 (+5.5 to +15.6), 8/10: 315 spikes by 38 teams, too few matches for the groups bar.
+  **Spell immunity** (37 rows): every one is Aegis (PvP: 1 to 3 s, no hostile spell can target him and attacks on him fail; no Spell Breaker
+  or Obsidian Flesh on a bar). 7,065 Aegis casts in the stored matches against 41 attempts with it up: a spike it stops lands nothing, and an
+  attempt is 400 landed, so the check sees only the spikes that got through (gvg.report credits it 0.6 prevented a cast for the same
+  reason). Needs a reading from the casts aimed at him while it was up (a spike thrown, not a spike landed): not built, put to him.
   **The win chance over the match** (`Moments.position_series`, kept as `flag_cost[rid].series`; `cases.py winchance <file> --json <out>`):
   the position every 10 s and at each death, priced by the price of a result fitted without the match's group. A death's change is the
   price of its death penalty alone (15%, to the floor of 60%, by the game's rule: the replay writes the new figure late on one death in

@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-28, late morning (the same chat): R-831 to R-834 filed and built; why the strip, their monks, Shadow Shroud and spell immunity fail
+- Rulings filed: R-831 (a block said only where more than a third of the spike is attacks, his cut-off), R-832 (Frenzied Defense a fault only where spells landed), R-833 (a dying monk's own spell lost to Shame is a Trigger Fault on his row: as built), R-834 (too deep and monk following paused: kept on the records, said nowhere, no work).
+- `bundle-4` 9ff24ab, one bundled change: `into_block`, `stance_words` and a blocking stance's `spells`, `POSITIONS_PAUSED`; `cases.py attempts` section H gains evidence rows. Development set: plays and moments identical to the digest, 323 Classic rows pass; a block line on 305 spikes (389); 9 of 10 Frenzied Defense rows still faults.
+- Main's `execution_rows.json` written again from 9ff24ab (four rows lost a Positioning line; written over rows he marked).
+- The strip (+0.1): the test left out 395 strips that left no prot and held level a count the strip had lowered. Before the first big hit +6.8 (+2.8 to +11.0), 7/10; in the 1.5 s after it +0.3; a prot lands again after 60% of strips.
+- Pressure on their monks (-1.1): an interrupt cannot land where the monks cast nothing (4,582 spikes, 63.2% killed). A prot or heal for the target interrupted +10.0, 10/10; a monk knocked down +6.0, 10/10.
+- Shadow Shroud: +10.1 (+5.5 to +15.6), 8/10 against the same teams' other spikes with no prots held level; 38 teams, too few for the groups bar. Spell immunity: all Aegis; 41 attempts against 7,065 casts: a spike Aegis stops is no attempt.
+- Put to him: the strip's "or during it" (R-729), their monks as good play and as a fault, the spike thrown for Aegis.
+
 ## 2026-11-28, morning (a new chat): the full run at 90223ed read; a block and the stance pass once their tests are set right
 - Opus's full run at 90223ed read (plays and moments identical on all 564; the interrupt on spikes passes, 168 taken, -16.1, 10/10). Fable ran its own full run at the same engine (29 min, two workers; identical to the digest) to find why a block read backwards and the stance failed.
 - A block: the situation the test holds level counted the block itself among the prots on him, so Guardian was set against Spirit Bond and Shielding Hands, not against no block. Left out of the count: 22.1% killed against 33.8%, -5.2 (-6.8 to -3.5), 10/10. Nothing where a third or less of the spike is attacks (-0.9), -8.5 where two thirds or more.
