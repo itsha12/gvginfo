@@ -54,38 +54,38 @@
   },
   "D-prot": {
    "missed (and not taken by anyone else)": [
-    1665,
-    3634
+    2316,
+    4654
    ],
    "missed by one, taken by another": [
-    701,
-    3816
+    606,
+    4068
    ],
    "taken, nobody missed it": [
-    1103,
-    5461
+    757,
+    4558
    ],
    "no chance either way": [
-    2202,
-    4150
+    1992,
+    3781
    ]
   },
   "D-heal": {
    "missed (and not taken by anyone else)": [
-    1219,
-    2084
+    1843,
+    2977
    ],
    "missed by one, taken by another": [
-    250,
-    1419
+    247,
+    1598
    ],
    "taken, nobody missed it": [
-    1342,
-    7312
+    899,
+    6521
    ],
    "no chance either way": [
-    2860,
-    6246
+    2682,
+    5965
    ]
   },
   "D-interrupt": {
@@ -136,20 +136,20 @@
   },
   "E": {
    "0": [
-    2083,
-    4802
+    1616,
+    3915
    ],
    "1": [
-    958,
-    3526
+    1023,
+    3606
    ],
    "2": [
-    847,
-    3103
+    894,
+    3223
    ],
    "3+": [
-    1783,
-    5630
+    2138,
+    6317
    ]
   },
   "F": {
@@ -167,25 +167,25 @@
    ]
   }
  },
- "busy": 37,
- "out_of_energy": 198,
+ "busy": 41,
+ "out_of_energy": 256,
  "x3": {
   "prot": {
    "side": "defence",
    "words": "a prot ready on a monk in reach who was not busy, not cast on the target",
    "verdict": "passes",
    "taken": [
-    9277,
-    19.4459415759405
+    8626,
+    15.801066543009506
    ],
    "missed": [
-    3634,
-    45.81728123280132
+    4654,
+    49.763644177051994
    ],
-   "difference": -23.68354905689145,
+   "difference": -28.02763388739477,
    "range": [
-    -25.368777705703284,
-    -22.308187222293345
+    -29.514753573128544,
+    -26.469744260756464
    ],
    "groups_right": [
     10,
@@ -201,17 +201,17 @@
    "words": "a heal ready on a monk in reach with energy, who was not busy, not cast on the target before the outcome",
    "verdict": "passes",
    "taken": [
-    8731,
-    18.23387928072386
+    8119,
+    14.115038797881512
    ],
    "missed": [
-    2084,
-    58.49328214971209
+    2977,
+    61.90796103459859
    ],
-   "difference": -40.767868713208856,
+   "difference": -44.17184283667517,
    "range": [
-    -42.86797308108739,
-    -38.597355482758616
+    -45.92456249378823,
+    -42.41842780740835
    ],
    "groups_right": [
     10,

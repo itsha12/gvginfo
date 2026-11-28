@@ -1,0 +1,176 @@
+{
+ "attempts": 26944,
+ "matches": 564,
+ "cuts": {
+  "too deep": {
+   "rule": {
+    "cut": 1000,
+    "attempts": 1588,
+    "killed_past": 0.465,
+    "killed_short": 0.259
+   },
+   "engine": 1200,
+   "without_each_group": [
+    1000,
+    950,
+    1000,
+    1000,
+    950,
+    950,
+    950,
+    950,
+    1000,
+    1000
+   ]
+  },
+  "monk following": {
+   "rule": {
+    "cut": 450,
+    "attempts": 1670,
+    "killed_past": 0.485,
+    "killed_short": 0.293
+   },
+   "engine": 400,
+   "without_each_group": [
+    450,
+    0,
+    450,
+    0,
+    0,
+    0,
+    450,
+    0,
+    400,
+    450
+   ]
+  }
+ },
+ "kinds": {
+  "too deep": {
+   "with": [
+    1597,
+    52.0
+   ],
+   "without": [
+    25347,
+    31.1
+   ],
+   "spikes_with": 912,
+   "difference": 3.1004910529533602,
+   "range": [
+    0.4791475062401573,
+    5.494964500940659
+   ],
+   "groups_right": [
+    6,
+    10
+   ],
+   "verdict": "fails"
+  },
+  "monk following": {
+   "with": [
+    278,
+    39.9
+   ],
+   "without": [
+    26666,
+    32.2
+   ],
+   "spikes_with": 172,
+   "difference": 5.564723905551992,
+   "range": [
+    -0.14919628595666723,
+    11.827935559705683
+   ],
+   "groups_right": [
+    7,
+    10
+   ],
+   "verdict": "fails"
+  },
+  "standing in area damage": {
+   "with": [
+    88,
+    13.6
+   ],
+   "without": [
+    26856,
+    32.4
+   ],
+   "spikes_with": 73,
+   "difference": -13.785247196344876,
+   "range": [
+    -19.04382382031199,
+    -7.507404486652578
+   ],
+   "groups_right": [
+    1,
+    10
+   ],
+   "verdict": "reads backwards"
+  },
+  "should have kited": {
+   "with": [
+    1131,
+    28.1
+   ],
+   "without": [
+    25813,
+    32.5
+   ],
+   "spikes_with": 862,
+   "difference": -5.15680836206412,
+   "range": [
+    -7.145215206640153,
+    -2.990710307065864
+   ],
+   "groups_right": [
+    1,
+    10
+   ],
+   "verdict": "reads backwards"
+  },
+  "the attack's frontline snared": {
+   "with": [
+    1724,
+    22.2
+   ],
+   "without": [
+    25220,
+    33.0
+   ],
+   "spikes_with": 947,
+   "difference": -12.28699043262027,
+   "range": [
+    -14.280340105839235,
+    -10.204746137505863
+   ],
+   "groups_right": [
+    10,
+    10
+   ],
+   "verdict": "passes"
+  }
+ },
+ "position_faults": {
+  "pass": [],
+  "engine": []
+ },
+ "rows": {
+  "flail": {
+   "rows": 413,
+   "matches": 20,
+   "amount": 2242.1
+  },
+  "area": {
+   "rows": 309,
+   "matches": 54,
+   "amount": 21440
+  },
+  "stood": {
+   "rows": 5032,
+   "matches": 464,
+   "amount": 310392
+  }
+ }
+}
