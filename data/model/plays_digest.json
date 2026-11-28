@@ -1,0 +1,497 @@
+{
+"about": "One hash of each match's plays and moments, from the last run kept as the yardstick: tools/golden/digest.py.",
+"matches": {
+"01c0b3c1-673c-5602-af1b-2a5b1ecc9c59": {
+"plays": 8,
+"plays_hash": "5a9a7f0bb66f7ee5",
+"moments": 6,
+"moments_hash": "acb93557214cc543"
+},
+"0ab1d6cd-09aa-503b-ad34-cdfc570a52b0": {
+"plays": 34,
+"plays_hash": "39d8269863c4c96f",
+"moments": 47,
+"moments_hash": "16d500024e057783"
+},
+"0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd": {
+"plays": 114,
+"plays_hash": "d879f951516d79ea",
+"moments": 98,
+"moments_hash": "b989133104b343ac"
+},
+"149fbdc6-f703-5171-a24e-9165a20cecb6": {
+"plays": 59,
+"plays_hash": "e04bb68feacab9dd",
+"moments": 51,
+"moments_hash": "fd06d1bd13151b7b"
+},
+"15a20f7a-0112-519a-a5f9-797a6822bf1b": {
+"plays": 54,
+"plays_hash": "d7394b044936f060",
+"moments": 37,
+"moments_hash": "eb285acc9def07cc"
+},
+"1729daac-175f-50db-a0ee-ea543f3a22e0": {
+"plays": 117,
+"plays_hash": "3510a20db29aa408",
+"moments": 97,
+"moments_hash": "bf88cbb59bc67811"
+},
+"19f38ea6-59d3-5264-a5a1-8ae0fea2e640": {
+"plays": 70,
+"plays_hash": "94c1b729f1b7d2ff",
+"moments": 97,
+"moments_hash": "42171b4b352aaab8"
+},
+"1cb73c20-1b06-5b7b-a728-25c7640f8a84": {
+"plays": 77,
+"plays_hash": "5ba3f1851ac40494",
+"moments": 62,
+"moments_hash": "271183bae689e66d"
+},
+"25a90723-16b6-533d-a15d-570d9901c8a7": {
+"plays": 109,
+"plays_hash": "3792e46685633c10",
+"moments": 92,
+"moments_hash": "1f05f1681773191f"
+},
+"26ba6a2d-768d-504d-ace8-19241884f21c": {
+"plays": 32,
+"plays_hash": "719140878367a726",
+"moments": 25,
+"moments_hash": "d0f8afc6b4860e00"
+},
+"26fe2851-0355-5e98-a698-eed9daf582a9": {
+"plays": 44,
+"plays_hash": "e049fa43d14cbb5d",
+"moments": 41,
+"moments_hash": "efad31c99e675855"
+},
+"27d03c34-b283-5a83-a5dd-70a02424523d": {
+"plays": 92,
+"plays_hash": "81594260a30b41b7",
+"moments": 94,
+"moments_hash": "061e11c504fa6022"
+},
+"28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c": {
+"plays": 146,
+"plays_hash": "6d4abf6054c0495a",
+"moments": 115,
+"moments_hash": "7294d0bfc5b614a8"
+},
+"29aad8d4-e585-5b0a-af7d-93527a333d2b": {
+"plays": 154,
+"plays_hash": "8d69c8b2cee3e9ce",
+"moments": 121,
+"moments_hash": "9de86aa5e9566898"
+},
+"29b7eca0-2660-5d04-adc2-06632123c2ec": {
+"plays": 19,
+"plays_hash": "2c581eb80727980c",
+"moments": 28,
+"moments_hash": "4133863f0fc91fe9"
+},
+"2bd43b13-b0d7-5fe4-ab0c-32897209152f": {
+"plays": 52,
+"plays_hash": "7a5959514812e4af",
+"moments": 48,
+"moments_hash": "7854bca86714b6cb"
+},
+"2c764dac-d2cb-50e3-a072-6b5b3bb9b633": {
+"plays": 91,
+"plays_hash": "36add3073b703356",
+"moments": 73,
+"moments_hash": "2ba88da0183d7366"
+},
+"368cb5d2-f517-5137-ae27-0607789747a8": {
+"plays": 164,
+"plays_hash": "2a90065ffdc17944",
+"moments": 90,
+"moments_hash": "95f3430d19190852"
+},
+"36a65ac6-e25a-5d66-a8ed-2bf1032f243a": {
+"plays": 30,
+"plays_hash": "c681d9941b757bb5",
+"moments": 30,
+"moments_hash": "d9075323442f86e4"
+},
+"39229b8c-24bc-5823-a4a7-9da747fe1189": {
+"plays": 27,
+"plays_hash": "a3302d051b76797b",
+"moments": 35,
+"moments_hash": "d5863c65e796ea69"
+},
+"3d0f3fc5-d078-50f8-adfa-ba7becc95a8a": {
+"plays": 50,
+"plays_hash": "31bc7d50e6f4f94f",
+"moments": 33,
+"moments_hash": "9337be09c2eca9e2"
+},
+"427c825b-7e7f-54f4-aba9-7de41c9fcbaf": {
+"plays": 32,
+"plays_hash": "2c4602016a7a4f37",
+"moments": 35,
+"moments_hash": "51a9ca99c5c78a9f"
+},
+"453bd7a0-ec5b-5e03-a6a2-023431c7deaa": {
+"plays": 24,
+"plays_hash": "84cf9ddb8f14f16e",
+"moments": 17,
+"moments_hash": "d35a8333ca4fa54d"
+},
+"457b3a21-b67f-5164-a70d-adfd73423fcf": {
+"plays": 97,
+"plays_hash": "6d32b9766fe3ed8a",
+"moments": 76,
+"moments_hash": "d8f1e447bfc1837c"
+},
+"45cf6756-afc8-51fa-ade0-162d7450be1c": {
+"plays": 72,
+"plays_hash": "b78362703d7c5a0c",
+"moments": 50,
+"moments_hash": "2a779cc92be12bf6"
+},
+"4629b08c-60ca-5b1b-a349-b241e5d2305a": {
+"plays": 96,
+"plays_hash": "a424b6cc47fde732",
+"moments": 84,
+"moments_hash": "42f9eb3e1f81b1c1"
+},
+"480337e8-5e25-5320-a7ff-45522d1bb4b2": {
+"plays": 154,
+"plays_hash": "f605dfe3a8fe4e8b",
+"moments": 120,
+"moments_hash": "23b44c9c5ee5ee03"
+},
+"506102ee-ef94-5ecf-a485-c1c836193322": {
+"plays": 126,
+"plays_hash": "6c893c27bc23f81b",
+"moments": 95,
+"moments_hash": "bb36373fa6c5c7e6"
+},
+"51683de9-4096-5833-ad4a-56a69c4759e4": {
+"plays": 42,
+"plays_hash": "69a00b5e389da520",
+"moments": 54,
+"moments_hash": "de64f365d32a2c55"
+},
+"53175808-daeb-5e11-a57e-f5b96124d398": {
+"plays": 33,
+"plays_hash": "5b894ba2111400a2",
+"moments": 30,
+"moments_hash": "993e4e6c4006b6cb"
+},
+"541e0951-a43d-5678-ac46-a9d5ae29299a": {
+"plays": 16,
+"plays_hash": "3455f3af9d5dbf4e",
+"moments": 7,
+"moments_hash": "3c86d50211988770"
+},
+"572c2f95-b108-5dea-a98d-e7f39ae64514": {
+"plays": 116,
+"plays_hash": "5dd72ac2e415117b",
+"moments": 80,
+"moments_hash": "16ab1dd0945569ec"
+},
+"597fe160-569e-5180-ae19-0f1b1ce79e10": {
+"plays": 207,
+"plays_hash": "e0b670a009521f76",
+"moments": 129,
+"moments_hash": "3c4f9a457141f575"
+},
+"5aa871bd-42b5-56f6-a193-2c6c4dea3fee": {
+"plays": 32,
+"plays_hash": "f3a5557ef5df280d",
+"moments": 27,
+"moments_hash": "a5f4eb9fc5a70633"
+},
+"5eebef5f-5389-5323-a62a-cbf7a40f993a": {
+"plays": 9,
+"plays_hash": "9bea02d10f47835e",
+"moments": 4,
+"moments_hash": "0dcee708ce69492f"
+},
+"5f9df5bb-014e-5494-a552-e66a2dc9794d": {
+"plays": 134,
+"plays_hash": "70e679bf756381aa",
+"moments": 92,
+"moments_hash": "522c6a8a49827fbf"
+},
+"617aa3df-f264-553b-afe2-b9f5cb7068c2": {
+"plays": 121,
+"plays_hash": "ee8911679063fb92",
+"moments": 76,
+"moments_hash": "96e53d9ae4714433"
+},
+"62c3fad6-2ebb-5a65-ae51-186c08822dc4": {
+"plays": 98,
+"plays_hash": "62112320175019ab",
+"moments": 63,
+"moments_hash": "0f90ea35161ddaed"
+},
+"6aaa0f6d-da4e-5666-a036-7527fc7bd9d4": {
+"plays": 113,
+"plays_hash": "f1a5a7a86a324874",
+"moments": 98,
+"moments_hash": "f7b55698a0eaef42"
+},
+"75312515-a408-5381-a999-7ec2432a66f8": {
+"plays": 19,
+"plays_hash": "d6b87be6c3b75329",
+"moments": 17,
+"moments_hash": "75bcb93262b3cde2"
+},
+"7761aa5f-0ff1-5724-a537-f257af86b9a5": {
+"plays": 61,
+"plays_hash": "049b90c111abfba0",
+"moments": 47,
+"moments_hash": "74efb7e5f4e194b5"
+},
+"78c5bf08-c63a-50cd-a41e-ef7311995938": {
+"plays": 60,
+"plays_hash": "c1b5362ab4d0aef9",
+"moments": 55,
+"moments_hash": "da262df7dbb7fde2"
+},
+"7ff01864-64ea-5d6a-a396-a959c9673701": {
+"plays": 66,
+"plays_hash": "8db47ac43f63aba1",
+"moments": 43,
+"moments_hash": "7bfa04c2fbf965b5"
+},
+"84586253-61c8-5848-ad75-1bfda24302ba": {
+"plays": 154,
+"plays_hash": "f807e30f6b28cc0b",
+"moments": 131,
+"moments_hash": "e1728990210a42c9"
+},
+"862d6629-38f3-5359-a885-0285354ce534": {
+"plays": 121,
+"plays_hash": "0b36ec583e4e4a2c",
+"moments": 88,
+"moments_hash": "2e4f0532cca3d563"
+},
+"8bf4ffae-780e-535e-aa7b-44027b0fa6cc": {
+"plays": 92,
+"plays_hash": "9eee533102f9abf8",
+"moments": 58,
+"moments_hash": "d30571a65eae9368"
+},
+"90810e04-6855-5045-a7f4-d32f47815ade": {
+"plays": 156,
+"plays_hash": "452f8d5a9a2fa1ee",
+"moments": 107,
+"moments_hash": "00d69b6a058a4fee"
+},
+"9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96": {
+"plays": 94,
+"plays_hash": "56e459f0dc9fcd8a",
+"moments": 78,
+"moments_hash": "428ca28f5e1f1696"
+},
+"9c9f7436-11d7-5283-a5aa-cbcc5f68bb77": {
+"plays": 45,
+"plays_hash": "5de71149495cbaf8",
+"moments": 32,
+"moments_hash": "164261872dd6b328"
+},
+"9d84b1e6-6aef-5d0c-a417-fb87875add27": {
+"plays": 155,
+"plays_hash": "c1980e04d10fede7",
+"moments": 113,
+"moments_hash": "41a0fbeaecb0d0f4"
+},
+"9eb315c2-bb0f-54aa-ae59-20db911cdbed": {
+"plays": 184,
+"plays_hash": "24e32a37ba5de21a",
+"moments": 111,
+"moments_hash": "565a76d616e06a37"
+},
+"a0d60daa-0700-5a31-a1f5-495c0db986df": {
+"plays": 97,
+"plays_hash": "7675436db3e27638",
+"moments": 64,
+"moments_hash": "32041567a8d2fdea"
+},
+"a0fae334-fc73-546f-aefc-9b8b16607862": {
+"plays": 56,
+"plays_hash": "0e5b8e5565dce214",
+"moments": 84,
+"moments_hash": "486f7254ebb0b37f"
+},
+"a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
+"plays": 74,
+"plays_hash": "72d559e2f4048278",
+"moments": 47,
+"moments_hash": "ebe64df6d267e569"
+},
+"a921418b-c4d1-5872-aca9-18f9ad99bf40": {
+"plays": 15,
+"plays_hash": "c14eef13cfdbf3d2",
+"moments": 13,
+"moments_hash": "c86c2d5e06f1b344"
+},
+"ad75813a-2393-56f4-aee1-975ff4c85196": {
+"plays": 44,
+"plays_hash": "d02deb18c05937fa",
+"moments": 33,
+"moments_hash": "157b839f91c8a3df"
+},
+"af831111-a724-5a33-ad1d-e01bebeaac6e": {
+"plays": 36,
+"plays_hash": "e5c0b0d7e1a34e30",
+"moments": 38,
+"moments_hash": "43640b62d0ce313c"
+},
+"b31ffe18-07a9-589f-a516-8862f80ab668": {
+"plays": 38,
+"plays_hash": "bffae949046ea886",
+"moments": 35,
+"moments_hash": "ae86f6a2cb0ec128"
+},
+"b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d": {
+"plays": 76,
+"plays_hash": "799daafcdbb4a180",
+"moments": 56,
+"moments_hash": "20e4cb56eaed2ef7"
+},
+"b870f84e-b838-5f2a-ae83-b1e25499d9ee": {
+"plays": 40,
+"plays_hash": "e1b7f66b82273e94",
+"moments": 31,
+"moments_hash": "6bab8e8e9ee9f7e2"
+},
+"bb669b6f-5c52-589e-a4ed-1c621556c9a4": {
+"plays": 196,
+"plays_hash": "251f460cd827dc76",
+"moments": 145,
+"moments_hash": "6f98ddf410785209"
+},
+"bdaa145f-1471-57b3-ab2f-a04f090b7abb": {
+"plays": 74,
+"plays_hash": "dfd7990e5174e3ca",
+"moments": 52,
+"moments_hash": "72707648697858e8"
+},
+"c19f13e3-7c93-5ea8-ae4c-16f2d75104da": {
+"plays": 71,
+"plays_hash": "98826b5c6f9c0bf5",
+"moments": 45,
+"moments_hash": "85c119e5f189c916"
+},
+"c553716d-a00b-5bff-ac49-6bfc480c5ca9": {
+"plays": 89,
+"plays_hash": "adef830ae0317dee",
+"moments": 74,
+"moments_hash": "d9469668f8f12a0f"
+},
+"c71fdca0-91ef-5ef5-a344-5d9c3b6db05d": {
+"plays": 173,
+"plays_hash": "a3a3fbbeeea325e6",
+"moments": 135,
+"moments_hash": "d1e2bd382e77e6ae"
+},
+"c8e26dc9-8cfb-5a36-aa1a-38f8c416753d": {
+"plays": 170,
+"plays_hash": "850db3b045fe7ca0",
+"moments": 139,
+"moments_hash": "a479e04931e2b83d"
+},
+"cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37": {
+"plays": 49,
+"plays_hash": "76f3c3290766ed9c",
+"moments": 42,
+"moments_hash": "eb8f701ec3609171"
+},
+"cd870ad3-52e8-5de9-a73a-897015fab0dc": {
+"plays": 98,
+"plays_hash": "e61b69b786ab946c",
+"moments": 93,
+"moments_hash": "17dfed3ab79253f1"
+},
+"ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816": {
+"plays": 122,
+"plays_hash": "8b0d488c08281956",
+"moments": 64,
+"moments_hash": "132f957a88d6988f"
+},
+"d016987b-e5a0-5cd5-a23c-4c5b2d2415f8": {
+"plays": 14,
+"plays_hash": "fad27bc7d6d83da0",
+"moments": 12,
+"moments_hash": "38a80ca9b8dee54e"
+},
+"d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
+"plays": 21,
+"plays_hash": "d14d48f2aae2af4e",
+"moments": 15,
+"moments_hash": "f84728bdb3a13b43"
+},
+"d492aa6c-a12b-5bce-a5ec-9ada965676f0": {
+"plays": 115,
+"plays_hash": "8b7f5b5e5740dbd2",
+"moments": 80,
+"moments_hash": "2dd6236fd23ad69a"
+},
+"d6ef0b00-a841-55ac-a976-4eca9f15c175": {
+"plays": 189,
+"plays_hash": "d1d98889e40018e7",
+"moments": 167,
+"moments_hash": "355ffc031d60817a"
+},
+"dae60f33-00a0-5b98-ae10-69a8b5424269": {
+"plays": 64,
+"plays_hash": "be701f3355f4f3ac",
+"moments": 39,
+"moments_hash": "f60c80a38b91b747"
+},
+"df4b3126-a073-5a2b-a5a7-a25b92fec2e3": {
+"plays": 90,
+"plays_hash": "90ef969276087b10",
+"moments": 73,
+"moments_hash": "c8331bf06636c5c7"
+},
+"e7a93c30-8c9d-527f-a080-465c38c75136": {
+"plays": 51,
+"plays_hash": "ac12128da94e4149",
+"moments": 45,
+"moments_hash": "ded4bf4c82063c07"
+},
+"eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
+"plays": 107,
+"plays_hash": "fd6bef184e687b29",
+"moments": 60,
+"moments_hash": "5904245088fd4d9d"
+},
+"efb56ec6-4ef7-57bd-a53b-cc0ba78e84a6": {
+"plays": 138,
+"plays_hash": "bf4a0f813a77127e",
+"moments": 107,
+"moments_hash": "cb3a32585915df38"
+},
+"f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d": {
+"plays": 78,
+"plays_hash": "d1e89de884955247",
+"moments": 66,
+"moments_hash": "37a9db83e76c7605"
+},
+"faec428a-5b92-54d1-a28c-b79c7f27cfcf": {
+"plays": 167,
+"plays_hash": "4397e6d8f89c0510",
+"moments": 122,
+"moments_hash": "8853047e2e502adf"
+},
+"fe0bdc51-c534-5b26-ae81-159809f5b3b7": {
+"plays": 70,
+"plays_hash": "e0f2be1dfa46a33b",
+"moments": 63,
+"moments_hash": "fb7c9dc3f7d3b198"
+},
+"febccb6c-2397-5d46-abe2-e1c3bcfbeaef": {
+"plays": 41,
+"plays_hash": "58a4461b79531155",
+"moments": 44,
+"moments_hash": "bd2cc1f3240aab8d"
+}
+}
+}
