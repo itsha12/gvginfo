@@ -1,4 +1,4 @@
-import { loadData, installTooltips, state, canSave } from "./core.js";
+import { loadData, installTooltips } from "./core.js";
 import { renderHome } from "./pages/home.js";
 import { renderSkills } from "./pages/skills.js";
 import { renderKnowledge, renderModel } from "./pages/knowledge.js";
@@ -22,11 +22,6 @@ function route() {
   view.focus({ preventScroll: true });
 }
 
-function syncLine() {
-  document.getElementById("sync").textContent =
-    `${state.meta.count} skills loaded. ${canSave() ? "Changes save to GitHub." : "View only: add your GitHub key in Settings to save changes."}`;
-}
-
 (async () => {
   try {
     await loadData();
@@ -35,8 +30,6 @@ function syncLine() {
     return;
   }
   installTooltips();
-  syncLine();
   addEventListener("hashchange", route);
-  addEventListener("settings-changed", syncLine);
   route();
 })();

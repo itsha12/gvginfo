@@ -18,7 +18,6 @@ export async function renderSkills(view, [openId]) {
 
   view.innerHTML = `
     <h2>Skills</h2>
-    <p class="lede">Every skill usable in GvG, with PvP versions in place of their PvE originals. Your own notes show in gold and are never overwritten by wiki updates.</p>
     <div class="toolbar" id="filters">
       <label>Search<input type="search" name="q" value="${esc(f.q)}" placeholder="Name or description"></label>
       <label>Profession<select name="prof">${opt("", f.prof, "All")}${PROFS.map((p) => opt(p, f.prof, p === "None" ? "Common" : p)).join("")}</select></label>

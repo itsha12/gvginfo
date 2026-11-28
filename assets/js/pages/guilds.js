@@ -18,7 +18,6 @@ export async function renderGuilds(view, [id]) {
 
   view.innerHTML = `
     <h2>Guilds</h2>
-    <p class="lede">Every guild in the ${data.matches} recorded matches: record, maps, usual lineup per map in party order, and who plays for them.</p>
     <div class="toolbar"><label>Search<input type="search" id="q" value="${esc(f.q)}" placeholder="Guild, tag or player"></label></div>
     <div class="scroll"><table class="data"><thead><tr>${COLS.map(([k, l, n]) => `<th class="sortable${n ? " num" : ""}" data-sort="${k}" aria-sort="${f.sort === k ? (f.desc ? "descending" : "ascending") : "none"}">${l}<span class="arrow">${f.sort === k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}<th>Most played maps</th></tr></thead>
     <tbody>${rows.map((x) => `<tr class="clickable" data-g="${esc(x.id)}" tabindex="0">

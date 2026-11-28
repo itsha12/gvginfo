@@ -41,8 +41,7 @@ export function renderSchedule(view) {
 
   view.innerHTML = `
     <h2>Schedule</h2>
-    <p class="lede">Automated tournament start times in Eastern time. A start just after midnight is listed on the evening
-      before it. Register within the hour before the start.</p>
+    <p class="lede">Automated tournament start times in Eastern time.</p>
     <div class="stats sched-tiles">
       <div><span>Current flux</span><b class="flux">${esc(S.fluxFor(now))}</b><span>${esc(S.fluxFor(fluxChange + 3600000))} from ${esc(S.fmtDate(fluxChange))}, ${esc(S.fmtTime(fluxChange))}</span></div>
       ${tile("Next AT-A", next("A")?.at)}
@@ -72,9 +71,6 @@ export function renderSchedule(view) {
         ${offsetMonths === 0 ? `<h3>Next month</h3>
         <ol class="rotation small">${S.rotationFor(nextMonthMs).map((m) => `<li>${esc(m)}</li>`).join("")}</ol>
         <p class="muted small">Flux next month: <b>${esc(S.fluxFor(nextMonthMs))}</b></p>` : ""}
-        <p class="muted small" style="margin-top:2rem">Source: Guild Wars Wiki —
-          <a href="https://wiki.guildwars.com/wiki/Automated_tournament" target="_blank" rel="noopener">Automated tournament</a> (start times in UTC, map rotation) and
-          <a href="https://wiki.guildwars.com/wiki/Flux" target="_blank" rel="noopener">Flux</a> (changes on the 1st at 07:00 UTC).</p>
       </aside>
     </div>`;
 

@@ -37,7 +37,7 @@ export async function renderBuilds(view, [openId]) {
 
   view.innerHTML = `
     <h2>Builds</h2>
-    <p class="lede">Every bar seen in ${data.matches} recorded matches, grouped into families: ${esc(data.rule)}. Variations list each exact bar with its own code.</p>
+    <p class="lede">Every bar seen in ${data.matches} recorded matches, grouped into families: ${esc(data.rule)}.</p>
     <div class="tabs" role="tablist">
       <button role="tab" data-tab="" aria-selected="${!f.prof}">All <span class="muted">${matching.length}</span></button>
       ${PROFS.map((p) => `<button role="tab" data-tab="${p}" aria-selected="${f.prof === p}"${perProf[p] ? "" : " disabled"}><span class="prof" data-p="${p}">${p}</span> <span class="muted">${perProf[p]}</span></button>`).join("")}
