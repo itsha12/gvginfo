@@ -1479,8 +1479,8 @@ TRIGGER_JOIN_S = 0.3        # a trigger's own damage lands inside this long of t
 BALL_S = 0.15               # the hits of one cast on several players land inside this long of one another (the same tenth)
 BALL_LAND_S = 1.0           # ... the first of them no later than this after the cast finished (4,860 of 4,968 in the tenth it finished; a projectile's flight the rest)
 CHAIN_STEP_S = 0.5          # a cast that strikes "up to N other foes" (Invoke Lightning, Chain Lightning) strikes them one after another: the record sets each
-                            # next foe this long after the one before (the development set, 1,353 casts that hit their target: of the caster's hits on other
-                            # players in the 1.3 s after, 315 at 0.4 to 0.6 s and 112 at 0.9 to 1.1 s, 48 elsewhere, 3 in the target's own tenth; each
+                            # next foe this long after the one before (the development set, 1,326 casts that hit their target: of the caster's hits on other
+                            # players in the 1.3 s after, 314 at 0.4 to 0.6 s and 111 at 0.9 to 1.1 s, 18 elsewhere, 3 in the target's own tenth; each
                             # of a spell's size, the median the same as the target's hit). Read inside BALL_S of each step.
 CHAIN_N = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5}
 CRIPPLE_CAST_S = 1.5        # a Cripple with another Cripple skill cast on him inside this long before it is that skill's, not Harrier's Grasp's
