@@ -253,25 +253,25 @@
    "words": "a prot on the target with a strip of ours ready and in range, and none came (taken: the strip before the first big hit; a strip during it is read in section H against its own like)",
    "verdict": "fails",
    "taken": [
-    715,
-    32.30769230769231
+    714,
+    32.07282913165266
    ],
    "missed": [
     648,
     23.456790123456788
    ],
-   "difference": 5.791134106275983,
+   "difference": 5.597015574963256,
    "range": [
-    2.100292318113843,
-    9.388659051384519
+    1.9386587917307052,
+    9.14534556774155
    ],
    "groups_right": [
-    7,
+    6,
     10
    ],
    "late": [
-    1142,
-    23.117338003502628
+    1880,
+    28.297872340425535
    ]
   },
   "pressure": {
@@ -579,6 +579,7 @@
     10
    ],
    "against": "against prots on him before, a strip ready and none that matters; the prots before the strip held level",
+   "by_name": "R-842",
    "against_all": {
     "without": [
      175,
@@ -713,7 +714,7 @@
    }
   },
   "H1. On the spikes and bursts | a spike:   ... the strip dealing none": {
-   "status": "not counted by R-835 on a spike",
+   "status": "the strip that matters (R-839)",
    "should": "kill more",
    "verdict": "passes",
    "with": [
@@ -749,6 +750,29 @@
     ],
     "verdict": "passes"
    }
+  },
+  "H1. On the spikes and bursts | a spike: a damaging strip during it that took neither": {
+   "status": "damage like any other, no strip (R-840)",
+   "should": "kill more",
+   "verdict": "fails",
+   "with": [
+    276,
+    37.31884057971014
+   ],
+   "without": [
+    3068,
+    38.200782268578884
+   ],
+   "difference": 0.02225119010578619,
+   "range": [
+    -4.422298309503263,
+    4.928510144571968
+   ],
+   "groups_right": [
+    5,
+    10
+   ],
+   "against": "against the spikes with no strip at all; evidence only: its damage is in the spike's own sum"
   },
   "H1. On the spikes and bursts | a burst: a strip took a prot or heal that landed during it": {
    "status": "the strip that matters (R-835)",
@@ -831,7 +855,8 @@
    "groups_right": [
     7,
     10
-   ]
+   ],
+   "by_name": "R-842"
   },
   "H2. The interrupt on a burst on a hurt player | an interrupt ready and the skill went off": {
    "status": "not a fault (R-805)",
@@ -1099,6 +1124,25 @@
     "range": [
      -12.531313584030737,
      -8.12366488000296
+    ],
+    "groups_right": [
+     10,
+     10
+    ],
+    "verdict": "passes"
+   },
+   "Aegis coming during it, against targets still alive": {
+    "n": 347,
+    "killed": 1.729106628242075,
+    "at": 1.9,
+    "against": [
+     4631,
+     22.88922478946232
+    ],
+    "difference": -21.512958087746732,
+    "range": [
+     -23.51219212392276,
+     -19.483821927660433
     ],
     "groups_right": [
      10,
