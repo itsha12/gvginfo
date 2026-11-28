@@ -4,6 +4,7 @@ import { esc, lazy, readJson, pct, ago, skillBar, copy, codeForPlayer, ABBR } fr
 import { matchList, newFilters, guildSlug, charLink, personLink } from "./home.js";
 
 const lists = new Map(); // search state per profile, kept while the site is open
+const picked = new Map(); // per player: the characters he narrowed the page to (none = all)
 
 const people = async () => ((await readJson("data/aliases.json", { people: {} })) || {}).people || {};
 const isAT = (occ) => /^AT-/.test(occ || "");
@@ -28,32 +29,30 @@ export async function renderCharacter(view, [name = ""]) {
 
 function draw(view, recent, o) {
   const all = recent?.matches || [];
-  const rows = [];
-  for (const m of all) for (const t of m.teams) for (const p of t.players) if (o.chars.has(p.n)) rows.push({ m, t, p });
+  const allRows = [];
+  for (const m of all) for (const t of m.teams) for (const p of t.players) if (o.chars.has(p.n)) allRows.push({ m, t, p });
+  const pick = o.person ? (picked.get(o.key) || new Set()) : new Set();
+  const rows = pick.size ? allRows.filter((r) => pick.has(r.p.n)) : allRows;
   const matches = [...new Map(rows.map((r) => [r.m.id, r.m])).values()];
   const back = `<p><a href="#/players">← Players</a></p>`;
   const sub = o.person
-    ? `<p class="lede">Characters: ${[...o.chars].sort((a, b) => a.localeCompare(b)).map(charLink).join(", ")}</p>`
+    ? `<div class="char-pick"><span class="muted small">Characters (click to show only those):</span>
+        ${[...o.chars].sort((a, b) => a.localeCompare(b)).map((c) => `<button type="button" class="chip-btn" data-pick="${esc(c)}" aria-pressed="${pick.has(c)}"${allRows.some((r) => r.p.n === c) ? "" : ' disabled title="No recorded games"'}>${esc(c)}</button>`).join("")}
+        ${pick.size ? `<button type="button" class="btn small ghost" data-pickall>Show all characters</button>` : ""}</div>`
     : o.playedBy ? `<p class="lede">Played by ${personLink(o.playedBy)}</p>` : "";
-  if (!rows.length) {
+  if (!allRows.length) {
     view.innerHTML = `${back}<h2>${esc(o.title)}</h2>${sub}<div class="empty-state">No recorded matches.</div>`;
     return;
   }
   const at = rows.filter((r) => isAT(r.m.occ)), mat = rows.filter((r) => r.m.occ === "MAT");
-  const last = Math.max(...rows.map((r) => r.m.at || 0));
+  const last = Math.max(0, ...rows.map((r) => r.m.at || 0));
 
   // guilds played for
   const guilds = group(rows, (r) => guildSlug(r.t), (r) => ({ name: r.t.guild, tag: r.t.tag }));
   // builds played: one row per build family, its most played full bar shown
-  const builds = group(rows, (r) => r.p.fam || r.p.build || "?", (r) => ({ build: r.p.build || "Unknown build" })).map((b) => {
-    const full = b.rows.filter((r) => r.p.bar.every(Boolean));
-    const counts = new Map(); for (const r of (full.length ? full : b.rows)) { const k = r.p.bar.join(","); counts.set(k, (counts.get(k) || 0) + 1); }
-    const top = [...counts.entries()].sort((x, y) => y[1] - x[1])[0][0];
-    const pick = b.rows.find((r) => r.p.bar.join(",") === top);
-    return { ...b, pick: pick.p };
-  });
+  const builds = buildsFrom(rows);
   // a player's characters
-  const perChar = o.person ? group(rows, (r) => r.p.n, (r) => ({ name: r.p.n })) : [];
+  const perChar = o.person ? group(allRows, (r) => r.p.n, (r) => ({ name: r.p.n })) : [];
 
   view.innerHTML = `${back}
     <h2>${esc(o.title)}</h2>${sub}
@@ -61,22 +60,14 @@ function draw(view, recent, o) {
       <div><span>Record</span><b>${rec(rows)}</b><span>${rate(rows)} won, ${rows.length} games</span></div>
       <div><span>AT win rate</span><b>${rate(at)}</b><span>${at.length ? `${rec(at)} in ${at.length} games` : "no AT games"}</span></div>
       <div><span>MAT win rate</span><b>${rate(mat)}</b><span>${mat.length ? `${rec(mat)} in ${mat.length} games` : "no MAT games"}</span></div>
-      <div><span>Last seen</span><b>${esc(ago(last))}</b><span>${esc(new Date(last).toISOString().slice(0, 10))}</span></div>
+      <div><span>Last seen</span><b>${last ? esc(ago(last)) : "–"}</b><span>${last ? esc(new Date(last).toISOString().slice(0, 10)) : "no games"}</span></div>
     </div>
 
     <h3>Recent matches</h3>
     <div id="list"></div>
 
     <h3>Builds played</h3>
-    <div class="lineup">${builds.map((b) => {
-      const code = codeForPlayer(b.pick);
-      return `<div class="lineup-slot">
-        <span class="prof" data-p="${esc(b.pick.p)}">${esc(ABBR[b.pick.p] || b.pick.p)}/${esc(ABBR[b.pick.s] || "")}</span>
-        <div class="who"><b>${esc(b.pick.build || b.build)}</b><div class="muted small">${b.n} game${b.n === 1 ? "" : "s"}, ${pct(b.wins, b.n)} won</div></div>
-        ${skillBar(b.pick.bar, { attributes: b.pick.attrs }, true)}
-        ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button>` : "<span></span>"}
-      </div>`;
-    }).join("")}</div>
+    ${buildsHtml(builds)}
 
     <h3>Guilds played for</h3>
     <div class="scroll"><table class="data"><thead><tr><th>Guild</th><th class="num">Games</th><th class="num">Won</th><th class="num">Last seen</th></tr></thead>
@@ -90,6 +81,11 @@ function draw(view, recent, o) {
   if (!lists.has(o.key)) lists.set(o.key, newFilters(20));
   matchList(view.querySelector("#list"), matches, lists.get(o.key), { allMatches: all });
   view.querySelectorAll(".lineup [data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
+  view.querySelectorAll("[data-pick]").forEach((b) => b.onclick = () => {
+    const set = new Set(pick); if (set.has(b.dataset.pick)) set.delete(b.dataset.pick); else set.add(b.dataset.pick);
+    picked.set(o.key, set); const l = lists.get(o.key); if (l) l.limit = l.page || 20; draw(view, recent, o);
+  });
+  view.querySelector("[data-pickall]")?.addEventListener("click", () => { picked.delete(o.key); draw(view, recent, o); });
 }
 
 // rows grouped by key, most games first; `head` gives the fields shown for the group
@@ -102,3 +98,23 @@ function group(rows, keyOf, head) {
   }
   return [...g.values()].sort((a, b) => b.n - a.n || b.last - a.last);
 }
+
+// Builds played, from rows of { m, t, p }: one per build family, most games first, each shown with its most
+// played full bar (the build name and profession taken from that same game).
+export function buildsFrom(rows) {
+  return group(rows, (r) => r.p.fam || r.p.build || "?", (r) => ({ build: r.p.build || "Unknown build" })).map((b) => {
+    const full = b.rows.filter((r) => r.p.bar.every(Boolean));
+    const counts = new Map(); for (const r of (full.length ? full : b.rows)) { const k = r.p.bar.join(","); counts.set(k, (counts.get(k) || 0) + 1); }
+    const top = [...counts.entries()].sort((x, y) => y[1] - x[1])[0][0];
+    return { ...b, pick: b.rows.find((r) => r.p.bar.join(",") === top).p };
+  });
+}
+export const buildsHtml = (builds) => `<div class="lineup">${builds.map((b) => {
+  const code = codeForPlayer(b.pick);
+  return `<div class="lineup-slot">
+    <span class="prof" data-p="${esc(b.pick.p)}">${esc(ABBR[b.pick.p] || b.pick.p)}/${esc(ABBR[b.pick.s] || "")}</span>
+    <div class="who"><b>${esc(b.pick.build || b.build)}</b><div class="muted small">${b.n} game${b.n === 1 ? "" : "s"}, ${pct(b.wins, b.n)} won</div></div>
+    ${skillBar(b.pick.bar, { attributes: b.pick.attrs }, true)}
+    ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button>` : "<span></span>"}
+  </div>`;
+}).join("")}</div>`;

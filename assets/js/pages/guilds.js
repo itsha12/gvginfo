@@ -1,9 +1,12 @@
 import { esc, lazy, pct, ago, skillBar, templateCode, copy, readJson, ABBR } from "../core.js";
 import { matchList, newFilters, guildSlug, charLink, personLink } from "./home.js";
+import { buildsFrom, buildsHtml } from "./profile.js";
 
-const f = { q: "", sort: "games", desc: true, map: "", minGames: "", minRating: "" };
+const f = { q: "", sort: "games", desc: true, map: "", minGames: "", minRating: "", openPlayer: "" };
 const lists = new Map(); // match search state per guild
-const COLS = [["name", "Guild"], ["rating", "Rating", 1], ["games", "Games", 1], ["win", "Won", 1], ["flawless", "Flawless", 1], ["last", "Last seen", 1]];
+const COLS = [["name", "Guild"], ["rating", "Rating", 1], ["games", "Games", 1], ["win", "Win rate (all)", 1], ["at", "Win rate (AT)", 1], ["mat", "Win rate (MAT)", 1], ["last", "Last seen", 1]];
+const sumOcc = (g, pred) => Object.entries(g.occ || {}).filter(([k]) => pred(k)).reduce((a, [, v]) => ({ n: a.n + v.n, wins: a.wins + v.wins }), { n: 0, wins: 0 });
+const rateCell = (x) => `<td class="num"${x.n ? ` title="${x.wins}–${x.n - x.wins} in ${x.n} games"` : ""}>${x.n ? pct(x.wins, x.n) : "–"}${x.n ? ` <span class="muted small">(${x.n})</span>` : ""}</td>`;
 const label = (g) => `${esc(g.name || "?")} <span class="muted">[${esc(g.tag || "")}]</span>`;
 
 export async function renderGuilds(view, [id]) {
@@ -15,7 +18,10 @@ export async function renderGuilds(view, [id]) {
   const q = f.q.toLowerCase();
   const rows = data.guilds.filter((x) => (!q || `${x.name} ${x.tag}`.toLowerCase().includes(q) || x.players.some((p) => p.n.toLowerCase().includes(q))) &&
     (f.minGames === "" || x.games >= +f.minGames) && (f.minRating === "" || (x.rating ?? -1) >= +f.minRating))
-    .map((x) => ({ ...x, win: x.wins / x.games }));
+    .map((x) => {
+      const at = sumOcc(x, (k) => /^AT-/.test(k)), mat = sumOcc(x, (k) => k === "MAT");
+      return { ...x, win: x.wins / x.games, atR: at, matR: mat, at: at.n ? at.wins / at.n : null, mat: mat.n ? mat.wins / mat.n : null };
+    });
   rows.sort((a, b) => (f.sort === "name" ? String(a.name).localeCompare(String(b.name)) : (a[f.sort] ?? -1) - (b[f.sort] ?? -1)) * (f.desc ? -1 : 1));
 
   view.innerHTML = `
@@ -27,13 +33,13 @@ export async function renderGuilds(view, [id]) {
     <div class="scroll"><table class="data"><thead><tr>${COLS.map(([k, l, n]) => `<th class="sortable${n ? " num" : ""}" data-sort="${k}" aria-sort="${f.sort === k ? (f.desc ? "descending" : "ascending") : "none"}">${l}<span class="arrow">${f.sort === k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}</tr></thead>
     <tbody>${rows.map((x) => `<tr class="clickable" data-g="${esc(x.id)}" tabindex="0">
       <td>${label(x)}</td><td class="num">${x.rating ?? "–"}</td><td class="num">${x.games}</td><td class="num">${pct(x.wins, x.games)}</td>
-      <td class="num">${x.flawless}</td><td class="num">${esc(ago(x.last))}</td></tr>`).join("")}</tbody></table></div>`;
+      ${rateCell(x.atR)}${rateCell(x.matR)}<td class="num">${esc(ago(x.last))}</td></tr>`).join("")}</tbody></table></div>`;
 
   const q$ = view.querySelector("#q");
   q$.oninput = () => { f.q = q$.value; clearTimeout(f.t); f.t = setTimeout(() => renderGuilds(view, []).then(() => { const el = view.querySelector("#q"); el.focus(); el.setSelectionRange(el.value.length, el.value.length); }), 250); };
   ["minGames", "minRating"].forEach((k) => view.querySelector(`#${k}`).onchange = (e) => { f[k] = e.target.value; renderGuilds(view, []); });
   view.querySelectorAll("[data-sort]").forEach((th) => th.onclick = () => { if (f.sort === th.dataset.sort) f.desc = !f.desc; else { f.sort = th.dataset.sort; f.desc = th.dataset.sort !== "name"; } renderGuilds(view, []); });
-  view.querySelectorAll("tr[data-g]").forEach((tr) => { const go = () => { f.map = ""; location.hash = `#/guilds/${encodeURIComponent(tr.dataset.g)}`; }; tr.onclick = go; tr.onkeydown = (e) => e.key === "Enter" && go(); });
+  view.querySelectorAll("tr[data-g]").forEach((tr) => { const go = () => { f.map = ""; f.openPlayer = ""; location.hash = `#/guilds/${encodeURIComponent(tr.dataset.g)}`; }; tr.onclick = go; tr.onkeydown = (e) => e.key === "Enter" && go(); });
 }
 
 // One party slot: position, profession, build name, bar, usual players.
@@ -76,10 +82,9 @@ function detail(view, g, data, recent, people) {
   const P = new Map();
   for (const c of g.players) {
     const who = personOf.get(c.n), k = who ? `p:${who}` : `c:${c.n}`;
-    const x = P.get(k) || P.set(k, { who, chars: [], games: 0, wins: 0, pos: c.pos, top: 0, builds: new Map() }).get(k);
+    const x = P.get(k) || P.set(k, { k, who, chars: [], games: 0, wins: 0, pos: c.pos, top: 0 }).get(k);
     x.chars.push(c); x.games += c.games; x.wins += c.wins;
     if (c.games > x.top) { x.top = c.games; x.pos = c.pos; }
-    for (const b of c.builds) x.builds.set(b.k, (x.builds.get(b.k) || 0) + b.n);
   }
   const players = [...P.values()].sort((a, b) => b.games - a.games);
 
@@ -111,14 +116,25 @@ function detail(view, g, data, recent, people) {
     </div>`).join("")}</div>` : ""}
 
     <h3>Players</h3>
-    <div class="scroll"><table class="data"><thead><tr><th>Player</th><th>Characters</th><th class="num">Usual slot</th><th class="num">Games</th><th class="num">Won</th><th>Builds</th></tr></thead>
-    <tbody>${players.map((x) => `<tr><td><b>${x.who ? personLink(x.who) : charLink(x.chars[0].n)}</b></td>
+    <div class="scroll"><table class="data"><thead><tr><th>Player</th><th>Characters</th><th class="num">Usual slot</th><th class="num">Games</th><th class="num">Won</th></tr></thead>
+    <tbody>${players.map((x) => `<tr class="clickable" data-player="${esc(x.k)}" tabindex="0" title="Show their top builds in this guild"><td><b>${x.who ? personLink(x.who) : charLink(x.chars[0].n)}</b></td>
       <td class="wrap">${x.who ? x.chars.map((c) => charLink(c.n)).join(", ") : `<span class="muted small">not assigned to a player</span>`}</td>
-      <td class="num">${x.pos ?? "–"}</td><td class="num">${x.games}</td><td class="num">${pct(x.wins, x.games)}</td>
-      <td>${[...x.builds.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, n]) => `${esc(k)}${n > 1 ? ` (${n})` : ""}`).join(", ")}</td></tr>`).join("")}</tbody></table></div>`;
+      <td class="num">${x.pos ?? "–"}</td><td class="num">${x.games}</td><td class="num">${pct(x.wins, x.games)}</td></tr>
+      ${f.openPlayer === x.k ? `<tr><td colspan="5" class="wrap"><div class="muted small" style="margin:.2rem 0 .3rem">Top builds in ${esc(g.name || "this guild")}</div>${playerBuilds(x)}</td></tr>` : ""}`).join("")}</tbody></table></div>`;
 
   if (!lists.has(g.id)) lists.set(g.id, newFilters(20));
   matchList(view.querySelector("#list"), games, lists.get(g.id), { allMatches: all });
   view.querySelector("#map").onchange = (e) => { f.map = e.target.value; detail(view, g, data, recent, people); };
-  view.querySelectorAll(".lineup [data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
+  view.querySelectorAll(".lineup [data-copy]").forEach((b) => b.onclick = (e) => { e.stopPropagation(); copy(b.dataset.copy); });
+  view.querySelectorAll("tr[data-player]").forEach((tr) => {
+    const toggle = (e) => { if (e.target.closest("a")) return; f.openPlayer = f.openPlayer === tr.dataset.player ? "" : tr.dataset.player; detail(view, g, data, recent, people); };
+    tr.onclick = toggle; tr.onkeydown = (e) => e.key === "Enter" && toggle(e);
+  });
+
+  // a player's three most played builds in this guild's games, as bars
+  function playerBuilds(x) {
+    const names = new Set(x.chars.map((c) => c.n)), rows = [];
+    for (const m of games) { const t = ours(m); for (const p of t.players) if (names.has(p.n)) rows.push({ m, t, p }); }
+    return rows.length ? buildsHtml(buildsFrom(rows).slice(0, 3)) : `<p class="muted small">No bars recorded.</p>`;
+  }
 }

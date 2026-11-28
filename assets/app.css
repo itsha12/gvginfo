@@ -325,3 +325,10 @@ tr.selected td { background: var(--accent-soft); }
 .comp { border-top: 1px solid var(--ink); padding-top: .6rem; min-width: 0; overflow-x: auto; }
 .comp-head { margin-bottom: .2rem; }
 .comp .lineup-row .pname { width: 11rem; }
+
+/* player profile: pick characters to narrow the page */
+.char-pick { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: 0 0 1.6rem; }
+.chip-btn { border: 1px solid var(--line-strong); background: var(--card); padding: .2rem .6rem; font-size: .86rem; cursor: pointer; }
+.chip-btn:hover { background: var(--bg-2); }
+.chip-btn[disabled] { opacity: .4; cursor: default; }
+.chip-btn[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
